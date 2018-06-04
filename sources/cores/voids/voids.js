@@ -19,6 +19,7 @@ export {
 } from './isNull'
 
 export {
+    no,
     isNullOrUndefined,
     isDefined
 } from './isNullOrUndefined'
