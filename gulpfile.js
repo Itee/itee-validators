@@ -17,8 +17,17 @@
 
 
 const gulp     = require( 'gulp' )
+const util    = require( 'gulp-util' )
 const jsdoc    = require( 'gulp-jsdoc3' )
 
+const log     = util.log
+const colors  = util.colors
+const red     = colors.red
+const green   = colors.green
+const blue    = colors.blue
+const cyan    = colors.cyan
+const yellow  = colors.yellow
+const magenta = colors.magenta
 
 /**
  * @method npm run help ( default )
