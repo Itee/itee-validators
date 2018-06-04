@@ -10,7 +10,7 @@
 
 /* eslint-env browser */
 
-import { isNumber } from './TNumberValidator'
+import { isNumber } from '../../cores/numbers/isNumber'
 
 // Todo: itee-physics
 export const ABSOLUTE_ZERO_KELVIN     = 0.00000000045
