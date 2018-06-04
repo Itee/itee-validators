@@ -21,6 +21,26 @@ const jsdoc    = require( 'gulp-jsdoc3' )
 
 
 /**
+ * @method npm run help ( default )
+ * @description Will display the help in console
+ */
+gulp.task( 'help', ( done ) => {
+
+    log( '====================================================' )
+    log( '|                                                  |' )
+    log( '|                Itee Client - HELP                |' )
+    log( '|                                                  |' )
+    log( '====================================================' )
+    log( '' )
+    log( 'Available commands are:' )
+    log( blue( 'npm run' ), cyan( 'help' ), ' - Display this help.' )
+    log( blue( 'npm run' ), cyan( 'doc' ), ' - Will run jsdoc, and create documentation under `documentation` folder, using the docdash theme' )
+
+    done()
+
+} )
+
+/**
  * @method npm run doc
  * @description Will generate this documentation
  */
@@ -40,3 +60,6 @@ gulp.task( 'doc', ( done ) => {
 
 } )
 
+//---------
+
+gulp.task( 'default', gulp.series( 'help' ) )
