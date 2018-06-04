@@ -1,0 +1,52 @@
+{
+  "name": "itee-validators",
+  "version": "1.0.0",
+  "description": "A library of validation functions use in various Itee projects",
+  "main": "builds/itee-validators.cjs.js",
+  "module": "builds/itee-validators.esm.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build-test": "rollup -c configs/rollup.test.conf.js",
+    "benchs": "karma start configs/karma.benchs.conf.js",
+    "units": "karma start configs/karma.units.conf.js",
+    "test": "mocha tests/main.tests.js",
+    "test-alt": "mocha tests/itee-validators.tests.js",
+    "build": "rollup -c configs/rollup.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Itee/itee-validators.git"
+  },
+  "keywords": [
+    "itee",
+    "validation",
+    "validator",
+    "library"
+  ],
+  "author": "Itee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Itee/itee-validators/issues"
+  },
+  "homepage": "https://github.com/Itee/itee-validators#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "gulp": "^3.9.1",
+    "karma": "^2.0.0",
+    "karma-benchmark": "^0.7.1",
+    "karma-benchmarkjs-reporter": "^1.0.0",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-mocha": "^1.3.0",
+    "karma-mocha-reporter": "^2.2.5",
+    "mocha": "^5.0.5",
+    "rollup": "^0.57.1",
+    "rollup-plugin-commonjs": "^9.1.0",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-strip": "^1.1.1",
+    "rollup-plugin-uglify-es": "0.0.1"
+  }
+}
