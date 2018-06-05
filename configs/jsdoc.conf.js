@@ -1,12 +1,14 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
  * @module config/jsdocConfiguration
  *
  * @description The configuration file of the jsdoc plugin
  *
  */
+
+/* eslint-env node */
 
 /**
  * Will create an appropriate configuration object for jsdoc
