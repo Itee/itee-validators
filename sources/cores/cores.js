@@ -1,10 +1,10 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/cores
+ * @desc This is the cores main export entry point.
+ * It expose all exports of the voids, booleans, numbers, symbols, strings, arrays, objects and functions validators.
  *
  */
 

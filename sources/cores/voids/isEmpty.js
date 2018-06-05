@@ -1,10 +1,9 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/voids/isEmpty
+ * @desc Export the validation methods about emptiness
  *
  */
 
@@ -13,8 +12,8 @@
  *
  * See: https://stackoverflow.com/questions/4346186/how-to-determine-if-a-function-is-empty
  *
- * @param data
- * @returns {boolean} true if data is consider as empty, false otherwise.
+ * @param data {any} The data to check against the emptiness
+ * @returns {boolean} true if data is considered as empty, false otherwise.
  */
 export function isEmpty ( data ) {
 
@@ -47,8 +46,9 @@ export function isEmpty ( data ) {
 
 /**
  * Check fullness of given data
- * @param data
- * @returns {boolean} true if data is consider as empty, false otherwise.
+ *
+ * @param data {any} The data to check against the emptiness
+ * @returns {boolean} true if data is considered as not empty, false otherwise.
  */
 export function isNotEmpty ( data ) {
     return !isEmpty( data );

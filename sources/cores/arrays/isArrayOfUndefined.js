@@ -1,10 +1,10 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/arrays/isArrayOfUndefined
+ * @desc Export the validation methods about array containing other types
+ * @requires {@link module:sources/cores/arrays/isEmptyArray}
  *
  */
 
@@ -12,8 +12,9 @@ import { isEmptyArray } from './isEmptyArray'
 
 /**
  * Check if given data is not an empty array where all values are undefined
- * @param data
- * @returns {boolean|*} true if data is not an empty array where all values are undefined, false otherwise
+ *
+ * @param data {any} The data to check against the array of undefined
+ * @returns {boolean} true if data is not an empty array where all values are undefined, false otherwise
  */
 export function isArrayOfUndefined ( data ) {
 
@@ -33,8 +34,9 @@ export function isArrayOfUndefined ( data ) {
 
 /**
  * Check if given data is not an empty array where all values are defined
- * @param data
- * @returns {boolean|*} true if data is not an empty array where all values are defined, false otherwise
+ *
+ * @param data {any} The data to check against the array of undefined
+ * @returns {boolean} true if data is not an empty array where all values are defined, false otherwise
  */
 export function isNotArrayOfUndefined ( data ) {
 

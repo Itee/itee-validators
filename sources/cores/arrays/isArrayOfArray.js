@@ -1,10 +1,11 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/arrays/isArrayOfArray
+ * @desc Export the validation methods about array containing other array
+ * @requires {@link module:sources/cores/arrays/isArray}
+ * @requires {@link module:sources/cores/arrays/isEmptyArray}
  *
  */
 
@@ -15,9 +16,10 @@ import {
 import { isEmptyArray } from './isEmptyArray'
 
 /**
+ * Check if given data is an array of array
  *
- * @param data
- * @return {boolean}
+ * @param data {any} The data to check against the array of array type
+ * @returns {boolean} true if data is an array of array, false otherwise
  */
 export function isArrayOfArray ( data ) {
 
@@ -36,9 +38,10 @@ export function isArrayOfArray ( data ) {
 }
 
 /**
+ * Check if given data is not an array of array
  *
- * @param data
- * @return {boolean}
+ * @param data {any} The data to check against the array of array type
+ * @returns {boolean} true if data is not an array of array, false otherwise
  */
 export function isNotArrayOfArray ( data ) {
 

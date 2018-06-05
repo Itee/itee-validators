@@ -1,29 +1,12 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/strings/isEmptyString
+ * @desc Export the validation methods about strings
+ * @requires {@link module:sources/cores/strings/isString}
  *
  */
-
-// Alternative to
-//
-//  if( isString( data ) && isEmpty( data ) ) {
-//      //...foo
-//  } else {
-//      //...bar
-//  }
-//
-//  instead of
-//
-//  if( isEmptyString( data ) ) {
-//      //...foo
-//  } else {
-//      //...bar
-//  }
-//
 
 import {
     isString,
@@ -32,20 +15,23 @@ import {
 
 /**
  * Check if given data is an empty string
- * @param data
- * @returns {boolean|*} true if data is an empty string, false otherwise.
+ *
+ * @param data {any} The data to check against the emptiness of the string
+ * @returns {boolean} true if data is an empty string, false otherwise.
  */
 export function isEmptyString ( data ) {
 
     console.assert( isString( data ), 'Expect a string !' )
 
-    return (isString( data ) && data.length === 0)
+    return (data.length === 0)
+
 }
 
 /**
  * Check if given data is not an empty string
- * @param data
- * @returns {boolean|*} true if data is not an empty string, false otherwise.
+ *
+ * @param data {any} The data to check against the emptiness of the string
+ * @returns {boolean} true if data is not an empty string, false otherwise.
  */
 export function isNotEmptyString ( data ) {
 
@@ -54,8 +40,5 @@ export function isNotEmptyString ( data ) {
     }
 
     return (data.length > 0)
-}
 
-export function isNotEmptyString_ ( data ) {
-    return (isString( data ) && data.length > 0)
 }
