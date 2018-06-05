@@ -1,21 +1,21 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
- * @module config/karmaBenchConfiguration
+ * @module config/karmaUnitsConfiguration
  *
- * @description The file manage the karma configuration for run benchmarks that are under `tests/benchmarks` folder
+ * @description The file manage the karma configuration for run benchmarks that are under `tests/units` folder
  *
  */
 
 /* eslint-env node */
 
 /**
- * Will assign an appropriate configuration object for karma.
+ * Will assign an appropriate configuration object about unit tests for karma.
  *
  * @param {object} config - The karma configuration object to extend
  */
-function CreateKarmaBenchmarkConfiguration ( config ) {
+function CreateKarmaUnitsConfiguration ( config ) {
 
     config.set( {
 
@@ -79,4 +79,4 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
 
 }
 
-module.exports = CreateKarmaBenchmarkConfiguration
+module.exports = CreateKarmaUnitsConfiguration

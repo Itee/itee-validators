@@ -1,8 +1,14 @@
 /**
- * @file Todo
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
- * @author Itee <valcketristan@gmail.com>
- * @license MIT
+ * @module config/karmaBenchConfiguration
+ *
+ * @description The file manage the rollup configuration for build sources
+ *
+ * @requires {@link module: [rollup-plugin-uglify-es]{@link https://github.com/gulpjs/gulp}}
+ * @requires {@link module: [gulp]{@link https://github.com/gulpjs/gulp}}
+ *
  */
 
 const uglify = require( 'rollup-plugin-uglify-es' )
