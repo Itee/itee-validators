@@ -1,17 +1,17 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/booleans/isBoolean
+ * @desc Export the validation methods about booleans
  *
  */
 
 /**
  * Check if given data is a boolean
- * @param data
- * @returns {boolean|*} true if data is a boolean, false otherwise.
+ *
+ * @param data {any} The data to check against the booleaness
+ * @returns {boolean} true if data is a boolean, false otherwise.
  */
 export function isBoolean ( data ) {
     return (typeof data === 'boolean')
@@ -19,8 +19,9 @@ export function isBoolean ( data ) {
 
 /**
  * Check if given data is not a boolean
- * @param data
- * @returns {boolean|*} true if data is not a boolean, false otherwise.
+ *
+ * @param data {any} The data to check against the booleaness
+ * @returns {boolean} true if data is not a boolean, false otherwise.
  */
 export function isNotBoolean ( data ) {
     return (typeof data !== 'boolean')
