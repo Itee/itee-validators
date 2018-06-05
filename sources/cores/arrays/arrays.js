@@ -1,10 +1,10 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/arrays/arrays
+ * @desc This is the arrays export entry point.
+ * It expose all exports of the arrays validators files.
  *
  */
 

@@ -1,10 +1,10 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/strings/strings
+ * @desc This is the strings export entry point.
+ * It expose all exports of the strings validators files.
  *
  */
 

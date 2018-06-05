@@ -1,19 +1,20 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/arrays/isArrayOfObject
+ * @desc Export the validation methods about array containing other types
+ * @requires {@link module:sources/cores/arrays/isEmptyArray}
  *
  */
 
 import { isEmptyArray } from './isEmptyArray'
 
 /**
+ * Check if given data is an array where all values are of object type
  *
- * @param data
- * @return {boolean}
+ * @param data {any} The data to check against the array of object type
+ * @returns {boolean} true if data is an array where all values are of object type, false otherwise
  */
 export function isArrayOfObject ( data ) {
 
@@ -32,9 +33,10 @@ export function isArrayOfObject ( data ) {
 }
 
 /**
+ * Check if given data is not an array where all values are of object type
  *
- * @param data
- * @return {boolean}
+ * @param data {any} The data to check against the array of object type
+ * @returns {boolean} true if data is not an array where all values are of object type, false otherwise
  */
 export function isNotArrayOfObject ( data ) {
 
