@@ -4,10 +4,12 @@
  *
  * @module sources/cores/arrays/isArrayOfObject
  * @desc Export the validation methods about array containing other types
+ * @requires {@link module:sources/cores/objects/isObject}
  * @requires {@link module:sources/cores/arrays/isEmptyArray}
  *
  */
 
+import { isObject, isNotObject } from '../objects/isObject'
 import { isEmptyArray } from './isEmptyArray'
 
 /**
