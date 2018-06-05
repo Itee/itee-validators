@@ -4,17 +4,17 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/arrays/isArray
+	 * @desc Export the validation methods about the "Arrayness"
 	 *
 	 */
 
 	/**
 	 * Check if given data is an array
-	 * @param data
+	 *
+	 * @param data {any} The data to check against the array type
 	 * @returns {boolean} true if data is array, false otherwise
 	 */
 	function isArray ( data ) {
@@ -23,7 +23,8 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * Check if given data is not an array
-	 * @param data
+	 *
+	 * @param data {any} The data to check against the array type
 	 * @returns {boolean} true if data is not array, false otherwise
 	 */
 	function isNotArray ( data ) {
@@ -32,11 +33,10 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/voids/isEmpty
+	 * @desc Export the validation methods about emptiness
 	 *
 	 */
 
@@ -45,8 +45,8 @@ this.Itee.Validators = (function (exports) {
 	 *
 	 * See: https://stackoverflow.com/questions/4346186/how-to-determine-if-a-function-is-empty
 	 *
-	 * @param data
-	 * @returns {boolean} true if data is consider as empty, false otherwise.
+	 * @param data {any} The data to check against the emptiness
+	 * @returns {boolean} true if data is considered as empty, false otherwise.
 	 */
 	function isEmpty ( data ) {
 
@@ -79,8 +79,9 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * Check fullness of given data
-	 * @param data
-	 * @returns {boolean} true if data is consider as empty, false otherwise.
+	 *
+	 * @param data {any} The data to check against the emptiness
+	 * @returns {boolean} true if data is considered as not empty, false otherwise.
 	 */
 	function isNotEmpty ( data ) {
 	    return !isEmpty( data );
@@ -88,18 +89,20 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/arrays/isEmptyArray
+	 * @desc Export the validation methods about array containing other types
+	 * @requires {@link module:sources/cores/arrays/isArray}
+	 * @requires {@link module:sources/cores/voids/isEmpty}
 	 *
 	 */
 
 	/**
 	 * Check if given data is an empty array
-	 * @param data
-	 * @returns {boolean|*} true if data is an empty array, false otherwise
+	 *
+	 * @param data {any} The data to check against the empty array
+	 * @returns {boolean} true if data is an empty array, false otherwise
 	 */
 	function isEmptyArray ( data ) {
 	    return ( isArray( data ) && isEmpty( data ) )
@@ -107,8 +110,9 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * Check if given data is not an empty array
-	 * @param data
-	 * @returns {boolean|*} true if data is not an empty array, false otherwise
+	 *
+	 * @param data {any} The data to check against the empty array
+	 * @returns {boolean} true if data is not an empty array, false otherwise
 	 */
 	function isNotEmptyArray ( data ) {
 	    return ( isArray( data ) && isNotEmpty( data ) )
@@ -116,18 +120,20 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/arrays/isArrayOfArray
+	 * @desc Export the validation methods about array containing other array
+	 * @requires {@link module:sources/cores/arrays/isArray}
+	 * @requires {@link module:sources/cores/arrays/isEmptyArray}
 	 *
 	 */
 
 	/**
+	 * Check if given data is an array of array
 	 *
-	 * @param data
-	 * @return {boolean}
+	 * @param data {any} The data to check against the array of array type
+	 * @returns {boolean} true if data is an array of array, false otherwise
 	 */
 	function isArrayOfArray ( data ) {
 
@@ -146,9 +152,10 @@ this.Itee.Validators = (function (exports) {
 	}
 
 	/**
+	 * Check if given data is not an array of array
 	 *
-	 * @param data
-	 * @return {boolean}
+	 * @param data {any} The data to check against the array of array type
+	 * @returns {boolean} true if data is not an array of array, false otherwise
 	 */
 	function isNotArrayOfArray ( data ) {
 
@@ -168,18 +175,49 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
+	 * @module sources/cores/voids/isNull
+	 * @desc Export the validation methods about nullity
 	 *
-	 * @example Todo
+	 */
+
+	/**
+	 * Check if given data is null
+	 *
+	 * @param data {any} The data to check against the nullity
+	 * @returns {boolean} true if data is null, false otherwise.
+	 */
+	function isNull ( data ) {
+	    return (data === null)
+	}
+
+	/**
+	 * Check if given data is not null
+	 *
+	 * @param data {any} The data to check against the nullity
+	 * @returns {boolean} true if data is not null, false otherwise.
+	 */
+	function isNotNull ( data ) {
+	    return !isNull( data )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 * @module sources/cores/arrays/isArrayOfNull
+	 * @desc Export the validation methods about array containing other types
+	 * @requires {@link module:sources/cores/voids/isNull}
+	 * @requires {@link module:sources/cores/arrays/isEmptyArray}
 	 *
 	 */
 
 	/**
 	 * Check if given data is not an empty array where all values are null
-	 * @param data
-	 * @returns {boolean|*} true if data is not an empty array where all values are null, false otherwise
+	 *
+	 * @param data {any} The data to check against the array of array type
+	 * @returns {boolean} true if data is not an empty array where all values are null, false otherwise
 	 */
 	function isArrayOfNull ( data ) {
 
@@ -199,8 +237,9 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * Check if given data is not an empty array where all values are not null
-	 * @param data
-	 * @returns {boolean|*} true if data is not an empty array where all values are not null, false otherwise
+	 *
+	 * @param data {any} The data to check against the array of array type
+	 * @returns {boolean} true if data is not an empty array where all values are not null, false otherwise
 	 */
 	function isNotArrayOfNull ( data ) {
 
@@ -220,18 +259,51 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
+	 * @module sources/cores/objects/isObject
+	 * @desc Export the validation methods about objects
+	 * @requires {@link module:sources/cores/voids/isNull}
 	 *
-	 * @example Todo
+	 */
+
+
+	/**
+	 * Check if given data is an object
+	 *
+	 * @param data {any} The data to check against the object type
+	 * @returns {boolean} true if data is object, false otherwise
+	 */
+	function isObject ( data ) {
+	    return ( isNotNull( data ) && (typeof data === 'object') && !Array.isArray( data ) )
+	}
+
+	/**
+	 * Check if given data is not an object
+	 *
+	 * @param data {any} The data to check against the object type
+	 * @returns {boolean} true if data is not an object, false otherwise
+	 */
+	function isNotObject ( data ) {
+	    return !isObject( data )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 * @module sources/cores/arrays/isArrayOfObject
+	 * @desc Export the validation methods about array containing other types
+	 * @requires {@link module:sources/cores/objects/isObject}
+	 * @requires {@link module:sources/cores/arrays/isEmptyArray}
 	 *
 	 */
 
 	/**
+	 * Check if given data is an array where all values are of object type
 	 *
-	 * @param data
-	 * @return {boolean}
+	 * @param data {any} The data to check against the array of object type
+	 * @returns {boolean} true if data is an array where all values are of object type, false otherwise
 	 */
 	function isArrayOfObject ( data ) {
 
@@ -250,9 +322,10 @@ this.Itee.Validators = (function (exports) {
 	}
 
 	/**
+	 * Check if given data is not an array where all values are of object type
 	 *
-	 * @param data
-	 * @return {boolean}
+	 * @param data {any} The data to check against the array of object type
+	 * @returns {boolean} true if data is not an array where all values are of object type, false otherwise
 	 */
 	function isNotArrayOfObject ( data ) {
 
@@ -272,11 +345,7 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
 
@@ -290,18 +359,49 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
+	 * @module sources/cores/strings/isString
+	 * @desc Export the validation methods about strings
 	 *
-	 * @example Todo
+	 */
+
+	/**
+	 * Check if given data is a string
+	 *
+	 * @param data {any} The data to check against the string type
+	 * @returns {boolean} true if data is a string, false otherwise.
+	 */
+	function isString ( data ) {
+	    return (typeof data === 'string')
+	}
+
+	/**
+	 * Check if given data is not a string
+	 *
+	 * @param data {any} The data to check against the string type
+	 * @returns {boolean} true if data is not a string, false otherwise.
+	 */
+	function isNotString ( data ) {
+	    return (typeof data !== 'string')
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 * @module sources/cores/arrays/isArrayOfString
+	 * @desc Export the validation methods about array containing other types
+	 * @requires {@link module:sources/cores/strings/isString}
+	 * @requires {@link module:sources/cores/arrays/isEmptyArray}
 	 *
 	 */
 
 	/**
 	 * Check if given data is not an empty array where all values are string
-	 * @param data
-	 * @returns {boolean|*} true if data is not an empty array where all values are string, false otherwise
+	 *
+	 * @param data {any} The data to check against the array of strings
+	 * @returns {boolean} true if data is not an empty array where all values are string, false otherwise
 	 */
 	function isArrayOfString ( data ) {
 
@@ -321,8 +421,9 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * Check if given data is not an empty array where all values are not string
-	 * @param data
-	 * @returns {boolean|*} true if data is not an empty array where all values are not string, false otherwise
+	 *
+	 * @param data {any} The data to check against the array of strings
+	 * @returns {boolean} true if data is not an empty array where all values are not string, false otherwise
 	 */
 	function isNotArrayOfString ( data ) {
 
@@ -342,18 +443,93 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
+	 * @module sources/cores/voids/isUndefined
+	 * @desc Export the validation methods about the undefiness
 	 *
-	 * @example Todo
+	 */
+
+	/**
+	 * Check if given data is undefined
+	 *
+	 * @param data {any} The data to check against the undefiness
+	 * @returns {boolean} true if data is undefined, false otherwise.
+	 */
+	function isUndefined ( data ) {
+	    return (typeof data === 'undefined')
+	}
+
+	/**
+	 * Check if given data is defined
+	 *
+	 * @param data {any} The data to check against the undefiness
+	 * @returns {boolean} true if data is defined, false otherwise.
+	 */
+	function isNotUndefined ( data ) {
+	    return (typeof data !== 'undefined')
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 * @module sources/cores/voids/isNullOrUndefined
+	 * @desc Export the validation methods about nullity and undefiness
+	 *
+	 * @requires {@link module:sources/cores/voids/isNull}
+	 * @requires {@link module:sources/cores/voids/isUndefined}
+	 *
+	 */
+
+	/**
+	 * Check if given data is null or undefined
+	 *
+	 * @param data {any} The data to check against the existence
+	 * @returns {boolean} true if data is null or undefined, false otherwise.
+	 */
+	function isNullOrUndefined ( data ) {
+	    return (isNull( data ) || isUndefined( data ))
+	}
+
+	/**
+	 * Check if given data is null or undefined
+	 *
+	 * @alias isNullOrUndefined
+	 * @param data {any} The data to check against the existence
+	 * @returns {boolean} true if data is null or undefined, false otherwise.
+	 */
+	function no ( data ) {
+	    return ( (data === null) || (typeof data === 'undefined') )
+	}
+
+	/**
+	 * Check if given data is not null and not undefined
+	 *
+	 * @param data {any} The data to check against the existence
+	 * @returns {boolean} true if data is not null and not undefined, false otherwise.
+	 */
+	function isDefined ( data ) {
+	    return (isNotNull( data ) && isNotUndefined( data ))
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 * @module sources/cores/arrays/isArrayOfUndefined
+	 * @desc Export the validation methods about array containing other types
+	 * @requires {@link module:sources/cores/voids/isUndefined}
+	 * @requires {@link module:sources/cores/voids/isNullOrUndefined}
+	 * @requires {@link module:sources/cores/arrays/isEmptyArray}
 	 *
 	 */
 
 	/**
 	 * Check if given data is not an empty array where all values are undefined
-	 * @param data
-	 * @returns {boolean|*} true if data is not an empty array where all values are undefined, false otherwise
+	 *
+	 * @param data {any} The data to check against the array of undefined
+	 * @returns {boolean} true if data is not an empty array where all values are undefined, false otherwise
 	 */
 	function isArrayOfUndefined ( data ) {
 
@@ -373,8 +549,9 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * Check if given data is not an empty array where all values are defined
-	 * @param data
-	 * @returns {boolean|*} true if data is not an empty array where all values are defined, false otherwise
+	 *
+	 * @param data {any} The data to check against the array of undefined
+	 * @returns {boolean} true if data is not an empty array where all values are defined, false otherwise
 	 */
 	function isNotArrayOfUndefined ( data ) {
 
@@ -394,28 +571,28 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/arrays/arrays
+	 * @desc This is the arrays export entry point.
+	 * It expose all exports of the arrays validators files.
 	 *
 	 */
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/booleans/isBoolean
+	 * @desc Export the validation methods about booleans
 	 *
 	 */
 
 	/**
 	 * Check if given data is a boolean
-	 * @param data
-	 * @returns {boolean|*} true if data is a boolean, false otherwise.
+	 *
+	 * @param data {any} The data to check against the booleaness
+	 * @returns {boolean} true if data is a boolean, false otherwise.
 	 */
 	function isBoolean ( data ) {
 	    return (typeof data === 'boolean')
@@ -423,8 +600,9 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * Check if given data is not a boolean
-	 * @param data
-	 * @returns {boolean|*} true if data is not a boolean, false otherwise.
+	 *
+	 * @param data {any} The data to check against the booleaness
+	 * @returns {boolean} true if data is not a boolean, false otherwise.
 	 */
 	function isNotBoolean ( data ) {
 	    return (typeof data !== 'boolean')
@@ -432,28 +610,28 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/booleans/booleans
+	 * @desc This is the booleans export entry point.
+	 * It expose all exports of the booleans validators files.
 	 *
 	 */
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/functions/isFunction
+	 * @desc Export the validation methods about functions
 	 *
 	 */
 
 	/**
 	 * Check if given data is a function
-	 * @param data
-	 * @returns {boolean|*} true if data is a function, false otherwise.
+	 *
+	 * @param data {any} The data to check against the functionality
+	 * @returns {boolean} true if data is a function, false otherwise.
 	 */
 	function isFunction ( data ) {
 	    return (typeof data === "function")
@@ -461,8 +639,9 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * Check if given data is not a function
-	 * @param data
-	 * @returns {boolean|*} true if data is not a function, false otherwise.
+	 *
+	 * @param data {any} The data to check against the functionality
+	 * @returns {boolean} true if data is not a function, false otherwise.
 	 */
 	function isNotFunction ( data ) {
 	    return (typeof data !== "function")
@@ -470,28 +649,28 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/functions/functions
+	 * @desc This is the functions export entry point.
+	 * It expose all exports of the functions validators files.
 	 *
 	 */
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/numbers/isFinite
+	 * @desc Export the validation methods about numbers
 	 *
 	 */
 
 	/**
+	 * Check if the given data is a finite number
 	 *
-	 * @param data
-	 * @return {boolean}
+	 * @param data {any} The data to check against the finite state
+	 * @returns {boolean} true if data is finite, false otherwise
 	 */
 	function isFinite$1 ( data ) {
 	    return Number.isFinite( data )
@@ -499,50 +678,57 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/numbers/isFloat
+	 * @desc Export the validation methods about numbers
 	 *
 	 */
 
+	/**
+	 * Check if given data is a floating point number
+	 *
+	 * @param data {any} The data to check against the floating point
+	 * @returns {boolean} true if data is a float, false otherwise
+	 */
 	function isFloat ( data ) {
 	    return data % 1 !== 0
 	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/numbers/isInfinite
+	 * @desc Export the validation methods about numbers
 	 *
 	 */
 
 	/**
+	 * Check if the given data is an infinite number
 	 *
-	 * @param data
-	 * @return {boolean}
+	 * @param data {any} The data to check against the infinite state
+	 * @returns {boolean} true if data is infinite, false otherwise
 	 */
 	function isInfinite ( data ) {
 	    return !Number.isFinite( data )
 	}
 
 	/**
+	 * Check if the given data is an infinite negative number
 	 *
-	 * @param data
-	 * @return {boolean}
+	 * @param data {any} The data to check against the negative infinite state
+	 * @returns {boolean} true if data is negative infinite, false otherwise
 	 */
 	function isInfiniteNegative ( data ) {
 	    return (data === Number.NEGATIVE_INFINITY)
 	}
 
 	/**
+	 * Check if the given data is an infinite positive number
 	 *
-	 * @param data
-	 * @return {boolean}
+	 * @param data {any} The data to check against the positive infinite state
+	 * @returns {boolean} true if data is positive infinite, false otherwise
 	 */
 	function isInfinitePositive ( data ) {
 	    return (data === Number.POSITIVE_INFINITY)
@@ -550,92 +736,135 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/numbers/isInteger
+	 * @desc Export the validation methods about numbers
 	 *
 	 */
 
+	/**
+	 * Check if the given data is an integer number
+	 *
+	 * @param data {any} The data to check against the integer state
+	 * @returns {boolean} true if data is an integer, false otherwise
+	 */
 	function isInteger ( data ) {
 	    return (data === 0 && (1 / data) === Number.POSITIVE_INFINITY)
 	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/numbers/isMax
+	 * @desc Export the validation methods about numbers
 	 *
 	 */
 
-
+	/**
+	 * Check if the given data is a maximum safe integer number
+	 *
+	 * @param data {any} The data to check against the maximum safe integer state
+	 * @returns {boolean} true if data is a maximum safe integer, false otherwise
+	 */
 	function isMaxSafeInteger ( data ) {
 	    return (data === Number.MAX_SAFE_INTEGER)
 	}
 
+	/**
+	 * Check if the given data is a maximum positive number
+	 *
+	 * @param data {any} The data to check against the positive maximum state
+	 * @returns {boolean} true if data is positive maximum, false otherwise
+	 */
 	function isMaxPositive ( data ) {
 	    return (data === Number.MAX_VALUE)
 	}
 
-
+	/**
+	 * Check if the given data is a maximum negative number
+	 *
+	 * @param data {any} The data to check against the maximum infinite state
+	 * @returns {boolean} true if data is negative maximum, false otherwise
+	 */
 	function isMaxNegative ( data ) {
 	    return (data === -Number.MAX_VALUE)
 	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/numbers/isMin
+	 * @desc Export the validation methods about numbers
 	 *
 	 */
 
+	/**
+	 * Check if the given data is a minimum safe integer number
+	 *
+	 * @param data {any} The data to check against the minimum safe integer state
+	 * @returns {boolean} true if data is a minimum safe integer, false otherwise
+	 */
 	function isMinSafeInteger ( data ) {
 	    return (data === Number.MIN_SAFE_INTEGER)
 	}
 
+	/**
+	 * Check if the given data is a minimum positive number
+	 *
+	 * @param data {any} The data to check against the positive minimum state
+	 * @returns {boolean} true if data is positive minimum, false otherwise
+	 */
 	function isMinPositive ( data ) {
 	    return (data === Number.MIN_VALUE)
 	}
 
+	/**
+	 * Check if the given data is a minimum negative number
+	 *
+	 * @param data {any} The data to check against the minimum infinite state
+	 * @returns {boolean} true if data is negative minimum, false otherwise
+	 */
 	function isMinNegative ( data ) {
 	    return (data === -Number.MIN_VALUE)
 	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/numbers/isNumber
+	 * @desc Export the validation methods about numbers
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is a number
-	 * @param data
-	 * @returns {boolean|*} true if data is a number, false otherwise.
+	 *
+	 * @param data {any} The data to check against the maximum safe integer state
+	 * @returns {boolean} true if data is a number, false otherwise.
 	 */
 	function isNumber ( data ) {
 	    return (typeof data === 'number' && !Number.isNaN( data ) )
 	}
 
+	/**
+	 * Check if given data is not a number
+	 *
+	 * @param data {any} The data to check against the number type
+	 * @returns {boolean} true if data is not of type number or not a number, false otherwise.
+	 */
 	function isNotNumber ( data ) {
 	    return (typeof data !== 'number' || Number.isNaN( data ) )
 	}
 
 	/**
 	 * Check if given data is not a number
-	 * @param data
-	 * @returns {boolean|*} true if data is not a number, false otherwise.
+	 *
+	 * @param data {any} The data to check against the maximum safe integer state
+	 * @returns {boolean} true if data is not a number, false otherwise.
 	 */
 	function isNaN ( data ) {
 	    return Number.isNaN( data )
@@ -644,237 +873,200 @@ this.Itee.Validators = (function (exports) {
 	///
 
 	/**
+	 * Check if the data is a positive number
 	 *
-	 * @param data
-	 * @return {boolean|*|boolean}
-	 */
-	function isNumberNegative ( data ) {
-	    return (isNumber( data ) && data < 0)
-	}
-
-	/**
-	 *
-	 * @param data
-	 * @return {boolean|*|boolean}
+	 * @param data {any} The data to check against the positivity
+	 * @returns {boolean} true if data is a positive number, false otherwise.
 	 */
 	function isNumberPositive ( data ) {
 	    return (isNumber( data ) && data > 0)
 	}
 
 	/**
+	 * Check if the data is a negative number
+	 *
+	 * @param data {any} The data to check against the negativity
+	 * @returns {boolean} true if data is a negative number, false otherwise.
+	 */
+	function isNumberNegative ( data ) {
+	    return (isNumber( data ) && data < 0)
+	}
+
+	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/numbers/isNumeric
+	 * @desc Export the validation methods about numbers
 	 *
 	 */
 
+	/**
+	 * Check if the given data is numerical
+	 *
+	 * @param data {any} The data to check against the numerical type
+	 * @returns {boolean} true if data is numeric, false otherwise
+	 */
 	function isNumeric ( data ) {
 	    return ( typeof data === 'number' )
 	}
 
+	/**
+	 * Check if the given data is not numerical
+	 *
+	 * @param data {any} The data to check against the numerical type
+	 * @returns {boolean} true if data is not numeric, false otherwise
+	 */
 	function isNotNumeric ( data ) {
 	    return ( typeof data !== 'number' )
 	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/numbers/isZero
+	 * @desc Export the validation methods about numbers
 	 *
 	 */
 
+	/**
+	 * Check if the given data is zero
+	 *
+	 * @param data {any} The data to check against the zero value
+	 * @returns {boolean} true if data is zero, false otherwise
+	 */
 	function isZero ( data ) {
 	    return (data === 0)
 	}
 
+	/**
+	 * Check if the given data is a positive zero
+	 *
+	 * @param data {any} The data to check against the positive zero value
+	 * @returns {boolean} true if data is a positive zero, false otherwise
+	 */
 	function isZeroPositive ( data ) {
 	    return (data === 0 && (1 / data) === Number.POSITIVE_INFINITY)
 	}
 
+	/**
+	 * Check if the given data is a negative zero
+	 *
+	 * @param data {any} The data to check against the negative zero value
+	 * @returns {boolean} true if data is a negative zero, false otherwise
+	 */
 	function isZeroNegative ( data ) {
 	    return (data === 0 && (1 / data) === Number.NEGATIVE_INFINITY)
 	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/numbers/numbers
+	 * @desc This is the numbers export entry point.
+	 * It expose all exports of the numbers validators files.
 	 *
 	 */
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is null
-	 * @param data
-	 * @returns {boolean|*} true if data is null, false otherwise.
-	 */
-	function isNull$1 ( data ) {
-	    return (data === null)
-	}
-
-	/**
-	 * Check if given data is not null
-	 * @param data
-	 * @returns {boolean|*} true if data is not null, false otherwise.
-	 */
-	function isNotNull$1 ( data ) {
-	    return !isNull$1( data )
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	function isObject$1 ( data ) {
-	    return ( isNotNull$1( data ) && (typeof data === 'object') && !Array.isArray( data ) )
-	}
-
-
-	/**
-	 * Check if given data is not an object
-	 * @param data
-	 * @returns {boolean} true if data is not an object, false otherwise
-	 */
-	function isNotObject$1 ( data ) {
-	    return !isObject$1( data )
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/objects/isEmptyObject
+	 * @desc Export the validation methods about empty objects
+	 * @requires {@link module:sources/cores/voids/isEmpty}
+	 * @requires {@link module:sources/cores/objects/isObject}
 	 *
 	 */
 
 	/**
 	 * Check if given data is an empty object
-	 * @param data
-	 * @returns {boolean|*} true if data is an empty object, false otherwise
+	 *
+	 * @param data {any} The data to check against the emptiness of the object
+	 * @returns {boolean} true if data is an empty object, false otherwise
 	 */
 	function isEmptyObject ( data ) {
-	    return ( isObject$1( data ) && isEmpty( data ) )
+	    return ( isObject( data ) && isEmpty( data ) )
 	}
 
 	/**
 	 * Check if given data is not an empty object
-	 * @param data
-	 * @returns {boolean|*} true if data is not an empty object, false otherwise
+	 *
+	 * @param data {any} The data to check against the emptiness of the object
+	 * @returns {boolean} true if data is not an empty object, false otherwise
 	 */
 	function isNotEmptyObject ( data ) {
-	    return ( isObject$1( data ) && isNotEmpty( data ) )
+	    return ( isObject( data ) && isNotEmpty( data ) )
 	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/objects/objects
+	 * @desc This is the objects export entry point.
+	 * It expose all exports of the objects validators files.
 	 *
 	 */
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is a string
-	 * @param data
-	 * @returns {boolean|*} true if data is a string, false otherwise.
-	 */
-	function isString$1 ( data ) {
-	    return (typeof data === 'string')
-	}
-
-	/**
-	 * Check if given data is not a string
-	 * @param data
-	 * @returns {boolean|*} true if data is not a string, false otherwise.
-	 */
-	function isNotString$1 ( data ) {
-	    return (typeof data !== 'string')
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/strings/isEmptyString
+	 * @desc Export the validation methods about strings
+	 * @requires {@link module:sources/cores/strings/isString}
 	 *
 	 */
 
 	/**
 	 * Check if given data is an empty string
-	 * @param data
-	 * @returns {boolean|*} true if data is an empty string, false otherwise.
+	 *
+	 * @param data {any} The data to check against the emptiness of the string
+	 * @returns {boolean} true if data is an empty string, false otherwise.
 	 */
 	function isEmptyString ( data ) {
 
-	    console.assert( isString$1( data ), 'Expect a string !' );
+	    console.assert( isString( data ), 'Expect a string !' );
 
-	    return (isString$1( data ) && data.length === 0)
+	    return (data.length === 0)
+
 	}
 
 	/**
 	 * Check if given data is not an empty string
-	 * @param data
-	 * @returns {boolean|*} true if data is not an empty string, false otherwise.
+	 *
+	 * @param data {any} The data to check against the emptiness of the string
+	 * @returns {boolean} true if data is not an empty string, false otherwise.
 	 */
 	function isNotEmptyString ( data ) {
 
-	    if ( isNotString$1( data ) ) {
+	    if ( isNotString( data ) ) {
 	        throw new TypeError( 'Expect a string !' )
 	    }
 
 	    return (data.length > 0)
+
 	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/strings/isBlanktring
+	 * @desc Export the validation methods about strings
+	 * @requires {@link module:sources/cores/strings/isEmptyString}
 	 *
 	 */
 
+	/**
+	 * Check if the given data is a blank string
+	 *
+	 * @param data {any} The data to check against the blankness of the string
+	 * @returns {boolean} true if data is a blank string, false otherwise.
+	 */
 	function isBlankString ( data ) {
 
 	    if ( isEmptyString( data ) ) {
@@ -884,34 +1076,40 @@ this.Itee.Validators = (function (exports) {
 	    return ( !/\S/.test( data ) )
 	}
 
+	/**
+	 * Check if the given data is not a blank string
+	 *
+	 * @param data {any} The data to check against the blankness of the string
+	 * @returns {boolean} true if data is not a blank string, false otherwise.
+	 */
 	function isNotBlankString ( data ) {
 	    return ( isNotEmptyString( data ) && /\S/.test( data ) )
 	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/strings/strings
+	 * @desc This is the strings export entry point.
+	 * It expose all exports of the strings validators files.
 	 *
 	 */
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/symbols/isSymbol
+	 * @desc Export the validation methods about symbols
 	 *
 	 */
 
 	/**
 	 * Check if given data is a symbol
-	 * @param data
-	 * @returns {boolean|*} true if data is a symbol, false otherwise.
+	 *
+	 * @param data {any} The data to check against the symbol type
+	 * @returns {boolean} true if data is a symbol, false otherwise.
 	 */
 	function isSymbol ( data ) {
 	    return (typeof data === 'symbol')
@@ -919,110 +1117,57 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * Check if given data is not a symbol
-	 * @param data
-	 * @returns {boolean|*} true if data is not a symbol, false otherwise.
+	 *
+	 * @param data {any} The data to check against the symbol type
+	 * @returns {boolean} true if data is not a symbol, false otherwise.
 	 */
 	function isNotSymbol ( data ) {
-	    return !isSymbol( data )
+	    return (typeof data !== 'symbol')
 	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is undefined
-	 * @param data
-	 * @returns {boolean|*} true if data is undefined, false otherwise.
-	 */
-	function isUndefined$1 ( data ) {
-	    return (typeof data === 'undefined')
-	}
-
-	function isNotUndefined ( data ) {
-	    return (typeof data !== 'undefined')
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	function isNullOrUndefined ( data ) {
-	    return (isNull( data ) || isUndefined$1( data ))
-	}
-
-	function no ( data ) {
-	    return ( (data === null) || (typeof data === 'undefined') )
-	}
-
-	/**
-	 * Check if given data is not undefined
-	 * @param data
-	 * @returns {boolean|*} true if data is not undefined, false otherwise.
-	 */
-	function isDefined$1 ( data ) {
-	    return (isNotNull( data ) && isNotUndefined( data ))
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/symbols/symbols
+	 * @desc This is the symbols export entry point.
+	 * It expose all exports of the symbols validators files.
 	 *
 	 */
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/cores/voids/voids
+	 * @desc This is the voids export entry point.
+	 * It expose all exports of the voids validators files.
 	 *
 	 */
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @class Todo...
-	 * @classdesc Todo...
-	 * @example Todo...
+	 * @module sources/cores/cores
+	 * @desc This is the cores main export entry point.
+	 * It expose all exports of the voids, booleans, numbers, symbols, strings, arrays, objects and functions validators.
+	 *
+	 */
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 * @module sources/maths/maths
+	 * @desc This is the maths export entry point.
+	 * It expose all exports of the ... sub-folder.
+	 *
+	 */
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
 
@@ -1105,43 +1250,39 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/physics/physics
+	 * @desc This is the physics export entry point.
+	 * It expose all exports of the temperatures sub-folder.
 	 *
 	 */
 
 	/**
-	 * _____________________________________________________________________________________________________________________________________________________________________________________________________
-	 * ___/\\\\\\\\\\\________________________________________________________/\\\________/\\\_________________/\\\\\\__________________/\\\________________________________________________________________
-	 * ___\/////\\\///________________________________________________________\/\\\_______\/\\\________________\////\\\_________________\/\\\_______________________________________________________________
-	 * ________\/\\\_________/\\\______________________________________________\//\\\______/\\\____________________\/\\\_____/\\\________\/\\\_____________________/\\\_____________________________________
-	 * _________\/\\\______/\\\\\\\\\\\_____/\\\\\\\\______/\\\\\\\\_____________\//\\\____/\\\____/\\\\\\\\\_______\/\\\____\///_________\/\\\___/\\\\\\\\\_____/\\\\\\\\\\\_____/\\\\\_____/\\/\\\\\\\____
-	 * __________\/\\\_____\////\\\////____/\\\/////\\\___/\\\/////\\\_____________\//\\\__/\\\____\////////\\\______\/\\\_____/\\\___/\\\\\\\\\__\////////\\\___\////\\\////____/\\\///\\\__\/\\\/////\\\__
-	 * ___________\/\\\________\/\\\_______/\\\\\\\\\\\___/\\\\\\\\\\\_______________\//\\\/\\\_______/\\\\\\\\\\_____\/\\\____\/\\\__/\\\////\\\____/\\\\\\\\\\_____\/\\\_______/\\\__\//\\\_\/\\\___\///__
-	 * ____________\/\\\________\/\\\_/\\__\//\\///////___\//\\///////_________________\//\\\\\_______/\\\/////\\\_____\/\\\____\/\\\_\/\\\__\/\\\___/\\\/////\\\_____\/\\\_/\\__\//\\\__/\\\__\/\\\________
-	 * __________/\\\\\\\\\\\____\//\\\\\____\//\\\\\\\\\\__\//\\\\\\\\\\________________\//\\\_______\//\\\\\\\\/\\__/\\\\\\\\\_\/\\\_\//\\\\\\\/\\_\//\\\\\\\\/\\____\//\\\\\____\///\\\\\/___\/\\\_______
-	 * __________\///////////______\/////______\//////////____\//////////__________________\///_________\////////\//__\/////////__\///___\///////\//___\////////\//______\/////_______\/////_____\///_______
-	 * _____________________________________________________________________________________________________________________________________________________________________________________________________
+	 * __________________________________________________________________________________________________________________________________________________________________________________________________
+	 * _/\\\\\\\\\\\________________________________________________________/\\\________/\\\_________________/\\\\\\__________________/\\\_______________________________________________________________
+	 * _\/////\\\///________________________________________________________\/\\\_______\/\\\________________\////\\\_________________\/\\\______________________________________________________________
+	 * ______\/\\\_________/\\\______________________________________________\//\\\______/\\\____________________\/\\\_____/\\\________\/\\\_____________________/\\\____________________________________
+	 * _______\/\\\______/\\\\\\\\\\\_____/\\\\\\\\______/\\\\\\\\_____________\//\\\____/\\\____/\\\\\\\\\_______\/\\\____\///_________\/\\\___/\\\\\\\\\_____/\\\\\\\\\\\_____/\\\\\_____/\\/\\\\\\\___
+	 * ________\/\\\_____\////\\\////____/\\\/////\\\___/\\\/////\\\_____________\//\\\__/\\\____\////////\\\______\/\\\_____/\\\___/\\\\\\\\\__\////////\\\___\////\\\////____/\\\///\\\__\/\\\/////\\\_
+	 * _________\/\\\________\/\\\_______/\\\\\\\\\\\___/\\\\\\\\\\\_______________\//\\\/\\\_______/\\\\\\\\\\_____\/\\\____\/\\\__/\\\////\\\____/\\\\\\\\\\_____\/\\\_______/\\\__\//\\\_\/\\\___\///_
+	 * __________\/\\\________\/\\\_/\\__\//\\///////___\//\\///////_________________\//\\\\\_______/\\\/////\\\_____\/\\\____\/\\\_\/\\\__\/\\\___/\\\/////\\\_____\/\\\_/\\__\//\\\__/\\\__\/\\\_______
+	 * ________/\\\\\\\\\\\____\//\\\\\____\//\\\\\\\\\\__\//\\\\\\\\\\________________\//\\\_______\//\\\\\\\\/\\__/\\\\\\\\\_\/\\\_\//\\\\\\\/\\_\//\\\\\\\\/\\____\//\\\\\____\///\\\\\/___\/\\\______
+	 * ________\///////////______\/////______\//////////____\//////////__________________\///_________\////////\//__\/////////__\///___\///////\//___\////////\//______\/////_______\/////_____\///______
+	 * __________________________________________________________________________________________________________________________________________________________________________________________________
 	 *
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module sources/main
+	 * @desc This is the main entry point to bundle the itee validators package.
+	 * It expose all exports of the cores, maths and physics sub-folder.
 	 *
 	 */
 
@@ -1187,26 +1328,26 @@ this.Itee.Validators = (function (exports) {
 	exports.isZero = isZero;
 	exports.isZeroNegative = isZeroNegative;
 	exports.isZeroPositive = isZeroPositive;
-	exports.isObject = isObject$1;
-	exports.isNotObject = isNotObject$1;
+	exports.isObject = isObject;
+	exports.isNotObject = isNotObject;
 	exports.isEmptyObject = isEmptyObject;
 	exports.isNotEmptyObject = isNotEmptyObject;
 	exports.isBlankString = isBlankString;
 	exports.isNotBlankString = isNotBlankString;
 	exports.isEmptyString = isEmptyString;
 	exports.isNotEmptyString = isNotEmptyString;
-	exports.isString = isString$1;
-	exports.isNotString = isNotString$1;
+	exports.isString = isString;
+	exports.isNotString = isNotString;
 	exports.isSymbol = isSymbol;
 	exports.isNotSymbol = isNotSymbol;
 	exports.isEmpty = isEmpty;
 	exports.isNotEmpty = isNotEmpty;
-	exports.isNull = isNull$1;
-	exports.isNotNull = isNotNull$1;
+	exports.isNull = isNull;
+	exports.isNotNull = isNotNull;
 	exports.no = no;
 	exports.isNullOrUndefined = isNullOrUndefined;
-	exports.isDefined = isDefined$1;
-	exports.isUndefined = isUndefined$1;
+	exports.isDefined = isDefined;
+	exports.isUndefined = isUndefined;
 	exports.isNotUndefined = isNotUndefined;
 	exports.ABSOLUTE_ZERO_KELVIN = ABSOLUTE_ZERO_KELVIN;
 	exports.ABSOLUTE_ZERO_CELSIUS = ABSOLUTE_ZERO_CELSIUS;
