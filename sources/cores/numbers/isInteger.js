@@ -18,16 +18,16 @@ export function isInteger ( data ) {
 }
 
 // Alternatives
-function isInteger_1 ( data ) {
+export function isInteger_1 ( data ) {
     return data % 1 === 0
 }
 
 // Alternatives
-function isInteger_2 ( n ) {
+export function isInteger_2 ( n ) {
     return n === +n && n === (n | 0);
 }
 
 // Alternatives
-function isInteger_3 ( nVal ) {
+export function isInteger_3 ( nVal ) {
     return typeof nVal === "number" && isFinite( nVal ) && nVal > -9007199254740992 && nVal < 9007199254740992 && Math.floor( nVal ) === nVal;
 }

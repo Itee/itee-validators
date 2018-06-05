@@ -109,7 +109,6 @@ gulp.task( 'lint', () => {
     // Todo: split between source and test with differents env
     const filesToLint = [
         'gulpfile.js',
-        'scripts/**/*.js',
         'sources/**/*',
         'tests/**/*.js'
     ]
