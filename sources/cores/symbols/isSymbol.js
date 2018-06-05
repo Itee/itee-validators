@@ -23,6 +23,6 @@ export function isSymbol ( data ) {
  * @param data {any} The data to check against the symbol type
  * @returns {boolean} true if data is not a symbol, false otherwise.
  */
-export function isNotSymbol2 ( data ) {
+export function isNotSymbol ( data ) {
     return (typeof data !== 'symbol')
 }
