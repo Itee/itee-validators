@@ -1,6 +1,6 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
  * @module config/karmaBenchConfiguration
  *
@@ -11,7 +11,7 @@
 /* eslint-env node */
 
 /**
- * Will assign an appropriate configuration object for karma.
+ * Will assign an appropriate configuration object about benchmarks for karma.
  *
  * @param {object} config - The karma configuration object to extend
  */
