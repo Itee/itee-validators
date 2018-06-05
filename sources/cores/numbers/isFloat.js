@@ -18,11 +18,11 @@ export function isFloat ( data ) {
 }
 
 // Alternatives
-function isFloat_1 ( n ) {
+export function isFloat_1 ( n ) {
     return n === +n && n !== (n | 0)
 }
 
 // Alternatives
-function isFloat_2 ( x ) {
+export function isFloat_2 ( x ) {
     return !!(x % 1)
 }

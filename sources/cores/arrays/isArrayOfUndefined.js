@@ -4,10 +4,14 @@
  *
  * @module sources/cores/arrays/isArrayOfUndefined
  * @desc Export the validation methods about array containing other types
+ * @requires {@link module:sources/cores/voids/isUndefined}
+ * @requires {@link module:sources/cores/voids/isNullOrUndefined}
  * @requires {@link module:sources/cores/arrays/isEmptyArray}
  *
  */
 
+import { isUndefined } from '../voids/isUndefined'
+import { isDefined } from '../voids/isNullOrUndefined'
 import { isEmptyArray } from './isEmptyArray'
 
 /**

@@ -25,7 +25,9 @@ function CreateEslintConfiguration () {
             sourceType: "module"
         },
         extends: [ 'eslint:recommended' ],
-        rules: {}
+        rules: {
+            'no-console': 'off',
+        }
     }
 
 }
