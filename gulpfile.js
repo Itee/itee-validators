@@ -29,9 +29,13 @@
 
 /* eslint-env node */
 
-const gulp     = require( 'gulp' )
-const util    = require( 'gulp-util' )
-const jsdoc    = require( 'gulp-jsdoc3' )
+const gulp   = require( 'gulp' )
+const util   = require( 'gulp-util' )
+const jsdoc  = require( 'gulp-jsdoc3' )
+const eslint = require( 'gulp-eslint' )
+const del    = require( 'del' )
+const rollup = require( 'rollup' )
+const path   = require( 'path' )
 
 const log     = util.log
 const colors  = util.colors
@@ -114,17 +118,12 @@ gulp.task( 'lint', () => {
                .pipe( eslint( {
                    allowInlineConfig: true,
                    globals:           [],
-                   fix:               true,
+                   fix:               false,
                    quiet:             false,
                    envs:              [],
                    configFile:        './configs/eslint.conf.js',
-                   //                   parser:            'babel-eslint',
-                   parserOptions:     {
-                       parser:            'babel-eslint'
-                   },
-                   plugins:           [
-                       'vue'
-                   ],
+                   parserOptions:     {},
+                   plugins:           [],
                    rules:             {},
                    useEslintrc:       false
                } ) )
