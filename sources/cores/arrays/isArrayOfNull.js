@@ -4,6 +4,7 @@
  *
  * @module sources/cores/arrays/isArrayOfNull
  * @desc Export the validation methods about array containing other types
+ * @requires {@link module:sources/cores/voids/isNull}
  * @requires {@link module:sources/cores/arrays/isEmptyArray}
  *
  */
