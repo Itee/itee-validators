@@ -6,4 +6,4 @@
  */
 
 //export { default as BooleanBenchs } from './isBoolean.benchs'
-export { BooleanBenchs } from './isBoolean.benchs'
+export { isBooleanBenchs } from './isBoolean.benchs'
