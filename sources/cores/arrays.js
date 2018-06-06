@@ -4,16 +4,33 @@
  *
  * @module sources/cores/arrays
  * @desc Export the validation methods about Arrays
+ * @requires {@link module:sources/cores/voids/isNull}
+ * @requires {@link module:sources/cores/voids/isUndefined}
+ * @requires {@link module:sources/cores/voids/isNullOrUndefined}
+ * @requires {@link module:sources/cores/voids/isEmpty}
+ * @requires {@link module:sources/cores/strings/isString}
+ * @requires {@link module:sources/cores/objects/isObject}
  *
  */
 
-import { isNull, isNotNull } from './voids/isNull'
+import {
+    isNull,
+    isNotNull
+} from './voids/isNull'
 import { isUndefined } from './voids/isUndefined'
 import { isDefined } from './voids/isNullOrUndefined'
-import { isEmpty, isNotEmpty } from './voids/isEmpty'
-import { isString, isNotString } from './strings/isString'
-import { isObject, isNotObject } from './objects/isObject'
-
+import {
+    isEmpty,
+    isNotEmpty
+} from './voids/isEmpty'
+import {
+    isString,
+    isNotString
+} from './strings/isString'
+import {
+    isObject,
+    isNotObject
+} from './objects/isObject'
 
 /**
  * Check if given data is an array
