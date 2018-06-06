@@ -8,4 +8,4 @@
  *
  */
 
-export * from './temperatures/temperatures'
+export * from './temperatures'

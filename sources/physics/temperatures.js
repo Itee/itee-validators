@@ -2,11 +2,12 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
+ * @module sources/physics/temperatures
+ * @desc Export the validation methods about temperatures
+ * @requires {@link module:sources/cores/numbers}
  */
 
-/* eslint-env browser */
-
-import { isNumber } from '../../cores/numbers/isNumber'
+import { isNumber } from '../cores/numbers'
 
 // Todo: itee-physics
 export const ABSOLUTE_ZERO_KELVIN     = 0.00000000045
