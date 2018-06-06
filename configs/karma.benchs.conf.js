@@ -41,29 +41,29 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: [ 'benchmark' ],
+        reporters:         [ 'benchmark' ],
         benchmarkReporter: {
-            colors: true,
-//            style: {
-//                benchmark: chalk.stripColor,
-//                summaryBenchmark: chalk.underline,
-//                summaryEmphasis: chalk.bold.underline,
-//                browser: chalk.blue,
-//                decorator: chalk.cyan,
-//                hz: chalk.green,
-//                hzUnits: chalk.italic.dim,
-//                suite: chalk.bold.magenta
-//            },
-            decorator: "*",
-            terminalWidth: 60,
-            hzWidth: 4,
-            hzUnits: "ops/sec",
-            browserWidth: 40,
-            showBrowser: false,
+            colors:           true,
+            //            style: {
+            //                benchmark: chalk.stripColor,
+            //                summaryBenchmark: chalk.underline,
+            //                summaryEmphasis: chalk.bold.underline,
+            //                browser: chalk.blue,
+            //                decorator: chalk.cyan,
+            //                hz: chalk.green,
+            //                hzUnits: chalk.italic.dim,
+            //                suite: chalk.bold.magenta
+            //            },
+            decorator:        "*",
+            terminalWidth:    60,
+            hzWidth:          4,
+            hzUnits:          "ops/sec",
+            browserWidth:     40,
+            showBrowser:      false,
             showSuiteSummary: true
-//            formatBenchmark: formatBenchmark,
-//            formatSuiteHeading: formatSuiteHeading,
-//            formatSuiteSummary: formatSuiteSummary
+            //            formatBenchmark: formatBenchmark,
+            //            formatSuiteHeading: formatSuiteHeading,
+            //            formatSuiteSummary: formatSuiteSummary
         },
 
         // web server port
