@@ -4,7 +4,6 @@
  *
  * @module sources/cores/symbols/isSymbol
  * @desc Export the validation methods about symbols
- *
  */
 
 /**
