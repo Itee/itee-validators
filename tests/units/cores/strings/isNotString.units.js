@@ -2,74 +2,25 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
+ * @module tests/cores/strings
+ * @desc Export the units tests about isNotString method.
+ * @requires {@link module:sources/cores/strings}
+ *
  */
 
-const expect = require( 'chai' ).expect
-const isNotString = require( '../../builds/itee-validators.cjs' ).isNotString
+/* global describe, expect, it */
 
-function isNotStringTest () {
+import { isNotString } from '../../../../sources/cores/strings'
+
+function isNotStringUnits () {
 
     describe( 'isNotString()', () => {
 
-        it( 'should return true when the value is a void', () => {
+        it( 'should return false when the value is a void', () => {
 
-            const _dataSet = this.dataSet[ 'voids' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotString( _dataSet[ i ] ) ).to.be.true
-            }
-
-        } )
-
-        it( 'should return true when the value is a boolean', () => {
-
-            const _dataSet = this.dataSet[ 'booleans' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotString( _dataSet[ i ] ) ).to.be.true
-            }
-
-        } )
-
-        it( 'should return true when the value is a number', () => {
-
-            const _dataSet = this.dataSet[ 'numbers' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotString( _dataSet[ i ] ) ).to.be.true
-            }
-
-        } )
-
-        it( 'should return false when the value is a string', () => {
-
-            const _dataSet = this.dataSet[ 'strings' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotString( _dataSet[ i ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return true when the value is a function', () => {
-
-            const _dataSet = this.dataSet[ 'functions' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotString( _dataSet[ i ] ) ).to.be.true
-            }
-
-        } )
-
-        it( 'should return true when the value is an array', () => {
-
-            const _dataSet = this.dataSet[ 'arrays' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotString( _dataSet[ i ] ) ).to.be.true
-            }
-
-        } )
-
-        it( 'should return true when the value is an object', () => {
-
-            const _dataSet = this.dataSet[ 'objects' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotString( _dataSet[ i ] ) ).to.be.true
+            const dataSet = this._dataSet[ 'voids' ]
+            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
+                expect( isNotString( dataSet[ i ] ) ).to.be.false
             }
 
         } )
@@ -78,4 +29,4 @@ function isNotStringTest () {
 
 }
 
-module.exports = isNotStringTest
+export { isNotStringUnits }

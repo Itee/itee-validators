@@ -4,33 +4,33 @@
  *
  */
 
+/* global describe, beforeEach, afterEach */
+
 import { createDataSet } from '../../../TestsUtils'
-import {  } from './isFunction.units'
+import { isFunctionUnits } from './isFunction.units'
+import { isNotFunctionUnits } from './isNotFunction.units'
 
-const isFunctionUnits    = require( './isFunction.units' )
-const isNotFunctionUnits = require( './isNotFunction.units' )
-
-function FunctionsTests () {
+function FunctionsUnits () {
 
     describe( 'Functions', () => {
 
         beforeEach( () => {
 
-            this.dataSet = createDataSet()
+            this._dataSet = createDataSet()
 
         } )
 
         afterEach( () => {
 
-            delete this.dataSet
+            delete this._dataSet
 
         } )
 
-        isFunctionUnits()
-        isNotFunctionUnits()
+        isFunctionUnits.call( this )
+        isNotFunctionUnits.call( this )
 
     } )
 
 }
 
-module.exports = FunctionsTests
+export { FunctionsUnits }

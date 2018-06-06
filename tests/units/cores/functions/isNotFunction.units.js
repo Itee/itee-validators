@@ -2,74 +2,79 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
+ * @module tests/cores/functions
+ * @desc Export the units tests about isNotFunction method.
+ * @requires {@link module:sources/cores/functions}
+ *
  */
 
-const expect = require( 'chai' ).expect
-const isNotFunction = require( '../../builds/itee-validators.cjs' ).isNotFunction
+/* global describe, expect, it */
 
-function isNotFunctionTest () {
+import { isNotFunction } from '../../../../sources/cores/functions'
+
+function isNotFunctionUnits () {
 
     describe( 'isNotFunction()', () => {
 
-        it( 'should return true when the value is a void', () => {
+        it( 'should return false when the value is a void', () => {
 
-            const _dataSet = this.dataSet[ 'voids' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotFunction( _dataSet[ i ] ) ).to.be.true
+            const dataSet = this._dataSet[ 'voids' ]
+            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
+                expect( isNotFunction( dataSet[ i ] ) ).to.be.false
             }
 
         } )
 
         it( 'should return true when the value is a boolean', () => {
 
-            const _dataSet = this.dataSet[ 'booleans' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotFunction( _dataSet[ i ] ) ).to.be.true
+            const dataSet = this._dataSet[ 'booleans' ]
+            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
+                expect( isNotFunction( dataSet[ 0 ] ) ).to.be.true
             }
 
         } )
 
-        it( 'should return true when the value is a number', () => {
+        it( 'should return false when the value is a number', () => {
 
-            const _dataSet = this.dataSet[ 'numbers' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotFunction( _dataSet[ i ] ) ).to.be.true
+            const dataSet = this._dataSet[ 'numbers' ]
+            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
+                expect( isNotFunction( dataSet[ i ] ) ).to.be.false
             }
 
         } )
 
-        it( 'should return true when the value is a string', () => {
+        it( 'should return false when the value is a string', () => {
 
-            const _dataSet = this.dataSet[ 'strings' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotFunction( _dataSet[ i ] ) ).to.be.true
+            const dataSet = this._dataSet[ 'strings' ]
+            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
+                expect( isNotFunction( dataSet[ i ] ) ).to.be.false
             }
 
         } )
 
         it( 'should return false when the value is a function', () => {
 
-            const _dataSet = this.dataSet[ 'functions' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotFunction( _dataSet[ i ] ) ).to.be.false
+            const dataSet = this._dataSet[ 'functions' ]
+            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
+                expect( isNotFunction( dataSet[ i ] ) ).to.be.false
             }
 
         } )
 
-        it( 'should return true when the value is an array', () => {
+        it( 'should return false when the value is an array', () => {
 
-            const _dataSet = this.dataSet[ 'arrays' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotFunction( _dataSet[ i ] ) ).to.be.true
+            const dataSet = this._dataSet[ 'arrays' ]
+            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
+                expect( isNotFunction( dataSet[ i ] ) ).to.be.false
             }
 
         } )
 
-        it( 'should return true when the value is an object', () => {
+        it( 'should return false when the value is an object', () => {
 
-            const _dataSet = this.dataSet[ 'objects' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotFunction( _dataSet[ i ] ) ).to.be.true
+            const dataSet = this._dataSet[ 'objects' ]
+            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
+                expect( isNotFunction( dataSet[ i ] ) ).to.be.false
             }
 
         } )
@@ -78,4 +83,4 @@ function isNotFunctionTest () {
 
 }
 
-module.exports = isNotFunctionTest
+export { isNotFunctionUnits }

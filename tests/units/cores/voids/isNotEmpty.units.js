@@ -2,29 +2,49 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
+ * @module tests/cores/voids
+ * @desc Export the units tests about isNotEmpty method.
+ * @requires {@link module:sources/cores/voids}
  */
 
-const expect = require( 'chai' ).expect
-const isFunction = require( '../../builds/itee-validators.cjs' ).isFunction
+/* global describe, expect, it */
 
-function isFunctionTest () {
+import { isNotEmpty } from '../../../../sources/cores/voids'
 
-    describe( 'isFunction()', () => {
+function isNotEmptyUnits () {
 
-        it( 'should return false when the value is a void', () => {
+    describe( 'isNotEmpty()', () => {
+
+        // Specific dataset
+
+        it( 'should return true when the value is null', () => {
 
             const _dataSet = this.dataSet[ 'voids' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isFunction( _dataSet[ i ] ) ).to.be.false
-            }
+            expect( isNotEmpty( _dataSet[ 0 ] ) ).to.be.true
 
         } )
+
+        it( 'should return false when the value is undefined', () => {
+
+            const _dataSet = this.dataSet[ 'voids' ]
+            expect( isNotEmpty( _dataSet[ 1 ] ) ).to.be.false
+
+        } )
+
+        it( 'should return false when the value is void(0)', () => {
+
+            const _dataSet = this.dataSet[ 'voids' ]
+            expect( isNotEmpty( _dataSet[ 2 ] ) ).to.be.false
+
+        } )
+
+        // Global dataset
 
         it( 'should return false when the value is a boolean', () => {
 
             const _dataSet = this.dataSet[ 'booleans' ]
             for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotNull( _dataSet[ i ] ) ).to.be.true
+                expect( isNotEmpty( _dataSet[ i ] ) ).to.be.false
             }
 
         } )
@@ -33,7 +53,7 @@ function isFunctionTest () {
 
             const _dataSet = this.dataSet[ 'numbers' ]
             for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isFunction( _dataSet[ i ] ) ).to.be.false
+                expect( isNotEmpty( _dataSet[ i ] ) ).to.be.false
             }
 
         } )
@@ -42,16 +62,16 @@ function isFunctionTest () {
 
             const _dataSet = this.dataSet[ 'strings' ]
             for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isFunction( _dataSet[ i ] ) ).to.be.false
+                expect( isNotEmpty( _dataSet[ i ] ) ).to.be.false
             }
 
         } )
 
-        it( 'should return true when the value is a function', () => {
+        it( 'should return false when the value is a function', () => {
 
             const _dataSet = this.dataSet[ 'functions' ]
             for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isFunction( _dataSet[ i ] ) ).to.be.true
+                expect( isNotEmpty( _dataSet[ i ] ) ).to.be.false
             }
 
         } )
@@ -60,7 +80,7 @@ function isFunctionTest () {
 
             const _dataSet = this.dataSet[ 'arrays' ]
             for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isFunction( _dataSet[ i ] ) ).to.be.false
+                expect( isNotEmpty( _dataSet[ i ] ) ).to.be.false
             }
 
         } )
@@ -69,7 +89,7 @@ function isFunctionTest () {
 
             const _dataSet = this.dataSet[ 'objects' ]
             for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isFunction( _dataSet[ i ] ) ).to.be.false
+                expect( isNotEmpty( _dataSet[ i ] ) ).to.be.false
             }
 
         } )
@@ -78,4 +98,4 @@ function isFunctionTest () {
 
 }
 
-module.exports = isFunctionTest
+export { isNotEmptyUnits }

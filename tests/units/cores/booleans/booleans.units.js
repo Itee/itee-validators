@@ -4,6 +4,8 @@
  *
  */
 
+/* global describe, beforeEach, afterEach */
+
 import { createDataSet } from '../../../TestsUtils'
 import { isBooleanUnits } from './isBoolean.units'
 import { isNotBooleanUnits } from './isNotBoolean.units'

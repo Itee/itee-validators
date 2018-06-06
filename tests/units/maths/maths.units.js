@@ -4,6 +4,8 @@
  *
  */
 
+/* global describe */
+
 function MathsUnits () {
 
     describe( 'Maths', () => {
