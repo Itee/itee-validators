@@ -2,7 +2,7 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
- * @module sources/cores/symbols/isSymbol
+ * @module sources/cores/symbols
  * @desc Export the validation methods about symbols
  */
 

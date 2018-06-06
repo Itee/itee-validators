@@ -6,7 +6,6 @@
  * @desc Export the validation methods about objects
  * @requires {@link module:sources/cores/voids/isNull}
  * @requires {@link module:sources/cores/voids/isEmpty}
- * @requires {@link module:sources/cores/objects/isObject}
  */
 
 import {

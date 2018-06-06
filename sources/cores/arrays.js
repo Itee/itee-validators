@@ -4,12 +4,9 @@
  *
  * @module sources/cores/arrays
  * @desc Export the validation methods about Arrays
- * @requires {@link module:sources/cores/voids/isNull}
- * @requires {@link module:sources/cores/voids/isUndefined}
- * @requires {@link module:sources/cores/voids/isNullOrUndefined}
- * @requires {@link module:sources/cores/voids/isEmpty}
- * @requires {@link module:sources/cores/strings/isString}
- * @requires {@link module:sources/cores/objects/isObject}
+ * @requires {@link module:sources/cores/voids}
+ * @requires {@link module:sources/cores/strings}
+ * @requires {@link module:sources/cores/objects}
  *
  */
 

@@ -2,7 +2,7 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
- * @module sources/cores/strings/isString
+ * @module sources/cores/strings
  * @desc Export the validation methods about strings
  *
  */
