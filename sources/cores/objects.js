@@ -9,11 +9,11 @@
  * @requires {@link module:sources/cores/objects/isObject}
  */
 
-import { isNotNull } from './voids/isNull'
 import {
+    isNotNull,
     isEmpty,
     isNotEmpty
-} from './voids/isEmpty'
+} from './voids'
 
 /**
  * Check if given data is an object

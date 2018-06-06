@@ -15,22 +15,20 @@
 
 import {
     isNull,
-    isNotNull
-} from './voids/isNull'
-import { isUndefined } from './voids/isUndefined'
-import { isDefined } from './voids/isNullOrUndefined'
-import {
+    isNotNull,
+    isDefined,
+    isUndefined,
     isEmpty,
     isNotEmpty
-} from './voids/isEmpty'
+} from './voids'
 import {
     isString,
     isNotString
-} from './strings/isString'
+} from './strings'
 import {
     isObject,
     isNotObject
-} from './objects/isObject'
+} from './objects'
 
 /**
  * Check if given data is an array
