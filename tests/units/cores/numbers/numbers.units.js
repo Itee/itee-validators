@@ -4,139 +4,71 @@
  *
  */
 
-//const isNullTest        = require( './isNull.tests.js' )
+/* global describe, beforeEach, afterEach */
 
-function NumbersTests () {
+import { createDataSet } from '../../../TestsUtils'
+import { isFiniteUnits } from './isFinite.units'
+import { isFloatUnits } from './isFloat.units'
+import { isInfiniteUnits } from './isInfinite.units'
+import { isInfiniteNegativeUnits } from './isInfiniteNegative.units'
+import { isInfinitePositiveUnits } from './isInfinitePositive.units'
+import { isIntegerUnits } from './isInteger.units'
+import { isMaxNegativeUnits } from './isMaxNegative.units'
+import { isMaxPositiveUnits } from './isMaxPositive.units'
+import { isMaxSafeIntegerUnits } from './isMaxSafeInteger.units'
+import { isMinNegativeUnits } from './isMinNegative.units'
+import { isMinPositiveUnits } from './isMinPositive.units'
+import { isMinSafeIntegerUnits } from './isMinSafeInteger.units'
+import { isNotNumberUnits } from './isNotNumber.units'
+import { isNotNumericUnits } from './isNotNumeric.units'
+import { isNumberUnits } from './isNumber.units'
+import { isNumberNegativeUnits } from './isNumberNegative.units'
+import { isNumberPositiveUnits } from './isNumberPositive.units'
+import { isNumericUnits } from './isNumeric.units'
+import { isZeroUnits } from './isZero.units'
+import { isZeroNegativeUnits } from './isZeroNegative.units'
+import { isZeroPositiveUnits } from './isZeroPositive.units'
+
+function NumbersUnits () {
 
     describe( 'Numbers', () => {
 
         beforeEach( () => {
 
-            const voidDataSet = [
-                null,
-                undefined,
-                void(0)
-            ]
-
-            const booleanDataSet = [
-                true,
-                false
-            ]
-
-            const numericDataSet = [
-                Number.NEGATIVE_INFINITY,
-                -Number.MAX_VALUE,
-                Number.MIN_SAFE_INTEGER,
-                -Number.MIN_VALUE,
-                -0x123456,
-                -2e+2,
-                -1.0,
-                -1,
-                -0.0,
-                -0,
-                Number.NaN,
-                0,
-                0.0,
-                1,
-                1.0,
-                2e+2,
-                0x123456,
-                Number.MIN_VALUE,
-                Number.MAX_SAFE_INTEGER,
-                Number.MAX_VALUE,
-                Number.POSITIVE_INFINITY
-            ]
-
-            const stringDataSet = (() => {
-                'use strict'
-
-                const dataSet = []
-
-                dataSet.push( '' )
-                dataSet.push( '      ' )
-
-                for ( let i = 0, m = voidDataSet.length ; i < m ; i++ ) {
-                    dataSet.push( `${voidDataSet[ i ]}` )
-                }
-
-                for ( let j = 0, n = booleanDataSet.length ; j < n ; j++ ) {
-                    dataSet.push( `${booleanDataSet[ j ]}` )
-                }
-
-                for ( let k = 0, o = numericDataSet.length ; k < o ; k++ ) {
-                    dataSet.push( `${numericDataSet[ k ]}` )
-                }
-
-                dataSet.push( 'foobar' )
-
-                return dataSet
-
-            })()
-
-            const functionDataSet = [
-                function emptyFct () {},
-                () => {}
-            ]
-
-            const arrayDataSet = (() => {
-                'use strict'
-
-                const dataSet = []
-
-                dataSet.push( [] )
-
-                for ( let i = 0, m = voidDataSet.length ; i < m ; i++ ) {
-                    dataSet.push( [ voidDataSet[ i ] ] )
-                }
-                dataSet.push( voidDataSet )
-
-                for ( let j = 0, n = booleanDataSet.length ; j < n ; j++ ) {
-                    dataSet.push( [ booleanDataSet[ j ] ] )
-                }
-                dataSet.push( booleanDataSet )
-
-                for ( let k = 0, o = numericDataSet.length ; k < o ; k++ ) {
-                    dataSet.push( [ numericDataSet[ k ] ] )
-                }
-                dataSet.push( numericDataSet )
-
-                for ( let k = 0, o = functionDataSet.length ; k < o ; k++ ) {
-                    dataSet.push( [ functionDataSet[ k ] ] )
-                }
-                dataSet.push( functionDataSet )
-
-                return dataSet
-
-            })()
-
-            const objectDataSet = [
-                {},
-                { null: null },
-                { undefined: undefined }
-            ]
-
-            this.dataSet = {
-                voids:     voidDataSet,
-                booleans:  booleanDataSet,
-                numbers:   numericDataSet,
-                strings:   stringDataSet,
-                functions: functionDataSet,
-                arrays:    arrayDataSet,
-                objects:   objectDataSet,
-            }
+            this._dataSet = createDataSet()
 
         } )
 
         afterEach( () => {
 
-            delete this.dataSet
+            delete this._dataSet
 
         } )
 
-        //...
+        isFiniteUnits.call( this )
+        isFloatUnits.call( this )
+        isInfiniteUnits.call( this )
+        isInfiniteNegativeUnits.call( this )
+        isInfinitePositiveUnits.call( this )
+        isIntegerUnits.call( this )
+        isMaxNegativeUnits.call( this )
+        isMaxPositiveUnits.call( this )
+        isMaxSafeIntegerUnits.call( this )
+        isMinNegativeUnits.call( this )
+        isMinPositiveUnits.call( this )
+        isMinSafeIntegerUnits.call( this )
+        isNotNumberUnits.call( this )
+        isNotNumericUnits.call( this )
+        isNumberUnits.call( this )
+        isNumberNegativeUnits.call( this )
+        isNumberPositiveUnits.call( this )
+        isNumericUnits.call( this )
+        isZeroUnits.call( this )
+        isZeroNegativeUnits.call( this )
+        isZeroPositiveUnits.call( this )
 
     } )
 
 }
 
-module.exports = NumbersTests
+export { NumbersUnits }

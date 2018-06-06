@@ -4,13 +4,15 @@
  *
  */
 
+/* global describe */
+
 import { TemperaturesUnits } from './temperatures/temperatures.units'
 
 function PhysicsUnits () {
 
     describe( 'Physics', () => {
 
-        TemperaturesUnits.call(this)
+        TemperaturesUnits.call( this )
 
     } )
 

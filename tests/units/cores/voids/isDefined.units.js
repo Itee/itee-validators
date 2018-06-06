@@ -2,22 +2,25 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
+ * @module tests/cores/voids
+ * @desc Export the units tests about isDefined method.
+ * @requires {@link module:sources/cores/voids}
  */
 
-const expect     = require( 'chai' ).expect
-const isDefined = require( '../../builds/itee-validators.cjs' ).isDefined
+/* global describe, expect, it */
 
-//const dataSetGlob = global.dataSetGlob
-//const dataSetLoc1 = dataSet
+import { isDefined } from '../../../../sources/cores/voids'
 
-module.exports = function () {
+function isDefinedUnits () {
 
     describe( 'isDefined()', () => {
 
-        it( 'should return false when the value is null', () => {
+        // Specific dataset
+
+        it( 'should return true when the value is null', () => {
 
             const _dataSet = this.dataSet[ 'voids' ]
-            expect( isDefined( _dataSet[ 0 ] ) ).to.be.false
+            expect( isDefined( _dataSet[ 0 ] ) ).to.be.true
 
         } )
 
@@ -35,58 +38,58 @@ module.exports = function () {
 
         } )
 
-        //
+        // Global dataset
 
-        it( 'should return true when the value is a boolean', () => {
+        it( 'should return false when the value is a boolean', () => {
 
             const _dataSet = this.dataSet[ 'booleans' ]
             for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isDefined( _dataSet[ i ] ) ).to.be.true
+                expect( isDefined( _dataSet[ i ] ) ).to.be.false
             }
 
         } )
 
-        it( 'should return true when the value is a number', () => {
+        it( 'should return false when the value is a number', () => {
 
             const _dataSet = this.dataSet[ 'numbers' ]
             for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isDefined( _dataSet[ i ] ) ).to.be.true
+                expect( isDefined( _dataSet[ i ] ) ).to.be.false
             }
 
         } )
 
-        it( 'should return true when the value is a string', () => {
+        it( 'should return false when the value is a string', () => {
 
             const _dataSet = this.dataSet[ 'strings' ]
             for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isDefined( _dataSet[ i ] ) ).to.be.true
+                expect( isDefined( _dataSet[ i ] ) ).to.be.false
             }
 
         } )
 
-        it( 'should return true when the value is a function', () => {
+        it( 'should return false when the value is a function', () => {
 
             const _dataSet = this.dataSet[ 'functions' ]
             for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isDefined( _dataSet[ i ] ) ).to.be.true
+                expect( isDefined( _dataSet[ i ] ) ).to.be.false
             }
 
         } )
 
-        it( 'should return true when the value is an array', () => {
+        it( 'should return false when the value is an array', () => {
 
             const _dataSet = this.dataSet[ 'arrays' ]
             for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isDefined( _dataSet[ i ] ) ).to.be.true
+                expect( isDefined( _dataSet[ i ] ) ).to.be.false
             }
 
         } )
 
-        it( 'should return true when the value is an object', () => {
+        it( 'should return false when the value is an object', () => {
 
             const _dataSet = this.dataSet[ 'objects' ]
             for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isDefined( _dataSet[ i ] ) ).to.be.true
+                expect( isDefined( _dataSet[ i ] ) ).to.be.false
             }
 
         } )
@@ -94,3 +97,5 @@ module.exports = function () {
     } )
 
 }
+
+export { isDefinedUnits }
