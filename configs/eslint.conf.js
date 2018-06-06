@@ -15,18 +15,22 @@
 function CreateEslintConfiguration () {
 
     return {
-        env: {
+        env:           {
             "browser": true,
-            "node": true,
-            "es6": true
+            "node":    true,
+            "es6":     true
         },
         parserOptions: {
             ecmaVersion: 6,
-            sourceType: "module"
+            sourceType:  "module"
         },
-        extends: [ 'eslint:recommended' ],
-        rules: {
-            'no-console': 'off',
+        extends:       [ 'eslint:recommended' ],
+        plugins:       [
+            "mocha"
+        ],
+        rules:         {
+            'mocha/no-exclusive-tests': 'error',
+            'no-console':               'off',
         }
     }
 

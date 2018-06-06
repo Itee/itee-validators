@@ -10,15 +10,15 @@ const nodeResolve = require( 'rollup-plugin-node-resolve' )
 
 export default [
     {
-        input:   'tests/units/main.units.js',
-        plugins: [
+        input:     'tests/units/main.units.js',
+        plugins:   [
             commonJs( {
                 include: 'node_modules/**'
             } ),
             nodeResolve()
         ],
         treeshake: false,
-        output:  {
+        output:    {
             indent: '\t',
             format: 'iife',
             name:   'Itee.Validators',
@@ -26,15 +26,15 @@ export default [
         }
     },
     {
-        input:   'tests/benchmarks/main.benchs.js',
-        plugins: [
+        input:     'tests/benchmarks/main.benchs.js',
+        plugins:   [
             commonJs( {
                 include: 'node_modules/**'
             } ),
             nodeResolve()
         ],
         treeshake: false,
-        output:  {
+        output:    {
             indent: '\t',
             format: 'iife',
             name:   'Itee.Validators',
