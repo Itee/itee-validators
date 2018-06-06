@@ -8,7 +8,7 @@
  *
  */
 
-export * from './arrays/arrays'
+export * from './arrays'
 export * from './booleans/booleans'
 export * from './functions/functions'
 export * from './numbers/numbers'
