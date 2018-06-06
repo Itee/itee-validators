@@ -10,7 +10,7 @@
 
 export * from './arrays'
 export * from './booleans'
-export * from './functions/functions'
+export * from './functions'
 export * from './numbers/numbers'
 export * from './objects/objects'
 export * from './strings/strings'
