@@ -20,6 +20,6 @@
  *
  */
 
-export * from './cores/cores'
-export * from './maths/maths'
-export * from './physics/physics'
+export * from './cores/_cores'
+export * from './maths/_maths'
+export * from './physics/_physics'
