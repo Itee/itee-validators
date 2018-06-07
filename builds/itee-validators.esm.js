@@ -23,7 +23,11 @@ function isNull ( data ) {
  * @returns {boolean} true if data is not null, false otherwise.
  */
 function isNotNull ( data ) {
-    return !isNull( data )
+    return (data !== null)
+}
+
+function isNotNull_1 ( data ) {
+    return !(data === null)
 }
 
 /**
@@ -53,7 +57,7 @@ function isNotUndefined ( data ) {
  * @returns {boolean} true if data is null or undefined, false otherwise.
  */
 function isNullOrUndefined ( data ) {
-    return (isNull( data ) || isUndefined( data ))
+    return ((data === null) || (typeof data === 'undefined'))
 }
 
 /**
@@ -63,7 +67,7 @@ function isNullOrUndefined ( data ) {
  * @returns {boolean} true if data is not null and not undefined, false otherwise.
  */
 function isDefined ( data ) {
-    return (isNotNull( data ) && isNotUndefined( data ))
+    return ((data !== null) && (typeof data !== 'undefined'))
 }
 
 /**
@@ -111,19 +115,6 @@ function isEmpty ( data ) {
  */
 function isNotEmpty ( data ) {
     return !isEmpty( data );
-}
-
-// Todo: to remove
-
-/**
- * Check if given data is null or undefined
- *
- * @alias isNullOrUndefined
- * @param data {any} The data to check against the existence
- * @returns {boolean} true if data is null or undefined, false otherwise.
- */
-function no ( data ) {
-    return ( (data === null) || (typeof data === 'undefined') )
 }
 
 /**
@@ -289,7 +280,7 @@ function isArray ( data ) {
  * @returns {boolean} true if data is not array, false otherwise
  */
 function isNotArray ( data ) {
-    return !isArray( data )
+    return !Array.isArray( data )
 }
 
 /**
@@ -299,6 +290,27 @@ function isNotArray ( data ) {
  * @returns {boolean} true if data is not an empty array where all values are null, false otherwise
  */
 function isArrayOfNull ( data ) {
+
+    if ( !Array.isArray( data ) ) {
+        return false
+    }
+
+    const dataLength = data.length;
+    if( dataLength === 0 ) {
+        return false
+    }
+
+    for ( let index = 0 ; index < dataLength ; index += 1 ) {
+        if ( data[ index ] !== null ) {
+            return false
+        }
+    }
+
+    return true
+
+}
+
+function isArrayOfNull_1 ( data ) {
 
     if ( isEmptyArray( data ) ) {
         return false
@@ -1033,4 +1045,4 @@ function isNotTemperature ( data ) {
  *
  */
 
-export { isArray, isNotArray, isArrayOfNull, isNotArrayOfNull, isEmptyArray, isNotEmptyArray, isArrayOfUndefined, isNotArrayOfUndefined, isArrayOfArray, isNotArrayOfArray, isArrayOfString, isNotArrayOfString, isArrayOfSingleElement, isArrayOfMultiElement, isArrayOfObject, isNotArrayOfObject, isBoolean, isNotBoolean, isFunction, isNotFunction, isNumber, isNumber_1, isNotNumber, isNaN, isNumberPositive, isNumberNegative, isNumeric, isNotNumeric, isInteger, isInteger_1, isInteger_2, isInteger_3, isFloat, isFloat_1, isFloat_2, isZero, isZeroPositive, isZeroNegative, isMinSafeInteger, isMinPositive, isMinNegative, isMaxSafeInteger, isMaxPositive, isMaxNegative, isFinite, isInfinite, isInfiniteNegative, isInfinitePositive, isObject, isNotObject, isEmptyObject, isNotEmptyObject, isString, isNotString, isEmptyString, isNotEmptyString, isBlankString, isNotBlankString, isSymbol, isNotSymbol, isNull, isNotNull, isUndefined, isNotUndefined, isNullOrUndefined, isDefined, isEmpty, isNotEmpty, no, ABSOLUTE_ZERO_KELVIN, ABSOLUTE_ZERO_CELSIUS, ABSOLUTE_ZERO_FAHRENHEIT, isKelvin, isNotKelvin, isCelsius, isNotCelsius, isFahrenheit, isNotFahrenheit, isTemperature, isNotTemperature };
+export { isArray, isNotArray, isArrayOfNull, isArrayOfNull_1, isNotArrayOfNull, isEmptyArray, isNotEmptyArray, isArrayOfUndefined, isNotArrayOfUndefined, isArrayOfArray, isNotArrayOfArray, isArrayOfString, isNotArrayOfString, isArrayOfSingleElement, isArrayOfMultiElement, isArrayOfObject, isNotArrayOfObject, isBoolean, isNotBoolean, isFunction, isNotFunction, isNumber, isNumber_1, isNotNumber, isNaN, isNumberPositive, isNumberNegative, isNumeric, isNotNumeric, isInteger, isInteger_1, isInteger_2, isInteger_3, isFloat, isFloat_1, isFloat_2, isZero, isZeroPositive, isZeroNegative, isMinSafeInteger, isMinPositive, isMinNegative, isMaxSafeInteger, isMaxPositive, isMaxNegative, isFinite, isInfinite, isInfiniteNegative, isInfinitePositive, isObject, isNotObject, isEmptyObject, isNotEmptyObject, isString, isNotString, isEmptyString, isNotEmptyString, isBlankString, isNotBlankString, isSymbol, isNotSymbol, isNull, isNotNull, isNotNull_1, isUndefined, isNotUndefined, isNullOrUndefined, isDefined, isEmpty, isNotEmpty, ABSOLUTE_ZERO_KELVIN, ABSOLUTE_ZERO_CELSIUS, ABSOLUTE_ZERO_FAHRENHEIT, isKelvin, isNotKelvin, isCelsius, isNotCelsius, isFahrenheit, isNotFahrenheit, isTemperature, isNotTemperature };

@@ -27,7 +27,11 @@ function isNull ( data ) {
  * @returns {boolean} true if data is not null, false otherwise.
  */
 function isNotNull ( data ) {
-    return !isNull( data )
+    return (data !== null)
+}
+
+function isNotNull_1 ( data ) {
+    return !(data === null)
 }
 
 /**
@@ -57,7 +61,7 @@ function isNotUndefined ( data ) {
  * @returns {boolean} true if data is null or undefined, false otherwise.
  */
 function isNullOrUndefined ( data ) {
-    return (isNull( data ) || isUndefined( data ))
+    return ((data === null) || (typeof data === 'undefined'))
 }
 
 /**
@@ -67,7 +71,7 @@ function isNullOrUndefined ( data ) {
  * @returns {boolean} true if data is not null and not undefined, false otherwise.
  */
 function isDefined ( data ) {
-    return (isNotNull( data ) && isNotUndefined( data ))
+    return ((data !== null) && (typeof data !== 'undefined'))
 }
 
 /**
@@ -115,19 +119,6 @@ function isEmpty ( data ) {
  */
 function isNotEmpty ( data ) {
     return !isEmpty( data );
-}
-
-// Todo: to remove
-
-/**
- * Check if given data is null or undefined
- *
- * @alias isNullOrUndefined
- * @param data {any} The data to check against the existence
- * @returns {boolean} true if data is null or undefined, false otherwise.
- */
-function no ( data ) {
-    return ( (data === null) || (typeof data === 'undefined') )
 }
 
 /**
@@ -293,7 +284,7 @@ function isArray ( data ) {
  * @returns {boolean} true if data is not array, false otherwise
  */
 function isNotArray ( data ) {
-    return !isArray( data )
+    return !Array.isArray( data )
 }
 
 /**
@@ -303,6 +294,27 @@ function isNotArray ( data ) {
  * @returns {boolean} true if data is not an empty array where all values are null, false otherwise
  */
 function isArrayOfNull ( data ) {
+
+    if ( !Array.isArray( data ) ) {
+        return false
+    }
+
+    const dataLength = data.length;
+    if( dataLength === 0 ) {
+        return false
+    }
+
+    for ( let index = 0 ; index < dataLength ; index += 1 ) {
+        if ( data[ index ] !== null ) {
+            return false
+        }
+    }
+
+    return true
+
+}
+
+function isArrayOfNull_1 ( data ) {
 
     if ( isEmptyArray( data ) ) {
         return false
@@ -1040,6 +1052,7 @@ function isNotTemperature ( data ) {
 exports.isArray = isArray;
 exports.isNotArray = isNotArray;
 exports.isArrayOfNull = isArrayOfNull;
+exports.isArrayOfNull_1 = isArrayOfNull_1;
 exports.isNotArrayOfNull = isNotArrayOfNull;
 exports.isEmptyArray = isEmptyArray;
 exports.isNotEmptyArray = isNotEmptyArray;
@@ -1099,13 +1112,13 @@ exports.isSymbol = isSymbol;
 exports.isNotSymbol = isNotSymbol;
 exports.isNull = isNull;
 exports.isNotNull = isNotNull;
+exports.isNotNull_1 = isNotNull_1;
 exports.isUndefined = isUndefined;
 exports.isNotUndefined = isNotUndefined;
 exports.isNullOrUndefined = isNullOrUndefined;
 exports.isDefined = isDefined;
 exports.isEmpty = isEmpty;
 exports.isNotEmpty = isNotEmpty;
-exports.no = no;
 exports.ABSOLUTE_ZERO_KELVIN = ABSOLUTE_ZERO_KELVIN;
 exports.ABSOLUTE_ZERO_CELSIUS = ABSOLUTE_ZERO_CELSIUS;
 exports.ABSOLUTE_ZERO_FAHRENHEIT = ABSOLUTE_ZERO_FAHRENHEIT;
