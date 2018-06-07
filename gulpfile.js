@@ -60,7 +60,6 @@ gulp.task( 'help', ( done ) => {
     log( '' )
     log( 'Available commands are:' )
     log( blue( 'npm run' ), cyan( 'help' ), ' - Display this help.' )
-    log( blue( 'npm run' ), cyan( 'patch' ), ' - Will patch three package to fix some invalid state.', red( '( Must be run only once after installing three package !!! )' ) )
     log( blue( 'npm run' ), cyan( 'clean' ), ' - Will delete builds and temporary folders.' )
     log( blue( 'npm run' ), cyan( 'lint' ), ' - Will run the eslint in pedantic mode with auto fix when possible.' )
     log( blue( 'npm run' ), cyan( 'doc' ), ' - Will run jsdoc, and create documentation under `documentation` folder, using the docdash theme' )
@@ -192,7 +191,7 @@ gulp.task( 'build', ( done ) => {
         'use strict'
 
         let defaultOptions = {
-            fileName:     'itee-client',
+            fileName:     'itee-validators',
             inputPath:    path.join( __dirname, 'sources' ),
             outputPath:   path.join( __dirname, 'builds' ),
             environments: [ 'development', 'production' ],

@@ -3,7 +3,7 @@
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
  * @module sources/cores/strings
- * @desc Export the validation methods about strings
+ * @description Export the validation methods about strings
  *
  */
 

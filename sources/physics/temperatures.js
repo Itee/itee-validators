@@ -3,7 +3,7 @@
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
  * @module sources/physics/temperatures
- * @desc Export the validation methods about temperatures
+ * @description Export the validation methods about temperatures
  * @requires {@link module:sources/cores/numbers}
  */
 
