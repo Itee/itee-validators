@@ -3,7 +3,7 @@
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
  * @module sources/cores/symbols
- * @desc Export the validation methods about symbols
+ * @description Export the validation methods about symbols
  */
 
 /**

@@ -3,7 +3,7 @@
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
  * @module sources/cores/voids
- * @desc Export the validation methods about voids notions
+ * @description Export the validation methods about voids notions
  */
 
 /**

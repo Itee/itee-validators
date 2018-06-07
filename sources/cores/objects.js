@@ -3,7 +3,7 @@
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
  * @module sources/cores/objects
- * @desc Export the validation methods about objects
+ * @description Export the validation methods about objects
  * @requires {@link module:sources/cores/voids/isNull}
  * @requires {@link module:sources/cores/voids/isEmpty}
  */

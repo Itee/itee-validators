@@ -3,7 +3,7 @@
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
  * @module sources/cores/arrays
- * @desc Export the validation methods about Arrays
+ * @description Export the validation methods about Arrays
  * @requires {@link module:sources/cores/voids}
  * @requires {@link module:sources/cores/strings}
  * @requires {@link module:sources/cores/objects}

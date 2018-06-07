@@ -3,7 +3,7 @@
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
  * @module sources/cores/functions
- * @desc Export the validation methods about functions
+ * @description Export the validation methods about functions
  *
  */
 
