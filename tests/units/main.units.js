@@ -4,6 +4,8 @@
  *
  */
 
+/* global describe */
+
 import { CoresUnits } from './cores/cores.units'
 import { MathsUnits } from './maths/maths.units'
 import { PhysicsUnits } from './physics/physics.units'

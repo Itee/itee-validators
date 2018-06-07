@@ -2,15 +2,20 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
+ * @module tests/cores/voids
+ * @desc Export the units tests about isNull method.
+ * @requires {@link module:sources/cores/voids}
  */
 
-const expect     = require( 'chai' ).expect
-const Validators = require( '../../builds/itee-validators.cjs' )
-const isNull     = Validators.isNull
+/* global describe, expect, it */
 
-function isNullTest () {
+import { isNull } from '../../../../sources/cores/voids'
+
+function isNullUnits () {
 
     describe( 'isNull()', () => {
+
+        // Specific dataset
 
         it( 'should return true when the value is null', () => {
 
@@ -33,7 +38,7 @@ function isNullTest () {
 
         } )
 
-        //
+        // Global dataset
 
         it( 'should return false when the value is a boolean', () => {
 
@@ -93,4 +98,4 @@ function isNullTest () {
 
 }
 
-module.exports = isNullTest
+export { isNullUnits }

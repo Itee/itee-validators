@@ -2,14 +2,20 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
+ * @module tests/cores/voids
+ * @desc Export the units tests about isNullOrUndefined method.
+ * @requires {@link module:sources/cores/voids}
  */
 
-const expect         = require( 'chai' ).expect
-const isNullOrUndefined = require( '../../builds/itee-validators.cjs' ).isNullOrUndefined
+/* global describe, expect, it */
 
-function isNullOrUndefinedTest () {
+import { isNullOrUndefined } from '../../../../sources/cores/voids'
+
+function isNullOrUndefinedUnits () {
 
     describe( 'isNullOrUndefined()', () => {
+
+        // Specific dataset
 
         it( 'should return true when the value is null', () => {
 
@@ -18,21 +24,21 @@ function isNullOrUndefinedTest () {
 
         } )
 
-        it( 'should return true when the value is undefined', () => {
+        it( 'should return false when the value is undefined', () => {
 
             const _dataSet = this.dataSet[ 'voids' ]
-            expect( isNullOrUndefined( _dataSet[ 1 ] ) ).to.be.true
+            expect( isNullOrUndefined( _dataSet[ 1 ] ) ).to.be.false
 
         } )
 
-        it( 'should return true when the value is void(0)', () => {
+        it( 'should return false when the value is void(0)', () => {
 
             const _dataSet = this.dataSet[ 'voids' ]
-            expect( isNullOrUndefined( _dataSet[ 2 ] ) ).to.be.true
+            expect( isNullOrUndefined( _dataSet[ 2 ] ) ).to.be.false
 
         } )
 
-        //
+        // Global dataset
 
         it( 'should return false when the value is a boolean', () => {
 
@@ -92,4 +98,4 @@ function isNullOrUndefinedTest () {
 
 }
 
-module.exports = isNullOrUndefinedTest
+export { isNullOrUndefinedUnits }

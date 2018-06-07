@@ -21,9 +21,9 @@ const stripConfig = {
 
     // defaults to `[ 'console.*', 'assert.*' ]`
     functions: [ 'console.*' ],
-//    functions: [ 'throw\snew\sTypeError' ],
-//    functions: [ /if\s*\(\s*[\w\(\s\)]*{[\w\s\('!\)]*}/g ],
-//    functions: [ 'console.*', 'assert.*', 'debug', 'alert', 'throw new TypeError' ],
+    //    functions: [ 'throw\snew\sTypeError' ],
+    //    functions: [ /if\s*\(\s*[\w\(\s\)]*{[\w\s\('!\)]*}/g ],
+    //    functions: [ 'console.*', 'assert.*', 'debug', 'alert', 'throw new TypeError' ],
 
     // set this to `false` if you're not using sourcemaps –
     // defaults to `true`
@@ -35,6 +35,7 @@ const stripConfig = {
 //    uglify()
 //],
 //
+
 export default [
     {
         input:   'sources/main.js',
@@ -49,7 +50,7 @@ export default [
     {
         input:   'sources/main.js',
         plugins: [
-            strip(stripConfig)
+            strip( stripConfig )
         ],
         output:  {
             indent: '\t',
@@ -71,7 +72,7 @@ export default [
     {
         input:   'sources/main.js',
         plugins: [
-            strip(stripConfig)
+            strip( stripConfig )
         ],
         output:  {
             indent: '\t',
@@ -93,7 +94,7 @@ export default [
     {
         input:   'sources/main.js',
         plugins: [
-            strip(stripConfig)
+            strip( stripConfig )
         ],
         output:  {
             indent: '\t',
