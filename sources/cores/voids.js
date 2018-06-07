@@ -112,16 +112,3 @@ export function isEmpty ( data ) {
 export function isNotEmpty ( data ) {
     return !isEmpty( data );
 }
-
-// Todo: to remove
-
-/**
- * Check if given data is null or undefined
- *
- * @alias isNullOrUndefined
- * @param data {any} The data to check against the existence
- * @returns {boolean} true if data is null or undefined, false otherwise.
- */
-export function no ( data ) {
-    return ( (data === null) || (typeof data === 'undefined') )
-}
