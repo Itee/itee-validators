@@ -35,6 +35,7 @@ const stripConfig = {
 //    uglify()
 //],
 //
+
 export default [
     {
         input:   'sources/main.js',
