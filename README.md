@@ -35,6 +35,10 @@ then you will be able to use like this:
 
 ## Release notes
 
+#### v2.0.1
+
+* Update efficiency of some functions from voids and arrays
+
 #### v2.0.0
 
 * Remove some useless alias
