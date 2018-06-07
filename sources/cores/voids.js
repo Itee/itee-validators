@@ -23,7 +23,7 @@ export function isNull ( data ) {
  * @returns {boolean} true if data is not null, false otherwise.
  */
 export function isNotNull ( data ) {
-    return !isNull( data )
+    return (data !== null)
 }
 
 /**
@@ -53,7 +53,7 @@ export function isNotUndefined ( data ) {
  * @returns {boolean} true if data is null or undefined, false otherwise.
  */
 export function isNullOrUndefined ( data ) {
-    return (isNull( data ) || isUndefined( data ))
+    return ((data === null) || (typeof data === 'undefined'))
 }
 
 /**
@@ -63,7 +63,7 @@ export function isNullOrUndefined ( data ) {
  * @returns {boolean} true if data is not null and not undefined, false otherwise.
  */
 export function isDefined ( data ) {
-    return (isNotNull( data ) && isNotUndefined( data ))
+    return ((data !== null) && (typeof data !== 'undefined'))
 }
 
 /**
