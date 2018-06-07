@@ -3,7 +3,7 @@
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
  * @module sources/cores/numbers
- * @desc Export the validation methods about numbers
+ * @description Export the validation methods about numbers
  *
  */
 

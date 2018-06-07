@@ -3,7 +3,7 @@
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
  * @module sources/physics/physics
- * @desc This is the physics export entry point.
+ * @description This is the physics export entry point.
  * It expose all exports of the temperatures sub-folder.
  *
  */
