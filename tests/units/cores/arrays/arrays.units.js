@@ -6,7 +6,7 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { createDataSet } from '../../../TestsUtils'
+import { createDataMap } from '../../../TestsUtils'
 import { isArrayUnits } from './isArray.units'
 import { isArrayOfArrayUnits } from './isArrayOfArray.units'
 import { isArrayOfMultiElementUnits } from './isArrayOfMultiElement.units'
@@ -30,7 +30,7 @@ function ArraysUnits () {
 
         beforeEach( () => {
 
-            this._dataSet = createDataSet()
+            this._dataSet = createDataMap()
 
         } )
 
