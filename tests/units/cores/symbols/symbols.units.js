@@ -6,7 +6,7 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { createDataSet } from '../../../TestsUtils'
+import { createDataMap } from '../../../TestsUtils'
 import { isSymbolUnits } from './isSymbol.units'
 import { isNotSymbolUnits } from './isNotSymbol.units'
 
@@ -16,7 +16,7 @@ function SymbolsUnits () {
 
         beforeEach( () => {
 
-            this._dataSet = createDataSet()
+            this._dataSet = createDataMap()
 
         } )
 

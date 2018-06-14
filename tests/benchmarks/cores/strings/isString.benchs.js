@@ -5,7 +5,7 @@
  */
 
 import { isString } from '../../../../builds/itee-validators.esm'
-import { createDataSet } from '../../../TestsUtils'
+import { createDataMap } from '../../../TestsUtils'
 
 function isString_0 ( val ) {
     return (typeof val === 'string' || val instanceof String)
@@ -31,7 +31,7 @@ export default new Benchmark
     .Suite( 'Itee#Validators#Strings#isString()' )
     .add( 'typeof', () => {
 
-        const _dataSet = createDataSet()
+        const _dataSet = createDataMap()
         for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
             isString( _dataSet[ i ] )
         }
@@ -39,7 +39,7 @@ export default new Benchmark
     } )
     .add( 'typeof || instanceof', () => {
 
-        const _dataSet = createDataSet()
+        const _dataSet = createDataMap()
         for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
             isString_0( _dataSet[ i ] )
         }
@@ -47,7 +47,7 @@ export default new Benchmark
     } )
     .add( 'Object.prototype.toString', () => {
 
-        const _dataSet = createDataSet()
+        const _dataSet = createDataMap()
         for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
             isString_1( _dataSet[ i ] )
         }
@@ -55,7 +55,7 @@ export default new Benchmark
     } )
     .add( 'constructor', () => {
 
-        const _dataSet = createDataSet()
+        const _dataSet = createDataMap()
         for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
             isString_2( _dataSet[ i ] )
         }
@@ -63,7 +63,7 @@ export default new Benchmark
     } )
     .add( 'typeof || !!val || toString', () => {
 
-        const _dataSet = createDataSet()
+        const _dataSet = createDataMap()
         for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
             isString_3( _dataSet[ i ] )
         }
@@ -71,7 +71,7 @@ export default new Benchmark
     } )
     .add( 'val+""', () => {
 
-        const _dataSet = createDataSet()
+        const _dataSet = createDataMap()
         for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
             isString_4( _dataSet[ i ] )
         }
