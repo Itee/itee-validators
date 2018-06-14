@@ -4,119 +4,204 @@
  *
  */
 
-export function createDataSet() {
+export function createDataMap () {
 
-    const voidDataSet = [
-        null,
-        undefined,
-        void(0)
-    ]
+    const voidDataMap = {
+        null:      null,
+        undefined: undefined,
+        void:      void(0)
+    }
 
-    const booleanDataSet = [
-        true,
-        false
-    ]
+    const booleanDataMap = {
+        true:  true,
+        false: false
+    }
 
-    const numericDataSet = [
-        Number.NEGATIVE_INFINITY,
-        -Number.MAX_VALUE,
-        Number.MIN_SAFE_INTEGER,
-        -Number.MIN_VALUE,
-        -0x123456,
-        -2e+2,
-        -1.0,
-        -1,
-        -0.0,
-        -0,
-        Number.NaN,
-        0,
-        0.0,
-        1,
-        1.0,
-        2e+2,
-        0x123456,
-        Number.MIN_VALUE,
-        Number.MAX_SAFE_INTEGER,
-        Number.MAX_VALUE,
-        Number.POSITIVE_INFINITY
-    ]
+    const numericDataMap = {
+        negativeInfinity:       Number.NEGATIVE_INFINITY,
+        negativeMaxValue:       -Number.MAX_VALUE,
+        negativeMinSafeInteger: Number.MIN_SAFE_INTEGER,
+        negativeMinValue:       -Number.MIN_VALUE,
+        negativeHexa:           -0x123456,
+        negativePow:            -2e+2,
+        negativeFloat:          -1.0,
+        negativeInt:            -1,
+        negativeNullDouble:     -0.0,
+        negativeNullInt:        -0,
+        nan:                    Number.NaN,
+        positiveNullInt:        0,
+        positiveNullFloat:      0.0,
+        positiveInt:            1,
+        positiveFloat:          1.0,
+        positivePow:            2e+2,
+        positiveHexa:           0x123456,
+        positiveMinValue:       Number.MIN_VALUE,
+        positiveMaxSafeInteger: Number.MAX_SAFE_INTEGER,
+        positiveMaxValue:       Number.MAX_VALUE,
+        positiveInfinity:       Number.POSITIVE_INFINITY
+    }
 
-    const stringDataSet = (() => {
+    const stringDataMap = (() => {
         'use strict'
 
-        const dataSet = []
-
-        dataSet.push( '' )
-        dataSet.push( '      ' )
-
-        for ( let i = 0, m = voidDataSet.length ; i < m ; i++ ) {
-            dataSet.push( `${voidDataSet[ i ]}` )
+        const dataMap = {
+            empty:       '',
+            blank:       '      ',
+            stringNull:  new String(),
+            stringEmpty: new String( '' ),
+            stringBlank: new String( '    ' ),
+            foobar:      'foobar'
         }
 
-        for ( let j = 0, n = booleanDataSet.length ; j < n ; j++ ) {
-            dataSet.push( `${booleanDataSet[ j ]}` )
+        for ( let i = 0, m = voidDataMap.length ; i < m ; i++ ) {
+            dataMap[ voidDataMap[ i ] ] = `${voidDataMap[ i ]}`
         }
 
-        for ( let k = 0, o = numericDataSet.length ; k < o ; k++ ) {
-            dataSet.push( `${numericDataSet[ k ]}` )
+        for ( let j = 0, n = booleanDataMap.length ; j < n ; j++ ) {
+            dataMap[ booleanDataMap[ i ] ] = `${booleanDataMap[ i ]}`
         }
 
-        dataSet.push( 'foobar' )
+        for ( let k = 0, o = numericDataMap.length ; k < o ; k++ ) {
+            dataMap[ numericDataMap[ i ] ] = `${numericDataMap[ i ]}`
+        }
 
-        return dataSet
+        return dataMap
 
     })()
 
-    const functionDataSet = [
-        function emptyFct () {},
-        () => {}
-    ]
+    const functionDataMap = {
+        classicFunction: function emptyFct () {},
+        arrowFunction:   () => {}
+    }
 
-    const arrayDataSet = (() => {
+    const arrayDataMap = (() => {
         'use strict'
 
-        const dataSet = []
+        const dataMap = {
+            emptyArray:       [],
+            emptyArrayObject: new Array(),
+            singleValued:     [ 0 ],
+            multiValued:      [ 0, 1, 2 ],
+            null:             (() => {
 
-        dataSet.push( [] )
+                const nullArray = []
 
-        for ( let i = 0, m = voidDataSet.length ; i < m ; i++ ) {
-            dataSet.push( [ voidDataSet[ i ] ] )
+                for ( let index = 0 ; index < 3 ; index++ ) {
+                    nullArray.push( null )
+                }
+
+                return nullArray
+
+            })(),
+            undefined:        (() => {
+
+                const undefinedArray = []
+
+                for ( let index = 0 ; index < 3 ; index++ ) {
+                    undefinedArray.push( null )
+                }
+
+                return undefinedArray
+
+            })(),
+            voids:            (() => {
+
+                const array = []
+
+                for ( let key in voidDataMap ) {
+                    array.push( voidDataMap[ key ] )
+                }
+
+                return array
+
+            })(),
+            booleans:         (() => {
+
+                const array = []
+
+                for ( let key in booleanDataMap ) {
+                    array.push( booleanDataMap[ key ] )
+                }
+
+                return array
+
+            })(),
+            numbers:          (() => {
+
+                const array = []
+
+                for ( let key in numericDataMap ) {
+                    array.push( numericDataMap[ key ] )
+                }
+
+                return array
+
+            })(),
+            strings:          (() => {
+
+                const array = []
+
+                for ( let key in stringDataMap ) {
+                    array.push( stringDataMap[ key ] )
+                }
+
+                return array
+
+            })(),
+            functions:        (() => {
+
+                const array = []
+
+                for ( let key in functionDataMap ) {
+                    array.push( functionDataMap[ key ] )
+                }
+
+                return array
+
+            })(),
+            objects:          [
+                {
+                    foo: 'bar'
+                },
+                {
+                    baz: 'qux'
+                }
+            ],
+            arrays:           [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
         }
-        dataSet.push( voidDataSet )
 
-        for ( let j = 0, n = booleanDataSet.length ; j < n ; j++ ) {
-            dataSet.push( [ booleanDataSet[ j ] ] )
-        }
-        dataSet.push( booleanDataSet )
-
-        for ( let k = 0, o = numericDataSet.length ; k < o ; k++ ) {
-            dataSet.push( [ numericDataSet[ k ] ] )
-        }
-        dataSet.push( numericDataSet )
-
-        for ( let k = 0, o = functionDataSet.length ; k < o ; k++ ) {
-            dataSet.push( [ functionDataSet[ k ] ] )
-        }
-        dataSet.push( functionDataSet )
-
-        return dataSet
+        return dataMap
 
     })()
 
-    const objectDataSet = [
+    const typedArrayDataMap = {
+        int8Array:    new Int8Array( [ 1, 2, 3 ] ),
+        uInt8Array:   new Uint8Array( [ 1, 2, 3 ] ),
+        int16Array:   new Int16Array( [ 1, 2, 3 ] ),
+        uInt16Array:  new Uint16Array( [ 1, 2, 3 ] ),
+        int32Array:   new Int32Array( [ 1, 2, 3 ] ),
+        uInt32Array:  new Uint32Array( [ 1, 2, 3 ] ),
+        float32Array: new Float32Array( [ 1.0, 2.0, 3.0 ] ),
+        float64Array: new Float64Array( [ 1.0, 2.0, 3.0 ] )
+    }
+
+    const objectDataMap = [
         {},
+        new Object(),
         { null: null },
-        { undefined: undefined }
+        { undefined: undefined },
+        { foo: 'bar' }
     ]
 
     return {
-        voids:     voidDataSet,
-        booleans:  booleanDataSet,
-        numbers:   numericDataSet,
-        strings:   stringDataSet,
-        functions: functionDataSet,
-        arrays:    arrayDataSet,
-        objects:   objectDataSet,
+        voids:       voidDataMap,
+        booleans:    booleanDataMap,
+        numbers:     numericDataMap,
+        strings:     stringDataMap,
+        functions:   functionDataMap,
+        arrays:      arrayDataMap,
+        typedArrays: typedArrayDataMap,
+        objects:     objectDataMap,
     }
 
 }

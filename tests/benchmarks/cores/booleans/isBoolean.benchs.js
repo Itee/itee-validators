@@ -7,11 +7,11 @@
 /* global benchmark */
 
 import { isBoolean } from '../../../../builds/itee-validators.esm'
-import { createDataSet } from '../../../TestsUtils'
+import { createDataMap } from '../../../TestsUtils'
 
 //export default benchmark( 'isBoolean', () => {
 //
-//    const _dataSet = createDataSet()
+//    const _dataSet = createDataMap()
 //    for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
 //        isBoolean( _dataSet[ i ] )
 //    }
@@ -33,7 +33,7 @@ function BooleanBenchs () {
             setup:    function () {
 
                 console.log( 'Setup of ' + this.name )
-                this.dataset = createDataSet()
+                this.dataset = createDataMap()
 
             },
             teardown: function () {
@@ -82,7 +82,7 @@ export { BooleanBenchs }
 //        } )
 //    .add( 'typeof', () => {
 //
-//        const _dataSet = createDataSet()
+//        const _dataSet = createDataMap()
 //        for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
 //            isBoolean( _dataSet[ i ] )
 //        }
@@ -128,7 +128,7 @@ export { BooleanBenchs }
 //            } )
 //        .add( 'typeof', () => {
 //
-//            const _dataSet = createDataSet()
+//            const _dataSet = createDataMap()
 //            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
 //                isBoolean( _dataSet[ i ] )
 //            }
