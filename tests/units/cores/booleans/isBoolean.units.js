@@ -29,7 +29,7 @@ function isBooleanUnits () {
 
             const dataSet = this._dataSet[ 'booleans' ]
             for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
-                expect( isBoolean( dataSet[ 0 ] ) ).to.be.true
+                expect( isBoolean( dataSet[ i ] ) ).to.be.true
             }
 
         } )
