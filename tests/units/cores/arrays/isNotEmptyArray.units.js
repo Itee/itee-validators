@@ -126,6 +126,13 @@ function isNotEmptyArrayUnits () {
 
         } )
 
+        it( 'should return true when the value is an array of strings', () => {
+
+            const dataSet = this._dataSet[ 'arrays' ]
+            expect( isNotArrayOfUndefined( dataSet[ 'strings' ] ) ).to.be.true
+
+        } )
+
         it( 'should return true when the value is an array of functions', () => {
 
             const dataSet = this._dataSet[ 'arrays' ]

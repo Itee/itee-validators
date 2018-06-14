@@ -126,6 +126,13 @@ function isNotArrayOfObjectUnits () {
 
         } )
 
+        it( 'should return false when the value is an array of strings', () => {
+
+            const dataSet = this._dataSet[ 'arrays' ]
+            expect( isNotArrayOfObject( dataSet[ 'strings' ] ) ).to.be.false
+
+        } )
+
         it( 'should return true when the value is an array of functions', () => {
 
             const dataSet = this._dataSet[ 'arrays' ]

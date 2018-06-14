@@ -126,6 +126,13 @@ function isArrayOfUndefinedUnits () {
 
         } )
 
+        it( 'should return false when the value is an array of strings', () => {
+
+            const dataSet = this._dataSet[ 'arrays' ]
+            expect( isArrayOfUndefined( dataSet[ 'strings' ] ) ).to.be.false
+
+        } )
+
         it( 'should return false when the value is an array of functions', () => {
 
             const dataSet = this._dataSet[ 'arrays' ]
