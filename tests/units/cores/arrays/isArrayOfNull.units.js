@@ -25,7 +25,6 @@ function isArrayOfNullUnits () {
 
         } )
 
-
         it( 'should return false when the value is a boolean', () => {
 
             const dataSet = this._dataSet[ 'booleans' ]
