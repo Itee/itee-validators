@@ -137,6 +137,17 @@ export function createDataMap () {
                 return array
 
             })(),
+            strings:          (() => {
+
+                const array = []
+
+                for ( let key in stringDataMap ) {
+                    array.push( stringDataMap[ key ] )
+                }
+
+                return array
+
+            })(),
             functions:        (() => {
 
                 const array = []
