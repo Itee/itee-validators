@@ -20,13 +20,13 @@ function CoresUnits () {
     describe( 'Cores', () => {
 
         ArraysUnits.call( this )
-        BooleansUnits.call( this )
-        FunctionsUnits.call( this )
-        NumbersUnits.call( this )
-        ObjectsUnits.call( this )
-        StringsUnits.call( this )
-        SymbolsUnits.call( this )
-        VoidsUnits.call( this )
+//        BooleansUnits.call( this )
+//        FunctionsUnits.call( this )
+//        NumbersUnits.call( this )
+//        ObjectsUnits.call( this )
+//        StringsUnits.call( this )
+//        SymbolsUnits.call( this )
+//        VoidsUnits.call( this )
 
     } )
 
