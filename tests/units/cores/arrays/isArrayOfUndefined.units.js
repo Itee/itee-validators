@@ -166,7 +166,7 @@ function isArrayOfUndefinedUnits () {
             }
 
         } )
-        
+
     } )
 
 }
