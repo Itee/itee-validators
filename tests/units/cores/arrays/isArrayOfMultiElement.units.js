@@ -91,69 +91,6 @@ function isArrayOfMultiElementUnits () {
 
         } )
 
-        it( 'should return false when the value is an array of null', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfMultiElement( dataSet[ 'null' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return false when the value is an array of undefined', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfMultiElement( dataSet[ 'undefined' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return false when the value is an array of voids', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfMultiElement( dataSet[ 'voids' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return false when the value is an array of booleans', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfMultiElement( dataSet[ 'booleans' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return false when the value is an array of numbers', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfMultiElement( dataSet[ 'numbers' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return false when the value is an array of strings', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfMultiElement( dataSet[ 'strings' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return false when the value is an array of functions', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfMultiElement( dataSet[ 'functions' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return false when the value is an array of objects', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfMultiElement( dataSet[ 'objects' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return false when the value is an array of arrays', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfMultiElement( dataSet[ 'arrays' ] ) ).to.be.false
-
-        } )
-
         /////////////////
 
         it( 'should return false when the value is an typed array', () => {
