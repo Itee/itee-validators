@@ -98,7 +98,18 @@ export function createDataMap () {
                 const undefinedArray = []
 
                 for ( let index = 0 ; index < 3 ; index++ ) {
-                    undefinedArray.push( null )
+                    undefinedArray.push( undefined )
+                }
+
+                return undefinedArray
+
+            })(),
+            void:        (() => {
+
+                const undefinedArray = []
+
+                for ( let index = 0 ; index < 3 ; index++ ) {
+                    undefinedArray.push( void(0) )
                 }
 
                 return undefinedArray
