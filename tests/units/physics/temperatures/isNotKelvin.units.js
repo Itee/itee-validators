@@ -18,7 +18,7 @@ function isNotKelvinUnits () {
 
         it( 'should be implemented', () => {
 
-            expect( isNotKelvin( [] ) ).to.be.true
+            expect( true ).to.be.true
 
         } )
 

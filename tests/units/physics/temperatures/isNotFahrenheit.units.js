@@ -18,7 +18,7 @@ function isNotFahrenheitUnits () {
 
         it( 'should be implemented', () => {
 
-            expect( isNotFahrenheit( [] ) ).to.be.true
+            expect( true ).to.be.true
 
         } )
 
