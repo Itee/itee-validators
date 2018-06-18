@@ -105,10 +105,10 @@ function isNotArrayOfNullUnits () {
 
         } )
 
-        it( 'should return true when the value is an array of voids', () => {
+        it( 'should return true when the value is an array of void(0)', () => {
 
             const dataSet = this._dataSet[ 'arrays' ]
-            expect( isNotArrayOfNull( dataSet[ 'voids' ] ) ).to.be.true
+            expect( isNotArrayOfNull( dataSet[ 'void' ] ) ).to.be.true
 
         } )
 
@@ -126,10 +126,10 @@ function isNotArrayOfNullUnits () {
 
         } )
 
-        it( 'should return false when the value is an array of strings', () => {
+        it( 'should return true when the value is an array of strings', () => {
 
             const dataSet = this._dataSet[ 'arrays' ]
-            expect( isNotArrayOfNull( dataSet[ 'strings' ] ) ).to.be.false
+            expect( isNotArrayOfNull( dataSet[ 'strings' ] ) ).to.be.true
 
         } )
 
