@@ -105,10 +105,10 @@ function isNotArrayOfUndefinedUnits () {
 
         } )
 
-        it( 'should return true when the value is an array of voids', () => {
+        it( 'should return false when the value is an array of void', () => {
 
             const dataSet = this._dataSet[ 'arrays' ]
-            expect( isNotArrayOfUndefined( dataSet[ 'voids' ] ) ).to.be.true
+            expect( isNotArrayOfUndefined( dataSet[ 'void' ] ) ).to.be.false
 
         } )
 
