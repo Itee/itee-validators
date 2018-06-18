@@ -126,10 +126,10 @@ function isNotArrayOfArrayUnits () {
 
         } )
 
-        it( 'should return false when the value is an array of strings', () => {
+        it( 'should return true when the value is an array of strings', () => {
 
             const dataSet = this._dataSet[ 'arrays' ]
-            expect( isNotArrayOfArray( dataSet[ 'strings' ] ) ).to.be.false
+            expect( isNotArrayOfArray( dataSet[ 'strings' ] ) ).to.be.true
 
         } )
 
