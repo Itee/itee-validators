@@ -47,9 +47,10 @@ export function isNotArray ( data ) {
     return !Array.isArray( data )
 }
 
-export function isNotArray_1 ( data ) {
-    return !isArray( data )
-}
+// alt
+//export function isNotArray_1 ( data ) {
+//    return !isArray( data )
+//}
 
 /**
  * Check if given data is not an empty array where all values are null
@@ -274,26 +275,26 @@ export function isArrayOfString ( data ) {
 }
 
 //alt
-export function isArrayOfString_1 ( data ) {
-
-    if ( !Array.isArray( data ) ) {
-        return false
-    }
-
-    const dataLength = data.length
-    if ( dataLength === 0 ) {
-        return false
-    }
-
-    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
-        if ( typeof data[ index ] !== 'string' ) {
-            return false
-        }
-    }
-
-    return true
-
-}
+//export function isArrayOfString_1 ( data ) {
+//
+//    if ( !Array.isArray( data ) ) {
+//        return false
+//    }
+//
+//    const dataLength = data.length
+//    if ( dataLength === 0 ) {
+//        return false
+//    }
+//
+//    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
+//        if ( typeof data[ index ] !== 'string' ) {
+//            return false
+//        }
+//    }
+//
+//    return true
+//
+//}
 
 /**
  * Check if given data is not an empty array where all values are not string
