@@ -35,6 +35,11 @@ then you will be able to use like this:
 
 ## Release notes
 
+#### v2.1.0
+
+* Add new class Validator that allow to validate complex data structure
+* Add more unit tests
+
 #### v2.0.1
 
 * Update efficiency of some functions from voids and arrays
