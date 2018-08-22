@@ -18,9 +18,9 @@ export function isString ( data ) {
 }
 
 // alt
-export function isString_1 ( data ) {
-    return (typeof data === 'string')
-}
+//export function isString_1 ( data ) {
+//    return (typeof data === 'string')
+//}
 
 /**
  * Check if given data is not a string

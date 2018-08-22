@@ -24,10 +24,10 @@ function CreateJsdocConfiguration () {
         },
         "source":       {
             "include":        [ "README.md" ],
-            "includePattern": ".js$",
-            "excludePattern": "(node_modules|documentation|builds)"
+            "includePattern": ".+\\.js(doc|x)?$",
+            "excludePattern": "(node_modules|documentation|builds|tests)"
         },
-        //        "sourceType":   "module",
+        "sourceType":   "module",
         "plugins":      [],
         "recurseDepth": 5,
         "opts":         {
