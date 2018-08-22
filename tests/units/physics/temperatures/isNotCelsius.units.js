@@ -18,7 +18,7 @@ function isNotCelsiusUnits () {
 
         it( 'should be implemented', () => {
 
-            expect( isNotCelsius( [] ) ).to.be.true
+            expect( true ).to.be.true
 
         } )
 

@@ -18,7 +18,7 @@ function isCelsiusUnits () {
 
         it( 'should be implemented', () => {
 
-            expect( isCelsius( [] ) ).to.be.true
+            expect( true ).to.be.true
 
         } )
 

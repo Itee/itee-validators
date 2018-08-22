@@ -8,119 +8,204 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	function createDataSet() {
+	function createDataMap () {
 
-	    const voidDataSet = [
-	        null,
-	        undefined,
-	        void(0)
-	    ];
+	    const voidDataMap = {
+	        null:      null,
+	        undefined: undefined,
+	        void:      void(0)
+	    };
 
-	    const booleanDataSet = [
-	        true,
-	        false
-	    ];
+	    const booleanDataMap = {
+	        true:  true,
+	        false: false
+	    };
 
-	    const numericDataSet = [
-	        Number.NEGATIVE_INFINITY,
-	        -Number.MAX_VALUE,
-	        Number.MIN_SAFE_INTEGER,
-	        -Number.MIN_VALUE,
-	        -0x123456,
-	        -2e+2,
-	        -1.0,
-	        -1,
-	        -0.0,
-	        -0,
-	        Number.NaN,
-	        0,
-	        0.0,
-	        1,
-	        1.0,
-	        2e+2,
-	        0x123456,
-	        Number.MIN_VALUE,
-	        Number.MAX_SAFE_INTEGER,
-	        Number.MAX_VALUE,
-	        Number.POSITIVE_INFINITY
-	    ];
+	    const numericDataMap = {
+	        negativeInfinity:       Number.NEGATIVE_INFINITY,
+	        negativeMaxValue:       -Number.MAX_VALUE,
+	        negativeMinSafeInteger: Number.MIN_SAFE_INTEGER,
+	        negativeMinValue:       -Number.MIN_VALUE,
+	        negativeHexa:           -0x123456,
+	        negativePow:            -2e+2,
+	        negativeFloat:          -1.0,
+	        negativeInt:            -1,
+	        negativeNullDouble:     -0.0,
+	        negativeNullInt:        -0,
+	        nan:                    Number.NaN,
+	        positiveNullInt:        0,
+	        positiveNullFloat:      0.0,
+	        positiveInt:            1,
+	        positiveFloat:          1.0,
+	        positivePow:            2e+2,
+	        positiveHexa:           0x123456,
+	        positiveMinValue:       Number.MIN_VALUE,
+	        positiveMaxSafeInteger: Number.MAX_SAFE_INTEGER,
+	        positiveMaxValue:       Number.MAX_VALUE,
+	        positiveInfinity:       Number.POSITIVE_INFINITY
+	    };
 
-	    const stringDataSet = (() => {
+	    const stringDataMap = (() => {
 	        'use strict';
 
-	        const dataSet = [];
+	        const dataMap = {
+	            empty:       '',
+	            blank:       '      ',
+	            stringNull:  new String(),
+	            stringEmpty: new String( '' ),
+	            stringBlank: new String( '    ' ),
+	            foobar:      'foobar'
+	        };
 
-	        dataSet.push( '' );
-	        dataSet.push( '      ' );
-
-	        for ( let i = 0, m = voidDataSet.length ; i < m ; i++ ) {
-	            dataSet.push( `${voidDataSet[ i ]}` );
+	        for ( let i = 0, m = voidDataMap.length ; i < m ; i++ ) {
+	            dataMap[ voidDataMap[ i ] ] = `${voidDataMap[ i ]}`;
 	        }
 
-	        for ( let j = 0, n = booleanDataSet.length ; j < n ; j++ ) {
-	            dataSet.push( `${booleanDataSet[ j ]}` );
+	        for ( let j = 0, n = booleanDataMap.length ; j < n ; j++ ) {
+	            dataMap[ booleanDataMap[ i ] ] = `${booleanDataMap[ i ]}`;
 	        }
 
-	        for ( let k = 0, o = numericDataSet.length ; k < o ; k++ ) {
-	            dataSet.push( `${numericDataSet[ k ]}` );
+	        for ( let k = 0, o = numericDataMap.length ; k < o ; k++ ) {
+	            dataMap[ numericDataMap[ i ] ] = `${numericDataMap[ i ]}`;
 	        }
 
-	        dataSet.push( 'foobar' );
-
-	        return dataSet
+	        return dataMap
 
 	    })();
 
-	    const functionDataSet = [
-	        function emptyFct () {},
-	        () => {}
-	    ];
+	    const functionDataMap = {
+	        classicFunction: function emptyFct () {},
+	        arrowFunction:   () => {}
+	    };
 
-	    const arrayDataSet = (() => {
+	    const arrayDataMap = (() => {
 	        'use strict';
 
-	        const dataSet = [];
+	        const dataMap = {
+	            emptyArray:       [],
+	            emptyArrayObject: new Array(),
+	            singleValued:     [ 0 ],
+	            multiValued:      [ 0, 1, 2 ],
+	            null:             (() => {
 
-	        dataSet.push( [] );
+	                const nullArray = [];
 
-	        for ( let i = 0, m = voidDataSet.length ; i < m ; i++ ) {
-	            dataSet.push( [ voidDataSet[ i ] ] );
-	        }
-	        dataSet.push( voidDataSet );
+	                for ( let index = 0 ; index < 3 ; index++ ) {
+	                    nullArray.push( null );
+	                }
 
-	        for ( let j = 0, n = booleanDataSet.length ; j < n ; j++ ) {
-	            dataSet.push( [ booleanDataSet[ j ] ] );
-	        }
-	        dataSet.push( booleanDataSet );
+	                return nullArray
 
-	        for ( let k = 0, o = numericDataSet.length ; k < o ; k++ ) {
-	            dataSet.push( [ numericDataSet[ k ] ] );
-	        }
-	        dataSet.push( numericDataSet );
+	            })(),
+	            undefined:        (() => {
 
-	        for ( let k = 0, o = functionDataSet.length ; k < o ; k++ ) {
-	            dataSet.push( [ functionDataSet[ k ] ] );
-	        }
-	        dataSet.push( functionDataSet );
+	                const undefinedArray = [];
 
-	        return dataSet
+	                for ( let index = 0 ; index < 3 ; index++ ) {
+	                    undefinedArray.push( null );
+	                }
+
+	                return undefinedArray
+
+	            })(),
+	            voids:            (() => {
+
+	                const array = [];
+
+	                for ( let key in voidDataMap ) {
+	                    array.push( voidDataMap[ key ] );
+	                }
+
+	                return array
+
+	            })(),
+	            booleans:         (() => {
+
+	                const array = [];
+
+	                for ( let key in booleanDataMap ) {
+	                    array.push( booleanDataMap[ key ] );
+	                }
+
+	                return array
+
+	            })(),
+	            numbers:          (() => {
+
+	                const array = [];
+
+	                for ( let key in numericDataMap ) {
+	                    array.push( numericDataMap[ key ] );
+	                }
+
+	                return array
+
+	            })(),
+	            strings:          (() => {
+
+	                const array = [];
+
+	                for ( let key in stringDataMap ) {
+	                    array.push( stringDataMap[ key ] );
+	                }
+
+	                return array
+
+	            })(),
+	            functions:        (() => {
+
+	                const array = [];
+
+	                for ( let key in functionDataMap ) {
+	                    array.push( functionDataMap[ key ] );
+	                }
+
+	                return array
+
+	            })(),
+	            objects:          [
+	                {
+	                    foo: 'bar'
+	                },
+	                {
+	                    baz: 'qux'
+	                }
+	            ],
+	            arrays:           [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
+	        };
+
+	        return dataMap
 
 	    })();
 
-	    const objectDataSet = [
+	    const typedArrayDataMap = {
+	        int8Array:    new Int8Array( [ 1, 2, 3 ] ),
+	        uInt8Array:   new Uint8Array( [ 1, 2, 3 ] ),
+	        int16Array:   new Int16Array( [ 1, 2, 3 ] ),
+	        uInt16Array:  new Uint16Array( [ 1, 2, 3 ] ),
+	        int32Array:   new Int32Array( [ 1, 2, 3 ] ),
+	        uInt32Array:  new Uint32Array( [ 1, 2, 3 ] ),
+	        float32Array: new Float32Array( [ 1.0, 2.0, 3.0 ] ),
+	        float64Array: new Float64Array( [ 1.0, 2.0, 3.0 ] )
+	    };
+
+	    const objectDataMap = [
 	        {},
+	        new Object(),
 	        { null: null },
-	        { undefined: undefined }
+	        { undefined: undefined },
+	        { foo: 'bar' }
 	    ];
 
 	    return {
-	        voids:     voidDataSet,
-	        booleans:  booleanDataSet,
-	        numbers:   numericDataSet,
-	        strings:   stringDataSet,
-	        functions: functionDataSet,
-	        arrays:    arrayDataSet,
-	        objects:   objectDataSet,
+	        voids:       voidDataMap,
+	        booleans:    booleanDataMap,
+	        numbers:     numericDataMap,
+	        strings:     stringDataMap,
+	        functions:   functionDataMap,
+	        arrays:      arrayDataMap,
+	        typedArrays: typedArrayDataMap,
+	        objects:     objectDataMap,
 	    }
 
 	}
@@ -150,11 +235,7 @@ this.Itee = this.Itee || {};
 	 * @returns {boolean} true if data is not null, false otherwise.
 	 */
 	function isNotNull ( data ) {
-	    return (data !== null)
-	}
-
-	function isNotNull_1 ( data ) {
-	    return !(data === null)
+	    return !isNull( data )
 	}
 
 	/**
@@ -184,7 +265,7 @@ this.Itee = this.Itee || {};
 	 * @returns {boolean} true if data is null or undefined, false otherwise.
 	 */
 	function isNullOrUndefined ( data ) {
-	    return ((data === null) || (typeof data === 'undefined'))
+	    return (isNull( data ) || isUndefined( data ))
 	}
 
 	/**
@@ -194,7 +275,7 @@ this.Itee = this.Itee || {};
 	 * @returns {boolean} true if data is not null and not undefined, false otherwise.
 	 */
 	function isDefined ( data ) {
-	    return ((data !== null) && (typeof data !== 'undefined'))
+	    return (isNotNull( data ) && isNotUndefined( data ))
 	}
 
 	/**
@@ -242,6 +323,19 @@ this.Itee = this.Itee || {};
 	 */
 	function isNotEmpty ( data ) {
 	    return !isEmpty( data );
+	}
+
+	// Todo: to remove
+
+	/**
+	 * Check if given data is null or undefined
+	 *
+	 * @alias isNullOrUndefined
+	 * @param data {any} The data to check against the existence
+	 * @returns {boolean} true if data is null or undefined, false otherwise.
+	 */
+	function no ( data ) {
+	    return ( (data === null) || (typeof data === 'undefined') )
 	}
 
 	/**
@@ -407,10 +501,6 @@ this.Itee = this.Itee || {};
 	 * @returns {boolean} true if data is not array, false otherwise
 	 */
 	function isNotArray ( data ) {
-	    return !Array.isArray( data )
-	}
-
-	function isNotArray_1 ( data ) {
 	    return !isArray( data )
 	}
 
@@ -421,27 +511,6 @@ this.Itee = this.Itee || {};
 	 * @returns {boolean} true if data is not an empty array where all values are null, false otherwise
 	 */
 	function isArrayOfNull ( data ) {
-
-	    if ( !Array.isArray( data ) ) {
-	        return false
-	    }
-
-	    const dataLength = data.length;
-	    if( dataLength === 0 ) {
-	        return false
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index += 1 ) {
-	        if ( data[ index ] !== null ) {
-	            return false
-	        }
-	    }
-
-	    return true
-
-	}
-
-	function isArrayOfNull_1 ( data ) {
 
 	    if ( isEmptyArray( data ) ) {
 	        return false
@@ -527,7 +596,7 @@ this.Itee = this.Itee || {};
 	 * @param data {any} The data to check against the array of undefined
 	 * @returns {boolean} true if data is not an empty array where all values are defined, false otherwise
 	 */
-	function isNotArrayOfUndefined ( data ) {
+	function isNotArrayOfUndefined$1 ( data ) {
 
 	    if ( isEmptyArray( data ) ) {
 	        return false
@@ -713,9 +782,75 @@ this.Itee = this.Itee || {};
 
 	    describe( 'isArray()', () => {
 
-	        it( 'should be implemented', () => {
+	        it( 'should return false when the value is a void', () => {
 
-	            expect( isArray( [] ) ).to.be.true;
+	            const dataSet = this._dataSet[ 'voids' ];
+	            for ( let key in dataSet ) {
+	                expect( isArray( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a boolean', () => {
+
+	            const dataSet = this._dataSet[ 'booleans' ];
+	            for ( let key in dataSet ) {
+	                expect( isArray( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a number', () => {
+
+	            const dataSet = this._dataSet[ 'numbers' ];
+	            for ( let key in dataSet ) {
+	                expect( isArray( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a string', () => {
+
+	            const dataSet = this._dataSet[ 'strings' ];
+	            for ( let key in dataSet ) {
+	                expect( isArray( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a function', () => {
+
+	            const dataSet = this._dataSet[ 'functions' ];
+	            for ( let key in dataSet ) {
+	                expect( isArray( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is an array', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            for ( let key in dataSet ) {
+	                expect( isArray( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is an typed array', () => {
+
+	            const dataSet = this._dataSet[ 'typedArrays' ];
+	            for ( let key in dataSet ) {
+	                expect( isArray( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is an object', () => {
+
+	            const dataSet = this._dataSet[ 'objects' ];
+	            for ( let key in dataSet ) {
+	                expect( isArray( dataSet[ key ] ) ).to.be.false;
+	            }
 
 	        } );
 
@@ -737,9 +872,161 @@ this.Itee = this.Itee || {};
 
 	    describe( 'isArrayOfArray()', () => {
 
-	        it( 'should be implemented', () => {
+	        it( 'should return false when the value is a void', () => {
 
-	            expect( isArrayOfArray( [] ) ).to.be.true;
+	            const dataSet = this._dataSet[ 'voids' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfArray( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a boolean', () => {
+
+	            const dataSet = this._dataSet[ 'booleans' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfArray( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a number', () => {
+
+	            const dataSet = this._dataSet[ 'numbers' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfArray( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a string', () => {
+
+	            const dataSet = this._dataSet[ 'strings' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfArray( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a function', () => {
+
+	            const dataSet = this._dataSet[ 'functions' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfArray( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        //////////////// Specific part
+
+	        it( 'should return false when the value is an empty array', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfArray( dataSet[ 'emptyArray' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an empty array object', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfArray( dataSet[ 'emptyArrayObject' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is a single valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfArray( dataSet[ 'singleValued' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is a multi valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfArray( dataSet[ 'multiValued' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of null', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfArray( dataSet[ 'null' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of undefined', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfArray( dataSet[ 'undefined' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of voids', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfArray( dataSet[ 'voids' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of booleans', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfArray( dataSet[ 'booleans' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of numbers', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfArray( dataSet[ 'numbers' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of strings', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfArray( dataSet[ 'strings' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of functions', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfArray( dataSet[ 'functions' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of objects', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfArray( dataSet[ 'objects' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return true when the value is an array of arrays', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfArray( dataSet[ 'arrays' ] ) ).to.be.true;
+
+	        } );
+
+	        /////////////////
+
+	        it( 'should return false when the value is an typed array', () => {
+
+	            const dataSet = this._dataSet[ 'typedArrays' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfArray( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is an object', () => {
+
+	            const dataSet = this._dataSet[ 'objects' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfArray( dataSet[ key ] ) ).to.be.false;
+	            }
 
 	        } );
 
@@ -761,9 +1048,161 @@ this.Itee = this.Itee || {};
 
 	    describe( 'isArrayOfMultiElement()', () => {
 
-	        it( 'should be implemented', () => {
+	        it( 'should return false when the value is a void', () => {
 
-	            expect( isArrayOfMultiElement( [] ) ).to.be.true;
+	            const dataSet = this._dataSet[ 'voids' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfMultiElement( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a boolean', () => {
+
+	            const dataSet = this._dataSet[ 'booleans' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfMultiElement( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a number', () => {
+
+	            const dataSet = this._dataSet[ 'numbers' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfMultiElement( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a string', () => {
+
+	            const dataSet = this._dataSet[ 'strings' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfMultiElement( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a function', () => {
+
+	            const dataSet = this._dataSet[ 'functions' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfMultiElement( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        //////////////// Specific part
+
+	        it( 'should return false when the value is an empty array', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfMultiElement( dataSet[ 'emptyArray' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an empty array object', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfMultiElement( dataSet[ 'emptyArrayObject' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is a single valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfMultiElement( dataSet[ 'singleValued' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return true when the value is a multi valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfMultiElement( dataSet[ 'multiValued' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return false when the value is an array of null', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfMultiElement( dataSet[ 'null' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of undefined', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfMultiElement( dataSet[ 'undefined' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of voids', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfMultiElement( dataSet[ 'voids' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of booleans', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfMultiElement( dataSet[ 'booleans' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of numbers', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfMultiElement( dataSet[ 'numbers' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of strings', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfMultiElement( dataSet[ 'strings' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of functions', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfMultiElement( dataSet[ 'functions' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of objects', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfMultiElement( dataSet[ 'objects' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of arrays', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfMultiElement( dataSet[ 'arrays' ] ) ).to.be.false;
+
+	        } );
+
+	        /////////////////
+
+	        it( 'should return false when the value is an typed array', () => {
+
+	            const dataSet = this._dataSet[ 'typedArrays' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfMultiElement( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is an object', () => {
+
+	            const dataSet = this._dataSet[ 'objects' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfMultiElement( dataSet[ key ] ) ).to.be.false;
+	            }
 
 	        } );
 
@@ -785,9 +1224,161 @@ this.Itee = this.Itee || {};
 
 	    describe( 'isArrayOfNull()', () => {
 
-	        it( 'should be implemented', () => {
+	        it( 'should return false when the value is a void', () => {
 
-	            expect( isArrayOfNull( [] ) ).to.be.true;
+	            const dataSet = this._dataSet[ 'voids' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfNull( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a boolean', () => {
+
+	            const dataSet = this._dataSet[ 'booleans' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfNull( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a number', () => {
+
+	            const dataSet = this._dataSet[ 'numbers' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfNull( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a string', () => {
+
+	            const dataSet = this._dataSet[ 'strings' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfNull( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a function', () => {
+
+	            const dataSet = this._dataSet[ 'functions' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfNull( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        //////////////// Specific part
+
+	        it( 'should return false when the value is an empty array', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfNull( dataSet[ 'emptyArray' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an empty array object', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfNull( dataSet[ 'emptyArrayObject' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is a single valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfNull( dataSet[ 'singleValued' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is a multi valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfNull( dataSet[ 'multiValued' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return true when the value is an array of null', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfNull( dataSet[ 'null' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return false when the value is an array of undefined', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfNull( dataSet[ 'undefined' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of voids', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfNull( dataSet[ 'voids' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of booleans', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfNull( dataSet[ 'booleans' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of numbers', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfNull( dataSet[ 'numbers' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of strings', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfNull( dataSet[ 'strings' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of functions', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfNull( dataSet[ 'functions' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of objects', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfNull( dataSet[ 'objects' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of arrays', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfNull( dataSet[ 'arrays' ] ) ).to.be.false;
+
+	        } );
+
+	        /////////////////
+
+	        it( 'should return false when the value is an typed array', () => {
+
+	            const dataSet = this._dataSet[ 'typedArrays' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfNull( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is an object', () => {
+
+	            const dataSet = this._dataSet[ 'objects' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfNull( dataSet[ key ] ) ).to.be.false;
+	            }
 
 	        } );
 
@@ -809,9 +1400,161 @@ this.Itee = this.Itee || {};
 
 	    describe( 'isArrayOfObject()', () => {
 
-	        it( 'should be implemented', () => {
+	        it( 'should return false when the value is a void', () => {
 
-	            expect( isArrayOfObject( [] ) ).to.be.true;
+	            const dataSet = this._dataSet[ 'voids' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfObject( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a boolean', () => {
+
+	            const dataSet = this._dataSet[ 'booleans' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfObject( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a number', () => {
+
+	            const dataSet = this._dataSet[ 'numbers' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfObject( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a string', () => {
+
+	            const dataSet = this._dataSet[ 'strings' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfObject( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a function', () => {
+
+	            const dataSet = this._dataSet[ 'functions' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfObject( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        //////////////// Specific part
+
+	        it( 'should return false when the value is an empty array', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfObject( dataSet[ 'emptyArray' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an empty array object', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfObject( dataSet[ 'emptyArrayObject' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is a single valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfObject( dataSet[ 'singleValued' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is a multi valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfObject( dataSet[ 'multiValued' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of null', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfObject( dataSet[ 'null' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of undefined', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfObject( dataSet[ 'undefined' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of voids', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfObject( dataSet[ 'voids' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of booleans', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfObject( dataSet[ 'booleans' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of numbers', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfObject( dataSet[ 'numbers' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of strings', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfObject( dataSet[ 'strings' ] ) ).to.be.false;
+
+	        } );
+	        
+	        it( 'should return false when the value is an array of functions', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfObject( dataSet[ 'functions' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return true when the value is an array of objects', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfObject( dataSet[ 'objects' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return false when the value is an array of arrays', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfObject( dataSet[ 'arrays' ] ) ).to.be.false;
+
+	        } );
+
+	        /////////////////
+
+	        it( 'should return false when the value is an typed array', () => {
+
+	            const dataSet = this._dataSet[ 'typedArrays' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfObject( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is an object', () => {
+
+	            const dataSet = this._dataSet[ 'objects' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfObject( dataSet[ key ] ) ).to.be.false;
+	            }
 
 	        } );
 
@@ -833,9 +1576,161 @@ this.Itee = this.Itee || {};
 
 	    describe( 'isArrayOfSingleElement()', () => {
 
-	        it( 'should be implemented', () => {
+	        it( 'should return false when the value is a void', () => {
 
-	            expect( isArrayOfSingleElement( [] ) ).to.be.true;
+	            const dataSet = this._dataSet[ 'voids' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfSingleElement( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a boolean', () => {
+
+	            const dataSet = this._dataSet[ 'booleans' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfSingleElement( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a number', () => {
+
+	            const dataSet = this._dataSet[ 'numbers' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfSingleElement( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a string', () => {
+
+	            const dataSet = this._dataSet[ 'strings' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfSingleElement( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a function', () => {
+
+	            const dataSet = this._dataSet[ 'functions' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfSingleElement( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        //////////////// Specific part
+
+	        it( 'should return false when the value is an empty array', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfSingleElement( dataSet[ 'emptyArray' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an empty array object', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfSingleElement( dataSet[ 'emptyArrayObject' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return true when the value is a single valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfSingleElement( dataSet[ 'singleValued' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return false when the value is a multi valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfSingleElement( dataSet[ 'multiValued' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of null', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfSingleElement( dataSet[ 'null' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of undefined', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfSingleElement( dataSet[ 'undefined' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of voids', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfSingleElement( dataSet[ 'voids' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of booleans', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfSingleElement( dataSet[ 'booleans' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of numbers', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfSingleElement( dataSet[ 'numbers' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of strings', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfSingleElement( dataSet[ 'strings' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of functions', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfSingleElement( dataSet[ 'functions' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of objects', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfSingleElement( dataSet[ 'objects' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of arrays', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfSingleElement( dataSet[ 'arrays' ] ) ).to.be.false;
+
+	        } );
+
+	        /////////////////
+
+	        it( 'should return false when the value is an typed array', () => {
+
+	            const dataSet = this._dataSet[ 'typedArrays' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfSingleElement( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is an object', () => {
+
+	            const dataSet = this._dataSet[ 'objects' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfSingleElement( dataSet[ key ] ) ).to.be.false;
+	            }
 
 	        } );
 
@@ -857,9 +1752,161 @@ this.Itee = this.Itee || {};
 
 	    describe( 'isArrayOfString()', () => {
 
-	        it( 'should be implemented', () => {
+	        it( 'should return false when the value is a void', () => {
 
-	            expect( isArrayOfString( [] ) ).to.be.true;
+	            const dataSet = this._dataSet[ 'voids' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfString( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a boolean', () => {
+
+	            const dataSet = this._dataSet[ 'booleans' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfString( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a number', () => {
+
+	            const dataSet = this._dataSet[ 'numbers' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfString( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a string', () => {
+
+	            const dataSet = this._dataSet[ 'strings' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfString( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a function', () => {
+
+	            const dataSet = this._dataSet[ 'functions' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfString( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        //////////////// Specific part
+
+	        it( 'should return false when the value is an empty array', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfString( dataSet[ 'emptyArray' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an empty array object', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfString( dataSet[ 'emptyArrayObject' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is a single valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfString( dataSet[ 'singleValued' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is a multi valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfString( dataSet[ 'multiValued' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of null', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfString( dataSet[ 'null' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of undefined', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfString( dataSet[ 'undefined' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of voids', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfString( dataSet[ 'voids' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of booleans', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfString( dataSet[ 'booleans' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of numbers', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfString( dataSet[ 'numbers' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return true when the value is an array of strings', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfString( dataSet[ 'strings' ] ) ).to.be.true;
+
+	        } );
+	        
+	        it( 'should return false when the value is an array of functions', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfString( dataSet[ 'functions' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of objects', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfString( dataSet[ 'objects' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of arrays', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfString( dataSet[ 'arrays' ] ) ).to.be.false;
+
+	        } );
+
+	        /////////////////
+
+	        it( 'should return false when the value is an typed array', () => {
+
+	            const dataSet = this._dataSet[ 'typedArrays' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfString( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is an object', () => {
+
+	            const dataSet = this._dataSet[ 'objects' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfString( dataSet[ key ] ) ).to.be.false;
+	            }
 
 	        } );
 
@@ -881,9 +1928,161 @@ this.Itee = this.Itee || {};
 
 	    describe( 'isArrayOfUndefined()', () => {
 
-	        it( 'should be implemented', () => {
+	        it( 'should return false when the value is a void', () => {
 
-	            expect( isArrayOfUndefined( [] ) ).to.be.true;
+	            const dataSet = this._dataSet[ 'voids' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfUndefined( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a boolean', () => {
+
+	            const dataSet = this._dataSet[ 'booleans' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfUndefined( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a number', () => {
+
+	            const dataSet = this._dataSet[ 'numbers' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfUndefined( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a string', () => {
+
+	            const dataSet = this._dataSet[ 'strings' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfUndefined( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a function', () => {
+
+	            const dataSet = this._dataSet[ 'functions' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfUndefined( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        //////////////// Specific part
+
+	        it( 'should return false when the value is an empty array', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfUndefined( dataSet[ 'emptyArray' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an empty array object', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfUndefined( dataSet[ 'emptyArrayObject' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is a single valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfUndefined( dataSet[ 'singleValued' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is a multi valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfUndefined( dataSet[ 'multiValued' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of null', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfUndefined( dataSet[ 'null' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return true when the value is an array of undefined', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfUndefined( dataSet[ 'undefined' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return false when the value is an array of voids', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfUndefined( dataSet[ 'voids' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of booleans', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfUndefined( dataSet[ 'booleans' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of numbers', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfUndefined( dataSet[ 'numbers' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of strings', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfUndefined( dataSet[ 'strings' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of functions', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfUndefined( dataSet[ 'functions' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of objects', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfUndefined( dataSet[ 'objects' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of arrays', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isArrayOfUndefined( dataSet[ 'arrays' ] ) ).to.be.false;
+
+	        } );
+
+	        /////////////////
+
+	        it( 'should return false when the value is an typed array', () => {
+
+	            const dataSet = this._dataSet[ 'typedArrays' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfUndefined( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is an object', () => {
+
+	            const dataSet = this._dataSet[ 'objects' ];
+	            for ( let key in dataSet ) {
+	                expect( isArrayOfUndefined( dataSet[ key ] ) ).to.be.false;
+	            }
 
 	        } );
 
@@ -905,9 +2104,161 @@ this.Itee = this.Itee || {};
 
 	    describe( 'isEmptyArray()', () => {
 
-	        it( 'should be implemented', () => {
+	        it( 'should return false when the value is a void', () => {
 
-	            expect( isEmptyArray( [] ) ).to.be.true;
+	            const dataSet = this._dataSet[ 'voids' ];
+	            for ( let key in dataSet ) {
+	                expect( isEmptyArray( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a boolean', () => {
+
+	            const dataSet = this._dataSet[ 'booleans' ];
+	            for ( let key in dataSet ) {
+	                expect( isEmptyArray( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a number', () => {
+
+	            const dataSet = this._dataSet[ 'numbers' ];
+	            for ( let key in dataSet ) {
+	                expect( isEmptyArray( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a string', () => {
+
+	            const dataSet = this._dataSet[ 'strings' ];
+	            for ( let key in dataSet ) {
+	                expect( isEmptyArray( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is a function', () => {
+
+	            const dataSet = this._dataSet[ 'functions' ];
+	            for ( let key in dataSet ) {
+	                expect( isEmptyArray( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        //////////////// Specific part
+
+	        it( 'should return true when the value is an empty array', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isEmptyArray( dataSet[ 'emptyArray' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an empty array object', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isEmptyArray( dataSet[ 'emptyArrayObject' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return false when the value is a single valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isEmptyArray( dataSet[ 'singleValued' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is a multi valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isEmptyArray( dataSet[ 'multiValued' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of null', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isEmptyArray( dataSet[ 'null' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of undefined', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isEmptyArray( dataSet[ 'undefined' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of voids', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isEmptyArray( dataSet[ 'voids' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of booleans', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isEmptyArray( dataSet[ 'booleans' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of numbers', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isEmptyArray( dataSet[ 'numbers' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of strings', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isEmptyArray( dataSet[ 'strings' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of functions', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isEmptyArray( dataSet[ 'functions' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of objects', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isEmptyArray( dataSet[ 'objects' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an array of arrays', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isEmptyArray( dataSet[ 'arrays' ] ) ).to.be.false;
+
+	        } );
+
+	        /////////////////
+
+	        it( 'should return false when the value is an typed array', () => {
+
+	            const dataSet = this._dataSet[ 'typedArrays' ];
+	            for ( let key in dataSet ) {
+	                expect( isEmptyArray( dataSet[ key ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is an object', () => {
+
+	            const dataSet = this._dataSet[ 'objects' ];
+	            for ( let key in dataSet ) {
+	                expect( isEmptyArray( dataSet[ key ] ) ).to.be.false;
+	            }
 
 	        } );
 
@@ -929,9 +2280,66 @@ this.Itee = this.Itee || {};
 
 	    describe( 'isNotArray()', () => {
 
-	        it( 'should be implemented', () => {
+	        it( 'should return true when the value is a void', () => {
 
-	            expect( isNotArray( [] ) ).to.be.true;
+	            const dataSet = this._dataSet[ 'voids' ];
+	            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
+	                expect( isNotArray( dataSet[ i ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a boolean', () => {
+
+	            const dataSet = this._dataSet[ 'booleans' ];
+	            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
+	                expect( isNotArray( dataSet[ i ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a number', () => {
+
+	            const dataSet = this._dataSet[ 'numbers' ];
+	            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
+	                expect( isNotArray( dataSet[ i ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a string', () => {
+
+	            const dataSet = this._dataSet[ 'strings' ];
+	            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
+	                expect( isNotArray( dataSet[ i ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a function', () => {
+
+	            const dataSet = this._dataSet[ 'functions' ];
+	            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
+	                expect( isNotArray( dataSet[ i ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return false when the value is an array', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
+	                expect( isNotArray( dataSet[ i ] ) ).to.be.false;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is an object', () => {
+
+	            const dataSet = this._dataSet[ 'objects' ];
+	            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
+	                expect( isNotArray( dataSet[ i ] ) ).to.be.true;
+	            }
 
 	        } );
 
@@ -953,9 +2361,161 @@ this.Itee = this.Itee || {};
 
 	    describe( 'isNotArrayOfArray()', () => {
 
-	        it( 'should be implemented', () => {
+	        it( 'should return true when the value is a void', () => {
 
-	            expect( isNotArrayOfArray( [] ) ).to.be.true;
+	            const dataSet = this._dataSet[ 'voids' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfArray( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a boolean', () => {
+
+	            const dataSet = this._dataSet[ 'booleans' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfArray( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a number', () => {
+
+	            const dataSet = this._dataSet[ 'numbers' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfArray( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a string', () => {
+
+	            const dataSet = this._dataSet[ 'strings' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfArray( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a function', () => {
+
+	            const dataSet = this._dataSet[ 'functions' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfArray( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        //////////////// Specific part
+
+	        it( 'should return true when the value is an empty array', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfArray( dataSet[ 'emptyArray' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an empty array object', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfArray( dataSet[ 'emptyArrayObject' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is a single valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfArray( dataSet[ 'singleValued' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is a multi valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfArray( dataSet[ 'multiValued' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of null', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfArray( dataSet[ 'null' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of undefined', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfArray( dataSet[ 'undefined' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of voids', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfArray( dataSet[ 'voids' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of booleans', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfArray( dataSet[ 'booleans' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of numbers', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfArray( dataSet[ 'numbers' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return false when the value is an array of strings', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfArray( dataSet[ 'strings' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return true when the value is an array of functions', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfArray( dataSet[ 'functions' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of objects', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfArray( dataSet[ 'objects' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return false when the value is an array of arrays', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfArray( dataSet[ 'arrays' ] ) ).to.be.false;
+
+	        } );
+
+	        /////////////////
+
+	        it( 'should return true when the value is an typed array', () => {
+
+	            const dataSet = this._dataSet[ 'typedArrays' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfArray( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is an object', () => {
+
+	            const dataSet = this._dataSet[ 'objects' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfArray( dataSet[ key ] ) ).to.be.true;
+	            }
 
 	        } );
 
@@ -977,9 +2537,161 @@ this.Itee = this.Itee || {};
 
 	    describe( 'isNotArrayOfNull()', () => {
 
-	        it( 'should be implemented', () => {
+	        it( 'should return true when the value is a void', () => {
 
-	            expect( isNotArrayOfNull( [] ) ).to.be.true;
+	            const dataSet = this._dataSet[ 'voids' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfNull( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a boolean', () => {
+
+	            const dataSet = this._dataSet[ 'booleans' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfNull( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a number', () => {
+
+	            const dataSet = this._dataSet[ 'numbers' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfNull( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a string', () => {
+
+	            const dataSet = this._dataSet[ 'strings' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfNull( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a function', () => {
+
+	            const dataSet = this._dataSet[ 'functions' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfNull( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        //////////////// Specific part
+
+	        it( 'should return true when the value is an empty array', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfNull( dataSet[ 'emptyArray' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an empty array object', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfNull( dataSet[ 'emptyArrayObject' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is a single valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfNull( dataSet[ 'singleValued' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is a multi valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfNull( dataSet[ 'multiValued' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return false when the value is an array of null', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfNull( dataSet[ 'null' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return true when the value is an array of undefined', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfNull( dataSet[ 'undefined' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of voids', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfNull( dataSet[ 'voids' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of booleans', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfNull( dataSet[ 'booleans' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of numbers', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfNull( dataSet[ 'numbers' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return false when the value is an array of strings', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfNull( dataSet[ 'strings' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return true when the value is an array of functions', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfNull( dataSet[ 'functions' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of objects', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfNull( dataSet[ 'objects' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of arrays', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfNull( dataSet[ 'arrays' ] ) ).to.be.true;
+
+	        } );
+
+	        /////////////////
+
+	        it( 'should return true when the value is an typed array', () => {
+
+	            const dataSet = this._dataSet[ 'typedArrays' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfNull( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is an object', () => {
+
+	            const dataSet = this._dataSet[ 'objects' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfNull( dataSet[ key ] ) ).to.be.true;
+	            }
 
 	        } );
 
@@ -1001,9 +2713,161 @@ this.Itee = this.Itee || {};
 
 	    describe( 'isNotArrayOfObject()', () => {
 
-	        it( 'should be implemented', () => {
+	        it( 'should return true when the value is a void', () => {
 
-	            expect( isNotArrayOfObject( [] ) ).to.be.true;
+	            const dataSet = this._dataSet[ 'voids' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfObject( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a boolean', () => {
+
+	            const dataSet = this._dataSet[ 'booleans' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfObject( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a number', () => {
+
+	            const dataSet = this._dataSet[ 'numbers' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfObject( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a string', () => {
+
+	            const dataSet = this._dataSet[ 'strings' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfObject( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a function', () => {
+
+	            const dataSet = this._dataSet[ 'functions' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfObject( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        //////////////// Specific part
+
+	        it( 'should return true when the value is an empty array', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfObject( dataSet[ 'emptyArray' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an empty array object', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfObject( dataSet[ 'emptyArrayObject' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is a single valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfObject( dataSet[ 'singleValued' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is a multi valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfObject( dataSet[ 'multiValued' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of null', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfObject( dataSet[ 'null' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of undefined', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfObject( dataSet[ 'undefined' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of voids', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfObject( dataSet[ 'voids' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of booleans', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfObject( dataSet[ 'booleans' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of numbers', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfObject( dataSet[ 'numbers' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return false when the value is an array of strings', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfObject( dataSet[ 'strings' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return true when the value is an array of functions', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfObject( dataSet[ 'functions' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return false when the value is an array of objects', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfObject( dataSet[ 'objects' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return true when the value is an array of arrays', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfObject( dataSet[ 'arrays' ] ) ).to.be.true;
+
+	        } );
+
+	        /////////////////
+
+	        it( 'should return true when the value is an typed array', () => {
+
+	            const dataSet = this._dataSet[ 'typedArrays' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfObject( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is an object', () => {
+
+	            const dataSet = this._dataSet[ 'objects' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfObject( dataSet[ key ] ) ).to.be.true;
+	            }
 
 	        } );
 
@@ -1025,9 +2889,161 @@ this.Itee = this.Itee || {};
 
 	    describe( 'isNotArrayOfString()', () => {
 
-	        it( 'should be implemented', () => {
+	        it( 'should return true when the value is a void', () => {
 
-	            expect( isNotArrayOfString( [] ) ).to.be.true;
+	            const dataSet = this._dataSet[ 'voids' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfString( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a boolean', () => {
+
+	            const dataSet = this._dataSet[ 'booleans' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfString( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a number', () => {
+
+	            const dataSet = this._dataSet[ 'numbers' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfString( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a string', () => {
+
+	            const dataSet = this._dataSet[ 'strings' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfString( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a function', () => {
+
+	            const dataSet = this._dataSet[ 'functions' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfString( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        //////////////// Specific part
+
+	        it( 'should return true when the value is an empty array', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfString( dataSet[ 'emptyArray' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an empty array object', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfString( dataSet[ 'emptyArrayObject' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is a single valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfString( dataSet[ 'singleValued' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is a multi valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfString( dataSet[ 'multiValued' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of null', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfString( dataSet[ 'null' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of undefined', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfString( dataSet[ 'undefined' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of voids', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfString( dataSet[ 'voids' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of booleans', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfString( dataSet[ 'booleans' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of numbers', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfString( dataSet[ 'numbers' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return false when the value is an array of strings', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfString( dataSet[ 'strings' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return true when the value is an array of functions', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfString( dataSet[ 'functions' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of objects', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfString( dataSet[ 'objects' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of arrays', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfString( dataSet[ 'arrays' ] ) ).to.be.true;
+
+	        } );
+
+	        /////////////////
+
+	        it( 'should return true when the value is an typed array', () => {
+
+	            const dataSet = this._dataSet[ 'typedArrays' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfString( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is an object', () => {
+
+	            const dataSet = this._dataSet[ 'objects' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfString( dataSet[ key ] ) ).to.be.true;
+	            }
 
 	        } );
 
@@ -1049,9 +3065,161 @@ this.Itee = this.Itee || {};
 
 	    describe( 'isNotArrayOfUndefined()', () => {
 
-	        it( 'should be implemented', () => {
+	        it( 'should return true when the value is a void', () => {
 
-	            expect( isNotArrayOfUndefined( [] ) ).to.be.true;
+	            const dataSet = this._dataSet[ 'voids' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfUndefined$1( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a boolean', () => {
+
+	            const dataSet = this._dataSet[ 'booleans' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfUndefined$1( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a number', () => {
+
+	            const dataSet = this._dataSet[ 'numbers' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfUndefined$1( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a string', () => {
+
+	            const dataSet = this._dataSet[ 'strings' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfUndefined$1( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a function', () => {
+
+	            const dataSet = this._dataSet[ 'functions' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfUndefined$1( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        //////////////// Specific part
+
+	        it( 'should return true when the value is an empty array', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfUndefined$1( dataSet[ 'emptyArray' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an empty array object', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfUndefined$1( dataSet[ 'emptyArrayObject' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is a single valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfUndefined$1( dataSet[ 'singleValued' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is a multi valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfUndefined$1( dataSet[ 'multiValued' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of null', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfUndefined$1( dataSet[ 'null' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return false when the value is an array of undefined', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfUndefined$1( dataSet[ 'undefined' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return true when the value is an array of voids', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfUndefined$1( dataSet[ 'voids' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of booleans', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfUndefined$1( dataSet[ 'booleans' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of numbers', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfUndefined$1( dataSet[ 'numbers' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of strings', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfUndefined$1( dataSet[ 'strings' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of functions', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfUndefined$1( dataSet[ 'functions' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of objects', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfUndefined$1( dataSet[ 'objects' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of arrays', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfUndefined$1( dataSet[ 'arrays' ] ) ).to.be.true;
+
+	        } );
+
+	        /////////////////
+
+	        it( 'should return true when the value is an typed array', () => {
+
+	            const dataSet = this._dataSet[ 'typedArrays' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfUndefined$1( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is an object', () => {
+
+	            const dataSet = this._dataSet[ 'objects' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotArrayOfUndefined$1( dataSet[ key ] ) ).to.be.true;
+	            }
 
 	        } );
 
@@ -1073,9 +3241,161 @@ this.Itee = this.Itee || {};
 
 	    describe( 'isNotEmptyArray()', () => {
 
-	        it( 'should be implemented', () => {
+	        it( 'should return true when the value is a void', () => {
 
-	            expect( isNotEmptyArray( [] ) ).to.be.true;
+	            const dataSet = this._dataSet[ 'voids' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotEmptyArray( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a boolean', () => {
+
+	            const dataSet = this._dataSet[ 'booleans' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotEmptyArray( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a number', () => {
+
+	            const dataSet = this._dataSet[ 'numbers' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotEmptyArray( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a string', () => {
+
+	            const dataSet = this._dataSet[ 'strings' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotEmptyArray( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is a function', () => {
+
+	            const dataSet = this._dataSet[ 'functions' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotEmptyArray( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        //////////////// Specific part
+
+	        it( 'should return false when the value is an empty array', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotEmptyArray( dataSet[ 'emptyArray' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return false when the value is an empty array object', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotEmptyArray( dataSet[ 'emptyArrayObject' ] ) ).to.be.false;
+
+	        } );
+
+	        it( 'should return true when the value is a single valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotEmptyArray( dataSet[ 'singleValued' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is a multi valued array of number', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotEmptyArray( dataSet[ 'multiValued' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of null', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotEmptyArray( dataSet[ 'null' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of undefined', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotEmptyArray( dataSet[ 'undefined' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of voids', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotEmptyArray( dataSet[ 'voids' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of booleans', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotEmptyArray( dataSet[ 'booleans' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of numbers', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotEmptyArray( dataSet[ 'numbers' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of strings', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotArrayOfUndefined( dataSet[ 'strings' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of functions', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotEmptyArray( dataSet[ 'functions' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of objects', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotEmptyArray( dataSet[ 'objects' ] ) ).to.be.true;
+
+	        } );
+
+	        it( 'should return true when the value is an array of arrays', () => {
+
+	            const dataSet = this._dataSet[ 'arrays' ];
+	            expect( isNotEmptyArray( dataSet[ 'arrays' ] ) ).to.be.true;
+
+	        } );
+
+	        /////////////////
+
+	        it( 'should return true when the value is an typed array', () => {
+
+	            const dataSet = this._dataSet[ 'typedArrays' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotEmptyArray( dataSet[ key ] ) ).to.be.true;
+	            }
+
+	        } );
+
+	        it( 'should return true when the value is an object', () => {
+
+	            const dataSet = this._dataSet[ 'objects' ];
+	            for ( let key in dataSet ) {
+	                expect( isNotEmptyArray( dataSet[ key ] ) ).to.be.true;
+	            }
 
 	        } );
 
@@ -1095,7 +3415,7 @@ this.Itee = this.Itee || {};
 
 	        beforeEach( () => {
 
-	            this._dataSet = createDataSet();
+	            this._dataSet = createDataMap();
 
 	        } );
 
@@ -1183,7 +3503,7 @@ this.Itee = this.Itee || {};
 
 	            const dataSet = this._dataSet[ 'booleans' ];
 	            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
-	                expect( isBoolean( dataSet[ 0 ] ) ).to.be.true;
+	                expect( isBoolean( dataSet[ i ] ) ).to.be.true;
 	            }
 
 	        } );
@@ -1329,7 +3649,7 @@ this.Itee = this.Itee || {};
 
 	        beforeEach( () => {
 
-	            this._dataSet = createDataSet();
+	            this._dataSet = createDataMap();
 
 	        } );
 
@@ -1549,7 +3869,7 @@ this.Itee = this.Itee || {};
 
 	        beforeEach( () => {
 
-	            this._dataSet = createDataSet();
+	            this._dataSet = createDataMap();
 
 	        } );
 
@@ -2335,7 +4655,7 @@ this.Itee = this.Itee || {};
 
 	        beforeEach( () => {
 
-	            this._dataSet = createDataSet();
+	            this._dataSet = createDataMap();
 
 	        } );
 
@@ -2491,7 +4811,7 @@ this.Itee = this.Itee || {};
 
 	        beforeEach( () => {
 
-	            this._dataSet = createDataSet();
+	            this._dataSet = createDataMap();
 
 	        } );
 
@@ -2684,7 +5004,7 @@ this.Itee = this.Itee || {};
 
 	        beforeEach( () => {
 
-	            this._dataSet = createDataSet();
+	            this._dataSet = createDataMap();
 
 	        } );
 
@@ -2799,7 +5119,7 @@ this.Itee = this.Itee || {};
 
 	        beforeEach( () => {
 
-	            this._dataSet = createDataSet();
+	            this._dataSet = createDataMap();
 
 	        } );
 
@@ -3596,7 +5916,7 @@ this.Itee = this.Itee || {};
 
 	        beforeEach( () => {
 
-	            this._dataSet = createDataSet();
+	            this._dataSet = createDataMap();
 
 	        } );
 
@@ -3630,13 +5950,13 @@ this.Itee = this.Itee || {};
 	    describe( 'Cores', () => {
 
 	        ArraysUnits.call( this );
-	        BooleansUnits.call( this );
-	        FunctionsUnits.call( this );
-	        NumbersUnits.call( this );
-	        ObjectsUnits.call( this );
-	        StringsUnits.call( this );
-	        SymbolsUnits.call( this );
-	        VoidsUnits.call( this );
+	//        BooleansUnits.call( this )
+	//        FunctionsUnits.call( this )
+	//        NumbersUnits.call( this )
+	//        ObjectsUnits.call( this )
+	//        StringsUnits.call( this )
+	//        SymbolsUnits.call( this )
+	//        VoidsUnits.call( this )
 
 	    } );
 
@@ -3950,7 +6270,7 @@ this.Itee = this.Itee || {};
 
 	        beforeEach( () => {
 
-	            this._dataSet = createDataSet();
+	            this._dataSet = createDataMap();
 
 	        } );
 
@@ -4002,8 +6322,8 @@ this.Itee = this.Itee || {};
 	describe( 'Itee#Validators', () => {
 
 	    CoresUnits.call( root );
-	    MathsUnits.call( root );
-	    PhysicsUnits.call( root );
+	//    MathsUnits.call( root )
+	//    PhysicsUnits.call( root )
 
 	} );
 

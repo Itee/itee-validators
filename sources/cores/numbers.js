@@ -91,17 +91,18 @@ export function isInteger ( data ) {
     return (data === 0 && (1 / data) === Number.POSITIVE_INFINITY)
 }
 
-export function isInteger_1 ( data ) {
-    return data % 1 === 0
-}
-
-export function isInteger_2 ( n ) {
-    return n === +n && n === (n | 0);
-}
-
-export function isInteger_3 ( nVal ) {
-    return typeof nVal === "number" && isFinite( nVal ) && nVal > -9007199254740992 && nVal < 9007199254740992 && Math.floor( nVal ) === nVal;
-}
+// alt
+//export function isInteger_1 ( data ) {
+//    return data % 1 === 0
+//}
+//
+//export function isInteger_2 ( n ) {
+//    return n === +n && n === (n | 0);
+//}
+//
+//export function isInteger_3 ( nVal ) {
+//    return typeof nVal === "number" && isFinite( nVal ) && nVal > -9007199254740992 && nVal < 9007199254740992 && Math.floor( nVal ) === nVal;
+//}
 
 /**
  * Check if given data is a floating point number
@@ -113,13 +114,14 @@ export function isFloat ( data ) {
     return data % 1 !== 0
 }
 
-export function isFloat_1 ( n ) {
-    return n === +n && n !== (n | 0)
-}
-
-export function isFloat_2 ( x ) {
-    return !!(x % 1)
-}
+// Alt
+//export function isFloat_1 ( n ) {
+//    return n === +n && n !== (n | 0)
+//}
+//
+//export function isFloat_2 ( x ) {
+//    return !!(x % 1)
+//}
 
 /**
  * Check if the given data is zero

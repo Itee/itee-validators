@@ -6,7 +6,7 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { createDataSet } from '../../../TestsUtils'
+import { createDataMap } from '../../../TestsUtils'
 import { isDefinedUnits } from './isDefined.units'
 import { isEmptyUnits } from './isEmpty.units'
 import { isNotEmptyUnits } from './isNotEmpty.units'
@@ -22,7 +22,7 @@ function VoidsUnits () {
 
         beforeEach( () => {
 
-            this._dataSet = createDataSet()
+            this._dataSet = createDataMap()
 
         } )
 

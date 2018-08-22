@@ -2,7 +2,7 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
- * @module sources/cores/cores
+ * @module sources/cores/_cores
  * @description This is the cores main export entry point.
  * It expose all exports of the voids, booleans, numbers, symbols, strings, arrays, objects and functions validators.
  *
@@ -16,3 +16,4 @@ export * from './objects'
 export * from './strings'
 export * from './symbols'
 export * from './voids'
+export * from './cores'
