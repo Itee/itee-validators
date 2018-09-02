@@ -36,6 +36,7 @@ const eslint = require( 'gulp-eslint' )
 const del    = require( 'del' )
 const rollup = require( 'rollup' )
 const path   = require( 'path' )
+const karma  = require( 'karma' )
 
 const log     = util.log
 const colors  = util.colors
@@ -163,7 +164,14 @@ gulp.task( 'unit', ( done ) => {
  * @description Will run benchmarks using karma
  */
 gulp.task( 'bench', ( done ) => {
-    done()
+
+    const benchServer = new karma.Server({
+        configFile: `${__dirname}/configs/karma.benchs.conf.js`,
+        singleRun:  true
+    }, done)
+
+    benchServer.start()
+
 } )
 
 /**
