@@ -3,7 +3,7 @@
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
  * @module sources/cores/arrays
- * @desc Export the validation methods about Arrays
+ * @description Export the validation methods about Arrays
  * @requires {@link module:sources/cores/voids}
  * @requires {@link module:sources/cores/strings}
  * @requires {@link module:sources/cores/objects}
@@ -44,8 +44,13 @@ export function isArray ( data ) {
  * @returns {boolean} true if data is not array, false otherwise
  */
 export function isNotArray ( data ) {
-    return !isArray( data )
+    return !Array.isArray( data )
 }
+
+// alt
+//export function isNotArray_1 ( data ) {
+//    return !isArray( data )
+//}
 
 /**
  * Check if given data is not an empty array where all values are null
@@ -55,12 +60,17 @@ export function isNotArray ( data ) {
  */
 export function isArrayOfNull ( data ) {
 
-    if ( isEmptyArray( data ) ) {
+    if ( !Array.isArray( data ) ) {
         return false
     }
 
-    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
-        if ( isNotNull( data[ index ] ) ) {
+    const dataLength = data.length
+    if ( dataLength === 0 ) {
+        return false
+    }
+
+    for ( let index = 0 ; index < dataLength ; index++ ) {
+        if ( data[ index ] !== null ) {
             return false
         }
     }
@@ -77,12 +87,17 @@ export function isArrayOfNull ( data ) {
  */
 export function isNotArrayOfNull ( data ) {
 
-    if ( isEmptyArray( data ) ) {
-        return false
+    if ( !Array.isArray( data ) ) {
+        return true
     }
 
-    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
-        if ( isNull( data[ index ] ) ) {
+    const dataLength = data.length
+    if ( dataLength === 0 ) {
+        return true
+    }
+
+    for ( let index = 0 ; index < dataLength ; index++ ) {
+        if ( data[ index ] === null ) {
             return false
         }
     }
@@ -98,7 +113,13 @@ export function isNotArrayOfNull ( data ) {
  * @returns {boolean} true if data is an empty array, false otherwise
  */
 export function isEmptyArray ( data ) {
-    return ( isArray( data ) && isEmpty( data ) )
+
+    if ( !Array.isArray( data ) ) {
+        return false
+    }
+
+    return ( data.length === 0 )
+
 }
 
 /**
@@ -108,7 +129,12 @@ export function isEmptyArray ( data ) {
  * @returns {boolean} true if data is not an empty array, false otherwise
  */
 export function isNotEmptyArray ( data ) {
-    return ( isArray( data ) && isNotEmpty( data ) )
+
+    if ( !Array.isArray( data ) ) {
+        return true
+    }
+
+    return ( data.length > 0 )
 }
 
 /**
@@ -119,12 +145,17 @@ export function isNotEmptyArray ( data ) {
  */
 export function isArrayOfUndefined ( data ) {
 
-    if ( isEmptyArray( data ) ) {
+    if ( !Array.isArray( data ) ) {
+        return false
+    }
+
+    const dataLength = data.length
+    if ( dataLength === 0 ) {
         return false
     }
 
     for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
-        if ( isDefined( data[ index ] ) ) {
+        if ( typeof data[ index ] !== 'undefined' ) {
             return false
         }
     }
@@ -141,17 +172,22 @@ export function isArrayOfUndefined ( data ) {
  */
 export function isNotArrayOfUndefined ( data ) {
 
-    if ( isEmptyArray( data ) ) {
-        return false
+    if ( !Array.isArray( data ) ) {
+        return true
     }
 
-    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
-        if ( isUndefined( data[ index ] ) ) {
-            return false
+    const dataLength = data.length
+    if ( dataLength === 0 ) {
+        return true
+    }
+
+    for ( let index = 0 ; index < dataLength ; index++ ) {
+        if ( typeof data[ index ] !== 'undefined' ) {
+            return true
         }
     }
 
-    return true
+    return false
 
 }
 
@@ -163,12 +199,17 @@ export function isNotArrayOfUndefined ( data ) {
  */
 export function isArrayOfArray ( data ) {
 
-    if ( isEmptyArray( data ) ) {
+    if ( !Array.isArray( data ) ) {
         return false
     }
 
-    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
-        if ( isNotArray( data[ index ] ) ) {
+    const dataLength = data.length
+    if ( dataLength === 0 ) {
+        return false
+    }
+
+    for ( let index = 0 ; index < dataLength ; index += 1 ) {
+        if ( !Array.isArray( data[ index ] ) ) {
             return false
         }
     }
@@ -185,12 +226,17 @@ export function isArrayOfArray ( data ) {
  */
 export function isNotArrayOfArray ( data ) {
 
-    if ( isEmptyArray( data ) ) {
-        return false
+    if ( !Array.isArray( data ) ) {
+        return true
     }
 
-    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
-        if ( isArray( data[ index ] ) ) {
+    const dataLength = data.length
+    if ( dataLength === 0 ) {
+        return true
+    }
+
+    for ( let index = 0 ; index < dataLength ; index++ ) {
+        if ( Array.isArray( data[ index ] ) ) {
             return false
         }
     }
@@ -207,12 +253,19 @@ export function isNotArrayOfArray ( data ) {
  */
 export function isArrayOfString ( data ) {
 
-    if ( isEmptyArray( data ) ) {
+    if ( !Array.isArray( data ) ) {
         return false
     }
 
-    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
-        if ( isNotString( data[ index ] ) ) {
+    const dataLength = data.length
+    if ( dataLength === 0 ) {
+        return false
+    }
+
+    let subData = undefined
+    for ( let index = 0 ; index < dataLength ; index++ ) {
+        subData = data[ index ]
+        if ( !(typeof subData === 'string' || subData instanceof String) ) {
             return false
         }
     }
@@ -220,6 +273,28 @@ export function isArrayOfString ( data ) {
     return true
 
 }
+
+//alt
+//export function isArrayOfString_1 ( data ) {
+//
+//    if ( !Array.isArray( data ) ) {
+//        return false
+//    }
+//
+//    const dataLength = data.length
+//    if ( dataLength === 0 ) {
+//        return false
+//    }
+//
+//    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
+//        if ( typeof data[ index ] !== 'string' ) {
+//            return false
+//        }
+//    }
+//
+//    return true
+//
+//}
 
 /**
  * Check if given data is not an empty array where all values are not string
@@ -229,12 +304,17 @@ export function isArrayOfString ( data ) {
  */
 export function isNotArrayOfString ( data ) {
 
-    if ( isEmptyArray( data ) ) {
-        return false
+    if ( !Array.isArray( data ) ) {
+        return true
     }
 
-    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
-        if ( isString( data[ index ] ) ) {
+    const dataLength = data.length
+    if ( dataLength === 0 ) {
+        return true
+    }
+
+    for ( let index = 0 ; index < dataLength ; index++ ) {
+        if ( typeof data[ index ] === 'string' ) {
             return false
         }
     }
@@ -251,7 +331,15 @@ export function isNotArrayOfString ( data ) {
  */
 export function isArrayOfSingleElement ( data ) {
 
-    return ( isArray( data ) && data.length === 1 )
+    if ( !Array.isArray( data ) ) {
+        return false
+    }
+
+    if ( data.length !== 1 ) {
+        return false
+    }
+
+    return true
 
 }
 
@@ -263,7 +351,15 @@ export function isArrayOfSingleElement ( data ) {
  */
 export function isArrayOfMultiElement ( data ) {
 
-    return ( isArray( data ) && data.length > 1 )
+    if ( !Array.isArray( data ) ) {
+        return false
+    }
+
+    if ( data.length <= 1 ) {
+        return false
+    }
+
+    return true
 
 }
 
@@ -275,7 +371,12 @@ export function isArrayOfMultiElement ( data ) {
  */
 export function isArrayOfObject ( data ) {
 
-    if ( isEmptyArray( data ) ) {
+    if ( !Array.isArray( data ) ) {
+        return false
+    }
+
+    const dataLength = data.length
+    if ( dataLength === 0 ) {
         return false
     }
 
@@ -297,16 +398,25 @@ export function isArrayOfObject ( data ) {
  */
 export function isNotArrayOfObject ( data ) {
 
-    if ( isEmptyArray( data ) ) {
-        return false
+    if ( !Array.isArray( data ) ) {
+        return true
     }
 
-    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
-        if ( isObject( data[ index ] ) ) {
-            return false
+    const dataLength = data.length
+    if ( dataLength === 0 ) {
+        return true
+    }
+
+    for ( let index = 0 ; index < dataLength ; index++ ) {
+        let subData = data[ index ]
+        if ( subData === null ||
+            (typeof subData !== 'object') ||
+            Array.isArray( subData ) ||
+            (subData instanceof String) ) {
+            return true
         }
     }
 
-    return true
+    return false
 
 }

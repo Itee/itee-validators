@@ -6,7 +6,7 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { createDataSet } from '../../../TestsUtils'
+import { createDataMap } from '../../../TestsUtils'
 import { isBooleanUnits } from './isBoolean.units'
 import { isNotBooleanUnits } from './isNotBoolean.units'
 
@@ -16,7 +16,7 @@ function BooleansUnits () {
 
         beforeEach( () => {
 
-            this._dataSet = createDataSet()
+            this._dataSet = createDataMap()
 
         } )
 

@@ -1,7 +1,6 @@
 # <center>[Itee Validators]</center>
 
-The itee client is the end user part of the itee solution predicted for running WebGL 3d content.
-It allow to make fast, and light call to itee server counter part to create/read/update/delete data from webgl server.
+The itee validators is a common validation library, it include all basic validation like number, arrays, voidness, etc... and contain specific validation function for itee packages.
 
 
 ## How to install
@@ -35,6 +34,20 @@ then you will be able to use like this:
     }
 
 ## Release notes
+
+#### v2.1.0
+
+* Add new class Validator that allow to validate complex data structure
+* Add more unit tests
+
+#### v2.0.1
+
+* Update efficiency of some functions from voids and arrays
+
+#### v2.0.0
+
+* Remove some useless alias
+* Start implementing unit testing and benchmarks
 
 #### v1.0.0
 

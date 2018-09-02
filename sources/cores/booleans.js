@@ -3,7 +3,7 @@
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
  * @module sources/cores/booleans
- * @desc Export the validation methods about booleans
+ * @description Export the validation methods about booleans
  *
  */
 

@@ -15,7 +15,7 @@
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
  * @module sources/main
- * @desc This is the main entry point to bundle the itee validators package.
+ * @description This is the main entry point to bundle the itee validators package.
  * It expose all exports of the cores, maths and physics sub-folder.
  *
  */
