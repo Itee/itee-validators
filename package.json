@@ -14,7 +14,6 @@
     "lint": "gulp lint",
     "doc": "gulp doc",
     "bench": "gulp bench",
-    "benchs": "karma start configs/karma.benchs.conf.js",
     "unit": "gulp unit",
     "units": "karma start configs/karma.units.conf.js",
     "mocha": "mocha tests/itee-validators.units.js --reporter mochawesome",
