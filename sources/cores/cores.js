@@ -187,17 +187,9 @@ class Validator {
      */
     add ( type, validator ) {
 
-        if ( isNotString( type ) ) {
-            throw new TypeError( `Validator: Expect type to be a string` )
-        }
-
-        if ( isNotFunction( validator ) && isNotObject( validator ) ) {
-            throw new TypeError( `Validator: Expect validator to be an object or a function` )
-        }
-
-        if ( isDefined( this.validators[ type ] ) ) {
-            throw new TypeError( `Validator: a validator is already defined for type '${type}'` )
-        }
+        if ( isNotString( type ) ) { throw new TypeError( `Validator: Expect type to be a string` ) }
+        if ( isNotFunction( validator ) && isNotObject( validator ) ) { throw new TypeError( `Validator: Expect validator to be an object or a function` ) }
+        if ( isDefined( this.validators[ type ] ) ) { throw new TypeError( `Validator: a validator is already defined for type '${type}'` ) }
 
         this.validators[ type ] = validator
 
