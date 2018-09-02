@@ -8,148 +8,12 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	function createDataSet() {
-
-	    const voidDataSet = [
-	        null,
-	        undefined,
-	        void(0)
-	    ];
-
-	    const booleanDataSet = [
-	        true,
-	        false
-	    ];
-
-	    const numericDataSet = [
-	        Number.NEGATIVE_INFINITY,
-	        -Number.MAX_VALUE,
-	        Number.MIN_SAFE_INTEGER,
-	        -Number.MIN_VALUE,
-	        -0x123456,
-	        -2e+2,
-	        -1.0,
-	        -1,
-	        -0.0,
-	        -0,
-	        Number.NaN,
-	        0,
-	        0.0,
-	        1,
-	        1.0,
-	        2e+2,
-	        0x123456,
-	        Number.MIN_VALUE,
-	        Number.MAX_SAFE_INTEGER,
-	        Number.MAX_VALUE,
-	        Number.POSITIVE_INFINITY
-	    ];
-
-	    const stringDataSet = (() => {
-	        'use strict';
-
-	        const dataSet = [];
-
-	        dataSet.push( '' );
-	        dataSet.push( '      ' );
-
-	        for ( let i = 0, m = voidDataSet.length ; i < m ; i++ ) {
-	            dataSet.push( `${voidDataSet[ i ]}` );
-	        }
-
-	        for ( let j = 0, n = booleanDataSet.length ; j < n ; j++ ) {
-	            dataSet.push( `${booleanDataSet[ j ]}` );
-	        }
-
-	        for ( let k = 0, o = numericDataSet.length ; k < o ; k++ ) {
-	            dataSet.push( `${numericDataSet[ k ]}` );
-	        }
-
-	        dataSet.push( 'foobar' );
-
-	        return dataSet
-
-	    })();
-
-	    const functionDataSet = [
-	        function emptyFct () {},
-	        () => {}
-	    ];
-
-	    const arrayDataSet = (() => {
-	        'use strict';
-
-	        const dataSet = [];
-
-	        dataSet.push( [] );
-
-	        for ( let i = 0, m = voidDataSet.length ; i < m ; i++ ) {
-	            dataSet.push( [ voidDataSet[ i ] ] );
-	        }
-	        dataSet.push( voidDataSet );
-
-	        for ( let j = 0, n = booleanDataSet.length ; j < n ; j++ ) {
-	            dataSet.push( [ booleanDataSet[ j ] ] );
-	        }
-	        dataSet.push( booleanDataSet );
-
-	        for ( let k = 0, o = numericDataSet.length ; k < o ; k++ ) {
-	            dataSet.push( [ numericDataSet[ k ] ] );
-	        }
-	        dataSet.push( numericDataSet );
-
-	        for ( let k = 0, o = functionDataSet.length ; k < o ; k++ ) {
-	            dataSet.push( [ functionDataSet[ k ] ] );
-	        }
-	        dataSet.push( functionDataSet );
-
-	        return dataSet
-
-	    })();
-
-	    const objectDataSet = [
-	        {},
-	        { null: null },
-	        { undefined: undefined }
-	    ];
-
-	    return {
-	        voids:     voidDataSet,
-	        booleans:  booleanDataSet,
-	        numbers:   numericDataSet,
-	        strings:   stringDataSet,
-	        functions: functionDataSet,
-	        arrays:    arrayDataSet,
-	        objects:   objectDataSet,
-	    }
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
-	 *
-	 */
-
-	const myArray = [ 1, 2, 3 ];
-	//const myArray = createDataSet().numbers
+	/* global benchmark, suite */
 
 	//suite('Array iteration', function() {
 	//
-	//    benchmark('from const _.each', function() {
-	//        _.each(myArray, function(el) {
-	//            return el;
-	//        });
-	//    });
-	//
 	//    benchmark('_.each', function() {
 	//        _.each([1, 2, 3], function(el) {
-	//            return el;
-	//        });
-	//    });
-	//
-	//    benchmark('from const native forEach', function() {
-	//        myArray.forEach(function(el) {
 	//            return el;
 	//        });
 	//    });
@@ -162,108 +26,87 @@ this.Itee = this.Itee || {};
 	//
 	//});
 
+	///////////////////////////
+
+	//import { isBoolean } from '../../../../builds/itee-validators.esm'
+	//import { createDataMap } from '../../../TestsUtils'
+	//const myArray = createDataSet().numbers
+
+
+
 	/////////////////////////////////
+	const myArray = [ 4, 5, 6 ];
 
 	suite( 'Array iteration', function () {
 
-	    console.log( 'suite: ' + this );
-
-	    benchmark('from const _.each', function() {
-	        _.each(myArray, function(el) {
-	            return el;
-	        });
-	    });
-
-	    benchmark('_.each', function() {
-
-	        console.log( '_.each: ' + this );
-	        console.log( '_.each mainlist: ' + this.mainlist );
-
-	        _.each([1, 2, 3], function(el) {
-	            return el;
-	        });
-	    });
-
-	    benchmark('from const native forEach', function() {
-	        myArray.forEach(function(el) {
-	            return el;
-	        });
-	    });
-
-	    benchmark('native forEach', function() {
-	        [1, 2, 3].forEach(function(el) {
-	            return el;
-	        });
-	    });
-
-	    benchmark( 'alone _.each', function () {
-
-	        console.log( 'benchmark each: ' + this );
-	        console.log( 'benchmark each list: ' + this.list );
-	        console.log( 'benchmark each mainlist: ' + this.mainlist );
-
-	        _.each( this.list, function ( number ) {
-	            return number;
+	    benchmark( '_.each([1, 2, 3]...', function () {
+	        _.each( [ 1, 2, 3 ], function ( el ) {
+	            return el
 	        } );
+	    } );
 
+	    benchmark( '_.each(myArray...', function () {
+	        _.each( myArray, function ( el ) {
+	            return el
+	        } );
+	    } );
+
+	    benchmark( '_.each(this.list...', function () {
+	        _.each( this.list, function ( el ) {
+	            return el
+	        } );
 	    }, {
 
-	        setup: function() {
+	        setup: function () {
 
+	            console.log('_.each(this.list... setup');
+	            console.log(`_.each(this.list... mainlist = ${this.mainlist}`);
 	            this.list = [ 1, 2, 3 ];
-	//            console.log( 'setup each list: ' + this.list )
 
 	        },
 
-	        teardown: function() {
+	        teardown: function () {
 
-	//            console.log( 'teardown each list: ' + this.list )
+	            console.log('_.each(this.list... teardown');
 	            delete this.list;
 
 	        }
 
 	    } );
 
-	    benchmark( 'alone native forEach', function () {
-	        this.list.forEach( function ( number ) {
-	            return number;
+	    benchmark( '_.each(this.mainlist...', function () {
+	        _.each( this.mainlist, function ( el ) {
+	            return el
 	        } );
-	    }, {
-
-	        setup: function() {
-
-	            this.list = [ 1, 2, 3 ];
-	//            console.log( 'setup each list: ' + this.list )
-
-	        },
-
-	        teardown: function() {
-
-	//            console.log( 'teardown each list: ' + this.list )
-	            delete this.list;
-
-	        }
-
-	    }  );
+	    } );
 
 	}, {
 
 	    onStart: function () {
+
+	        console.log( `Suite onStart: ${this.name}` );
+
 	        this.mainlist = [ 5, 4, 3 ];
-	        console.log( 'suite onStart: ' + this.mainlist );
+
 	    },
 
 	    onCycle: function ( event ) {
-	        var suite     = this;
-	        var benchmark = event.target;
+
+	        console.log( `Suite onCycle: ${this.name}` );
+
+	        const benchmark      = event.target;
+	        console.log( `Suite onCycle benchmark: ${benchmark}` );
+
 	        benchmark.mainlist = this.mainlist;
-	        console.log( 'suite onCycle: ' + suite.mainlist );
-	        console.log( 'Cycle completed for ' + suite.name + ': ' + benchmark.name );
+	//        console.log( `Cycle completed for ${this.name}: ${benchmark.name}` )
+
 	    },
 
 	    onComplete: function () {
-	        console.log( 'suite onComplete: ' + this.mainlist );
+
+	        console.log( `Suite onComplete: ${this.name}` );
 	        this.mainlist = null;
+
 	    }
 
 	} );
