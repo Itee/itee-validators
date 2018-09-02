@@ -4,8 +4,7 @@
  *
  */
 
-/* global benchmark */
-
+/* global suite, benchmark */
 
 //suite('Array iteration', function() {
 //
@@ -26,144 +25,85 @@
 ///////////////////////////
 
 //import { isBoolean } from '../../../../builds/itee-validators.esm'
-import { createDataSet } from '../../../TestsUtils'
-
-const myArray = [ 1, 2, 3 ]
+//import { createDataMap } from '../../../TestsUtils'
 //const myArray = createDataSet().numbers
 
-//suite('Array iteration', function() {
-//
-//    benchmark('from const _.each', function() {
-//        _.each(myArray, function(el) {
-//            return el;
-//        });
-//    });
-//
-//    benchmark('_.each', function() {
-//        _.each([1, 2, 3], function(el) {
-//            return el;
-//        });
-//    });
-//
-//    benchmark('from const native forEach', function() {
-//        myArray.forEach(function(el) {
-//            return el;
-//        });
-//    });
-//
-//    benchmark('native forEach', function() {
-//        [1, 2, 3].forEach(function(el) {
-//            return el;
-//        });
-//    });
-//
-//});
+
 
 /////////////////////////////////
+const myArray = [ 4, 5, 6 ]
 
 suite( 'Array iteration', function () {
 
-    console.log( 'suite: ' + this )
+    benchmark( '_.each([1, 2, 3]...', function () {
+        _.each( [ 1, 2, 3 ], function ( el ) {
+            return el
+        } )
+    } )
 
-    benchmark('from const _.each', function() {
-        _.each(myArray, function(el) {
-            return el;
-        });
-    });
+    benchmark( '_.each(myArray...', function () {
+        _.each( myArray, function ( el ) {
+            return el
+        } )
+    } )
 
-    benchmark('_.each', function() {
-
-        console.log( '_.each: ' + this )
-        console.log( '_.each mainlist: ' + this.mainlist )
-
-        _.each([1, 2, 3], function(el) {
-            return el;
-        });
-    });
-
-    benchmark('from const native forEach', function() {
-        myArray.forEach(function(el) {
-            return el;
-        });
-    });
-
-    benchmark('native forEach', function() {
-        [1, 2, 3].forEach(function(el) {
-            return el;
-        });
-    });
-
-    benchmark( 'alone _.each', function () {
-
-        console.log( 'benchmark each: ' + this )
-        console.log( 'benchmark each list: ' + this.list )
-        console.log( 'benchmark each mainlist: ' + this.mainlist )
-
-        _.each( this.list, function ( number ) {
-            return number;
-        } );
-
+    benchmark( '_.each(this.list...', function () {
+        _.each( this.list, function ( el ) {
+            return el
+        } )
     }, {
 
-        setup: function() {
+        setup: function () {
 
+            console.log('_.each(this.list... setup')
+            console.log(`_.each(this.list... mainlist = ${this.mainlist}`)
             this.list = [ 1, 2, 3 ]
-//            console.log( 'setup each list: ' + this.list )
 
         },
 
-        teardown: function() {
+        teardown: function () {
 
-//            console.log( 'teardown each list: ' + this.list )
+            console.log('_.each(this.list... teardown')
             delete this.list
 
         }
 
-    } );
+    } )
 
-    benchmark( 'alone native forEach', function () {
-        this.list.forEach( function ( number ) {
-            return number;
-        } );
-    }, {
-
-        setup: function() {
-
-            this.list = [ 1, 2, 3 ]
-//            console.log( 'setup each list: ' + this.list )
-
-        },
-
-        teardown: function() {
-
-//            console.log( 'teardown each list: ' + this.list )
-            delete this.list
-
-        }
-
-    }  );
+    benchmark( '_.each(this.mainlist...', function () {
+        _.each( this.mainlist, function ( el ) {
+            return el
+        } )
+    } )
 
 }, {
 
     onStart: function () {
-        this.mainlist = [ 5, 4, 3 ];
-        console.log( 'suite onStart: ' + this.mainlist )
+
+        console.log( `Suite onStart: ${this.name}` )
+
+        this.mainlist = [ 5, 4, 3 ]
+
     },
 
     onCycle: function ( event ) {
-        var suite     = this;
-        var benchmark = event.target;
-        benchmark.mainlist = this.mainlist;
-        console.log( 'suite onCycle: ' + suite.mainlist )
-        console.log( 'Cycle completed for ' + suite.name + ': ' + benchmark.name );
+
+        console.log( `Suite onCycle: ${this.name}` )
+
+        const benchmark      = event.target
+        benchmark.mainlist = this.mainlist
+        console.log( `Suite onCycle benchmark: ${benchmark}` )
+
     },
 
     onComplete: function () {
-        console.log( 'suite onComplete: ' + this.mainlist )
+
+        console.log( `Suite onComplete: ${this.name}` )
         this.mainlist = null;
+
     }
 
-} );
+} )
 
 //export default benchmark( 'isBoolean', () => {
 //
