@@ -106,18 +106,19 @@ gulp.task( 'clean', () => {
  */
 gulp.task( 'lint', () => {
 
-    // Todo: split between source and test with differents env
     const filesToLint = [
         'gulpfile.js',
+        'configs/**/*',
         'sources/**/*',
-        'tests/**/*.js'
+        'tests/**/*.js',
+        '!tests/third_party/*.js'
     ]
 
-    return gulp.src( filesToLint )
+    return gulp.src( filesToLint, { base: './' } )
                .pipe( eslint( {
                    allowInlineConfig: true,
                    globals:           [],
-                   fix:               false,
+                   fix:               true,
                    quiet:             false,
                    envs:              [],
                    configFile:        './configs/eslint.conf.js',
@@ -127,6 +128,7 @@ gulp.task( 'lint', () => {
                    useEslintrc:       false
                } ) )
                .pipe( eslint.format( 'stylish' ) )
+               .pipe( gulp.dest( '.' ) )
                .pipe( eslint.failAfterError() )
 
 } )
