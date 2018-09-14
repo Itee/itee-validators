@@ -24,11 +24,15 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: [ 'benchmark' ],
+        frameworks: [],
+//        frameworks: [ 'benchmark' ],
 
         // list of files / patterns to load in the browser
         files: [
-            'tests/itee-validators.benchs.js'
+            'tests/third_party/lodash.js',
+            'tests/third_party/platform.js',
+            'tests/third_party/benchmark.js',
+//            'tests/itee-validators.benchs.js'
         ],
 
         // list of files to exclude
