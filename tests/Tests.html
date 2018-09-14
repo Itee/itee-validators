@@ -5,6 +5,42 @@
 		<title>Tests</title>
 	</head>
 	<body>
-		<script src="../builds/itee-validators.iife.js"></script>
+		<script src="./third_party/lodash.js"></script>
+		<script src="./third_party/platform.js"></script>
+		<script src="./third_party/benchmark.js"></script>
+		<script src="./itee-validators.benchs.js"></script>
+		<!--<script>-->
+            <!--var suite = new Benchmark.Suite;-->
+            <!--suite.add( 'RegExp#test', function () {-->
+                     <!--/o/.test( 'Hello World!' );-->
+                 <!--} )-->
+                 <!--.add( 'String#indexOf', function () {-->
+                     <!--'Hello World!'.indexOf( 'o' ) > -1;-->
+                 <!--} )-->
+                 <!--.add( 'String#match', function () {-->
+                     <!--!!'Hello World!'.match( /o/ );-->
+                 <!--} )-->
+                 <!--// add listeners-->
+                 <!--.on( 'start', function () {-->
+                     <!--console.log( 'start' )-->
+                 <!--} )-->
+                 <!--.on( 'cycle', function ( event ) {-->
+                     <!--console.log( String( event.target ) );-->
+                 <!--} )-->
+                 <!--.on( 'abort', function ( event ) {-->
+                     <!--console.log( 'abort' );-->
+                 <!--} )-->
+                 <!--.on( 'error', function ( error ) {-->
+                     <!--console.log( 'error:' + error );-->
+                 <!--} )-->
+                 <!--.on( 'reset', function ( event ) {-->
+                     <!--console.log( 'reset' );-->
+                 <!--} )-->
+                 <!--.on( 'complete', function () {-->
+                     <!--console.log( 'Fastest is ' + this.filter( 'fastest' ).map( 'name' ) );-->
+                 <!--} )-->
+                 <!--// run async-->
+                 <!--.run();-->
+		<!--</script>-->
 	</body>
 </html>
