@@ -1,532 +1,501 @@
 this.Itee = this.Itee || {};
 (function () {
-	'use strict';
+    'use strict';
 
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
-	 *
-	 */
+    /**
+     * @author [Tristan Valcke]{@link https://github.com/Itee}
+     * @license [MIT]{@link https://opensource.org/licenses/MIT}
+     *
+     * @module sources/cores/voids
+     * @description Export the validation methods about voids notions
+     */
 
-	/* global benchmark, suite */
+    /**
+     * @author [Tristan Valcke]{@link https://github.com/Itee}
+     * @license [MIT]{@link https://opensource.org/licenses/MIT}
+     *
+     */
 
-	//suite('Array iteration', function() {
-	//
-	//    benchmark('_.each', function() {
-	//        _.each([1, 2, 3], function(el) {
-	//            return el;
-	//        });
-	//    });
-	//
-	//    benchmark('native forEach', function() {
-	//        [1, 2, 3].forEach(function(el) {
-	//            return el;
-	//        });
-	//    });
-	//
-	//});
+    function createDataMap () {
 
-	///////////////////////////
+        const voidDataMap = {
+            null:      null,
+            undefined: undefined,
+            void:      void(0)
+        };
 
-	//import { isBoolean } from '../../../../builds/itee-validators.esm'
-	//import { createDataMap } from '../../../TestsUtils'
-	//const myArray = createDataSet().numbers
+        const booleanDataMap = {
+            true:  true,
+            false: false
+        };
 
+        const numericDataMap = {
+            negativeInfinity:       Number.NEGATIVE_INFINITY,
+            negativeMaxValue:       -Number.MAX_VALUE,
+            negativeMinSafeInteger: Number.MIN_SAFE_INTEGER,
+            negativeMinValue:       -Number.MIN_VALUE,
+            negativeHexa:           -0x123456,
+            negativePow:            -2e+2,
+            negativeFloat:          -1.0,
+            negativeInt:            -1,
+            negativeNullDouble:     -0.0,
+            negativeNullInt:        -0,
+            nan:                    Number.NaN,
+            positiveNullInt:        0,
+            positiveNullFloat:      0.0,
+            positiveInt:            1,
+            positiveFloat:          1.0,
+            positivePow:            2e+2,
+            positiveHexa:           0x123456,
+            positiveMinValue:       Number.MIN_VALUE,
+            positiveMaxSafeInteger: Number.MAX_SAFE_INTEGER,
+            positiveMaxValue:       Number.MAX_VALUE,
+            positiveInfinity:       Number.POSITIVE_INFINITY
+        };
 
+        const stringDataMap = (() => {
 
-	/////////////////////////////////
-	const myArray = [ 4, 5, 6 ];
+            const dataMap = {
+                empty:       '',
+                blank:       '      ',
+                stringNull:  new String(),
+                stringEmpty: new String( '' ),
+                stringBlank: new String( '    ' ),
+                foobar:      'foobar'
+            };
 
-	suite( 'Array iteration', function () {
+            for ( let i = 0, m = voidDataMap.length ; i < m ; i++ ) {
+                dataMap[ voidDataMap[ i ] ] = `${voidDataMap[ i ]}`;
+            }
 
-	    benchmark( '_.each([1, 2, 3]...', function () {
-	        _.each( [ 1, 2, 3 ], function ( el ) {
-	            return el
-	        } );
-	    } );
+            for ( let j = 0, n = booleanDataMap.length ; j < n ; j++ ) {
+                dataMap[ booleanDataMap[ j ] ] = `${booleanDataMap[ j ]}`;
+            }
 
-	    benchmark( '_.each(myArray...', function () {
-	        _.each( myArray, function ( el ) {
-	            return el
-	        } );
-	    } );
+            for ( let k = 0, o = numericDataMap.length ; k < o ; k++ ) {
+                dataMap[ numericDataMap[ k ] ] = `${numericDataMap[ k ]}`;
+            }
 
-	    benchmark( '_.each(this.list...', function () {
-	        _.each( this.list, function ( el ) {
-	            return el
-	        } );
-	    }, {
+            return dataMap
 
-	        setup: function () {
+        })();
 
-	            console.log('_.each(this.list... setup');
-	            console.log(`_.each(this.list... mainlist = ${this.mainlist}`);
-	            this.list = [ 1, 2, 3 ];
+        const functionDataMap = {
+            classicFunction: function emptyFct () {},
+            arrowFunction:   () => {}
+        };
 
-	        },
+        const arrayDataMap = (() => {
 
-	        teardown: function () {
+            const dataMap = {
+                emptyArray:       [],
+                emptyArrayObject: new Array(),
+                singleValued:     [ 0 ],
+                multiValued:      [ 0, 1, 2 ],
+                null:             (() => {
 
-	            console.log('_.each(this.list... teardown');
-	            delete this.list;
+                    const nullArray = [];
 
-	        }
+                    for ( let index = 0 ; index < 3 ; index++ ) {
+                        nullArray.push( null );
+                    }
 
-	    } );
+                    return nullArray
 
-	    benchmark( '_.each(this.mainlist...', function () {
-	        _.each( this.mainlist, function ( el ) {
-	            return el
-	        } );
-	    } );
+                })(),
+                undefined:        (() => {
 
-	}, {
+                    const undefinedArray = [];
 
-	    onStart: function () {
+                    for ( let index = 0 ; index < 3 ; index++ ) {
+                        undefinedArray.push( undefined );
+                    }
 
-	        console.log( `Suite onStart: ${this.name}` );
+                    return undefinedArray
 
-	        this.mainlist = [ 5, 4, 3 ];
+                })(),
+                void:             (() => {
 
-	    },
+                    const undefinedArray = [];
 
-	    onCycle: function ( event ) {
+                    for ( let index = 0 ; index < 3 ; index++ ) {
+                        undefinedArray.push( void(0) );
+                    }
 
-	        console.log( `Suite onCycle: ${this.name}` );
+                    return undefinedArray
 
-	        const benchmark      = event.target;
-	        console.log( `Suite onCycle benchmark: ${benchmark}` );
+                })(),
+                voids:            (() => {
 
-	        benchmark.mainlist = this.mainlist;
-	//        console.log( `Cycle completed for ${this.name}: ${benchmark.name}` )
+                    const array = [];
 
-	    },
+                    for ( let key in voidDataMap ) {
+                        array.push( voidDataMap[ key ] );
+                    }
 
-	    onComplete: function () {
+                    return array
 
-	        console.log( `Suite onComplete: ${this.name}` );
-	        this.mainlist = null;
+                })(),
+                booleans:         (() => {
 
-	    }
+                    const array = [];
 
-	} );
+                    for ( let key in booleanDataMap ) {
+                        array.push( booleanDataMap[ key ] );
+                    }
 
-	//export default benchmark( 'isBoolean', () => {
-	//
-	//    console.log( 'name: ' + this.name )
-	//    console.log( 'foobar: ' + this.foobar )
-	//    console.log( 'dataset: ' + this.dataset )
-	//    console.log( 'dataset fn: ' + createDataSet )
-	//
-	//    const _dataSet = createDataSet()
-	//    for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-	//        isBoolean( _dataSet[ i ] )
-	//    }
-	//
-	//}, {
-	//    setup:    function () {
-	//
-	//        console.log( 'Setup of ' + this.name )
-	//        this.dataset = createDataSet()
-	//
-	//    },
-	//    teardown: function () {
-	//
-	//        console.log( 'Teardown of ' + this.name )
-	//        delete this.dataset
-	//
-	//    }
-	//} )
+                    return array
 
-	//function isBooleanBenchs () {
-	//
-	//    console.log( 'isBooleanBenchs: out start' )
-	//
-	//    benchmark( 'isBoolean',
-	//        () => {
-	//
-	//            console.log( 'name: ' + this.name )
-	//            console.log( 'foobar: ' + this.foobar )
-	//            console.log( 'dataset: ' + this.dataset )
-	//            console.log( 'dataset fn: ' + createDataSet )
-	//
-	//            const _dataSet = this.dataset
-	//            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-	//                isBoolean( _dataSet[ i ] )
-	//            }
-	//
-	//        },
-	//        {
-	//            setup:    function () {
-	//
-	//                console.log( 'Setup of ' + this.name )
-	//                this.dataset = createDataSet()
-	//
-	//            },
-	//            teardown: function () {
-	//                console.log( 'Teardown of ' + this.name )
-	//                delete this.dataset
-	//            }
-	//        } )
-	//
-	//    console.log( 'isBooleanBenchs: out end' )
-	//
-	//}
+                })(),
+                numbers:          (() => {
 
-	//export { isBooleanBenchs }
+                    const array = [];
 
-	//function isBooleanBenchs () {
-	//
-	//    console.log( 'isBooleanBenchs: out start' )
-	//
-	//    return benchmark( 'isBoolean',
-	//        () => {
-	//
-	//            console.log( 'name: ' + this.name )
-	//            console.log( 'foobar: ' + this.foobar )
-	//            console.log( 'dataset: ' + this.dataset )
-	//            console.log( 'dataset fn: ' + createDataSet() )
-	//
-	//            const _dataSet = this.dataset
-	//            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-	//                isBoolean( _dataSet[ i ] )
-	//            }
-	//
-	//        },
-	//        {
-	//            setup:    function () {
-	//
-	//                console.log( 'Setup of ' + this.name )
-	//                this.dataset = createDataSet()
-	//
-	//            },
-	//            teardown: function () {
-	//                console.log( 'Teardown of ' + this.name )
-	//                delete this.dataset
-	//            }
-	//        } )
-	//
-	//    console.log( 'isBooleanBenchs: out end' )
-	//
-	//}
-	//
-	//export { isBooleanBenchs }
+                    for ( let key in numericDataMap ) {
+                        array.push( numericDataMap[ key ] );
+                    }
 
-	//export default new Benchmark
-	//    .Suite( 'Itee#Validators#Booleans#isBoolean()',
-	//        {
-	//
-	//            // called when the suite starts running
-	//            'onStart': function () {
-	//                console.log( 'onStart' + this )
-	//            },
-	//
-	//            // called between running benchmarks
-	//            'onCycle': function () {
-	//                console.log( 'onCycle' + this )
-	//            },
-	//
-	//            // called when aborted
-	//            'onAbort': function () {
-	//                console.log( 'onAbort' )
-	//            },
-	//
-	//            // called when a test errors
-	//            'onError': function () {
-	//                console.log( 'onError' )
-	//            },
-	//
-	//            // called when reset
-	//            'onReset': function () {
-	//                console.log( 'onReset' )
-	//            },
-	//
-	//            // called when the suite completes running
-	//            'onComplete': function () {
-	//                console.log( 'onComplete' + this )
-	//            },
-	//
-	//        } )
-	//    .add( 'typeof', () => {
-	//
-	//        const _dataSet = createDataSet()
-	//        for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-	//            isBoolean( _dataSet[ i ] )
-	//        }
-	//
-	//    } )
+                    return array
 
-	//function isBooleanBenchs () {
-	//
-	//    return new Benchmark
-	//        .Suite( 'Itee#Validators#Booleans#isBoolean()',
-	//            {
-	//
-	//                // called when the suite starts running
-	//                'onStart': function () {
-	//                    console.log( 'onStart' )
-	//                },
-	//
-	//                // called between running benchmarks
-	//                'onCycle': function () {
-	//                    console.log( 'onCycle' )
-	//                },
-	//
-	//                // called when aborted
-	//                'onAbort': function () {
-	//                    console.log( 'onAbort' )
-	//                },
-	//
-	//                // called when a test errors
-	//                'onError': function () {
-	//                    console.log( 'onError' )
-	//                },
-	//
-	//                // called when reset
-	//                'onReset': function () {
-	//                    console.log( 'onReset' )
-	//                },
-	//
-	//                // called when the suite completes running
-	//                'onComplete': function () {
-	//                    console.log( 'onComplete' )
-	//                },
-	//
-	//            } )
-	//        .add( 'typeof', () => {
-	//
-	//            const _dataSet = createDataSet()
-	//            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-	//                isBoolean( _dataSet[ i ] )
-	//            }
-	//
-	//        } )
-	//
-	//}
-	//
-	//export { isBooleanBenchs }
+                })(),
+                strings:          (() => {
 
-	// add tests
-	//export default new Benchmark.Suite
-	//                            .add( 'RegExp#test', function () {
-	//                                /o/.test( 'Hello World!' );
-	//                            } )
-	//    .add( 'String#indexOf', function () {
-	//        'Hello World!'.indexOf( 'o' ) > -1;
-	//    } )
-	//    .add( 'String#match', function () {
-	//        !!'Hello World!'.match( /o/ );
-	//    } )
-	//    // add listeners
-	//    .on( 'cycle', function ( event ) {
-	//        console.log( String( event.target ) );
-	//    } )
-	//    .on( 'complete', function () {
-	//        console.log( 'Fastest is ' + this.filter( 'fastest' ).map( 'name' ) );
-	//    } )
-	//    // run async
-	//    .run( { 'async': true } );
+                    const array = [];
 
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
-	 *
-	 */
+                    for ( let key in stringDataMap ) {
+                        array.push( stringDataMap[ key ] );
+                    }
 
-	//import './cores/cores.benchs'
-	//import './maths/maths.benchs'
-	//import './physics/physics.benchs'
+                    return array
 
-	/* global suite, benchmark */
+                })(),
+                functions:        (() => {
 
-	//import { CoresBenchs } from './cores/cores.benchs'
-	//import { MathsBenchs } from './maths/maths.benchs'
-	//import { PhysicsBenchs } from './physics/physics.benchs'
+                    const array = [];
 
-	//const root = typeof window !== 'undefined' ? window :
-	//    typeof global !== 'undefined' ? global :
-	//        Function( 'return this' )();
+                    for ( let key in functionDataMap ) {
+                        array.push( functionDataMap[ key ] );
+                    }
 
-	//suite( 'Itee#Validators', () => {
-	//
-	//    console.log( 'Main bench: start' )
-	//
-	//    // Will display the max ops/sec as base
-	//    benchmark( '', () => {} )
-	//
-	//    CoresBenchs.call( root )
-	//    //    MathsBenchs.call(root)
-	//    //    PhysicsBenchs.call(root)
-	//
-	//    console.log( 'Main bench: end' )
-	//
-	//}, {
-	//
-	//    // called when the suite starts running
-	//    'onStart': function () {
-	//        console.log( 'Validators onStart' )
-	//        this.foobar = 'titi'
-	//    },
-	//
-	//    // called between running benchmarks
-	//    'onCycle': function () {
-	//        console.log( 'Validators onCycle' )
-	//        this.foobar = 'kiki'
-	//    },
-	//
-	//    // called when aborted
-	//    'onAbort': function () {
-	//        console.log( 'Validators onAbort' )
-	//    },
-	//
-	//    // called when a test errors
-	//    'onError': function () {
-	//        console.log( 'Validators onError' )
-	//        console.log( 'foobar onError' + this.foobar )
-	//    },
-	//
-	//    // called when reset
-	//    'onReset': function () {
-	//        console.log( 'Validators onReset' )
-	//    },
-	//
-	//    // called when the suite completes running
-	//    'onComplete': function () {
-	//        console.log( 'Validators onComplete' )
-	//        delete this.foobar
-	//    },
-	//
-	//} )
+                    return array
 
-	////////////////
-	//
-	//suite(
-	//    'ROOT iteration',
-	//    function () {
-	//
-	//        benchmark( '_.each', function () {
-	//
-	//            _.each( this.list, function ( number ) {
-	//                return number
-	//            } )
-	//
-	//        }, {
-	//            setup:    function () {
-	//
-	//                console.log( 'Setup of ' + this.name )
-	//                console.log( 'this.mainlist: ' + this.mainlist )
-	//                this.list = [ 5, 4, 3 ]
-	//
-	//            },
-	//            teardown: function () {
-	//
-	//                delete this.list
-	//
-	//            }
-	//        } )
-	//
-	//    },
-	//    {
-	//        // called when the suite starts running
-	//        onStart: function () {
-	//            console.log( 'ROOT onStart' )
-	//            this.mainlist = [ 5, 4, 3 ];
-	//        },
-	//
-	//        // called between running benchmarks
-	//        onCycle: function ( event ) {
-	//
-	//            var suite     = this;
-	//            var benchmark = event.target;
-	//            console.log( 'ROOT onCycle for ' + suite.name + ': ' + benchmark.name );
-	//            console.log( 'this.mainlist=' + this.mainlist )
-	//
-	//        },
-	//
-	//        // called when aborted
-	//        onAbort: function () {
-	//            console.log( 'ROOT onAbort' )
-	//        },
-	//
-	//        // called when a test errors
-	//        onError: function () {
-	//            console.log( 'ROOT onError' )
-	//        },
-	//
-	//        // called when reset
-	//        onReset: function () {
-	//            console.log( 'ROOT onReset' )
-	//        },
-	//
-	//        // called when the suite completes running
-	//        onComplete: function () {
-	//            console.log( 'ROOT onComplete' )
-	//            delete this.mainlist
-	//        },
-	//
-	//    }
-	//)
+                })(),
+                objects:          [
+                    {
+                        foo: 'bar'
+                    },
+                    {
+                        baz: 'qux'
+                    }
+                ],
+                arrays:           [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
+            };
 
-	///////////////
+            return dataMap
 
-	//suite('Array iteration', function() {
-	//    benchmark('_.each', function() {
-	//        _.each(this.list, function(number) {
-	//            return number;
-	//        });
-	//    });
-	//
-	//    benchmark('native forEach', function() {
-	//        this.list.forEach(function(number) {
-	//            return number;
-	//        });
-	//    });
-	//}, {
-	//    onCycle: function(event) {
-	//        var suite = this;
-	//        var benchmark = event.target;
-	//        console.log('Cycle completed for ' + suite.name + ': ' + benchmark.name);
-	//    },
-	//    onStart: function() {
-	//        this.list = [5, 4, 3];
-	//    },
-	//    onComplete: function() {
-	//        this.list = null;
-	//    }
-	//});
+        })();
 
-	////////////////////////
+        const typedArrayDataMap = {
+            int8Array:    new Int8Array( [ 1, 2, 3 ] ),
+            uInt8Array:   new Uint8Array( [ 1, 2, 3 ] ),
+            int16Array:   new Int16Array( [ 1, 2, 3 ] ),
+            uInt16Array:  new Uint16Array( [ 1, 2, 3 ] ),
+            int32Array:   new Int32Array( [ 1, 2, 3 ] ),
+            uInt32Array:  new Uint32Array( [ 1, 2, 3 ] ),
+            float32Array: new Float32Array( [ 1.0, 2.0, 3.0 ] ),
+            float64Array: new Float64Array( [ 1.0, 2.0, 3.0 ] )
+        };
 
-	//suite('Array iteration', function() {
-	//
-	//    console.log('suite: ' + this.list)
-	//
-	//    benchmark('_.each', function() {
-	//        console.log('each: ' + this.list)
-	//        _.each(this.list, function(number) {
-	//            return number;
-	//        });
-	//    });
-	//
-	//    benchmark('native forEach', function() {
-	//        console.log('forEach: ' + this.list)
-	//        this.list.forEach(function(number) {
-	//            return number;
-	//        });
-	//    });
-	//
-	//}, {
-	//    onCycle: function(event) {
-	//        var suite = this;
-	//        var benchmark = event.target;
-	//        console.log('Cycle completed for ' + suite.name + ': ' + benchmark.name);
-	//    },
-	//    onStart: function() {
-	//        this.list = [5, 4, 3];
-	//    },
-	//    onComplete: function() {
-	//        this.list = null;
-	//    }
-	//});
+        const objectDataMap = [
+            {},
+            new Object(),
+            { null: null },
+            { undefined: undefined },
+            { foo: 'bar' }
+        ];
+
+        return {
+            voids:       voidDataMap,
+            booleans:    booleanDataMap,
+            numbers:     numericDataMap,
+            strings:     stringDataMap,
+            functions:   functionDataMap,
+            arrays:      arrayDataMap,
+            typedArrays: typedArrayDataMap,
+            objects:     objectDataMap,
+        }
+
+    }
+
+    /**
+     * @author [Tristan Valcke]{@link https://github.com/Itee}
+     * @license [MIT]{@link https://opensource.org/licenses/MIT}
+     *
+     */
+
+    function isString_1 ( val ) {
+        return (typeof val === 'string' || ((!!val && typeof val === 'object') && Object.prototype.toString.call( val ) === '[object String]'))
+    }
+
+    function isString_2 ( val ) {
+        return (Object.prototype.toString.call( val ) === "[object String]")
+    }
+
+    function isString_3 ( val ) {
+        return (val !== null && val !== undefined && val.constructor === String)
+    }
+
+    new Benchmark
+        .Suite( 'Itee#Validators#Strings#isString()' )
+        .add( 'typeof', () => {
+
+            const _dataSet = createDataMap();
+
+        } )
+        .add( 'typeof || instanceof', () => {
+
+            const _dataSet = createDataMap();
+
+        } )
+        .add( 'Object.prototype.toString', () => {
+
+            const _dataSet = createDataMap();
+            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
+                isString_1( _dataSet[ i ] );
+            }
+
+        } )
+        .add( 'constructor', () => {
+
+            const _dataSet = createDataMap();
+            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
+                isString_2( _dataSet[ i ] );
+            }
+
+        } )
+        .add( 'typeof || !!val || toString', () => {
+
+            const _dataSet = createDataMap();
+            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
+                isString_3( _dataSet[ i ] );
+            }
+
+        } )
+        .add( 'val+""', () => {
+
+            const _dataSet = createDataMap();
+
+        } )
+        // add listeners
+        .on( 'cycle', event => {
+            console.log( String( event.target ) );
+        } )
+        .on( 'complete', function onComplet () {
+            console.log( `Fastest is ${this.filter( 'fastest' ).map( 'name' )}` );
+        } )
+        // run async
+        .run();
+
+    /**
+     * @author [Tristan Valcke]{@link https://github.com/Itee}
+     * @license [MIT]{@link https://opensource.org/licenses/MIT}
+     *
+     */
+
+    //import './cores/cores.benchs'
+    //import './maths/maths.benchs'
+    //import './physics/physics.benchs'
+
+    /* global suite, benchmark */
+
+    //import { CoresBenchs } from './cores/cores.benchs'
+    //import { MathsBenchs } from './maths/maths.benchs'
+    //import { PhysicsBenchs } from './physics/physics.benchs'
+
+    //const root = typeof window !== 'undefined' ? window :
+    //    typeof global !== 'undefined' ? global :
+    //        Function( 'return this' )();
+
+    //suite( 'Itee#Validators', () => {
+    //
+    //    console.log( 'Main bench: start' )
+    //
+    //    // Will display the max ops/sec as base
+    //    benchmark( '', () => {} )
+    //
+    //    CoresBenchs.call( root )
+    //    //    MathsBenchs.call(root)
+    //    //    PhysicsBenchs.call(root)
+    //
+    //    console.log( 'Main bench: end' )
+    //
+    //}, {
+    //
+    //    // called when the suite starts running
+    //    'onStart': function () {
+    //        console.log( 'Validators onStart' )
+    //        this.foobar = 'titi'
+    //    },
+    //
+    //    // called between running benchmarks
+    //    'onCycle': function () {
+    //        console.log( 'Validators onCycle' )
+    //        this.foobar = 'kiki'
+    //    },
+    //
+    //    // called when aborted
+    //    'onAbort': function () {
+    //        console.log( 'Validators onAbort' )
+    //    },
+    //
+    //    // called when a test errors
+    //    'onError': function () {
+    //        console.log( 'Validators onError' )
+    //        console.log( 'foobar onError' + this.foobar )
+    //    },
+    //
+    //    // called when reset
+    //    'onReset': function () {
+    //        console.log( 'Validators onReset' )
+    //    },
+    //
+    //    // called when the suite completes running
+    //    'onComplete': function () {
+    //        console.log( 'Validators onComplete' )
+    //        delete this.foobar
+    //    },
+    //
+    //} )
+
+    ////////////////
+    //
+    //suite(
+    //    'ROOT iteration',
+    //    function () {
+    //
+    //        benchmark( '_.each', function () {
+    //
+    //            _.each( this.list, function ( number ) {
+    //                return number
+    //            } )
+    //
+    //        }, {
+    //            setup:    function () {
+    //
+    //                console.log( 'Setup of ' + this.name )
+    //                console.log( 'this.mainlist: ' + this.mainlist )
+    //                this.list = [ 5, 4, 3 ]
+    //
+    //            },
+    //            teardown: function () {
+    //
+    //                delete this.list
+    //
+    //            }
+    //        } )
+    //
+    //    },
+    //    {
+    //        // called when the suite starts running
+    //        onStart: function () {
+    //            console.log( 'ROOT onStart' )
+    //            this.mainlist = [ 5, 4, 3 ];
+    //        },
+    //
+    //        // called between running benchmarks
+    //        onCycle: function ( event ) {
+    //
+    //            var suite     = this;
+    //            var benchmark = event.target;
+    //            console.log( 'ROOT onCycle for ' + suite.name + ': ' + benchmark.name );
+    //            console.log( 'this.mainlist=' + this.mainlist )
+    //
+    //        },
+    //
+    //        // called when aborted
+    //        onAbort: function () {
+    //            console.log( 'ROOT onAbort' )
+    //        },
+    //
+    //        // called when a test errors
+    //        onError: function () {
+    //            console.log( 'ROOT onError' )
+    //        },
+    //
+    //        // called when reset
+    //        onReset: function () {
+    //            console.log( 'ROOT onReset' )
+    //        },
+    //
+    //        // called when the suite completes running
+    //        onComplete: function () {
+    //            console.log( 'ROOT onComplete' )
+    //            delete this.mainlist
+    //        },
+    //
+    //    }
+    //)
+
+    ///////////////
+
+    //suite('Array iteration', function() {
+    //    benchmark('_.each', function() {
+    //        _.each(this.list, function(number) {
+    //            return number;
+    //        });
+    //    });
+    //
+    //    benchmark('native forEach', function() {
+    //        this.list.forEach(function(number) {
+    //            return number;
+    //        });
+    //    });
+    //}, {
+    //    onCycle: function(event) {
+    //        var suite = this;
+    //        var benchmark = event.target;
+    //        console.log('Cycle completed for ' + suite.name + ': ' + benchmark.name);
+    //    },
+    //    onStart: function() {
+    //        this.list = [5, 4, 3];
+    //    },
+    //    onComplete: function() {
+    //        this.list = null;
+    //    }
+    //});
+
+    ////////////////////////
+
+    //suite('Array iteration', function() {
+    //
+    //    console.log('suite: ' + this.list)
+    //
+    //    benchmark('_.each', function() {
+    //        console.log('each: ' + this.list)
+    //        _.each(this.list, function(number) {
+    //            return number;
+    //        });
+    //    });
+    //
+    //    benchmark('native forEach', function() {
+    //        console.log('forEach: ' + this.list)
+    //        this.list.forEach(function(number) {
+    //            return number;
+    //        });
+    //    });
+    //
+    //}, {
+    //    onCycle: function(event) {
+    //        var suite = this;
+    //        var benchmark = event.target;
+    //        console.log('Cycle completed for ' + suite.name + ': ' + benchmark.name);
+    //    },
+    //    onStart: function() {
+    //        this.list = [5, 4, 3];
+    //    },
+    //    onComplete: function() {
+    //        this.list = null;
+    //    }
+    //});
 
 }());
