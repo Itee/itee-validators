@@ -21,7 +21,7 @@ export default [
         output:    {
             indent: '\t',
             format: 'iife',
-            name:   'Itee.Validators',
+            name:   'Itee.Units',
             file:   'tests/itee-validators.units.js'
         }
     },
@@ -37,7 +37,7 @@ export default [
         output:    {
             indent: '\t',
             format: 'iife',
-            name:   'Itee.Validators',
+            name:   'Itee.Benchs',
             file:   'tests/itee-validators.benchs.js'
         }
     },
