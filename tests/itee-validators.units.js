@@ -8,7 +8,9 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	function createDataMap () {
+	/* global Itee */
+
+	function createDataMap ( datasetNames ) {
 
 	    const voidDataMap = {
 	        null:      null,
@@ -106,7 +108,7 @@ this.Itee = this.Itee || {};
 	                return undefinedArray
 
 	            })(),
-	            void:        (() => {
+	            void:             (() => {
 
 	                const undefinedArray = [];
 
@@ -214,7 +216,7 @@ this.Itee = this.Itee || {};
 	        functions:   functionDataMap,
 	        arrays:      arrayDataMap,
 	        typedArrays: typedArrayDataMap,
-	        objects:     objectDataMap,
+	        objects:     objectDataMap
 	    }
 
 	}
