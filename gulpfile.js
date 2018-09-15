@@ -480,7 +480,7 @@ gulp.task( 'build-auto', gulp.series( 'build', ( done ) => {
  * @method npm run release
  * @description Will perform a complet release of the library.
  */
-gulp.task( 'release', gulp.series( 'clean', gulp.parallel( 'lint', 'doc', 'test' ), 'build' ) )
+gulp.task( 'release', gulp.series( 'clean', 'build-test', gulp.parallel( 'lint', 'doc', 'test' ), 'build' ) )
 
 //---------
 
