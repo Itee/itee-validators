@@ -164,7 +164,15 @@ gulp.task( 'unit', ( done ) => {
     const benchServer = new karma.Server( {
         configFile: `${__dirname}/configs/karma.units.conf.js`,
         singleRun:  true
-    }, done )
+    }, ( exitCode ) => {
+
+        if( exitCode !== 0 ) {
+            done( `Karma server exit with code ${exitCode}` )
+        }
+
+        done()
+
+    } )
 
     benchServer.start()
 
@@ -179,7 +187,15 @@ gulp.task( 'bench', ( done ) => {
     const benchServer = new karma.Server( {
         configFile: `${__dirname}/configs/karma.benchs.conf.js`,
         singleRun:  true
-    }, done )
+    }, ( exitCode ) => {
+
+        if( exitCode !== 0 ) {
+            done( `Karma server exit with code ${exitCode}` )
+        }
+
+        done()
+
+    } )
 
     benchServer.start()
 
