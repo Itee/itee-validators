@@ -6,10 +6,10 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { createDataMap }         from '../../../TestsUtils'
-import { isObjectUnits }         from './isObject.units'
-import { isNotObjectUnits }      from './isNotObject.units'
-import { isEmptyObjectUnits }    from './isEmptyObject.units'
+import { createDataMap } from '../../../tests.utils'
+import { isObjectUnits } from './isObject.units'
+import { isNotObjectUnits } from './isNotObject.units'
+import { isEmptyObjectUnits } from './isEmptyObject.units'
 import { isNotEmptyObjectUnits } from './isNotEmptyObject.units'
 
 function ObjectsUnits () {

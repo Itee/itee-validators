@@ -1,4 +1,3 @@
-/* eslint-disable key-spacing */
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
@@ -12,35 +11,21 @@
  *
  */
 
-const uglify = require( 'rollup-plugin-uglify-es' )
-const strip  = require( 'rollup-plugin-strip' )
+const replace = require( 'rollup-plugin-re' )
+const uglify  = require( 'rollup-plugin-uglify-es' )
 
-const stripConfig = {
-    // set this to `false` if you don't want to
-    // remove debugger statements
-    debugger: true,
-
-    // defaults to `[ 'console.*', 'assert.*' ]`
-    functions: [ 'console.*' ],
-    //    functions: [ 'throw\snew\sTypeError' ],
-    //    functions: [ /if\s*\(\s*[\w\(\s\)]*{[\w\s\('!\)]*}/g ],
-    //    functions: [ 'console.*', 'assert.*', 'debug', 'alert', 'throw new TypeError' ],
-
-    // set this to `false` if you're not using sourcemaps –
-    // defaults to `true`
-    sourceMap: false
+const replaceConfig = {
+    defines: {
+        IS_REMOVE: false
+    }
 }
-
-//plugins: [
-//    strip(),
-//    uglify()
-//],
-//
 
 export default [
     {
         input:   'sources/main.js',
-        plugins: [],
+        plugins: [
+            replace( replaceConfig )
+        ],
         output:  {
             indent: '\t',
             format: 'es',
@@ -51,7 +36,7 @@ export default [
     {
         input:   'sources/main.js',
         plugins: [
-            strip( stripConfig ),
+            replace( replaceConfig ),
             uglify()
         ],
         output:  {
@@ -63,7 +48,9 @@ export default [
     },
     {
         input:   'sources/main.js',
-        plugins: [],
+        plugins: [
+            replace( replaceConfig )
+        ],
         output:  {
             indent: '\t',
             format: 'cjs',
@@ -74,7 +61,7 @@ export default [
     {
         input:   'sources/main.js',
         plugins: [
-            strip( stripConfig ),
+            replace( replaceConfig ),
             uglify()
         ],
         output:  {
@@ -86,7 +73,9 @@ export default [
     },
     {
         input:   'sources/main.js',
-        plugins: [],
+        plugins: [
+            replace( replaceConfig )
+        ],
         output:  {
             indent: '\t',
             format: 'iife',
@@ -97,7 +86,7 @@ export default [
     {
         input:   'sources/main.js',
         plugins: [
-            strip( stripConfig ),
+            replace( replaceConfig ),
             uglify()
         ],
         output:  {

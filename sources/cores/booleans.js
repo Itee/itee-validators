@@ -17,6 +17,15 @@ export function isBoolean ( data ) {
     return (typeof data === 'boolean')
 }
 
+// #if IS_REMOVE
+export function isBoolean_alt ( value ) {
+
+    return typeof value === 'boolean' || (typeof value === 'object' && value !== null && typeof value.valueOf() === 'boolean')
+
+}
+
+// #endif
+
 /**
  * Check if given data is not a boolean
  *

@@ -79,3 +79,14 @@ export default new Benchmark
         }
 
     } )
+    // add listeners
+    .on( 'cycle', event => {
+        console.log( String( event.target ) );
+    } )
+    .on( 'complete', function onComplet () {
+        console.log( `Fastest is ${this.filter( 'fastest' ).map( 'name' )}` );
+    } )
+    // run async
+    .run()
+
+
