@@ -20,7 +20,7 @@ const replaceConfig = {
     }
 }
 
-export default [
+module.exports = [
     {
         input:   'sources/main.js',
         plugins: [

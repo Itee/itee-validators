@@ -13,14 +13,12 @@
     "clean": "gulp clean",
     "lint": "gulp lint",
     "doc": "gulp doc",
+    "build-test": "gulp build-test",
     "bench": "gulp bench",
     "unit": "gulp unit",
-    "units": "karma start configs/karma.units.conf.js",
-    "mocha": "mocha tests/itee-validators.units.js --reporter mochawesome",
     "test": "gulp test",
-    "build-test": "rollup -c configs/rollup.test.conf.js",
     "build": "gulp build",
-    "builds": "rollup -c configs/rollup.conf.js"
+    "release": "gulp release"
   },
   "repository": {
     "type": "git",

@@ -75,28 +75,6 @@ function CreateKarmaUnitsConfiguration ( config ) {
         // If browser does not capture in given timeout [ms], kill it
         captureTimeout: 60000,
 
-        client: {
-
-            mocha: {
-                //                opts: 'test/mocha.opts' // You can set opts to equal true then plugin will load opts from default location 'test/mocha.opts'
-                reporter:        'mochawesome',
-                reporterOptions: {
-                    reportDir:       'tests/units/reports/',
-                    reportFilename:  'my_app_name.report',
-                    reportTitle:     'MyApp Report',
-                    reportPageTitle: 'MyApp Report',
-                    inlineAssets:    false,
-                    enableCharts:    true,
-                    enableCode:      true,
-                    autoOpen:        true,
-                    overwrite:       true,
-                    timestamp:       true,
-                    showHooks:       'showHooks',
-                    quiet:           false
-                }
-            }
-        }
-
     } )
 
 }
