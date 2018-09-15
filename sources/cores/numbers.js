@@ -14,7 +14,7 @@
  * @returns {boolean} true if data is a number, false otherwise.
  */
 export function isNumber ( data ) {
-    return (typeof data === 'number' && !Number.isNaN( data ) )
+    return (typeof data === 'number' && !Number.isNaN( data ))
 }
 
 export function isNumber_1 ( data ) {
@@ -28,7 +28,7 @@ export function isNumber_1 ( data ) {
  * @returns {boolean} true if data is not of type number or not a number, false otherwise.
  */
 export function isNotNumber ( data ) {
-    return (typeof data !== 'number' || Number.isNaN( data ) )
+    return (typeof data !== 'number' || Number.isNaN( data ))
 }
 
 /**
@@ -68,7 +68,7 @@ export function isNumberNegative ( data ) {
  * @returns {boolean} true if data is numeric, false otherwise
  */
 export function isNumeric ( data ) {
-    return ( typeof data === 'number' )
+    return (typeof data === 'number')
 }
 
 /**
@@ -78,7 +78,7 @@ export function isNumeric ( data ) {
  * @returns {boolean} true if data is not numeric, false otherwise
  */
 export function isNotNumeric ( data ) {
-    return ( typeof data !== 'number' )
+    return (typeof data !== 'number')
 }
 
 /**

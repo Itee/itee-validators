@@ -3,7 +3,8 @@
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
  */
-/* global suite, benchmark, _ */
+
+/* global suite, benchmark */
 
 function MathsBenchs () {
 
@@ -11,7 +12,7 @@ function MathsBenchs () {
 
         benchmark( '', () => {} )
 
-    } );
+    } )
 
 }
 

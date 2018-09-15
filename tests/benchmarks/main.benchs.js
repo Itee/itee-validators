@@ -3,6 +3,9 @@
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
  */
+
+/* global _ suite benchmark */
+
 //
 ////import './cores/cores.benchs'
 ////import './maths/maths.benchs'
@@ -81,28 +84,33 @@
 
 ///////////////
 
-suite('Array iteration', function() {
-    benchmark('_.each', function() {
-        _.each(this.list, function(number) {
-            return number;
-        });
-    });
+suite( 'Array iteration', function () {
 
-    benchmark('native forEach', function() {
-        this.list.forEach(function(number) {
-            return number;
-        });
-    });
+    benchmark( '_.each', function () {
+
+        _.each( this.list, function ( number ) {
+
+            return number
+
+        } )
+
+    } )
+
+    benchmark( 'native forEach', function () {
+        this.list.forEach( function ( number ) {
+            return number
+        } )
+    } )
 }, {
-    onCycle: function(event) {
-        var suite = this;
-        var benchmark = event.target;
-        console.log('Cycle completed for ' + suite.name + ': ' + benchmark.name);
+    onCycle: function ( event ) {
+        var suite     = this
+        var benchmark = event.target
+        console.log( 'Cycle completed for ' + suite.name + ': ' + benchmark.name )
     },
-    onStart: function() {
-        this.list = [5, 4, 3];
+    onStart: function () {
+        this.list = [ 5, 4, 3 ]
     },
-    onComplete: function() {
-        this.list = null;
+    onComplete: function () {
+        this.list = null
     }
-});
+} )

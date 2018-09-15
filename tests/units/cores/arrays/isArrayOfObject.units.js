@@ -132,7 +132,7 @@ function isArrayOfObjectUnits () {
             expect( isArrayOfObject( dataSet[ 'strings' ] ) ).to.be.false
 
         } )
-        
+
         it( 'should return false when the value is an array of functions', () => {
 
             const dataSet = this._dataSet[ 'arrays' ]

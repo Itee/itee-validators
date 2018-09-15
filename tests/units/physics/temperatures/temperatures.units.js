@@ -6,15 +6,15 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { createDataMap } from '../../../TestsUtils'
-import { isCelsiusUnits } from './isCelsius.units'
-import { isFahrenheitUnits } from './isFahrenheit.units'
-import { isKelvinUnits } from './isKelvin.units'
-import { isNotCelsiusUnits } from './isNotCelsius.units'
-import { isNotFahrenheitUnits } from './isNotFahrenheit.units'
-import { isNotKelvinUnits } from './isNotKelvin.units'
+import { createDataMap }         from '../../../TestsUtils'
+import { isCelsiusUnits }        from './isCelsius.units'
+import { isFahrenheitUnits }     from './isFahrenheit.units'
+import { isKelvinUnits }         from './isKelvin.units'
+import { isNotCelsiusUnits }     from './isNotCelsius.units'
+import { isNotFahrenheitUnits }  from './isNotFahrenheit.units'
+import { isNotKelvinUnits }      from './isNotKelvin.units'
 import { isNotTemperatureUnits } from './isNotTemperature.units'
-import { isTemperatureUnits } from './isTemperature.units'
+import { isTemperatureUnits }    from './isTemperature.units'
 
 function TemperaturesUnits () {
 

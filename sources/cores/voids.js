@@ -78,29 +78,29 @@ export function isEmpty ( data ) {
 
     // null and undefined are consider as "empty"
     if ( data === null ) {
-        return true;
+        return true
     }
     if ( data === undefined ) {
-        return true;
+        return true
     }
 
     // Assume if it has a length property with a non-zero value
     // that that property is correct.
     if ( data.length > 0 ) {
-        return false;
+        return false
     }
     if ( data.length === 0 ) {
-        return true;
+        return true
     }
 
     // Otherwise, does it have any properties of its own?
     for ( let key in data ) {
         if ( Object.prototype.hasOwnProperty.call( data, key ) ) {
-            return false;
+            return false
         }
     }
 
-    return true;
+    return true
 }
 
 /**
@@ -110,5 +110,5 @@ export function isEmpty ( data ) {
  * @returns {boolean} true if data is considered as not empty, false otherwise.
  */
 export function isNotEmpty ( data ) {
-    return !isEmpty( data );
+    return !isEmpty( data )
 }

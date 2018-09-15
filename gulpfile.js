@@ -108,10 +108,12 @@ gulp.task( 'lint', () => {
 
     const filesToLint = [
         'gulpfile.js',
-        'configs/**/*',
-        'sources/**/*',
+        'configs/**/*.js',
+        'sources/**/*.js',
         'tests/**/*.js',
-        '!tests/third_party/*.js'
+        '!tests/third_party/*.js',
+        '!tests/itee-validators.benchs.js',
+        '!tests/itee-validators.units.js',
     ]
 
     return gulp.src( filesToLint, { base: './' } )
@@ -167,10 +169,10 @@ gulp.task( 'unit', ( done ) => {
  */
 gulp.task( 'bench', ( done ) => {
 
-    const benchServer = new karma.Server({
+    const benchServer = new karma.Server( {
         configFile: `${__dirname}/configs/karma.benchs.conf.js`,
         singleRun:  true
-    }, done)
+    }, done )
 
     benchServer.start()
 

@@ -1,3 +1,4 @@
+/* eslint-disable key-spacing */
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
@@ -51,7 +52,7 @@ export default [
         input:   'sources/main.js',
         plugins: [
             strip( stripConfig ),
-			uglify()
+            uglify()
         ],
         output:  {
             indent: '\t',
@@ -73,8 +74,8 @@ export default [
     {
         input:   'sources/main.js',
         plugins: [
-			strip( stripConfig ),
-			uglify()
+            strip( stripConfig ),
+            uglify()
         ],
         output:  {
             indent: '\t',
@@ -96,8 +97,8 @@ export default [
     {
         input:   'sources/main.js',
         plugins: [
-			strip( stripConfig ),
-			uglify()
+            strip( stripConfig ),
+            uglify()
         ],
         output:  {
             indent: '\t',

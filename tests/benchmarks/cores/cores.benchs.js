@@ -3,7 +3,8 @@
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
  *
  */
-/* global suite, benchmark, _ */
+
+/* global suite */
 
 //export * from './arrays/arrays.benchs'
 //export * from './booleans/booleans.benchs'
@@ -24,7 +25,7 @@ function CoresBenchs () {
 
             //            BooleanBenchs
             BooleanBenchs()
-//            BooleanBenchs.call( this )
+            //            BooleanBenchs.call( this )
 
         },
         {
@@ -61,7 +62,7 @@ function CoresBenchs () {
             'onComplete': function () {
                 console.log( 'CoresBenchs onComplete' )
                 delete this.foobar
-            },
+            }
 
         }
     )
