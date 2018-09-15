@@ -8,7 +8,7 @@
 const commonJs    = require( 'rollup-plugin-commonjs' )
 const nodeResolve = require( 'rollup-plugin-node-resolve' )
 
-export default [
+module.exports = [
     {
         input:   'tests/units/main.units.js',
         plugins: [
