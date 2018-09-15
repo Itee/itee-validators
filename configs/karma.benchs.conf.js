@@ -86,8 +86,8 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: [ 'Chrome' ],
-        //        browsers: ['Chrome', 'Firefox', 'Safari', 'IE'],
+        browsers: [ 'Chrome', 'Firefox', 'Edge' ],
+//        browsers: [ 'Chrome', 'Firefox', 'Edge', 'IE' ],
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
