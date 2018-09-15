@@ -16,7 +16,7 @@
     "bench": "gulp bench",
     "unit": "gulp unit",
     "test": "gulp test",
-    "build-test": "rollup -c configs/rollup.test.conf.js",
+    "build-test": "gulp build-test",
     "build": "gulp build",
     "builds": "rollup -c configs/rollup.conf.js"
   },
