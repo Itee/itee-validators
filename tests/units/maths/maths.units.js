@@ -10,7 +10,7 @@ function MathsUnits () {
 
     describe( 'Maths', () => {
 
-        console.log('MathsUnits')
+        console.log( 'MathsUnits' )
 
     } )
 

@@ -21,7 +21,7 @@ import {
  * @returns {boolean} true if data is object, false otherwise
  */
 export function isObject ( data ) {
-    return ( isNotNull( data ) && (typeof data === 'object') && !Array.isArray( data ) )
+    return (isNotNull( data ) && (typeof data === 'object') && !Array.isArray( data ))
 }
 
 /**
@@ -41,7 +41,7 @@ export function isNotObject ( data ) {
  * @returns {boolean} true if data is an empty object, false otherwise
  */
 export function isEmptyObject ( data ) {
-    return ( isObject( data ) && isEmpty( data ) )
+    return (isObject( data ) && isEmpty( data ))
 }
 
 /**
@@ -51,5 +51,5 @@ export function isEmptyObject ( data ) {
  * @returns {boolean} true if data is not an empty object, false otherwise
  */
 export function isNotEmptyObject ( data ) {
-    return ( isObject( data ) && isNotEmpty( data ) )
+    return (isObject( data ) && isNotEmpty( data ))
 }

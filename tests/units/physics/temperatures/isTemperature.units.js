@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isTemperature } from '../../../../sources/physics/temperatures'
+//import { isTemperature } from '../../../../sources/physics/temperatures'
 
 function isTemperatureUnits () {
 
