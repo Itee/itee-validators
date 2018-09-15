@@ -6,6 +6,12 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
+	 */
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
 	 * @module sources/cores/booleans
 	 * @description Export the validation methods about booleans
 	 *
@@ -27,7 +33,6 @@ this.Itee = this.Itee || {};
 	    return typeof value === 'boolean' || (typeof value === 'object' && value !== null && typeof value.valueOf() === 'boolean')
 
 	}
-
 	// #endif
 
 	/**
@@ -40,17 +45,23 @@ this.Itee = this.Itee || {};
 	    return (typeof data !== 'boolean')
 	}
 
+	// #if IS_REMOVE
+	function isNotBoolean_negbase ( data ) {
+	    return !isBoolean( data )
+	}
+	// #endif
+
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
 
-	suite( 'Array iteration', () => {
+
+	suite( 'isBoolean', () => {
 
 	    benchmark( 'isBoolean()', Itee.TestsUtils.iterateOverDataMap( isBoolean ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
 	    benchmark( 'isBoolean_alt()', Itee.TestsUtils.iterateOverDataMap( isBoolean_alt ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
-	    benchmark( 'isNotBoolean()', Itee.TestsUtils.iterateOverDataMap( isNotBoolean ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
 
 	} );
 
@@ -59,202 +70,137 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-	//import './cores/strings/isString.benchs'
 
-	//import './cores/cores.benchs'
-	//import './maths/maths.benchs'
-	//import './physics/physics.benchs'
 
-	/* global suite, benchmark */
+	suite( 'isNotBoolean', () => {
 
-	//import { CoresBenchs } from './cores/cores.benchs'
-	//import { MathsBenchs } from './maths/maths.benchs'
-	//import { PhysicsBenchs } from './physics/physics.benchs'
+	    benchmark( 'isNotBoolean()', Itee.TestsUtils.iterateOverDataMap( isNotBoolean ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
+	    benchmark( 'isNotBoolean_negbase()', Itee.TestsUtils.iterateOverDataMap( isNotBoolean_negbase ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
 
-	//const root = typeof window !== 'undefined' ? window :
-	//    typeof global !== 'undefined' ? global :
-	//        Function( 'return this' )();
+	} );
 
-	//suite( 'Itee#Validators', () => {
-	//
-	//    console.log( 'Main bench: start' )
-	//
-	//    // Will display the max ops/sec as base
-	//    benchmark( '', () => {} )
-	//
-	//    CoresBenchs.call( root )
-	//    //    MathsBenchs.call(root)
-	//    //    PhysicsBenchs.call(root)
-	//
-	//    console.log( 'Main bench: end' )
-	//
-	//}, {
-	//
-	//    // called when the suite starts running
-	//    'onStart': function () {
-	//        console.log( 'Validators onStart' )
-	//        this.foobar = 'titi'
-	//    },
-	//
-	//    // called between running benchmarks
-	//    'onCycle': function () {
-	//        console.log( 'Validators onCycle' )
-	//        this.foobar = 'kiki'
-	//    },
-	//
-	//    // called when aborted
-	//    'onAbort': function () {
-	//        console.log( 'Validators onAbort' )
-	//    },
-	//
-	//    // called when a test errors
-	//    'onError': function () {
-	//        console.log( 'Validators onError' )
-	//        console.log( 'foobar onError' + this.foobar )
-	//    },
-	//
-	//    // called when reset
-	//    'onReset': function () {
-	//        console.log( 'Validators onReset' )
-	//    },
-	//
-	//    // called when the suite completes running
-	//    'onComplete': function () {
-	//        console.log( 'Validators onComplete' )
-	//        delete this.foobar
-	//    },
-	//
-	//} )
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 */
 
-	////////////////
-	//
-	//suite(
-	//    'ROOT iteration',
-	//    function () {
-	//
-	//        benchmark( '_.each', function () {
-	//
-	//            _.each( this.list, function ( number ) {
-	//                return number
-	//            } )
-	//
-	//        }, {
-	//            setup:    function () {
-	//
-	//                console.log( 'Setup of ' + this.name )
-	//                console.log( 'this.mainlist: ' + this.mainlist )
-	//                this.list = [ 5, 4, 3 ]
-	//
-	//            },
-	//            teardown: function () {
-	//
-	//                delete this.list
-	//
-	//            }
-	//        } )
-	//
-	//    },
-	//    {
-	//        // called when the suite starts running
-	//        onStart: function () {
-	//            console.log( 'ROOT onStart' )
-	//            this.mainlist = [ 5, 4, 3 ];
-	//        },
-	//
-	//        // called between running benchmarks
-	//        onCycle: function ( event ) {
-	//
-	//            var suite     = this;
-	//            var benchmark = event.target;
-	//            console.log( 'ROOT onCycle for ' + suite.name + ': ' + benchmark.name );
-	//            console.log( 'this.mainlist=' + this.mainlist )
-	//
-	//        },
-	//
-	//        // called when aborted
-	//        onAbort: function () {
-	//            console.log( 'ROOT onAbort' )
-	//        },
-	//
-	//        // called when a test errors
-	//        onError: function () {
-	//            console.log( 'ROOT onError' )
-	//        },
-	//
-	//        // called when reset
-	//        onReset: function () {
-	//            console.log( 'ROOT onReset' )
-	//        },
-	//
-	//        // called when the suite completes running
-	//        onComplete: function () {
-	//            console.log( 'ROOT onComplete' )
-	//            delete this.mainlist
-	//        },
-	//
-	//    }
-	//)
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 */
 
-	///////////////
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 */
 
-	//suite('Array iteration', function() {
-	//    benchmark('_.each', function() {
-	//        _.each(this.list, function(number) {
-	//            return number;
-	//        });
-	//    });
-	//
-	//    benchmark('native forEach', function() {
-	//        this.list.forEach(function(number) {
-	//            return number;
-	//        });
-	//    });
-	//}, {
-	//    onCycle: function(event) {
-	//        var suite = this;
-	//        var benchmark = event.target;
-	//        console.log('Cycle completed for ' + suite.name + ': ' + benchmark.name);
-	//    },
-	//    onStart: function() {
-	//        this.list = [5, 4, 3];
-	//    },
-	//    onComplete: function() {
-	//        this.list = null;
-	//    }
-	//});
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 */
 
-	////////////////////////
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 * @module sources/cores/strings
+	 * @description Export the validation methods about strings
+	 *
+	 */
 
-	//suite('Array iteration', function() {
-	//
-	//    console.log('suite: ' + this.list)
-	//
-	//    benchmark('_.each', function() {
-	//        console.log('each: ' + this.list)
-	//        _.each(this.list, function(number) {
-	//            return number;
-	//        });
-	//    });
-	//
-	//    benchmark('native forEach', function() {
-	//        console.log('forEach: ' + this.list)
-	//        this.list.forEach(function(number) {
-	//            return number;
-	//        });
-	//    });
-	//
-	//}, {
-	//    onCycle: function(event) {
-	//        var suite = this;
-	//        var benchmark = event.target;
-	//        console.log('Cycle completed for ' + suite.name + ': ' + benchmark.name);
-	//    },
-	//    onStart: function() {
-	//        this.list = [5, 4, 3];
-	//    },
-	//    onComplete: function() {
-	//        this.list = null;
-	//    }
-	//});
+	/**
+	 * Check if given data is a string
+	 *
+	 * @param data {any} The data to check against the string type
+	 * @returns {boolean} true if data is a string, false otherwise.
+	 */
+	function isString ( data ) {
+	    return (typeof data === 'string' || data instanceof String)
+	}
+
+	// #if IS_REMOVE
+	function isString_0 ( val ) {
+	    return (typeof val === 'string')
+	}
+
+	function isString_1 ( val ) {
+	    return (typeof val === 'string' || ((!!val && typeof val === 'object') && Object.prototype.toString.call( val ) === '[object String]'))
+	}
+
+	function isString_2 ( val ) {
+	    return (Object.prototype.toString.call( val ) === '[object String]')
+	}
+
+	function isString_3 ( val ) {
+	    return (val !== null && val !== undefined && val.constructor === String)
+	}
+
+	function isString_4 ( val ) {
+	    return (val === val + '')
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 */
+
+
+	suite( 'isString', () => {
+
+	    benchmark( 'isString()', Itee.TestsUtils.iterateOverDataMap( isString ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
+	    benchmark( 'isString_0()', Itee.TestsUtils.iterateOverDataMap( isString_0 ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
+	    benchmark( 'isString_1()', Itee.TestsUtils.iterateOverDataMap( isString_1 ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
+	    benchmark( 'isString_2()', Itee.TestsUtils.iterateOverDataMap( isString_2 ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
+	    benchmark( 'isString_3()', Itee.TestsUtils.iterateOverDataMap( isString_3 ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
+	    benchmark( 'isString_4()', Itee.TestsUtils.iterateOverDataMap( isString_4 ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
+
+	} );
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 */
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 */
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 */
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 */
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 */
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 */
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 */
 
 }());

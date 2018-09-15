@@ -29,9 +29,6 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
 
         // list of files / patterns to load in the browser
         files: [
-            //            'tests/third_party/lodash.js',
-            //            'tests/third_party/platform.js',
-            //            'tests/third_party/benchmark.js',
             'tests/third_party/tests.utils.js',
             'tests/itee-validators.benchs.js'
         ],
@@ -86,8 +83,8 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: [ 'Chrome' ],
-        //        browsers: ['Chrome', 'Firefox', 'Safari', 'IE'],
+        browsers: [ 'Chrome', 'Firefox', 'Edge' ],
+//        browsers: [ 'Chrome', 'Firefox', 'Edge', 'IE' ],
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
