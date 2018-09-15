@@ -17,8 +17,7 @@
     "unit": "gulp unit",
     "test": "gulp test",
     "build-test": "gulp build-test",
-    "build": "gulp build",
-    "builds": "rollup -c configs/rollup.conf.js"
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
