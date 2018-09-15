@@ -6,8 +6,8 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { createDataMap } from '../../../TestsUtils'
-import { isBooleanUnits } from './isBoolean.units'
+import { createDataMap }     from '../../../TestsUtils'
+import { isBooleanUnits }    from './isBoolean.units'
 import { isNotBooleanUnits } from './isNotBoolean.units'
 
 function BooleansUnits () {

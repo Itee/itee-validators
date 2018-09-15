@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isFahrenheit } from '../../../../sources/physics/temperatures'
+//import { isFahrenheit } from '../../../../sources/physics/temperatures'
 
 function isFahrenheitUnits () {
 

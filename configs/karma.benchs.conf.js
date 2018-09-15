@@ -54,10 +54,10 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
             //                hzUnits: chalk.italic.dim,
             //                suite: chalk.bold.magenta
             //            },
-            decorator:        "*",
+            decorator:        '*',
             terminalWidth:    60,
             hzWidth:          4,
-            hzUnits:          "ops/sec",
+            hzUnits:          'ops/sec',
             browserWidth:     40,
             showBrowser:      false,
             showSuiteSummary: true

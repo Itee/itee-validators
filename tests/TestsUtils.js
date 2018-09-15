@@ -58,11 +58,11 @@ export function createDataMap () {
         }
 
         for ( let j = 0, n = booleanDataMap.length ; j < n ; j++ ) {
-            dataMap[ booleanDataMap[ i ] ] = `${booleanDataMap[ i ]}`
+            dataMap[ booleanDataMap[ j ] ] = `${booleanDataMap[ j ]}`
         }
 
         for ( let k = 0, o = numericDataMap.length ; k < o ; k++ ) {
-            dataMap[ numericDataMap[ i ] ] = `${numericDataMap[ i ]}`
+            dataMap[ numericDataMap[ k ] ] = `${numericDataMap[ k ]}`
         }
 
         return dataMap
@@ -93,7 +93,7 @@ export function createDataMap () {
                 return nullArray
 
             })(),
-            undefined:        (() => {
+            undefined: (() => {
 
                 const undefinedArray = []
 
@@ -104,7 +104,7 @@ export function createDataMap () {
                 return undefinedArray
 
             })(),
-            void:        (() => {
+            void: (() => {
 
                 const undefinedArray = []
 
@@ -115,7 +115,7 @@ export function createDataMap () {
                 return undefinedArray
 
             })(),
-            voids:            (() => {
+            voids: (() => {
 
                 const array = []
 
@@ -126,7 +126,7 @@ export function createDataMap () {
                 return array
 
             })(),
-            booleans:         (() => {
+            booleans: (() => {
 
                 const array = []
 
@@ -137,7 +137,7 @@ export function createDataMap () {
                 return array
 
             })(),
-            numbers:          (() => {
+            numbers: (() => {
 
                 const array = []
 
@@ -148,7 +148,7 @@ export function createDataMap () {
                 return array
 
             })(),
-            strings:          (() => {
+            strings: (() => {
 
                 const array = []
 
@@ -159,7 +159,7 @@ export function createDataMap () {
                 return array
 
             })(),
-            functions:        (() => {
+            functions: (() => {
 
                 const array = []
 
@@ -170,7 +170,7 @@ export function createDataMap () {
                 return array
 
             })(),
-            objects:          [
+            objects: [
                 {
                     foo: 'bar'
                 },
@@ -178,7 +178,7 @@ export function createDataMap () {
                     baz: 'qux'
                 }
             ],
-            arrays:           [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
+            arrays: [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
         }
 
         return dataMap
@@ -212,7 +212,7 @@ export function createDataMap () {
         functions:   functionDataMap,
         arrays:      arrayDataMap,
         typedArrays: typedArrayDataMap,
-        objects:     objectDataMap,
+        objects:     objectDataMap
     }
 
 }

@@ -10,8 +10,8 @@ const nodeResolve = require( 'rollup-plugin-node-resolve' )
 
 export default [
     {
-        input:     'tests/units/main.units.js',
-        plugins:   [
+        input:   'tests/units/main.units.js',
+        plugins: [
             commonJs( {
                 include: 'node_modules/**'
             } ),
@@ -26,8 +26,8 @@ export default [
         }
     },
     {
-        input:     'tests/benchmarks/main.benchs.js',
-        plugins:   [
+        input:   'tests/benchmarks/main.benchs.js',
+        plugins: [
             commonJs( {
                 include: 'node_modules/**'
             } ),

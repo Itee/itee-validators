@@ -4,7 +4,7 @@
  *
  */
 
-/* global suite, benchmark, _ */
+/* global suite, benchmark */
 
 function PhysicsBenchs () {
 
@@ -12,7 +12,7 @@ function PhysicsBenchs () {
 
         benchmark( '', () => {} )
 
-    } );
+    } )
 
 }
 

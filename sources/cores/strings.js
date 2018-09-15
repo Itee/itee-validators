@@ -14,7 +14,7 @@
  * @returns {boolean} true if data is a string, false otherwise.
  */
 export function isString ( data ) {
-    return (typeof data === 'string' || data instanceof String )
+    return (typeof data === 'string' || data instanceof String)
 }
 
 // alt
@@ -25,7 +25,7 @@ export function isString ( data ) {
 /**
  * Check if given data is not a string
  *
- * @param data {any} The data to check against the string type
+ * @param data {*} The data to check against the string type
  * @returns {boolean} true if data is not a string, false otherwise.
  */
 export function isNotString ( data ) {
@@ -74,7 +74,7 @@ export function isBlankString ( data ) {
         throw new TypeError( 'Expect a non empty string !' )
     }
 
-    return ( !/\S/.test( data ) )
+    return (!/\S/.test( data ))
 }
 
 /**
@@ -84,5 +84,5 @@ export function isBlankString ( data ) {
  * @returns {boolean} true if data is not a blank string, false otherwise.
  */
 export function isNotBlankString ( data ) {
-    return ( isNotEmptyString( data ) && /\S/.test( data ) )
+    return (isNotEmptyString( data ) && /\S/.test( data ))
 }

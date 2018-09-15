@@ -1,6 +1,6 @@
-'use strict';
+'use strict'
 
-Object.defineProperty(exports, '__esModule', { value: true });
+Object.defineProperty( exports, '__esModule', { value: true } )
 
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
@@ -82,29 +82,29 @@ function isEmpty ( data ) {
 
     // null and undefined are consider as "empty"
     if ( data === null ) {
-        return true;
+        return true
     }
     if ( data === undefined ) {
-        return true;
+        return true
     }
 
     // Assume if it has a length property with a non-zero value
     // that that property is correct.
     if ( data.length > 0 ) {
-        return false;
+        return false
     }
     if ( data.length === 0 ) {
-        return true;
+        return true
     }
 
     // Otherwise, does it have any properties of its own?
     for ( let key in data ) {
         if ( Object.prototype.hasOwnProperty.call( data, key ) ) {
-            return false;
+            return false
         }
     }
 
-    return true;
+    return true
 }
 
 /**
@@ -114,7 +114,7 @@ function isEmpty ( data ) {
  * @returns {boolean} true if data is considered as not empty, false otherwise.
  */
 function isNotEmpty ( data ) {
-    return !isEmpty( data );
+    return !isEmpty( data )
 }
 
 /**
@@ -133,7 +133,7 @@ function isNotEmpty ( data ) {
  * @returns {boolean} true if data is a string, false otherwise.
  */
 function isString ( data ) {
-    return (typeof data === 'string' || data instanceof String )
+    return (typeof data === 'string' || data instanceof String)
 }
 
 // alt
@@ -159,7 +159,7 @@ function isNotString ( data ) {
  */
 function isEmptyString ( data ) {
 
-    console.assert( isString( data ), 'Expect a string !' );
+    console.assert( isString( data ), 'Expect a string !' )
 
     return (data.length === 0)
 
@@ -193,7 +193,7 @@ function isBlankString ( data ) {
         throw new TypeError( 'Expect a non empty string !' )
     }
 
-    return ( !/\S/.test( data ) )
+    return (!/\S/.test( data ))
 }
 
 /**
@@ -203,7 +203,7 @@ function isBlankString ( data ) {
  * @returns {boolean} true if data is not a blank string, false otherwise.
  */
 function isNotBlankString ( data ) {
-    return ( isNotEmptyString( data ) && /\S/.test( data ) )
+    return (isNotEmptyString( data ) && /\S/.test( data ))
 }
 
 /**
@@ -223,7 +223,7 @@ function isNotBlankString ( data ) {
  * @returns {boolean} true if data is object, false otherwise
  */
 function isObject ( data ) {
-    return ( isNotNull( data ) && (typeof data === 'object') && !Array.isArray( data ) )
+    return (isNotNull( data ) && (typeof data === 'object') && !Array.isArray( data ))
 }
 
 /**
@@ -243,7 +243,7 @@ function isNotObject ( data ) {
  * @returns {boolean} true if data is an empty object, false otherwise
  */
 function isEmptyObject ( data ) {
-    return ( isObject( data ) && isEmpty( data ) )
+    return (isObject( data ) && isEmpty( data ))
 }
 
 /**
@@ -253,7 +253,7 @@ function isEmptyObject ( data ) {
  * @returns {boolean} true if data is not an empty object, false otherwise
  */
 function isNotEmptyObject ( data ) {
-    return ( isObject( data ) && isNotEmpty( data ) )
+    return (isObject( data ) && isNotEmpty( data ))
 }
 
 /**
@@ -305,7 +305,7 @@ function isArrayOfNull ( data ) {
         return false
     }
 
-    const dataLength = data.length;
+    const dataLength = data.length
     if ( dataLength === 0 ) {
         return false
     }
@@ -332,7 +332,7 @@ function isNotArrayOfNull ( data ) {
         return true
     }
 
-    const dataLength = data.length;
+    const dataLength = data.length
     if ( dataLength === 0 ) {
         return true
     }
@@ -359,7 +359,7 @@ function isEmptyArray ( data ) {
         return false
     }
 
-    return ( data.length === 0 )
+    return (data.length === 0)
 
 }
 
@@ -375,7 +375,7 @@ function isNotEmptyArray ( data ) {
         return true
     }
 
-    return ( data.length > 0 )
+    return (data.length > 0)
 }
 
 /**
@@ -390,7 +390,7 @@ function isArrayOfUndefined ( data ) {
         return false
     }
 
-    const dataLength = data.length;
+    const dataLength = data.length
     if ( dataLength === 0 ) {
         return false
     }
@@ -417,7 +417,7 @@ function isNotArrayOfUndefined ( data ) {
         return true
     }
 
-    const dataLength = data.length;
+    const dataLength = data.length
     if ( dataLength === 0 ) {
         return true
     }
@@ -444,7 +444,7 @@ function isArrayOfArray ( data ) {
         return false
     }
 
-    const dataLength = data.length;
+    const dataLength = data.length
     if ( dataLength === 0 ) {
         return false
     }
@@ -471,7 +471,7 @@ function isNotArrayOfArray ( data ) {
         return true
     }
 
-    const dataLength = data.length;
+    const dataLength = data.length
     if ( dataLength === 0 ) {
         return true
     }
@@ -498,14 +498,14 @@ function isArrayOfString ( data ) {
         return false
     }
 
-    const dataLength = data.length;
+    const dataLength = data.length
     if ( dataLength === 0 ) {
         return false
     }
 
-    let subData = undefined;
+    let subData = undefined
     for ( let index = 0 ; index < dataLength ; index++ ) {
-        subData = data[ index ];
+        subData = data[ index ]
         if ( !(typeof subData === 'string' || subData instanceof String) ) {
             return false
         }
@@ -549,7 +549,7 @@ function isNotArrayOfString ( data ) {
         return true
     }
 
-    const dataLength = data.length;
+    const dataLength = data.length
     if ( dataLength === 0 ) {
         return true
     }
@@ -616,7 +616,7 @@ function isArrayOfObject ( data ) {
         return false
     }
 
-    const dataLength = data.length;
+    const dataLength = data.length
     if ( dataLength === 0 ) {
         return false
     }
@@ -643,13 +643,13 @@ function isNotArrayOfObject ( data ) {
         return true
     }
 
-    const dataLength = data.length;
+    const dataLength = data.length
     if ( dataLength === 0 ) {
         return true
     }
 
     for ( let index = 0 ; index < dataLength ; index++ ) {
-        let subData = data[ index ];
+        let subData = data[ index ]
         if ( subData === null ||
             (typeof subData !== 'object') ||
             Array.isArray( subData ) ||
@@ -707,7 +707,7 @@ function isNotBoolean ( data ) {
  * @returns {boolean} true if data is a function, false otherwise.
  */
 function isFunction ( data ) {
-    return (typeof data === "function")
+    return (typeof data === 'function')
 }
 
 /**
@@ -717,7 +717,7 @@ function isFunction ( data ) {
  * @returns {boolean} true if data is not a function, false otherwise.
  */
 function isNotFunction ( data ) {
-    return (typeof data !== "function")
+    return (typeof data !== 'function')
 }
 
 /**
@@ -736,7 +736,7 @@ function isNotFunction ( data ) {
  * @returns {boolean} true if data is a number, false otherwise.
  */
 function isNumber ( data ) {
-    return (typeof data === 'number' && !Number.isNaN( data ) )
+    return (typeof data === 'number' && !Number.isNaN( data ))
 }
 
 function isNumber_1 ( data ) {
@@ -750,7 +750,7 @@ function isNumber_1 ( data ) {
  * @returns {boolean} true if data is not of type number or not a number, false otherwise.
  */
 function isNotNumber ( data ) {
-    return (typeof data !== 'number' || Number.isNaN( data ) )
+    return (typeof data !== 'number' || Number.isNaN( data ))
 }
 
 /**
@@ -790,7 +790,7 @@ function isNumberNegative ( data ) {
  * @returns {boolean} true if data is numeric, false otherwise
  */
 function isNumeric ( data ) {
-    return ( typeof data === 'number' )
+    return (typeof data === 'number')
 }
 
 /**
@@ -800,7 +800,7 @@ function isNumeric ( data ) {
  * @returns {boolean} true if data is not numeric, false otherwise
  */
 function isNotNumeric ( data ) {
-    return ( typeof data !== 'number' )
+    return (typeof data !== 'number')
 }
 
 /**
@@ -1148,14 +1148,14 @@ class Validator {
             Object:   isObject,
             Symbol:   isSymbol,
             Function: isFunction
-        };
+        }
 
         /**
          * The list of errors occured during the check
          *
          * @type {Array.<string>}
          */
-        this.errors = [];
+        this.errors = []
 
     }
 
@@ -1179,7 +1179,7 @@ class Validator {
             throw new TypeError( `Validator: a validator is already defined for type '${type}'` )
         }
 
-        this.validators[ type ] = validator;
+        this.validators[ type ] = validator
 
     }
 
@@ -1190,7 +1190,7 @@ class Validator {
      */
     remove ( type ) {
 
-        delete this.validators[ type ];
+        delete this.validators[ type ]
 
     }
 
@@ -1201,10 +1201,10 @@ class Validator {
      */
     getAvalaibleTypes () {
 
-        const availablesTypes = [];
+        const availablesTypes = []
 
         for ( let key in this.validators ) {
-            availablesTypes.push( key );
+            availablesTypes.push( key )
         }
 
         return availablesTypes
@@ -1221,56 +1221,56 @@ class Validator {
      */
     check ( data, type, breakOnError = true ) {
 
-        const validator = this.validators[ type ];
+        const validator = this.validators[ type ]
         if ( isNullOrUndefined( validator ) ) {
             throw new TypeError( `Validator: Unable to find schema validation of type '${type}'` )
         }
 
-        let result = true;
+        let result = true
         if ( isFunction( validator ) ) {
 
-            result = validator( data );
+            result = validator( data )
 
         } else if ( isObject( validator ) ) {
 
-            let subResult = true;
+            let subResult = true
             for ( let key in validator ) {
 
-                const subValidator = validator[ key ];
+                const subValidator = validator[ key ]
                 if ( isNullOrUndefined( subValidator ) ) {
                     throw new TypeError( `Validator: Missing validator for key '${key}' of type '${type}'` )
                 }
 
-                const value      = data[ key ];
-                const isRequired = subValidator.required;
+                const value      = data[ key ]
+                const isRequired = subValidator.required
                 if ( isNullOrUndefined( value ) ) {
                     if ( isRequired ) {
-                        subResult = false;
+                        subResult = false
                     } else {
                         continue
                     }
                 }
 
                 // In case of overriden validation function check it first
-                let validatorFunction = subValidator.fn;
+                let validatorFunction = subValidator.fn
                 if ( isDefined( validatorFunction ) ) {
 
                     if ( isNotFunction( validatorFunction ) ) {
                         throw new TypeError( `Validator: Invalid validation function for '${key}' with type '${type}'` )
                     }
 
-                    subResult = validatorFunction( value );
+                    subResult = validatorFunction( value )
 
                 } else {
 
-                    subResult = this.check( value, subValidator.type, breakOnError );
+                    subResult = this.check( value, subValidator.type, breakOnError )
 
                 }
 
                 if ( subResult === false ) {
 
-                    this.errors.push( `Validator: Invalid property '${key}' of type '${subValidator.type}' with value '${value}' in object of type '${type}'` );
-                    result = false;
+                    this.errors.push( `Validator: Invalid property '${key}' of type '${subValidator.type}' with value '${value}' in object of type '${type}'` )
+                    result = false
                     if ( breakOnError ) {
                         break
                     }
@@ -1296,9 +1296,9 @@ class Validator {
  *
  * @type {Validator}
  */
-exports.Validator = undefined;
+exports.Validator = undefined
 if ( isNullOrUndefined( exports.Validator ) ) {
-    exports.Validator = new Validator();
+    exports.Validator = new Validator()
 }
 
 /**
@@ -1330,10 +1330,10 @@ if ( isNullOrUndefined( exports.Validator ) ) {
  * @requires {@link module:sources/cores/numbers}
  */
 
-// Todo: itee-physics
-const ABSOLUTE_ZERO_KELVIN     = 0.00000000045;
-const ABSOLUTE_ZERO_CELSIUS    = -273.14999999955;
-const ABSOLUTE_ZERO_FAHRENHEIT = -459.67;
+    // Todo: itee-physics
+const ABSOLUTE_ZERO_KELVIN     = 0.00000000045
+const ABSOLUTE_ZERO_CELSIUS    = -273.14999999955
+const ABSOLUTE_ZERO_FAHRENHEIT = -459.67
 
 /**
  *
@@ -1395,7 +1395,7 @@ function isNotFahrenheit ( data ) {
  * @return {boolean|*|boolean}
  */
 function isTemperature ( data ) {
-    return ( isKelvin( data ) || isCelsius( data ) || isFahrenheit( data ) )
+    return (isKelvin( data ) || isCelsius( data ) || isFahrenheit( data ))
 }
 
 /**
@@ -1404,7 +1404,7 @@ function isTemperature ( data ) {
  * @return {boolean}
  */
 function isNotTemperature ( data ) {
-    return ( isNotKelvin( data ) && isNotCelsius( data ) && isNotFahrenheit( data ) )
+    return (isNotKelvin( data ) && isNotCelsius( data ) && isNotFahrenheit( data ))
 }
 
 /**
@@ -1439,77 +1439,77 @@ function isNotTemperature ( data ) {
  *
  */
 
-exports.isArray = isArray;
-exports.isNotArray = isNotArray;
-exports.isArrayOfNull = isArrayOfNull;
-exports.isNotArrayOfNull = isNotArrayOfNull;
-exports.isEmptyArray = isEmptyArray;
-exports.isNotEmptyArray = isNotEmptyArray;
-exports.isArrayOfUndefined = isArrayOfUndefined;
-exports.isNotArrayOfUndefined = isNotArrayOfUndefined;
-exports.isArrayOfArray = isArrayOfArray;
-exports.isNotArrayOfArray = isNotArrayOfArray;
-exports.isArrayOfString = isArrayOfString;
-exports.isNotArrayOfString = isNotArrayOfString;
-exports.isArrayOfSingleElement = isArrayOfSingleElement;
-exports.isArrayOfMultiElement = isArrayOfMultiElement;
-exports.isArrayOfObject = isArrayOfObject;
-exports.isNotArrayOfObject = isNotArrayOfObject;
-exports.isBoolean = isBoolean;
-exports.isNotBoolean = isNotBoolean;
-exports.isFunction = isFunction;
-exports.isNotFunction = isNotFunction;
-exports.isNumber = isNumber;
-exports.isNumber_1 = isNumber_1;
-exports.isNotNumber = isNotNumber;
-exports.isNaN = isNaN;
-exports.isNumberPositive = isNumberPositive;
-exports.isNumberNegative = isNumberNegative;
-exports.isNumeric = isNumeric;
-exports.isNotNumeric = isNotNumeric;
-exports.isInteger = isInteger;
-exports.isFloat = isFloat;
-exports.isZero = isZero;
-exports.isZeroPositive = isZeroPositive;
-exports.isZeroNegative = isZeroNegative;
-exports.isMinSafeInteger = isMinSafeInteger;
-exports.isMinPositive = isMinPositive;
-exports.isMinNegative = isMinNegative;
-exports.isMaxSafeInteger = isMaxSafeInteger;
-exports.isMaxPositive = isMaxPositive;
-exports.isMaxNegative = isMaxNegative;
-exports.isFinite = isFinite;
-exports.isInfinite = isInfinite;
-exports.isInfiniteNegative = isInfiniteNegative;
-exports.isInfinitePositive = isInfinitePositive;
-exports.isObject = isObject;
-exports.isNotObject = isNotObject;
-exports.isEmptyObject = isEmptyObject;
-exports.isNotEmptyObject = isNotEmptyObject;
-exports.isString = isString;
-exports.isNotString = isNotString;
-exports.isEmptyString = isEmptyString;
-exports.isNotEmptyString = isNotEmptyString;
-exports.isBlankString = isBlankString;
-exports.isNotBlankString = isNotBlankString;
-exports.isSymbol = isSymbol;
-exports.isNotSymbol = isNotSymbol;
-exports.isNull = isNull;
-exports.isNotNull = isNotNull;
-exports.isUndefined = isUndefined;
-exports.isNotUndefined = isNotUndefined;
-exports.isNullOrUndefined = isNullOrUndefined;
-exports.isDefined = isDefined;
-exports.isEmpty = isEmpty;
-exports.isNotEmpty = isNotEmpty;
-exports.ABSOLUTE_ZERO_KELVIN = ABSOLUTE_ZERO_KELVIN;
-exports.ABSOLUTE_ZERO_CELSIUS = ABSOLUTE_ZERO_CELSIUS;
-exports.ABSOLUTE_ZERO_FAHRENHEIT = ABSOLUTE_ZERO_FAHRENHEIT;
-exports.isKelvin = isKelvin;
-exports.isNotKelvin = isNotKelvin;
-exports.isCelsius = isCelsius;
-exports.isNotCelsius = isNotCelsius;
-exports.isFahrenheit = isFahrenheit;
-exports.isNotFahrenheit = isNotFahrenheit;
-exports.isTemperature = isTemperature;
-exports.isNotTemperature = isNotTemperature;
+exports.isArray = isArray
+exports.isNotArray               = isNotArray
+exports.isArrayOfNull            = isArrayOfNull
+exports.isNotArrayOfNull         = isNotArrayOfNull
+exports.isEmptyArray             = isEmptyArray
+exports.isNotEmptyArray          = isNotEmptyArray
+exports.isArrayOfUndefined       = isArrayOfUndefined
+exports.isNotArrayOfUndefined    = isNotArrayOfUndefined
+exports.isArrayOfArray           = isArrayOfArray
+exports.isNotArrayOfArray        = isNotArrayOfArray
+exports.isArrayOfString          = isArrayOfString
+exports.isNotArrayOfString       = isNotArrayOfString
+exports.isArrayOfSingleElement   = isArrayOfSingleElement
+exports.isArrayOfMultiElement    = isArrayOfMultiElement
+exports.isArrayOfObject          = isArrayOfObject
+exports.isNotArrayOfObject       = isNotArrayOfObject
+exports.isBoolean                = isBoolean
+exports.isNotBoolean             = isNotBoolean
+exports.isFunction               = isFunction
+exports.isNotFunction            = isNotFunction
+exports.isNumber                 = isNumber
+exports.isNumber_1               = isNumber_1
+exports.isNotNumber              = isNotNumber
+exports.isNaN                    = isNaN
+exports.isNumberPositive         = isNumberPositive
+exports.isNumberNegative         = isNumberNegative
+exports.isNumeric                = isNumeric
+exports.isNotNumeric             = isNotNumeric
+exports.isInteger                = isInteger
+exports.isFloat                  = isFloat
+exports.isZero                   = isZero
+exports.isZeroPositive           = isZeroPositive
+exports.isZeroNegative           = isZeroNegative
+exports.isMinSafeInteger         = isMinSafeInteger
+exports.isMinPositive            = isMinPositive
+exports.isMinNegative            = isMinNegative
+exports.isMaxSafeInteger         = isMaxSafeInteger
+exports.isMaxPositive            = isMaxPositive
+exports.isMaxNegative            = isMaxNegative
+exports.isFinite                 = isFinite
+exports.isInfinite               = isInfinite
+exports.isInfiniteNegative       = isInfiniteNegative
+exports.isInfinitePositive       = isInfinitePositive
+exports.isObject                 = isObject
+exports.isNotObject              = isNotObject
+exports.isEmptyObject            = isEmptyObject
+exports.isNotEmptyObject         = isNotEmptyObject
+exports.isString                 = isString
+exports.isNotString              = isNotString
+exports.isEmptyString            = isEmptyString
+exports.isNotEmptyString         = isNotEmptyString
+exports.isBlankString            = isBlankString
+exports.isNotBlankString         = isNotBlankString
+exports.isSymbol                 = isSymbol
+exports.isNotSymbol              = isNotSymbol
+exports.isNull                   = isNull
+exports.isNotNull                = isNotNull
+exports.isUndefined              = isUndefined
+exports.isNotUndefined           = isNotUndefined
+exports.isNullOrUndefined        = isNullOrUndefined
+exports.isDefined                = isDefined
+exports.isEmpty                  = isEmpty
+exports.isNotEmpty               = isNotEmpty
+exports.ABSOLUTE_ZERO_KELVIN     = ABSOLUTE_ZERO_KELVIN
+exports.ABSOLUTE_ZERO_CELSIUS    = ABSOLUTE_ZERO_CELSIUS
+exports.ABSOLUTE_ZERO_FAHRENHEIT = ABSOLUTE_ZERO_FAHRENHEIT
+exports.isKelvin                 = isKelvin
+exports.isNotKelvin              = isNotKelvin
+exports.isCelsius                = isCelsius
+exports.isNotCelsius             = isNotCelsius
+exports.isFahrenheit             = isFahrenheit
+exports.isNotFahrenheit          = isNotFahrenheit
+exports.isTemperature            = isTemperature
+exports.isNotTemperature         = isNotTemperature

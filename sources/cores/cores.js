@@ -127,27 +127,27 @@
 import {
     isNullOrUndefined,
     isDefined
-} from './voids'
+}                    from './voids'
 import {
     isFunction,
     isNotFunction
-} from './functions'
+}                    from './functions'
 import { isBoolean } from './booleans'
 import {
     isNumber,
     isInteger,
     isFloat
-} from './numbers'
-import { isArray } from './arrays'
-import { isSymbol } from './symbols'
+}                    from './numbers'
+import { isArray }   from './arrays'
+import { isSymbol }  from './symbols'
 import {
     isString,
     isNotString
-} from './strings'
+}                    from './strings'
 import {
     isObject,
     isNotObject
-} from './objects'
+}                    from './objects'
 
 class Validator {
 

@@ -14,9 +14,7 @@ import {
     isNull,
     isNotNull,
     isDefined,
-    isUndefined,
-    isEmpty,
-    isNotEmpty
+    isUndefined
 } from './voids'
 import {
     isString,
@@ -60,7 +58,7 @@ export function isNotArray ( data ) {
  */
 export function isArrayOfNull ( data ) {
 
-    if ( !Array.isArray( data ) ) {
+    if ( isNotArray( data ) ) {
         return false
     }
 
@@ -70,7 +68,7 @@ export function isArrayOfNull ( data ) {
     }
 
     for ( let index = 0 ; index < dataLength ; index++ ) {
-        if ( data[ index ] !== null ) {
+        if ( isNotNull( data[ index ] ) ) {
             return false
         }
     }
@@ -87,7 +85,7 @@ export function isArrayOfNull ( data ) {
  */
 export function isNotArrayOfNull ( data ) {
 
-    if ( !Array.isArray( data ) ) {
+    if ( isNotArray( data ) ) {
         return true
     }
 
@@ -97,7 +95,7 @@ export function isNotArrayOfNull ( data ) {
     }
 
     for ( let index = 0 ; index < dataLength ; index++ ) {
-        if ( data[ index ] === null ) {
+        if ( isNull( data[ index ] ) ) {
             return false
         }
     }
@@ -114,11 +112,11 @@ export function isNotArrayOfNull ( data ) {
  */
 export function isEmptyArray ( data ) {
 
-    if ( !Array.isArray( data ) ) {
+    if ( isNotArray( data ) ) {
         return false
     }
 
-    return ( data.length === 0 )
+    return (data.length === 0)
 
 }
 
@@ -130,11 +128,11 @@ export function isEmptyArray ( data ) {
  */
 export function isNotEmptyArray ( data ) {
 
-    if ( !Array.isArray( data ) ) {
+    if ( isNotArray( data ) ) {
         return true
     }
 
-    return ( data.length > 0 )
+    return (data.length > 0)
 }
 
 /**
@@ -145,7 +143,7 @@ export function isNotEmptyArray ( data ) {
  */
 export function isArrayOfUndefined ( data ) {
 
-    if ( !Array.isArray( data ) ) {
+    if ( isNotArray( data ) ) {
         return false
     }
 
@@ -155,7 +153,7 @@ export function isArrayOfUndefined ( data ) {
     }
 
     for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
-        if ( typeof data[ index ] !== 'undefined' ) {
+        if ( isDefined( data[ index ] ) ) {
             return false
         }
     }
@@ -172,7 +170,7 @@ export function isArrayOfUndefined ( data ) {
  */
 export function isNotArrayOfUndefined ( data ) {
 
-    if ( !Array.isArray( data ) ) {
+    if ( isNotArray( data ) ) {
         return true
     }
 
@@ -182,7 +180,7 @@ export function isNotArrayOfUndefined ( data ) {
     }
 
     for ( let index = 0 ; index < dataLength ; index++ ) {
-        if ( typeof data[ index ] !== 'undefined' ) {
+        if ( isUndefined( data[ index ] ) ) {
             return true
         }
     }
@@ -199,7 +197,7 @@ export function isNotArrayOfUndefined ( data ) {
  */
 export function isArrayOfArray ( data ) {
 
-    if ( !Array.isArray( data ) ) {
+    if ( isNotArray( data ) ) {
         return false
     }
 
@@ -209,7 +207,7 @@ export function isArrayOfArray ( data ) {
     }
 
     for ( let index = 0 ; index < dataLength ; index += 1 ) {
-        if ( !Array.isArray( data[ index ] ) ) {
+        if ( isNotArray( data[ index ] ) ) {
             return false
         }
     }
@@ -226,7 +224,7 @@ export function isArrayOfArray ( data ) {
  */
 export function isNotArrayOfArray ( data ) {
 
-    if ( !Array.isArray( data ) ) {
+    if ( isNotArray( data ) ) {
         return true
     }
 
@@ -236,7 +234,7 @@ export function isNotArrayOfArray ( data ) {
     }
 
     for ( let index = 0 ; index < dataLength ; index++ ) {
-        if ( Array.isArray( data[ index ] ) ) {
+        if (isArray( data[ index ] ) ) {
             return false
         }
     }
@@ -253,7 +251,7 @@ export function isNotArrayOfArray ( data ) {
  */
 export function isArrayOfString ( data ) {
 
-    if ( !Array.isArray( data ) ) {
+    if ( isNotArray( data ) ) {
         return false
     }
 
@@ -262,10 +260,8 @@ export function isArrayOfString ( data ) {
         return false
     }
 
-    let subData = undefined
     for ( let index = 0 ; index < dataLength ; index++ ) {
-        subData = data[ index ]
-        if ( !(typeof subData === 'string' || subData instanceof String) ) {
+        if ( isNotString( data[ index ] ) ) {
             return false
         }
     }
@@ -304,7 +300,7 @@ export function isArrayOfString ( data ) {
  */
 export function isNotArrayOfString ( data ) {
 
-    if ( !Array.isArray( data ) ) {
+    if ( isNotArray( data ) ) {
         return true
     }
 
@@ -314,7 +310,7 @@ export function isNotArrayOfString ( data ) {
     }
 
     for ( let index = 0 ; index < dataLength ; index++ ) {
-        if ( typeof data[ index ] === 'string' ) {
+        if ( isString( data[ index ] ) ) {
             return false
         }
     }
@@ -331,7 +327,7 @@ export function isNotArrayOfString ( data ) {
  */
 export function isArrayOfSingleElement ( data ) {
 
-    if ( !Array.isArray( data ) ) {
+    if ( isNotArray( data ) ) {
         return false
     }
 
@@ -351,7 +347,7 @@ export function isArrayOfSingleElement ( data ) {
  */
 export function isArrayOfMultiElement ( data ) {
 
-    if ( !Array.isArray( data ) ) {
+    if ( isNotArray( data ) ) {
         return false
     }
 
@@ -371,7 +367,7 @@ export function isArrayOfMultiElement ( data ) {
  */
 export function isArrayOfObject ( data ) {
 
-    if ( !Array.isArray( data ) ) {
+    if ( isNotArray( data ) ) {
         return false
     }
 
@@ -398,7 +394,7 @@ export function isArrayOfObject ( data ) {
  */
 export function isNotArrayOfObject ( data ) {
 
-    if ( !Array.isArray( data ) ) {
+    if ( isNotArray( data ) ) {
         return true
     }
 
@@ -408,11 +404,7 @@ export function isNotArrayOfObject ( data ) {
     }
 
     for ( let index = 0 ; index < dataLength ; index++ ) {
-        let subData = data[ index ]
-        if ( subData === null ||
-            (typeof subData !== 'object') ||
-            Array.isArray( subData ) ||
-            (subData instanceof String) ) {
+        if ( isObject( data[ index ] ) ) {
             return true
         }
     }

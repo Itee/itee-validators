@@ -15,22 +15,44 @@
 function CreateEslintConfiguration () {
 
     return {
-        env:           {
-            "browser": true,
-            "node":    true,
-            "es6":     true
+        env: {
+            'browser': true,
+            'node':    true,
+            'es6':     true
         },
         parserOptions: {
             ecmaVersion: 6,
-            sourceType:  "module"
+            sourceType:  'module'
         },
-        extends:       [ 'eslint:recommended' ],
-        plugins:       [
-            "mocha"
+        extends: [
+            'eslint:recommended'
         ],
-        rules:         {
+        plugins: [
+            'mocha'
+        ],
+        rules: {
+            'no-multiple-empty-lines':  [ 1, { 'max': 2 } ],
+            'no-mixed-spaces-and-tabs': 'off',
             'mocha/no-exclusive-tests': 'error',
             'no-console':               'off',
+            'no-multi-spaces':          [
+                'error', {
+                    exceptions: {
+                        'ImportDeclaration':  true,
+                        'VariableDeclarator': true
+                    }
+                }
+            ],
+            'key-spacing': [
+                'error', {
+                    'align': {
+                        'beforeColon': false,
+                        'afterColon':  true,
+                        'on':          'value'
+                    }
+                }
+            ]
+
         }
     }
 

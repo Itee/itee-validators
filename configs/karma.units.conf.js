@@ -91,7 +91,7 @@ function CreateKarmaUnitsConfiguration ( config ) {
                     autoOpen:        true,
                     overwrite:       true,
                     timestamp:       true,
-                    showHooks:       "showHooks",
+                    showHooks:       'showHooks',
                     quiet:           false
                 }
             }

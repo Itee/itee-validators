@@ -4,7 +4,9 @@
  *
  */
 
-import { isString } from '../../../../builds/itee-validators.esm'
+/* global Benchmark */
+
+import { isString }      from '../../../../builds/itee-validators.esm'
 import { createDataMap } from '../../../TestsUtils'
 
 function isString_0 ( val ) {
@@ -16,7 +18,7 @@ function isString_1 ( val ) {
 }
 
 function isString_2 ( val ) {
-    return (Object.prototype.toString.call( val ) === "[object String]")
+    return (Object.prototype.toString.call( val ) === '[object String]')
 }
 
 function isString_3 ( val ) {

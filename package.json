@@ -1,67 +1,67 @@
 {
-  "name": "itee-validators",
-  "version": "2.1.0",
-  "description": "A library of validation functions use in various Itee projects",
-  "main": "builds/itee-validators.cjs.js",
-  "module": "builds/itee-validators.esm.js",
-  "directories": {
-    "test": "tests"
-  },
-  "scripts": {
-    "default": "gulp",
-    "help": "gulp help",
-    "clean": "gulp clean",
-    "lint": "gulp lint",
-    "doc": "gulp doc",
-    "bench": "gulp bench",
-    "unit": "gulp unit",
-    "units": "karma start configs/karma.units.conf.js",
-    "mocha": "mocha tests/itee-validators.units.js --reporter mochawesome",
-    "test": "gulp test",
-    "build-test": "rollup -c configs/rollup.test.conf.js",
-    "build": "gulp build",
-    "builds": "rollup -c configs/rollup.conf.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Itee/itee-validators.git"
-  },
-  "keywords": [
-    "itee",
-    "validation",
-    "validator",
-    "library"
-  ],
-  "author": "Itee",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Itee/itee-validators/issues"
-  },
-  "homepage": "https://github.com/Itee/itee-validators#readme",
-  "dependencies": {},
-  "devDependencies": {
-    "benchmark": "^2.1.4",
-    "chai": "^4.1.2",
-    "del": "^3.0.0",
-    "docdash": "^1.0.0",
-    "eslint-plugin-mocha": "^5.2.0",
-    "gulp": "^4.0.0",
-    "gulp-eslint": "^5.0.0",
-    "gulp-jsdoc3": "^2.0.0",
-    "gulp-util": "^3.0.8",
-    "karma": "^3.0.0",
-    "karma-benchmark": "^1.0.0",
-    "karma-benchmarkjs-reporter": "^1.0.0",
-    "karma-chai": "^0.1.0",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-mocha": "^1.3.0",
-    "karma-mocha-reporter": "^2.2.5",
-    "mocha": "^5.2.0",
-    "mochawesome": "^3.0.3",
-    "rollup": "^0.65.0",
-    "rollup-plugin-commonjs": "^9.1.6",
-    "rollup-plugin-node-resolve": "^3.3.0",
-    "rollup-plugin-strip": "^1.1.1",
-    "rollup-plugin-uglify-es": "0.0.1"
-  }
+    "name": "itee-validators",
+    "version": "2.1.0",
+    "description": "A library of validation functions use in various Itee projects",
+    "main": "builds/itee-validators.cjs.js",
+    "module": "builds/itee-validators.esm.js",
+    "directories": {
+        "test": "tests"
+    },
+    "scripts": {
+        "default": "gulp",
+        "help": "gulp help",
+        "clean": "gulp clean",
+        "lint": "gulp lint",
+        "doc": "gulp doc",
+        "bench": "gulp bench",
+        "unit": "gulp unit",
+        "units": "karma start configs/karma.units.conf.js",
+        "mocha": "mocha tests/itee-validators.units.js --reporter mochawesome",
+        "test": "gulp test",
+        "build-test": "rollup -c configs/rollup.test.conf.js",
+        "build": "gulp build",
+        "builds": "rollup -c configs/rollup.conf.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Itee/itee-validators.git"
+    },
+    "keywords": [
+        "itee",
+        "validation",
+        "validator",
+        "library"
+    ],
+    "author": "Itee",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Itee/itee-validators/issues"
+    },
+    "homepage": "https://github.com/Itee/itee-validators#readme",
+    "dependencies": {},
+    "devDependencies": {
+        "benchmark": "^2.1.4",
+        "chai": "^4.1.2",
+        "del": "^3.0.0",
+        "docdash": "^1.0.0",
+        "eslint-plugin-mocha": "^5.2.0",
+        "gulp": "^4.0.0",
+        "gulp-eslint": "^5.0.0",
+        "gulp-jsdoc3": "^2.0.0",
+        "gulp-util": "^3.0.8",
+        "karma": "^3.0.0",
+        "karma-benchmark": "^1.0.0",
+        "karma-benchmarkjs-reporter": "^1.0.0",
+        "karma-chai": "^0.1.0",
+        "karma-chrome-launcher": "^2.2.0",
+        "karma-mocha": "^1.3.0",
+        "karma-mocha-reporter": "^2.2.5",
+        "mocha": "^5.2.0",
+        "mochawesome": "^3.0.3",
+        "rollup": "^0.65.0",
+        "rollup-plugin-commonjs": "^9.1.6",
+        "rollup-plugin-node-resolve": "^3.3.0",
+        "rollup-plugin-strip": "^1.1.1",
+        "rollup-plugin-uglify-es": "0.0.1"
+    }
 }

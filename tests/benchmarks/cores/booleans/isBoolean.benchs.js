@@ -6,7 +6,7 @@
 
 /* global benchmark */
 
-import { isBoolean } from '../../../../builds/itee-validators.esm'
+import { isBoolean }     from '../../../../builds/itee-validators.esm'
 import { createDataMap } from '../../../TestsUtils'
 
 //export default benchmark( 'isBoolean', () => {
@@ -30,7 +30,7 @@ function BooleanBenchs () {
 
         },
         {
-            setup:    function () {
+            setup: function () {
 
                 console.log( 'Setup of ' + this.name )
                 this.dataset = createDataMap()
