@@ -24,10 +24,15 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+        //        frameworks: [],
         frameworks: [ 'benchmark' ],
 
         // list of files / patterns to load in the browser
         files: [
+            //            'tests/third_party/lodash.js',
+            //            'tests/third_party/platform.js',
+            //            'tests/third_party/benchmark.js',
+            'tests/third_party/tests.utils.js',
             'tests/itee-validators.benchs.js'
         ],
 
@@ -54,10 +59,10 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
             //                hzUnits: chalk.italic.dim,
             //                suite: chalk.bold.magenta
             //            },
-            decorator:        "*",
+            decorator:        '*',
             terminalWidth:    60,
             hzWidth:          4,
-            hzUnits:          "ops/sec",
+            hzUnits:          'ops/sec',
             browserWidth:     40,
             showBrowser:      false,
             showSuiteSummary: true

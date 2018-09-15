@@ -5,6 +5,7 @@
  */
 
 import './cores/booleans/isBoolean.benchs'
+//import './cores/strings/isString.benchs'
 
 //import './cores/cores.benchs'
 //import './maths/maths.benchs'

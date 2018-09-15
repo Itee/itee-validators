@@ -6,7 +6,7 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { createDataMap } from '../../../TestsUtils'
+import { createDataMap } from '../../../tests.utils'
 import { isCelsiusUnits } from './isCelsius.units'
 import { isFahrenheitUnits } from './isFahrenheit.units'
 import { isKelvinUnits } from './isKelvin.units'

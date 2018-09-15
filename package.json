@@ -61,7 +61,7 @@
     "rollup": "^0.65.0",
     "rollup-plugin-commonjs": "^9.1.6",
     "rollup-plugin-node-resolve": "^3.3.0",
-    "rollup-plugin-strip": "^1.1.1",
+    "rollup-plugin-re": "^1.0.7",
     "rollup-plugin-uglify-es": "0.0.1"
   }
 }
