@@ -160,7 +160,14 @@ gulp.task( 'doc', ( done ) => {
  * @description Will run unit tests using karma
  */
 gulp.task( 'unit', ( done ) => {
-    done()
+
+    const benchServer = new karma.Server( {
+        configFile: `${__dirname}/configs/karma.units.conf.js`,
+        singleRun:  true
+    }, done )
+
+    benchServer.start()
+
 } )
 
 /**
