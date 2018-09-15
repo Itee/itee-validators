@@ -4,27 +4,14 @@
  *
  */
 
-/* global suite, benchmark */
+/* global Itee, suite, benchmark */
 
-import { createDataMap } from '../../../TestsUtils'
-import { isBoolean } from '../../../../builds/itee-validators.esm'
+import { isBoolean, isBoolean_alt, isNotBoolean } from '../../../../sources/cores/booleans.js'
 
-export default suite( 'Array iteration', function () {
+export default suite( 'Array iteration', () => {
 
-    benchmark( 'isBoolean()', function () {
-
-        const dataset = createDataMap().strings
-        for ( let i = 0, n = dataset.length ; i < n ; i++ ) {
-            return isBoolean( dataset[ i ] )
-        }
-
-    }, {
-        setup: function () {
-            this.dataset = 0
-        },
-        teardown: function () {
-            delete this.dataset
-        }
-    } )
+    benchmark( 'isBoolean()', Itee.TestsUtils.iterateOverDataMap( isBoolean ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+    benchmark( 'isBoolean_alt()', Itee.TestsUtils.iterateOverDataMap( isBoolean_alt ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+    benchmark( 'isNotBoolean()', Itee.TestsUtils.iterateOverDataMap( isNotBoolean ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
