@@ -58,11 +58,11 @@ export function createDataMap () {
         }
 
         for ( let j = 0, n = booleanDataMap.length ; j < n ; j++ ) {
-            dataMap[ booleanDataMap[ i ] ] = `${booleanDataMap[ i ]}`
+            dataMap[ booleanDataMap[ j ] ] = `${booleanDataMap[ j ]}`
         }
 
         for ( let k = 0, o = numericDataMap.length ; k < o ; k++ ) {
-            dataMap[ numericDataMap[ i ] ] = `${numericDataMap[ i ]}`
+            dataMap[ numericDataMap[ k ] ] = `${numericDataMap[ k ]}`
         }
 
         return dataMap
