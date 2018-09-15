@@ -40,5 +40,21 @@ export default [
             name:   'Itee.Validators',
             file:   'tests/itee-validators.benchs.js'
         }
+    },
+    {
+        input:     'tests/tests.utils.js',
+        plugins:   [
+            commonJs( {
+                include: 'node_modules/**'
+            } ),
+            nodeResolve()
+        ],
+        treeshake: true,
+        output:    {
+            indent: '\t',
+            format: 'iife',
+            name:   'Itee.TestsUtils',
+            file:   'tests/third_party/tests.utils.js'
+        }
     }
 ]
