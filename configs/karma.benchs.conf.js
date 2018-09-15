@@ -29,10 +29,11 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
 
         // list of files / patterns to load in the browser
         files: [
-            'tests/third_party/lodash.js',
-            'tests/third_party/platform.js',
+//            'tests/third_party/lodash.js',
+//            'tests/third_party/platform.js',
 //            'tests/third_party/benchmark.js',
-//            'tests/itee-validators.benchs.js'
+            'tests/third_party/tests.utils.js',
+            'tests/itee-validators.benchs.js'
         ],
 
         // list of files to exclude
