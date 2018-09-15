@@ -17,7 +17,7 @@ export default [
             } ),
             nodeResolve()
         ],
-        treeshake: false,
+        treeshake: true,
         output:    {
             indent: '\t',
             format: 'iife',
@@ -33,7 +33,7 @@ export default [
             } ),
             nodeResolve()
         ],
-        treeshake: false,
+        treeshake: true,
         output:    {
             indent: '\t',
             format: 'iife',

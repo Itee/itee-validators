@@ -8,39 +8,41 @@
 		<script src="./third_party/lodash.js"></script>
 		<script src="./third_party/platform.js"></script>
 		<script src="./third_party/benchmark.js"></script>
-		<script src="./itee-validators.benchs.js"></script>
-		<!--<script>-->
-            <!--var suite = new Benchmark.Suite;-->
-            <!--suite.add( 'RegExp#test', function () {-->
-                     <!--/o/.test( 'Hello World!' );-->
-                 <!--} )-->
-                 <!--.add( 'String#indexOf', function () {-->
-                     <!--'Hello World!'.indexOf( 'o' ) > -1;-->
-                 <!--} )-->
-                 <!--.add( 'String#match', function () {-->
-                     <!--!!'Hello World!'.match( /o/ );-->
-                 <!--} )-->
-                 <!--// add listeners-->
-                 <!--.on( 'start', function () {-->
-                     <!--console.log( 'start' )-->
-                 <!--} )-->
-                 <!--.on( 'cycle', function ( event ) {-->
-                     <!--console.log( String( event.target ) );-->
-                 <!--} )-->
-                 <!--.on( 'abort', function ( event ) {-->
-                     <!--console.log( 'abort' );-->
-                 <!--} )-->
-                 <!--.on( 'error', function ( error ) {-->
-                     <!--console.log( 'error:' + error );-->
-                 <!--} )-->
-                 <!--.on( 'reset', function ( event ) {-->
-                     <!--console.log( 'reset' );-->
-                 <!--} )-->
-                 <!--.on( 'complete', function () {-->
-                     <!--console.log( 'Fastest is ' + this.filter( 'fastest' ).map( 'name' ) );-->
-                 <!--} )-->
-                 <!--// run async-->
-                 <!--.run();-->
-		<!--</script>-->
+		<!--<script src="./itee-validators.benchs.js"></script>-->
+		<script>
+            var suite = new Benchmark.Suite('MyTestSuite');
+            suite.add( 'RegExp#test', function RegExp_test() {
+                     /o/.test( 'Hello World!' );
+                 } )
+                 .add( 'String#indexOf', function String_indexOf() {
+                     'Hello World!'.indexOf( 'o' ) > -1;
+                 } )
+                 .add( 'String#match', function String_match() {
+                     !!'Hello World!'.match( /o/ );
+                 } )
+                 // add listeners
+                 .on( 'start', function onStart() {
+                     console.log( 'start' )
+                 } )
+                 .on( 'cycle', function onCycle( event ) {
+                     console.log( String( event.target ) );
+                 } )
+                 .on( 'abort', function onAbort( event ) {
+                     console.log( 'abort' );
+                 } )
+                 .on( 'error', function onError( error ) {
+                     console.log( 'error:' + error );
+                 } )
+                 .on( 'reset', function onReset( event ) {
+                     console.log( 'reset' );
+                 } )
+                 .on( 'complete', function onComplete() {
+                     console.log( 'Fastest is ' + this.filter( 'fastest' ).map( 'name' ) );
+                 } )
+
+            // run async
+            suite.run()
+
+		</script>
 	</body>
 </html>

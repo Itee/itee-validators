@@ -9,11 +9,6 @@
 import { createDataMap } from '../../../TestsUtils'
 import { isBoolean } from '../../../../builds/itee-validators.esm'
 
-
-
-
-
-
 export default suite( 'Array iteration', function () {
 
     benchmark( 'isBoolean()', function () {

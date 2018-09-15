@@ -1,14 +1,6 @@
 this.Itee = this.Itee || {};
 (function () {
-    'use strict';
-
-    /**
-     * @author [Tristan Valcke]{@link https://github.com/Itee}
-     * @license [MIT]{@link https://opensource.org/licenses/MIT}
-     *
-     * @module sources/cores/voids
-     * @description Export the validation methods about voids notions
-     */
+    'use strict'
 
     /**
      * @author [Tristan Valcke]{@link https://github.com/Itee}
@@ -22,12 +14,12 @@ this.Itee = this.Itee || {};
             null:      null,
             undefined: undefined,
             void:      void(0)
-        };
+        }
 
         const booleanDataMap = {
             true:  true,
             false: false
-        };
+        }
 
         const numericDataMap = {
             negativeInfinity:       Number.NEGATIVE_INFINITY,
@@ -51,7 +43,7 @@ this.Itee = this.Itee || {};
             positiveMaxSafeInteger: Number.MAX_SAFE_INTEGER,
             positiveMaxValue:       Number.MAX_VALUE,
             positiveInfinity:       Number.POSITIVE_INFINITY
-        };
+        }
 
         const stringDataMap = (() => {
 
@@ -62,28 +54,28 @@ this.Itee = this.Itee || {};
                 stringEmpty: new String( '' ),
                 stringBlank: new String( '    ' ),
                 foobar:      'foobar'
-            };
+            }
 
             for ( let i = 0, m = voidDataMap.length ; i < m ; i++ ) {
-                dataMap[ voidDataMap[ i ] ] = `${voidDataMap[ i ]}`;
+                dataMap[ voidDataMap[ i ] ] = `${voidDataMap[ i ]}`
             }
 
             for ( let j = 0, n = booleanDataMap.length ; j < n ; j++ ) {
-                dataMap[ booleanDataMap[ j ] ] = `${booleanDataMap[ j ]}`;
+                dataMap[ booleanDataMap[ j ] ] = `${booleanDataMap[ j ]}`
             }
 
             for ( let k = 0, o = numericDataMap.length ; k < o ; k++ ) {
-                dataMap[ numericDataMap[ k ] ] = `${numericDataMap[ k ]}`;
+                dataMap[ numericDataMap[ k ] ] = `${numericDataMap[ k ]}`
             }
 
             return dataMap
 
-        })();
+        })()
 
         const functionDataMap = {
             classicFunction: function emptyFct () {},
             arrowFunction:   () => {}
-        };
+        }
 
         const arrayDataMap = (() => {
 
@@ -94,10 +86,10 @@ this.Itee = this.Itee || {};
                 multiValued:      [ 0, 1, 2 ],
                 null:             (() => {
 
-                    const nullArray = [];
+                    const nullArray = []
 
                     for ( let index = 0 ; index < 3 ; index++ ) {
-                        nullArray.push( null );
+                        nullArray.push( null )
                     }
 
                     return nullArray
@@ -105,10 +97,10 @@ this.Itee = this.Itee || {};
                 })(),
                 undefined:        (() => {
 
-                    const undefinedArray = [];
+                    const undefinedArray = []
 
                     for ( let index = 0 ; index < 3 ; index++ ) {
-                        undefinedArray.push( undefined );
+                        undefinedArray.push( undefined )
                     }
 
                     return undefinedArray
@@ -116,10 +108,10 @@ this.Itee = this.Itee || {};
                 })(),
                 void:             (() => {
 
-                    const undefinedArray = [];
+                    const undefinedArray = []
 
                     for ( let index = 0 ; index < 3 ; index++ ) {
-                        undefinedArray.push( void(0) );
+                        undefinedArray.push( void(0) )
                     }
 
                     return undefinedArray
@@ -127,10 +119,10 @@ this.Itee = this.Itee || {};
                 })(),
                 voids:            (() => {
 
-                    const array = [];
+                    const array = []
 
                     for ( let key in voidDataMap ) {
-                        array.push( voidDataMap[ key ] );
+                        array.push( voidDataMap[ key ] )
                     }
 
                     return array
@@ -138,10 +130,10 @@ this.Itee = this.Itee || {};
                 })(),
                 booleans:         (() => {
 
-                    const array = [];
+                    const array = []
 
                     for ( let key in booleanDataMap ) {
-                        array.push( booleanDataMap[ key ] );
+                        array.push( booleanDataMap[ key ] )
                     }
 
                     return array
@@ -149,10 +141,10 @@ this.Itee = this.Itee || {};
                 })(),
                 numbers:          (() => {
 
-                    const array = [];
+                    const array = []
 
                     for ( let key in numericDataMap ) {
-                        array.push( numericDataMap[ key ] );
+                        array.push( numericDataMap[ key ] )
                     }
 
                     return array
@@ -160,10 +152,10 @@ this.Itee = this.Itee || {};
                 })(),
                 strings:          (() => {
 
-                    const array = [];
+                    const array = []
 
                     for ( let key in stringDataMap ) {
-                        array.push( stringDataMap[ key ] );
+                        array.push( stringDataMap[ key ] )
                     }
 
                     return array
@@ -171,10 +163,10 @@ this.Itee = this.Itee || {};
                 })(),
                 functions:        (() => {
 
-                    const array = [];
+                    const array = []
 
                     for ( let key in functionDataMap ) {
-                        array.push( functionDataMap[ key ] );
+                        array.push( functionDataMap[ key ] )
                     }
 
                     return array
@@ -189,11 +181,11 @@ this.Itee = this.Itee || {};
                     }
                 ],
                 arrays:           [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
-            };
+            }
 
             return dataMap
 
-        })();
+        })()
 
         const typedArrayDataMap = {
             int8Array:    new Int8Array( [ 1, 2, 3 ] ),
@@ -204,7 +196,7 @@ this.Itee = this.Itee || {};
             uInt32Array:  new Uint32Array( [ 1, 2, 3 ] ),
             float32Array: new Float32Array( [ 1.0, 2.0, 3.0 ] ),
             float64Array: new Float64Array( [ 1.0, 2.0, 3.0 ] )
-        };
+        }
 
         const objectDataMap = [
             {},
@@ -212,7 +204,7 @@ this.Itee = this.Itee || {};
             { null: null },
             { undefined: undefined },
             { foo: 'bar' }
-        ];
+        ]
 
         return {
             voids:       voidDataMap,
@@ -222,7 +214,7 @@ this.Itee = this.Itee || {};
             functions:   functionDataMap,
             arrays:      arrayDataMap,
             typedArrays: typedArrayDataMap,
-            objects:     objectDataMap,
+            objects:     objectDataMap
         }
 
     }
@@ -231,76 +223,61 @@ this.Itee = this.Itee || {};
      * @author [Tristan Valcke]{@link https://github.com/Itee}
      * @license [MIT]{@link https://opensource.org/licenses/MIT}
      *
+     * @module sources/cores/voids
+     * @description Export the validation methods about voids notions
      */
 
-    function isString_1 ( val ) {
-        return (typeof val === 'string' || ((!!val && typeof val === 'object') && Object.prototype.toString.call( val ) === '[object String]'))
+    /**
+     * @author [Tristan Valcke]{@link https://github.com/Itee}
+     * @license [MIT]{@link https://opensource.org/licenses/MIT}
+     *
+     * @module sources/cores/booleans
+     * @description Export the validation methods about booleans
+     *
+     */
+
+    /**
+     * Check if given data is a boolean
+     *
+     * @param data {any} The data to check against the booleaness
+     * @returns {boolean} true if data is a boolean, false otherwise.
+     */
+    function isBoolean ( data ) {
+        return (typeof data === 'boolean')
     }
-
-    function isString_2 ( val ) {
-        return (Object.prototype.toString.call( val ) === "[object String]")
-    }
-
-    function isString_3 ( val ) {
-        return (val !== null && val !== undefined && val.constructor === String)
-    }
-
-    new Benchmark
-        .Suite( 'Itee#Validators#Strings#isString()' )
-        .add( 'typeof', () => {
-
-            const _dataSet = createDataMap();
-
-        } )
-        .add( 'typeof || instanceof', () => {
-
-            const _dataSet = createDataMap();
-
-        } )
-        .add( 'Object.prototype.toString', () => {
-
-            const _dataSet = createDataMap();
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                isString_1( _dataSet[ i ] );
-            }
-
-        } )
-        .add( 'constructor', () => {
-
-            const _dataSet = createDataMap();
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                isString_2( _dataSet[ i ] );
-            }
-
-        } )
-        .add( 'typeof || !!val || toString', () => {
-
-            const _dataSet = createDataMap();
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                isString_3( _dataSet[ i ] );
-            }
-
-        } )
-        .add( 'val+""', () => {
-
-            const _dataSet = createDataMap();
-
-        } )
-        // add listeners
-        .on( 'cycle', event => {
-            console.log( String( event.target ) );
-        } )
-        .on( 'complete', function onComplet () {
-            console.log( `Fastest is ${this.filter( 'fastest' ).map( 'name' )}` );
-        } )
-        // run async
-        .run();
 
     /**
      * @author [Tristan Valcke]{@link https://github.com/Itee}
      * @license [MIT]{@link https://opensource.org/licenses/MIT}
      *
      */
+
+    suite( 'Array iteration', function () {
+
+        benchmark( 'isBoolean()', function () {
+
+            const dataset = createDataMap().strings
+            for ( let i = 0, n = dataset.length ; i < n ; i++ ) {
+                return isBoolean( dataset[ i ] )
+            }
+
+        }, {
+            setup:    function () {
+                this.dataset = 0
+            },
+            teardown: function () {
+                delete this.dataset
+            }
+        } )
+
+    } )
+
+    /**
+     * @author [Tristan Valcke]{@link https://github.com/Itee}
+     * @license [MIT]{@link https://opensource.org/licenses/MIT}
+     *
+     */
+    //import './cores/strings/isString.benchs'
 
     //import './cores/cores.benchs'
     //import './maths/maths.benchs'
@@ -498,4 +475,4 @@ this.Itee = this.Itee || {};
     //    }
     //});
 
-}());
+}())
