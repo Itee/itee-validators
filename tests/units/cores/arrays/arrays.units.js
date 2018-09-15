@@ -6,7 +6,7 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { createDataMap } from '../../../TestsUtils'
+import { createDataMap } from '../../../tests.utils'
 import { isArrayUnits } from './isArray.units'
 import { isArrayOfArrayUnits } from './isArrayOfArray.units'
 import { isArrayOfMultiElementUnits } from './isArrayOfMultiElement.units'
