@@ -13,11 +13,12 @@
     "clean": "gulp clean",
     "lint": "gulp lint",
     "doc": "gulp doc",
+    "build-test": "gulp build-test",
     "bench": "gulp bench",
     "unit": "gulp unit",
     "test": "gulp test",
-    "build-test": "gulp build-test",
-    "build": "gulp build"
+    "build": "gulp build",
+    "release": "gulp release"
   },
   "repository": {
     "type": "git",
