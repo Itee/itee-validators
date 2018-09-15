@@ -205,7 +205,7 @@ gulp.task( 'bench', ( done ) => {
  * @method npm run test
  * @description Will run unit tests and benchmarks using karma
  */
-gulp.task( 'test', gulp.parallel( 'unit', 'bench' ) )
+gulp.task( 'test', gulp.series( 'unit', 'bench' ) )
 
 ///
 /// BUILDS
