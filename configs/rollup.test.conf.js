@@ -18,7 +18,7 @@ function createBuildsConfigs ( /*options*/ ) {
 
     return [
         {
-            input:   'tests/units/main.units.js',
+            input:   'tests/units/itee-validators.units.js',
             plugins: [
                 commonJs( {
                     include: 'node_modules/**'
@@ -30,7 +30,7 @@ function createBuildsConfigs ( /*options*/ ) {
                 indent: '\t',
                 format: 'iife',
                 name:   'Itee.Units',
-                file:   'tests/itee-validators.units.js'
+                file:   'tests/builds/itee-validators.units.js'
             }
         },
         {

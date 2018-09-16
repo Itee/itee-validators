@@ -29,7 +29,7 @@ import { isZeroUnits } from './isZero.units'
 import { isZeroNegativeUnits } from './isZeroNegative.units'
 import { isZeroPositiveUnits } from './isZeroPositive.units'
 
-function NumbersUnits () {
+function _numbersUnits () {
 
     describe( 'Numbers', () => {
 
@@ -71,4 +71,4 @@ function NumbersUnits () {
 
 }
 
-export { NumbersUnits }
+export { _numbersUnits }

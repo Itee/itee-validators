@@ -6,16 +6,16 @@
 
 /* global describe */
 
-import { TemperaturesUnits } from './temperatures/temperatures.units'
+import { _temperaturesUnits } from './temperatures/_temperatures.units'
 
-function PhysicsUnits () {
+function _physicsUnits () {
 
     describe( 'Physics', () => {
 
-        TemperaturesUnits.call( this )
+        _temperaturesUnits.call( this )
 
     } )
 
 }
 
-export { PhysicsUnits }
+export { _physicsUnits }

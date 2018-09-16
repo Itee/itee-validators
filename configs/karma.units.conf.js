@@ -28,7 +28,7 @@ function CreateKarmaUnitsConfiguration ( config ) {
 
         // list of files / patterns to load in the browser
         files: [
-            'tests/itee-validators.units.js'
+            'tests/builds/itee-validators.units.js'
         ],
 
         // list of files to exclude

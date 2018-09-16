@@ -12,7 +12,7 @@ import { isNotObjectUnits } from './isNotObject.units'
 import { isEmptyObjectUnits } from './isEmptyObject.units'
 import { isNotEmptyObjectUnits } from './isNotEmptyObject.units'
 
-function ObjectsUnits () {
+function _objectsUnits () {
 
     describe( 'Objects', () => {
 
@@ -37,4 +37,4 @@ function ObjectsUnits () {
 
 }
 
-export { ObjectsUnits }
+export { _objectsUnits }

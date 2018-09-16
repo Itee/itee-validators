@@ -24,7 +24,7 @@ import { isNotArrayOfStringUnits } from './isNotArrayOfString.units'
 import { isNotArrayOfUndefinedUnits } from './isNotArrayOfUndefined.units'
 import { isNotEmptyArrayUnits } from './isNotEmptyArray.units'
 
-function ArraysUnits () {
+function _arraysUnits () {
 
     describe( 'Arrays', () => {
 
@@ -62,6 +62,6 @@ function ArraysUnits () {
 
 }
 
-export { ArraysUnits }
+export { _arraysUnits }
 
 

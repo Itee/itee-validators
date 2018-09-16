@@ -16,7 +16,7 @@ import { isNotKelvinUnits } from './isNotKelvin.units'
 import { isNotTemperatureUnits } from './isNotTemperature.units'
 import { isTemperatureUnits } from './isTemperature.units'
 
-function TemperaturesUnits () {
+function _temperaturesUnits () {
 
     describe( 'Temperatures', () => {
 
@@ -45,5 +45,5 @@ function TemperaturesUnits () {
 
 }
 
-export { TemperaturesUnits }
+export { _temperaturesUnits }
 

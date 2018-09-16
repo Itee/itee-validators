@@ -6,7 +6,7 @@
 
 /* global describe */
 
-function MathsUnits () {
+function _mathsUnits () {
 
     describe( 'Maths', () => {
 
@@ -16,4 +16,4 @@ function MathsUnits () {
 
 }
 
-export { MathsUnits }
+export { _mathsUnits }
