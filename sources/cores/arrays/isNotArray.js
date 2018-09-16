@@ -8,6 +8,8 @@
  *
  */
 
+import { isArray } from './isArray'
+
 /**
  * Check if given data is not an array
  *
@@ -18,7 +20,8 @@ export function isNotArray ( data ) {
     return !Array.isArray( data )
 }
 
-// alt
-//export function isNotArray_1 ( data ) {
-//    return !isArray( data )
-//}
+// #if IS_REMOVE
+export function isNotArray_0 ( data ) {
+    return !isArray( data )
+}
+// #endif

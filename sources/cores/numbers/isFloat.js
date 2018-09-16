@@ -18,11 +18,12 @@ export function isFloat ( data ) {
     return data % 1 !== 0
 }
 
-// Alt
-//export function isFloat_1 ( n ) {
-//    return n === +n && n !== (n | 0)
-//}
-//
-//export function isFloat_2 ( x ) {
-//    return !!(x % 1)
-//}
+// #if IS_REMOVE
+export function isFloat_1 ( n ) {
+    return n === +n && n !== (n | 0)
+}
+
+export function isFloat_2 ( x ) {
+    return !!(x % 1)
+}
+// #endif
