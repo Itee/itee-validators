@@ -18,6 +18,8 @@ export function isNumber ( data ) {
     return (typeof data === 'number' && !Number.isNaN( data ))
 }
 
+// #if IS_REMOVE
 export function isNumber_1 ( data ) {
     return (Number( data ) === data)
 }
+// #endif

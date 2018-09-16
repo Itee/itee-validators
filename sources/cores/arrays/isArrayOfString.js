@@ -38,24 +38,25 @@ export function isArrayOfString ( data ) {
 
 }
 
-//alt
-//export function isArrayOfString_1 ( data ) {
-//
-//    if ( !Array.isArray( data ) ) {
-//        return false
-//    }
-//
-//    const dataLength = data.length
-//    if ( dataLength === 0 ) {
-//        return false
-//    }
-//
-//    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
-//        if ( typeof data[ index ] !== 'string' ) {
-//            return false
-//        }
-//    }
-//
-//    return true
-//
-//}
+// #if IS_REMOVE
+export function isArrayOfString_1 ( data ) {
+
+    if ( !Array.isArray( data ) ) {
+        return false
+    }
+
+    const dataLength = data.length
+    if ( dataLength === 0 ) {
+        return false
+    }
+
+    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
+        if ( typeof data[ index ] !== 'string' ) {
+            return false
+        }
+    }
+
+    return true
+
+}
+// #endif

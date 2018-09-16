@@ -6,7 +6,7 @@
 
 /* global Itee, suite, benchmark */
 
-import { isString, isString_0, isString_1, isString_2, isString_3, isString_4 } from '../../../../sources/cores/strings'
+import { isString, isString_0, isString_1, isString_2, isString_3, isString_4 } from '../../../../sources/cores/strings/isString'
 
 
 export default suite( 'isString', () => {

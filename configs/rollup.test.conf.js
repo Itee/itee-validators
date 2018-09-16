@@ -34,7 +34,7 @@ function createBuildsConfigs ( /*options*/ ) {
             }
         },
         {
-            input:   'tests/benchmarks/main.benchs.js',
+            input:   'tests/benchmarks/itee-validators.benchs.js',
             plugins: [
                 commonJs( {
                     include: 'node_modules/**'
@@ -46,7 +46,7 @@ function createBuildsConfigs ( /*options*/ ) {
                 indent: '\t',
                 format: 'iife',
                 name:   'Itee.Benchs',
-                file:   'tests/itee-validators.benchs.js'
+                file:   'tests/builds/itee-validators.benchs.js'
             }
         },
         {

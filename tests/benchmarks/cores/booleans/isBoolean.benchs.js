@@ -6,7 +6,7 @@
 
 /* global Itee, suite, benchmark */
 
-import { isBoolean, isBoolean_alt } from '../../../../sources/cores/booleans.js'
+import { isBoolean, isBoolean_alt } from '../../../../sources/cores/booleans/isBoolean'
 
 
 export default suite( 'isBoolean', () => {
