@@ -29,23 +29,24 @@
 
 /* eslint-env node */
 
-const gulp   = require( 'gulp' )
-const util   = require( 'gulp-util' )
-const jsdoc  = require( 'gulp-jsdoc3' )
-const eslint = require( 'gulp-eslint' )
-const del    = require( 'del' )
-const rollup = require( 'rollup' )
-const path   = require( 'path' )
-const karma  = require( 'karma' )
+const gulp      = require( 'gulp' )
+const jsdoc     = require( 'gulp-jsdoc3' )
+const eslint    = require( 'gulp-eslint' )
+const del       = require( 'del' )
+const parseArgs = require( 'minimist' )
+const rollup    = require( 'rollup' )
+const path      = require( 'path' )
+const karma     = require( 'karma' )
+const log       = require( 'fancy-log' )
+const colors    = require( 'ansi-colors' )
+const red       = colors.red
+const green     = colors.green
+const blue      = colors.blue
+const cyan      = colors.cyan
+const yellow    = colors.yellow
+const magenta   = colors.magenta
 
-const log     = util.log
-const colors  = util.colors
-const red     = colors.red
-const green   = colors.green
-const blue    = colors.blue
-const cyan    = colors.cyan
-const yellow  = colors.yellow
-const magenta = colors.magenta
+const packageVersion = require('./package.json').version
 
 /**
  * @method npm run help ( default )
@@ -53,35 +54,50 @@ const magenta = colors.magenta
  */
 gulp.task( 'help', ( done ) => {
 
+    log( '' )
+    log( '' )
     log( '====================================================' )
-    log( '|                                                  |' )
-    log( '|                Itee Client - HELP                |' )
-    log( '|                                                  |' )
+    log( '|                      HELP                        |' )
+    log( '|                 Itee Validators                  |' )
+    log( `|                      v${packageVersion}                      |` )
     log( '====================================================' )
     log( '' )
     log( 'Available commands are:' )
-    log( blue( 'npm run' ), cyan( 'help' ), ' - Display this help.' )
-    log( blue( 'npm run' ), cyan( 'clean' ), ' - Will delete builds and temporary folders.' )
-    log( blue( 'npm run' ), cyan( 'lint' ), ' - Will run the eslint in pedantic mode with auto fix when possible.' )
-    log( blue( 'npm run' ), cyan( 'doc' ), ' - Will run jsdoc, and create documentation under `documentation` folder, using the docdash theme' )
-    log( blue( 'npm run' ), cyan( 'test' ), ' - Will run the test framworks (unit and bench), and create reports under `test/report` folder, using the mochawesome theme' )
-    log( blue( 'npm run' ), cyan( 'unit' ), ' - Will run the karma server for unit tests.', red( '( /!\\ Deprecated: will be remove as soon as test script is fixed !!! )' ) )
-    log( blue( 'npm run' ), cyan( 'bench' ), ' - Will run the karma server for benchmarks.', red( '( /!\\ Deprecated: will be remove as soon as test script is fixed !!! )' ) )
-    log( blue( 'npm run' ), cyan( 'build' ), yellow( '--' ), green( '<options>' ), ' - Will build the application for development and/or production environments.', yellow( 'Note: The two dash are only required if you provide options !' ) )
-    log( '  The available options are:' )
-    log( '      ', green( '-d' ), 'or', green( '--dev' ), ' - to build in development environment' )
-    log( '      ', green( '-p' ), 'or', green( '--prod' ), ' - to build in production environment' )
-    log( '       (in case no environment is provide both will be compile)' )
     log( '' )
-    log( '      ', green( '-f:' ), magenta( '<format>' ), 'or', green( '--format:' ), magenta( '<format>' ), ' - to specify the output build type.' )
-    log( '       where format could be any of:', magenta( 'amd' ), magenta( 'cjs' ), magenta( 'es' ), magenta( 'iife' ), magenta( 'umd' ) )
+    log( '\t', blue( 'npm run' ), cyan( 'help' ), ' - Display this help.' )
+    log( '\t', blue( 'npm run' ), cyan( 'clean' ), ' - Will delete builds and temporary folders.' )
+    log( '\t', blue( 'npm run' ), cyan( 'lint' ), ' - Will run the eslint in pedantic mode with auto fix when possible.' )
+    log( '\t', blue( 'npm run' ), cyan( 'doc' ), ' - Will run jsdoc, and create documentation under `documentation` folder, using the docdash theme' )
+    log( '\t', blue( 'npm run' ), cyan( 'test' ), ' - Will run the test framworks (unit and bench), and create reports under `test/report` folder, using the mochawesome theme' )
+    log( '\t', blue( 'npm run' ), cyan( 'unit' ), ' - Will run the karma server for unit tests.' )
+    log( '\t', blue( 'npm run' ), cyan( 'bench' ), ' - Will run the karma server for benchmarks.' )
+    log( '\t', blue( 'npm run' ), cyan( 'build-test' ), ' - Will build the unit and bench tests files.' )
+    log( '\t', blue( 'npm run' ), cyan( 'build' ), yellow( '--' ), green( '<options>' ), ' - Will build the application for development and/or production environments.', yellow( 'Note: The two dash are only required if you provide options !' ) )
     log( '' )
-    log( '      ', green( '-s' ), 'or', green( '--sourcemap' ), ' - to build with related source map' )
+    log( '\t The available', green( '<options>' ), 'are:' )
     log( '' )
-    log( blue( 'npm run' ), cyan( 'release' ), ' - Will run all the lint, test stuff, and if succeed will build the application in both environments.' )
+    log( '\t\t', green( '-n' ), 'or', green( '--name' ), ' - The export name of the builded application', red( '(required for UMD module)' ), cyan('[Default: ""]'), '.' )
+    log( '' )
+    log( '\t\t', green( '-i' ), 'or', green( '--input' ), ' - The main file path to build', cyan('[Default: "sources/main.js"]'), '.' )
+    log( '' )
+    log( '\t\t', green( '-o' ), 'or', green( '--output' ), ' - The folder where output the build', cyan('[Default: "builds"]'), '.' )
+    log( '' )
+    log( '\t\t', green( '-f:' ), magenta( '<format>' ), 'or', green( '--format:' ), magenta( '<format>' ), ' - to specify the output build type', cyan('[Default: "amd,cjs,es,iife,umd"]'), '.' )
+    log( '\t\t', 'where format could be any of:', magenta( 'amd' ), magenta( 'cjs' ), magenta( 'es' ), magenta( 'iife' ), magenta( 'umd' ) )
+    log( '' )
+    log( '\t\t', green( '-e:' ), magenta( '<env>' ), 'or', green( '--env:' ), magenta( '<env>' ), ' - to specify the build environment', cyan('[Default: "dev"]'), '.' )
+    log( '\t\t', 'where env could be any of:', magenta( 'dev' ), magenta( 'prod' ) )
+    log( '' )
+    log( '\t\t', green( '-s' ), 'or', green( '--sourcemap' ), ' - to build with related source map', cyan('[Default: true]'), '.' )
+    log( '' )
+    log( '\t\t', green( '-t' ), 'or', green( '--treeshake' ), ' - allow to perform treeshaking when building', cyan('[Default: true]'), '.' )
+    log( '' )
+    log( '\t', blue( 'npm run' ), cyan( 'release' ), ' - Will run all the lint, test stuff, and if succeed will build the application.' )
     log( '' )
     log( 'In case you have', blue( 'gulp' ), 'installed globally, you could use also:' )
-    log( blue( 'gulp' ), cyan( 'command' ), ' - It will perform the command like using "npm run" but with less characters to type... Because you\'re a developer, right ?' )
+    log( '\t', blue( 'gulp' ), cyan( 'command' ), ' - It will perform the command like using "npm run" but with less characters to type... Because you\'re a developer, right ?' )
+    log( '' )
+    log( '' )
 
     done()
 
@@ -113,7 +129,7 @@ gulp.task( 'lint', () => {
         'tests/**/*.js',
         '!tests/third_party/*.js',
         '!tests/itee-validators.benchs.js',
-        '!tests/itee-validators.units.js',
+        '!tests/itee-validators.units.js'
     ]
 
     return gulp.src( filesToLint, { base: './' } )
@@ -166,7 +182,7 @@ gulp.task( 'unit', ( done ) => {
         singleRun:  true
     }, ( exitCode ) => {
 
-        if( exitCode !== 0 ) {
+        if ( exitCode !== 0 ) {
             done( `Karma server exit with code ${exitCode}` )
         }
 
@@ -189,7 +205,7 @@ gulp.task( 'bench', ( done ) => {
         singleRun:  true
     }, ( exitCode ) => {
 
-        if( exitCode !== 0 ) {
+        if ( exitCode !== 0 ) {
             done( `Karma server exit with code ${exitCode}` )
         }
 
@@ -211,103 +227,39 @@ gulp.task( 'test', gulp.series( 'unit', 'bench' ) )
 /// BUILDS
 ///
 
-
 gulp.task( 'build-test', ( done ) => {
 
-//    const options = processArguments( process.argv )
-//    const configs = createBuildsConfigs( options )
+    const options = parseArgs( process.argv, {
+        string:  [ 'n', 'i', 'f', 'e' ],
+        boolean: [ 's', 't' ],
+        default: {
+            n: 'itee-validators',
+            i: path.join( __dirname, 'sources' ),
+            o: path.join( __dirname, 'builds' ),
+            f: 'es,cjs,iife,umd',
+            e: 'dev',
+            s: true,
+            t: true
+        },
+        alias: {
+            n: 'name',
+            i: 'input',
+            o: 'output',
+            f: 'format',
+            e: 'env',
+            s: 'sourcemap',
+            t: 'treeshake'
+        }
+    } )
 
-    const configs = require('./configs/rollup.test.conf')
+    const configs = require( './configs/rollup.test.conf' )(options)
 
     nextBuild()
-
-//    function processArguments ( processArgv ) {
-//        'use strict'
-//
-//        let defaultOptions = {
-//            fileName:     'itee-validators',
-//            inputPath:    path.join( __dirname, 'sources' ),
-//            outputPath:   path.join( __dirname, 'builds' ),
-//            environments: [ 'development', 'production' ],
-//            formats:      [ 'amd', 'cjs', 'es', 'iife', 'umd' ],
-//            sourceMap:    false
-//        }
-//
-//        const argv = processArgv.slice( 3 ) // Ignore nodejs, script paths and gulp params
-//        argv.forEach( argument => {
-//
-//            if ( argument.indexOf( '-n' ) > -1 || argument.indexOf( '--name' ) > -1 ) {
-//
-//                defaultOptions.fileName = argument.split( ':' )[ 1 ]
-//
-//            } else if ( argument.indexOf( '-i' ) > -1 || argument.indexOf( '--input' ) > -1 ) {
-//
-//                defaultOptions.inputPath = argument.split( ':' )[ 1 ]
-//
-//            } else if ( argument.indexOf( '-o' ) > -1 || argument.indexOf( '--output' ) > -1 ) {
-//
-//                defaultOptions.outputPath = argument.split( ':' )[ 1 ]
-//
-//            } else if ( argument.indexOf( '-f' ) > -1 || argument.indexOf( '--format' ) > -1 ) {
-//
-//                const splits    = argument.split( ':' )
-//                const splitPart = splits[ 1 ]
-//
-//                defaultOptions.formats = []
-//                defaultOptions.formats.push( splitPart )
-//
-//            } else if ( argument.indexOf( '-d' ) > -1 || argument.indexOf( '--dev' ) > -1 ) {
-//
-//                defaultOptions.environments = []
-//                defaultOptions.environments.push( 'development' )
-//
-//            } else if ( argument.indexOf( '-p' ) > -1 || argument.indexOf( '--prod' ) > -1 ) {
-//
-//                defaultOptions.environments = []
-//                defaultOptions.environments.push( 'production' )
-//
-//            } else if ( argument.indexOf( '-s' ) > -1 || argument.indexOf( '--sourcemap' ) > -1 ) {
-//
-//                defaultOptions.sourceMap = true
-//
-//            } else {
-//
-//                throw new Error( `Build Script: invalid argument ${argument}. Type \`npm run help build\` to display available argument.` )
-//
-//            }
-//
-//        } )
-//
-//        return defaultOptions
-//
-//    }
-//
-//    function createBuildsConfigs ( options ) {
-//        'use strict'
-//
-//        let configs = []
-//
-//        for ( let formatIndex = 0, numberOfFormats = options.formats.length ; formatIndex < numberOfFormats ; ++formatIndex ) {
-//            const format = options.formats[ formatIndex ]
-//
-//            for ( let envIndex = 0, numberOfEnvs = options.environments.length ; envIndex < numberOfEnvs ; ++envIndex ) {
-//                const environment  = options.environments[ envIndex ]
-//                const onProduction = (environment === 'production')
-//
-//                const config = require( './configs/rollup.conf' )( options.fileName, options.inputPath, options.outputPath, format, onProduction, options.sourceMap )
-//
-//                configs.push( config )
-//            }
-//        }
-//
-//        return configs
-//
-//    }
 
     function nextBuild ( error ) {
         'use strict'
 
-        if( error ) {
+        if ( error ) {
 
             done( error )
 
@@ -317,20 +269,15 @@ gulp.task( 'build-test', ( done ) => {
 
         } else {
 
-            build( configs.pop(), nextBuild )
+            const config = configs.pop()
+            log( `Building ${config.output.file}` )
+
+            rollup.rollup( config )
+                  .then( ( bundle ) => { return bundle.write( config.output ) } )
+                  .then( () => { nextBuild() } )
+                  .catch( nextBuild )
 
         }
-
-    }
-
-    function build ( config, done ) {
-
-        log( `Building ${config.output.file}` )
-
-        rollup.rollup( config )
-              .then( ( bundle ) => { return bundle.write( config.output ) } )
-              .then( () => { done() } )
-              .catch( done )
 
     }
 
@@ -342,100 +289,37 @@ gulp.task( 'build-test', ( done ) => {
  */
 gulp.task( 'build', ( done ) => {
 
-    //    const options = processArguments( process.argv )
-    //    const configs = createBuildsConfigs( options )
+    const options = parseArgs( process.argv, {
+        string:  [ 'n', 'i', 'f', 'e' ],
+        boolean: [ 's', 't' ],
+        default: {
+            n: 'Itee.Validators',
+            i: path.join( __dirname, 'sources/itee-validators.js' ),
+            o: path.join( __dirname, 'builds' ),
+            f: 'es,cjs,iife,umd',
+            e: 'dev',
+            s: true,
+            t: true
+        },
+        alias: {
+            n: 'name',
+            i: 'input',
+            o: 'output',
+            f: 'format',
+            e: 'env',
+            s: 'sourcemap',
+            t: 'treeshake'
+        }
+    } )
 
-    const configs = require('./configs/rollup.conf')
+    const configs = require( './configs/rollup.conf' )(options)
 
     nextBuild()
-
-    //    function processArguments ( processArgv ) {
-    //        'use strict'
-    //
-    //        let defaultOptions = {
-    //            fileName:     'itee-validators',
-    //            inputPath:    path.join( __dirname, 'sources' ),
-    //            outputPath:   path.join( __dirname, 'builds' ),
-    //            environments: [ 'development', 'production' ],
-    //            formats:      [ 'amd', 'cjs', 'es', 'iife', 'umd' ],
-    //            sourceMap:    false
-    //        }
-    //
-    //        const argv = processArgv.slice( 3 ) // Ignore nodejs, script paths and gulp params
-    //        argv.forEach( argument => {
-    //
-    //            if ( argument.indexOf( '-n' ) > -1 || argument.indexOf( '--name' ) > -1 ) {
-    //
-    //                defaultOptions.fileName = argument.split( ':' )[ 1 ]
-    //
-    //            } else if ( argument.indexOf( '-i' ) > -1 || argument.indexOf( '--input' ) > -1 ) {
-    //
-    //                defaultOptions.inputPath = argument.split( ':' )[ 1 ]
-    //
-    //            } else if ( argument.indexOf( '-o' ) > -1 || argument.indexOf( '--output' ) > -1 ) {
-    //
-    //                defaultOptions.outputPath = argument.split( ':' )[ 1 ]
-    //
-    //            } else if ( argument.indexOf( '-f' ) > -1 || argument.indexOf( '--format' ) > -1 ) {
-    //
-    //                const splits    = argument.split( ':' )
-    //                const splitPart = splits[ 1 ]
-    //
-    //                defaultOptions.formats = []
-    //                defaultOptions.formats.push( splitPart )
-    //
-    //            } else if ( argument.indexOf( '-d' ) > -1 || argument.indexOf( '--dev' ) > -1 ) {
-    //
-    //                defaultOptions.environments = []
-    //                defaultOptions.environments.push( 'development' )
-    //
-    //            } else if ( argument.indexOf( '-p' ) > -1 || argument.indexOf( '--prod' ) > -1 ) {
-    //
-    //                defaultOptions.environments = []
-    //                defaultOptions.environments.push( 'production' )
-    //
-    //            } else if ( argument.indexOf( '-s' ) > -1 || argument.indexOf( '--sourcemap' ) > -1 ) {
-    //
-    //                defaultOptions.sourceMap = true
-    //
-    //            } else {
-    //
-    //                throw new Error( `Build Script: invalid argument ${argument}. Type \`npm run help build\` to display available argument.` )
-    //
-    //            }
-    //
-    //        } )
-    //
-    //        return defaultOptions
-    //
-    //    }
-    //
-    //    function createBuildsConfigs ( options ) {
-    //        'use strict'
-    //
-    //        let configs = []
-    //
-    //        for ( let formatIndex = 0, numberOfFormats = options.formats.length ; formatIndex < numberOfFormats ; ++formatIndex ) {
-    //            const format = options.formats[ formatIndex ]
-    //
-    //            for ( let envIndex = 0, numberOfEnvs = options.environments.length ; envIndex < numberOfEnvs ; ++envIndex ) {
-    //                const environment  = options.environments[ envIndex ]
-    //                const onProduction = (environment === 'production')
-    //
-    //                const config = require( './configs/rollup.conf' )( options.fileName, options.inputPath, options.outputPath, format, onProduction, options.sourceMap )
-    //
-    //                configs.push( config )
-    //            }
-    //        }
-    //
-    //        return configs
-    //
-    //    }
 
     function nextBuild ( error ) {
         'use strict'
 
-        if( error ) {
+        if ( error ) {
 
             done( error )
 
@@ -445,20 +329,15 @@ gulp.task( 'build', ( done ) => {
 
         } else {
 
-            build( configs.pop(), nextBuild )
+            const config = configs.pop()
+            log( `Building ${config.output.file}` )
+
+            rollup.rollup( config )
+                  .then( ( bundle ) => { return bundle.write( config.output ) } )
+                  .then( () => { nextBuild() } )
+                  .catch( nextBuild )
 
         }
-
-    }
-
-    function build ( config, done ) {
-
-        log( `Building ${config.output.file}` )
-
-        rollup.rollup( config )
-              .then( ( bundle ) => { return bundle.write( config.output ) } )
-              .then( () => { done() } )
-              .catch( done )
 
     }
 
