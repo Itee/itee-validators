@@ -4,6 +4,6 @@
  *
  */
 
-import './cores/cores.benchs'
-import './maths/maths.benchs'
-import './physics/physics.benchs'
+import './cores/_cores.benchs'
+import './maths/_maths.benchs'
+import './physics/_physics.benchs'
