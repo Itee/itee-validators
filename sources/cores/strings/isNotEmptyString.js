@@ -1,0 +1,27 @@
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @file Todo
+ *
+ * @example Todo
+ *
+ */
+
+import { isNotString } from './isNotString'
+
+/**
+ * Check if given data is not an empty string
+ *
+ * @param data {any} The data to check against the emptiness of the string
+ * @returns {boolean} true if data is not an empty string, false otherwise.
+ */
+export function isNotEmptyString ( data ) {
+
+    if ( isNotString( data ) ) {
+        throw new TypeError( 'Expect a string !' )
+    }
+
+    return (data.length > 0)
+
+}
