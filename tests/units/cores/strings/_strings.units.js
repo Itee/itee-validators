@@ -14,7 +14,7 @@ import { isNotEmptyStringUnits } from './isNotEmptyString.units'
 import { isBlankStringUnits } from './isBlankString.units'
 import { isNotBlankStringUnits } from './isNotBlankString.units'
 
-function StringsUnits () {
+function _stringsUnits () {
 
     describe( 'Strings', () => {
 
@@ -41,4 +41,4 @@ function StringsUnits () {
 
 }
 
-export { StringsUnits }
+export { _stringsUnits }

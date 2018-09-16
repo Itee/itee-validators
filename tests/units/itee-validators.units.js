@@ -6,9 +6,9 @@
 
 /* global describe */
 
-import { CoresUnits }   from './cores/cores.units'
-import { MathsUnits }   from './maths/maths.units'
-import { PhysicsUnits } from './physics/physics.units'
+import { _coresUnits }   from './cores/_cores.units'
+import { _mathsUnits }   from './maths/_maths.units'
+import { _physicsUnits } from './physics/_physics.units'
 
 const root = typeof window !== 'undefined' ? window :
     typeof global !== 'undefined' ? global :
@@ -16,8 +16,8 @@ const root = typeof window !== 'undefined' ? window :
 
 describe( 'Itee#Validators', () => {
 
-    CoresUnits.call( root )
-    MathsUnits.call( root )
-    PhysicsUnits.call( root )
+    _coresUnits.call( root )
+    _mathsUnits.call( root )
+    _physicsUnits.call( root )
 
 } )

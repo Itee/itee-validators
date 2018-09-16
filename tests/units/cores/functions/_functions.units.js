@@ -10,7 +10,7 @@ import { createDataMap } from '../../../tests.utils'
 import { isFunctionUnits } from './isFunction.units'
 import { isNotFunctionUnits } from './isNotFunction.units'
 
-function FunctionsUnits () {
+function _functionsUnits () {
 
     describe( 'Functions', () => {
 
@@ -33,4 +33,4 @@ function FunctionsUnits () {
 
 }
 
-export { FunctionsUnits }
+export { _functionsUnits }
