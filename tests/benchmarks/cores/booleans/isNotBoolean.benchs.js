@@ -6,7 +6,7 @@
 
 /* global Itee, suite, benchmark */
 
-import { isNotBoolean, isNotBoolean_negbase } from '../../../../sources/cores/booleans.js'
+import { isNotBoolean, isNotBoolean_negbase } from '../../../../sources/cores/booleans/isNotBoolean'
 
 
 export default suite( 'isNotBoolean', () => {
