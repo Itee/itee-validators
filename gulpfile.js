@@ -30,7 +30,6 @@
 /* eslint-env node */
 
 const gulp      = require( 'gulp' )
-const util      = require( 'gulp-util' )
 const jsdoc     = require( 'gulp-jsdoc3' )
 const eslint    = require( 'gulp-eslint' )
 const del       = require( 'del' )
@@ -38,16 +37,14 @@ const parseArgs = require( 'minimist' )
 const rollup    = require( 'rollup' )
 const path      = require( 'path' )
 const karma     = require( 'karma' )
-
-const log     = util.log
-const colors  = util.colors
-const red     = colors.red
-const green   = colors.green
-const blue    = colors.blue
-const cyan    = colors.cyan
-const yellow  = colors.yellow
-const magenta = colors.magenta
-
+const log       = require( 'fancy-log' )
+const colors    = require( 'ansi-colors' )
+const red       = colors.red
+const green     = colors.green
+const blue      = colors.blue
+const cyan      = colors.cyan
+const yellow    = colors.yellow
+const magenta   = colors.magenta
 
 /**
  * @method npm run help ( default )
