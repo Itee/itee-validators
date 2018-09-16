@@ -11,6 +11,7 @@
  *
  */
 
+const path    = require( 'path' )
 const replace = require( 'rollup-plugin-re' )
 const uglify  = require( 'rollup-plugin-uglify-es' )
 
@@ -20,80 +21,74 @@ const replaceConfig = {
     }
 }
 
-module.exports = [
-    {
-        input:   'sources/main.js',
-        plugins: [
-            replace( replaceConfig )
-        ],
-        output:  {
-            indent: '\t',
-            format: 'es',
-            name:   'Itee.Validators',
-            file:   'builds/itee-validators.esm.js'
+function createBuildsConfigs ( options ) {
+    'use strict'
+
+    const name      = options.name
+    const input     = options.input
+    const output    = options.output
+    const formats   = options.format.split( ',' )
+    const env       = options.env.split( ',' )
+    const dev       = (env.includes( 'dev' ))
+    const prod      = (env.includes( 'prod' ))
+    const sourcemap = options.sourcemap
+    const treeshake = options.treeshake
+
+    const fileName = path.basename( input, '.js' )
+
+    const configs = []
+    for ( let formatIndex = 0, numberOfFormats = formats.length ; formatIndex < numberOfFormats ; ++formatIndex ) {
+
+        const format   = formats[ formatIndex ]
+
+        if ( dev ) {
+
+            const outputPath = path.join( output, `${fileName}.${format}.js` )
+
+            configs.push( {
+                input:   input,
+                plugins: [
+                    replace( replaceConfig )
+                ],
+                treeshake: treeshake,
+                output:    {
+                    indent:    '\t',
+                    format:    format,
+                    name:      name,
+                    file:      outputPath,
+                    sourcemap: sourcemap
+                }
+            } )
+
         }
-    },
-    {
-        input:   'sources/main.js',
-        plugins: [
-            replace( replaceConfig ),
-            uglify()
-        ],
-        output:  {
-            indent: '\t',
-            format: 'es',
-            name:   'Itee.Validators',
-            file:   'builds/itee-validators.esm.min.js'
+
+        if ( prod ) {
+
+            const outputPath = path.join( output, `${fileName}.${format}.min.js` )
+
+            configs.push( {
+                input:   input,
+                plugins: [
+                    replace( replaceConfig ),
+                    uglify()
+                ],
+                treeshake: treeshake,
+                output:    {
+                    indent:    '\t',
+                    format:    format,
+                    name:      name,
+                    file:      outputPath,
+                    sourcemap: sourcemap
+                }
+            } )
+
         }
-    },
-    {
-        input:   'sources/main.js',
-        plugins: [
-            replace( replaceConfig )
-        ],
-        output:  {
-            indent: '\t',
-            format: 'cjs',
-            name:   'Itee.Validators',
-            file:   'builds/itee-validators.cjs.js'
-        }
-    },
-    {
-        input:   'sources/main.js',
-        plugins: [
-            replace( replaceConfig ),
-            uglify()
-        ],
-        output:  {
-            indent: '\t',
-            format: 'cjs',
-            name:   'Itee.Validators',
-            file:   'builds/itee-validators.cjs.min.js'
-        }
-    },
-    {
-        input:   'sources/main.js',
-        plugins: [
-            replace( replaceConfig )
-        ],
-        output:  {
-            indent: '\t',
-            format: 'iife',
-            name:   'Itee.Validators',
-            file:   'builds/itee-validators.iife.js'
-        }
-    },
-    {
-        input:   'sources/main.js',
-        plugins: [
-            replace( replaceConfig ),
-            uglify()
-        ],
-        output:  {
-            indent: '\t',
-            format: 'iife',
-            name:   'Itee.Validators',
-            file:   'builds/itee-validators.iife.min.js'
-        }
+
     }
-]
+
+    return configs
+    
+}
+
+module.exports = createBuildsConfigs
+
