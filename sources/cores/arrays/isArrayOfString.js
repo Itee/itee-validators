@@ -9,7 +9,7 @@
  */
 
 import { isNotArray }  from './isNotArray'
-import { isNotString } from '../strings/_strings'
+import { isNotString } from '../strings/isNotString'
 
 /**
  * Check if given data is not an empty array where all values are string
