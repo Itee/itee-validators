@@ -6,7 +6,7 @@
 
 /* global suite, benchmark */
 
-function PhysicsBenchs () {
+function _physicsBenchs () {
 
     suite( 'Physics', () => {
 
@@ -16,4 +16,4 @@ function PhysicsBenchs () {
 
 }
 
-export { PhysicsBenchs }
+export { _physicsBenchs }
