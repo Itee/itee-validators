@@ -4,6 +4,5 @@
  *
  */
 
-//export { default as BooleanBenchs } from './isBoolean.benchs'
 export * from './isBoolean.benchs'
 export * from './isNotBoolean.benchs'
