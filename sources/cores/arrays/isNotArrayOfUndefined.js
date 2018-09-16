@@ -9,7 +9,7 @@
  */
 
 import { isNotArray }  from './isNotArray'
-import { isUndefined } from '../voids/_voids'
+import { isUndefined } from '../voids/isUndefined'
 
 /**
  * Check if given data is not an empty array where all values are defined

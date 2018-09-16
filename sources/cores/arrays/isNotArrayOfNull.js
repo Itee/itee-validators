@@ -9,7 +9,7 @@
  */
 
 import { isNotArray } from './isNotArray'
-import { isNull }     from '../voids/_voids'
+import { isNull }     from '../voids/isNull'
 
 /**
  * Check if given data is not an empty array where all values are not null
