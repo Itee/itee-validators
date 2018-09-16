@@ -48,6 +48,7 @@ const cyan    = colors.cyan
 const yellow  = colors.yellow
 const magenta = colors.magenta
 
+
 /**
  * @method npm run help ( default )
  * @description Will display the help in console
@@ -114,7 +115,7 @@ gulp.task( 'lint', () => {
         'tests/**/*.js',
         '!tests/third_party/*.js',
         '!tests/itee-validators.benchs.js',
-        '!tests/itee-validators.units.js',
+        '!tests/itee-validators.units.js'
     ]
 
     return gulp.src( filesToLint, { base: './' } )
