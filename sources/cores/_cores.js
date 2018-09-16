@@ -8,12 +8,12 @@
  *
  */
 
-export * from './arrays'
-export * from './booleans'
-export * from './functions'
-export * from './numbers'
-export * from './objects'
-export * from './strings'
-export * from './symbols'
-export * from './voids'
+export * from './arrays/_arrays'
+export * from './booleans/_booleans'
 export * from './cores'
+export * from './functions/_functions'
+export * from './numbers/_numbers'
+export * from './objects/_objects'
+export * from './strings/_strings'
+export * from './symbols/_symbols'
+export * from './voids/_voids'
