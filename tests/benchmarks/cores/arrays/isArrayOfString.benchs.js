@@ -10,11 +10,12 @@
 
 /* global Itee, suite, benchmark */
 
-import { isArrayOfString }       from '../../../../sources/cores/arrays/isArrayOfString'
+import { isArrayOfString, isArrayOfString_1 }       from '../../../../sources/cores/arrays/isArrayOfString'
 
 
 export default suite( 'isArrayOfString', () => {
 
     benchmark( 'isArrayOfString()', Itee.TestsUtils.iterateOverDataMap( isArrayOfString ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+    benchmark( 'isArrayOfString()', Itee.TestsUtils.iterateOverDataMap( isArrayOfString_1 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )

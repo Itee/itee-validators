@@ -10,11 +10,12 @@
 
 /* global Itee, suite, benchmark */
 
-import { isNotArray }       from '../../../../sources/cores/arrays/isNotArray'
+import { isNotArray, isNotArray_0 }       from '../../../../sources/cores/arrays/isNotArray'
 
 
 export default suite( 'isNotArray', () => {
 
     benchmark( 'isNotArray()', Itee.TestsUtils.iterateOverDataMap( isNotArray ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+    benchmark( 'isNotArray()', Itee.TestsUtils.iterateOverDataMap( isNotArray_0 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
