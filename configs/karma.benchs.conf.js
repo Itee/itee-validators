@@ -20,7 +20,7 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
     config.set( {
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
-        basePath: '../',
+        basePath: '../tests/',
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -29,8 +29,8 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
 
         // list of files / patterns to load in the browser
         files: [
-            'tests/third_party/tests.utils.js',
-            'tests/builds/itee-validators.benchs.js'
+            'third_party/tests.utils.js',
+            'builds/itee-validators.benchs.js'
         ],
 
         // list of files to exclude
