@@ -8,7 +8,7 @@
  *
  */
 
-import { isString } from './isString'
+import { isNotString } from './isNotString'
 
 /**
  * Check if given data is an empty string
@@ -18,7 +18,9 @@ import { isString } from './isString'
  */
 export function isEmptyString ( data ) {
 
-    console.assert( isString( data ), 'Expect a string !' )
+    if( isNotString(data) ) {
+        return false
+    }
 
     return (data.length === 0)
 
