@@ -9,7 +9,7 @@
 
 /* global describe, expect, it */
 
-import { isDefined } from '../../../../sources/cores/voids'
+import { isDefined } from '../../../../sources/cores/voids/isDefined'
 
 function isDefinedUnits () {
 

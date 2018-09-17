@@ -9,7 +9,7 @@
 
 /* global describe, expect, it */
 
-import { isUndefined } from '../../../../sources/cores/voids'
+import { isUndefined } from '../../../../sources/cores/voids/isUndefined'
 
 function isUndefinedUnits () {
 
