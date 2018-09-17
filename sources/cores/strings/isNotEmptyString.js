@@ -18,8 +18,8 @@ import { isNotString } from './isNotString'
  */
 export function isNotEmptyString ( data ) {
 
-    if ( isNotString( data ) ) {
-        throw new TypeError( 'Expect a string !' )
+    if( isNotString(data) ) {
+        return false
     }
 
     return (data.length > 0)
