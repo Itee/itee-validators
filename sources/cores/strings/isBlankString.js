@@ -8,7 +8,7 @@
  *
  */
 
-import { isEmptyString } from './isEmptyString'
+import { isNotString }   from './isNotString'
 
 /**
  * Check if the given data is a blank string
@@ -18,8 +18,8 @@ import { isEmptyString } from './isEmptyString'
  */
 export function isBlankString ( data ) {
 
-    if ( isEmptyString( data ) ) {
-        throw new TypeError( 'Expect a non empty string !' )
+    if( isNotString(data) ) {
+        return false
     }
 
     return (!/\S/.test( data ))
