@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isNotFunction } from '../../../../sources/cores/functions'
+import { isNotFunction } from '../../../../sources/cores/functions/isNotFunction'
 
 function isNotFunctionUnits () {
 
