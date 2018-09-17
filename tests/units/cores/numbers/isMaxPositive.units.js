@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isMaxPositive } from '../../../../sources/cores/numbers'
+import { isMaxPositive } from '../../../../sources/cores/numbers/isMaxPositive'
 
 function isMaxPositiveUnits () {
 

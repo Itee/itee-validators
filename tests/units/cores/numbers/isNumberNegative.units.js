@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isNumberNegative } from '../../../../sources/cores/numbers'
+import { isNumberNegative } from '../../../../sources/cores/numbers/isNumberNegative'
 
 function isNumberNegativeUnits () {
 

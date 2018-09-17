@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isInfiniteNegative } from '../../../../sources/cores/numbers'
+import { isInfiniteNegative } from '../../../../sources/cores/numbers/isInfiniteNegative'
 
 function isInfiniteNegativeUnits () {
 

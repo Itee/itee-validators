@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isNumeric } from '../../../../sources/cores/numbers'
+import { isNumeric } from '../../../../sources/cores/numbers/isNumeric'
 
 function isNumericUnits () {
 
