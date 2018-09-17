@@ -62,6 +62,9 @@ function CreateKarmaUnitsConfiguration ( config ) {
         browsers: [ 'Chrome' ],
         //        browsers: ['Chrome', 'Firefox', 'Safari', 'IE'],
 
+        // Format assertion errors and stack traces. Useful for removing vendors and compiled sources. Return an empty line '' to remove it.
+        formatError: () => '',
+
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
         singleRun: true,
