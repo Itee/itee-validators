@@ -10,213 +10,220 @@ this.Itee = this.Itee || {};
 
 	/* global Itee */
 
-	const globalDataMap = {
+	const voids = {
+	    null:      null,
+	    undefined: undefined,
+	    void:      void(0)
+	};
 
-	    voids: {
-	        null:      null,
-	        undefined: undefined,
-	        void:      void(0)
-	    },
+	const booleans = {
+	    true:  true,
+	    false: false
+	};
 
-	    booleans: {
-	        true:  true,
-	        false: false
-	    },
+	const numbers = {
+	    negativeInfinity:       Number.NEGATIVE_INFINITY,
+	    negativeMaxValue:       -Number.MAX_VALUE,
+	    negativeMinSafeInteger: Number.MIN_SAFE_INTEGER,
+	    negativeMinValue:       -Number.MIN_VALUE,
+	    negativeHexa:           -0x123456,
+	    negativePow:            -2e+2,
+	    negativeFloat:          -1.0,
+	    negativeInt:            -1,
+	    negativeNullDouble:     -0.0,
+	    negativeNullInt:        -0,
+	    nan:                    Number.NaN,
+	    positiveNullInt:        0,
+	    positiveNullFloat:      0.0,
+	    positiveInt:            1,
+	    positiveFloat:          1.0,
+	    positivePow:            2e+2,
+	    positiveHexa:           0x123456,
+	    positiveMinValue:       Number.MIN_VALUE,
+	    positiveMaxSafeInteger: Number.MAX_SAFE_INTEGER,
+	    positiveMaxValue:       Number.MAX_VALUE,
+	    positiveInfinity:       Number.POSITIVE_INFINITY
+	};
 
-	    numbers: {
-	        negativeInfinity:       Number.NEGATIVE_INFINITY,
-	        negativeMaxValue:       -Number.MAX_VALUE,
-	        negativeMinSafeInteger: Number.MIN_SAFE_INTEGER,
-	        negativeMinValue:       -Number.MIN_VALUE,
-	        negativeHexa:           -0x123456,
-	        negativePow:            -2e+2,
-	        negativeFloat:          -1.0,
-	        negativeInt:            -1,
-	        negativeNullDouble:     -0.0,
-	        negativeNullInt:        -0,
-	        nan:                    Number.NaN,
-	        positiveNullInt:        0,
-	        positiveNullFloat:      0.0,
-	        positiveInt:            1,
-	        positiveFloat:          1.0,
-	        positivePow:            2e+2,
-	        positiveHexa:           0x123456,
-	        positiveMinValue:       Number.MIN_VALUE,
-	        positiveMaxSafeInteger: Number.MAX_SAFE_INTEGER,
-	        positiveMaxValue:       Number.MAX_VALUE,
-	        positiveInfinity:       Number.POSITIVE_INFINITY
-	    },
+	const strings = (() => {
 
-	    strings: (() => {
+	    const dataMap = {
+	        empty:       '',
+	        blank:       '      ',
+	        stringNull:  new String(),
+	        stringEmpty: new String( '' ),
+	        stringBlank: new String( '    ' ),
+	        foobar:      'foobar'
+	    };
 
-	        const dataMap = {
-	            empty:       '',
-	            blank:       '      ',
-	            stringNull:  new String(),
-	            stringEmpty: new String( '' ),
-	            stringBlank: new String( '    ' ),
-	            foobar:      'foobar'
-	        };
-
-	        const voidDataMap = globalDataMap[ 'voids' ];
-	        for ( let i = 0, m = voidDataMap.length ; i < m ; i++ ) {
-	            dataMap[ voidDataMap[ i ] ] = `${voidDataMap[ i ]}`;
-	        }
-
-	        const booleanDataMap = globalDataMap[ 'booleans' ];
-	        for ( let j = 0, n = booleanDataMap.length ; j < n ; j++ ) {
-	            dataMap[ booleanDataMap[ j ] ] = `${booleanDataMap[ j ]}`;
-	        }
-
-	        const numericDataMap = globalDataMap[ 'numbers' ];
-	        for ( let k = 0, o = numericDataMap.length ; k < o ; k++ ) {
-	            dataMap[ numericDataMap[ k ] ] = `${numericDataMap[ k ]}`;
-	        }
-
-	        return dataMap
-
-	    })(),
-
-	    functions: {
-	        anonymousFunction: function () {},
-	        namedFunction:     function namedFunction () {},
-	        arrowFunction:     () => {}
-	    },
-
-	    arrays: (() => {
-
-	        const dataMap = {
-	            emptyArray:       [],
-	            emptyArrayObject: new Array(),
-	            singleValued:     [ 0 ],
-	            multiValued:      [ 0, 1, 2 ],
-	            null:             (() => {
-
-	                const nullArray = [];
-
-	                for ( let index = 0 ; index < 3 ; index++ ) {
-	                    nullArray.push( null );
-	                }
-
-	                return nullArray
-
-	            })(),
-	            undefined: (() => {
-
-	                const undefinedArray = [];
-
-	                for ( let index = 0 ; index < 3 ; index++ ) {
-	                    undefinedArray.push( undefined );
-	                }
-
-	                return undefinedArray
-
-	            })(),
-	            void: (() => {
-
-	                const undefinedArray = [];
-
-	                for ( let index = 0 ; index < 3 ; index++ ) {
-	                    undefinedArray.push( void(0) );
-	                }
-
-	                return undefinedArray
-
-	            })(),
-	            voids: (() => {
-
-	                const array = [];
-
-	                const voidDataMap = globalDataMap[ 'voids' ];
-	                for ( let key in voidDataMap ) {
-	                    array.push( voidDataMap[ key ] );
-	                }
-
-	                return array
-
-	            })(),
-	            booleans: (() => {
-
-	                const array = [];
-
-	                const booleanDataMap = globalDataMap[ 'booleans' ];
-	                for ( let key in booleanDataMap ) {
-	                    array.push( booleanDataMap[ key ] );
-	                }
-
-	                return array
-
-	            })(),
-	            numbers: (() => {
-
-	                const array = [];
-
-	                const numericDataMap = globalDataMap[ 'numbers' ];
-	                for ( let key in numericDataMap ) {
-	                    array.push( numericDataMap[ key ] );
-	                }
-
-	                return array
-
-	            })(),
-	            strings: (() => {
-
-	                const array = [];
-
-	                const stringDataMap = globalDataMap[ 'strings' ];
-	                for ( let key in stringDataMap ) {
-	                    array.push( stringDataMap[ key ] );
-	                }
-
-	                return array
-
-	            })(),
-	            functions: (() => {
-
-	                const array = [];
-
-	                const functionDataMap = globalDataMap[ 'functions' ];
-	                for ( let key in functionDataMap ) {
-	                    array.push( functionDataMap[ key ] );
-	                }
-
-	                return array
-
-	            })(),
-	            objects: [
-	                {
-	                    foo: 'bar'
-	                },
-	                {
-	                    baz: 'qux'
-	                }
-	            ],
-	            arrays: [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
-	        };
-
-	        return dataMap
-
-	    })(),
-
-	    typedArrays: {
-	        int8Array:    new Int8Array( [ 1, 2, 3 ] ),
-	        uInt8Array:   new Uint8Array( [ 1, 2, 3 ] ),
-	        int16Array:   new Int16Array( [ 1, 2, 3 ] ),
-	        uInt16Array:  new Uint16Array( [ 1, 2, 3 ] ),
-	        int32Array:   new Int32Array( [ 1, 2, 3 ] ),
-	        uInt32Array:  new Uint32Array( [ 1, 2, 3 ] ),
-	        float32Array: new Float32Array( [ 1.0, 2.0, 3.0 ] ),
-	        float64Array: new Float64Array( [ 1.0, 2.0, 3.0 ] )
-	    },
-
-	    objects: {
-	        empty:     {},
-	        instance:  new Object(),
-	        null:      { null: null },
-	        undefined: { undefined: undefined },
-	        foo:       { foo: 'bar' }
+	    const voidDataMap = voids;
+	    for ( let i = 0, m = voidDataMap.length ; i < m ; i++ ) {
+	        dataMap[ voidDataMap[ i ] ] = `${voidDataMap[ i ]}`;
 	    }
 
+	    const booleanDataMap = booleans;
+	    for ( let j = 0, n = booleanDataMap.length ; j < n ; j++ ) {
+	        dataMap[ booleanDataMap[ j ] ] = `${booleanDataMap[ j ]}`;
+	    }
+
+	    const numericDataMap = numbers;
+	    for ( let k = 0, o = numericDataMap.length ; k < o ; k++ ) {
+	        dataMap[ numericDataMap[ k ] ] = `${numericDataMap[ k ]}`;
+	    }
+
+	    return dataMap
+
+	})();
+
+	const functions = {
+	    anonymousFunction: function () {},
+	    namedFunction:     function namedFunction () {},
+	    arrowFunction:     () => {}
+	};
+
+	const arrays = (() => {
+
+	    const dataMap = {
+	        emptyArray:       [],
+	        emptyArrayObject: new Array(),
+	        singleValued:     [ 0 ],
+	        multiValued:      [ 0, 1, 2 ],
+	        null:             (() => {
+
+	            const nullArray = [];
+
+	            for ( let index = 0 ; index < 3 ; index++ ) {
+	                nullArray.push( null );
+	            }
+
+	            return nullArray
+
+	        })(),
+	        undefined: (() => {
+
+	            const undefinedArray = [];
+
+	            for ( let index = 0 ; index < 3 ; index++ ) {
+	                undefinedArray.push( undefined );
+	            }
+
+	            return undefinedArray
+
+	        })(),
+	        void: (() => {
+
+	            const undefinedArray = [];
+
+	            for ( let index = 0 ; index < 3 ; index++ ) {
+	                undefinedArray.push( void(0) );
+	            }
+
+	            return undefinedArray
+
+	        })(),
+	        voids: (() => {
+
+	            const array = [];
+
+	            const voidDataMap = voids;
+	            for ( let key in voidDataMap ) {
+	                array.push( voidDataMap[ key ] );
+	            }
+
+	            return array
+
+	        })(),
+	        booleans: (() => {
+
+	            const array = [];
+
+	            const booleanDataMap = booleans;
+	            for ( let key in booleanDataMap ) {
+	                array.push( booleanDataMap[ key ] );
+	            }
+
+	            return array
+
+	        })(),
+	        numbers: (() => {
+
+	            const array = [];
+
+	            const numericDataMap = numbers;
+	            for ( let key in numericDataMap ) {
+	                array.push( numericDataMap[ key ] );
+	            }
+
+	            return array
+
+	        })(),
+	        strings: (() => {
+
+	            const array = [];
+
+	            const stringDataMap = strings;
+	            for ( let key in stringDataMap ) {
+	                array.push( stringDataMap[ key ] );
+	            }
+
+	            return array
+
+	        })(),
+	        functions: (() => {
+
+	            const array = [];
+
+	            const functionDataMap = functions;
+	            for ( let key in functionDataMap ) {
+	                array.push( functionDataMap[ key ] );
+	            }
+
+	            return array
+
+	        })(),
+	        objects: [
+	            {
+	                foo: 'bar'
+	            },
+	            {
+	                baz: 'qux'
+	            }
+	        ],
+	        arrays: [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
+	    };
+
+	    return dataMap
+
+	})();
+
+	const typedArrays = {
+	    int8Array:    new Int8Array( [ 1, 2, 3 ] ),
+	    uInt8Array:   new Uint8Array( [ 1, 2, 3 ] ),
+	    int16Array:   new Int16Array( [ 1, 2, 3 ] ),
+	    uInt16Array:  new Uint16Array( [ 1, 2, 3 ] ),
+	    int32Array:   new Int32Array( [ 1, 2, 3 ] ),
+	    uInt32Array:  new Uint32Array( [ 1, 2, 3 ] ),
+	    float32Array: new Float32Array( [ 1.0, 2.0, 3.0 ] ),
+	    float64Array: new Float64Array( [ 1.0, 2.0, 3.0 ] )
+	};
+
+	const objects = {
+	    empty:     {},
+	    instance:  new Object(),
+	    null:      { null: null },
+	    undefined: { undefined: undefined },
+	    foo:       { foo: 'bar' }
+	};
+
+	const globalDataMap = {
+	    voids,
+	    booleans,
+	    numbers,
+	    strings,
+	    functions,
+	    arrays,
+	    typedArrays,
+	    objects
 	};
 
 	function createDataMap ( dataMapOptions ) {
@@ -241,6 +248,10 @@ this.Itee = this.Itee || {};
 	    for ( let optionKey in dataMapOptions ) {
 
 	        const map    = globalDataMap[ optionKey ];
+	        if( map === undefined ) {
+	            throw ReferenceError(`The global data map does not contain element for key: ${optionKey}`)
+	        }
+
 	        const option = dataMapOptions[ optionKey ];
 
 	        dataMap[ optionKey ] = [];
@@ -5322,7 +5333,9 @@ this.Itee = this.Itee || {};
 	 */
 	function isEmptyString ( data ) {
 
-	    console.assert( isString( data ), 'Expect a string !' );
+	    if( isNotString(data) ) {
+	        return false
+	    }
 
 	    return (data.length === 0)
 
@@ -5373,8 +5386,8 @@ this.Itee = this.Itee || {};
 	 */
 	function isNotEmptyString ( data ) {
 
-	    if ( isNotString( data ) ) {
-	        throw new TypeError( 'Expect a string !' )
+	    if( isNotString(data) ) {
+	        return false
 	    }
 
 	    return (data.length > 0)
@@ -5426,8 +5439,8 @@ this.Itee = this.Itee || {};
 	 */
 	function isBlankString ( data ) {
 
-	    if ( isEmptyString( data ) ) {
-	        throw new TypeError( 'Expect a non empty string !' )
+	    if( isNotString(data) ) {
+	        return false
 	    }
 
 	    return (!/\S/.test( data ))
@@ -5477,7 +5490,12 @@ this.Itee = this.Itee || {};
 	 * @returns {boolean} true if data is not a blank string, false otherwise.
 	 */
 	function isNotBlankString ( data ) {
-	    return (isNotEmptyString( data ) && /\S/.test( data ))
+
+	    if( isNotString(data) ) {
+	        return false
+	    }
+
+	    return (/\S/.test( data ))
 	}
 
 	/**

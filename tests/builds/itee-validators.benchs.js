@@ -2119,30 +2119,6 @@ this.Itee = this.Itee || {};
 	 */
 
 	/**
-	 * Check if given data is an empty string
-	 *
-	 * @param data {any} The data to check against the emptiness of the string
-	 * @returns {boolean} true if data is an empty string, false otherwise.
-	 */
-	function isEmptyString ( data ) {
-
-	    console.assert( isString( data ), 'Expect a string !' );
-
-	    return (data.length === 0)
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
 	 * Check if the given data is a blank string
 	 *
 	 * @param data {any} The data to check against the blankness of the string
@@ -2150,8 +2126,8 @@ this.Itee = this.Itee || {};
 	 */
 	function isBlankString ( data ) {
 
-	    if ( isEmptyString( data ) ) {
-	        throw new TypeError( 'Expect a non empty string !' )
+	    if( isNotString(data) ) {
+	        return false
 	    }
 
 	    return (!/\S/.test( data ))
@@ -2169,6 +2145,32 @@ this.Itee = this.Itee || {};
 	    benchmark( 'isBlankString()', Itee.TestsUtils.iterateOverDataMap( isBlankString ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
 
 	} );
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is an empty string
+	 *
+	 * @param data {any} The data to check against the emptiness of the string
+	 * @returns {boolean} true if data is an empty string, false otherwise.
+	 */
+	function isEmptyString ( data ) {
+
+	    if( isNotString(data) ) {
+	        return false
+	    }
+
+	    return (data.length === 0)
+
+	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
@@ -2194,39 +2196,18 @@ this.Itee = this.Itee || {};
 	 */
 
 	/**
-	 * Check if given data is not an empty string
-	 *
-	 * @param data {any} The data to check against the emptiness of the string
-	 * @returns {boolean} true if data is not an empty string, false otherwise.
-	 */
-	function isNotEmptyString ( data ) {
-
-	    if ( isNotString( data ) ) {
-	        throw new TypeError( 'Expect a string !' )
-	    }
-
-	    return (data.length > 0)
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
 	 * Check if the given data is not a blank string
 	 *
 	 * @param data {any} The data to check against the blankness of the string
 	 * @returns {boolean} true if data is not a blank string, false otherwise.
 	 */
 	function isNotBlankString ( data ) {
-	    return (isNotEmptyString( data ) && /\S/.test( data ))
+
+	    if( isNotString(data) ) {
+	        return false
+	    }
+
+	    return (/\S/.test( data ))
 	}
 
 	/**
@@ -2241,6 +2222,32 @@ this.Itee = this.Itee || {};
 	    benchmark( 'isNotBlankString()', Itee.TestsUtils.iterateOverDataMap( isNotBlankString ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
 
 	} );
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not an empty string
+	 *
+	 * @param data {any} The data to check against the emptiness of the string
+	 * @returns {boolean} true if data is not an empty string, false otherwise.
+	 */
+	function isNotEmptyString ( data ) {
+
+	    if( isNotString(data) ) {
+	        return false
+	    }
+
+	    return (data.length > 0)
+
+	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
