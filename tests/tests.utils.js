@@ -246,6 +246,10 @@ export function createDataMap ( dataMapOptions ) {
     for ( let optionKey in dataMapOptions ) {
 
         const map    = globalDataMap[ optionKey ]
+        if( map === undefined ) {
+            throw ReferenceError(`The global data map does not contain element for key: ${optionKey}`)
+        }
+
         const option = dataMapOptions[ optionKey ]
 
         dataMap[ optionKey ] = []
