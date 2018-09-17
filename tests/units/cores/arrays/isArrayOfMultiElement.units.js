@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isArrayOfMultiElement } from '../../../../sources/cores/arrays'
+import { isArrayOfMultiElement } from '../../../../sources/cores/arrays/isArrayOfMultiElement'
 
 function isArrayOfMultiElementUnits () {
 

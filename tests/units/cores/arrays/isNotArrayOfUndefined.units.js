@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isNotArrayOfUndefined } from '../../../../sources/cores/arrays'
+import { isNotArrayOfUndefined } from '../../../../sources/cores/arrays/isNotArrayOfUndefined'
 
 function isNotArrayOfUndefinedUnits () {
 

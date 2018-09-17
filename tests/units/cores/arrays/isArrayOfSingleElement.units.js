@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isArrayOfSingleElement } from '../../../../sources/cores/arrays'
+import { isArrayOfSingleElement } from '../../../../sources/cores/arrays/isArrayOfSingleElement'
 
 function isArrayOfSingleElementUnits () {
 
