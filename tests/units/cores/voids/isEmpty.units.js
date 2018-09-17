@@ -9,7 +9,7 @@
 
 /* global describe, expect, it */
 
-import { isEmpty } from '../../../../sources/cores/voids'
+import { isEmpty } from '../../../../sources/cores/voids/isEmpty'
 
 function isEmptyUnits () {
 

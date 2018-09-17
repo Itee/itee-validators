@@ -10,476 +10,279 @@ this.Itee = this.Itee || {};
 
 	/* global Itee */
 
-	function createDataMap ( datasetNames ) {
+	const voids = {
+	    null:      null,
+	    undefined: undefined,
+	    void:      void(0)
+	};
 
-	    const voidDataMap = {
-	        null:      null,
-	        undefined: undefined,
-	        void:      void(0)
+	const booleans = {
+	    true:  true,
+	    false: false
+	};
+
+	const numbers = {
+	    negativeInfinity:       Number.NEGATIVE_INFINITY,
+	    negativeMaxValue:       -Number.MAX_VALUE,
+	    negativeMinSafeInteger: Number.MIN_SAFE_INTEGER,
+	    negativeMinValue:       -Number.MIN_VALUE,
+	    negativeHexa:           -0x123456,
+	    negativePow:            -2e+2,
+	    negativeFloat:          -1.0,
+	    negativeInt:            -1,
+	    negativeNullDouble:     -0.0,
+	    negativeNullInt:        -0,
+	    nan:                    Number.NaN,
+	    positiveNullInt:        0,
+	    positiveNullFloat:      0.0,
+	    positiveInt:            1,
+	    positiveFloat:          1.0,
+	    positivePow:            2e+2,
+	    positiveHexa:           0x123456,
+	    positiveMinValue:       Number.MIN_VALUE,
+	    positiveMaxSafeInteger: Number.MAX_SAFE_INTEGER,
+	    positiveMaxValue:       Number.MAX_VALUE,
+	    positiveInfinity:       Number.POSITIVE_INFINITY
+	};
+
+	const strings = (() => {
+
+	    const dataMap = {
+	        empty:       '',
+	        blank:       '      ',
+	        stringNull:  new String(),
+	        stringEmpty: new String( '' ),
+	        stringBlank: new String( '    ' ),
+	        foobar:      'foobar'
 	    };
 
-	    const booleanDataMap = {
-	        true:  true,
-	        false: false
+	    const voidDataMap = voids;
+	    for ( let i = 0, m = voidDataMap.length ; i < m ; i++ ) {
+	        dataMap[ voidDataMap[ i ] ] = `${voidDataMap[ i ]}`;
+	    }
+
+	    const booleanDataMap = booleans;
+	    for ( let j = 0, n = booleanDataMap.length ; j < n ; j++ ) {
+	        dataMap[ booleanDataMap[ j ] ] = `${booleanDataMap[ j ]}`;
+	    }
+
+	    const numericDataMap = numbers;
+	    for ( let k = 0, o = numericDataMap.length ; k < o ; k++ ) {
+	        dataMap[ numericDataMap[ k ] ] = `${numericDataMap[ k ]}`;
+	    }
+
+	    return dataMap
+
+	})();
+
+	const functions = {
+	    anonymousFunction: function () {},
+	    namedFunction:     function namedFunction () {},
+	    arrowFunction:     () => {}
+	};
+
+	const arrays = (() => {
+
+	    const dataMap = {
+	        emptyArray:       [],
+	        emptyArrayObject: new Array(),
+	        singleValued:     [ 0 ],
+	        multiValued:      [ 0, 1, 2 ],
+	        null:             (() => {
+
+	            const nullArray = [];
+
+	            for ( let index = 0 ; index < 3 ; index++ ) {
+	                nullArray.push( null );
+	            }
+
+	            return nullArray
+
+	        })(),
+	        undefined: (() => {
+
+	            const undefinedArray = [];
+
+	            for ( let index = 0 ; index < 3 ; index++ ) {
+	                undefinedArray.push( undefined );
+	            }
+
+	            return undefinedArray
+
+	        })(),
+	        void: (() => {
+
+	            const undefinedArray = [];
+
+	            for ( let index = 0 ; index < 3 ; index++ ) {
+	                undefinedArray.push( void(0) );
+	            }
+
+	            return undefinedArray
+
+	        })(),
+	        voids: (() => {
+
+	            const array = [];
+
+	            const voidDataMap = voids;
+	            for ( let key in voidDataMap ) {
+	                array.push( voidDataMap[ key ] );
+	            }
+
+	            return array
+
+	        })(),
+	        booleans: (() => {
+
+	            const array = [];
+
+	            const booleanDataMap = booleans;
+	            for ( let key in booleanDataMap ) {
+	                array.push( booleanDataMap[ key ] );
+	            }
+
+	            return array
+
+	        })(),
+	        numbers: (() => {
+
+	            const array = [];
+
+	            const numericDataMap = numbers;
+	            for ( let key in numericDataMap ) {
+	                array.push( numericDataMap[ key ] );
+	            }
+
+	            return array
+
+	        })(),
+	        strings: (() => {
+
+	            const array = [];
+
+	            const stringDataMap = strings;
+	            for ( let key in stringDataMap ) {
+	                array.push( stringDataMap[ key ] );
+	            }
+
+	            return array
+
+	        })(),
+	        functions: (() => {
+
+	            const array = [];
+
+	            const functionDataMap = functions;
+	            for ( let key in functionDataMap ) {
+	                array.push( functionDataMap[ key ] );
+	            }
+
+	            return array
+
+	        })(),
+	        objects: [
+	            {
+	                foo: 'bar'
+	            },
+	            {
+	                baz: 'qux'
+	            }
+	        ],
+	        arrays: [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
 	    };
 
-	    const numericDataMap = {
-	        negativeInfinity:       Number.NEGATIVE_INFINITY,
-	        negativeMaxValue:       -Number.MAX_VALUE,
-	        negativeMinSafeInteger: Number.MIN_SAFE_INTEGER,
-	        negativeMinValue:       -Number.MIN_VALUE,
-	        negativeHexa:           -0x123456,
-	        negativePow:            -2e+2,
-	        negativeFloat:          -1.0,
-	        negativeInt:            -1,
-	        negativeNullDouble:     -0.0,
-	        negativeNullInt:        -0,
-	        nan:                    Number.NaN,
-	        positiveNullInt:        0,
-	        positiveNullFloat:      0.0,
-	        positiveInt:            1,
-	        positiveFloat:          1.0,
-	        positivePow:            2e+2,
-	        positiveHexa:           0x123456,
-	        positiveMinValue:       Number.MIN_VALUE,
-	        positiveMaxSafeInteger: Number.MAX_SAFE_INTEGER,
-	        positiveMaxValue:       Number.MAX_VALUE,
-	        positiveInfinity:       Number.POSITIVE_INFINITY
-	    };
+	    return dataMap
 
-	    const stringDataMap = (() => {
+	})();
 
-	        const dataMap = {
-	            empty:       '',
-	            blank:       '      ',
-	            stringNull:  new String(),
-	            stringEmpty: new String( '' ),
-	            stringBlank: new String( '    ' ),
-	            foobar:      'foobar'
+	const typedArrays = {
+	    int8Array:    new Int8Array( [ 1, 2, 3 ] ),
+	    uInt8Array:   new Uint8Array( [ 1, 2, 3 ] ),
+	    int16Array:   new Int16Array( [ 1, 2, 3 ] ),
+	    uInt16Array:  new Uint16Array( [ 1, 2, 3 ] ),
+	    int32Array:   new Int32Array( [ 1, 2, 3 ] ),
+	    uInt32Array:  new Uint32Array( [ 1, 2, 3 ] ),
+	    float32Array: new Float32Array( [ 1.0, 2.0, 3.0 ] ),
+	    float64Array: new Float64Array( [ 1.0, 2.0, 3.0 ] )
+	};
+
+	const objects = {
+	    empty:     {},
+	    instance:  new Object(),
+	    null:      { null: null },
+	    undefined: { undefined: undefined },
+	    foo:       { foo: 'bar' }
+	};
+
+	const globalDataMap = {
+	    voids,
+	    booleans,
+	    numbers,
+	    strings,
+	    functions,
+	    arrays,
+	    typedArrays,
+	    objects
+	};
+
+	function createDataMap ( dataMapOptions ) {
+
+	    if ( dataMapOptions === undefined ) {
+
+	        dataMapOptions = {
+	            voids:       [],
+	            booleans:    [],
+	            numbers:     [],
+	            strings:     [],
+	            functions:   [],
+	            arrays:      [],
+	            typedArrays: [],
+	            objects:     []
 	        };
 
-	        for ( let i = 0, m = voidDataMap.length ; i < m ; i++ ) {
-	            dataMap[ voidDataMap[ i ] ] = `${voidDataMap[ i ]}`;
-	        }
-
-	        for ( let j = 0, n = booleanDataMap.length ; j < n ; j++ ) {
-	            dataMap[ booleanDataMap[ j ] ] = `${booleanDataMap[ j ]}`;
-	        }
-
-	        for ( let k = 0, o = numericDataMap.length ; k < o ; k++ ) {
-	            dataMap[ numericDataMap[ k ] ] = `${numericDataMap[ k ]}`;
-	        }
-
-	        return dataMap
-
-	    })();
-
-	    const functionDataMap = {
-	        classicFunction: function emptyFct () {},
-	        arrowFunction:   () => {}
-	    };
-
-	    const arrayDataMap = (() => {
-
-	        const dataMap = {
-	            emptyArray:       [],
-	            emptyArrayObject: new Array(),
-	            singleValued:     [ 0 ],
-	            multiValued:      [ 0, 1, 2 ],
-	            null:             (() => {
-
-	                const nullArray = [];
-
-	                for ( let index = 0 ; index < 3 ; index++ ) {
-	                    nullArray.push( null );
-	                }
-
-	                return nullArray
-
-	            })(),
-	            undefined:        (() => {
-
-	                const undefinedArray = [];
-
-	                for ( let index = 0 ; index < 3 ; index++ ) {
-	                    undefinedArray.push( undefined );
-	                }
-
-	                return undefinedArray
-
-	            })(),
-	            void:             (() => {
-
-	                const undefinedArray = [];
-
-	                for ( let index = 0 ; index < 3 ; index++ ) {
-	                    undefinedArray.push( void(0) );
-	                }
-
-	                return undefinedArray
-
-	            })(),
-	            voids:            (() => {
-
-	                const array = [];
-
-	                for ( let key in voidDataMap ) {
-	                    array.push( voidDataMap[ key ] );
-	                }
-
-	                return array
-
-	            })(),
-	            booleans:         (() => {
-
-	                const array = [];
-
-	                for ( let key in booleanDataMap ) {
-	                    array.push( booleanDataMap[ key ] );
-	                }
-
-	                return array
-
-	            })(),
-	            numbers:          (() => {
-
-	                const array = [];
-
-	                for ( let key in numericDataMap ) {
-	                    array.push( numericDataMap[ key ] );
-	                }
-
-	                return array
-
-	            })(),
-	            strings:          (() => {
-
-	                const array = [];
-
-	                for ( let key in stringDataMap ) {
-	                    array.push( stringDataMap[ key ] );
-	                }
-
-	                return array
-
-	            })(),
-	            functions:        (() => {
-
-	                const array = [];
-
-	                for ( let key in functionDataMap ) {
-	                    array.push( functionDataMap[ key ] );
-	                }
-
-	                return array
-
-	            })(),
-	            objects:          [
-	                {
-	                    foo: 'bar'
-	                },
-	                {
-	                    baz: 'qux'
-	                }
-	            ],
-	            arrays:           [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
-	        };
-
-	        return dataMap
-
-	    })();
-
-	    const typedArrayDataMap = {
-	        int8Array:    new Int8Array( [ 1, 2, 3 ] ),
-	        uInt8Array:   new Uint8Array( [ 1, 2, 3 ] ),
-	        int16Array:   new Int16Array( [ 1, 2, 3 ] ),
-	        uInt16Array:  new Uint16Array( [ 1, 2, 3 ] ),
-	        int32Array:   new Int32Array( [ 1, 2, 3 ] ),
-	        uInt32Array:  new Uint32Array( [ 1, 2, 3 ] ),
-	        float32Array: new Float32Array( [ 1.0, 2.0, 3.0 ] ),
-	        float64Array: new Float64Array( [ 1.0, 2.0, 3.0 ] )
-	    };
-
-	    const objectDataMap = [
-	        {},
-	        new Object(),
-	        { null: null },
-	        { undefined: undefined },
-	        { foo: 'bar' }
-	    ];
-
-	    return {
-	        voids:       voidDataMap,
-	        booleans:    booleanDataMap,
-	        numbers:     numericDataMap,
-	        strings:     stringDataMap,
-	        functions:   functionDataMap,
-	        arrays:      arrayDataMap,
-	        typedArrays: typedArrayDataMap,
-	        objects:     objectDataMap
 	    }
+
+	    let dataMap = {};
+
+	    for ( let optionKey in dataMapOptions ) {
+
+	        const map    = globalDataMap[ optionKey ];
+	        if( map === undefined ) {
+	            throw ReferenceError(`The global data map does not contain element for key: ${optionKey}`)
+	        }
+
+	        const option = dataMapOptions[ optionKey ];
+
+	        dataMap[ optionKey ] = [];
+
+	        if ( option.length === 0 ) {
+
+	            for ( let valueKey in map ) {
+	                dataMap[ optionKey ].push( map[ valueKey ] );
+	            }
+
+	        } else {
+
+	            for ( let i = 0, nbOptions = option.length ; i < nbOptions ; i++ ) {
+	                dataMap[ optionKey ].push( map[ option[ i ] ] );
+	            }
+
+	        }
+
+	    }
+
+	    return dataMap
 
 	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @module sources/cores/voids
-	 * @description Export the validation methods about voids notions
-	 */
-
-	/**
-	 * Check if given data is null
+	 * @file Todo
 	 *
-	 * @param data {any} The data to check against the nullity
-	 * @returns {boolean} true if data is null, false otherwise.
-	 */
-	function isNull ( data ) {
-	    return (data === null)
-	}
-
-	/**
-	 * Check if given data is not null
-	 *
-	 * @param data {any} The data to check against the nullity
-	 * @returns {boolean} true if data is not null, false otherwise.
-	 */
-	function isNotNull ( data ) {
-	    return (data !== null)
-	}
-
-	/**
-	 * Check if given data is undefined
-	 *
-	 * @param data {any} The data to check against the undefiness
-	 * @returns {boolean} true if data is undefined, false otherwise.
-	 */
-	function isUndefined ( data ) {
-	    return (typeof data === 'undefined')
-	}
-
-	/**
-	 * Check if given data is defined
-	 *
-	 * @param data {any} The data to check against the undefiness
-	 * @returns {boolean} true if data is defined, false otherwise.
-	 */
-	function isNotUndefined ( data ) {
-	    return (typeof data !== 'undefined')
-	}
-
-	/**
-	 * Check if given data is null or undefined
-	 *
-	 * @param data {any} The data to check against the existence
-	 * @returns {boolean} true if data is null or undefined, false otherwise.
-	 */
-	function isNullOrUndefined ( data ) {
-	    return ((data === null) || (typeof data === 'undefined'))
-	}
-
-	/**
-	 * Check if given data is not null and not undefined
-	 *
-	 * @param data {any} The data to check against the existence
-	 * @returns {boolean} true if data is not null and not undefined, false otherwise.
-	 */
-	function isDefined ( data ) {
-	    return ((data !== null) && (typeof data !== 'undefined'))
-	}
-
-	/**
-	 * Check emptiness of given data
-	 *
-	 * See: https://stackoverflow.com/questions/4346186/how-to-determine-if-a-function-is-empty
-	 *
-	 * @param data {any} The data to check against the emptiness
-	 * @returns {boolean} true if data is considered as empty, false otherwise.
-	 */
-	function isEmpty ( data ) {
-
-	    // null and undefined are consider as "empty"
-	    if ( data === null ) {
-	        return true
-	    }
-	    if ( data === undefined ) {
-	        return true
-	    }
-
-	    // Assume if it has a length property with a non-zero value
-	    // that that property is correct.
-	    if ( data.length > 0 ) {
-	        return false
-	    }
-	    if ( data.length === 0 ) {
-	        return true
-	    }
-
-	    // Otherwise, does it have any properties of its own?
-	    for ( let key in data ) {
-	        if ( Object.prototype.hasOwnProperty.call( data, key ) ) {
-	            return false
-	        }
-	    }
-
-	    return true
-	}
-
-	/**
-	 * Check fullness of given data
-	 *
-	 * @param data {any} The data to check against the emptiness
-	 * @returns {boolean} true if data is considered as not empty, false otherwise.
-	 */
-	function isNotEmpty ( data ) {
-	    return !isEmpty( data )
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
-	 *
-	 * @module sources/cores/strings
-	 * @description Export the validation methods about strings
-	 *
-	 */
-
-	/**
-	 * Check if given data is a string
-	 *
-	 * @param data {any} The data to check against the string type
-	 * @returns {boolean} true if data is a string, false otherwise.
-	 */
-	function isString ( data ) {
-	    return (typeof data === 'string' || data instanceof String)
-	}
-	// #endif
-
-	/**
-	 * Check if given data is not a string
-	 *
-	 * @param data {*} The data to check against the string type
-	 * @returns {boolean} true if data is not a string, false otherwise.
-	 */
-	function isNotString ( data ) {
-	    return (typeof data !== 'string')
-	}
-
-	/**
-	 * Check if given data is an empty string
-	 *
-	 * @param data {any} The data to check against the emptiness of the string
-	 * @returns {boolean} true if data is an empty string, false otherwise.
-	 */
-	function isEmptyString ( data ) {
-
-	    console.assert( isString( data ), 'Expect a string !' );
-
-	    return (data.length === 0)
-
-	}
-
-	/**
-	 * Check if given data is not an empty string
-	 *
-	 * @param data {any} The data to check against the emptiness of the string
-	 * @returns {boolean} true if data is not an empty string, false otherwise.
-	 */
-	function isNotEmptyString ( data ) {
-
-	    if ( isNotString( data ) ) {
-	        throw new TypeError( 'Expect a string !' )
-	    }
-
-	    return (data.length > 0)
-
-	}
-
-	/**
-	 * Check if the given data is a blank string
-	 *
-	 * @param data {any} The data to check against the blankness of the string
-	 * @returns {boolean} true if data is a blank string, false otherwise.
-	 */
-	function isBlankString ( data ) {
-
-	    if ( isEmptyString( data ) ) {
-	        throw new TypeError( 'Expect a non empty string !' )
-	    }
-
-	    return (!/\S/.test( data ))
-	}
-
-	/**
-	 * Check if the given data is not a blank string
-	 *
-	 * @param data {any} The data to check against the blankness of the string
-	 * @returns {boolean} true if data is not a blank string, false otherwise.
-	 */
-	function isNotBlankString ( data ) {
-	    return (isNotEmptyString( data ) && /\S/.test( data ))
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
-	 *
-	 * @module sources/cores/objects
-	 * @description Export the validation methods about objects
-	 * @requires {@link module:sources/cores/voids/isNull}
-	 * @requires {@link module:sources/cores/voids/isEmpty}
-	 */
-
-	/**
-	 * Check if given data is an object
-	 *
-	 * @param data {any} The data to check against the object type
-	 * @returns {boolean} true if data is object, false otherwise
-	 */
-	function isObject ( data ) {
-	    return (isNotNull( data ) && (typeof data === 'object') && !Array.isArray( data ))
-	}
-
-	/**
-	 * Check if given data is not an object
-	 *
-	 * @param data {any} The data to check against the object type
-	 * @returns {boolean} true if data is not an object, false otherwise
-	 */
-	function isNotObject ( data ) {
-	    return !isObject( data )
-	}
-
-	/**
-	 * Check if given data is an empty object
-	 *
-	 * @param data {any} The data to check against the emptiness of the object
-	 * @returns {boolean} true if data is an empty object, false otherwise
-	 */
-	function isEmptyObject ( data ) {
-	    return (isObject( data ) && isEmpty( data ))
-	}
-
-	/**
-	 * Check if given data is not an empty object
-	 *
-	 * @param data {any} The data to check against the emptiness of the object
-	 * @returns {boolean} true if data is not an empty object, false otherwise
-	 */
-	function isNotEmptyObject ( data ) {
-	    return (isObject( data ) && isNotEmpty( data ))
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
-	 *
-	 * @module sources/cores/arrays
-	 * @description Export the validation methods about Arrays
-	 * @requires {@link module:sources/cores/voids}
-	 * @requires {@link module:sources/cores/strings}
-	 * @requires {@link module:sources/cores/objects}
+	 * @example Todo
 	 *
 	 */
 
@@ -491,384 +294,6 @@ this.Itee = this.Itee || {};
 	 */
 	function isArray ( data ) {
 	    return Array.isArray( data )
-	}
-
-	/**
-	 * Check if given data is not an array
-	 *
-	 * @param data {any} The data to check against the array type
-	 * @returns {boolean} true if data is not array, false otherwise
-	 */
-	function isNotArray ( data ) {
-	    return !Array.isArray( data )
-	}
-
-	// alt
-	//export function isNotArray_1 ( data ) {
-	//    return !isArray( data )
-	//}
-
-	/**
-	 * Check if given data is not an empty array where all values are null
-	 *
-	 * @param data {any} The data to check against the array of array type
-	 * @returns {boolean} true if data is not an empty array where all values are null, false otherwise
-	 */
-	function isArrayOfNull ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
-
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return false
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index++ ) {
-	        if ( isNotNull( data[ index ] ) ) {
-	            return false
-	        }
-	    }
-
-	    return true
-
-	}
-
-	/**
-	 * Check if given data is not an empty array where all values are not null
-	 *
-	 * @param data {any} The data to check against the array of array type
-	 * @returns {boolean} true if data is not an empty array where all values are not null, false otherwise
-	 */
-	function isNotArrayOfNull ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return true
-	    }
-
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return true
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index++ ) {
-	        if ( isNull( data[ index ] ) ) {
-	            return false
-	        }
-	    }
-
-	    return true
-
-	}
-
-	/**
-	 * Check if given data is an empty array
-	 *
-	 * @param data {any} The data to check against the empty array
-	 * @returns {boolean} true if data is an empty array, false otherwise
-	 */
-	function isEmptyArray ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
-
-	    return (data.length === 0)
-
-	}
-
-	/**
-	 * Check if given data is not an empty array
-	 *
-	 * @param data {any} The data to check against the empty array
-	 * @returns {boolean} true if data is not an empty array, false otherwise
-	 */
-	function isNotEmptyArray ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return true
-	    }
-
-	    return (data.length > 0)
-	}
-
-	/**
-	 * Check if given data is not an empty array where all values are undefined
-	 *
-	 * @param data {any} The data to check against the array of undefined
-	 * @returns {boolean} true if data is not an empty array where all values are undefined, false otherwise
-	 */
-	function isArrayOfUndefined ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
-
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return false
-	    }
-
-	    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
-	        if ( isDefined( data[ index ] ) ) {
-	            return false
-	        }
-	    }
-
-	    return true
-
-	}
-
-	/**
-	 * Check if given data is not an empty array where all values are defined
-	 *
-	 * @param data {any} The data to check against the array of undefined
-	 * @returns {boolean} true if data is not an empty array where all values are defined, false otherwise
-	 */
-	function isNotArrayOfUndefined ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return true
-	    }
-
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return true
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index++ ) {
-	        if ( isUndefined( data[ index ] ) ) {
-	            return true
-	        }
-	    }
-
-	    return false
-
-	}
-
-	/**
-	 * Check if given data is an array of array
-	 *
-	 * @param data {any} The data to check against the array of array type
-	 * @returns {boolean} true if data is an array of array, false otherwise
-	 */
-	function isArrayOfArray ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
-
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return false
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index += 1 ) {
-	        if ( isNotArray( data[ index ] ) ) {
-	            return false
-	        }
-	    }
-
-	    return true
-
-	}
-
-	/**
-	 * Check if given data is not an array of array
-	 *
-	 * @param data {any} The data to check against the array of array type
-	 * @returns {boolean} true if data is not an array of array, false otherwise
-	 */
-	function isNotArrayOfArray ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return true
-	    }
-
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return true
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index++ ) {
-	        if (isArray( data[ index ] ) ) {
-	            return false
-	        }
-	    }
-
-	    return true
-
-	}
-
-	/**
-	 * Check if given data is not an empty array where all values are string
-	 *
-	 * @param data {any} The data to check against the array of strings
-	 * @returns {boolean} true if data is not an empty array where all values are string, false otherwise
-	 */
-	function isArrayOfString ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
-
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return false
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index++ ) {
-	        if ( isNotString( data[ index ] ) ) {
-	            return false
-	        }
-	    }
-
-	    return true
-
-	}
-
-	//alt
-	//export function isArrayOfString_1 ( data ) {
-	//
-	//    if ( !Array.isArray( data ) ) {
-	//        return false
-	//    }
-	//
-	//    const dataLength = data.length
-	//    if ( dataLength === 0 ) {
-	//        return false
-	//    }
-	//
-	//    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
-	//        if ( typeof data[ index ] !== 'string' ) {
-	//            return false
-	//        }
-	//    }
-	//
-	//    return true
-	//
-	//}
-
-	/**
-	 * Check if given data is not an empty array where all values are not string
-	 *
-	 * @param data {any} The data to check against the array of strings
-	 * @returns {boolean} true if data is not an empty array where all values are not string, false otherwise
-	 */
-	function isNotArrayOfString ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return true
-	    }
-
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return true
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index++ ) {
-	        if ( isString( data[ index ] ) ) {
-	            return false
-	        }
-	    }
-
-	    return true
-
-	}
-
-	/**
-	 * Check if given data is an array with a single value
-	 *
-	 * @param data {any} The data to check against the single valued array
-	 * @returns {boolean} true if data is an array with a single value, false otherwise
-	 */
-	function isArrayOfSingleElement ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
-
-	    if ( data.length !== 1 ) {
-	        return false
-	    }
-
-	    return true
-
-	}
-
-	/**
-	 * Check if given data is an array with multiples values
-	 *
-	 * @param data {any} The data to check against the single valued array
-	 * @returns {boolean} true if data is an array with multiples values, false otherwise
-	 */
-	function isArrayOfMultiElement ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
-
-	    if ( data.length <= 1 ) {
-	        return false
-	    }
-
-	    return true
-
-	}
-
-	/**
-	 * Check if given data is an array where all values are of object type
-	 *
-	 * @param data {any} The data to check against the array of object type
-	 * @returns {boolean} true if data is an array where all values are of object type, false otherwise
-	 */
-	function isArrayOfObject ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
-
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return false
-	    }
-
-	    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
-	        if ( isNotObject( data[ index ] ) ) {
-	            return false
-	        }
-	    }
-
-	    return true
-
-	}
-
-	/**
-	 * Check if given data is not an array where all values are of object type
-	 *
-	 * @param data {any} The data to check against the array of object type
-	 * @returns {boolean} true if data is not an array where all values are of object type, false otherwise
-	 */
-	function isNotArrayOfObject ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return true
-	    }
-
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return true
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index++ ) {
-	        if ( isObject( data[ index ] ) ) {
-	            return true
-	        }
-	    }
-
-	    return false
-
 	}
 
 	/**
@@ -958,6 +383,64 @@ this.Itee = this.Itee || {};
 	        } );
 
 	    } );
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not an array
+	 *
+	 * @param data {any} The data to check against the array type
+	 * @returns {boolean} true if data is not array, false otherwise
+	 */
+	function isNotArray ( data ) {
+	    return !Array.isArray( data )
+	}
+	// #endif
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is an array of array
+	 *
+	 * @param data {any} The data to check against the array of array type
+	 * @returns {boolean} true if data is an array of array, false otherwise
+	 */
+	function isArrayOfArray ( data ) {
+
+	    if ( isNotArray( data ) ) {
+	        return false
+	    }
+
+	    const dataLength = data.length;
+	    if ( dataLength === 0 ) {
+	        return false
+	    }
+
+	    for ( let index = 0 ; index < dataLength ; index += 1 ) {
+	        if ( isNotArray( data[ index ] ) ) {
+	            return false
+	        }
+	    }
+
+	    return true
 
 	}
 
@@ -1139,6 +622,36 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is an array with multiples values
+	 *
+	 * @param data {any} The data to check against the single valued array
+	 * @returns {boolean} true if data is an array with multiples values, false otherwise
+	 */
+	function isArrayOfMultiElement ( data ) {
+
+	    if ( isNotArray( data ) ) {
+	        return false
+	    }
+
+	    if ( data.length <= 1 ) {
+	        return false
+	    }
+
+	    return true
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/arrays
@@ -1247,6 +760,63 @@ this.Itee = this.Itee || {};
 	        } );
 
 	    } );
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not null
+	 *
+	 * @param data {any} The data to check against the nullity
+	 * @returns {boolean} true if data is not null, false otherwise.
+	 */
+	function isNotNull ( data ) {
+	    return (data !== null)
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not an empty array where all values are null
+	 *
+	 * @param data {any} The data to check against the array of array type
+	 * @returns {boolean} true if data is not an empty array where all values are null, false otherwise
+	 */
+	function isArrayOfNull ( data ) {
+
+	    if ( isNotArray( data ) ) {
+	        return false
+	    }
+
+	    const dataLength = data.length;
+	    if ( dataLength === 0 ) {
+	        return false
+	    }
+
+	    for ( let index = 0 ; index < dataLength ; index++ ) {
+	        if ( isNotNull( data[ index ] ) ) {
+	            return false
+	        }
+	    }
+
+	    return true
 
 	}
 
@@ -1428,6 +998,83 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is an object
+	 *
+	 * @param data {any} The data to check against the object type
+	 * @returns {boolean} true if data is object, false otherwise
+	 */
+	function isObject ( data ) {
+	    return (isNotNull( data ) && (typeof data === 'object') && !Array.isArray( data ))
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not an object
+	 *
+	 * @param data {any} The data to check against the object type
+	 * @returns {boolean} true if data is not an object, false otherwise
+	 */
+	function isNotObject ( data ) {
+	    return !isObject( data )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is an array where all values are of object type
+	 *
+	 * @param data {any} The data to check against the array of object type
+	 * @returns {boolean} true if data is an array where all values are of object type, false otherwise
+	 */
+	function isArrayOfObject ( data ) {
+
+	    if ( isNotArray( data ) ) {
+	        return false
+	    }
+
+	    const dataLength = data.length;
+	    if ( dataLength === 0 ) {
+	        return false
+	    }
+
+	    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
+	        if ( isNotObject( data[ index ] ) ) {
+	            return false
+	        }
+	    }
+
+	    return true
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/arrays
@@ -1599,6 +1246,36 @@ this.Itee = this.Itee || {};
 	        } );
 
 	    } );
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is an array with a single value
+	 *
+	 * @param data {any} The data to check against the single valued array
+	 * @returns {boolean} true if data is an array with a single value, false otherwise
+	 */
+	function isArrayOfSingleElement ( data ) {
+
+	    if ( isNotArray( data ) ) {
+	        return false
+	    }
+
+	    if ( data.length !== 1 ) {
+	        return false
+	    }
+
+	    return true
 
 	}
 
@@ -1780,6 +1457,64 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not a string
+	 *
+	 * @param data {*} The data to check against the string type
+	 * @returns {boolean} true if data is not a string, false otherwise.
+	 */
+	function isNotString ( data ) {
+	    return (typeof data !== 'string')
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not an empty array where all values are string
+	 *
+	 * @param data {any} The data to check against the array of strings
+	 * @returns {boolean} true if data is not an empty array where all values are string, false otherwise
+	 */
+	function isArrayOfString ( data ) {
+
+	    if ( isNotArray( data ) ) {
+	        return false
+	    }
+
+	    const dataLength = data.length;
+	    if ( dataLength === 0 ) {
+	        return false
+	    }
+
+	    for ( let index = 0 ; index < dataLength ; index++ ) {
+	        if ( isNotString( data[ index ] ) ) {
+	            return false
+	        }
+	    }
+
+	    return true
+
+	}
+	// #endif
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/arrays
@@ -1956,6 +1691,63 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not null and not undefined
+	 *
+	 * @param data {any} The data to check against the existence
+	 * @returns {boolean} true if data is not null and not undefined, false otherwise.
+	 */
+	function isDefined ( data ) {
+	    return ((data !== null) && (typeof data !== 'undefined'))
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not an empty array where all values are undefined
+	 *
+	 * @param data {any} The data to check against the array of undefined
+	 * @returns {boolean} true if data is not an empty array where all values are undefined, false otherwise
+	 */
+	function isArrayOfUndefined ( data ) {
+
+	    if ( isNotArray( data ) ) {
+	        return false
+	    }
+
+	    const dataLength = data.length;
+	    if ( dataLength === 0 ) {
+	        return false
+	    }
+
+	    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
+	        if ( isDefined( data[ index ] ) ) {
+	            return false
+	        }
+	    }
+
+	    return true
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/arrays
@@ -2127,6 +1919,32 @@ this.Itee = this.Itee || {};
 	        } );
 
 	    } );
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is an empty array
+	 *
+	 * @param data {any} The data to check against the empty array
+	 * @returns {boolean} true if data is an empty array, false otherwise
+	 */
+	function isEmptyArray ( data ) {
+
+	    if ( isNotArray( data ) ) {
+	        return false
+	    }
+
+	    return (data.length === 0)
 
 	}
 
@@ -2389,6 +2207,43 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not an array of array
+	 *
+	 * @param data {any} The data to check against the array of array type
+	 * @returns {boolean} true if data is not an array of array, false otherwise
+	 */
+	function isNotArrayOfArray ( data ) {
+
+	    if ( isNotArray( data ) ) {
+	        return true
+	    }
+
+	    const dataLength = data.length;
+	    if ( dataLength === 0 ) {
+	        return true
+	    }
+
+	    for ( let index = 0 ; index < dataLength ; index++ ) {
+	        if (isArray( data[ index ] ) ) {
+	            return false
+	        }
+	    }
+
+	    return true
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/arrays
@@ -2560,6 +2415,63 @@ this.Itee = this.Itee || {};
 	        } );
 
 	    } );
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is null
+	 *
+	 * @param data {any} The data to check against the nullity
+	 * @returns {boolean} true if data is null, false otherwise.
+	 */
+	function isNull ( data ) {
+	    return (data === null)
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not an empty array where all values are not null
+	 *
+	 * @param data {any} The data to check against the array of array type
+	 * @returns {boolean} true if data is not an empty array where all values are not null, false otherwise
+	 */
+	function isNotArrayOfNull ( data ) {
+
+	    if ( isNotArray( data ) ) {
+	        return true
+	    }
+
+	    const dataLength = data.length;
+	    if ( dataLength === 0 ) {
+	        return true
+	    }
+
+	    for ( let index = 0 ; index < dataLength ; index++ ) {
+	        if ( isNull( data[ index ] ) ) {
+	            return false
+	        }
+	    }
+
+	    return true
 
 	}
 
@@ -2741,6 +2653,43 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not an array where all values are of object type
+	 *
+	 * @param data {any} The data to check against the array of object type
+	 * @returns {boolean} true if data is not an array where all values are of object type, false otherwise
+	 */
+	function isNotArrayOfObject ( data ) {
+
+	    if ( isNotArray( data ) ) {
+	        return true
+	    }
+
+	    const dataLength = data.length;
+	    if ( dataLength === 0 ) {
+	        return true
+	    }
+
+	    for ( let index = 0 ; index < dataLength ; index++ ) {
+	        if ( isObject( data[ index ] ) ) {
+	            return true
+	        }
+	    }
+
+	    return false
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/arrays
@@ -2912,6 +2861,64 @@ this.Itee = this.Itee || {};
 	        } );
 
 	    } );
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is a string
+	 *
+	 * @param data {any} The data to check against the string type
+	 * @returns {boolean} true if data is a string, false otherwise.
+	 */
+	function isString ( data ) {
+	    return (typeof data === 'string' || data instanceof String)
+	}
+	// #endif
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not an empty array where all values are not string
+	 *
+	 * @param data {any} The data to check against the array of strings
+	 * @returns {boolean} true if data is not an empty array where all values are not string, false otherwise
+	 */
+	function isNotArrayOfString ( data ) {
+
+	    if ( isNotArray( data ) ) {
+	        return true
+	    }
+
+	    const dataLength = data.length;
+	    if ( dataLength === 0 ) {
+	        return true
+	    }
+
+	    for ( let index = 0 ; index < dataLength ; index++ ) {
+	        if ( isString( data[ index ] ) ) {
+	            return false
+	        }
+	    }
+
+	    return true
 
 	}
 
@@ -3093,6 +3100,63 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is undefined
+	 *
+	 * @param data {any} The data to check against the undefiness
+	 * @returns {boolean} true if data is undefined, false otherwise.
+	 */
+	function isUndefined ( data ) {
+	    return (typeof data === 'undefined')
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not an empty array where all values are defined
+	 *
+	 * @param data {any} The data to check against the array of undefined
+	 * @returns {boolean} true if data is not an empty array where all values are defined, false otherwise
+	 */
+	function isNotArrayOfUndefined ( data ) {
+
+	    if ( isNotArray( data ) ) {
+	        return true
+	    }
+
+	    const dataLength = data.length;
+	    if ( dataLength === 0 ) {
+	        return true
+	    }
+
+	    for ( let index = 0 ; index < dataLength ; index++ ) {
+	        if ( isUndefined( data[ index ] ) ) {
+	            return true
+	        }
+	    }
+
+	    return false
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/arrays
@@ -3265,6 +3329,31 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not an empty array
+	 *
+	 * @param data {any} The data to check against the empty array
+	 * @returns {boolean} true if data is not an empty array, false otherwise
+	 */
+	function isNotEmptyArray ( data ) {
+
+	    if ( isNotArray( data ) ) {
+	        return true
+	    }
+
+	    return (data.length > 0)
 	}
 
 	/**
@@ -3449,7 +3538,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	function ArraysUnits () {
+	function _arraysUnits () {
 
 	    describe( 'Arrays', () => {
 
@@ -3489,10 +3578,11 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @module sources/cores/booleans
-	 * @description Export the validation methods about booleans
+	 * @file Todo
+	 *
+	 * @example Todo
 	 *
 	 */
 
@@ -3504,17 +3594,6 @@ this.Itee = this.Itee || {};
 	 */
 	function isBoolean ( data ) {
 	    return (typeof data === 'boolean')
-	}
-	// #endif
-
-	/**
-	 * Check if given data is not a boolean
-	 *
-	 * @param data {any} The data to check against the booleaness
-	 * @returns {boolean} true if data is not a boolean, false otherwise.
-	 */
-	function isNotBoolean ( data ) {
-	    return (typeof data !== 'boolean')
 	}
 	// #endif
 
@@ -3598,6 +3677,27 @@ this.Itee = this.Itee || {};
 	    } );
 
 	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not a boolean
+	 *
+	 * @param data {any} The data to check against the booleaness
+	 * @returns {boolean} true if data is not a boolean, false otherwise.
+	 */
+	function isNotBoolean ( data ) {
+	    return (typeof data !== 'boolean')
+	}
+	// #endif
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
@@ -3685,7 +3785,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	function BooleansUnits () {
+	function _booleansUnits () {
 
 	    describe( 'Booleans', () => {
 
@@ -3710,10 +3810,11 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @module sources/cores/functions
-	 * @description Export the validation methods about functions
+	 * @file Todo
+	 *
+	 * @example Todo
 	 *
 	 */
 
@@ -3725,16 +3826,6 @@ this.Itee = this.Itee || {};
 	 */
 	function isFunction ( data ) {
 	    return (typeof data === 'function')
-	}
-
-	/**
-	 * Check if given data is not a function
-	 *
-	 * @param data {any} The data to check against the functionality
-	 * @returns {boolean} true if data is not a function, false otherwise.
-	 */
-	function isNotFunction ( data ) {
-	    return (typeof data !== 'function')
 	}
 
 	/**
@@ -3816,6 +3907,26 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not a function
+	 *
+	 * @param data {any} The data to check against the functionality
+	 * @returns {boolean} true if data is not a function, false otherwise.
+	 */
+	function isNotFunction ( data ) {
+	    return (typeof data !== 'function')
 	}
 
 	/**
@@ -3905,7 +4016,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	function FunctionsUnits () {
+	function _functionsUnits () {
 
 	    describe( 'Functions', () => {
 
@@ -3930,204 +4041,13 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @module sources/cores/numbers
-	 * @description Export the validation methods about numbers
+	 * @file Todo
+	 *
+	 * @example Todo
 	 *
 	 */
-
-	/**
-	 * Check if given data is a number
-	 *
-	 * @param data {any} The data to check against the maximum safe integer state
-	 * @returns {boolean} true if data is a number, false otherwise.
-	 */
-	function isNumber ( data ) {
-	    return (typeof data === 'number' && !Number.isNaN( data ))
-	}
-
-	/**
-	 * Check if given data is not a number
-	 *
-	 * @param data {any} The data to check against the number type
-	 * @returns {boolean} true if data is not of type number or not a number, false otherwise.
-	 */
-	function isNotNumber ( data ) {
-	    return (typeof data !== 'number' || Number.isNaN( data ))
-	}
-
-	/**
-	 * Check if the data is a positive number
-	 *
-	 * @param data {any} The data to check against the positivity
-	 * @returns {boolean} true if data is a positive number, false otherwise.
-	 */
-	function isNumberPositive ( data ) {
-	    return (isNumber( data ) && data > 0)
-	}
-
-	/**
-	 * Check if the data is a negative number
-	 *
-	 * @param data {any} The data to check against the negativity
-	 * @returns {boolean} true if data is a negative number, false otherwise.
-	 */
-	function isNumberNegative ( data ) {
-	    return (isNumber( data ) && data < 0)
-	}
-
-	/**
-	 * Check if the given data is numerical
-	 *
-	 * @param data {any} The data to check against the numerical type
-	 * @returns {boolean} true if data is numeric, false otherwise
-	 */
-	function isNumeric ( data ) {
-	    return (typeof data === 'number')
-	}
-
-	/**
-	 * Check if the given data is not numerical
-	 *
-	 * @param data {any} The data to check against the numerical type
-	 * @returns {boolean} true if data is not numeric, false otherwise
-	 */
-	function isNotNumeric ( data ) {
-	    return (typeof data !== 'number')
-	}
-
-	/**
-	 * Check if the given data is an integer number
-	 *
-	 * @param data {any} The data to check against the integer state
-	 * @returns {boolean} true if data is an integer, false otherwise
-	 */
-	function isInteger ( data ) {
-	    return (data === 0 && (1 / data) === Number.POSITIVE_INFINITY)
-	}
-
-	// alt
-	//export function isInteger_1 ( data ) {
-	//    return data % 1 === 0
-	//}
-	//
-	//export function isInteger_2 ( n ) {
-	//    return n === +n && n === (n | 0);
-	//}
-	//
-	//export function isInteger_3 ( nVal ) {
-	//    return typeof nVal === "number" && isFinite( nVal ) && nVal > -9007199254740992 && nVal < 9007199254740992 && Math.floor( nVal ) === nVal;
-	//}
-
-	/**
-	 * Check if given data is a floating point number
-	 *
-	 * @param data {any} The data to check against the floating point
-	 * @returns {boolean} true if data is a float, false otherwise
-	 */
-	function isFloat ( data ) {
-	    return data % 1 !== 0
-	}
-
-	// Alt
-	//export function isFloat_1 ( n ) {
-	//    return n === +n && n !== (n | 0)
-	//}
-	//
-	//export function isFloat_2 ( x ) {
-	//    return !!(x % 1)
-	//}
-
-	/**
-	 * Check if the given data is zero
-	 *
-	 * @param data {any} The data to check against the zero value
-	 * @returns {boolean} true if data is zero, false otherwise
-	 */
-	function isZero ( data ) {
-	    return (data === 0)
-	}
-
-	/**
-	 * Check if the given data is a positive zero
-	 *
-	 * @param data {any} The data to check against the positive zero value
-	 * @returns {boolean} true if data is a positive zero, false otherwise
-	 */
-	function isZeroPositive ( data ) {
-	    return (data === 0 && (1 / data) === Number.POSITIVE_INFINITY)
-	}
-
-	/**
-	 * Check if the given data is a negative zero
-	 *
-	 * @param data {any} The data to check against the negative zero value
-	 * @returns {boolean} true if data is a negative zero, false otherwise
-	 */
-	function isZeroNegative ( data ) {
-	    return (data === 0 && (1 / data) === Number.NEGATIVE_INFINITY)
-	}
-
-	/**
-	 * Check if the given data is a minimum safe integer number
-	 *
-	 * @param data {any} The data to check against the minimum safe integer state
-	 * @returns {boolean} true if data is a minimum safe integer, false otherwise
-	 */
-	function isMinSafeInteger ( data ) {
-	    return (data === Number.MIN_SAFE_INTEGER)
-	}
-
-	/**
-	 * Check if the given data is a minimum positive number
-	 *
-	 * @param data {any} The data to check against the positive minimum state
-	 * @returns {boolean} true if data is positive minimum, false otherwise
-	 */
-	function isMinPositive ( data ) {
-	    return (data === Number.MIN_VALUE)
-	}
-
-	/**
-	 * Check if the given data is a minimum negative number
-	 *
-	 * @param data {any} The data to check against the minimum infinite state
-	 * @returns {boolean} true if data is negative minimum, false otherwise
-	 */
-	function isMinNegative ( data ) {
-	    return (data === -Number.MIN_VALUE)
-	}
-
-	/**
-	 * Check if the given data is a maximum safe integer number
-	 *
-	 * @param data {any} The data to check against the maximum safe integer state
-	 * @returns {boolean} true if data is a maximum safe integer, false otherwise
-	 */
-	function isMaxSafeInteger ( data ) {
-	    return (data === Number.MAX_SAFE_INTEGER)
-	}
-
-	/**
-	 * Check if the given data is a maximum positive number
-	 *
-	 * @param data {any} The data to check against the positive maximum state
-	 * @returns {boolean} true if data is positive maximum, false otherwise
-	 */
-	function isMaxPositive ( data ) {
-	    return (data === Number.MAX_VALUE)
-	}
-
-	/**
-	 * Check if the given data is a maximum negative number
-	 *
-	 * @param data {any} The data to check against the maximum infinite state
-	 * @returns {boolean} true if data is negative maximum, false otherwise
-	 */
-	function isMaxNegative ( data ) {
-	    return (data === -Number.MAX_VALUE)
-	}
 
 	/**
 	 * Check if the given data is a finite number
@@ -4135,38 +4055,8 @@ this.Itee = this.Itee || {};
 	 * @param data {any} The data to check against the finite state
 	 * @returns {boolean} true if data is finite, false otherwise
 	 */
-	function isFinite ( data ) {
+	function isFinite$1 ( data ) {
 	    return Number.isFinite( data )
-	}
-
-	/**
-	 * Check if the given data is an infinite number
-	 *
-	 * @param data {any} The data to check against the infinite state
-	 * @returns {boolean} true if data is infinite, false otherwise
-	 */
-	function isInfinite ( data ) {
-	    return !Number.isFinite( data )
-	}
-
-	/**
-	 * Check if the given data is an infinite negative number
-	 *
-	 * @param data {any} The data to check against the negative infinite state
-	 * @returns {boolean} true if data is negative infinite, false otherwise
-	 */
-	function isInfiniteNegative ( data ) {
-	    return (data === Number.NEGATIVE_INFINITY)
-	}
-
-	/**
-	 * Check if the given data is an infinite positive number
-	 *
-	 * @param data {any} The data to check against the positive infinite state
-	 * @returns {boolean} true if data is positive infinite, false otherwise
-	 */
-	function isInfinitePositive ( data ) {
-	    return (data === Number.POSITIVE_INFINITY)
 	}
 
 	/**
@@ -4185,13 +4075,34 @@ this.Itee = this.Itee || {};
 
 	        it( 'should be implemented', () => {
 
-	            expect( isFinite( 0 ) ).to.be.true;
+	            expect( isFinite$1( 0 ) ).to.be.true;
 
 	        } );
 
 	    } );
 
 	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is a floating point number
+	 *
+	 * @param data {any} The data to check against the floating point
+	 * @returns {boolean} true if data is a float, false otherwise
+	 */
+	function isFloat ( data ) {
+	    return data % 1 !== 0
+	}
+	// #endif
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
@@ -4215,6 +4126,26 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is an infinite number
+	 *
+	 * @param data {any} The data to check against the infinite state
+	 * @returns {boolean} true if data is infinite, false otherwise
+	 */
+	function isInfinite ( data ) {
+	    return !Number.isFinite( data )
 	}
 
 	/**
@@ -4243,6 +4174,26 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is an infinite negative number
+	 *
+	 * @param data {any} The data to check against the negative infinite state
+	 * @returns {boolean} true if data is negative infinite, false otherwise
+	 */
+	function isInfiniteNegative ( data ) {
+	    return (data === Number.NEGATIVE_INFINITY)
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/numbers
@@ -4263,6 +4214,26 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is an infinite positive number
+	 *
+	 * @param data {any} The data to check against the positive infinite state
+	 * @returns {boolean} true if data is positive infinite, false otherwise
+	 */
+	function isInfinitePositive ( data ) {
+	    return (data === Number.POSITIVE_INFINITY)
 	}
 
 	/**
@@ -4291,6 +4262,27 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is an integer number
+	 *
+	 * @param data {any} The data to check against the integer state
+	 * @returns {boolean} true if data is an integer, false otherwise
+	 */
+	function isInteger ( data ) {
+	    return (data === 0 && (1 / data) === Number.POSITIVE_INFINITY)
+	}
+	// #endif
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/numbers
@@ -4311,6 +4303,26 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is a maximum negative number
+	 *
+	 * @param data {any} The data to check against the maximum infinite state
+	 * @returns {boolean} true if data is negative maximum, false otherwise
+	 */
+	function isMaxNegative ( data ) {
+	    return (data === -Number.MAX_VALUE)
 	}
 
 	/**
@@ -4339,6 +4351,26 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is a maximum positive number
+	 *
+	 * @param data {any} The data to check against the positive maximum state
+	 * @returns {boolean} true if data is positive maximum, false otherwise
+	 */
+	function isMaxPositive ( data ) {
+	    return (data === Number.MAX_VALUE)
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/numbers
@@ -4359,6 +4391,26 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is a maximum safe integer number
+	 *
+	 * @param data {any} The data to check against the maximum safe integer state
+	 * @returns {boolean} true if data is a maximum safe integer, false otherwise
+	 */
+	function isMaxSafeInteger ( data ) {
+	    return (data === Number.MAX_SAFE_INTEGER)
 	}
 
 	/**
@@ -4387,6 +4439,26 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is a minimum negative number
+	 *
+	 * @param data {any} The data to check against the minimum infinite state
+	 * @returns {boolean} true if data is negative minimum, false otherwise
+	 */
+	function isMinNegative ( data ) {
+	    return (data === -Number.MIN_VALUE)
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/numbers
@@ -4407,6 +4479,27 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+
+	/**
+	 * Check if the given data is a minimum positive number
+	 *
+	 * @param data {any} The data to check against the positive minimum state
+	 * @returns {boolean} true if data is positive minimum, false otherwise
+	 */
+	function isMinPositive ( data ) {
+	    return (data === Number.MIN_VALUE)
 	}
 
 	/**
@@ -4435,6 +4528,26 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is a minimum safe integer number
+	 *
+	 * @param data {any} The data to check against the minimum safe integer state
+	 * @returns {boolean} true if data is a minimum safe integer, false otherwise
+	 */
+	function isMinSafeInteger ( data ) {
+	    return (data === Number.MIN_SAFE_INTEGER)
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/numbers
@@ -4455,6 +4568,26 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not a number
+	 *
+	 * @param data {any} The data to check against the number type
+	 * @returns {boolean} true if data is not of type number or not a number, false otherwise.
+	 */
+	function isNotNumber ( data ) {
+	    return (typeof data !== 'number' || Number.isNaN( data ))
 	}
 
 	/**
@@ -4483,6 +4616,26 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is not numerical
+	 *
+	 * @param data {any} The data to check against the numerical type
+	 * @returns {boolean} true if data is not numeric, false otherwise
+	 */
+	function isNotNumeric ( data ) {
+	    return (typeof data !== 'number')
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/numbers
@@ -4507,6 +4660,27 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is a number
+	 *
+	 * @param data {any} The data to check against the maximum safe integer state
+	 * @returns {boolean} true if data is a number, false otherwise.
+	 */
+	function isNumber ( data ) {
+	    return (typeof data === 'number' && !Number.isNaN( data ))
+	}
+	// #endif
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/numbers
@@ -4527,6 +4701,26 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if the data is a negative number
+	 *
+	 * @param data {any} The data to check against the negativity
+	 * @returns {boolean} true if data is a negative number, false otherwise.
+	 */
+	function isNumberNegative ( data ) {
+	    return (isNumber( data ) && data < 0)
 	}
 
 	/**
@@ -4555,6 +4749,26 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if the data is a positive number
+	 *
+	 * @param data {any} The data to check against the positivity
+	 * @returns {boolean} true if data is a positive number, false otherwise.
+	 */
+	function isNumberPositive ( data ) {
+	    return (isNumber( data ) && data > 0)
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/numbers
@@ -4575,6 +4789,26 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is numerical
+	 *
+	 * @param data {any} The data to check against the numerical type
+	 * @returns {boolean} true if data is numeric, false otherwise
+	 */
+	function isNumeric ( data ) {
+	    return (typeof data === 'number')
 	}
 
 	/**
@@ -4603,6 +4837,26 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is zero
+	 *
+	 * @param data {*} The data to check against the zero value
+	 * @returns {boolean} true if data is zero, false otherwise
+	 */
+	function isZero ( data ) {
+	    return (data === 0)
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/numbers
@@ -4627,6 +4881,26 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is a negative zero
+	 *
+	 * @param data {any} The data to check against the negative zero value
+	 * @returns {boolean} true if data is a negative zero, false otherwise
+	 */
+	function isZeroNegative ( data ) {
+	    return (data === 0 && (1 / data) === Number.NEGATIVE_INFINITY)
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/numbers
@@ -4647,6 +4921,26 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is a positive zero
+	 *
+	 * @param data {any} The data to check against the positive zero value
+	 * @returns {boolean} true if data is a positive zero, false otherwise
+	 */
+	function isZeroPositive ( data ) {
+	    return (data === 0 && (1 / data) === Number.POSITIVE_INFINITY)
 	}
 
 	/**
@@ -4679,7 +4973,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	function NumbersUnits () {
+	function _numbersUnits () {
 
 	    describe( 'Numbers', () => {
 
@@ -4777,6 +5071,73 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check emptiness of given data
+	 *
+	 * See: https://stackoverflow.com/questions/4346186/how-to-determine-if-a-function-is-empty
+	 *
+	 * @param data {any} The data to check against the emptiness
+	 * @returns {boolean} true if data is considered as empty, false otherwise.
+	 */
+	function isEmpty ( data ) {
+
+	    // null and undefined are consider as "empty"
+	    if ( data === null ) {
+	        return true
+	    }
+	    if ( data === undefined ) {
+	        return true
+	    }
+
+	    // Assume if it has a length property with a non-zero value
+	    // that that property is correct.
+	    if ( data.length > 0 ) {
+	        return false
+	    }
+	    if ( data.length === 0 ) {
+	        return true
+	    }
+
+	    // Otherwise, does it have any properties of its own?
+	    for ( let key in data ) {
+	        if ( Object.prototype.hasOwnProperty.call( data, key ) ) {
+	            return false
+	        }
+	    }
+
+	    return true
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is an empty object
+	 *
+	 * @param data {any} The data to check against the emptiness of the object
+	 * @returns {boolean} true if data is an empty object, false otherwise
+	 */
+	function isEmptyObject ( data ) {
+	    return (isObject( data ) && isEmpty( data ))
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/objects
@@ -4800,6 +5161,46 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check fullness of given data
+	 *
+	 * @param data {any} The data to check against the emptiness
+	 * @returns {boolean} true if data is considered as not empty, false otherwise.
+	 */
+	function isNotEmpty ( data ) {
+	    return !isEmpty( data )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not an empty object
+	 *
+	 * @param data {any} The data to check against the emptiness of the object
+	 * @returns {boolean} true if data is not an empty object, false otherwise
+	 */
+	function isNotEmptyObject ( data ) {
+	    return (isObject( data ) && isNotEmpty( data ))
 	}
 
 	/**
@@ -4835,7 +5236,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	function ObjectsUnits () {
+	function _objectsUnits () {
 
 	    describe( 'Objects', () => {
 
@@ -4916,6 +5317,32 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is an empty string
+	 *
+	 * @param data {any} The data to check against the emptiness of the string
+	 * @returns {boolean} true if data is an empty string, false otherwise.
+	 */
+	function isEmptyString ( data ) {
+
+	    if( isNotString(data) ) {
+	        return false
+	    }
+
+	    return (data.length === 0)
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/strings
@@ -4938,6 +5365,32 @@ this.Itee = this.Itee || {};
 	        } );
 
 	    } );
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not an empty string
+	 *
+	 * @param data {any} The data to check against the emptiness of the string
+	 * @returns {boolean} true if data is not an empty string, false otherwise.
+	 */
+	function isNotEmptyString ( data ) {
+
+	    if( isNotString(data) ) {
+	        return false
+	    }
+
+	    return (data.length > 0)
 
 	}
 
@@ -4970,6 +5423,31 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is a blank string
+	 *
+	 * @param data {any} The data to check against the blankness of the string
+	 * @returns {boolean} true if data is a blank string, false otherwise.
+	 */
+	function isBlankString ( data ) {
+
+	    if( isNotString(data) ) {
+	        return false
+	    }
+
+	    return (!/\S/.test( data ))
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/strings
@@ -4993,6 +5471,31 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is not a blank string
+	 *
+	 * @param data {any} The data to check against the blankness of the string
+	 * @returns {boolean} true if data is not a blank string, false otherwise.
+	 */
+	function isNotBlankString ( data ) {
+
+	    if( isNotString(data) ) {
+	        return false
+	    }
+
+	    return (/\S/.test( data ))
 	}
 
 	/**
@@ -5028,7 +5531,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	function StringsUnits () {
+	function _stringsUnits () {
 
 	    describe( 'Strings', () => {
 
@@ -5057,10 +5560,12 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @module sources/cores/symbols
-	 * @description Export the validation methods about symbols
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
 	 */
 
 	/**
@@ -5071,16 +5576,6 @@ this.Itee = this.Itee || {};
 	 */
 	function isSymbol ( data ) {
 	    return (typeof data === 'symbol')
-	}
-
-	/**
-	 * Check if given data is not a symbol
-	 *
-	 * @param data {any} The data to check against the symbol type
-	 * @returns {boolean} true if data is not a symbol, false otherwise.
-	 */
-	function isNotSymbol ( data ) {
-	    return (typeof data !== 'symbol')
 	}
 
 	/**
@@ -5108,6 +5603,26 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not a symbol
+	 *
+	 * @param data {any} The data to check against the symbol type
+	 * @returns {boolean} true if data is not a symbol, false otherwise.
+	 */
+	function isNotSymbol ( data ) {
+	    return (typeof data !== 'symbol')
 	}
 
 	/**
@@ -5143,7 +5658,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	function SymbolsUnits () {
+	function _symbolsUnits () {
 
 	    describe( 'Symbols', () => {
 
@@ -5552,6 +6067,26 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is defined
+	 *
+	 * @param data {any} The data to check against the undefiness
+	 * @returns {boolean} true if data is defined, false otherwise.
+	 */
+	function isNotUndefined ( data ) {
+	    return (typeof data !== 'undefined')
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/voids
@@ -5740,6 +6275,27 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+
+	/**
+	 * Check if given data is null or undefined
+	 *
+	 * @param data {any} The data to check against the existence
+	 * @returns {boolean} true if data is null or undefined, false otherwise.
+	 */
+	function isNullOrUndefined ( data ) {
+	    return ((data === null) || (typeof data === 'undefined'))
 	}
 
 	/**
@@ -5940,7 +6496,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	function VoidsUnits () {
+	function _voidsUnits () {
 
 	    describe( 'Voids', () => {
 
@@ -5975,18 +6531,18 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	function CoresUnits () {
+	function _coresUnits () {
 
 	    describe( 'Cores', () => {
 
-	        ArraysUnits.call( this );
-	        BooleansUnits.call( this );
-	        FunctionsUnits.call( this );
-	        NumbersUnits.call( this );
-	        ObjectsUnits.call( this );
-	        StringsUnits.call( this );
-	        SymbolsUnits.call( this );
-	        VoidsUnits.call( this );
+	        _arraysUnits.call( this );
+	        _booleansUnits.call( this );
+	        _functionsUnits.call( this );
+	        _numbersUnits.call( this );
+	        _objectsUnits.call( this );
+	        _stringsUnits.call( this );
+	        _symbolsUnits.call( this );
+	        _voidsUnits.call( this );
 
 	    } );
 
@@ -6000,7 +6556,7 @@ this.Itee = this.Itee || {};
 
 	/* global describe */
 
-	function MathsUnits () {
+	function _mathsUnits () {
 
 	    describe( 'Maths', () => {
 
@@ -6240,7 +6796,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	function TemperaturesUnits () {
+	function _temperaturesUnits () {
 
 	    describe( 'Temperatures', () => {
 
@@ -6275,11 +6831,11 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	function PhysicsUnits () {
+	function _physicsUnits () {
 
 	    describe( 'Physics', () => {
 
-	        TemperaturesUnits.call( this );
+	        _temperaturesUnits.call( this );
 
 	    } );
 
@@ -6297,9 +6853,9 @@ this.Itee = this.Itee || {};
 
 	describe( 'Itee#Validators', () => {
 
-	    CoresUnits.call( root );
-	    MathsUnits.call( root );
-	    PhysicsUnits.call( root );
+	    _coresUnits.call( root );
+	    _mathsUnits.call( root );
+	    _physicsUnits.call( root );
 
 	} );
 

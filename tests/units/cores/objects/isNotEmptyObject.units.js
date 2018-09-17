@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isNotEmptyObject } from '../../../../sources/cores/objects'
+import { isNotEmptyObject } from '../../../../sources/cores/objects/isNotEmptyObject'
 
 function isNotEmptyObjectUnits () {
 

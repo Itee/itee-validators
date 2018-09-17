@@ -127,6 +127,7 @@ gulp.task( 'lint', () => {
         'configs/**/*.js',
         'sources/**/*.js',
         'tests/**/*.js',
+        '!tests/builds/*.js',
         '!tests/third_party/*.js',
         '!tests/itee-validators.benchs.js',
         '!tests/itee-validators.units.js'
@@ -177,7 +178,7 @@ gulp.task( 'doc', ( done ) => {
  */
 gulp.task( 'unit', ( done ) => {
 
-    const benchServer = new karma.Server( {
+    const karmaServer = new karma.Server( {
         configFile: `${__dirname}/configs/karma.units.conf.js`,
         singleRun:  true
     }, ( exitCode ) => {
@@ -190,7 +191,11 @@ gulp.task( 'unit', ( done ) => {
 
     } )
 
-    benchServer.start()
+    karmaServer.on('browser_error', ( browser, error ) => {
+        log( red(error.message) )
+    } )
+
+    karmaServer.start()
 
 } )
 
@@ -200,7 +205,7 @@ gulp.task( 'unit', ( done ) => {
  */
 gulp.task( 'bench', ( done ) => {
 
-    const benchServer = new karma.Server( {
+    const karmaServer = new karma.Server( {
         configFile: `${__dirname}/configs/karma.benchs.conf.js`,
         singleRun:  true
     }, ( exitCode ) => {
@@ -213,7 +218,11 @@ gulp.task( 'bench', ( done ) => {
 
     } )
 
-    benchServer.start()
+    karmaServer.on('browser_error', ( browser, error ) => {
+        log( red(error.message) )
+    } )
+
+    karmaServer.start()
 
 } )
 

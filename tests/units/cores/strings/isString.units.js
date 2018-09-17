@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isString } from '../../../../sources/cores/strings'
+import { isString } from '../../../../sources/cores/strings/isString'
 
 function isStringUnits () {
 

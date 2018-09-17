@@ -20,7 +20,7 @@ function CreateKarmaUnitsConfiguration ( config ) {
     config.set( {
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
-        basePath: '../',
+        basePath: '../tests/',
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -28,7 +28,8 @@ function CreateKarmaUnitsConfiguration ( config ) {
 
         // list of files / patterns to load in the browser
         files: [
-            'tests/builds/itee-validators.units.js'
+            'third_party/tests.utils.js',
+            'builds/itee-validators.units.js'
         ],
 
         // list of files to exclude
@@ -60,6 +61,9 @@ function CreateKarmaUnitsConfiguration ( config ) {
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
         browsers: [ 'Chrome' ],
         //        browsers: ['Chrome', 'Firefox', 'Safari', 'IE'],
+
+        // Format assertion errors and stack traces. Useful for removing vendors and compiled sources. Return an empty line '' to remove it.
+        formatError: () => '',
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits

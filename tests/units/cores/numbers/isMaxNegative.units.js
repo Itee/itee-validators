@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isMaxNegative } from '../../../../sources/cores/numbers'
+import { isMaxNegative } from '../../../../sources/cores/numbers/isMaxNegative'
 
 function isMaxNegativeUnits () {
 

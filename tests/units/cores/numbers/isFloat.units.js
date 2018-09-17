@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isFloat } from '../../../../sources/cores/numbers'
+import { isFloat } from '../../../../sources/cores/numbers/isFloat'
 
 function isFloatUnits () {
 
