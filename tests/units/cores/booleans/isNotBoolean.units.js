@@ -9,7 +9,7 @@
 
 /* global describe, expect, it */
 
-import { isNotBoolean } from '../../../../sources/cores/booleans'
+import { isNotBoolean } from '../../../../sources/cores/booleans/isNotBoolean'
 
 function isNotBooleanUnits () {
 
