@@ -127,6 +127,7 @@ gulp.task( 'lint', () => {
         'configs/**/*.js',
         'sources/**/*.js',
         'tests/**/*.js',
+        '!tests/builds/*.js',
         '!tests/third_party/*.js',
         '!tests/itee-validators.benchs.js',
         '!tests/itee-validators.units.js'
