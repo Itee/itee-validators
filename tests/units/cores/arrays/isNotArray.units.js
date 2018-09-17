@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isNotArray } from '../../../../sources/cores/arrays'
+import { isNotArray } from '../../../../sources/cores/arrays/isNotArray'
 
 function isNotArrayUnits () {
 

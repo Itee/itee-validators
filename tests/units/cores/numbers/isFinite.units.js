@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isFinite } from '../../../../sources/cores/numbers'
+import { isFinite } from '../../../../sources/cores/numbers/isFinite'
 
 function isFiniteUnits () {
 

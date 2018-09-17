@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isObject } from '../../../../sources/cores/objects'
+import { isObject } from '../../../../sources/cores/objects/isObject'
 
 function isObjectUnits () {
 

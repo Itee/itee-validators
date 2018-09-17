@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isBlankString } from '../../../../sources/cores/strings'
+import { isBlankString } from '../../../../sources/cores/strings/isBlankString'
 
 function isBlankStringUnits () {
 

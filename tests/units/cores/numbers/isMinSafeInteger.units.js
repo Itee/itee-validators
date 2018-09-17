@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isMinSafeInteger } from '../../../../sources/cores/numbers'
+import { isMinSafeInteger } from '../../../../sources/cores/numbers/isMinSafeInteger'
 
 function isMinSafeIntegerUnits () {
 

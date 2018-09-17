@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isNotEmptyString } from '../../../../sources/cores/strings'
+import { isNotEmptyString } from '../../../../sources/cores/strings/isNotEmptyString'
 
 function isNotEmptyStringUnits () {
 

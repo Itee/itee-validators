@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isEmptyArray } from '../../../../sources/cores/arrays'
+import { isEmptyArray } from '../../../../sources/cores/arrays/isEmptyArray'
 
 function isEmptyArrayUnits () {
 

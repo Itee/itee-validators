@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isBoolean } from '../../../../sources/cores/booleans'
+import { isBoolean } from '../../../../sources/cores/booleans/isBoolean'
 
 function isBooleanUnits () {
 
