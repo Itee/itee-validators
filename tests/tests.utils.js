@@ -6,20 +6,20 @@
 
 /* global Itee */
 
-export function createDataMap ( datasetNames ) {
+const globalDataMap = {
 
-    const voidDataMap = {
+    voids: {
         null:      null,
         undefined: undefined,
         void:      void(0)
-    }
+    },
 
-    const booleanDataMap = {
+    booleans: {
         true:  true,
         false: false
-    }
+    },
 
-    const numericDataMap = {
+    numbers: {
         negativeInfinity:       Number.NEGATIVE_INFINITY,
         negativeMaxValue:       -Number.MAX_VALUE,
         negativeMinSafeInteger: Number.MIN_SAFE_INTEGER,
@@ -41,9 +41,9 @@ export function createDataMap ( datasetNames ) {
         positiveMaxSafeInteger: Number.MAX_SAFE_INTEGER,
         positiveMaxValue:       Number.MAX_VALUE,
         positiveInfinity:       Number.POSITIVE_INFINITY
-    }
+    },
 
-    const stringDataMap = (() => {
+    strings: (() => {
         'use strict'
 
         const dataMap = {
@@ -55,28 +55,32 @@ export function createDataMap ( datasetNames ) {
             foobar:      'foobar'
         }
 
+        const voidDataMap = globalDataMap[ 'voids' ]
         for ( let i = 0, m = voidDataMap.length ; i < m ; i++ ) {
             dataMap[ voidDataMap[ i ] ] = `${voidDataMap[ i ]}`
         }
 
+        const booleanDataMap = globalDataMap[ 'booleans' ]
         for ( let j = 0, n = booleanDataMap.length ; j < n ; j++ ) {
             dataMap[ booleanDataMap[ j ] ] = `${booleanDataMap[ j ]}`
         }
 
+        const numericDataMap = globalDataMap[ 'numbers' ]
         for ( let k = 0, o = numericDataMap.length ; k < o ; k++ ) {
             dataMap[ numericDataMap[ k ] ] = `${numericDataMap[ k ]}`
         }
 
         return dataMap
 
-    })()
+    })(),
 
-    const functionDataMap = {
-        classicFunction: function emptyFct () {},
-        arrowFunction:   () => {}
-    }
+    functions: {
+        anonymousFunction: function () {},
+        namedFunction:     function namedFunction () {},
+        arrowFunction:     () => {}
+    },
 
-    const arrayDataMap = (() => {
+    arrays: (() => {
         'use strict'
 
         const dataMap = {
@@ -95,7 +99,7 @@ export function createDataMap ( datasetNames ) {
                 return nullArray
 
             })(),
-            undefined:        (() => {
+            undefined: (() => {
 
                 const undefinedArray = []
 
@@ -106,7 +110,7 @@ export function createDataMap ( datasetNames ) {
                 return undefinedArray
 
             })(),
-            void:             (() => {
+            void: (() => {
 
                 const undefinedArray = []
 
@@ -117,10 +121,11 @@ export function createDataMap ( datasetNames ) {
                 return undefinedArray
 
             })(),
-            voids:            (() => {
+            voids: (() => {
 
                 const array = []
 
+                const voidDataMap = globalDataMap[ 'voids' ]
                 for ( let key in voidDataMap ) {
                     array.push( voidDataMap[ key ] )
                 }
@@ -128,10 +133,11 @@ export function createDataMap ( datasetNames ) {
                 return array
 
             })(),
-            booleans:         (() => {
+            booleans: (() => {
 
                 const array = []
 
+                const booleanDataMap = globalDataMap[ 'booleans' ]
                 for ( let key in booleanDataMap ) {
                     array.push( booleanDataMap[ key ] )
                 }
@@ -139,10 +145,11 @@ export function createDataMap ( datasetNames ) {
                 return array
 
             })(),
-            numbers:          (() => {
+            numbers: (() => {
 
                 const array = []
 
+                const numericDataMap = globalDataMap[ 'numbers' ]
                 for ( let key in numericDataMap ) {
                     array.push( numericDataMap[ key ] )
                 }
@@ -150,10 +157,11 @@ export function createDataMap ( datasetNames ) {
                 return array
 
             })(),
-            strings:          (() => {
+            strings: (() => {
 
                 const array = []
 
+                const stringDataMap = globalDataMap[ 'strings' ]
                 for ( let key in stringDataMap ) {
                     array.push( stringDataMap[ key ] )
                 }
@@ -161,10 +169,11 @@ export function createDataMap ( datasetNames ) {
                 return array
 
             })(),
-            functions:        (() => {
+            functions: (() => {
 
                 const array = []
 
+                const functionDataMap = globalDataMap[ 'functions' ]
                 for ( let key in functionDataMap ) {
                     array.push( functionDataMap[ key ] )
                 }
@@ -172,7 +181,7 @@ export function createDataMap ( datasetNames ) {
                 return array
 
             })(),
-            objects:          [
+            objects: [
                 {
                     foo: 'bar'
                 },
@@ -180,14 +189,14 @@ export function createDataMap ( datasetNames ) {
                     baz: 'qux'
                 }
             ],
-            arrays:           [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
+            arrays: [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
         }
 
         return dataMap
 
-    })()
+    })(),
 
-    const typedArrayDataMap = {
+    typedArrays: {
         int8Array:    new Int8Array( [ 1, 2, 3 ] ),
         uInt8Array:   new Uint8Array( [ 1, 2, 3 ] ),
         int16Array:   new Int16Array( [ 1, 2, 3 ] ),
@@ -196,26 +205,18 @@ export function createDataMap ( datasetNames ) {
         uInt32Array:  new Uint32Array( [ 1, 2, 3 ] ),
         float32Array: new Float32Array( [ 1.0, 2.0, 3.0 ] ),
         float64Array: new Float64Array( [ 1.0, 2.0, 3.0 ] )
+    },
+
+    objects: {
+        empty:     {},
+        instance:  new Object(),
+        null:      { null: null },
+        undefined: { undefined: undefined },
+        foo:       { foo: 'bar' }
     }
 
-    const objectDataMap = [
-        {},
-        new Object(),
-        { null: null },
-        { undefined: undefined },
-        { foo: 'bar' }
-    ]
+}
 
-    return {
-        voids:       voidDataMap,
-        booleans:    booleanDataMap,
-        numbers:     numericDataMap,
-        strings:     stringDataMap,
-        functions:   functionDataMap,
-        arrays:      arrayDataMap,
-        typedArrays: typedArrayDataMap,
-        objects:     objectDataMap
-    }
 
 }
 
