@@ -276,10 +276,12 @@ export function createDataMap ( dataMapOptions ) {
 
 export function createDataMapBenchmarkOptions ( dataMapOptions ) {
 
+    Itee.TestsUtils.DataMap = Itee.TestsUtils.createDataMap( dataMapOptions )
+
     return {
 
         setup: function onSetup () {
-            this.datamap = Itee.TestsUtils.createDataMap( dataMapOptions )
+            this.datamap = Itee.TestsUtils.DataMap
         },
 
         teardown: function onTeardown () {
