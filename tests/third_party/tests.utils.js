@@ -10,20 +10,20 @@ this.Itee.TestsUtils = (function (exports) {
 
 	/* global Itee */
 
-	function createDataMap ( datasetNames ) {
+	const globalDataMap = {
 
-	    const voidDataMap = {
+	    voids: {
 	        null:      null,
 	        undefined: undefined,
 	        void:      void(0)
-	    };
+	    },
 
-	    const booleanDataMap = {
+	    booleans: {
 	        true:  true,
 	        false: false
-	    };
+	    },
 
-	    const numericDataMap = {
+	    numbers: {
 	        negativeInfinity:       Number.NEGATIVE_INFINITY,
 	        negativeMaxValue:       -Number.MAX_VALUE,
 	        negativeMinSafeInteger: Number.MIN_SAFE_INTEGER,
@@ -45,9 +45,9 @@ this.Itee.TestsUtils = (function (exports) {
 	        positiveMaxSafeInteger: Number.MAX_SAFE_INTEGER,
 	        positiveMaxValue:       Number.MAX_VALUE,
 	        positiveInfinity:       Number.POSITIVE_INFINITY
-	    };
+	    },
 
-	    const stringDataMap = (() => {
+	    strings: (() => {
 
 	        const dataMap = {
 	            empty:       '',
@@ -58,28 +58,32 @@ this.Itee.TestsUtils = (function (exports) {
 	            foobar:      'foobar'
 	        };
 
+	        const voidDataMap = globalDataMap[ 'voids' ];
 	        for ( let i = 0, m = voidDataMap.length ; i < m ; i++ ) {
 	            dataMap[ voidDataMap[ i ] ] = `${voidDataMap[ i ]}`;
 	        }
 
+	        const booleanDataMap = globalDataMap[ 'booleans' ];
 	        for ( let j = 0, n = booleanDataMap.length ; j < n ; j++ ) {
 	            dataMap[ booleanDataMap[ j ] ] = `${booleanDataMap[ j ]}`;
 	        }
 
+	        const numericDataMap = globalDataMap[ 'numbers' ];
 	        for ( let k = 0, o = numericDataMap.length ; k < o ; k++ ) {
 	            dataMap[ numericDataMap[ k ] ] = `${numericDataMap[ k ]}`;
 	        }
 
 	        return dataMap
 
-	    })();
+	    })(),
 
-	    const functionDataMap = {
-	        classicFunction: function emptyFct () {},
-	        arrowFunction:   () => {}
-	    };
+	    functions: {
+	        anonymousFunction: function () {},
+	        namedFunction:     function namedFunction () {},
+	        arrowFunction:     () => {}
+	    },
 
-	    const arrayDataMap = (() => {
+	    arrays: (() => {
 
 	        const dataMap = {
 	            emptyArray:       [],
@@ -97,7 +101,7 @@ this.Itee.TestsUtils = (function (exports) {
 	                return nullArray
 
 	            })(),
-	            undefined:        (() => {
+	            undefined: (() => {
 
 	                const undefinedArray = [];
 
@@ -108,7 +112,7 @@ this.Itee.TestsUtils = (function (exports) {
 	                return undefinedArray
 
 	            })(),
-	            void:             (() => {
+	            void: (() => {
 
 	                const undefinedArray = [];
 
@@ -119,10 +123,11 @@ this.Itee.TestsUtils = (function (exports) {
 	                return undefinedArray
 
 	            })(),
-	            voids:            (() => {
+	            voids: (() => {
 
 	                const array = [];
 
+	                const voidDataMap = globalDataMap[ 'voids' ];
 	                for ( let key in voidDataMap ) {
 	                    array.push( voidDataMap[ key ] );
 	                }
@@ -130,10 +135,11 @@ this.Itee.TestsUtils = (function (exports) {
 	                return array
 
 	            })(),
-	            booleans:         (() => {
+	            booleans: (() => {
 
 	                const array = [];
 
+	                const booleanDataMap = globalDataMap[ 'booleans' ];
 	                for ( let key in booleanDataMap ) {
 	                    array.push( booleanDataMap[ key ] );
 	                }
@@ -141,10 +147,11 @@ this.Itee.TestsUtils = (function (exports) {
 	                return array
 
 	            })(),
-	            numbers:          (() => {
+	            numbers: (() => {
 
 	                const array = [];
 
+	                const numericDataMap = globalDataMap[ 'numbers' ];
 	                for ( let key in numericDataMap ) {
 	                    array.push( numericDataMap[ key ] );
 	                }
@@ -152,10 +159,11 @@ this.Itee.TestsUtils = (function (exports) {
 	                return array
 
 	            })(),
-	            strings:          (() => {
+	            strings: (() => {
 
 	                const array = [];
 
+	                const stringDataMap = globalDataMap[ 'strings' ];
 	                for ( let key in stringDataMap ) {
 	                    array.push( stringDataMap[ key ] );
 	                }
@@ -163,10 +171,11 @@ this.Itee.TestsUtils = (function (exports) {
 	                return array
 
 	            })(),
-	            functions:        (() => {
+	            functions: (() => {
 
 	                const array = [];
 
+	                const functionDataMap = globalDataMap[ 'functions' ];
 	                for ( let key in functionDataMap ) {
 	                    array.push( functionDataMap[ key ] );
 	                }
@@ -174,7 +183,7 @@ this.Itee.TestsUtils = (function (exports) {
 	                return array
 
 	            })(),
-	            objects:          [
+	            objects: [
 	                {
 	                    foo: 'bar'
 	                },
@@ -182,14 +191,14 @@ this.Itee.TestsUtils = (function (exports) {
 	                    baz: 'qux'
 	                }
 	            ],
-	            arrays:           [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
+	            arrays: [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
 	        };
 
 	        return dataMap
 
-	    })();
+	    })(),
 
-	    const typedArrayDataMap = {
+	    typedArrays: {
 	        int8Array:    new Int8Array( [ 1, 2, 3 ] ),
 	        uInt8Array:   new Uint8Array( [ 1, 2, 3 ] ),
 	        int16Array:   new Int16Array( [ 1, 2, 3 ] ),
@@ -198,41 +207,76 @@ this.Itee.TestsUtils = (function (exports) {
 	        uInt32Array:  new Uint32Array( [ 1, 2, 3 ] ),
 	        float32Array: new Float32Array( [ 1.0, 2.0, 3.0 ] ),
 	        float64Array: new Float64Array( [ 1.0, 2.0, 3.0 ] )
-	    };
+	    },
 
-	    const objectDataMap = [
-	        {},
-	        new Object(),
-	        { null: null },
-	        { undefined: undefined },
-	        { foo: 'bar' }
-	    ];
-
-	    return {
-	        voids:       voidDataMap,
-	        booleans:    booleanDataMap,
-	        numbers:     numericDataMap,
-	        strings:     stringDataMap,
-	        functions:   functionDataMap,
-	        arrays:      arrayDataMap,
-	        typedArrays: typedArrayDataMap,
-	        objects:     objectDataMap
+	    objects: {
+	        empty:     {},
+	        instance:  new Object(),
+	        null:      { null: null },
+	        undefined: { undefined: undefined },
+	        foo:       { foo: 'bar' }
 	    }
+
+	};
+
+	function createDataMap ( dataMapOptions ) {
+
+	    if ( dataMapOptions === undefined ) {
+
+	        dataMapOptions = {
+	            voids:       [],
+	            booleans:    [],
+	            numbers:     [],
+	            strings:     [],
+	            functions:   [],
+	            arrays:      [],
+	            typedArrays: [],
+	            objects:     []
+	        };
+
+	    }
+
+	    let dataMap = {};
+
+	    for ( let optionKey in dataMapOptions ) {
+
+	        const map    = globalDataMap[ optionKey ];
+	        const option = dataMapOptions[ optionKey ];
+
+	        dataMap[ optionKey ] = [];
+
+	        if ( option.length === 0 ) {
+
+	            for ( let valueKey in map ) {
+	                dataMap[ optionKey ].push( map[ valueKey ] );
+	            }
+
+	        } else {
+
+	            for ( let i = 0, nbOptions = option.length ; i < nbOptions ; i++ ) {
+	                dataMap[ optionKey ].push( map[ option[ i ] ] );
+	            }
+
+	        }
+
+	    }
+
+	    return dataMap
 
 	}
 
-	function createDataMapBenchmarkOptions () {
+	function createDataMapBenchmarkOptions ( dataMapOptions ) {
 
 	    return {
-	        
-	        setup:    function onSetup () {
-	            this.datamap = Itee.TestsUtils.createDataMap();
+
+	        setup: function onSetup () {
+	            this.datamap = Itee.TestsUtils.createDataMap( dataMapOptions );
 	        },
-	        
+
 	        teardown: function onTeardown () {
 	            delete this.datamap;
 	        }
-	        
+
 	    }
 
 	}
@@ -257,214 +301,47 @@ this.Itee.TestsUtils = (function (exports) {
 
 	}
 
-	function createDataSet ( dataNames ) {
+	function createDataSet ( dataSetOptions ) {
 
-	    const voidDataSet = {
-	        null:      null,
-	        undefined: undefined,
-	        void:      void(0)
-	    };
+	    if ( dataSetOptions === undefined ) {
 
-	    const booleanDataSet = {
-	        true:  true,
-	        false: false
-	    };
-
-	    const numericDataSet = {
-	        negativeInfinity:       Number.NEGATIVE_INFINITY,
-	        negativeMaxValue:       -Number.MAX_VALUE,
-	        negativeMinSafeInteger: Number.MIN_SAFE_INTEGER,
-	        negativeMinValue:       -Number.MIN_VALUE,
-	        negativeHexa:           -0x123456,
-	        negativePow:            -2e+2,
-	        negativeFloat:          -1.0,
-	        negativeInt:            -1,
-	        negativeNullDouble:     -0.0,
-	        negativeNullInt:        -0,
-	        nan:                    Number.NaN,
-	        positiveNullInt:        0,
-	        positiveNullFloat:      0.0,
-	        positiveInt:            1,
-	        positiveFloat:          1.0,
-	        positivePow:            2e+2,
-	        positiveHexa:           0x123456,
-	        positiveMinValue:       Number.MIN_VALUE,
-	        positiveMaxSafeInteger: Number.MAX_SAFE_INTEGER,
-	        positiveMaxValue:       Number.MAX_VALUE,
-	        positiveInfinity:       Number.POSITIVE_INFINITY
-	    };
-
-	    const stringDataSet = (() => {
-
-	        const dataSet = {
-	            empty:       '',
-	            blank:       '      ',
-	            stringNull:  new String(),
-	            stringEmpty: new String( '' ),
-	            stringBlank: new String( '    ' ),
-	            foobar:      'foobar'
+	        dataSetOptions = {
+	            voids:       [],
+	            booleans:    [],
+	            numbers:     [],
+	            strings:     [],
+	            functions:   [],
+	            arrays:      [],
+	            typedArrays: [],
+	            objects:     []
 	        };
 
-	        for ( let i = 0, m = voidDataSet.length ; i < m ; i++ ) {
-	            dataSet[ voidDataSet[ i ] ] = `${voidDataSet[ i ]}`;
-	        }
-
-	        for ( let j = 0, n = booleanDataSet.length ; j < n ; j++ ) {
-	            dataSet[ booleanDataSet[ j ] ] = `${booleanDataSet[ j ]}`;
-	        }
-
-	        for ( let k = 0, o = numericDataSet.length ; k < o ; k++ ) {
-	            dataSet[ numericDataSet[ k ] ] = `${numericDataSet[ k ]}`;
-	        }
-
-	        return dataSet
-
-	    })();
-
-	    const functionDataSet = {
-	        classicFunction: function emptyFct () {},
-	        arrowFunction:   () => {}
-	    };
-
-	    const arrayDataSet = (() => {
-
-	        const dataSet = {
-	            emptyArray:       [],
-	            emptyArrayObject: new Array(),
-	            singleValued:     [ 0 ],
-	            multiValued:      [ 0, 1, 2 ],
-	            null:             (() => {
-
-	                const nullArray = [];
-
-	                for ( let index = 0 ; index < 3 ; index++ ) {
-	                    nullArray.push( null );
-	                }
-
-	                return nullArray
-
-	            })(),
-	            undefined:        (() => {
-
-	                const undefinedArray = [];
-
-	                for ( let index = 0 ; index < 3 ; index++ ) {
-	                    undefinedArray.push( undefined );
-	                }
-
-	                return undefinedArray
-
-	            })(),
-	            void:             (() => {
-
-	                const undefinedArray = [];
-
-	                for ( let index = 0 ; index < 3 ; index++ ) {
-	                    undefinedArray.push( void(0) );
-	                }
-
-	                return undefinedArray
-
-	            })(),
-	            voids:            (() => {
-
-	                const array = [];
-
-	                for ( let key in voidDataSet ) {
-	                    array.push( voidDataSet[ key ] );
-	                }
-
-	                return array
-
-	            })(),
-	            booleans:         (() => {
-
-	                const array = [];
-
-	                for ( let key in booleanDataSet ) {
-	                    array.push( booleanDataSet[ key ] );
-	                }
-
-	                return array
-
-	            })(),
-	            numbers:          (() => {
-
-	                const array = [];
-
-	                for ( let key in numericDataSet ) {
-	                    array.push( numericDataSet[ key ] );
-	                }
-
-	                return array
-
-	            })(),
-	            strings:          (() => {
-
-	                const array = [];
-
-	                for ( let key in stringDataSet ) {
-	                    array.push( stringDataSet[ key ] );
-	                }
-
-	                return array
-
-	            })(),
-	            functions:        (() => {
-
-	                const array = [];
-
-	                for ( let key in functionDataSet ) {
-	                    array.push( functionDataSet[ key ] );
-	                }
-
-	                return array
-
-	            })(),
-	            objects:          [
-	                {
-	                    foo: 'bar'
-	                },
-	                {
-	                    baz: 'qux'
-	                }
-	            ],
-	            arrays:           [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
-	        };
-
-	        return dataSet
-
-	    })();
-
-	    const typedArrayDataSet = {
-	        int8Array:    new Int8Array( [ 1, 2, 3 ] ),
-	        uInt8Array:   new Uint8Array( [ 1, 2, 3 ] ),
-	        int16Array:   new Int16Array( [ 1, 2, 3 ] ),
-	        uInt16Array:  new Uint16Array( [ 1, 2, 3 ] ),
-	        int32Array:   new Int32Array( [ 1, 2, 3 ] ),
-	        uInt32Array:  new Uint32Array( [ 1, 2, 3 ] ),
-	        float32Array: new Float32Array( [ 1.0, 2.0, 3.0 ] ),
-	        float64Array: new Float64Array( [ 1.0, 2.0, 3.0 ] )
-	    };
-
-	    const objectDataSet = [
-	        {},
-	        new Object(),
-	        { null: null },
-	        { undefined: undefined },
-	        { foo: 'bar' }
-	    ];
-
-	    return {
-	        voids:       voidDataSet,
-	        booleans:    booleanDataSet,
-	        numbers:     numericDataSet,
-	        strings:     stringDataSet,
-	        functions:   functionDataSet,
-	        arrays:      arrayDataSet,
-	        typedArrays: typedArrayDataSet,
-	        objects:     objectDataSet
 	    }
+
+	    let dataSet = [];
+
+	    for ( let optionKey in dataSetOptions ) {
+
+	        const map    = globalDataMap[ optionKey ];
+	        const option = dataSetOptions[ optionKey ];
+
+	        if ( option.length === 0 ) {
+
+	            for ( let valueKey in map ) {
+	                dataSet.push( map[ valueKey ] );
+	            }
+
+	        } else {
+
+	            for ( let i = 0, nbOptions = option.length ; i < nbOptions ; i++ ) {
+	                dataSet.push( map[ option[ i ] ] );
+	            }
+
+	        }
+
+	    }
+
+	    return dataSet
 
 	}
 
@@ -472,8 +349,8 @@ this.Itee.TestsUtils = (function (exports) {
 
 	    return {
 
-	        setup:    function onSetup () {
-	            this.dataset = Itee.TestsUtils.createDataMap()[datasetName];
+	        setup: function onSetup () {
+	            this.dataset = Itee.TestsUtils.createDataMap()[ datasetName ];
 	        },
 
 	        teardown: function onTeardown () {
