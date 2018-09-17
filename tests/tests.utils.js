@@ -217,21 +217,64 @@ const globalDataMap = {
 
 }
 
+export function createDataMap ( dataMapOptions ) {
+
+    if ( dataMapOptions === undefined ) {
+
+        dataMapOptions = {
+            voids:       [],
+            booleans:    [],
+            numbers:     [],
+            strings:     [],
+            functions:   [],
+            arrays:      [],
+            typedArrays: [],
+            objects:     []
+        }
+
+    }
+
+    let dataMap = {}
+
+    for ( let optionKey in dataMapOptions ) {
+
+        const map    = globalDataMap[ optionKey ]
+        const option = dataMapOptions[ optionKey ]
+
+        dataMap[ optionKey ] = []
+
+        if ( option.length === 0 ) {
+
+            for ( let valueKey in map ) {
+                dataMap[ optionKey ].push( map[ valueKey ] )
+            }
+
+        } else {
+
+            for ( let i = 0, nbOptions = option.length ; i < nbOptions ; i++ ) {
+                dataMap[ optionKey ].push( map[ option[ i ] ] )
+            }
+
+        }
+
+    }
+
+    return dataMap
 
 }
 
-export function createDataMapBenchmarkOptions () {
+export function createDataMapBenchmarkOptions ( dataMapOptions ) {
 
     return {
-        
-        setup:    function onSetup () {
-            this.datamap = Itee.TestsUtils.createDataMap()
+
+        setup: function onSetup () {
+            this.datamap = Itee.TestsUtils.createDataMap( dataMapOptions )
         },
-        
+
         teardown: function onTeardown () {
             delete this.datamap
         }
-        
+
     }
 
 }
