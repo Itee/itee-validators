@@ -226,55 +226,174 @@ this.Itee = this.Itee || {};
 	    objects
 	};
 
-	function createDataMap ( dataMapOptions ) {
+	const TestsUtils = {
 
-	    if ( dataMapOptions === undefined ) {
+	    DataMap: undefined,
 
-	        dataMapOptions = {
-	            voids:       [],
-	            booleans:    [],
-	            numbers:     [],
-	            strings:     [],
-	            functions:   [],
-	            arrays:      [],
-	            typedArrays: [],
-	            objects:     []
-	        };
+	    createDataMap: function ( dataMapOptions ) {
 
-	    }
+	        if ( dataMapOptions === undefined ) {
 
-	    let dataMap = {};
-
-	    for ( let optionKey in dataMapOptions ) {
-
-	        const map    = globalDataMap[ optionKey ];
-	        if( map === undefined ) {
-	            throw ReferenceError(`The global data map does not contain element for key: ${optionKey}`)
-	        }
-
-	        const option = dataMapOptions[ optionKey ];
-
-	        dataMap[ optionKey ] = [];
-
-	        if ( option.length === 0 ) {
-
-	            for ( let valueKey in map ) {
-	                dataMap[ optionKey ].push( map[ valueKey ] );
-	            }
-
-	        } else {
-
-	            for ( let i = 0, nbOptions = option.length ; i < nbOptions ; i++ ) {
-	                dataMap[ optionKey ].push( map[ option[ i ] ] );
-	            }
+	            dataMapOptions = {
+	                voids:       [],
+	                booleans:    [],
+	                numbers:     [],
+	                strings:     [],
+	                functions:   [],
+	                arrays:      [],
+	                typedArrays: [],
+	                objects:     []
+	            };
 
 	        }
 
+	        let dataMap = {};
+
+	        for ( let optionKey in dataMapOptions ) {
+
+	            const map = globalDataMap[ optionKey ];
+	            if ( map === undefined ) {
+	                throw ReferenceError( `The global data map does not contain element for key: ${optionKey}` )
+	            }
+
+	            const option = dataMapOptions[ optionKey ];
+
+	            dataMap[ optionKey ] = {};
+
+	            if ( option.length === 0 ) {
+
+	                for ( let valueKey in map ) {
+	                    dataMap[ optionKey ][ valueKey ] = map[ valueKey ];
+	                }
+
+	            } else {
+
+	                for ( let i = 0, nbOptions = option.length ; i < nbOptions ; i++ ) {
+	                    dataMap[ optionKey ][ option[ i ] ] = map[ option[ i ] ];
+	                }
+
+	            }
+
+	        }
+
+	        return dataMap
+
+	    },
+
+	    createDataMapBenchmarkOptions: function ( dataMapOptions ) {
+
+	        Itee.TestsUtils.DataMap = Itee.TestsUtils.createDataMap( dataMapOptions );
+
+	        return {
+
+	            setup: function onSetup () {
+	                this.datamap = Itee.TestsUtils.DataMap;
+	            },
+
+	            teardown: function onTeardown () {
+	                delete this.datamap;
+	            }
+
+	        }
+
+	    },
+
+	    iterateOverDataMap: function ( func ) {
+
+	        return function _iterateOverDataMap () {
+
+	            const datamap = this.datamap;
+	            for ( let datasetKey in datamap ) {
+
+	                const dataset = datamap[ datasetKey ];
+	                for ( let i = 0, n = dataset.length ; i < n ; i++ ) {
+
+	                    return func( dataset[ i ] )
+
+	                }
+
+	            }
+
+	        }
+
+	    },
+
+	    createDataSet: function ( dataSetOptions ) {
+
+	        if ( dataSetOptions === undefined ) {
+
+	            dataSetOptions = {
+	                voids:       [],
+	                booleans:    [],
+	                numbers:     [],
+	                strings:     [],
+	                functions:   [],
+	                arrays:      [],
+	                typedArrays: [],
+	                objects:     []
+	            };
+
+	        }
+
+	        let dataSet = [];
+
+	        for ( let optionKey in dataSetOptions ) {
+
+	            const map    = globalDataMap[ optionKey ];
+	            const option = dataSetOptions[ optionKey ];
+
+	            if ( option.length === 0 ) {
+
+	                for ( let valueKey in map ) {
+	                    dataSet.push( map[ valueKey ] );
+	                }
+
+	            } else {
+
+	                for ( let i = 0, nbOptions = option.length ; i < nbOptions ; i++ ) {
+	                    dataSet.push( map[ option[ i ] ] );
+	                }
+
+	            }
+
+	        }
+
+	        return dataSet
+
+	    },
+
+	    createDataSetBenchmarkOptions: function ( datasetName ) {
+
+	        return {
+
+	            setup: function onSetup () {
+	                this.dataset = Itee.TestsUtils.createDataMap()[ datasetName ];
+	            },
+
+	            teardown: function onTeardown () {
+	                delete this.dataset;
+	            }
+
+	        }
+
+	    },
+
+	    iterateOverDataSet: function ( func ) {
+
+	        return function () {
+
+	            const dataset = this.dataset;
+	            for ( let i = 0, n = dataset.length ; i < n ; i++ ) {
+
+	                return func( dataset[ i ] )
+
+	            }
+
+	        }
+
 	    }
 
-	    return dataMap
-
-	}
+	};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
@@ -3544,7 +3663,7 @@ this.Itee = this.Itee || {};
 
 	        beforeEach( () => {
 
-	            this._dataSet = createDataMap();
+	            this._dataSet = TestsUtils.createDataMap();
 
 	        } );
 
@@ -3791,7 +3910,7 @@ this.Itee = this.Itee || {};
 
 	        beforeEach( () => {
 
-	            this._dataSet = createDataMap();
+	            this._dataSet = TestsUtils.createDataMap();
 
 	        } );
 
@@ -4022,7 +4141,7 @@ this.Itee = this.Itee || {};
 
 	        beforeEach( () => {
 
-	            this._dataSet = createDataMap();
+	            this._dataSet = TestsUtils.createDataMap();
 
 	        } );
 
@@ -4979,7 +5098,7 @@ this.Itee = this.Itee || {};
 
 	        beforeEach( () => {
 
-	            this._dataSet = createDataMap();
+	            this._dataSet = TestsUtils.createDataMap();
 
 	        } );
 
@@ -5242,7 +5361,7 @@ this.Itee = this.Itee || {};
 
 	        beforeEach( () => {
 
-	            this._dataSet = createDataMap();
+	            this._dataSet = TestsUtils.createDataMap();
 
 	        } );
 
@@ -5537,7 +5656,7 @@ this.Itee = this.Itee || {};
 
 	        beforeEach( () => {
 
-	            this._dataSet = createDataMap();
+	            this._dataSet = TestsUtils.createDataMap();
 
 	        } );
 
@@ -5664,7 +5783,7 @@ this.Itee = this.Itee || {};
 
 	        beforeEach( () => {
 
-	            this._dataSet = createDataMap();
+	            this._dataSet = TestsUtils.createDataMap();
 
 	        } );
 
@@ -6502,7 +6621,7 @@ this.Itee = this.Itee || {};
 
 	        beforeEach( () => {
 
-	            this._dataSet = createDataMap();
+	            this._dataSet = TestsUtils.createDataMap();
 
 	        } );
 
@@ -6802,7 +6921,7 @@ this.Itee = this.Itee || {};
 
 	        beforeEach( () => {
 
-	            this._dataSet = createDataMap();
+	            this._dataSet = TestsUtils.createDataMap();
 
 	        } );
 

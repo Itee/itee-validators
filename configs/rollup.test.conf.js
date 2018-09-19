@@ -50,7 +50,7 @@ function createBuildsConfigs ( /*options*/ ) {
             }
         },
         {
-            input:   'tests/tests.utils.js',
+            input:   'tests/itee-validators.tests-utils.js',
             plugins: [
                 commonJs( {
                     include: 'node_modules/**'

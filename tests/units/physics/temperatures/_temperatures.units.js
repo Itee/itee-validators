@@ -6,7 +6,7 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { createDataMap } from '../../../tests.utils'
+import { TestsUtils } from '../../../itee-validators.tests-utils.js'
 import { isCelsiusUnits } from './isCelsius.units'
 import { isFahrenheitUnits } from './isFahrenheit.units'
 import { isKelvinUnits } from './isKelvin.units'
@@ -22,7 +22,7 @@ function _temperaturesUnits () {
 
         beforeEach( () => {
 
-            this._dataSet = createDataMap()
+            this._dataSet = TestsUtils.createDataMap()
 
         } )
 
