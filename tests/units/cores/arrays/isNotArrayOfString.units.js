@@ -18,7 +18,7 @@ function isNotArrayOfStringUnits () {
 
         it( 'should return true when the value is a void', () => {
 
-            const dataSet = this._dataSet[ 'voids' ]
+            const dataSet = this._dataMap[ 'voids' ]
             for ( let key in dataSet ) {
                 expect( isNotArrayOfString( dataSet[ key ] ) ).to.be.true
             }
@@ -27,7 +27,7 @@ function isNotArrayOfStringUnits () {
 
         it( 'should return true when the value is a boolean', () => {
 
-            const dataSet = this._dataSet[ 'booleans' ]
+            const dataSet = this._dataMap[ 'booleans' ]
             for ( let key in dataSet ) {
                 expect( isNotArrayOfString( dataSet[ key ] ) ).to.be.true
             }
@@ -36,7 +36,7 @@ function isNotArrayOfStringUnits () {
 
         it( 'should return true when the value is a number', () => {
 
-            const dataSet = this._dataSet[ 'numbers' ]
+            const dataSet = this._dataMap[ 'numbers' ]
             for ( let key in dataSet ) {
                 expect( isNotArrayOfString( dataSet[ key ] ) ).to.be.true
             }
@@ -45,7 +45,7 @@ function isNotArrayOfStringUnits () {
 
         it( 'should return true when the value is a string', () => {
 
-            const dataSet = this._dataSet[ 'strings' ]
+            const dataSet = this._dataMap[ 'strings' ]
             for ( let key in dataSet ) {
                 expect( isNotArrayOfString( dataSet[ key ] ) ).to.be.true
             }
@@ -54,7 +54,7 @@ function isNotArrayOfStringUnits () {
 
         it( 'should return true when the value is a function', () => {
 
-            const dataSet = this._dataSet[ 'functions' ]
+            const dataSet = this._dataMap[ 'functions' ]
             for ( let key in dataSet ) {
                 expect( isNotArrayOfString( dataSet[ key ] ) ).to.be.true
             }
@@ -65,91 +65,91 @@ function isNotArrayOfStringUnits () {
 
         it( 'should return true when the value is an empty array', () => {
 
-            const dataSet = this._dataSet[ 'arrays' ]
+            const dataSet = this._dataMap[ 'arrays' ]
             expect( isNotArrayOfString( dataSet[ 'emptyArray' ] ) ).to.be.true
 
         } )
 
         it( 'should return true when the value is an empty array object', () => {
 
-            const dataSet = this._dataSet[ 'arrays' ]
+            const dataSet = this._dataMap[ 'arrays' ]
             expect( isNotArrayOfString( dataSet[ 'emptyArrayObject' ] ) ).to.be.true
 
         } )
 
         it( 'should return true when the value is a single valued array of number', () => {
 
-            const dataSet = this._dataSet[ 'arrays' ]
+            const dataSet = this._dataMap[ 'arrays' ]
             expect( isNotArrayOfString( dataSet[ 'singleValued' ] ) ).to.be.true
 
         } )
 
         it( 'should return true when the value is a multi valued array of number', () => {
 
-            const dataSet = this._dataSet[ 'arrays' ]
+            const dataSet = this._dataMap[ 'arrays' ]
             expect( isNotArrayOfString( dataSet[ 'multiValued' ] ) ).to.be.true
 
         } )
 
         it( 'should return true when the value is an array of null', () => {
 
-            const dataSet = this._dataSet[ 'arrays' ]
+            const dataSet = this._dataMap[ 'arrays' ]
             expect( isNotArrayOfString( dataSet[ 'null' ] ) ).to.be.true
 
         } )
 
         it( 'should return true when the value is an array of undefined', () => {
 
-            const dataSet = this._dataSet[ 'arrays' ]
+            const dataSet = this._dataMap[ 'arrays' ]
             expect( isNotArrayOfString( dataSet[ 'undefined' ] ) ).to.be.true
 
         } )
 
         it( 'should return true when the value is an array of voids', () => {
 
-            const dataSet = this._dataSet[ 'arrays' ]
+            const dataSet = this._dataMap[ 'arrays' ]
             expect( isNotArrayOfString( dataSet[ 'voids' ] ) ).to.be.true
 
         } )
 
         it( 'should return true when the value is an array of booleans', () => {
 
-            const dataSet = this._dataSet[ 'arrays' ]
+            const dataSet = this._dataMap[ 'arrays' ]
             expect( isNotArrayOfString( dataSet[ 'booleans' ] ) ).to.be.true
 
         } )
 
         it( 'should return true when the value is an array of numbers', () => {
 
-            const dataSet = this._dataSet[ 'arrays' ]
+            const dataSet = this._dataMap[ 'arrays' ]
             expect( isNotArrayOfString( dataSet[ 'numbers' ] ) ).to.be.true
 
         } )
 
         it( 'should return false when the value is an array of strings', () => {
 
-            const dataSet = this._dataSet[ 'arrays' ]
+            const dataSet = this._dataMap[ 'arrays' ]
             expect( isNotArrayOfString( dataSet[ 'strings' ] ) ).to.be.false
 
         } )
 
         it( 'should return true when the value is an array of functions', () => {
 
-            const dataSet = this._dataSet[ 'arrays' ]
+            const dataSet = this._dataMap[ 'arrays' ]
             expect( isNotArrayOfString( dataSet[ 'functions' ] ) ).to.be.true
 
         } )
 
         it( 'should return true when the value is an array of objects', () => {
 
-            const dataSet = this._dataSet[ 'arrays' ]
+            const dataSet = this._dataMap[ 'arrays' ]
             expect( isNotArrayOfString( dataSet[ 'objects' ] ) ).to.be.true
 
         } )
 
         it( 'should return true when the value is an array of arrays', () => {
 
-            const dataSet = this._dataSet[ 'arrays' ]
+            const dataSet = this._dataMap[ 'arrays' ]
             expect( isNotArrayOfString( dataSet[ 'arrays' ] ) ).to.be.true
 
         } )
@@ -158,7 +158,7 @@ function isNotArrayOfStringUnits () {
 
         it( 'should return true when the value is an typed array', () => {
 
-            const dataSet = this._dataSet[ 'typedArrays' ]
+            const dataSet = this._dataMap[ 'typedArrays' ]
             for ( let key in dataSet ) {
                 expect( isNotArrayOfString( dataSet[ key ] ) ).to.be.true
             }
@@ -167,7 +167,7 @@ function isNotArrayOfStringUnits () {
 
         it( 'should return true when the value is an object', () => {
 
-            const dataSet = this._dataSet[ 'objects' ]
+            const dataSet = this._dataMap[ 'objects' ]
             for ( let key in dataSet ) {
                 expect( isNotArrayOfString( dataSet[ key ] ) ).to.be.true
             }
