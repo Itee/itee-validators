@@ -224,7 +224,7 @@ const globalDataMap = {
     objects
 }
 
-const IteeValidatorsTestsUtils = {
+const TestsUtils = {
 
     DataMap: undefined,
 
@@ -399,4 +399,4 @@ const IteeValidatorsTestsUtils = {
 
 }
 
-export { IteeValidatorsTestsUtils }
+export { TestsUtils }
