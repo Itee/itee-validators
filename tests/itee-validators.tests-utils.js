@@ -249,25 +249,25 @@ const TestsUtils = {
 
         for ( let optionKey in dataMapOptions ) {
 
-            const map    = globalDataMap[ optionKey ]
-            if( map === undefined ) {
-                throw ReferenceError(`The global data map does not contain element for key: ${optionKey}`)
+            const map = globalDataMap[ optionKey ]
+            if ( map === undefined ) {
+                throw ReferenceError( `The global data map does not contain element for key: ${optionKey}` )
             }
 
             const option = dataMapOptions[ optionKey ]
 
-            dataMap[ optionKey ] = []
+            dataMap[ optionKey ] = {}
 
             if ( option.length === 0 ) {
 
                 for ( let valueKey in map ) {
-                    dataMap[ optionKey ].push( map[ valueKey ] )
+                    dataMap[ optionKey ][ valueKey ] = map[ valueKey ]
                 }
 
             } else {
 
                 for ( let i = 0, nbOptions = option.length ; i < nbOptions ; i++ ) {
-                    dataMap[ optionKey ].push( map[ option[ i ] ] )
+                    dataMap[ optionKey ][ option[ i ] ] = map[ option[ i ] ]
                 }
 
             }
