@@ -16,7 +16,7 @@ function isInfiniteNegativeUnits () {
 
     describe( 'isInfiniteNegative()', () => {
 
-        it( 'should be implemented', () => {
+        it.skip( 'should be implemented', () => {
 
             expect( isInfiniteNegative( 0 ) ).to.be.true
 

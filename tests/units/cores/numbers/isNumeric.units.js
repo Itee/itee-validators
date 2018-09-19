@@ -16,7 +16,7 @@ function isNumericUnits () {
 
     describe( 'isNumeric()', () => {
 
-        it( 'should be implemented', () => {
+        it.skip( 'should be implemented', () => {
 
             expect( isNumeric( 0 ) ).to.be.true
 

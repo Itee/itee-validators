@@ -16,7 +16,7 @@ function isTemperatureUnits () {
 
     describe( 'isTemperature()', () => {
 
-        it( 'should be implemented', () => {
+        it.skip( 'should be implemented', () => {
 
             expect( true ).to.be.true
 

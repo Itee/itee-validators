@@ -16,7 +16,7 @@ function isMaxPositiveUnits () {
 
     describe( 'isMaxPositive()', () => {
 
-        it( 'should be implemented', () => {
+        it.skip( 'should be implemented', () => {
 
             expect( isMaxPositive( 0 ) ).to.be.true
 

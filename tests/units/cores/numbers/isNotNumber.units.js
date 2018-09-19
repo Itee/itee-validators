@@ -16,7 +16,7 @@ function isNotNumberUnits () {
 
     describe( 'isNotNumber()', () => {
 
-        it( 'should be implemented', () => {
+        it.skip( 'should be implemented', () => {
 
             expect( isNotNumber( 0 ) ).to.be.true
 

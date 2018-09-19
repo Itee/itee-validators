@@ -16,7 +16,7 @@ function isMaxSafeIntegerUnits () {
 
     describe( 'isMaxSafeInteger()', () => {
 
-        it( 'should be implemented', () => {
+        it.skip( 'should be implemented', () => {
 
             expect( isMaxSafeInteger( 0 ) ).to.be.true
 

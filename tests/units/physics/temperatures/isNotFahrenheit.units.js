@@ -16,7 +16,7 @@ function isNotFahrenheitUnits () {
 
     describe( 'isNotFahrenheit()', () => {
 
-        it( 'should be implemented', () => {
+        it.skip( 'should be implemented', () => {
 
             expect( true ).to.be.true
 
