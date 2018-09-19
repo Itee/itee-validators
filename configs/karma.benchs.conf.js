@@ -29,7 +29,7 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
 
         // list of files / patterns to load in the browser
         files: [
-            'third_party/tests.utils.js',
+            'builds/itee-validators.tests-utils.js',
             'builds/itee-validators.benchs.js'
         ],
 
@@ -95,13 +95,17 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
 
         // Concurrency level
         // how many browser should be started simultaneous
-        concurrency: 1,
+        concurrency: 4,
 
         // If, during test execution, Karma does not receive any message from a browser
         browserNoActivityTimeout: 60000,
+        browserDisconnectTimeout: 60000,
 
         // If browser does not capture in given timeout [ms], kill it
-        captureTimeout: 60000
+        captureTimeout: 60000,
+
+        // How long will Karma wait for browser process to terminate before sending a SIGKILL signal.
+        processKillTimeout: 360000
 
     } )
 
