@@ -35,13 +35,13 @@ function _numbersUnits () {
 
         beforeEach( () => {
 
-            this._dataSet = TestsUtils.createDataMap()
+            this._dataMap = TestsUtils.createDataMap()
 
         } )
 
         afterEach( () => {
 
-            delete this._dataSet
+            delete this._dataMap
 
         } )
 

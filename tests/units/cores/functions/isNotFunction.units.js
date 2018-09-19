@@ -18,7 +18,7 @@ function isNotFunctionUnits () {
 
         it( 'should return false when the value is a void', () => {
 
-            const dataSet = this._dataSet[ 'voids' ]
+            const dataSet = this._dataMap[ 'voids' ]
             for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
                 expect( isNotFunction( dataSet[ i ] ) ).to.be.false
             }
@@ -27,7 +27,7 @@ function isNotFunctionUnits () {
 
         it( 'should return true when the value is a boolean', () => {
 
-            const dataSet = this._dataSet[ 'booleans' ]
+            const dataSet = this._dataMap[ 'booleans' ]
             for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
                 expect( isNotFunction( dataSet[ 0 ] ) ).to.be.true
             }
@@ -36,7 +36,7 @@ function isNotFunctionUnits () {
 
         it( 'should return false when the value is a number', () => {
 
-            const dataSet = this._dataSet[ 'numbers' ]
+            const dataSet = this._dataMap[ 'numbers' ]
             for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
                 expect( isNotFunction( dataSet[ i ] ) ).to.be.false
             }
@@ -45,7 +45,7 @@ function isNotFunctionUnits () {
 
         it( 'should return false when the value is a string', () => {
 
-            const dataSet = this._dataSet[ 'strings' ]
+            const dataSet = this._dataMap[ 'strings' ]
             for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
                 expect( isNotFunction( dataSet[ i ] ) ).to.be.false
             }
@@ -54,7 +54,7 @@ function isNotFunctionUnits () {
 
         it( 'should return false when the value is a function', () => {
 
-            const dataSet = this._dataSet[ 'functions' ]
+            const dataSet = this._dataMap[ 'functions' ]
             for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
                 expect( isNotFunction( dataSet[ i ] ) ).to.be.false
             }
@@ -63,7 +63,7 @@ function isNotFunctionUnits () {
 
         it( 'should return false when the value is an array', () => {
 
-            const dataSet = this._dataSet[ 'arrays' ]
+            const dataSet = this._dataMap[ 'arrays' ]
             for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
                 expect( isNotFunction( dataSet[ i ] ) ).to.be.false
             }
@@ -72,7 +72,7 @@ function isNotFunctionUnits () {
 
         it( 'should return false when the value is an object', () => {
 
-            const dataSet = this._dataSet[ 'objects' ]
+            const dataSet = this._dataMap[ 'objects' ]
             for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
                 expect( isNotFunction( dataSet[ i ] ) ).to.be.false
             }
