@@ -29,7 +29,7 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
 
         // list of files / patterns to load in the browser
         files: [
-            'third_party/tests.utils.js',
+            'builds/itee-validators.tests-utils.js',
             'builds/itee-validators.benchs.js'
         ],
 
