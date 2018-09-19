@@ -16,65 +16,65 @@ function isNotFunctionUnits () {
 
     describe( 'isNotFunction()', () => {
 
-        it( 'should return false when the value is a void', () => {
+        it( 'should return true when the value is a void', () => {
 
-            const dataSet = this._dataMap[ 'voids' ]
-            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
-                expect( isNotFunction( dataSet[ i ] ) ).to.be.false
+            const values = this._dataMap.voids
+            for( let key in values ) {
+                expect( isNotFunction( values[ key ] ) ).to.be.true
             }
 
         } )
 
         it( 'should return true when the value is a boolean', () => {
 
-            const dataSet = this._dataMap[ 'booleans' ]
-            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
-                expect( isNotFunction( dataSet[ 0 ] ) ).to.be.true
+            const values = this._dataMap[ 'booleans' ]
+            for( let key in values ) {
+                expect( isNotFunction( values[ key ] ) ).to.be.true
             }
 
         } )
 
-        it( 'should return false when the value is a number', () => {
+        it( 'should return true when the value is a number', () => {
 
-            const dataSet = this._dataMap[ 'numbers' ]
-            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
-                expect( isNotFunction( dataSet[ i ] ) ).to.be.false
+            const values = this._dataMap[ 'numbers' ]
+            for( let key in values ) {
+                expect( isNotFunction( values[ key ] ) ).to.be.true
             }
 
         } )
 
-        it( 'should return false when the value is a string', () => {
+        it( 'should return true when the value is a string', () => {
 
-            const dataSet = this._dataMap[ 'strings' ]
-            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
-                expect( isNotFunction( dataSet[ i ] ) ).to.be.false
+            const values = this._dataMap.strings
+            for( let key in values ) {
+                expect( isNotFunction( values[ key ] ) ).to.be.true
             }
 
         } )
 
         it( 'should return false when the value is a function', () => {
 
-            const dataSet = this._dataMap[ 'functions' ]
-            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
-                expect( isNotFunction( dataSet[ i ] ) ).to.be.false
+            const values = this._dataMap.functions
+            for( let key in values ) {
+                expect( isNotFunction( values[ key ] ) ).to.be.false
             }
 
         } )
 
-        it( 'should return false when the value is an array', () => {
+        it( 'should return true when the value is an array', () => {
 
-            const dataSet = this._dataMap[ 'arrays' ]
-            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
-                expect( isNotFunction( dataSet[ i ] ) ).to.be.false
+            const values = this._dataMap.arrays
+            for( let key in values ) {
+                expect( isNotFunction( values[ key ] ) ).to.be.true
             }
 
         } )
 
-        it( 'should return false when the value is an object', () => {
+        it( 'should return true when the value is an object', () => {
 
-            const dataSet = this._dataMap[ 'objects' ]
-            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
-                expect( isNotFunction( dataSet[ i ] ) ).to.be.false
+            const values = this._dataMap.objects
+            for( let key in values ) {
+                expect( isNotFunction( values[ key ] ) ).to.be.true
             }
 
         } )

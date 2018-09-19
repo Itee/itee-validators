@@ -18,9 +18,9 @@ function isNotEmptyObjectUnits () {
 
         it( 'should return false when the value is a void', () => {
 
-            const dataSet = this._dataMap[ 'voids' ]
-            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
-                expect( isNotEmptyObject( dataSet[ i ] ) ).to.be.false
+            const values = this._dataMap.voids
+            for( let key in values ) {
+                expect( isNotEmptyObject( values[ key ] ) ).to.be.false
             }
 
         } )
