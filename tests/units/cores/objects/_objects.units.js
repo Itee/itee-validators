@@ -6,7 +6,7 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { createDataMap } from '../../../tests.utils'
+import { TestsUtils } from '../../../itee-validators.tests-utils.js'
 import { isObjectUnits } from './isObject.units'
 import { isNotObjectUnits } from './isNotObject.units'
 import { isEmptyObjectUnits } from './isEmptyObject.units'
@@ -18,7 +18,7 @@ function _objectsUnits () {
 
         beforeEach( () => {
 
-            this._dataSet = createDataMap()
+            this._dataSet = TestsUtils.createDataMap()
 
         } )
 
