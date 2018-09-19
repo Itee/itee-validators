@@ -250,25 +250,25 @@ var Itee = (function (exports) {
 
 	        for ( let optionKey in dataMapOptions ) {
 
-	            const map    = globalDataMap[ optionKey ];
-	            if( map === undefined ) {
-	                throw ReferenceError(`The global data map does not contain element for key: ${optionKey}`)
+	            const map = globalDataMap[ optionKey ];
+	            if ( map === undefined ) {
+	                throw ReferenceError( `The global data map does not contain element for key: ${optionKey}` )
 	            }
 
 	            const option = dataMapOptions[ optionKey ];
 
-	            dataMap[ optionKey ] = [];
+	            dataMap[ optionKey ] = {};
 
 	            if ( option.length === 0 ) {
 
 	                for ( let valueKey in map ) {
-	                    dataMap[ optionKey ].push( map[ valueKey ] );
+	                    dataMap[ optionKey ][ valueKey ] = map[ valueKey ];
 	                }
 
 	            } else {
 
 	                for ( let i = 0, nbOptions = option.length ; i < nbOptions ; i++ ) {
-	                    dataMap[ optionKey ].push( map[ option[ i ] ] );
+	                    dataMap[ optionKey ][ option[ i ] ] = map[ option[ i ] ];
 	                }
 
 	            }
@@ -281,25 +281,25 @@ var Itee = (function (exports) {
 
 	    createDataMapBenchmarkOptions: function ( dataMapOptions ) {
 
-	    Itee.TestsUtils.DataMap = Itee.TestsUtils.createDataMap( dataMapOptions );
+	        Itee.TestsUtils.DataMap = Itee.TestsUtils.createDataMap( dataMapOptions );
 
-	    return {
+	        return {
 
-	        setup: function onSetup () {
-	            this.datamap = Itee.TestsUtils.DataMap;
-	        },
+	            setup: function onSetup () {
+	                this.datamap = Itee.TestsUtils.DataMap;
+	            },
 
-	        teardown: function onTeardown () {
-	            delete this.datamap;
+	            teardown: function onTeardown () {
+	                delete this.datamap;
+	            }
+
 	        }
 
-	    }
-
-	},
+	    },
 
 	    iterateOverDataMap: function ( func ) {
 
-	        return function _iterateOverDataMap() {
+	        return function _iterateOverDataMap () {
 
 	            const datamap = this.datamap;
 	            for ( let datasetKey in datamap ) {
@@ -318,8 +318,6 @@ var Itee = (function (exports) {
 	    },
 
 	    createDataSet: function ( dataSetOptions ) {
-
-	        console.log('createDataSet');
 
 	        if ( dataSetOptions === undefined ) {
 
@@ -365,8 +363,6 @@ var Itee = (function (exports) {
 
 	    createDataSetBenchmarkOptions: function ( datasetName ) {
 
-	        console.log('createDataSetBenchmarkOptions');
-
 	        return {
 
 	            setup: function onSetup () {
@@ -382,8 +378,6 @@ var Itee = (function (exports) {
 	    },
 
 	    iterateOverDataSet: function ( func ) {
-
-	        console.log('iterateOverDataSet');
 
 	        return function () {
 
