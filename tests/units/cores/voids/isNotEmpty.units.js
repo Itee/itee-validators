@@ -17,79 +17,79 @@ function isNotEmptyUnits () {
 
         // Specific dataset
 
-        it( 'should return true when the value is null', () => {
+        it( 'should return false when the value is null', () => {
 
-            const _dataSet = this._dataMap[ 'voids' ]
-            expect( isNotEmpty( _dataSet[ 0 ] ) ).to.be.true
-
-        } )
-
-        it( 'should return false when the value is undefined', () => {
-
-            const _dataSet = this._dataMap[ 'voids' ]
-            expect( isNotEmpty( _dataSet[ 1 ] ) ).to.be.false
+            const value = this._dataMap.voids.null
+            expect( isNotEmpty( value ) ).to.be.false
 
         } )
 
-        it( 'should return false when the value is void(0)', () => {
+        it( 'should return true when the value is undefined', () => {
 
-            const _dataSet = this._dataMap[ 'voids' ]
-            expect( isNotEmpty( _dataSet[ 2 ] ) ).to.be.false
+            const value = this._dataMap.voids.undefined
+            expect( isNotEmpty( value ) ).to.be.true
+
+        } )
+
+        it( 'should return true when the value is void(0)', () => {
+
+            const value = this._dataMap.voids.void
+            expect( isNotEmpty( value ) ).to.be.true
 
         } )
 
         // Global dataset
 
-        it( 'should return false when the value is a boolean', () => {
+        it( 'should return true when the value is a boolean', () => {
 
-            const _dataSet = this._dataMap[ 'booleans' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotEmpty( _dataSet[ i ] ) ).to.be.false
+            const values = this._dataMap.booleans
+            for( let key in values ) {
+                expect( isNotEmpty( values[ key ] ) ).to.be.true
             }
 
         } )
 
-        it( 'should return false when the value is a number', () => {
+        it( 'should return true when the value is a number', () => {
 
-            const _dataSet = this._dataMap[ 'numbers' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotEmpty( _dataSet[ i ] ) ).to.be.false
+            const values = this._dataMap.numbers
+            for( let key in values ) {
+                expect( isNotEmpty( values[ key ] ) ).to.be.true
             }
 
         } )
 
-        it( 'should return false when the value is a string', () => {
+        it.skip( 'should return false when the value is a string', () => {
 
-            const _dataSet = this._dataMap[ 'strings' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotEmpty( _dataSet[ i ] ) ).to.be.false
+            const values = this._dataMap.strings
+            for( let key in values ) {
+                expect( isNotEmpty( values[ key ] ) ).to.be.false
             }
 
         } )
 
-        it( 'should return false when the value is a function', () => {
+        it( 'should return true when the value is a function', () => {
 
-            const _dataSet = this._dataMap[ 'functions' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotEmpty( _dataSet[ i ] ) ).to.be.false
+            const values = this._dataMap.functions
+            for( let key in values ) {
+                expect( isNotEmpty( values[ key ] ) ).to.be.true
             }
 
         } )
 
-        it( 'should return false when the value is an array', () => {
+        it.skip( 'should return false when the value is an array', () => {
 
-            const _dataSet = this._dataMap[ 'arrays' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotEmpty( _dataSet[ i ] ) ).to.be.false
+            const values = this._dataMap.arrays
+            for( let key in values ) {
+                expect( isNotEmpty( values[ key ] ) ).to.be.false
             }
 
         } )
 
-        it( 'should return false when the value is an object', () => {
+        it.skip( 'should return false when the value is an object', () => {
 
-            const _dataSet = this._dataMap[ 'objects' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNotEmpty( _dataSet[ i ] ) ).to.be.false
+            const values = this._dataMap.objects
+            for( let key in values ) {
+                expect( isNotEmpty( values[ key ] ) ).to.be.false
             }
 
         } )

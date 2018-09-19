@@ -10,7 +10,8 @@
 
 /* global describe, expect, it */
 
-import { isNotEmptyArray } from '../../../../sources/cores/arrays/isNotEmptyArray'
+import { isNotEmptyArray }    from '../../../../sources/cores/arrays/isNotEmptyArray'
+import { isNotArrayOfObject } from '../../../../sources/cores/arrays/isNotArrayOfObject'
 
 function isNotEmptyArrayUnits () {
 
@@ -18,139 +19,63 @@ function isNotEmptyArrayUnits () {
 
         it( 'should return true when the value is a void', () => {
 
-            const dataSet = this._dataMap[ 'voids' ]
-            for ( let key in dataSet ) {
-                expect( isNotEmptyArray( dataSet[ key ] ) ).to.be.true
+            const values = this._dataMap.voids
+            for ( let key in values ) {
+                expect( isNotEmptyArray( values[ key ] ) ).to.be.true
             }
 
         } )
 
         it( 'should return true when the value is a boolean', () => {
 
-            const dataSet = this._dataMap[ 'booleans' ]
-            for ( let key in dataSet ) {
-                expect( isNotEmptyArray( dataSet[ key ] ) ).to.be.true
+            const values = this._dataMap[ 'booleans' ]
+            for ( let key in values ) {
+                expect( isNotEmptyArray( values[ key ] ) ).to.be.true
             }
 
         } )
 
         it( 'should return true when the value is a number', () => {
 
-            const dataSet = this._dataMap[ 'numbers' ]
-            for ( let key in dataSet ) {
-                expect( isNotEmptyArray( dataSet[ key ] ) ).to.be.true
+            const values = this._dataMap[ 'numbers' ]
+            for ( let key in values ) {
+                expect( isNotEmptyArray( values[ key ] ) ).to.be.true
             }
 
         } )
 
         it( 'should return true when the value is a string', () => {
 
-            const dataSet = this._dataMap[ 'strings' ]
-            for ( let key in dataSet ) {
-                expect( isNotEmptyArray( dataSet[ key ] ) ).to.be.true
+            const values = this._dataMap.strings
+            for ( let key in values ) {
+                expect( isNotEmptyArray( values[ key ] ) ).to.be.true
             }
 
         } )
 
         it( 'should return true when the value is a function', () => {
 
-            const dataSet = this._dataMap[ 'functions' ]
-            for ( let key in dataSet ) {
-                expect( isNotEmptyArray( dataSet[ key ] ) ).to.be.true
+            const values = this._dataMap.functions
+            for ( let key in values ) {
+                expect( isNotEmptyArray( values[ key ] ) ).to.be.true
             }
 
         } )
 
         //////////////// Specific part
 
-        it( 'should return false when the value is an empty array', () => {
+        it( 'should return false only when the value is an empty array', () => {
 
-            const dataSet = this._dataMap[ 'arrays' ]
-            expect( isNotEmptyArray( dataSet[ 'emptyArray' ] ) ).to.be.false
+            const values = this._dataMap.arrays
+            for ( let key in values ) {
 
-        } )
+                if ( key === 'emptyArray' || key === 'emptyArrayObject' ) {
+                    expect( isNotEmptyArray( values[ key ] ) ).to.be.true
+                } else {
+                    expect( isNotEmptyArray( values[ key ] ) ).to.be.false
+                }
 
-        it( 'should return false when the value is an empty array object', () => {
-
-            const dataSet = this._dataMap[ 'arrays' ]
-            expect( isNotEmptyArray( dataSet[ 'emptyArrayObject' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return true when the value is a single valued array of number', () => {
-
-            const dataSet = this._dataMap[ 'arrays' ]
-            expect( isNotEmptyArray( dataSet[ 'singleValued' ] ) ).to.be.true
-
-        } )
-
-        it( 'should return true when the value is a multi valued array of number', () => {
-
-            const dataSet = this._dataMap[ 'arrays' ]
-            expect( isNotEmptyArray( dataSet[ 'multiValued' ] ) ).to.be.true
-
-        } )
-
-        it( 'should return true when the value is an array of null', () => {
-
-            const dataSet = this._dataMap[ 'arrays' ]
-            expect( isNotEmptyArray( dataSet[ 'null' ] ) ).to.be.true
-
-        } )
-
-        it( 'should return true when the value is an array of undefined', () => {
-
-            const dataSet = this._dataMap[ 'arrays' ]
-            expect( isNotEmptyArray( dataSet[ 'undefined' ] ) ).to.be.true
-
-        } )
-
-        it( 'should return true when the value is an array of voids', () => {
-
-            const dataSet = this._dataMap[ 'arrays' ]
-            expect( isNotEmptyArray( dataSet[ 'voids' ] ) ).to.be.true
-
-        } )
-
-        it( 'should return true when the value is an array of booleans', () => {
-
-            const dataSet = this._dataMap[ 'arrays' ]
-            expect( isNotEmptyArray( dataSet[ 'booleans' ] ) ).to.be.true
-
-        } )
-
-        it( 'should return true when the value is an array of numbers', () => {
-
-            const dataSet = this._dataMap[ 'arrays' ]
-            expect( isNotEmptyArray( dataSet[ 'numbers' ] ) ).to.be.true
-
-        } )
-
-        it( 'should return true when the value is an array of strings', () => {
-
-            const dataSet = this._dataMap[ 'arrays' ]
-            expect( isNotEmptyArray( dataSet[ 'strings' ] ) ).to.be.true
-
-        } )
-
-        it( 'should return true when the value is an array of functions', () => {
-
-            const dataSet = this._dataMap[ 'arrays' ]
-            expect( isNotEmptyArray( dataSet[ 'functions' ] ) ).to.be.true
-
-        } )
-
-        it( 'should return true when the value is an array of objects', () => {
-
-            const dataSet = this._dataMap[ 'arrays' ]
-            expect( isNotEmptyArray( dataSet[ 'objects' ] ) ).to.be.true
-
-        } )
-
-        it( 'should return true when the value is an array of arrays', () => {
-
-            const dataSet = this._dataMap[ 'arrays' ]
-            expect( isNotEmptyArray( dataSet[ 'arrays' ] ) ).to.be.true
+            }
 
         } )
 
@@ -158,18 +83,18 @@ function isNotEmptyArrayUnits () {
 
         it( 'should return true when the value is an typed array', () => {
 
-            const dataSet = this._dataMap[ 'typedArrays' ]
-            for ( let key in dataSet ) {
-                expect( isNotEmptyArray( dataSet[ key ] ) ).to.be.true
+            const values = this._dataMap.typedArrays
+            for ( let key in values ) {
+                expect( isNotEmptyArray( values[ key ] ) ).to.be.true
             }
 
         } )
 
         it( 'should return true when the value is an object', () => {
 
-            const dataSet = this._dataMap[ 'objects' ]
-            for ( let key in dataSet ) {
-                expect( isNotEmptyArray( dataSet[ key ] ) ).to.be.true
+            const values = this._dataMap.objects
+            for ( let key in values ) {
+                expect( isNotEmptyArray( values[ key ] ) ).to.be.true
             }
 
         } )
