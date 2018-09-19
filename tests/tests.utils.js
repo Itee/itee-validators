@@ -224,57 +224,61 @@ const globalDataMap = {
     objects
 }
 
-export function createDataMap ( dataMapOptions ) {
+const TestsUtils = {
 
-    if ( dataMapOptions === undefined ) {
+    DataMap: undefined,
 
-        dataMapOptions = {
-            voids:       [],
-            booleans:    [],
-            numbers:     [],
-            strings:     [],
-            functions:   [],
-            arrays:      [],
-            typedArrays: [],
-            objects:     []
-        }
+    createDataMap: function ( dataMapOptions ) {
 
-    }
+        if ( dataMapOptions === undefined ) {
 
-    let dataMap = {}
-
-    for ( let optionKey in dataMapOptions ) {
-
-        const map    = globalDataMap[ optionKey ]
-        if( map === undefined ) {
-            throw ReferenceError(`The global data map does not contain element for key: ${optionKey}`)
-        }
-
-        const option = dataMapOptions[ optionKey ]
-
-        dataMap[ optionKey ] = []
-
-        if ( option.length === 0 ) {
-
-            for ( let valueKey in map ) {
-                dataMap[ optionKey ].push( map[ valueKey ] )
-            }
-
-        } else {
-
-            for ( let i = 0, nbOptions = option.length ; i < nbOptions ; i++ ) {
-                dataMap[ optionKey ].push( map[ option[ i ] ] )
+            dataMapOptions = {
+                voids:       [],
+                booleans:    [],
+                numbers:     [],
+                strings:     [],
+                functions:   [],
+                arrays:      [],
+                typedArrays: [],
+                objects:     []
             }
 
         }
 
-    }
+        let dataMap = {}
 
-    return dataMap
+        for ( let optionKey in dataMapOptions ) {
 
-}
+            const map    = globalDataMap[ optionKey ]
+            if( map === undefined ) {
+                throw ReferenceError(`The global data map does not contain element for key: ${optionKey}`)
+            }
 
-export function createDataMapBenchmarkOptions ( dataMapOptions ) {
+            const option = dataMapOptions[ optionKey ]
+
+            dataMap[ optionKey ] = []
+
+            if ( option.length === 0 ) {
+
+                for ( let valueKey in map ) {
+                    dataMap[ optionKey ].push( map[ valueKey ] )
+                }
+
+            } else {
+
+                for ( let i = 0, nbOptions = option.length ; i < nbOptions ; i++ ) {
+                    dataMap[ optionKey ].push( map[ option[ i ] ] )
+                }
+
+            }
+
+        }
+
+        return dataMap
+
+    },
+
+    createDataMapBenchmarkOptions: function ( dataMapOptions ) {
 
     Itee.TestsUtils.DataMap = Itee.TestsUtils.createDataMap( dataMapOptions )
 
@@ -290,16 +294,99 @@ export function createDataMapBenchmarkOptions ( dataMapOptions ) {
 
     }
 
-}
+},
 
-export function iterateOverDataMap ( func ) {
+    iterateOverDataMap: function ( func ) {
 
-    return function () {
+        return function _iterateOverDataMap() {
 
-        const datamap = this.datamap
-        for ( let datasetKey in datamap ) {
+            const datamap = this.datamap
+            for ( let datasetKey in datamap ) {
 
-            const dataset = datamap[ datasetKey ]
+                const dataset = datamap[ datasetKey ]
+                for ( let i = 0, n = dataset.length ; i < n ; i++ ) {
+
+                    return func( dataset[ i ] )
+
+                }
+
+            }
+
+        }
+
+    },
+
+    createDataSet: function ( dataSetOptions ) {
+
+        console.log('createDataSet')
+
+        if ( dataSetOptions === undefined ) {
+
+            dataSetOptions = {
+                voids:       [],
+                booleans:    [],
+                numbers:     [],
+                strings:     [],
+                functions:   [],
+                arrays:      [],
+                typedArrays: [],
+                objects:     []
+            }
+
+        }
+
+        let dataSet = []
+
+        for ( let optionKey in dataSetOptions ) {
+
+            const map    = globalDataMap[ optionKey ]
+            const option = dataSetOptions[ optionKey ]
+
+            if ( option.length === 0 ) {
+
+                for ( let valueKey in map ) {
+                    dataSet.push( map[ valueKey ] )
+                }
+
+            } else {
+
+                for ( let i = 0, nbOptions = option.length ; i < nbOptions ; i++ ) {
+                    dataSet.push( map[ option[ i ] ] )
+                }
+
+            }
+
+        }
+
+        return dataSet
+
+    },
+
+    createDataSetBenchmarkOptions: function ( datasetName ) {
+
+        console.log('createDataSetBenchmarkOptions')
+
+        return {
+
+            setup: function onSetup () {
+                this.dataset = Itee.TestsUtils.createDataMap()[ datasetName ]
+            },
+
+            teardown: function onTeardown () {
+                delete this.dataset
+            }
+
+        }
+
+    },
+
+    iterateOverDataSet: function ( func ) {
+
+        console.log('iterateOverDataSet')
+
+        return function () {
+
+            const dataset = this.dataset
             for ( let i = 0, n = dataset.length ; i < n ; i++ ) {
 
                 return func( dataset[ i ] )
@@ -312,77 +399,4 @@ export function iterateOverDataMap ( func ) {
 
 }
 
-export function createDataSet ( dataSetOptions ) {
-
-    if ( dataSetOptions === undefined ) {
-
-        dataSetOptions = {
-            voids:       [],
-            booleans:    [],
-            numbers:     [],
-            strings:     [],
-            functions:   [],
-            arrays:      [],
-            typedArrays: [],
-            objects:     []
-        }
-
-    }
-
-    let dataSet = []
-
-    for ( let optionKey in dataSetOptions ) {
-
-        const map    = globalDataMap[ optionKey ]
-        const option = dataSetOptions[ optionKey ]
-
-        if ( option.length === 0 ) {
-
-            for ( let valueKey in map ) {
-                dataSet.push( map[ valueKey ] )
-            }
-
-        } else {
-
-            for ( let i = 0, nbOptions = option.length ; i < nbOptions ; i++ ) {
-                dataSet.push( map[ option[ i ] ] )
-            }
-
-        }
-
-    }
-
-    return dataSet
-
-}
-
-export function createDataSetBenchmarkOptions ( datasetName ) {
-
-    return {
-
-        setup: function onSetup () {
-            this.dataset = Itee.TestsUtils.createDataMap()[ datasetName ]
-        },
-
-        teardown: function onTeardown () {
-            delete this.dataset
-        }
-
-    }
-
-}
-
-export function iterateOverDataSet ( func ) {
-
-    return function () {
-
-        const dataset = this.dataset
-        for ( let i = 0, n = dataset.length ; i < n ; i++ ) {
-
-            return func( dataset[ i ] )
-
-        }
-
-    }
-
-}
+export { TestsUtils }
