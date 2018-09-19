@@ -280,25 +280,25 @@ const TestsUtils = {
 
     createDataMapBenchmarkOptions: function ( dataMapOptions ) {
 
-    Itee.TestsUtils.DataMap = Itee.TestsUtils.createDataMap( dataMapOptions )
+        Itee.TestsUtils.DataMap = Itee.TestsUtils.createDataMap( dataMapOptions )
 
-    return {
+        return {
 
-        setup: function onSetup () {
-            this.datamap = Itee.TestsUtils.DataMap
-        },
+            setup: function onSetup () {
+                this.datamap = Itee.TestsUtils.DataMap
+            },
 
-        teardown: function onTeardown () {
-            delete this.datamap
+            teardown: function onTeardown () {
+                delete this.datamap
+            }
+
         }
 
-    }
-
-},
+    },
 
     iterateOverDataMap: function ( func ) {
 
-        return function _iterateOverDataMap() {
+        return function _iterateOverDataMap () {
 
             const datamap = this.datamap
             for ( let datasetKey in datamap ) {
@@ -317,8 +317,6 @@ const TestsUtils = {
     },
 
     createDataSet: function ( dataSetOptions ) {
-
-        console.log('createDataSet')
 
         if ( dataSetOptions === undefined ) {
 
@@ -364,8 +362,6 @@ const TestsUtils = {
 
     createDataSetBenchmarkOptions: function ( datasetName ) {
 
-        console.log('createDataSetBenchmarkOptions')
-
         return {
 
             setup: function onSetup () {
@@ -381,8 +377,6 @@ const TestsUtils = {
     },
 
     iterateOverDataSet: function ( func ) {
-
-        console.log('iterateOverDataSet')
 
         return function () {
 
