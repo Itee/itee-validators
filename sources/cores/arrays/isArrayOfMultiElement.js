@@ -18,12 +18,8 @@ import { isNotArray } from './isNotArray'
  */
 export function isArrayOfMultiElement ( data ) {
 
-    if ( isNotArray( data ) ) { return true }
+    if ( isNotArray( data ) ) { return false }
 
-    if ( data.length <= 1 ) {
-        return false
-    }
-
-    return true
+    return ( data.length > 1 )
 
 }

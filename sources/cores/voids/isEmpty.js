@@ -10,6 +10,7 @@
 
 import { isEmptyArray }      from '../arrays/isEmptyArray'
 import { isEmptyObject }     from '../objects/isEmptyObject'
+import { isEmptyString }     from '../strings/isEmptyString'
 import { isNullOrUndefined } from './isNullOrUndefined'
 
 /**
@@ -23,6 +24,7 @@ import { isNullOrUndefined } from './isNullOrUndefined'
 export function isEmpty ( data ) {
 
     if ( isNullOrUndefined( data ) ) { return false }
+    if ( isEmptyString( data ) ) { return true}
     if ( isEmptyArray( data ) ) { return true }
     if ( isEmptyObject( data ) ) { return true }
 
