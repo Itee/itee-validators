@@ -8,6 +8,10 @@
  *
  */
 
+import { isEmptyArray }      from '../arrays/isEmptyArray'
+import { isEmptyObject }     from '../objects/isEmptyObject'
+import { isNullOrUndefined } from './isNullOrUndefined'
+
 /**
  * Check emptiness of given data
  *
@@ -18,29 +22,10 @@
  */
 export function isEmpty ( data ) {
 
-    // null and undefined are consider as "empty"
-    if ( data === null ) {
-        return true
-    }
-    if ( data === undefined ) {
-        return true
-    }
+    if ( isNullOrUndefined( data ) ) { return false }
+    if ( isEmptyArray( data ) ) { return true }
+    if ( isEmptyObject( data ) ) { return true }
 
-    // Assume if it has a length property with a non-zero value
-    // that that property is correct.
-    if ( data.length > 0 ) {
-        return false
-    }
-    if ( data.length === 0 ) {
-        return true
-    }
+    return false
 
-    // Otherwise, does it have any properties of its own?
-    for ( let key in data ) {
-        if ( Object.prototype.hasOwnProperty.call( data, key ) ) {
-            return false
-        }
-    }
-
-    return true
 }
