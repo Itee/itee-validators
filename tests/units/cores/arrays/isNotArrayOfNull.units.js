@@ -63,7 +63,7 @@ function isNotArrayOfNullUnits () {
 
         //////////////// Specific part
 
-        it.skip( 'should return false only when the value is an array of null', () => {
+        it( 'should return false only when the value is an array of null', () => {
 
             const values = this._dataMap.arrays
             for ( let key in values ) {

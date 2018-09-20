@@ -13,7 +13,7 @@ import { isNotEmpty } from '../../../../sources/cores/voids/isNotEmpty'
 
 function isNotEmptyUnits () {
 
-    describe.skip( 'isNotEmpty()', () => {
+    describe( 'isNotEmpty()', () => {
 
         // Specific dataset
 

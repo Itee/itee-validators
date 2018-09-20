@@ -63,7 +63,7 @@ function isArrayOfUndefinedUnits () {
 
         //////////////// Specific part
 
-        it.skip( 'should return true only when the value is an array of undefined', () => {
+        it( 'should return true only when the value is an array of undefined', () => {
 
             const values = this._dataMap.arrays
             for ( let key in values ) {

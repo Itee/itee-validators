@@ -63,7 +63,7 @@ function isArrayOfStringUnits () {
 
         //////////////// Specific part
 
-        it.skip( 'should return true only when the value is an array of string', () => {
+        it( 'should return true only when the value is an array of string', () => {
 
             const values = this._dataMap.arrays
             for ( let key in values ) {

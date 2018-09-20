@@ -63,7 +63,7 @@ function isNotArrayOfObjectUnits () {
 
         //////////////// Specific part
 
-        it.skip( 'should return false only when the value is an array of object', () => {
+        it( 'should return false only when the value is an array of object', () => {
 
             const values = this._dataMap.arrays
             for ( let key in values ) {
