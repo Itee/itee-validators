@@ -16,9 +16,36 @@ function isFiniteUnits () {
 
     describe( 'isFinite()', () => {
 
-        it.skip( 'should be implemented', () => {
+        it( 'should return true only when the value is a finite number', () => {
 
-            expect( isFinite( 0 ) ).to.be.true
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'numbers' ) {
+
+                    const allowed = ['negativeInfinity', 'nan', 'positiveInfinity']
+
+                    for ( let key in dataSet ) {
+
+                        const result = isFinite( dataSet[ key ] )
+                        if ( allowed.includes(key) ) {
+                            expect( result ).to.be.false
+                        } else {
+                            expect( result ).to.be.true
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isFinite( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
 
         } )
 

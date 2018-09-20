@@ -12,89 +12,38 @@
 
 import { isArrayOfUndefined } from '../../../../sources/cores/arrays/isArrayOfUndefined'
 
+
 function isArrayOfUndefinedUnits () {
 
     describe( 'isArrayOfUndefined()', () => {
 
-        it( 'should return false when the value is a void', () => {
+        it( 'should return true only when the value is a array of undefined', () => {
 
-            const values = this._dataMap.voids
-            for ( let key in values ) {
-                expect( isArrayOfUndefined( values[ key ] ) ).to.be.false
-            }
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
 
-        } )
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'arrays' ) {
 
-        it( 'should return false when the value is a boolean', () => {
+                    for ( let key in dataSet ) {
 
-            const values = this._dataMap[ 'booleans' ]
-            for ( let key in values ) {
-                expect( isArrayOfUndefined( values[ key ] ) ).to.be.false
-            }
+                        const result = isArrayOfUndefined( dataSet[ key ] )
+                        if ( key === 'undefined' || key === 'void' ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
 
-        } )
+                    }
 
-        it( 'should return false when the value is a number', () => {
-
-            const values = this._dataMap[ 'numbers' ]
-            for ( let key in values ) {
-                expect( isArrayOfUndefined( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is a string', () => {
-
-            const values = this._dataMap.strings
-            for ( let key in values ) {
-                expect( isArrayOfUndefined( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is a function', () => {
-
-            const values = this._dataMap.functions
-            for ( let key in values ) {
-                expect( isArrayOfUndefined( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        //////////////// Specific part
-
-        it.skip( 'should return true only when the value is an array of undefined', () => {
-
-            const values = this._dataMap.arrays
-            for ( let key in values ) {
-
-                const result = isArrayOfUndefined(values[key])
-                if ( key === 'undefined' ) {
-                    expect( result ).to.be.true
                 } else {
-                    expect( result ).to.be.false
+
+                    for ( let key in dataSet ) {
+                        expect( isArrayOfUndefined( dataSet[ key ] ) ).to.be.false
+                    }
+
                 }
 
-            }
-
-        } )
-
-        /////////////////
-
-        it( 'should return false when the value is an typed array', () => {
-
-            const values = this._dataMap.typedArrays
-            for ( let key in values ) {
-                expect( isArrayOfUndefined( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is an object', () => {
-
-            const values = this._dataMap.objects
-            for ( let key in values ) {
-                expect( isArrayOfUndefined( values[ key ] ) ).to.be.false
             }
 
         } )

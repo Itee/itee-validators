@@ -16,9 +16,34 @@ function isInfiniteNegativeUnits () {
 
     describe( 'isInfiniteNegative()', () => {
 
-        it.skip( 'should be implemented', () => {
+        it( 'should return true only when the value is a negative infinite number', () => {
 
-            expect( isInfiniteNegative( 0 ) ).to.be.true
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'numbers' ) {
+
+                    for ( let key in dataSet ) {
+
+                        const result = isInfiniteNegative( dataSet[ key ] )
+                        if ( key === 'negativeInfinity' ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isInfiniteNegative( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
 
         } )
 

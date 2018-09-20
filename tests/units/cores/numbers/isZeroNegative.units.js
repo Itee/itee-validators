@@ -16,9 +16,36 @@ function isZeroNegativeUnits () {
 
     describe( 'isZeroNegative()', () => {
 
-        it.skip( 'should be implemented', () => {
+        it( 'should return true only when the value is a negative zero', () => {
 
-            expect( isZeroNegative( 0 ) ).to.be.true
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'numbers' ) {
+
+                    const allowed = [ 'negativeNullFloat', 'negativeNullInt' ]
+
+                    for ( let key in dataSet ) {
+
+                        const result = isZeroNegative( dataSet[ key ] )
+                        if ( allowed.includes( key ) ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isZeroNegative( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
 
         } )
 

@@ -16,9 +16,36 @@ function isMinNegativeUnits () {
 
     describe( 'isMinNegative()', () => {
 
-        it.skip( 'should be implemented', () => {
+        it( 'should return true only when the value is equal to negative minimum number value', () => {
 
-            expect( isMinNegative( 0 ) ).to.be.true
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'numbers' ) {
+
+                    const allowed = [ 'negativeMinValue' ]
+
+                    for ( let key in dataSet ) {
+
+                        const result = isMinNegative( dataSet[ key ] )
+                        if ( allowed.includes( key ) ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isMinNegative( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
 
         } )
 

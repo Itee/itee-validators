@@ -16,11 +16,26 @@ function isStringUnits () {
 
     describe( 'isString()', () => {
 
-        it( 'should return false when the value is a void', () => {
+        it( 'should return true only when the value is a string', () => {
 
-            const values = this._dataMap.voids
-            for( let key in values ) {
-                expect( isString( values[ key ] ) ).to.be.false
+            const dataMap = this._dataMap
+            for( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'strings' ) {
+
+                    for ( let key in dataSet ) {
+                        expect( isString( dataSet[ key ] ) ).to.be.true
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isString( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
             }
 
         } )

@@ -16,9 +16,36 @@ function isMaxSafeIntegerUnits () {
 
     describe( 'isMaxSafeInteger()', () => {
 
-        it.skip( 'should be implemented', () => {
+        it( 'should return true only when the value is a the max safe integer value', () => {
 
-            expect( isMaxSafeInteger( 0 ) ).to.be.true
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'numbers' ) {
+
+                    const allowed = [ 'positiveMaxSafeInteger' ]
+
+                    for ( let key in dataSet ) {
+
+                        const result = isMaxSafeInteger( dataSet[ key ] )
+                        if ( allowed.includes( key ) ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isMaxSafeInteger( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
 
         } )
 

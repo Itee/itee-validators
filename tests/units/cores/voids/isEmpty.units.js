@@ -13,101 +13,67 @@ import { isEmpty }                from '../../../../sources/cores/voids/isEmpty'
 
 function isEmptyUnits () {
 
-    describe.skip( 'isEmpty()', () => {
+    describe( 'isEmpty()', () => {
 
-        // Specific dataset
+        it( 'should return true only when the value is an empty container (string, array, object)', () => {
 
-        it( 'should return false when the value is null', () => {
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
 
-            const value = this._dataMap.voids.null
-            expect( isEmpty( value ) ).to.be.false
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'strings' ) {
 
-        } )
+                    const allowed = [ 'empty', 'stringNull', 'stringEmpty' ]
 
-        it( 'should return false when the value is undefined', () => {
+                    for ( let key in dataSet ) {
 
-            const value = this._dataMap.voids.undefined
-            expect( isEmpty( value ) ).to.be.false
+                        const result = isEmpty( dataSet[ key ] )
+                        if ( allowed.includes(key) ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
 
-        } )
+                    }
 
-        it( 'should return false when the value is void(0)', () => {
+                } else if ( mapKey === 'arrays' ) {
 
-            const value = this._dataMap.voids.void
-            expect( isEmpty( value ) ).to.be.false
+                    const allowed = [ 'emptyArray', 'emptyArrayObject' ]
 
-        } )
+                    for ( let key in dataSet ) {
 
-        // Global dataset
+                        const result = isEmpty( dataSet[ key ] )
+                        if ( allowed.includes(key) ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
 
-        it( 'should return false when the value is a boolean', () => {
+                    }
 
-            const values = this._dataMap.booleans
-            for( let key in values ) {
-                expect( isEmpty( values[ key ] ) ).to.be.false
-            }
+                } else if ( mapKey === 'objects' ) {
 
-        } )
+                    const allowed = [ 'empty', 'instance' ]
 
-        it( 'should return false when the value is a number', () => {
+                    for ( let key in dataSet ) {
 
-            const values = this._dataMap.numbers
-            for( let key in values ) {
-                expect( isEmpty( values[ key ] ) ).to.be.false
-            }
+                        const result = isEmpty( dataSet[ key ] )
+                        if ( allowed.includes(key) ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
 
-        } )
+                    }
 
-        it( 'should return true only when the value is an empty string', () => {
-
-            const values  = this._dataMap.strings
-            const allowed = [ 'empty', 'stringNull', 'stringEmpty' ]
-            for ( let key in values ) {
-
-                if ( allowed.includes( key ) ) {
-                    expect( isEmpty( values[ key ] ) ).to.be.true
                 } else {
-                    expect( isEmpty( values[ key ] ) ).to.be.false
+
+                    for ( let key in dataSet ) {
+                        expect( isEmpty( dataSet[ key ] ) ).to.be.false
+                    }
+
                 }
-            }
 
-        } )
-
-        it( 'should return false when the value is a function', () => {
-
-            const values = this._dataMap.functions
-            for( let key in values ) {
-                expect( isEmpty( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return true only when the value is an empty array', () => {
-
-            const values  = this._dataMap.arrays
-            const allowed = [ 'emptyArray', 'emptyArrayObject' ]
-            for ( let key in values ) {
-
-                if ( allowed.includes( key ) ) {
-                    expect( isEmpty( values[ key ] ) ).to.be.true
-                } else {
-                    expect( isEmpty( values[ key ] ) ).to.be.false
-                }
-            }
-
-        } )
-
-        it( 'should return true only when the value is an empty object', () => {
-
-            const values  = this._dataMap.objects
-            const allowed = [ 'empty', 'instance' ]
-            for ( let key in values ) {
-
-                if ( allowed.includes( key ) ) {
-                    expect( isEmpty( values[ key ] ) ).to.be.true
-                } else {
-                    expect( isEmpty( values[ key ] ) ).to.be.false
-                }
             }
 
         } )

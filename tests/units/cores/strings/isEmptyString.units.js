@@ -12,15 +12,40 @@
 
 import { isEmptyString } from '../../../../sources/cores/strings/isEmptyString'
 
+
 function isEmptyStringUnits () {
 
     describe( 'isEmptyString()', () => {
 
-        it( 'should return false when the value is a void', () => {
+        it( 'should return true only when the value is an empty string', () => {
 
-            const values = this._dataMap.voids
-            for( let key in values ) {
-                expect( isEmptyString( values[ key ] ) ).to.be.false
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'strings' ) {
+
+                    const allowed = [ 'empty', 'stringNull', 'stringEmpty' ]
+
+                    for ( let key in dataSet ) {
+
+                        const result = isEmptyString( dataSet[ key ] )
+                        if ( allowed.includes( key ) ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isEmptyString( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
             }
 
         } )
