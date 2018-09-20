@@ -16,7 +16,7 @@ const isDefinedSuite = suite( 'isDefined', () => {
 
 const isNotDefinedSuite = suite( 'isNotDefined', () => {
 
-    benchmark( 'isNullOrUndefined()', Itee.TestsUtils.iterateOverDataMap( isNotDefined ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+    benchmark( 'isNotDefined()', Itee.TestsUtils.iterateOverDataMap( isNotDefined ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
 

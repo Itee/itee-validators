@@ -3,7 +3,7 @@
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module tests/cores/voids
- * @desc Export the units tests about isNullOrUndefined method.
+ * @desc Export the units tests about isDefined method.
  * @requires {@link module:sources/cores/voids}
  */
 
