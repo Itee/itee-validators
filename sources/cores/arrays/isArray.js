@@ -22,4 +22,8 @@ export function isArray ( data ) {
 export function isArray_0 ( data ) {
     return data instanceof Array
 }
+
+export function isArray_1 ( data ) {
+    return data.constructor === Array
+}
 // #endif
