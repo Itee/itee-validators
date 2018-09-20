@@ -25,24 +25,25 @@ function isNumberPositiveUnits () {
                 if ( mapKey === 'numbers' ) {
 
                     const allowed = [
-                        'positiveInfinity',
-                        'positiveMaxValue',
-                        'positiveMinSafeInteger',
-                        'positiveMinValue',
-                        'positiveHexa',
-                        'positivePow',
-                        'positiveFloat',
+                        'positiveZero',
                         'positiveInt',
-                        'positiveNullFloat',
-                        'positiveNullInt'
+                        'positiveFloat',
+                        'positivePow',
+                        'positiveHexa',
+                        'positiveMinValue',
+                        'positiveMaxSafeInteger',
+                        'positiveMaxValue',
+                        'positiveInfinity'
                     ]
 
                     for ( let key in dataSet ) {
 
                         const result = isNumberPositive( dataSet[ key ] )
                         if ( allowed.includes( key ) ) {
+                            console.log( `isNumberPositive => ${mapKey}.${key}(value: ${dataSet[ key ]})[type: ${typeof dataSet[ key ]}] expect to be true and got ${result}` )
                             expect( result ).to.be.true
                         } else {
+                            console.log( `isNumberPositive => ${mapKey}.${key}(value: ${dataSet[ key ]})[type: ${typeof dataSet[ key ]}] expect to be false and got ${result}` )
                             expect( result ).to.be.false
                         }
 
@@ -51,6 +52,7 @@ function isNumberPositiveUnits () {
                 } else {
 
                     for ( let key in dataSet ) {
+                        console.log( `isNumberPositive => ${mapKey}.${key}(value: ${dataSet[ key ]})[type: ${typeof dataSet[ key ]}] expect to be true and got ${isNumberPositive( dataSet[ key ] )}` )
                         expect( isNumberPositive( dataSet[ key ] ) ).to.be.false
                     }
 

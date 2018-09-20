@@ -24,7 +24,7 @@ function isFloatUnits () {
                 const dataSet = dataMap[ mapKey ]
                 if ( mapKey === 'numbers' ) {
 
-                    const allowed = [ 'negativeMaxValue', 'negativeMinValue', 'negativeFloat', 'negativeNullFloat', 'positiveNullFloat', 'positiveFloat', 'positiveMinValue', 'positiveMaxValue' ]
+                    const allowed = [ 'negativeMinValue', 'negativeFloat', 'positiveFloat', 'positiveMinValue' ]
 
                     for ( let key in dataSet ) {
 

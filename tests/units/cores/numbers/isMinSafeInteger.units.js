@@ -24,7 +24,7 @@ function isMinSafeIntegerUnits () {
                 const dataSet = dataMap[ mapKey ]
                 if ( mapKey === 'numbers' ) {
 
-                    const allowed = [ 'positiveMinSafeInteger' ]
+                    const allowed = [ 'negativeMinSafeInteger' ]
 
                     for ( let key in dataSet ) {
 

@@ -24,7 +24,7 @@ function isZeroUnits () {
                 const dataSet = dataMap[ mapKey ]
                 if ( mapKey === 'numbers' ) {
 
-                    const allowed = [ 'negativeNullFloat', 'negativeNullInt', 'positiveNullInt', 'positiveNullFloat' ]
+                    const allowed = [ 'negativeZero', 'positiveZero' ]
 
                     for ( let key in dataSet ) {
 

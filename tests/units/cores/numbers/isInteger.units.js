@@ -25,16 +25,18 @@ function isIntegerUnits () {
                 if ( mapKey === 'numbers' ) {
 
                     const allowed = [
+                        'negativeMaxValue',
                         'negativeMinSafeInteger',
                         'negativeHexa',
                         'negativePow',
                         'negativeInt',
-                        'negativeNullInt',
-                        'positiveNullInt',
+                        'negativeZero',
+                        'positiveZero',
                         'positiveInt',
                         'positivePow',
                         'positiveHexa',
-                        'positiveMaxSafeInteger'
+                        'positiveMaxSafeInteger',
+                        'positiveMaxValue'
                     ]
 
                     for ( let key in dataSet ) {
