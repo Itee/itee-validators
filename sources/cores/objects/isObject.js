@@ -9,9 +9,6 @@
  */
 
 import { isNullOrUndefined } from '../voids/isNullOrUndefined'
-import { isArray }           from '../arrays/isArray'
-import { isString }          from '../strings/isString'
-import { isNumber }          from '../numbers/isNumber'
 
 /**
  * Check if given data is an object
