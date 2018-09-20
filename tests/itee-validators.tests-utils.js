@@ -26,7 +26,7 @@ const numbers = {
     negativePow:            -2e+2,
     negativeFloat:          -1.0,
     negativeInt:            -1,
-    negativeNullDouble:     -0.0,
+    negativeNullFloat:      -0.0,
     negativeNullInt:        -0,
     nan:                    Number.NaN,
     positiveNullInt:        0,
