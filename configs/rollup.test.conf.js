@@ -62,7 +62,8 @@ function createBuildsConfigs ( /*options*/ ) {
                 indent: '\t',
                 format: 'iife',
                 name:   'Itee',
-                file:   'tests/builds/itee-validators.tests-utils.js'
+                file:   'tests/builds/itee-validators.tests-utils.js',
+                extend: true
             }
         }
     ]
