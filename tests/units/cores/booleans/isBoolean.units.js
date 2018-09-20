@@ -16,65 +16,26 @@ function isBooleanUnits () {
 
     describe( 'isBoolean()', () => {
 
-        it( 'should return false when the value is a void', () => {
+        it( 'should return true only when the value is a boolean', () => {
 
-            const values = this._dataMap.voids
-            for( let key in values ) {
-                expect( isBoolean( values[ key ] ) ).to.be.false
-            }
+            const dataMap = this._dataMap
+            for( let mapKey in dataMap ) {
 
-        } )
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'booleans' ) {
 
-        it( 'should return true when the value is a boolean', () => {
+                    for ( let key in dataSet ) {
+                        expect( isBoolean( dataSet[ key ] ) ).to.be.true
+                    }
 
-            const values = this._dataMap[ 'booleans' ]
-            for( let key in values ) {
-                expect( isBoolean( values[ key ] ) ).to.be.true
-            }
+                } else {
 
-        } )
+                    for ( let key in dataSet ) {
+                        expect( isBoolean( dataSet[ key ] ) ).to.be.false
+                    }
 
-        it( 'should return false when the value is a number', () => {
+                }
 
-            const values = this._dataMap[ 'numbers' ]
-            for( let key in values ) {
-                expect( isBoolean( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is a string', () => {
-
-            const values = this._dataMap.strings
-            for( let key in values ) {
-                expect( isBoolean( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is a function', () => {
-
-            const values = this._dataMap.functions
-            for( let key in values ) {
-                expect( isBoolean( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is an array', () => {
-
-            const values = this._dataMap.arrays
-            for( let key in values ) {
-                expect( isBoolean( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is an object', () => {
-
-            const values = this._dataMap.objects
-            for( let key in values ) {
-                expect( isBoolean( values[ key ] ) ).to.be.false
             }
 
         } )

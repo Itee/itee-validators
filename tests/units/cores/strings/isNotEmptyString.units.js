@@ -16,11 +16,35 @@ function isNotEmptyStringUnits () {
 
     describe( 'isNotEmptyString()', () => {
 
-        it( 'should return false when the value is a void', () => {
+        it( 'should return false only when the value is an empty string', () => {
 
-            const values = this._dataMap.voids
-            for( let key in values ) {
-                expect( isNotEmptyString( values[ key ] ) ).to.be.false
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'strings' ) {
+
+                    const allowed = [ 'empty', 'stringNull', 'stringEmpty' ]
+
+                    for ( let key in dataSet ) {
+
+                        const result = isNotEmptyString( dataSet[ key ] )
+                        if ( allowed.includes( key ) ) {
+                            expect( result ).to.be.false
+                        } else {
+                            expect( result ).to.be.true
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotEmptyString( dataSet[ key ] ) ).to.be.true
+                    }
+
+                }
+
             }
 
         } )

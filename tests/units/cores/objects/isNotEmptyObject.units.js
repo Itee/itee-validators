@@ -16,11 +16,33 @@ function isNotEmptyObjectUnits () {
 
     describe( 'isNotEmptyObject()', () => {
 
-        it( 'should return true when the value is a void', () => {
+        it( 'should return false only when the value is an empty object', () => {
 
-            const values = this._dataMap.voids
-            for( let key in values ) {
-                expect( isNotEmptyObject( values[ key ] ) ).to.be.true
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'objects' ) {
+
+                    for ( let key in dataSet ) {
+
+                        const result = isNotEmptyObject( dataSet[ key ] )
+                        if ( key === 'empty' || key === 'instance' ) {
+                            expect( result ).to.be.false
+                        } else {
+                            expect( result ).to.be.true
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotEmptyObject( dataSet[ key ] ) ).to.be.true
+                    }
+
+                }
+
             }
 
         } )

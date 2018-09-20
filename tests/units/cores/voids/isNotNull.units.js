@@ -15,81 +15,33 @@ function isNotNullUnits () {
 
     describe( 'isNotNull()', () => {
 
-        // Specific dataset
+        it( 'should return false only when the value is null', () => {
 
-        it( 'should return false when the value is null', () => {
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
 
-            const value = this._dataMap.voids.null
-            expect( isNotNull( value ) ).to.be.false
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'voids' ) {
 
-        } )
+                    for ( let key in dataSet ) {
 
-        it( 'should return true when the value is undefined', () => {
+                        const result = isNotNull( dataSet[ key ] )
+                        if ( key === 'null' ) {
+                            expect( result ).to.be.false
+                        } else {
+                            expect( result ).to.be.true
+                        }
 
-            const value = this._dataMap.voids.undefined
-            expect( isNotNull( value ) ).to.be.true
+                    }
 
-        } )
+                } else {
 
-        it( 'should return true when the value is void(0)', () => {
+                    for ( let key in dataSet ) {
+                        expect( isNotNull( dataSet[ key ] ) ).to.be.true
+                    }
 
-            const value = this._dataMap.voids.void
-            expect( isNotNull( value ) ).to.be.true
+                }
 
-        } )
-
-        // Global dataset
-
-        it( 'should return true when the value is a boolean', () => {
-
-            const values = this._dataMap.booleans
-            for ( let key in values ) {
-                expect( isNotNull( values[ key ] ) ).to.be.true
-            }
-
-        } )
-
-        it( 'should return true when the value is a number', () => {
-
-            const values = this._dataMap.numbers
-            for ( let key in values ) {
-                expect( isNotNull( values[ key ] ) ).to.be.true
-            }
-
-        } )
-
-        it( 'should return true when the value is a string', () => {
-
-            const values = this._dataMap.strings
-            for( let key in values ) {
-                expect( isNotNull( values[ key ] ) ).to.be.true
-            }
-
-        } )
-
-        it( 'should return true when the value is a function', () => {
-
-            const values = this._dataMap.functions
-            for( let key in values ) {
-                expect( isNotNull( values[ key ] ) ).to.be.true
-            }
-
-        } )
-
-        it( 'should return true when the value is an array', () => {
-
-            const values = this._dataMap.arrays
-            for( let key in values ) {
-                expect( isNotNull( values[ key ] ) ).to.be.true
-            }
-
-        } )
-
-        it( 'should return true when the value is an object', () => {
-
-            const values = this._dataMap.objects
-            for( let key in values ) {
-                expect( isNotNull( values[ key ] ) ).to.be.true
             }
 
         } )

@@ -12,89 +12,38 @@
 
 import { isNotArrayOfString } from '../../../../sources/cores/arrays/isNotArrayOfString'
 
+
 function isNotArrayOfStringUnits () {
 
     describe( 'isNotArrayOfString()', () => {
 
-        it( 'should return true when the value is a void', () => {
+        it( 'should return false only when the value is a array of strings', () => {
 
-            const values = this._dataMap.voids
-            for ( let key in values ) {
-                expect( isNotArrayOfString( values[ key ] ) ).to.be.true
-            }
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
 
-        } )
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'arrays' ) {
 
-        it( 'should return true when the value is a boolean', () => {
+                    for ( let key in dataSet ) {
 
-            const values = this._dataMap[ 'booleans' ]
-            for ( let key in values ) {
-                expect( isNotArrayOfString( values[ key ] ) ).to.be.true
-            }
+                        const result = isNotArrayOfString( dataSet[ key ] )
+                        if ( key === 'strings' ) {
+                            expect( result ).to.be.false
+                        } else {
+                            expect( result ).to.be.true
+                        }
 
-        } )
+                    }
 
-        it( 'should return true when the value is a number', () => {
-
-            const values = this._dataMap[ 'numbers' ]
-            for ( let key in values ) {
-                expect( isNotArrayOfString( values[ key ] ) ).to.be.true
-            }
-
-        } )
-
-        it( 'should return true when the value is a string', () => {
-
-            const values = this._dataMap.strings
-            for ( let key in values ) {
-                expect( isNotArrayOfString( values[ key ] ) ).to.be.true
-            }
-
-        } )
-
-        it( 'should return true when the value is a function', () => {
-
-            const values = this._dataMap.functions
-            for ( let key in values ) {
-                expect( isNotArrayOfString( values[ key ] ) ).to.be.true
-            }
-
-        } )
-
-        //////////////// Specific part
-
-        it( 'should return false only when the value is an array of string', () => {
-
-            const values = this._dataMap.arrays
-            for ( let key in values ) {
-
-                const result = isNotArrayOfString( values[ key ] )
-                if ( key === 'strings' ) {
-                    expect( result ).to.be.false
                 } else {
-                    expect( result ).to.be.true
+
+                    for ( let key in dataSet ) {
+                        expect( isNotArrayOfString( dataSet[ key ] ) ).to.be.true
+                    }
+
                 }
 
-            }
-
-        } )
-
-        /////////////////
-
-        it( 'should return true when the value is an typed array', () => {
-
-            const values = this._dataMap.typedArrays
-            for ( let key in values ) {
-                expect( isNotArrayOfString( values[ key ] ) ).to.be.true
-            }
-
-        } )
-
-        it( 'should return true when the value is an object', () => {
-
-            const values = this._dataMap.objects
-            for ( let key in values ) {
-                expect( isNotArrayOfString( values[ key ] ) ).to.be.true
             }
 
         } )

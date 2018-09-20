@@ -16,11 +16,33 @@ function isBlankStringUnits () {
 
     describe( 'isBlankString()', () => {
 
-        it( 'should return false when the value is a void', () => {
+        it( 'should return true only when the value is a blank string', () => {
 
-            const values = this._dataMap.voids
-            for( let key in values ) {
-                expect( isBlankString( values[ key ] ) ).to.be.false
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'strings' ) {
+
+                    for ( let key in dataSet ) {
+
+                        const result = isBlankString( dataSet[ key ] )
+                        if ( key === 'blank' || key === 'stringBlank' ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isBlankString( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
             }
 
         } )

@@ -15,81 +15,27 @@ function isDefinedUnits () {
 
     describe( 'isDefined()', () => {
 
-        // Specific dataset
+        it( 'should return false only when the value is null or undefined', () => {
 
-        it( 'should return false when the value is null', () => {
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
 
-            const value = this._dataMap.voids.null
-            expect( isDefined( value ) ).to.be.false
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'voids' ) {
 
-        } )
+                    for ( let key in dataSet ) {
+                        expect( isDefined( dataSet[ key ] ) ).to.be.false
+                    }
 
-        it( 'should return false when the value is undefined', () => {
 
-            const value = this._dataMap.voids.undefined
-            expect( isDefined( value ) ).to.be.false
+                } else {
 
-        } )
+                    for ( let key in dataSet ) {
+                        expect( isDefined( dataSet[ key ] ) ).to.be.true
+                    }
 
-        it( 'should return false when the value is void(0)', () => {
+                }
 
-            const value = this._dataMap.voids.void
-            expect( isDefined( value ) ).to.be.false
-
-        } )
-
-        // Global dataset
-
-        it( 'should return true when the value is a boolean', () => {
-
-            const values = this._dataMap.booleans
-            for( let key in values ) {
-                expect( isDefined( values[ key ] ) ).to.be.true
-            }
-
-        } )
-
-        it( 'should return true when the value is a number', () => {
-
-            const values = this._dataMap.numbers
-            for( let key in values ) {
-                expect( isDefined( values[ key ] ) ).to.be.true
-            }
-
-        } )
-
-        it( 'should return true when the value is a string', () => {
-
-            const values = this._dataMap.strings
-            for( let key in values ) {
-                expect( isDefined( values[ key ] ) ).to.be.true
-            }
-
-        } )
-
-        it( 'should return true when the value is a function', () => {
-
-            const values = this._dataMap.functions
-            for( let key in values ) {
-                expect( isDefined( values[ key ] ) ).to.be.true
-            }
-
-        } )
-
-        it( 'should return true when the value is an array', () => {
-
-            const values = this._dataMap.arrays
-            for( let key in values ) {
-                expect( isDefined( values[ key ] ) ).to.be.true
-            }
-
-        } )
-
-        it( 'should return true when the value is an object', () => {
-
-            const values = this._dataMap.objects
-            for( let key in values ) {
-                expect( isDefined( values[ key ] ) ).to.be.true
             }
 
         } )

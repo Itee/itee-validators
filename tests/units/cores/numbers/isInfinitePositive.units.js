@@ -12,13 +12,39 @@
 
 import { isInfinitePositive } from '../../../../sources/cores/numbers/isInfinitePositive'
 
+
 function isInfinitePositiveUnits () {
 
     describe( 'isInfinitePositive()', () => {
 
-        it.skip( 'should be implemented', () => {
+        it( 'should return true only when the value is a positive infinite number', () => {
 
-            expect( isInfinitePositive( 0 ) ).to.be.true
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'numbers' ) {
+
+                    for ( let key in dataSet ) {
+
+                        const result = isInfinitePositive( dataSet[ key ] )
+                        if ( key === 'positiveInfinity' ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isInfinitePositive( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
 
         } )
 

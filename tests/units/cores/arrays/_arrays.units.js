@@ -6,23 +6,24 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { TestsUtils } from '../../../itee-validators.tests-utils.js'
-import { isArrayUnits } from './isArray.units'
-import { isArrayOfArrayUnits } from './isArrayOfArray.units'
-import { isArrayOfMultiElementUnits } from './isArrayOfMultiElement.units'
-import { isArrayOfNullUnits } from './isArrayOfNull.units'
-import { isArrayOfObjectUnits } from './isArrayOfObject.units'
+import { TestsUtils }                  from '../../../itee-validators.tests-utils.js'
+import { isArrayUnits }                from './isArray.units'
+import { isArrayOfArrayUnits }         from './isArrayOfArray.units'
+import { isArrayOfMultiElementUnits }  from './isArrayOfMultiElement.units'
+import { isArrayOfNullUnits }          from './isArrayOfNull.units'
+import { isArrayOfObjectUnits }        from './isArrayOfObject.units'
 import { isArrayOfSingleElementUnits } from './isArrayOfSingleElement.units'
-import { isArrayOfStringUnits } from './isArrayOfString.units'
-import { isArrayOfUndefinedUnits } from './isArrayOfUndefined.units'
-import { isEmptyArrayUnits } from './isEmptyArray.units'
-import { isNotArrayUnits } from './isNotArray.units'
-import { isNotArrayOfArrayUnits } from './isNotArrayOfArray.units'
-import { isNotArrayOfNullUnits } from './isNotArrayOfNull.units'
-import { isNotArrayOfObjectUnits } from './isNotArrayOfObject.units'
-import { isNotArrayOfStringUnits } from './isNotArrayOfString.units'
-import { isNotArrayOfUndefinedUnits } from './isNotArrayOfUndefined.units'
-import { isNotEmptyArrayUnits } from './isNotEmptyArray.units'
+import { isArrayOfStringUnits }        from './isArrayOfString.units'
+import { isArrayOfUndefinedUnits }     from './isArrayOfUndefined.units'
+import { isEmptyArrayUnits }           from './isEmptyArray.units'
+import { isNotArrayUnits }             from './isNotArray.units'
+import { isNotArrayOfArrayUnits }      from './isNotArrayOfArray.units'
+import { isNotArrayOfNullUnits }       from './isNotArrayOfNull.units'
+import { isNotArrayOfObjectUnits }     from './isNotArrayOfObject.units'
+import { isNotArrayOfStringUnits }     from './isNotArrayOfString.units'
+import { isNotArrayOfUndefinedUnits }  from './isNotArrayOfUndefined.units'
+import { isNotEmptyArrayUnits }        from './isNotEmptyArray.units'
+
 
 function _arraysUnits () {
 

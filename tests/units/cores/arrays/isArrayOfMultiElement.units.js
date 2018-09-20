@@ -17,85 +17,34 @@ function isArrayOfMultiElementUnits () {
 
     describe( 'isArrayOfMultiElement()', () => {
 
-        it( 'should return false when the value is a void', () => {
+        it( 'should return true only when the value is a multi valued array', () => {
 
-            const values = this._dataMap.voids
-            for ( let key in values ) {
-                expect( isArrayOfMultiElement( values[ key ] ) ).to.be.false
-            }
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
 
-        } )
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'arrays' ) {
 
-        it( 'should return false when the value is a boolean', () => {
+                    for ( let key in dataSet ) {
 
-            const values = this._dataMap[ 'booleans' ]
-            for ( let key in values ) {
-                expect( isArrayOfMultiElement( values[ key ] ) ).to.be.false
-            }
+                        const value  = dataSet[ key ]
+                        const result = isArrayOfMultiElement( value )
+                        if ( value.length > 1 ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
 
-        } )
+                    }
 
-        it( 'should return false when the value is a number', () => {
-
-            const values = this._dataMap[ 'numbers' ]
-            for ( let key in values ) {
-                expect( isArrayOfMultiElement( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is a string', () => {
-
-            const values = this._dataMap.strings
-            for ( let key in values ) {
-                expect( isArrayOfMultiElement( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is a function', () => {
-
-            const values = this._dataMap.functions
-            for ( let key in values ) {
-                expect( isArrayOfMultiElement( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        //////////////// Specific part
-
-        it( 'should return true only when the value is a multi valued array of number', () => {
-
-            const values = this._dataMap.arrays
-            for ( let key in values ) {
-
-                const value = values[ key ]
-                if ( value.length > 1 ) {
-                    expect( isArrayOfMultiElement( value ) ).to.be.true
                 } else {
-                    expect( isArrayOfMultiElement( value ) ).to.be.false
+
+                    for ( let key in dataSet ) {
+                        expect( isArrayOfMultiElement( dataSet[ key ] ) ).to.be.false
+                    }
+
                 }
 
-            }
-
-        } )
-
-        /////////////////
-
-        it( 'should return false when the value is an typed array', () => {
-
-            const values = this._dataMap.typedArrays
-            for ( let key in values ) {
-                expect( isArrayOfMultiElement( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is an object', () => {
-
-            const values = this._dataMap.objects
-            for ( let key in values ) {
-                expect( isArrayOfMultiElement( values[ key ] ) ).to.be.false
             }
 
         } )

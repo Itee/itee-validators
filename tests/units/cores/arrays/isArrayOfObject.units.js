@@ -12,88 +12,38 @@
 
 import { isArrayOfObject } from '../../../../sources/cores/arrays/isArrayOfObject'
 
+
 function isArrayOfObjectUnits () {
 
     describe( 'isArrayOfObject()', () => {
 
-        it( 'should return false when the value is a void', () => {
+        it( 'should return true only when the value is a array of objects', () => {
 
-            const values = this._dataMap.voids
-            for ( let key in values ) {
-                expect( isArrayOfObject( values[ key ] ) ).to.be.false
-            }
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
 
-        } )
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'arrays' ) {
 
-        it( 'should return false when the value is a boolean', () => {
+                    for ( let key in dataSet ) {
 
-            const values = this._dataMap[ 'booleans' ]
-            for ( let key in values ) {
-                expect( isArrayOfObject( values[ key ] ) ).to.be.false
-            }
+                        const result = isArrayOfObject( dataSet[ key ] )
+                        if ( key === 'objects' ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
 
-        } )
+                    }
 
-        it( 'should return false when the value is a number', () => {
-
-            const values = this._dataMap[ 'numbers' ]
-            for ( let key in values ) {
-                expect( isArrayOfObject( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is a string', () => {
-
-            const values = this._dataMap.strings
-            for ( let key in values ) {
-                expect( isArrayOfObject( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is a function', () => {
-
-            const values = this._dataMap.functions
-            for ( let key in values ) {
-                expect( isArrayOfObject( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        //////////////// Specific part
-
-        it( 'should return true only when the value is an array of objects', () => {
-
-            const values = this._dataMap.arrays
-            for ( let key in values ) {
-
-                if ( key === 'objects' ) {
-                    expect( isArrayOfObject( values[ key ] ) ).to.be.true
                 } else {
-                    expect( isArrayOfObject( values[ key ] ) ).to.be.false
+
+                    for ( let key in dataSet ) {
+                        expect( isArrayOfObject( dataSet[ key ] ) ).to.be.false
+                    }
+
                 }
 
-            }
-
-        } )
-
-        /////////////////
-
-        it( 'should return false when the value is an typed array', () => {
-
-            const values = this._dataMap.typedArrays
-            for ( let key in values ) {
-                expect( isArrayOfObject( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is an object', () => {
-
-            const values = this._dataMap.objects
-            for ( let key in values ) {
-                expect( isArrayOfObject( values[ key ] ) ).to.be.false
             }
 
         } )

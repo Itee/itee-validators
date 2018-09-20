@@ -15,81 +15,33 @@ function isUndefinedUnits () {
 
     describe( 'isUndefined()', () => {
 
-        // Specific dataset
+        it( 'should return true only when the value is undefined', () => {
 
-        it( 'should return false when the value is null', () => {
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
 
-            const value = this._dataMap.voids.null
-            expect( isUndefined( value ) ).to.be.false
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'voids' ) {
 
-        } )
+                    for ( let key in dataSet ) {
 
-        it( 'should return true when the value is undefined', () => {
+                        const result = isUndefined( dataSet[ key ] )
+                        if ( key === 'undefined' || key === 'void' ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
 
-            const value = this._dataMap.voids.undefined
-            expect( isUndefined( value ) ).to.be.true
+                    }
 
-        } )
+                } else {
 
-        it( 'should return true when the value is void(0)', () => {
+                    for ( let key in dataSet ) {
+                        expect( isUndefined( dataSet[ key ] ) ).to.be.false
+                    }
 
-            const value = this._dataMap.voids.void
-            expect( isUndefined( value ) ).to.be.true
+                }
 
-        } )
-
-        // Global dataset
-
-        it( 'should return false when the value is a boolean', () => {
-
-            const values = this._dataMap.booleans
-            for( let key in values ) {
-                expect( isUndefined( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is a number', () => {
-
-            const values = this._dataMap.numbers
-            for( let key in values ) {
-                expect( isUndefined( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is a string', () => {
-
-            const values = this._dataMap.strings
-            for( let key in values ) {
-                expect( isUndefined( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is a function', () => {
-
-            const values = this._dataMap.functions
-            for( let key in values ) {
-                expect( isUndefined( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is an array', () => {
-
-            const values = this._dataMap.arrays
-            for( let key in values ) {
-                expect( isUndefined( values[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is an object', () => {
-
-            const values = this._dataMap.objects
-            for( let key in values ) {
-                expect( isUndefined( values[ key ] ) ).to.be.false
             }
 
         } )

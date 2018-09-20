@@ -16,11 +16,26 @@ function isNotSymbolUnits () {
 
     describe( 'isNotSymbol()', () => {
 
-        it( 'should return true when the value is a void', () => {
+        it( 'should return false only when the value is a symbols', () => {
 
-            const values = this._dataMap.voids
-            for( let key in values ) {
-                expect( isNotSymbol( values[ key ] ) ).to.be.true
+            const dataMap = this._dataMap
+            for( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'symbols' ) {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotSymbol( dataSet[ key ] ) ).to.be.false
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotSymbol( dataSet[ key ] ) ).to.be.true
+                    }
+
+                }
+
             }
 
         } )

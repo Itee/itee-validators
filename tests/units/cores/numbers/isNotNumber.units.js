@@ -16,9 +16,27 @@ function isNotNumberUnits () {
 
     describe( 'isNotNumber()', () => {
 
-        it.skip( 'should be implemented', () => {
+        it( 'should return false only when the value is a number', () => {
 
-            expect( isNotNumber( 0 ) ).to.be.true
+            const dataMap = this._dataMap
+            for( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'numbers' ) {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotNumber( dataSet[ key ] ) ).to.be.false
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotNumber( dataSet[ key ] ) ).to.be.true
+                    }
+
+                }
+
+            }
 
         } )
 
