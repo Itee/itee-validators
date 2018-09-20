@@ -23,12 +23,12 @@ export function isNotArrayOfString ( data ) {
     if ( isNotArray( data ) ) { return true }
     if ( isEmptyArray( data ) ) { return true }
 
-    for ( let index = 0 ; index < dataLength ; index++ ) {
-        if ( isString( data[ index ] ) ) {
-            return false
+    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+        if ( isNotString( data[ index ] ) ) {
+            return true
         }
     }
 
-    return true
+    return false
 
 }
