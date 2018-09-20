@@ -8,7 +8,9 @@
  *
  */
 
-import { isNumber } from './isNumber'
+import { isInfinitePositive } from './isInfinitePositive'
+import { isNotNumber }        from './isNotNumber'
+import { isZeroPositive }     from './isZeroPositive'
 
 /**
  * Check if the data is a positive number
@@ -17,5 +19,9 @@ import { isNumber } from './isNumber'
  * @returns {boolean} true if data is a positive number, false otherwise.
  */
 export function isNumberPositive ( data ) {
-    return (isNumber( data ) && data > 0)
+
+    if ( isNotNumber( data ) ) { return false }
+
+    return (data > 0 || isZeroPositive( data ) || isInfinitePositive( data ))
+
 }
