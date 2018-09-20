@@ -28,15 +28,13 @@ this.Itee = this.Itee || {};
 	    negativeMinValue:       -Number.MIN_VALUE,
 	    negativeHexa:           -0x123456,
 	    negativePow:            -2e+2,
-	    negativeFloat:          -1.0,
+	    negativeFloat:          -1.01,
 	    negativeInt:            -1,
-	    negativeNullFloat:      -0.0,
-	    negativeNullInt:        -0,
+	    negativeZero:           -0,
 	    nan:                    Number.NaN,
-	    positiveNullInt:        0,
-	    positiveNullFloat:      0.0,
+	    positiveZero:           0,
 	    positiveInt:            1,
-	    positiveFloat:          1.0,
+	    positiveFloat:          1.01,
 	    positivePow:            2e+2,
 	    positiveHexa:           0x123456,
 	    positiveMinValue:       Number.MIN_VALUE,
@@ -399,21 +397,45 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
+	 * @module cores/arrays
+	 * @desc Export function to validate if a value is an array or not
+	 * @example
 	 *
-	 * @example Todo
+	 * import { isArray } from 'itee-validators'
+	 *
+	 * if( isArray( value ) ) {
+	 *     //...
+	 * } else {
+	 *     //...
+	 * }
 	 *
 	 */
 
 	/**
 	 * Check if given data is an array
 	 *
-	 * @param data {any} The data to check against the array type
+	 * @param data {*} The data to check against the array type
 	 * @returns {boolean} true if data is array, false otherwise
 	 */
 	function isArray ( data ) {
 	    return Array.isArray( data )
 	}
+
+	// #endif
+
+	////////////////////
+
+	/**
+	 * Check if given data is not an array
+	 *
+	 * @param data {*} The data to check against the array type
+	 * @returns {boolean} true if data is not array, false otherwise
+	 */
+	function isNotArray ( data ) {
+	    return !Array.isArray( data )
+	}
+
+	// #endif
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
@@ -455,44 +477,50 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	    describe( 'isNotArray()', () => {
+
+	        it( 'should return false only when the value is a array', () => {
+
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotArray( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotArray( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
+
 	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not an array
-	 *
-	 * @param data {any} The data to check against the array type
-	 * @returns {boolean} true if data is not array, false otherwise
-	 */
-	function isNotArray ( data ) {
-	    return !Array.isArray( data )
-	}
-
-	// #endif
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/arrays
+	 * @desc Export function to validate if a value is an array of array or not
+	 * @example todo
 	 *
 	 */
 
 	/**
 	 * Check if given data is an empty array
 	 *
-	 * @param data {any} The data to check against the empty array
+	 * @param data {*} The data to check against the empty array
 	 * @returns {boolean} true if data is an empty array, false otherwise
 	 */
 	function isEmptyArray ( data ) {
@@ -503,20 +531,36 @@ this.Itee = this.Itee || {};
 
 	}
 
+	///////
+
+	/**
+	 * Check if given data is not an empty array
+	 *
+	 * @param data {*} The data to check against the empty array
+	 * @returns {boolean} true if data is not an empty array, false otherwise
+	 */
+	function isNotEmptyArray ( data ) {
+
+	    if ( isNotArray( data ) ) { return true }
+
+	    return (data.length > 0)
+
+	}
+
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/arrays
+	 * @desc Export function to validate if a value is an array of array or not
+	 * @example todo
 	 *
 	 */
 
 	/**
 	 * Check if given data is an array of array
 	 *
-	 * @param data {any} The data to check against the array of array type
+	 * @param data {*} The data to check against the array of array type
 	 * @returns {boolean} true if data is an array of array, false otherwise
 	 */
 	function isArrayOfArray ( data ) {
@@ -526,6 +570,29 @@ this.Itee = this.Itee || {};
 
 	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
 	        if ( isNotArray( data[ index ] ) ) {
+	            return false
+	        }
+	    }
+
+	    return true
+
+	}
+
+	////////
+
+	/**
+	 * Check if given data is not an array of array
+	 *
+	 * @param data {*} The data to check against the array of array type
+	 * @returns {boolean} true if data is not an array of array, false otherwise
+	 */
+	function isNotArrayOfArray ( data ) {
+
+	    if ( isNotArray( data ) ) { return true }
+	    if ( isEmptyArray( data ) ) { return true }
+
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+	        if ( isArray( data[ index ] ) ) {
 	            return false
 	        }
 	    }
@@ -581,22 +648,57 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	    describe( 'isNotArrayOfArray()', () => {
+
+	        it( 'should return false only when the value is a array of arrays', () => {
+
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isNotArrayOfArray( dataSet[ key ] );
+	                        if ( key === 'arrays' ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotArrayOfArray( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
+
 	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/arrays
+	 * @desc Export function to validate if a value is an array of array or not
+	 * @example todo
 	 *
 	 */
 
 	/**
 	 * Check if given data is an array with multiples values
 	 *
-	 * @param data {any} The data to check against the single valued array
+	 * @param data {*} The data to check against the single valued array
 	 * @returns {boolean} true if data is an array with multiples values, false otherwise
 	 */
 	function isArrayOfMultiElement ( data ) {
@@ -661,16 +763,28 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/voids
+	 * @desc Export function to validate if a value is a void
+	 * @example todo
 	 *
 	 */
 
 	/**
+	 * Check if given data is null
+	 *
+	 * @param data {*} The data to check against the nullity
+	 * @returns {boolean} true if data is null, false otherwise.
+	 */
+	function isNull ( data ) {
+	    return (data === null)
+	}
+
+	///
+
+	/**
 	 * Check if given data is not null
 	 *
-	 * @param data {any} The data to check against the nullity
+	 * @param data {*} The data to check against the nullity
 	 * @returns {boolean} true if data is not null, false otherwise.
 	 */
 	function isNotNull ( data ) {
@@ -681,16 +795,16 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/arrays
+	 * @desc Export function to validate if a value is an array of array or not
+	 * @example todo
 	 *
 	 */
 
 	/**
 	 * Check if given data is not an empty array where all values are null
 	 *
-	 * @param data {any} The data to check against the array of array type
+	 * @param data {*} The data to check against the array of array type
 	 * @returns {boolean} true if data is not an empty array where all values are null, false otherwise
 	 */
 	function isArrayOfNull ( data ) {
@@ -705,6 +819,29 @@ this.Itee = this.Itee || {};
 	    }
 
 	    return true
+
+	}
+
+	/////
+
+	/**
+	 * Check if given data is not an empty array where all values are not null
+	 *
+	 * @param data {*} The data to check against the array of array type
+	 * @returns {boolean} true if data is not an empty array where all values are not null, false otherwise
+	 */
+	function isNotArrayOfNull ( data ) {
+
+	    if ( isNotArray( data ) ) { return true }
+	    if ( isEmptyArray( data ) ) { return true }
+
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+	        if ( isNotNull( data[ index ] ) ) {
+	            return true
+	        }
+	    }
+
+	    return false
 
 	}
 
@@ -755,42 +892,105 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	    describe( 'isNotArrayOfNull()', () => {
+
+	        it( 'should return false only when the value is an array of null', () => {
+
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isNotArrayOfNull( dataSet[ key ] );
+	                        if ( key === 'null' ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotArrayOfNull( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
+
 	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
+	 * @module cores/voids
+	 * @desc Export function to validate if a value is a void
+	 * @example todo
 	 *
-	 * @example Todo
+	 */
+
+
+	/**
+	 * Check if given data is not null and not undefined
+	 *
+	 * @param data {*} The data to check against the existence
+	 * @returns {boolean} true if data is not null and not undefined, false otherwise.
+	 */
+	function isDefined ( data ) {
+	    return ((data !== null) && (typeof data !== 'undefined'))
+	}
+
+	/////
+
+	/**
+	 * Check if given data is null or undefined
+	 *
+	 * @param data {*} The data to check against the existence
+	 * @returns {boolean} true if data is null or undefined, false otherwise.
+	 */
+	function isNotDefined ( data ) {
+	    return ((data === null) || (typeof data === 'undefined'))
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @module cores/objects
+	 * @desc Export function to validate if a value is an object
+	 * @example todo
 	 *
 	 */
 
 	/**
 	 * Check if given data is an object
 	 *
-	 * @param data {any} The data to check against the object type
+	 * @param data {*} The data to check against the object type
 	 * @returns {boolean} true if data is object, false otherwise
 	 */
 	function isObject ( data ) {
-	    return (isNotNull( data ) && (typeof data === 'object') && !Array.isArray( data ))
+
+	    if ( isNotDefined( data ) ) { return false }
+
+	    return (data.constructor === Object)
 	}
 
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
+	////
 
 	/**
 	 * Check if given data is not an object
 	 *
-	 * @param data {any} The data to check against the object type
+	 * @param data {*} The data to check against the object type
 	 * @returns {boolean} true if data is not an object, false otherwise
 	 */
 	function isNotObject ( data ) {
@@ -801,16 +1001,16 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/arrays
+	 * @desc Export function to validate if a value is an array of array or not
+	 * @example todo
 	 *
 	 */
 
 	/**
 	 * Check if given data is an array where all values are of object type
 	 *
-	 * @param data {any} The data to check against the array of object type
+	 * @param data {*} The data to check against the array of object type
 	 * @returns {boolean} true if data is an array where all values are of object type, false otherwise
 	 */
 	function isArrayOfObject ( data ) {
@@ -825,6 +1025,29 @@ this.Itee = this.Itee || {};
 	    }
 
 	    return true
+
+	}
+
+	////
+
+	/**
+	 * Check if given data is not an array where all values are of object type
+	 *
+	 * @param data {*} The data to check against the array of object type
+	 * @returns {boolean} true if data is not an array where all values are of object type, false otherwise
+	 */
+	function isNotArrayOfObject ( data ) {
+
+	    if ( isNotArray( data ) ) { return true }
+	    if ( isEmptyArray( data ) ) { return true }
+
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+	        if ( isNotObject( data[ index ] ) ) {
+	            return true
+	        }
+	    }
+
+	    return false
 
 	}
 
@@ -875,22 +1098,57 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	    describe( 'isNotArrayOfObject()', () => {
+
+	        it( 'should return false only when the value is a array of objects', () => {
+
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isNotArrayOfObject( dataSet[ key ] );
+	                        if ( key === 'objects' ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotArrayOfObject( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
+
 	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/arrays
+	 * @desc Export function to validate if a value is an array of array or not
+	 * @example todo
 	 *
 	 */
 
 	/**
 	 * Check if given data is an array with a single value
 	 *
-	 * @param data {any} The data to check against the single valued array
+	 * @param data {*} The data to check against the single valued array
 	 * @returns {boolean} true if data is an array with a single value, false otherwise
 	 */
 	function isArrayOfSingleElement ( data ) {
@@ -958,16 +1216,16 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/strings
+	 * @desc Export function to validate if a value is a string
+	 * @example todo
 	 *
 	 */
 
 	/**
 	 * Check if given data is a string
 	 *
-	 * @param data {any} The data to check against the string type
+	 * @param data {*} The data to check against the string type
 	 * @returns {boolean} true if data is a string, false otherwise.
 	 */
 	function isString ( data ) {
@@ -976,15 +1234,8 @@ this.Itee = this.Itee || {};
 
 	// #endif
 
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
+
+	//////
 
 	/**
 	 * Check if given data is not a string
@@ -1000,16 +1251,16 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/arrays
+	 * @desc Export function to validate if a value is an array of array or not
+	 * @example todo
 	 *
 	 */
 
 	/**
 	 * Check if given data is not an empty array where all values are string
 	 *
-	 * @param data {any} The data to check against the array of strings
+	 * @param data {*} The data to check against the array of strings
 	 * @returns {boolean} true if data is not an empty array where all values are string, false otherwise
 	 */
 	function isArrayOfString ( data ) {
@@ -1028,6 +1279,30 @@ this.Itee = this.Itee || {};
 	}
 
 	// #endif
+
+
+	/////
+
+	/**
+	 * Check if given data is not an empty array where all values are not string
+	 *
+	 * @param data {*} The data to check against the array of strings
+	 * @returns {boolean} true if data is not an empty array where all values are not string, false otherwise
+	 */
+	function isNotArrayOfString ( data ) {
+
+	    if ( isNotArray( data ) ) { return true }
+	    if ( isEmptyArray( data ) ) { return true }
+
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+	        if ( isNotString( data[ index ] ) ) {
+	            return true
+	        }
+	    }
+
+	    return false
+
+	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
@@ -1076,22 +1351,69 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	    describe( 'isNotArrayOfString()', () => {
+
+	        it( 'should return false only when the value is a array of strings', () => {
+
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isNotArrayOfString( dataSet[ key ] );
+	                        if ( key === 'strings' ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotArrayOfString( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
+
 	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/voids
+	 * @desc Export function to validate if a value is a void
+	 * @example todo
 	 *
 	 */
 
 	/**
+	 * Check if given data is undefined
+	 *
+	 * @param data {*} The data to check against the undefiness
+	 * @returns {boolean} true if data is undefined, false otherwise.
+	 */
+	function isUndefined ( data ) {
+	    return (typeof data === 'undefined')
+	}
+
+	///
+
+	/**
 	 * Check if given data is defined
 	 *
-	 * @param data {any} The data to check against the undefiness
+	 * @param data {*} The data to check against the undefiness
 	 * @returns {boolean} true if data is defined, false otherwise.
 	 */
 	function isNotUndefined ( data ) {
@@ -1102,16 +1424,16 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/arrays
+	 * @desc Export function to validate if a value is an array of array or not
+	 * @example todo
 	 *
 	 */
 
 	/**
 	 * Check if given data is not an empty array where all values are undefined
 	 *
-	 * @param data {any} The data to check against the array of undefined
+	 * @param data {*} The data to check against the array of undefined
 	 * @returns {boolean} true if data is not an empty array where all values are undefined, false otherwise
 	 */
 	function isArrayOfUndefined ( data ) {
@@ -1126,6 +1448,29 @@ this.Itee = this.Itee || {};
 	    }
 
 	    return true
+
+	}
+
+	////
+
+	/**
+	 * Check if given data is not an empty array where all values are defined
+	 *
+	 * @param data {*} The data to check against the array of undefined
+	 * @returns {boolean} true if data is not an empty array where all values are defined, false otherwise
+	 */
+	function isNotArrayOfUndefined ( data ) {
+
+	    if ( isNotArray( data ) ) { return true }
+	    if ( isEmptyArray( data ) ) { return true }
+
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+	        if ( isNotUndefined( data[ index ] ) ) {
+	            return true
+	        }
+	    }
+
+	    return false
 
 	}
 
@@ -1166,6 +1511,41 @@ this.Itee = this.Itee || {};
 
 	                    for ( let key in dataSet ) {
 	                        expect( isArrayOfUndefined( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
+
+	    describe( 'isNotArrayOfUndefined()', () => {
+
+	        it( 'should return false only when the value is a array of undefined', () => {
+
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isNotArrayOfUndefined( dataSet[ key ] );
+	                        if ( key === 'undefined' || key === 'void' ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotArrayOfUndefined( dataSet[ key ] ) ).to.be.true;
 	                    }
 
 	                }
@@ -1224,492 +1604,6 @@ this.Itee = this.Itee || {};
 	        } );
 
 	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/arrays
-	 * @desc Export the units tests about isNotArray method.
-	 * @requires {@link module:sources/cores/arrays}
-	 *
-	 */
-
-	function isNotArrayUnits () {
-
-	    describe( 'isNotArray()', () => {
-
-	        it( 'should return false only when the value is a array', () => {
-
-	            const dataMap = this._dataMap;
-	            for ( let mapKey in dataMap ) {
-
-	                const dataSet = dataMap[ mapKey ];
-	                if ( mapKey === 'arrays' ) {
-
-	                    for ( let key in dataSet ) {
-	                        expect( isNotArray( dataSet[ key ] ) ).to.be.false;
-	                    }
-
-	                } else {
-
-	                    for ( let key in dataSet ) {
-	                        expect( isNotArray( dataSet[ key ] ) ).to.be.true;
-	                    }
-
-	                }
-
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not an array of array
-	 *
-	 * @param data {any} The data to check against the array of array type
-	 * @returns {boolean} true if data is not an array of array, false otherwise
-	 */
-	function isNotArrayOfArray ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return true
-	    }
-
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return true
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index++ ) {
-	        if ( isArray( data[ index ] ) ) {
-	            return false
-	        }
-	    }
-
-	    return true
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/arrays
-	 * @desc Export the units tests about isNotArrayOfArray method.
-	 * @requires {@link module:sources/cores/arrays}
-	 *
-	 */
-
-	function isNotArrayOfArrayUnits () {
-
-	    describe( 'isNotArrayOfArray()', () => {
-
-	        it( 'should return false only when the value is a array of arrays', () => {
-
-	            const dataMap = this._dataMap;
-	            for ( let mapKey in dataMap ) {
-
-	                const dataSet = dataMap[ mapKey ];
-	                if ( mapKey === 'arrays' ) {
-
-	                    for ( let key in dataSet ) {
-
-	                        const result = isNotArrayOfArray( dataSet[ key ] );
-	                        if ( key === 'arrays' ) {
-	                            expect( result ).to.be.false;
-	                        } else {
-	                            expect( result ).to.be.true;
-	                        }
-
-	                    }
-
-	                } else {
-
-	                    for ( let key in dataSet ) {
-	                        expect( isNotArrayOfArray( dataSet[ key ] ) ).to.be.true;
-	                    }
-
-	                }
-
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not an empty array where all values are not null
-	 *
-	 * @param data {any} The data to check against the array of array type
-	 * @returns {boolean} true if data is not an empty array where all values are not null, false otherwise
-	 */
-	function isNotArrayOfNull ( data ) {
-
-	    if ( isNotArray( data ) ) { return true }
-	    if ( isEmptyArray( data ) ) { return true }
-
-	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
-	        if ( isNotNull( data[ index ] ) ) {
-	            return true
-	        }
-	    }
-
-	    return false
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/arrays
-	 * @desc Export the units tests about isNotArrayOfNull method.
-	 * @requires {@link module:sources/cores/arrays}
-	 *
-	 */
-
-	function isNotArrayOfNullUnits () {
-
-	    describe( 'isNotArrayOfNull()', () => {
-
-	        it( 'should return false only when the value is an array of null', () => {
-
-	            const dataMap = this._dataMap;
-	            for ( let mapKey in dataMap ) {
-
-	                const dataSet = dataMap[ mapKey ];
-	                if ( mapKey === 'arrays' ) {
-
-	                    for ( let key in dataSet ) {
-
-	                        const result = isNotArrayOfNull( dataSet[ key ] );
-	                        if ( key === 'null' ) {
-	                            expect( result ).to.be.false;
-	                        } else {
-	                            expect( result ).to.be.true;
-	                        }
-
-	                    }
-
-	                } else {
-
-	                    for ( let key in dataSet ) {
-	                        expect( isNotArrayOfNull( dataSet[ key ] ) ).to.be.true;
-	                    }
-
-	                }
-
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not an array where all values are of object type
-	 *
-	 * @param data {any} The data to check against the array of object type
-	 * @returns {boolean} true if data is not an array where all values are of object type, false otherwise
-	 */
-	function isNotArrayOfObject ( data ) {
-
-	    if ( isNotArray( data ) ) { return true }
-	    if ( isEmptyArray( data ) ) { return true }
-
-	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
-	        if ( isNotObject( data[ index ] ) ) {
-	            return true
-	        }
-	    }
-
-	    return false
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/arrays
-	 * @desc Export the units tests about isNotArrayOfObject method.
-	 * @requires {@link module:sources/cores/arrays}
-	 *
-	 */
-
-	function isNotArrayOfObjectUnits () {
-
-	    describe( 'isNotArrayOfObject()', () => {
-
-	        it( 'should return false only when the value is a array of objects', () => {
-
-	            const dataMap = this._dataMap;
-	            for ( let mapKey in dataMap ) {
-
-	                const dataSet = dataMap[ mapKey ];
-	                if ( mapKey === 'arrays' ) {
-
-	                    for ( let key in dataSet ) {
-
-	                        const result = isNotArrayOfObject( dataSet[ key ] );
-	                        if ( key === 'objects' ) {
-	                            expect( result ).to.be.false;
-	                        } else {
-	                            expect( result ).to.be.true;
-	                        }
-
-	                    }
-
-	                } else {
-
-	                    for ( let key in dataSet ) {
-	                        expect( isNotArrayOfObject( dataSet[ key ] ) ).to.be.true;
-	                    }
-
-	                }
-
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not an empty array where all values are not string
-	 *
-	 * @param data {any} The data to check against the array of strings
-	 * @returns {boolean} true if data is not an empty array where all values are not string, false otherwise
-	 */
-	function isNotArrayOfString ( data ) {
-
-	    if ( isNotArray( data ) ) { return true }
-	    if ( isEmptyArray( data ) ) { return true }
-
-	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
-	        if ( isNotString( data[ index ] ) ) {
-	            return true
-	        }
-	    }
-
-	    return false
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/arrays
-	 * @desc Export the units tests about isNotArrayOfString method.
-	 * @requires {@link module:sources/cores/arrays}
-	 *
-	 */
-
-	function isNotArrayOfStringUnits () {
-
-	    describe( 'isNotArrayOfString()', () => {
-
-	        it( 'should return false only when the value is a array of strings', () => {
-
-	            const dataMap = this._dataMap;
-	            for ( let mapKey in dataMap ) {
-
-	                const dataSet = dataMap[ mapKey ];
-	                if ( mapKey === 'arrays' ) {
-
-	                    for ( let key in dataSet ) {
-
-	                        const result = isNotArrayOfString( dataSet[ key ] );
-	                        if ( key === 'strings' ) {
-	                            expect( result ).to.be.false;
-	                        } else {
-	                            expect( result ).to.be.true;
-	                        }
-
-	                    }
-
-	                } else {
-
-	                    for ( let key in dataSet ) {
-	                        expect( isNotArrayOfString( dataSet[ key ] ) ).to.be.true;
-	                    }
-
-	                }
-
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not an empty array where all values are defined
-	 *
-	 * @param data {any} The data to check against the array of undefined
-	 * @returns {boolean} true if data is not an empty array where all values are defined, false otherwise
-	 */
-	function isNotArrayOfUndefined ( data ) {
-
-	    if ( isNotArray( data ) ) { return true }
-	    if ( isEmptyArray( data ) ) { return true }
-
-	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
-	        if ( isNotUndefined( data[ index ] ) ) {
-	            return true
-	        }
-	    }
-
-	    return false
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/arrays
-	 * @desc Export the units tests about isNotArrayOfUndefined method.
-	 * @requires {@link module:sources/cores/arrays}
-	 *
-	 */
-
-	function isNotArrayOfUndefinedUnits () {
-
-	    describe( 'isNotArrayOfUndefined()', () => {
-
-	        it( 'should return false only when the value is a array of undefined', () => {
-
-	            const dataMap = this._dataMap;
-	            for ( let mapKey in dataMap ) {
-
-	                const dataSet = dataMap[ mapKey ];
-	                if ( mapKey === 'arrays' ) {
-
-	                    for ( let key in dataSet ) {
-
-	                        const result = isNotArrayOfUndefined( dataSet[ key ] );
-	                        if ( key === 'undefined' || key === 'void' ) {
-	                            expect( result ).to.be.false;
-	                        } else {
-	                            expect( result ).to.be.true;
-	                        }
-
-	                    }
-
-	                } else {
-
-	                    for ( let key in dataSet ) {
-	                        expect( isNotArrayOfUndefined( dataSet[ key ] ) ).to.be.true;
-	                    }
-
-	                }
-
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not an empty array
-	 *
-	 * @param data {any} The data to check against the empty array
-	 * @returns {boolean} true if data is not an empty array, false otherwise
-	 */
-	function isNotEmptyArray ( data ) {
-
-	    if ( isNotArray( data ) ) { return true }
-
-	    return (data.length > 0)
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/arrays
-	 * @desc Export the units tests about isNotEmptyArray method.
-	 * @requires {@link module:sources/cores/arrays}
-	 *
-	 */
-
-	function isNotEmptyArrayUnits () {
 
 	    describe( 'isNotEmptyArray()', () => {
 
@@ -1780,13 +1674,6 @@ this.Itee = this.Itee || {};
 	        isArrayOfStringUnits.call( this );
 	        isArrayOfUndefinedUnits.call( this );
 	        isEmptyArrayUnits.call( this );
-	        isNotArrayUnits.call( this );
-	        isNotArrayOfArrayUnits.call( this );
-	        isNotArrayOfNullUnits.call( this );
-	        isNotArrayOfObjectUnits.call( this );
-	        isNotArrayOfStringUnits.call( this );
-	        isNotArrayOfUndefinedUnits.call( this );
-	        isNotEmptyArrayUnits.call( this );
 
 	    } );
 
@@ -1796,20 +1683,34 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/booleans
+	 * @desc Export function to validate if a value is a boolean or not
+	 * @example todo
 	 *
 	 */
 
 	/**
 	 * Check if given data is a boolean
 	 *
-	 * @param data {any} The data to check against the booleaness
+	 * @param data {*} The data to check against the booleaness
 	 * @returns {boolean} true if data is a boolean, false otherwise.
 	 */
 	function isBoolean ( data ) {
 	    return (typeof data === 'boolean')
+	}
+
+	// #endif
+
+	//////
+
+	/**
+	 * Check if given data is not a boolean
+	 *
+	 * @param data {*} The data to check against the booleaness
+	 * @returns {boolean} true if data is not a boolean, false otherwise.
+	 */
+	function isNotBoolean ( data ) {
+	    return (typeof data !== 'boolean')
 	}
 
 	// #endif
@@ -1853,41 +1754,6 @@ this.Itee = this.Itee || {};
 	        } );
 
 	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not a boolean
-	 *
-	 * @param data {any} The data to check against the booleaness
-	 * @returns {boolean} true if data is not a boolean, false otherwise.
-	 */
-	function isNotBoolean ( data ) {
-	    return (typeof data !== 'boolean')
-	}
-
-	// #endif
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/arrays
-	 * @desc Export the units tests about isBoolean method.
-	 * @requires {@link module:sources/cores/booleans}
-	 */
-
-	function isNotBooleanUnits () {
 
 	    describe( 'isNotBoolean()', () => {
 
@@ -1942,7 +1808,6 @@ this.Itee = this.Itee || {};
 	        } );
 
 	        isBooleanUnits.call( this );
-	        isNotBooleanUnits.call( this );
 
 	    } );
 
@@ -1952,20 +1817,32 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/functions
+	 * @desc Export function to validate if a value is a function or not
+	 * @example todo
 	 *
 	 */
 
 	/**
 	 * Check if given data is a function
 	 *
-	 * @param data {any} The data to check against the functionality
+	 * @param data {*} The data to check against the functionality
 	 * @returns {boolean} true if data is a function, false otherwise.
 	 */
 	function isFunction ( data ) {
 	    return (typeof data === 'function')
+	}
+
+	///
+
+	/**
+	 * Check if given data is not a function
+	 *
+	 * @param data {*} The data to check against the functionality
+	 * @returns {boolean} true if data is not a function, false otherwise.
+	 */
+	function isNotFunction ( data ) {
+	    return (typeof data !== 'function')
 	}
 
 	/**
@@ -2007,40 +1884,6 @@ this.Itee = this.Itee || {};
 	        } );
 
 	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not a function
-	 *
-	 * @param data {any} The data to check against the functionality
-	 * @returns {boolean} true if data is not a function, false otherwise.
-	 */
-	function isNotFunction ( data ) {
-	    return (typeof data !== 'function')
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/functions
-	 * @desc Export the units tests about isNotFunction method.
-	 * @requires {@link module:sources/cores/functions}
-	 *
-	 */
-
-	function isNotFunctionUnits () {
 
 	    describe( 'isNotFunction()', () => {
 
@@ -2095,7 +1938,6 @@ this.Itee = this.Itee || {};
 	        } );
 
 	        isFunctionUnits.call( this );
-	        isNotFunctionUnits.call( this );
 
 	    } );
 
@@ -2105,143 +1947,135 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/numbers/isZero
+	 * @desc Export function to validate if a value is a finite number
+	 * @example todo
 	 *
 	 */
 
 	/**
-	 * Check if the given data is a finite number
+	 * Check if the given data is zero
 	 *
-	 * @param data {any} The data to check against the finite state
-	 * @returns {boolean} true if data is finite, false otherwise
+	 * @param data {*} The data to check against the zero value
+	 * @returns {boolean} true if data is zero, false otherwise
 	 */
-	function isFinite$1 ( data ) {
-	    return Number.isFinite( data )
+	function isZero ( data ) {
+	    return (data === 0)
+	}
+
+	/**
+	 * Check if the given data is a positive zero
+	 *
+	 * @param data {*} The data to check against the positive zero value
+	 * @returns {boolean} true if data is a positive zero, false otherwise
+	 */
+	function isZeroPositive ( data ) {
+	    return (data === 0 && (1 / data) === Number.POSITIVE_INFINITY)
+	}
+
+	/**
+	 * Check if the given data is a negative zero
+	 *
+	 * @param data {*} The data to check against the negative zero value
+	 * @returns {boolean} true if data is a negative zero, false otherwise
+	 */
+	function isZeroNegative ( data ) {
+	    return (data === 0 && (1 / data) === Number.NEGATIVE_INFINITY)
 	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @module tests/cores/numbers
-	 * @desc Export the units tests about isFinite method.
-	 * @requires {@link module:sources/cores/numbers}
-	 *
-	 */
-
-	function isFiniteUnits () {
-
-	    describe( 'isFinite()', () => {
-
-	        it( 'should return true only when the value is a finite number', () => {
-
-	            const dataMap = this._dataMap;
-	            for ( let mapKey in dataMap ) {
-
-	                const dataSet = dataMap[ mapKey ];
-	                if ( mapKey === 'numbers' ) {
-
-	                    const allowed = [ 'negativeInfinity', 'nan', 'positiveInfinity' ];
-
-	                    for ( let key in dataSet ) {
-
-	                        const result = isFinite$1( dataSet[ key ] );
-	                        if ( allowed.includes( key ) ) {
-	                            expect( result ).to.be.false;
-	                        } else {
-	                            expect( result ).to.be.true;
-	                        }
-
-	                    }
-
-	                } else {
-
-	                    for ( let key in dataSet ) {
-	                        expect( isFinite$1( dataSet[ key ] ) ).to.be.false;
-	                    }
-
-	                }
-
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/numbers/isNumber
+	 * @desc Export function to validate if a value is a finite number
+	 * @example todo
 	 *
 	 */
 
 	/**
-	 * Check if given data is a floating point number
+	 * Check if given data is a number
 	 *
-	 * @param data {any} The data to check against the floating point
-	 * @returns {boolean} true if data is a float, false otherwise
+	 * @param data {*} The data to check against the maximum safe integer state
+	 * @returns {boolean} true if data is a number, false otherwise.
 	 */
-	function isFloat ( data ) {
-	    return data % 1 !== 0
+	function isNumber ( data ) {
+
+	    if ( isNotDefined( data ) ) { return false }
+
+	    return (data.constructor === Number)
+
 	}
 
 	// #endif
 
+
 	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 * Check if the data is a positive number
 	 *
-	 * @module tests/cores/numbers
-	 * @desc Export the units tests about isNumber method.
-	 * @requires {@link module:sources/cores/numbers}
-	 *
+	 * @param data {*} The data to check against the positivity
+	 * @returns {boolean} true if data is a positive number, false otherwise.
 	 */
+	function isNumberPositive ( data ) {
 
-	function isFloatUnits () {
+	    if ( isNotNumber( data ) ) { return false }
 
-	    describe( 'isFloat()', () => {
+	    return (data > 0 || isZeroPositive( data ) || isInfinitePositive( data ))
 
-	        it( 'should return true only when the value is a float number', () => {
+	}
 
-	            const dataMap = this._dataMap;
-	            for ( let mapKey in dataMap ) {
+	/**
+	 * Check if the data is a negative number
+	 *
+	 * @param data {*} The data to check against the negativity
+	 * @returns {boolean} true if data is a negative number, false otherwise.
+	 */
+	function isNumberNegative ( data ) {
+	    return (isNumber( data ) && data < 0)
+	}
 
-	                const dataSet = dataMap[ mapKey ];
-	                if ( mapKey === 'numbers' ) {
+	//////
 
-	                    const allowed = [ 'negativeMaxValue', 'negativeMinValue', 'negativeFloat', 'negativeNullFloat', 'positiveNullFloat', 'positiveFloat', 'positiveMinValue', 'positiveMaxValue' ];
+	/**
+	 * Check if given data is not a number
+	 *
+	 * @param data {*} The data to check against the number type
+	 * @returns {boolean} true if data is not of type number or not a number, false otherwise.
+	 */
+	function isNotNumber ( data ) {
+	    return !(isNumber( data ))
+	}
 
-	                    for ( let key in dataSet ) {
 
-	                        const result = isFloat( dataSet[ key ] );
-	                        if ( allowed.includes( key ) ) {
-	                            expect( result ).to.be.true;
-	                        } else {
-	                            expect( result ).to.be.false;
-	                        }
+	/////////
 
-	                    }
+	/**
+	 * Check if the given data is an integer number
+	 *
+	 * @param data {*} The data to check against the integer state
+	 * @returns {boolean} true if data is an integer, false otherwise
+	 */
+	function isInteger ( data ) {
+	    return Number.isInteger(data)
+	}
+	// #endif
 
-	                } else {
 
-	                    for ( let key in dataSet ) {
-	                        expect( isFloat( dataSet[ key ] ) ).to.be.false;
-	                    }
+	////////
 
-	                }
+	/**
+	 * Check if given data is a floating point number
+	 *
+	 * @param data {*} The data to check against the floating point
+	 * @returns {boolean} true if data is a float, false otherwise
+	 */
+	function isFloat ( data ) {
 
-	            }
+	    if ( isNotNumber( data ) ) { return false }
+	    if ( Number.isNaN( data ) ) { return false }
+	    if ( isInfinite( data ) ) { return false}
 
-	        } );
-
-	    } );
+	    return data % 1 !== 0
 
 	}
 
@@ -2249,20 +2083,56 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/numbers/isInfinite
+	 * @desc Export function to validate if a value is a finite number
+	 * @example todo
 	 *
 	 */
 
 	/**
 	 * Check if the given data is an infinite number
 	 *
-	 * @param data {any} The data to check against the infinite state
+	 * @param data {*} The data to check against the infinite state
 	 * @returns {boolean} true if data is infinite, false otherwise
 	 */
 	function isInfinite ( data ) {
+
+	    if ( isNotNumber( data ) ) { return false }
+	    if ( Number.isNaN( data ) ) { return false }
+
 	    return !Number.isFinite( data )
+	}
+
+	/**
+	 * Check if the given data is an infinite negative number
+	 *
+	 * @param data {*} The data to check against the negative infinite state
+	 * @returns {boolean} true if data is negative infinite, false otherwise
+	 */
+	function isInfiniteNegative ( data ) {
+	    return (data === Number.NEGATIVE_INFINITY)
+	}
+
+	/**
+	 * Check if the given data is an infinite positive number
+	 *
+	 * @param data {*} The data to check against the positive infinite state
+	 * @returns {boolean} true if data is positive infinite, false otherwise
+	 */
+	function isInfinitePositive ( data ) {
+	    return (data === Number.POSITIVE_INFINITY)
+	}
+
+	///
+
+	/**
+	 * Check if the given data is a finite number
+	 *
+	 * @param data {*} The data to check against the finite state
+	 * @returns {boolean} true if data is finite, false otherwise
+	 */
+	function isFinite$1 ( data ) {
+	    return Number.isFinite( data )
 	}
 
 	/**
@@ -2314,39 +2184,40 @@ this.Itee = this.Itee || {};
 
 	    } );
 
-	}
+	    describe( 'isInfinitePositive()', () => {
 
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
+	        it( 'should return true only when the value is a positive infinite number', () => {
 
-	/**
-	 * Check if the given data is an infinite negative number
-	 *
-	 * @param data {any} The data to check against the negative infinite state
-	 * @returns {boolean} true if data is negative infinite, false otherwise
-	 */
-	function isInfiniteNegative ( data ) {
-	    return (data === Number.NEGATIVE_INFINITY)
-	}
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/numbers
-	 * @desc Export the units tests about isInfiniteNegative method.
-	 * @requires {@link module:sources/cores/numbers}
-	 *
-	 */
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
 
-	function isInfiniteNegativeUnits () {
+	                    for ( let key in dataSet ) {
+
+	                        const result = isInfinitePositive( dataSet[ key ] );
+	                        if ( key === 'positiveInfinity' ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isInfinitePositive( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
 
 	    describe( 'isInfiniteNegative()', () => {
 
@@ -2383,43 +2254,9 @@ this.Itee = this.Itee || {};
 
 	    } );
 
-	}
+	    describe( 'isFinite()', () => {
 
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if the given data is an infinite positive number
-	 *
-	 * @param data {any} The data to check against the positive infinite state
-	 * @returns {boolean} true if data is positive infinite, false otherwise
-	 */
-	function isInfinitePositive ( data ) {
-	    return (data === Number.POSITIVE_INFINITY)
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/numbers
-	 * @desc Export the units tests about isInfinitePositive method.
-	 * @requires {@link module:sources/cores/numbers}
-	 *
-	 */
-
-	function isInfinitePositiveUnits () {
-
-	    describe( 'isInfinitePositive()', () => {
-
-	        it( 'should return true only when the value is a positive infinite number', () => {
+	        it( 'should return true only when the value is a finite number', () => {
 
 	            const dataMap = this._dataMap;
 	            for ( let mapKey in dataMap ) {
@@ -2427,97 +2264,15 @@ this.Itee = this.Itee || {};
 	                const dataSet = dataMap[ mapKey ];
 	                if ( mapKey === 'numbers' ) {
 
-	                    for ( let key in dataSet ) {
-
-	                        const result = isInfinitePositive( dataSet[ key ] );
-	                        if ( key === 'positiveInfinity' ) {
-	                            expect( result ).to.be.true;
-	                        } else {
-	                            expect( result ).to.be.false;
-	                        }
-
-	                    }
-
-	                } else {
-
-	                    for ( let key in dataSet ) {
-	                        expect( isInfinitePositive( dataSet[ key ] ) ).to.be.false;
-	                    }
-
-	                }
-
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if the given data is an integer number
-	 *
-	 * @param data {any} The data to check against the integer state
-	 * @returns {boolean} true if data is an integer, false otherwise
-	 */
-	function isInteger ( data ) {
-	    return (data === 0 && (1 / data) === Number.POSITIVE_INFINITY)
-	}
-
-	// #endif
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/numbers
-	 * @desc Export the units tests about isInteger method.
-	 * @requires {@link module:sources/cores/numbers}
-	 *
-	 */
-
-	function isIntegerUnits () {
-
-	    describe( 'isInteger()', () => {
-
-	        it( 'should return true only when the value is an integer number', () => {
-
-	            const dataMap = this._dataMap;
-	            for ( let mapKey in dataMap ) {
-
-	                const dataSet = dataMap[ mapKey ];
-	                if ( mapKey === 'numbers' ) {
-
-	                    const allowed = [
-	                        'negativeMinSafeInteger',
-	                        'negativeHexa',
-	                        'negativePow',
-	                        'negativeInt',
-	                        'negativeNullInt',
-	                        'positiveNullInt',
-	                        'positiveInt',
-	                        'positivePow',
-	                        'positiveHexa',
-	                        'positiveMaxSafeInteger'
-	                    ];
+	                    const allowed = [ 'negativeInfinity', 'nan', 'positiveInfinity' ];
 
 	                    for ( let key in dataSet ) {
 
-	                        const result = isInteger( dataSet[ key ] );
+	                        const result = isFinite$1( dataSet[ key ] );
 	                        if ( allowed.includes( key ) ) {
-	                            expect( result ).to.be.true;
-	                        } else {
 	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
 	                        }
 
 	                    }
@@ -2525,7 +2280,7 @@ this.Itee = this.Itee || {};
 	                } else {
 
 	                    for ( let key in dataSet ) {
-	                        expect( isInteger( dataSet[ key ] ) ).to.be.false;
+	                        expect( isFinite$1( dataSet[ key ] ) ).to.be.false;
 	                    }
 
 	                }
@@ -2542,91 +2297,30 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if the given data is a maximum negative number
-	 *
-	 * @param data {any} The data to check against the maximum infinite state
-	 * @returns {boolean} true if data is negative maximum, false otherwise
-	 */
-	function isMaxNegative ( data ) {
-	    return (data === -Number.MAX_VALUE)
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/numbers
-	 * @desc Export the units tests about isMaxNegative method.
-	 * @requires {@link module:sources/cores/numbers}
-	 *
-	 */
-
-	function isMaxNegativeUnits () {
-
-	    describe( 'isMaxNegative()', () => {
-
-	        it( 'should return true only when the value is equal to negative max number value', () => {
-
-	            const dataMap = this._dataMap;
-	            for ( let mapKey in dataMap ) {
-
-	                const dataSet = dataMap[ mapKey ];
-	                if ( mapKey === 'numbers' ) {
-
-	                    const allowed = [ 'negativeMaxValue' ];
-
-	                    for ( let key in dataSet ) {
-
-	                        const result = isMaxNegative( dataSet[ key ] );
-	                        if ( allowed.includes( key ) ) {
-	                            expect( result ).to.be.true;
-	                        } else {
-	                            expect( result ).to.be.false;
-	                        }
-
-	                    }
-
-	                } else {
-
-	                    for ( let key in dataSet ) {
-	                        expect( isMaxNegative( dataSet[ key ] ) ).to.be.false;
-	                    }
-
-	                }
-
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/numbers/isMax
+	 * @desc Export function to validate if a value is a finite number
+	 * @example todo
 	 *
 	 */
 
 	/**
 	 * Check if the given data is a maximum positive number
 	 *
-	 * @param data {any} The data to check against the positive maximum state
+	 * @param data {*} The data to check against the positive maximum state
 	 * @returns {boolean} true if data is positive maximum, false otherwise
 	 */
 	function isMaxPositive ( data ) {
 	    return (data === Number.MAX_VALUE)
+	}
+
+	/**
+	 * Check if the given data is a maximum negative number
+	 *
+	 * @param data {*} The data to check against the maximum infinite state
+	 * @returns {boolean} true if data is negative maximum, false otherwise
+	 */
+	function isMaxNegative ( data ) {
+	    return (data === -Number.MAX_VALUE)
 	}
 
 	/**
@@ -2678,26 +2372,73 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	    describe( 'isMaxNegative()', () => {
+
+	        it( 'should return true only when the value is equal to negative max number value', () => {
+
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    const allowed = [ 'negativeMaxValue' ];
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isMaxNegative( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isMaxNegative( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
+
 	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/numbers/isSafeInteger
+	 * @desc Export function to validate if a value is a finite number
+	 * @example todo
 	 *
 	 */
 
 	/**
 	 * Check if the given data is a maximum safe integer number
 	 *
-	 * @param data {any} The data to check against the maximum safe integer state
+	 * @param data {*} The data to check against the maximum safe integer state
 	 * @returns {boolean} true if data is a maximum safe integer, false otherwise
 	 */
 	function isMaxSafeInteger ( data ) {
 	    return (data === Number.MAX_SAFE_INTEGER)
+	}
+
+	/**
+	 * Check if the given data is a minimum safe integer number
+	 *
+	 * @param data {*} The data to check against the minimum safe integer state
+	 * @returns {boolean} true if data is a minimum safe integer, false otherwise
+	 */
+	function isMinSafeInteger ( data ) {
+	    return (data === Number.MIN_SAFE_INTEGER)
 	}
 
 	/**
@@ -2749,43 +2490,9 @@ this.Itee = this.Itee || {};
 
 	    } );
 
-	}
+	    describe( 'isMinSafeInteger()', () => {
 
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if the given data is a minimum negative number
-	 *
-	 * @param data {any} The data to check against the minimum infinite state
-	 * @returns {boolean} true if data is negative minimum, false otherwise
-	 */
-	function isMinNegative ( data ) {
-	    return (data === -Number.MIN_VALUE)
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/numbers
-	 * @desc Export the units tests about isMinNegative method.
-	 * @requires {@link module:sources/cores/numbers}
-	 *
-	 */
-
-	function isMinNegativeUnits () {
-
-	    describe( 'isMinNegative()', () => {
-
-	        it( 'should return true only when the value is equal to negative minimum number value', () => {
+	        it( 'should return true only when the value is a the min safe integer value', () => {
 
 	            const dataMap = this._dataMap;
 	            for ( let mapKey in dataMap ) {
@@ -2793,11 +2500,11 @@ this.Itee = this.Itee || {};
 	                const dataSet = dataMap[ mapKey ];
 	                if ( mapKey === 'numbers' ) {
 
-	                    const allowed = [ 'negativeMinValue' ];
+	                    const allowed = [ 'negativeMinSafeInteger' ];
 
 	                    for ( let key in dataSet ) {
 
-	                        const result = isMinNegative( dataSet[ key ] );
+	                        const result = isMinSafeInteger( dataSet[ key ] );
 	                        if ( allowed.includes( key ) ) {
 	                            expect( result ).to.be.true;
 	                        } else {
@@ -2809,7 +2516,7 @@ this.Itee = this.Itee || {};
 	                } else {
 
 	                    for ( let key in dataSet ) {
-	                        expect( isMinNegative( dataSet[ key ] ) ).to.be.false;
+	                        expect( isMinSafeInteger( dataSet[ key ] ) ).to.be.false;
 	                    }
 
 	                }
@@ -2826,20 +2533,30 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/numbers/isMin
+	 * @desc Export function to validate if a value is a finite number
+	 * @example todo
 	 *
 	 */
 
 	/**
 	 * Check if the given data is a minimum positive number
 	 *
-	 * @param data {any} The data to check against the positive minimum state
+	 * @param data {*} The data to check against the positive minimum state
 	 * @returns {boolean} true if data is positive minimum, false otherwise
 	 */
 	function isMinPositive ( data ) {
 	    return (data === Number.MIN_VALUE)
+	}
+
+	/**
+	 * Check if the given data is a minimum negative number
+	 *
+	 * @param data {*} The data to check against the minimum infinite state
+	 * @returns {boolean} true if data is negative minimum, false otherwise
+	 */
+	function isMinNegative ( data ) {
+	    return (data === -Number.MIN_VALUE)
 	}
 
 	/**
@@ -2891,43 +2608,9 @@ this.Itee = this.Itee || {};
 
 	    } );
 
-	}
+	    describe( 'isMinNegative()', () => {
 
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if the given data is a minimum safe integer number
-	 *
-	 * @param data {any} The data to check against the minimum safe integer state
-	 * @returns {boolean} true if data is a minimum safe integer, false otherwise
-	 */
-	function isMinSafeInteger ( data ) {
-	    return (data === Number.MIN_SAFE_INTEGER)
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/numbers
-	 * @desc Export the units tests about isMinSafeInteger method.
-	 * @requires {@link module:sources/cores/numbers}
-	 *
-	 */
-
-	function isMinSafeIntegerUnits () {
-
-	    describe( 'isMinSafeInteger()', () => {
-
-	        it( 'should return true only when the value is a the min safe integer value', () => {
+	        it( 'should return true only when the value is equal to negative minimum number value', () => {
 
 	            const dataMap = this._dataMap;
 	            for ( let mapKey in dataMap ) {
@@ -2935,11 +2618,11 @@ this.Itee = this.Itee || {};
 	                const dataSet = dataMap[ mapKey ];
 	                if ( mapKey === 'numbers' ) {
 
-	                    const allowed = [ 'positiveMinSafeInteger' ];
+	                    const allowed = [ 'negativeMinValue' ];
 
 	                    for ( let key in dataSet ) {
 
-	                        const result = isMinSafeInteger( dataSet[ key ] );
+	                        const result = isMinNegative( dataSet[ key ] );
 	                        if ( allowed.includes( key ) ) {
 	                            expect( result ).to.be.true;
 	                        } else {
@@ -2951,7 +2634,7 @@ this.Itee = this.Itee || {};
 	                } else {
 
 	                    for ( let key in dataSet ) {
-	                        expect( isMinSafeInteger( dataSet[ key ] ) ).to.be.false;
+	                        expect( isMinNegative( dataSet[ key ] ) ).to.be.false;
 	                    }
 
 	                }
@@ -2963,90 +2646,6 @@ this.Itee = this.Itee || {};
 	    } );
 
 	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not a number
-	 *
-	 * @param data {any} The data to check against the number type
-	 * @returns {boolean} true if data is not of type number or not a number, false otherwise.
-	 */
-	function isNotNumber ( data ) {
-	    return (typeof data !== 'number' || Number.isNaN( data ))
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/numbers
-	 * @desc Export the units tests about isNotNumber method.
-	 * @requires {@link module:sources/cores/numbers}
-	 *
-	 */
-
-	function isNotNumberUnits () {
-
-	    describe( 'isNotNumber()', () => {
-
-	        it( 'should return false only when the value is a number', () => {
-
-	            const dataMap = this._dataMap;
-	            for ( let mapKey in dataMap ) {
-
-	                const dataSet = dataMap[ mapKey ];
-	                if ( mapKey === 'numbers' ) {
-
-	                    for ( let key in dataSet ) {
-	                        expect( isNotNumber( dataSet[ key ] ) ).to.be.false;
-	                    }
-
-	                } else {
-
-	                    for ( let key in dataSet ) {
-	                        expect( isNotNumber( dataSet[ key ] ) ).to.be.true;
-	                    }
-
-	                }
-
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is a number
-	 *
-	 * @param data {any} The data to check against the maximum safe integer state
-	 * @returns {boolean} true if data is a number, false otherwise.
-	 */
-	function isNumber ( data ) {
-	    return (typeof data === 'number' && !Number.isNaN( data ))
-	}
-
-	// #endif
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
@@ -3088,39 +2687,80 @@ this.Itee = this.Itee || {};
 
 	    } );
 
-	}
+	    describe( 'isNotNumber()', () => {
 
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
+	        it( 'should return false only when the value is a number', () => {
 
-	/**
-	 * Check if the data is a negative number
-	 *
-	 * @param data {any} The data to check against the negativity
-	 * @returns {boolean} true if data is a negative number, false otherwise.
-	 */
-	function isNumberNegative ( data ) {
-	    return (isNumber( data ) && data < 0)
-	}
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/numbers
-	 * @desc Export the units tests about isNumberNegative method.
-	 * @requires {@link module:sources/cores/numbers}
-	 *
-	 */
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
 
-	function isNumberNegativeUnits () {
+	                    for ( let key in dataSet ) {
+	                        expect( isNotNumber( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotNumber( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
+
+	    describe( 'isNumberPositive()', () => {
+
+	        it( 'should return true only when the value is a positive number', () => {
+
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    const allowed = [
+	                        'positiveZero',
+	                        'positiveInt',
+	                        'positiveFloat',
+	                        'positivePow',
+	                        'positiveHexa',
+	                        'positiveMinValue',
+	                        'positiveMaxSafeInteger',
+	                        'positiveMaxValue',
+	                        'positiveInfinity'
+	                    ];
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isNumberPositive( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNumberPositive( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
 
 	    describe( 'isNumberNegative()', () => {
 
@@ -3170,43 +2810,9 @@ this.Itee = this.Itee || {};
 
 	    } );
 
-	}
+	    describe( 'isInteger()', () => {
 
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if the data is a positive number
-	 *
-	 * @param data {any} The data to check against the positivity
-	 * @returns {boolean} true if data is a positive number, false otherwise.
-	 */
-	function isNumberPositive ( data ) {
-	    return (isNumber( data ) && data > 0)
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/numbers
-	 * @desc Export the units tests about isNumberPositive method.
-	 * @requires {@link module:sources/cores/numbers}
-	 *
-	 */
-
-	function isNumberPositiveUnits () {
-
-	    describe( 'isNumberPositive()', () => {
-
-	        it( 'should return true only when the value is a positive number', () => {
+	        it( 'should return true only when the value is an integer number', () => {
 
 	            const dataMap = this._dataMap;
 	            for ( let mapKey in dataMap ) {
@@ -3215,21 +2821,23 @@ this.Itee = this.Itee || {};
 	                if ( mapKey === 'numbers' ) {
 
 	                    const allowed = [
-	                        'positiveInfinity',
-	                        'positiveMaxValue',
-	                        'positiveMinSafeInteger',
-	                        'positiveMinValue',
-	                        'positiveHexa',
-	                        'positivePow',
-	                        'positiveFloat',
+	                        'negativeMaxValue',
+	                        'negativeMinSafeInteger',
+	                        'negativeHexa',
+	                        'negativePow',
+	                        'negativeInt',
+	                        'negativeZero',
+	                        'positiveZero',
 	                        'positiveInt',
-	                        'positiveNullFloat',
-	                        'positiveNullInt'
+	                        'positivePow',
+	                        'positiveHexa',
+	                        'positiveMaxSafeInteger',
+	                        'positiveMaxValue'
 	                    ];
 
 	                    for ( let key in dataSet ) {
 
-	                        const result = isNumberPositive( dataSet[ key ] );
+	                        const result = isInteger( dataSet[ key ] );
 	                        if ( allowed.includes( key ) ) {
 	                            expect( result ).to.be.true;
 	                        } else {
@@ -3241,7 +2849,7 @@ this.Itee = this.Itee || {};
 	                } else {
 
 	                    for ( let key in dataSet ) {
-	                        expect( isNumberPositive( dataSet[ key ] ) ).to.be.false;
+	                        expect( isInteger( dataSet[ key ] ) ).to.be.false;
 	                    }
 
 	                }
@@ -3252,26 +2860,45 @@ this.Itee = this.Itee || {};
 
 	    } );
 
-	}
+	    describe( 'isFloat()', () => {
 
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
+	        it( 'should return true only when the value is a float number', () => {
 
-	/**
-	 * Check if the given data is zero
-	 *
-	 * @param data {*} The data to check against the zero value
-	 * @returns {boolean} true if data is zero, false otherwise
-	 */
-	function isZero ( data ) {
-	    return (data === 0)
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    const allowed = [ 'negativeMinValue', 'negativeFloat', 'positiveFloat', 'positiveMinValue' ];
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isFloat( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isFloat( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
+
+	    //todo isNaN
+
 	}
 
 	/**
@@ -3296,7 +2923,7 @@ this.Itee = this.Itee || {};
 	                const dataSet = dataMap[ mapKey ];
 	                if ( mapKey === 'numbers' ) {
 
-	                    const allowed = [ 'negativeNullFloat', 'negativeNullInt', 'positiveNullInt', 'positiveNullFloat' ];
+	                    const allowed = [ 'negativeZero', 'positiveZero' ];
 
 	                    for ( let key in dataSet ) {
 
@@ -3323,111 +2950,6 @@ this.Itee = this.Itee || {};
 
 	    } );
 
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if the given data is a negative zero
-	 *
-	 * @param data {any} The data to check against the negative zero value
-	 * @returns {boolean} true if data is a negative zero, false otherwise
-	 */
-	function isZeroNegative ( data ) {
-	    return (data === 0 && (1 / data) === Number.NEGATIVE_INFINITY)
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/numbers
-	 * @desc Export the units tests about isZeroNegative method.
-	 * @requires {@link module:sources/cores/numbers}
-	 *
-	 */
-
-	function isZeroNegativeUnits () {
-
-	    describe( 'isZeroNegative()', () => {
-
-	        it( 'should return true only when the value is a negative zero', () => {
-
-	            const dataMap = this._dataMap;
-	            for ( let mapKey in dataMap ) {
-
-	                const dataSet = dataMap[ mapKey ];
-	                if ( mapKey === 'numbers' ) {
-
-	                    const allowed = [ 'negativeNullFloat', 'negativeNullInt' ];
-
-	                    for ( let key in dataSet ) {
-
-	                        const result = isZeroNegative( dataSet[ key ] );
-	                        if ( allowed.includes( key ) ) {
-	                            expect( result ).to.be.true;
-	                        } else {
-	                            expect( result ).to.be.false;
-	                        }
-
-	                    }
-
-	                } else {
-
-	                    for ( let key in dataSet ) {
-	                        expect( isZeroNegative( dataSet[ key ] ) ).to.be.false;
-	                    }
-
-	                }
-
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if the given data is a positive zero
-	 *
-	 * @param data {any} The data to check against the positive zero value
-	 * @returns {boolean} true if data is a positive zero, false otherwise
-	 */
-	function isZeroPositive ( data ) {
-	    return (data === 0 && (1 / data) === Number.POSITIVE_INFINITY)
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/numbers
-	 * @desc Export the units tests about isZeroPositive method.
-	 * @requires {@link module:sources/cores/numbers}
-	 *
-	 */
-
-	function isZeroPositiveUnits () {
-
 	    describe( 'isZeroPositive()', () => {
 
 	        it( 'should return true only when the value is a positive zero', () => {
@@ -3438,7 +2960,7 @@ this.Itee = this.Itee || {};
 	                const dataSet = dataMap[ mapKey ];
 	                if ( mapKey === 'numbers' ) {
 
-	                    const allowed = [ 'positiveNullInt', 'positiveNullFloat' ];
+	                    const allowed = [ 'positiveZero' ];
 
 	                    for ( let key in dataSet ) {
 
@@ -3455,6 +2977,43 @@ this.Itee = this.Itee || {};
 
 	                    for ( let key in dataSet ) {
 	                        expect( isZeroPositive( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
+
+	    describe( 'isZeroNegative()', () => {
+
+	        it( 'should return true only when the value is a negative zero', () => {
+
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    const allowed = [ 'negativeZero' ];
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isZeroNegative( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isZeroNegative( dataSet[ key ] ) ).to.be.false;
 	                    }
 
 	                }
@@ -3489,25 +3048,12 @@ this.Itee = this.Itee || {};
 
 	        } );
 
-	        isFiniteUnits.call( this );
-	        isFloatUnits.call( this );
 	        isInfiniteUnits.call( this );
-	        isInfiniteNegativeUnits.call( this );
-	        isInfinitePositiveUnits.call( this );
-	        isIntegerUnits.call( this );
-	        isMaxNegativeUnits.call( this );
 	        isMaxPositiveUnits.call( this );
 	        isMaxSafeIntegerUnits.call( this );
-	        isMinNegativeUnits.call( this );
 	        isMinPositiveUnits.call( this );
-	        isMinSafeIntegerUnits.call( this );
-	        isNotNumberUnits.call( this );
 	        isNumberUnits.call( this );
-	        isNumberNegativeUnits.call( this );
-	        isNumberPositiveUnits.call( this );
 	        isZeroUnits.call( this );
-	        isZeroNegativeUnits.call( this );
-	        isZeroPositiveUnits.call( this );
 
 	    } );
 
@@ -3553,20 +3099,6 @@ this.Itee = this.Itee || {};
 
 	    } );
 
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/objects
-	 * @desc Export the units tests about isNotObject method.
-	 * @requires {@link module:sources/cores/objects}
-	 *
-	 */
-
-	function isNotObjectUnits () {
-
 	    describe( 'isNotObject()', () => {
 
 	        it( 'should return false only when the value is an object', () => {
@@ -3601,16 +3133,16 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/objects
+	 * @desc Export function to validate if a value is an object
+	 * @example todo
 	 *
 	 */
 
 	/**
 	 * Check if given data is an empty object
 	 *
-	 * @param data {any} The data to check against the emptiness of the object
+	 * @param data {*} The data to check against the emptiness of the object
 	 * @returns {boolean} true if data is an empty object, false otherwise
 	 */
 	function isEmptyObject ( data ) {
@@ -3630,6 +3162,18 @@ this.Itee = this.Itee || {};
 
 	    return true
 
+	}
+
+	////
+
+	/**
+	 * Check if given data is not an empty object
+	 *
+	 * @param data {*} The data to check against the emptiness of the object
+	 * @returns {boolean} true if data is not an empty object, false otherwise
+	 */
+	function isNotEmptyObject ( data ) {
+	    return !(isEmptyObject( data ))
 	}
 
 	/**
@@ -3678,40 +3222,6 @@ this.Itee = this.Itee || {};
 	        } );
 
 	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not an empty object
-	 *
-	 * @param data {any} The data to check against the emptiness of the object
-	 * @returns {boolean} true if data is not an empty object, false otherwise
-	 */
-	function isNotEmptyObject ( data ) {
-	    return !(isEmptyObject( data ))
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/objects
-	 * @desc Export the units tests about isNotEmptyObject method.
-	 * @requires {@link module:sources/cores/objects}
-	 *
-	 */
-
-	function isNotEmptyObjectUnits () {
 
 	    describe( 'isNotEmptyObject()', () => {
 
@@ -3773,9 +3283,7 @@ this.Itee = this.Itee || {};
 	        } );
 
 	        isObjectUnits.call( this );
-	        isNotObjectUnits.call( this );
 	        isEmptyObjectUnits.call( this );
-	        isNotEmptyObjectUnits.call( this );
 
 	    } );
 
@@ -3821,20 +3329,6 @@ this.Itee = this.Itee || {};
 
 	    } );
 
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/strings
-	 * @desc Export the units tests about isNotString method.
-	 * @requires {@link module:sources/cores/strings}
-	 *
-	 */
-
-	function isNotStringUnits () {
-
 	    describe( 'isNotString()', () => {
 
 	        it( 'should return false only when the value is a string', () => {
@@ -3869,16 +3363,16 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/strings
+	 * @desc Export function to validate if a value is a string
+	 * @example todo
 	 *
 	 */
 
 	/**
 	 * Check if given data is an empty string
 	 *
-	 * @param data {any} The data to check against the emptiness of the string
+	 * @param data {*} The data to check against the emptiness of the string
 	 * @returns {boolean} true if data is an empty string, false otherwise.
 	 */
 	function isEmptyString ( data ) {
@@ -3888,6 +3382,20 @@ this.Itee = this.Itee || {};
 	    }
 
 	    return (data.length === 0)
+
+	}
+
+	////
+
+	/**
+	 * Check if given data is not an empty string
+	 *
+	 * @param data {*} The data to check against the emptiness of the string
+	 * @returns {boolean} true if data is not an empty string, false otherwise.
+	 */
+	function isNotEmptyString ( data ) {
+
+	    return !(isEmptyString(data))
 
 	}
 
@@ -3940,46 +3448,6 @@ this.Itee = this.Itee || {};
 
 	    } );
 
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not an empty string
-	 *
-	 * @param data {any} The data to check against the emptiness of the string
-	 * @returns {boolean} true if data is not an empty string, false otherwise.
-	 */
-	function isNotEmptyString ( data ) {
-
-	    if ( isNotString( data ) ) {
-	        return false
-	    }
-
-	    return (data.length > 0)
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/strings
-	 * @desc Export the units tests about isNotEmptyString method.
-	 * @requires {@link module:sources/cores/strings}
-	 *
-	 */
-
-	function isNotEmptyStringUnits () {
-
 	    describe( 'isNotEmptyString()', () => {
 
 	        it( 'should return false only when the value is an empty string', () => {
@@ -4023,25 +3491,38 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/strings
+	 * @desc Export function to validate if a value is a string
+	 * @example todo
 	 *
 	 */
 
 	/**
 	 * Check if the given data is a blank string
 	 *
-	 * @param data {any} The data to check against the blankness of the string
+	 * @param data {*} The data to check against the blankness of the string
 	 * @returns {boolean} true if data is a blank string, false otherwise.
 	 */
 	function isBlankString ( data ) {
 
-	    if ( isNotString( data ) ) {
-	        return false
-	    }
+	    if ( isNotString( data ) ) { return false }
+	    if ( isEmptyString( data ) ) { return false }
 
 	    return (!/\S/.test( data ))
+	}
+
+	////
+
+	/**
+	 * Check if the given data is not a blank string
+	 *
+	 * @param data {*} The data to check against the blankness of the string
+	 * @returns {boolean} true if data is not a blank string, false otherwise.
+	 */
+	function isNotBlankString ( data ) {
+
+	    return !(isBlankString( data ))
+
 	}
 
 	/**
@@ -4066,10 +3547,12 @@ this.Itee = this.Itee || {};
 	                const dataSet = dataMap[ mapKey ];
 	                if ( mapKey === 'strings' ) {
 
+	                    const allowed = [ 'blank', 'stringBlank' ];
+
 	                    for ( let key in dataSet ) {
 
 	                        const result = isBlankString( dataSet[ key ] );
-	                        if ( key === 'blank' || key === 'stringBlank' ) {
+	                        if ( allowed.includes( key ) ) {
 	                            expect( result ).to.be.true;
 	                        } else {
 	                            expect( result ).to.be.false;
@@ -4091,45 +3574,6 @@ this.Itee = this.Itee || {};
 
 	    } );
 
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if the given data is not a blank string
-	 *
-	 * @param data {any} The data to check against the blankness of the string
-	 * @returns {boolean} true if data is not a blank string, false otherwise.
-	 */
-	function isNotBlankString ( data ) {
-
-	    if ( isNotString( data ) ) {
-	        return false
-	    }
-
-	    return (/\S/.test( data ))
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/strings
-	 * @desc Export the units tests about isNotBlankString method.
-	 * @requires {@link module:sources/cores/strings}
-	 *
-	 */
-
-	function isNotBlankStringUnits () {
-
 	    describe( 'isNotBlankString()', () => {
 
 	        it( 'should return false only when the value is a blank string', () => {
@@ -4140,10 +3584,12 @@ this.Itee = this.Itee || {};
 	                const dataSet = dataMap[ mapKey ];
 	                if ( mapKey === 'strings' ) {
 
+	                    const allowed = [ 'blank', 'stringBlank' ];
+
 	                    for ( let key in dataSet ) {
 
 	                        const result = isNotBlankString( dataSet[ key ] );
-	                        if ( key === 'blank' || key === 'stringBlank' ) {
+	                        if ( allowed.includes( key ) ) {
 	                            expect( result ).to.be.false;
 	                        } else {
 	                            expect( result ).to.be.true;
@@ -4190,11 +3636,8 @@ this.Itee = this.Itee || {};
 	        } );
 
 	        isStringUnits.call( this );
-	        isNotStringUnits.call( this );
 	        isEmptyStringUnits.call( this );
-	        isNotEmptyStringUnits.call( this );
 	        isBlankStringUnits.call( this );
-	        isNotBlankStringUnits.call( this );
 
 	    } );
 
@@ -4204,20 +3647,32 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/symbols
+	 * @desc Export function to validate if a value is a symbol
+	 * @example todo
 	 *
 	 */
 
 	/**
 	 * Check if given data is a symbol
 	 *
-	 * @param data {any} The data to check against the symbol type
+	 * @param data {*} The data to check against the symbol type
 	 * @returns {boolean} true if data is a symbol, false otherwise.
 	 */
 	function isSymbol ( data ) {
 	    return (typeof data === 'symbol')
+	}
+
+	/////
+
+	/**
+	 * Check if given data is not a symbol
+	 *
+	 * @param data {*} The data to check against the symbol type
+	 * @returns {boolean} true if data is not a symbol, false otherwise.
+	 */
+	function isNotSymbol ( data ) {
+	    return (typeof data !== 'symbol')
 	}
 
 	/**
@@ -4259,40 +3714,6 @@ this.Itee = this.Itee || {};
 	        } );
 
 	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not a symbol
-	 *
-	 * @param data {any} The data to check against the symbol type
-	 * @returns {boolean} true if data is not a symbol, false otherwise.
-	 */
-	function isNotSymbol ( data ) {
-	    return (typeof data !== 'symbol')
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/symbols
-	 * @desc Export the units tests about isNotSymbol method.
-	 * @requires {@link module:sources/cores/symbols}
-	 *
-	 */
-
-	function isNotSymbolUnits () {
 
 	    describe( 'isNotSymbol()', () => {
 
@@ -4347,7 +3768,6 @@ this.Itee = this.Itee || {};
 	        } );
 
 	        isSymbolUnits.call( this );
-	        isNotSymbolUnits.call( this );
 
 	    } );
 
@@ -4357,90 +3777,9 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not null and not undefined
-	 *
-	 * @param data {any} The data to check against the existence
-	 * @returns {boolean} true if data is not null and not undefined, false otherwise.
-	 */
-	function isDefined ( data ) {
-	    return ((data !== null) && (typeof data !== 'undefined'))
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/voids
-	 * @desc Export the units tests about isDefined method.
-	 * @requires {@link module:sources/cores/voids}
-	 */
-
-	function isDefinedUnits () {
-
-	    describe( 'isDefined()', () => {
-
-	        it( 'should return false only when the value is null or undefined', () => {
-
-	            const dataMap = this._dataMap;
-	            for ( let mapKey in dataMap ) {
-
-	                const dataSet = dataMap[ mapKey ];
-	                if ( mapKey === 'voids' ) {
-
-	                    for ( let key in dataSet ) {
-	                        expect( isDefined( dataSet[ key ] ) ).to.be.false;
-	                    }
-
-	                } else {
-
-	                    for ( let key in dataSet ) {
-	                        expect( isDefined( dataSet[ key ] ) ).to.be.true;
-	                    }
-
-	                }
-
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is null or undefined
-	 *
-	 * @param data {any} The data to check against the existence
-	 * @returns {boolean} true if data is null or undefined, false otherwise.
-	 */
-	function isNullOrUndefined ( data ) {
-	    return ((data === null) || (typeof data === 'undefined'))
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
+	 * @module cores/voids
+	 * @desc Export function to validate if a value is a void
+	 * @example todo
 	 *
 	 */
 
@@ -4449,18 +3788,30 @@ this.Itee = this.Itee || {};
 	 *
 	 * See: https://stackoverflow.com/questions/4346186/how-to-determine-if-a-function-is-empty
 	 *
-	 * @param data {any} The data to check against the emptiness
+	 * @param data {*} The data to check against the emptiness
 	 * @returns {boolean} true if data is considered as empty, false otherwise.
 	 */
 	function isEmpty ( data ) {
 
-	    if ( isNullOrUndefined( data ) ) { return false }
+	    if ( isNotDefined( data ) ) { return false }
 	    if ( isEmptyString( data ) ) { return true}
 	    if ( isEmptyArray( data ) ) { return true }
 	    if ( isEmptyObject( data ) ) { return true }
 
 	    return false
 
+	}
+
+	///
+
+	/**
+	 * Check fullness of given data
+	 *
+	 * @param data {*} The data to check against the emptiness
+	 * @returns {boolean} true if data is considered as not empty, false otherwise.
+	 */
+	function isNotEmpty ( data ) {
+	    return !isEmpty( data )
 	}
 
 	/**
@@ -4541,39 +3892,6 @@ this.Itee = this.Itee || {};
 
 	    } );
 
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check fullness of given data
-	 *
-	 * @param data {any} The data to check against the emptiness
-	 * @returns {boolean} true if data is considered as not empty, false otherwise.
-	 */
-	function isNotEmpty ( data ) {
-	    return !isEmpty( data )
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/voids
-	 * @desc Export the units tests about isNotEmpty method.
-	 * @requires {@link module:sources/cores/voids}
-	 */
-
-	function isNotEmptyUnits () {
-
 	    describe( 'isNotEmpty()', () => {
 
 	        it( 'should return false only when the value is an empty container (string, array, object)', () => {
@@ -4648,11 +3966,46 @@ this.Itee = this.Itee || {};
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/voids
-	 * @desc Export the units tests about isNotNull method.
+	 * @desc Export the units tests about isNull method.
 	 * @requires {@link module:sources/cores/voids}
 	 */
 
-	function isNotNullUnits () {
+	function isNullUnits () {
+
+	    describe( 'isNull()', () => {
+
+	        it( 'should return true only when the value is null', () => {
+
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'voids' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isNull( dataSet[ key ] );
+	                        if ( key === 'null' ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNull( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
 
 	    describe( 'isNotNull()', () => {
 
@@ -4696,15 +4049,15 @@ this.Itee = this.Itee || {};
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/voids
-	 * @desc Export the units tests about isNotUndefined method.
+	 * @desc Export the units tests about isDefined method.
 	 * @requires {@link module:sources/cores/voids}
 	 */
 
-	function isNotUndefinedUnits () {
+	function isDefinedUnits () {
 
-	    describe( 'isNotUndefined()', () => {
+	    describe( 'isDefined()', () => {
 
-	        it( 'should return false only when the value is undefined', () => {
+	        it( 'should return false only when the value is null or undefined', () => {
 
 	            const dataMap = this._dataMap;
 	            for ( let mapKey in dataMap ) {
@@ -4713,20 +4066,13 @@ this.Itee = this.Itee || {};
 	                if ( mapKey === 'voids' ) {
 
 	                    for ( let key in dataSet ) {
-
-	                        const result = isNotUndefined( dataSet[ key ] );
-	                        if ( key === 'undefined' || key === 'void' ) {
-	                            expect( result ).to.be.false;
-	                        } else {
-	                            expect( result ).to.be.true;
-	                        }
-
+	                        expect( isDefined( dataSet[ key ] ) ).to.be.false;
 	                    }
 
 	                } else {
 
 	                    for ( let key in dataSet ) {
-	                        expect( isNotUndefined( dataSet[ key ] ) ).to.be.true;
+	                        expect( isDefined( dataSet[ key ] ) ).to.be.true;
 	                    }
 
 	                }
@@ -4737,88 +4083,7 @@ this.Itee = this.Itee || {};
 
 	    } );
 
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is null
-	 *
-	 * @param data {any} The data to check against the nullity
-	 * @returns {boolean} true if data is null, false otherwise.
-	 */
-	function isNull ( data ) {
-	    return (data === null)
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/voids
-	 * @desc Export the units tests about isNull method.
-	 * @requires {@link module:sources/cores/voids}
-	 */
-
-	function isNullUnits () {
-
-	    describe( 'isNull()', () => {
-
-	        it( 'should return true only when the value is null', () => {
-
-	            const dataMap = this._dataMap;
-	            for ( let mapKey in dataMap ) {
-
-	                const dataSet = dataMap[ mapKey ];
-	                if ( mapKey === 'voids' ) {
-
-	                    for ( let key in dataSet ) {
-
-	                        const result = isNull( dataSet[ key ] );
-	                        if ( key === 'null' ) {
-	                            expect( result ).to.be.true;
-	                        } else {
-	                            expect( result ).to.be.false;
-	                        }
-
-	                    }
-
-	                } else {
-
-	                    for ( let key in dataSet ) {
-	                        expect( isNull( dataSet[ key ] ) ).to.be.false;
-	                    }
-
-	                }
-
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/cores/voids
-	 * @desc Export the units tests about isNullOrUndefined method.
-	 * @requires {@link module:sources/cores/voids}
-	 */
-
-	function isNullOrUndefinedUnits () {
-
-	    describe( 'isNullOrUndefined()', () => {
+	    describe( 'isNotDefined()', () => {
 
 	        it( 'should return true only when the value is null or undefined', () => {
 
@@ -4829,13 +4094,13 @@ this.Itee = this.Itee || {};
 	                if ( mapKey === 'voids' ) {
 
 	                    for ( let key in dataSet ) {
-	                        expect( isNullOrUndefined( dataSet[ key ] ) ).to.be.true;
+	                        expect( isNotDefined( dataSet[ key ] ) ).to.be.true;
 	                    }
 
 	                } else {
 
 	                    for ( let key in dataSet ) {
-	                        expect( isNullOrUndefined( dataSet[ key ] ) ).to.be.false;
+	                        expect( isNotDefined( dataSet[ key ] ) ).to.be.false;
 	                    }
 
 	                }
@@ -4846,26 +4111,6 @@ this.Itee = this.Itee || {};
 
 	    } );
 
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is undefined
-	 *
-	 * @param data {any} The data to check against the undefiness
-	 * @returns {boolean} true if data is undefined, false otherwise.
-	 */
-	function isUndefined ( data ) {
-	    return (typeof data === 'undefined')
 	}
 
 	/**
@@ -4914,6 +4159,41 @@ this.Itee = this.Itee || {};
 
 	    } );
 
+	    describe( 'isNotUndefined()', () => {
+
+	        it( 'should return false only when the value is undefined', () => {
+
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'voids' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isNotUndefined( dataSet[ key ] );
+	                        if ( key === 'undefined' || key === 'void' ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotUndefined( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
+
 	}
 
 	/**
@@ -4938,12 +4218,8 @@ this.Itee = this.Itee || {};
 
 	        } );
 
-	        isDefinedUnits.call( this );
 	        isEmptyUnits.call( this );
-	        isNotEmptyUnits.call( this );
-	        isNotNullUnits.call( this );
-	        isNotUndefinedUnits.call( this );
-	        isNullOrUndefinedUnits.call( this );
+	        isDefinedUnits.call( this );
 	        isNullUnits.call( this );
 	        isUndefinedUnits.call( this );
 
@@ -4996,15 +4272,55 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
+	 * @module physics/temperatues
+	 * @desc Export constants about temperatures
+	 * @example todo
+	 *
+	 */
+
+	const ABSOLUTE_ZERO_KELVIN     = 0.00000000045;
+	const ABSOLUTE_ZERO_CELSIUS    = -273.14999999955;
+	const ABSOLUTE_ZERO_FAHRENHEIT = -459.67;
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @module physics/temperatues
+	 * @desc Export function to validate if a value is a temperature
+	 * @example todo
+	 *
+	 */
+
+	/**
+	 *
+	 * @param data
+	 * @return {boolean|*|boolean}
+	 */
+	function isCelsius ( data ) {
+	    return (isNumber( data ) && data >= ABSOLUTE_ZERO_CELSIUS)
+	}
+
+	///
+
+	/**
+	 *
+	 * @param data
+	 * @return {boolean}
+	 */
+	function isNotCelsius ( data ) {
+	    return !isCelsius( data )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
 	 * @module tests/physics/temperatures
 	 * @desc Export the units tests about isCelsius method.
 	 * @requires {@link module:sources/physics/temperatures}
 	 *
 	 */
-
-	/* global describe, expect, it */
-
-	//import { isCelsius } from '../../../../sources/physics/temperatures'
 
 	function isCelsiusUnits () {
 
@@ -5012,12 +4328,48 @@ this.Itee = this.Itee || {};
 
 	        it.skip( 'should be implemented', () => {
 
-	            expect( true ).to.be.true;
+	            expect( isCelsius(0) ).to.be.true;
+
+	        } );
+
+	        it.skip( 'should be implemented', () => {
+
+	            expect( isNotCelsius(0) ).to.be.false;
 
 	        } );
 
 	    } );
 
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @module physics/temperatues
+	 * @desc Export function to validate if a value is a temperature
+	 * @example todo
+	 *
+	 */
+
+	/**
+	 *
+	 * @param data
+	 * @return {boolean|*|boolean}
+	 */
+	function isFahrenheit ( data ) {
+	    return (isNumber( data ) && data >= ABSOLUTE_ZERO_FAHRENHEIT)
+	}
+
+	///
+
+	/**
+	 *
+	 * @param data
+	 * @return {boolean}
+	 */
+	function isNotFahrenheit ( data ) {
+	    return !isFahrenheit( data )
 	}
 
 	/**
@@ -5030,22 +4382,55 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	/* global describe, expect, it */
-
-	//import { isFahrenheit } from '../../../../sources/physics/temperatures'
-
 	function isFahrenheitUnits () {
 
 	    describe( 'isFahrenheit()', () => {
 
 	        it.skip( 'should be implemented', () => {
 
-	            expect( true ).to.be.true;
+	            expect( isFahrenheit(0) ).to.be.true;
+
+	        } );
+
+	        it.skip( 'should be implemented', () => {
+
+	            expect( isNotFahrenheit(0) ).to.be.false;
 
 	        } );
 
 	    } );
 
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @module physics/temperatues
+	 * @desc Export function to validate if a value is a temperature
+	 * @example todo
+	 *
+	 */
+
+	/**
+	 *
+	 * @param data
+	 * @return {boolean|*|boolean}
+	 */
+	function isKelvin ( data ) {
+	    return (isNumber( data ) && data >= ABSOLUTE_ZERO_KELVIN)
+	}
+
+	///
+
+
+	/**
+	 *
+	 * @param data
+	 * @return {boolean}
+	 */
+	function isNotKelvin ( data ) {
+	    return !isKelvin( data )
 	}
 
 	/**
@@ -5058,17 +4443,19 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	/* global describe, expect, it */
-
-	//import { isKelvin } from '../../../../sources/physics/temperatures'
-
 	function isKelvinUnits () {
 
 	    describe( 'isKelvin()', () => {
 
 	        it.skip( 'should be implemented', () => {
 
-	            expect( true ).to.be.true;
+	            expect( isKelvin(0) ).to.be.true;
+
+	        } );
+
+	        it.skip( 'should be implemented', () => {
+
+	            expect( isNotKelvin(0) ).to.be.false;
 
 	        } );
 
@@ -5080,112 +4467,30 @@ this.Itee = this.Itee || {};
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @module tests/physics/temperatures
-	 * @desc Export the units tests about isNotCelsius method.
-	 * @requires {@link module:sources/physics/temperatures}
+	 * @module physics/temperatues
+	 * @desc Export function to validate if a value is a temperature
+	 * @example todo
 	 *
 	 */
-
-	/* global describe, expect, it */
-
-	//import { isNotCelsius } from '../../../../sources/physics/temperatures'
-
-	function isNotCelsiusUnits () {
-
-	    describe( 'isNotCelsius()', () => {
-
-	        it.skip( 'should be implemented', () => {
-
-	            expect( true ).to.be.true;
-
-	        } );
-
-	    } );
-
-	}
 
 	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @module tests/physics/temperatures
-	 * @desc Export the units tests about isNotFahrenheit method.
-	 * @requires {@link module:sources/physics/temperatures}
-	 *
+	 * @param data
+	 * @return {boolean|*|boolean}
 	 */
-
-	/* global describe, expect, it */
-
-	//import { isNotFahrenheit } from '../../../../sources/physics/temperatures'
-
-	function isNotFahrenheitUnits () {
-
-	    describe( 'isNotFahrenheit()', () => {
-
-	        it.skip( 'should be implemented', () => {
-
-	            expect( true ).to.be.true;
-
-	        } );
-
-	    } );
-
+	function isTemperature ( data ) {
+	    return (isKelvin( data ) || isCelsius( data ) || isFahrenheit( data ))
 	}
 
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module tests/physics/temperatures
-	 * @desc Export the units tests about isNotKelvin method.
-	 * @requires {@link module:sources/physics/temperatures}
-	 *
-	 */
-
-	/* global describe, expect, it */
-
-	//import { isNotKelvin } from '../../../../sources/physics/temperatures'
-
-	function isNotKelvinUnits () {
-
-	    describe( 'isNotKelvin()', () => {
-
-	        it.skip( 'should be implemented', () => {
-
-	            expect( true ).to.be.true;
-
-	        } );
-
-	    } );
-
-	}
+	///
 
 	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @module tests/physics/temperatures
-	 * @desc Export the units tests about isNotTemperature method.
-	 * @requires {@link module:sources/physics/temperatures}
-	 *
+	 * @param data
+	 * @return {boolean}
 	 */
-
-	/* global describe, expect, it */
-
-	//import { isNotTemperature } from '../../../../sources/physics/temperatures'
-
-	function isNotTemperatureUnits () {
-
-	    describe( 'isNotTemperature()', () => {
-
-	        it.skip( 'should be implemented', () => {
-
-	            expect( true ).to.be.true;
-
-	        } );
-
-	    } );
-
+	function isNotTemperature ( data ) {
+	    return (isNotKelvin( data ) && isNotCelsius( data ) && isNotFahrenheit( data ))
 	}
 
 	/**
@@ -5198,17 +4503,19 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	/* global describe, expect, it */
-
-	//import { isTemperature } from '../../../../sources/physics/temperatures'
-
 	function isTemperatureUnits () {
 
 	    describe( 'isTemperature()', () => {
 
 	        it.skip( 'should be implemented', () => {
 
-	            expect( true ).to.be.true;
+	            expect( isTemperature(0) ).to.be.true;
+
+	        } );
+
+	        it.skip( 'should be implemented', () => {
+
+	            expect( isNotTemperature(0) ).to.be.false;
 
 	        } );
 
@@ -5241,10 +4548,6 @@ this.Itee = this.Itee || {};
 	        isCelsiusUnits.call( this );
 	        isFahrenheitUnits.call( this );
 	        isKelvinUnits.call( this );
-	        isNotCelsiusUnits.call( this );
-	        isNotFahrenheitUnits.call( this );
-	        isNotKelvinUnits.call( this );
-	        isNotTemperatureUnits.call( this );
 	        isTemperatureUnits.call( this );
 
 	    } );
