@@ -8,6 +8,8 @@
  *
  */
 
+import { isNumber } from './isNumber'
+
 /**
  * Check if given data is not a number
  *
@@ -15,5 +17,5 @@
  * @returns {boolean} true if data is not of type number or not a number, false otherwise.
  */
 export function isNotNumber ( data ) {
-    return (typeof data !== 'number' || Number.isNaN( data ))
+    return !(isNumber( data ))
 }
