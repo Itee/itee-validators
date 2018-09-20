@@ -8,6 +8,9 @@
  *
  */
 
+import { isInfinite }  from './isInfinite'
+import { isNotNumber } from './isNotNumber'
+
 /**
  * Check if given data is a floating point number
  *
@@ -15,7 +18,13 @@
  * @returns {boolean} true if data is a float, false otherwise
  */
 export function isFloat ( data ) {
+
+    if ( isNotNumber( data ) ) { return false }
+    if ( Number.isNaN( data ) ) { return false }
+    if ( isInfinite( data ) ) { return false}
+
     return data % 1 !== 0
+
 }
 
 // #if IS_REMOVE
