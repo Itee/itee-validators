@@ -8,7 +8,8 @@
  *
  */
 
-import { isNotArray } from './isNotArray'
+import { isEmptyArray } from './isEmptyArray'
+import { isNotArray }   from './isNotArray'
 
 /**
  * Check if given data is an array of array
@@ -18,16 +19,10 @@ import { isNotArray } from './isNotArray'
  */
 export function isArrayOfArray ( data ) {
 
-    if ( isNotArray( data ) ) {
-        return false
-    }
+    if ( isNotArray( data ) ) { return false }
+    if ( isEmptyArray( data ) ) { return false }
 
-    const dataLength = data.length
-    if ( dataLength === 0 ) {
-        return false
-    }
-
-    for ( let index = 0 ; index < dataLength ; index += 1 ) {
+    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
         if ( isNotArray( data[ index ] ) ) {
             return false
         }

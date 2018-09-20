@@ -8,6 +8,8 @@
  *
  */
 
+import { isString } from './isString'
+
 /**
  * Check if given data is not a string
  *
@@ -15,5 +17,5 @@
  * @returns {boolean} true if data is not a string, false otherwise.
  */
 export function isNotString ( data ) {
-    return (typeof data !== 'string')
+    return !isString( data )
 }

@@ -8,8 +8,9 @@
  *
  */
 
-import { isNotArray } from './isNotArray'
-import { isNotNull }  from '../voids/isNotNull'
+import { isEmptyArray } from './isEmptyArray'
+import { isNotArray }   from './isNotArray'
+import { isNotNull }    from '../voids/isNotNull'
 
 /**
  * Check if given data is not an empty array where all values are null
@@ -19,16 +20,10 @@ import { isNotNull }  from '../voids/isNotNull'
  */
 export function isArrayOfNull ( data ) {
 
-    if ( isNotArray( data ) ) {
-        return false
-    }
+    if ( isNotArray( data ) ) { return false }
+    if ( isEmptyArray( data ) ) { return false }
 
-    const dataLength = data.length
-    if ( dataLength === 0 ) {
-        return false
-    }
-
-    for ( let index = 0 ; index < dataLength ; index++ ) {
+    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
         if ( isNotNull( data[ index ] ) ) {
             return false
         }

@@ -18,9 +18,7 @@ import { isNotArray } from './isNotArray'
  */
 export function isArrayOfSingleElement ( data ) {
 
-    if ( isNotArray( data ) ) {
-        return false
-    }
+    if ( isNotArray( data ) ) { return false }
 
     if ( data.length !== 1 ) {
         return false

@@ -18,9 +18,7 @@ import { isNotArray } from './isNotArray'
  */
 export function isEmptyArray ( data ) {
 
-    if ( isNotArray( data ) ) {
-        return false
-    }
+    if ( isNotArray( data ) ) { return false }
 
     return (data.length === 0)
 

@@ -8,8 +8,9 @@
  *
  */
 
-import { isNotArray } from './isNotArray'
-import { isDefined }  from '../voids/isDefined'
+import { isNotUndefined } from '../voids/isNotUndefined'
+import { isEmptyArray }   from './isEmptyArray'
+import { isNotArray }     from './isNotArray'
 
 /**
  * Check if given data is not an empty array where all values are undefined
@@ -19,18 +20,11 @@ import { isDefined }  from '../voids/isDefined'
  */
 export function isArrayOfUndefined ( data ) {
 
-    if ( isNotArray( data ) ) {
-        return false
-    }
+    if ( isNotArray( data ) ) { return false }
+    if ( isEmptyArray( data ) ) { return false }
 
-    const dataLength = data.length
-    if ( dataLength === 0 ) {
-        return false
-    }
-
-    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
-        // Todo: Use isNotUndefined !!!
-        if ( isDefined( data[ index ] ) ) {
+    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+        if ( isNotUndefined( data[ index ] ) ) {
             return false
         }
     }
