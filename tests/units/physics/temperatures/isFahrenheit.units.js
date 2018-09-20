@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-//import { isFahrenheit } from '../../../../sources/physics/temperatures'
+import { isFahrenheit, isNotFahrenheit } from '../../../../sources/physics/temperatures/isFahrenheit'
 
 function isFahrenheitUnits () {
 
@@ -18,7 +18,13 @@ function isFahrenheitUnits () {
 
         it.skip( 'should be implemented', () => {
 
-            expect( true ).to.be.true
+            expect( isFahrenheit(0) ).to.be.true
+
+        } )
+
+        it.skip( 'should be implemented', () => {
+
+            expect( isNotFahrenheit(0) ).to.be.false
 
         } )
 

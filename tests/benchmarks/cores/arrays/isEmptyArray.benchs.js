@@ -10,10 +10,19 @@
 
 /* global Itee, suite, benchmark */
 
-import { isEmptyArray } from '../../../../sources/cores/arrays/isEmptyArray'
+import { isEmptyArray, isNotEmptyArray } from '../../../../sources/cores/arrays/isEmptyArray'
 
-export default suite( 'isEmptyArray', () => {
+const isEmptyArraySuite = suite( 'isEmptyArray', () => {
 
     benchmark( 'isEmptyArray()', Itee.TestsUtils.iterateOverDataMap( isEmptyArray ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
+
+const isNotEmptyArraySuite = suite( 'isNotEmptyArray', () => {
+
+    benchmark( 'isNotEmptyArray()', Itee.TestsUtils.iterateOverDataMap( isNotEmptyArray ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+export { isEmptyArraySuite, isNotEmptyArraySuite }
+

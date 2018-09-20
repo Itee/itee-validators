@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isArrayOfUndefined } from '../../../../sources/cores/arrays/isArrayOfUndefined'
+import { isArrayOfUndefined, isNotArrayOfUndefined } from '../../../../sources/cores/arrays/isArrayOfUndefined'
 
 function isArrayOfUndefinedUnits () {
 
@@ -39,6 +39,41 @@ function isArrayOfUndefinedUnits () {
 
                     for ( let key in dataSet ) {
                         expect( isArrayOfUndefined( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
+
+        } )
+
+    } )
+
+    describe( 'isNotArrayOfUndefined()', () => {
+
+        it( 'should return false only when the value is a array of undefined', () => {
+
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'arrays' ) {
+
+                    for ( let key in dataSet ) {
+
+                        const result = isNotArrayOfUndefined( dataSet[ key ] )
+                        if ( key === 'undefined' || key === 'void' ) {
+                            expect( result ).to.be.false
+                        } else {
+                            expect( result ).to.be.true
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotArrayOfUndefined( dataSet[ key ] ) ).to.be.true
                     }
 
                 }

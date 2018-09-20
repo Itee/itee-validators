@@ -6,10 +6,18 @@
 
 /* global Itee, suite, benchmark */
 
-import { isEmptyString } from '../../../../sources/cores/strings/isEmptyString'
+import { isEmptyString, isNotEmptyString } from '../../../../sources/cores/strings/isEmptyString'
 
-export default suite( 'isEmptyString', () => {
+const isEmptyStringSuite = suite( 'isEmptyString', () => {
 
     benchmark( 'isEmptyString()', Itee.TestsUtils.iterateOverDataMap( isEmptyString ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
+
+const isNotEmptyStringSuite = suite( 'isNotEmptyString', () => {
+
+    benchmark( 'isNotEmptyString()', Itee.TestsUtils.iterateOverDataMap( isNotEmptyString ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+export { isEmptyStringSuite, isNotEmptyStringSuite }

@@ -10,10 +10,19 @@
 
 /* global Itee, suite, benchmark */
 
-import { isArrayOfUndefined } from '../../../../sources/cores/arrays/isArrayOfUndefined'
+import { isArrayOfUndefined, isNotArrayOfUndefined } from '../../../../sources/cores/arrays/isArrayOfUndefined'
 
-export default suite( 'isArrayOfUndefined', () => {
+const isArrayOfUndefinedSuite = suite( 'isArrayOfUndefined', () => {
 
     benchmark( 'isArrayOfUndefined()', Itee.TestsUtils.iterateOverDataMap( isArrayOfUndefined ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
+
+const isNotArrayOfUndefinedSuite = suite( 'isNotArrayOfUndefined', () => {
+
+    benchmark( 'isNotArrayOfUndefined()', Itee.TestsUtils.iterateOverDataMap( isNotArrayOfUndefined ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+export { isArrayOfUndefinedSuite, isNotArrayOfUndefinedSuite }
+

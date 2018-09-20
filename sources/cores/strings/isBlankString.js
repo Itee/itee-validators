@@ -9,7 +9,7 @@
  */
 
 import { isEmptyString } from './isEmptyString'
-import { isNotString }   from './isNotString'
+import { isNotString }   from './isString'
 
 /**
  * Check if the given data is a blank string
@@ -23,4 +23,18 @@ export function isBlankString ( data ) {
     if ( isEmptyString( data ) ) { return false }
 
     return (!/\S/.test( data ))
+}
+
+////
+
+/**
+ * Check if the given data is not a blank string
+ *
+ * @param data {*} The data to check against the blankness of the string
+ * @returns {boolean} true if data is not a blank string, false otherwise.
+ */
+export function isNotBlankString ( data ) {
+
+    return !(isBlankString( data ))
+
 }

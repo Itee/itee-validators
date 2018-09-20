@@ -10,10 +10,18 @@
 
 /* global Itee, suite, benchmark */
 
-import { isArrayOfObject } from '../../../../sources/cores/arrays/isArrayOfObject'
+import { isArrayOfObject, isNotArrayOfObject } from '../../../../sources/cores/arrays/isArrayOfObject'
 
-export default suite( 'isArrayOfObject', () => {
+const isArrayOfObjectSuite = suite( 'isArrayOfObject', () => {
 
     benchmark( 'isArrayOfObject()', Itee.TestsUtils.iterateOverDataMap( isArrayOfObject ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
+
+const isNotArrayOfObjectSuite = suite( 'isNotArrayOfObject', () => {
+
+    benchmark( 'isNotArrayOfObject()', Itee.TestsUtils.iterateOverDataMap( isNotArrayOfObject ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+export { isArrayOfObjectSuite, isNotArrayOfObjectSuite }

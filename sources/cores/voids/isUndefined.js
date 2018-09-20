@@ -17,3 +17,15 @@
 export function isUndefined ( data ) {
     return (typeof data === 'undefined')
 }
+
+///
+
+/**
+ * Check if given data is defined
+ *
+ * @param data {*} The data to check against the undefiness
+ * @returns {boolean} true if data is defined, false otherwise.
+ */
+export function isNotUndefined ( data ) {
+    return (typeof data !== 'undefined')
+}

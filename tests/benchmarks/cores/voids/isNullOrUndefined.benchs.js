@@ -6,10 +6,19 @@
 
 /* global Itee, suite, benchmark */
 
-import { isNullOrUndefined } from '../../../../sources/cores/voids/isNullOrUndefined'
+import { isNullOrUndefined, isDefined } from '../../../../sources/cores/voids/isNullOrUndefined'
 
-export default suite( 'isNullOrUndefined', () => {
+const isNullOrUndefinedSuite = suite( 'isNullOrUndefined', () => {
 
     benchmark( 'isNullOrUndefined()', Itee.TestsUtils.iterateOverDataMap( isNullOrUndefined ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
+
+const isDefinedSuite = suite( 'isDefined', () => {
+
+    benchmark( 'isDefined()', Itee.TestsUtils.iterateOverDataMap( isDefined ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+export { isNullOrUndefinedSuite, isDefinedSuite }
+

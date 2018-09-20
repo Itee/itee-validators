@@ -4,5 +4,4 @@
  *
  */
 
-export * from './isNotSymbol.benchs'
 export * from './isSymbol.benchs'

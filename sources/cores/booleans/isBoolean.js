@@ -26,3 +26,22 @@ export function isBoolean_alt ( value ) {
 }
 
 // #endif
+
+//////
+
+/**
+ * Check if given data is not a boolean
+ *
+ * @param data {*} The data to check against the booleaness
+ * @returns {boolean} true if data is not a boolean, false otherwise.
+ */
+export function isNotBoolean ( data ) {
+    return (typeof data !== 'boolean')
+}
+
+// #if IS_REMOVE
+export function isNotBoolean_negbase ( data ) {
+    return !isBoolean( data )
+}
+
+// #endif

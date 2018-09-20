@@ -17,3 +17,16 @@
 export function isNullOrUndefined ( data ) {
     return ((data === null) || (typeof data === 'undefined'))
 }
+
+/////
+
+
+/**
+ * Check if given data is not null and not undefined
+ *
+ * @param data {*} The data to check against the existence
+ * @returns {boolean} true if data is not null and not undefined, false otherwise.
+ */
+export function isDefined ( data ) {
+    return ((data !== null) && (typeof data !== 'undefined'))
+}

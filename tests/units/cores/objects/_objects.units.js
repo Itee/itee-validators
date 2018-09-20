@@ -8,9 +8,7 @@
 
 import { TestsUtils }            from '../../../itee-validators.tests-utils.js'
 import { isObjectUnits }         from './isObject.units'
-import { isNotObjectUnits }      from './isNotObject.units'
 import { isEmptyObjectUnits }    from './isEmptyObject.units'
-import { isNotEmptyObjectUnits } from './isNotEmptyObject.units'
 
 function _objectsUnits () {
 
@@ -29,9 +27,7 @@ function _objectsUnits () {
         } )
 
         isObjectUnits.call( this )
-        isNotObjectUnits.call( this )
         isEmptyObjectUnits.call( this )
-        isNotEmptyObjectUnits.call( this )
 
     } )
 

@@ -22,3 +22,15 @@ export function isObject ( data ) {
 
     return (data.constructor === Object)
 }
+
+////
+
+/**
+ * Check if given data is not an object
+ *
+ * @param data {*} The data to check against the object type
+ * @returns {boolean} true if data is not an object, false otherwise
+ */
+export function isNotObject ( data ) {
+    return !isObject( data )
+}

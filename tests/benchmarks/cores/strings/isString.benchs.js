@@ -6,9 +6,9 @@
 
 /* global Itee, suite, benchmark */
 
-import { isString, isString_0, isString_1, isString_2, isString_3, isString_4 } from '../../../../sources/cores/strings/isString'
+import { isString, isString_0, isString_1, isString_2, isString_3, isString_4, isNotString } from '../../../../sources/cores/strings/isString'
 
-export default suite( 'isString', () => {
+const isStringSuite = suite( 'isString', () => {
 
     benchmark( 'isString()', Itee.TestsUtils.iterateOverDataMap( isString ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
     benchmark( 'isString_0()', Itee.TestsUtils.iterateOverDataMap( isString_0 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
@@ -18,3 +18,12 @@ export default suite( 'isString', () => {
     benchmark( 'isString_4()', Itee.TestsUtils.iterateOverDataMap( isString_4 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
+
+const isNotStringSuite = suite( 'isNotString', () => {
+
+    benchmark( 'isNotString()', Itee.TestsUtils.iterateOverDataMap( isNotString ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+export { isStringSuite, isNotStringSuite }
+

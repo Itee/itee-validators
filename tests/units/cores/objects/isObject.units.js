@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isObject } from '../../../../sources/cores/objects/isObject'
+import { isObject, isNotObject } from '../../../../sources/cores/objects/isObject'
 
 function isObjectUnits () {
 
@@ -32,6 +32,34 @@ function isObjectUnits () {
 
                     for ( let key in dataSet ) {
                         expect( isObject( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
+
+        } )
+
+    } )
+
+    describe( 'isNotObject()', () => {
+
+        it( 'should return false only when the value is an object', () => {
+
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'objects' ) {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotObject( dataSet[ key ] ) ).to.be.false
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotObject( dataSet[ key ] ) ).to.be.true
                     }
 
                 }

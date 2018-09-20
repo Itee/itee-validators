@@ -12,8 +12,10 @@
 
 import { isArrayOfMultiElement } from '../../../../sources/cores/arrays/isArrayOfMultiElement'
 
-export default suite( 'isArrayOfMultiElement', () => {
+const isArrayOfMultiElementSuite = suite( 'isArrayOfMultiElement', () => {
 
     benchmark( 'isArrayOfMultiElement()', Itee.TestsUtils.iterateOverDataMap( isArrayOfMultiElement ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
+
+export { isArrayOfMultiElementSuite }

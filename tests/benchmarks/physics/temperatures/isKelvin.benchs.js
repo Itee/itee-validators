@@ -10,10 +10,18 @@
 
 /* global Itee, suite, benchmark */
 
-import { isKelvin } from '../../../../sources/physics/temperatures/isKelvin'
+import { isKelvin, isNotKelvin } from '../../../../sources/physics/temperatures/isKelvin'
 
-export default suite( 'isKelvin', () => {
+const isKelvinSuite = suite( 'isKelvin', () => {
 
     benchmark( 'isKelvin()', Itee.TestsUtils.iterateOverDataMap( isKelvin ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
+
+const isNotKelvinSuite = suite( 'isNotKelvin', () => {
+
+    benchmark( 'isNotKelvin()', Itee.TestsUtils.iterateOverDataMap( isNotKelvin ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+export { isKelvinSuite, isNotKelvinSuite }

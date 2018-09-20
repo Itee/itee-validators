@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isArrayOfNull } from '../../../../sources/cores/arrays/isArrayOfNull'
+import { isArrayOfNull, isNotArrayOfNull } from '../../../../sources/cores/arrays/isArrayOfNull'
 
 function isArrayOfNullUnits () {
 
@@ -39,6 +39,41 @@ function isArrayOfNullUnits () {
 
                     for ( let key in dataSet ) {
                         expect( isArrayOfNull( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
+
+        } )
+
+    } )
+
+    describe( 'isNotArrayOfNull()', () => {
+
+        it( 'should return false only when the value is an array of null', () => {
+
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'arrays' ) {
+
+                    for ( let key in dataSet ) {
+
+                        const result = isNotArrayOfNull( dataSet[ key ] )
+                        if ( key === 'null' ) {
+                            expect( result ).to.be.false
+                        } else {
+                            expect( result ).to.be.true
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotArrayOfNull( dataSet[ key ] ) ).to.be.true
                     }
 
                 }

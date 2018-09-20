@@ -6,10 +6,19 @@
 
 /* global Itee, suite, benchmark */
 
-import { isFunction } from '../../../../sources/cores/functions/isFunction'
+import { isFunction, isNotFunction } from '../../../../sources/cores/functions/isFunction'
 
-export default suite( 'isFunction', () => {
+const isFunctionSuite = suite( 'isFunction', () => {
 
     benchmark( 'isFunction()', Itee.TestsUtils.iterateOverDataMap( isFunction ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
+
+const isNotFunctionSuite = suite( 'isNotFunction', () => {
+
+    benchmark( 'isNotFunction()', Itee.TestsUtils.iterateOverDataMap( isNotFunction ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+export { isFunctionSuite, isNotFunctionSuite }
+

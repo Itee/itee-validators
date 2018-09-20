@@ -5,4 +5,3 @@
  */
 
 export * from './isFunction.benchs'
-export * from './isNotFunction.benchs'

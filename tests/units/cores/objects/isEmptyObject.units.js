@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isEmptyObject } from '../../../../sources/cores/objects/isEmptyObject'
+import { isEmptyObject, isNotEmptyObject } from '../../../../sources/cores/objects/isEmptyObject'
 
 function isEmptyObjectUnits () {
 
@@ -39,6 +39,41 @@ function isEmptyObjectUnits () {
 
                     for ( let key in dataSet ) {
                         expect( isEmptyObject( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
+
+        } )
+
+    } )
+
+    describe( 'isNotEmptyObject()', () => {
+
+        it( 'should return false only when the value is an empty object', () => {
+
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'objects' ) {
+
+                    for ( let key in dataSet ) {
+
+                        const result = isNotEmptyObject( dataSet[ key ] )
+                        if ( key === 'empty' || key === 'instance' ) {
+                            expect( result ).to.be.false
+                        } else {
+                            expect( result ).to.be.true
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotEmptyObject( dataSet[ key ] ) ).to.be.true
                     }
 
                 }

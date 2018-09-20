@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isBoolean } from '../../../../sources/cores/booleans/isBoolean'
+import { isBoolean, isNotBoolean } from '../../../../sources/cores/booleans/isBoolean'
 
 function isBooleanUnits () {
 
@@ -32,6 +32,34 @@ function isBooleanUnits () {
 
                     for ( let key in dataSet ) {
                         expect( isBoolean( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
+
+        } )
+
+    } )
+
+    describe( 'isNotBoolean()', () => {
+
+        it( 'should return false only when the value is a boolean', () => {
+
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'booleans' ) {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotBoolean( dataSet[ key ] ) ).to.be.false
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotBoolean( dataSet[ key ] ) ).to.be.true
                     }
 
                 }

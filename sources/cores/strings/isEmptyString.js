@@ -8,7 +8,7 @@
  *
  */
 
-import { isNotString } from './isNotString'
+import { isNotString } from './isString'
 
 /**
  * Check if given data is an empty string
@@ -23,5 +23,19 @@ export function isEmptyString ( data ) {
     }
 
     return (data.length === 0)
+
+}
+
+////
+
+/**
+ * Check if given data is not an empty string
+ *
+ * @param data {*} The data to check against the emptiness of the string
+ * @returns {boolean} true if data is not an empty string, false otherwise.
+ */
+export function isNotEmptyString ( data ) {
+
+    return !(isEmptyString(data))
 
 }

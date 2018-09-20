@@ -8,8 +8,5 @@
 
 export * from './isBlankString'
 export * from './isEmptyString'
-export * from './isNotBlankString'
-export * from './isNotEmptyString'
-export * from './isNotString'
 export * from './isString'
 

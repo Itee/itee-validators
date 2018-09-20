@@ -6,10 +6,19 @@
 
 /* global Itee, suite, benchmark */
 
-import { isEmptyObject } from '../../../../sources/cores/objects/isEmptyObject'
+import { isEmptyObject, isNotEmptyObject } from '../../../../sources/cores/objects/isEmptyObject'
 
-export default suite( 'isEmptyObject', () => {
+const isEmptyObjectSuite = suite( 'isEmptyObject', () => {
 
     benchmark( 'isEmptyObject()', Itee.TestsUtils.iterateOverDataMap( isEmptyObject ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
+
+const isNotEmptyObjectSuite = suite( 'isNotEmptyObject', () => {
+
+    benchmark( 'isNotEmptyObject()', Itee.TestsUtils.iterateOverDataMap( isNotEmptyObject ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+export { isEmptyObjectSuite, isNotEmptyObjectSuite }
+

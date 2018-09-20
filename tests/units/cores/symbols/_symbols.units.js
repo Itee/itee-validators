@@ -8,7 +8,6 @@
 
 import { TestsUtils }       from '../../../itee-validators.tests-utils.js'
 import { isSymbolUnits }    from './isSymbol.units'
-import { isNotSymbolUnits } from './isNotSymbol.units'
 
 function _symbolsUnits () {
 
@@ -27,7 +26,6 @@ function _symbolsUnits () {
         } )
 
         isSymbolUnits.call( this )
-        isNotSymbolUnits.call( this )
 
     } )
 

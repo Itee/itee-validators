@@ -6,5 +6,4 @@
  * @description Export the validation methods about symbols
  */
 
-export * from './isNotSymbol'
 export * from './isSymbol'

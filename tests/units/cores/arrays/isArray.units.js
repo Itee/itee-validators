@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isArray } from '../../../../sources/cores/arrays/isArray'
+import { isArray, isNotArray } from '../../../../sources/cores/arrays/isArray'
 
 function isArrayUnits () {
 
@@ -32,6 +32,34 @@ function isArrayUnits () {
 
                     for ( let key in dataSet ) {
                         expect( isArray( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
+
+        } )
+
+    } )
+
+    describe( 'isNotArray()', () => {
+
+        it( 'should return false only when the value is a array', () => {
+
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'arrays' ) {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotArray( dataSet[ key ] ) ).to.be.false
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotArray( dataSet[ key ] ) ).to.be.true
                     }
 
                 }

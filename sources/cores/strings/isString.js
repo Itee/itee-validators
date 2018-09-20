@@ -40,3 +40,16 @@ export function isString_4 ( val ) {
 }
 
 // #endif
+
+
+//////
+
+/**
+ * Check if given data is not a string
+ *
+ * @param data {*} The data to check against the string type
+ * @returns {boolean} true if data is not a string, false otherwise.
+ */
+export function isNotString ( data ) {
+    return !isString( data )
+}

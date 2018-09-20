@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isEmptyArray } from '../../../../sources/cores/arrays/isEmptyArray'
+import { isEmptyArray, isNotEmptyArray } from '../../../../sources/cores/arrays/isEmptyArray'
 
 function isEmptyArrayUnits () {
 
@@ -39,6 +39,41 @@ function isEmptyArrayUnits () {
 
                     for ( let key in dataSet ) {
                         expect( isEmptyArray( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
+
+        } )
+
+    } )
+
+    describe( 'isNotEmptyArray()', () => {
+
+        it( 'should return false only when the value is an empty array object', () => {
+
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'arrays' ) {
+
+                    for ( let key in dataSet ) {
+
+                        const result = isNotEmptyArray( dataSet[ key ] )
+                        if ( key === 'emptyArray' || key === 'emptyArrayObject' ) {
+                            expect( result ).to.be.false
+                        } else {
+                            expect( result ).to.be.true
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotEmptyArray( dataSet[ key ] ) ).to.be.true
                     }
 
                 }

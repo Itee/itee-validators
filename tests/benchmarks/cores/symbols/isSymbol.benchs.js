@@ -6,10 +6,19 @@
 
 /* global Itee, suite, benchmark */
 
-import { isSymbol } from '../../../../sources/cores/symbols/isSymbol'
+import { isSymbol, isNotSymbol } from '../../../../sources/cores/symbols/isSymbol'
 
-export default suite( 'isSymbol', () => {
+const isSymbolSuite = suite( 'isSymbol', () => {
 
     benchmark( 'isSymbol()', Itee.TestsUtils.iterateOverDataMap( isSymbol ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
+
+const isNotSymbolSuite = suite( 'isNotSymbol', () => {
+
+    benchmark( 'isNotSymbol()', Itee.TestsUtils.iterateOverDataMap( isNotSymbol ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+export { isSymbolSuite, isNotSymbolSuite }
+

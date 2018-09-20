@@ -16,13 +16,6 @@ import { isArrayOfSingleElementUnits } from './isArrayOfSingleElement.units'
 import { isArrayOfStringUnits }        from './isArrayOfString.units'
 import { isArrayOfUndefinedUnits }     from './isArrayOfUndefined.units'
 import { isEmptyArrayUnits }           from './isEmptyArray.units'
-import { isNotArrayUnits }             from './isNotArray.units'
-import { isNotArrayOfArrayUnits }      from './isNotArrayOfArray.units'
-import { isNotArrayOfNullUnits }       from './isNotArrayOfNull.units'
-import { isNotArrayOfObjectUnits }     from './isNotArrayOfObject.units'
-import { isNotArrayOfStringUnits }     from './isNotArrayOfString.units'
-import { isNotArrayOfUndefinedUnits }  from './isNotArrayOfUndefined.units'
-import { isNotEmptyArrayUnits }        from './isNotEmptyArray.units'
 
 function _arraysUnits () {
 
@@ -50,13 +43,6 @@ function _arraysUnits () {
         isArrayOfStringUnits.call( this )
         isArrayOfUndefinedUnits.call( this )
         isEmptyArrayUnits.call( this )
-        isNotArrayUnits.call( this )
-        isNotArrayOfArrayUnits.call( this )
-        isNotArrayOfNullUnits.call( this )
-        isNotArrayOfObjectUnits.call( this )
-        isNotArrayOfStringUnits.call( this )
-        isNotArrayOfUndefinedUnits.call( this )
-        isNotEmptyArrayUnits.call( this )
 
     } )
 

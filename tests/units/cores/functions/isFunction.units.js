@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isFunction } from '../../../../sources/cores/functions/isFunction'
+import { isFunction, isNotFunction } from '../../../../sources/cores/functions/isFunction'
 
 function isFunctionUnits () {
 
@@ -32,6 +32,34 @@ function isFunctionUnits () {
 
                     for ( let key in dataSet ) {
                         expect( isFunction( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
+
+        } )
+
+    } )
+
+    describe( 'isNotFunction()', () => {
+
+        it( 'should return false only when the value is a functions', () => {
+
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'functions' ) {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotFunction( dataSet[ key ] ) ).to.be.false
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotFunction( dataSet[ key ] ) ).to.be.true
                     }
 
                 }

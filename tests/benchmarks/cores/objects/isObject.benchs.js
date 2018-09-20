@@ -6,10 +6,18 @@
 
 /* global Itee, suite, benchmark */
 
-import { isObject } from '../../../../sources/cores/objects/isObject'
+import { isObject, isNotObject } from '../../../../sources/cores/objects/isObject'
 
-export default suite( 'isObject', () => {
+const isObjectSuite = suite( 'isObject', () => {
 
     benchmark( 'isObject()', Itee.TestsUtils.iterateOverDataMap( isObject ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
+
+const isNotObjectSuite = suite( 'isNotObject', () => {
+
+    benchmark( 'isNotObject()', Itee.TestsUtils.iterateOverDataMap( isNotObject ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+export { isObjectSuite, isNotObjectSuite }

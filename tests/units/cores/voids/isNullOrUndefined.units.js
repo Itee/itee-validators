@@ -9,7 +9,7 @@
 
 /* global describe, expect, it */
 
-import { isNullOrUndefined } from '../../../../sources/cores/voids/isNullOrUndefined'
+import { isNullOrUndefined, isDefined } from '../../../../sources/cores/voids/isNullOrUndefined'
 
 function isNullOrUndefinedUnits () {
 
@@ -31,6 +31,34 @@ function isNullOrUndefinedUnits () {
 
                     for ( let key in dataSet ) {
                         expect( isNullOrUndefined( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
+
+        } )
+
+    } )
+
+    describe( 'isDefined()', () => {
+
+        it( 'should return false only when the value is null or undefined', () => {
+
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'voids' ) {
+
+                    for ( let key in dataSet ) {
+                        expect( isDefined( dataSet[ key ] ) ).to.be.false
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isDefined( dataSet[ key ] ) ).to.be.true
                     }
 
                 }

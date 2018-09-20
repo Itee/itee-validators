@@ -10,10 +10,18 @@
 
 /* global Itee, suite, benchmark */
 
-import { isTemperature } from '../../../../sources/physics/temperatures/isTemperature'
+import { isTemperature, isNotTemperature } from '../../../../sources/physics/temperatures/isTemperature'
 
-export default suite( 'isTemperature', () => {
+const isTemperatureSuite = suite( 'isTemperature', () => {
 
     benchmark( 'isTemperature()', Itee.TestsUtils.iterateOverDataMap( isTemperature ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
+
+const isNotTemperatureSuite = suite( 'isNotTemperature', () => {
+
+    benchmark( 'isNotTemperature()', Itee.TestsUtils.iterateOverDataMap( isNotTemperature ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+export { isTemperatureSuite, isNotTemperatureSuite }

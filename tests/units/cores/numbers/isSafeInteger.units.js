@@ -2,33 +2,33 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module tests/cores/strings
- * @desc Export the units tests about isBlankString method.
- * @requires {@link module:sources/cores/strings}
+ * @module tests/cores/numbers
+ * @desc Export the units tests about isMaxSafeInteger method.
+ * @requires {@link module:sources/cores/numbers}
  *
  */
 
 /* global describe, expect, it */
 
-import { isBlankString, isNotBlankString } from '../../../../sources/cores/strings/isBlankString'
+import { isMaxSafeInteger, isMinSafeInteger } from '../../../../sources/cores/numbers/isSafeInteger'
 
-function isBlankStringUnits () {
+function isMaxSafeIntegerUnits () {
 
-    describe( 'isBlankString()', () => {
+    describe( 'isMaxSafeInteger()', () => {
 
-        it( 'should return true only when the value is a blank string', () => {
+        it( 'should return true only when the value is a the max safe integer value', () => {
 
             const dataMap = this._dataMap
             for ( let mapKey in dataMap ) {
 
                 const dataSet = dataMap[ mapKey ]
-                if ( mapKey === 'strings' ) {
+                if ( mapKey === 'numbers' ) {
 
-                    const allowed = [ 'blank', 'stringBlank' ]
+                    const allowed = [ 'positiveMaxSafeInteger' ]
 
                     for ( let key in dataSet ) {
 
-                        const result = isBlankString( dataSet[ key ] )
+                        const result = isMaxSafeInteger( dataSet[ key ] )
                         if ( allowed.includes( key ) ) {
                             expect( result ).to.be.true
                         } else {
@@ -40,7 +40,7 @@ function isBlankStringUnits () {
                 } else {
 
                     for ( let key in dataSet ) {
-                        expect( isBlankString( dataSet[ key ] ) ).to.be.false
+                        expect( isMaxSafeInteger( dataSet[ key ] ) ).to.be.false
                     }
 
                 }
@@ -51,25 +51,25 @@ function isBlankStringUnits () {
 
     } )
 
-    describe( 'isNotBlankString()', () => {
+    describe( 'isMinSafeInteger()', () => {
 
-        it( 'should return false only when the value is a blank string', () => {
+        it( 'should return true only when the value is a the min safe integer value', () => {
 
             const dataMap = this._dataMap
             for ( let mapKey in dataMap ) {
 
                 const dataSet = dataMap[ mapKey ]
-                if ( mapKey === 'strings' ) {
+                if ( mapKey === 'numbers' ) {
 
-                    const allowed = [ 'blank', 'stringBlank' ]
+                    const allowed = [ 'negativeMinSafeInteger' ]
 
                     for ( let key in dataSet ) {
 
-                        const result = isNotBlankString( dataSet[ key ] )
+                        const result = isMinSafeInteger( dataSet[ key ] )
                         if ( allowed.includes( key ) ) {
-                            expect( result ).to.be.false
-                        } else {
                             expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
                         }
 
                     }
@@ -77,7 +77,7 @@ function isBlankStringUnits () {
                 } else {
 
                     for ( let key in dataSet ) {
-                        expect( isNotBlankString( dataSet[ key ] ) ).to.be.true
+                        expect( isMinSafeInteger( dataSet[ key ] ) ).to.be.false
                     }
 
                 }
@@ -90,4 +90,4 @@ function isBlankStringUnits () {
 
 }
 
-export { isBlankStringUnits }
+export { isMaxSafeIntegerUnits }

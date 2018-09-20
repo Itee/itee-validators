@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isArrayOfObject } from '../../../../sources/cores/arrays/isArrayOfObject'
+import { isArrayOfObject, isNotArrayOfObject } from '../../../../sources/cores/arrays/isArrayOfObject'
 
 function isArrayOfObjectUnits () {
 
@@ -39,6 +39,41 @@ function isArrayOfObjectUnits () {
 
                     for ( let key in dataSet ) {
                         expect( isArrayOfObject( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
+
+        } )
+
+    } )
+
+    describe( 'isNotArrayOfObject()', () => {
+
+        it( 'should return false only when the value is a array of objects', () => {
+
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'arrays' ) {
+
+                    for ( let key in dataSet ) {
+
+                        const result = isNotArrayOfObject( dataSet[ key ] )
+                        if ( key === 'objects' ) {
+                            expect( result ).to.be.false
+                        } else {
+                            expect( result ).to.be.true
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotArrayOfObject( dataSet[ key ] ) ).to.be.true
                     }
 
                 }

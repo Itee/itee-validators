@@ -39,3 +39,23 @@ export function isArray_1 ( data ) {
 }
 
 // #endif
+
+////////////////////
+
+/**
+ * Check if given data is not an array
+ *
+ * @param data {*} The data to check against the array type
+ * @returns {boolean} true if data is not array, false otherwise
+ */
+export function isNotArray ( data ) {
+    return !Array.isArray( data )
+}
+
+// #if IS_REMOVE
+
+export function isNotArray_0 ( data ) {
+    return !isArray( data )
+}
+
+// #endif

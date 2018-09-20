@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isString } from '../../../../sources/cores/strings/isString'
+import { isString, isNotString } from '../../../../sources/cores/strings/isString'
 
 function isStringUnits () {
 
@@ -32,6 +32,34 @@ function isStringUnits () {
 
                     for ( let key in dataSet ) {
                         expect( isString( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
+
+        } )
+
+    } )
+
+    describe( 'isNotString()', () => {
+
+        it( 'should return false only when the value is a string', () => {
+
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'strings' ) {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotString( dataSet[ key ] ) ).to.be.false
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotString( dataSet[ key ] ) ).to.be.true
                     }
 
                 }

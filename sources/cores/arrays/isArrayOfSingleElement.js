@@ -8,7 +8,7 @@
  *
  */
 
-import { isNotArray } from './isNotArray'
+import { isNotArray } from './isArray'
 
 /**
  * Check if given data is an array with a single value

@@ -5,6 +5,4 @@
  */
 
 export * from './isEmptyObject.benchs'
-export * from './isNotEmptyObject.benchs'
-export * from './isNotObject.benchs'
 export * from './isObject.benchs'

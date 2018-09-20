@@ -6,10 +6,19 @@
 
 /* global Itee, suite, benchmark */
 
-import { isNull } from '../../../../sources/cores/voids/isNull'
+import { isNull, isNotNull } from '../../../../sources/cores/voids/isNull'
 
-export default suite( 'isNull', () => {
+const isNullSuite = suite( 'isNull', () => {
 
     benchmark( 'isNull()', Itee.TestsUtils.iterateOverDataMap( isNull ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
+
+const isNotNullSuite = suite( 'isNotNull', () => {
+
+    benchmark( 'isNotNull()', Itee.TestsUtils.iterateOverDataMap( isNotNull ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+export { isNullSuite, isNotNullSuite }
+

@@ -10,10 +10,19 @@
 
 /* global Itee, suite, benchmark */
 
-import { isArrayOfNull } from '../../../../sources/cores/arrays/isArrayOfNull'
+import { isArrayOfNull, isNotArrayOfNull } from '../../../../sources/cores/arrays/isArrayOfNull'
 
-export default suite( 'isArrayOfNull', () => {
+const isArrayOfNullSuite = suite( 'isArrayOfNull', () => {
 
     benchmark( 'isArrayOfNull()', Itee.TestsUtils.iterateOverDataMap( isArrayOfNull ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
+
+const isNotArrayOfNullSuite = suite( 'isNotArrayOfNull', () => {
+
+    benchmark( 'isNotArrayOfNull()', Itee.TestsUtils.iterateOverDataMap( isNotArrayOfNull ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+export { isArrayOfNullSuite, isNotArrayOfNullSuite }
+

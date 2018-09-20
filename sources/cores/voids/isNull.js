@@ -17,3 +17,15 @@
 export function isNull ( data ) {
     return (data === null)
 }
+
+///
+
+/**
+ * Check if given data is not null
+ *
+ * @param data {*} The data to check against the nullity
+ * @returns {boolean} true if data is not null, false otherwise.
+ */
+export function isNotNull ( data ) {
+    return (data !== null)
+}

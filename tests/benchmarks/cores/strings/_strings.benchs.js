@@ -6,8 +6,5 @@
 
 export * from './isBlankString.benchs'
 export * from './isEmptyString.benchs'
-export * from './isNotBlankString.benchs'
-export * from './isNotEmptyString.benchs'
-export * from './isNotString.benchs'
 export * from './isString.benchs'
 

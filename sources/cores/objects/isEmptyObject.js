@@ -8,7 +8,7 @@
  *
  */
 
-import { isNotObject } from './isNotObject'
+import { isNotObject } from './isObject'
 
 /**
  * Check if given data is an empty object
@@ -33,4 +33,16 @@ export function isEmptyObject ( data ) {
 
     return true
 
+}
+
+////
+
+/**
+ * Check if given data is not an empty object
+ *
+ * @param data {*} The data to check against the emptiness of the object
+ * @returns {boolean} true if data is not an empty object, false otherwise
+ */
+export function isNotEmptyObject ( data ) {
+    return !(isEmptyObject( data ))
 }

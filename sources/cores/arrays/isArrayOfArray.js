@@ -9,7 +9,7 @@
  */
 
 import { isEmptyArray } from './isEmptyArray'
-import { isNotArray }   from './isNotArray'
+import { isArray, isNotArray }   from './isArray'
 
 /**
  * Check if given data is an array of array
@@ -24,6 +24,29 @@ export function isArrayOfArray ( data ) {
 
     for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
         if ( isNotArray( data[ index ] ) ) {
+            return false
+        }
+    }
+
+    return true
+
+}
+
+////////
+
+/**
+ * Check if given data is not an array of array
+ *
+ * @param data {*} The data to check against the array of array type
+ * @returns {boolean} true if data is not an array of array, false otherwise
+ */
+export function isNotArrayOfArray ( data ) {
+
+    if ( isNotArray( data ) ) { return true }
+    if ( isEmptyArray( data ) ) { return true }
+
+    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+        if ( isArray( data[ index ] ) ) {
             return false
         }
     }

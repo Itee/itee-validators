@@ -10,12 +10,21 @@
 
 /* global Itee, suite, benchmark */
 
-import { isArray, isArray_0, isArray_1 } from '../../../../sources/cores/arrays/isArray'
+import { isArray, isArray_0, isArray_1, isNotArray, isNotArray_0 } from '../../../../sources/cores/arrays/isArray'
 
-export default suite( 'isArray', () => {
+const isArraySuite = suite( 'isArray', () => {
 
     benchmark( 'isArray()', Itee.TestsUtils.iterateOverDataMap( isArray ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
     benchmark( 'isArray_0()', Itee.TestsUtils.iterateOverDataMap( isArray_0 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
     benchmark( 'isArray_1()', Itee.TestsUtils.iterateOverDataMap( isArray_1 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
+
+const isNotArraySuite = suite( 'isNotArray', () => {
+
+    benchmark( 'isNotArray()', Itee.TestsUtils.iterateOverDataMap( isNotArray ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+    benchmark( 'isNotArray()', Itee.TestsUtils.iterateOverDataMap( isNotArray_0 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+export { isArraySuite, isNotArraySuite }

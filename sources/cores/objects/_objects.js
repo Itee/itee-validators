@@ -7,6 +7,4 @@
  */
 
 export * from './isEmptyObject'
-export * from './isNotEmptyObject'
-export * from './isNotObject'
 export * from './isObject'

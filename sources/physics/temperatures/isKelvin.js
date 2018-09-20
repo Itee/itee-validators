@@ -19,3 +19,15 @@ import { ABSOLUTE_ZERO_KELVIN } from './constants'
 export function isKelvin ( data ) {
     return (isNumber( data ) && data >= ABSOLUTE_ZERO_KELVIN)
 }
+
+///
+
+
+/**
+ *
+ * @param data
+ * @return {boolean}
+ */
+export function isNotKelvin ( data ) {
+    return !isKelvin( data )
+}

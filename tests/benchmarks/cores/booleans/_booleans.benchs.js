@@ -5,4 +5,3 @@
  */
 
 export * from './isBoolean.benchs'
-export * from './isNotBoolean.benchs'

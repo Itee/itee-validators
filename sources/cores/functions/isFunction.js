@@ -17,3 +17,15 @@
 export function isFunction ( data ) {
     return (typeof data === 'function')
 }
+
+///
+
+/**
+ * Check if given data is not a function
+ *
+ * @param data {*} The data to check against the functionality
+ * @returns {boolean} true if data is not a function, false otherwise.
+ */
+export function isNotFunction ( data ) {
+    return (typeof data !== 'function')
+}

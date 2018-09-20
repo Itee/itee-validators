@@ -9,8 +9,8 @@
  */
 
 import { isEmptyArray } from './isEmptyArray'
-import { isNotArray }   from './isNotArray'
-import { isNotString }  from '../strings/isNotString'
+import { isNotArray }   from './isArray'
+import { isNotString }  from '../strings/isString'
 
 /**
  * Check if given data is not an empty array where all values are string
@@ -56,3 +56,27 @@ export function isArrayOfString_1 ( data ) {
 }
 
 // #endif
+
+
+/////
+
+/**
+ * Check if given data is not an empty array where all values are not string
+ *
+ * @param data {*} The data to check against the array of strings
+ * @returns {boolean} true if data is not an empty array where all values are not string, false otherwise
+ */
+export function isNotArrayOfString ( data ) {
+
+    if ( isNotArray( data ) ) { return true }
+    if ( isEmptyArray( data ) ) { return true }
+
+    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+        if ( isNotString( data[ index ] ) ) {
+            return true
+        }
+    }
+
+    return false
+
+}

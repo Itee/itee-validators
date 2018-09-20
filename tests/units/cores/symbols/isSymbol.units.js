@@ -10,7 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isSymbol } from '../../../../sources/cores/symbols/isSymbol'
+import { isSymbol, isNotSymbol } from '../../../../sources/cores/symbols/isSymbol'
 
 function isSymbolUnits () {
 
@@ -32,6 +32,34 @@ function isSymbolUnits () {
 
                     for ( let key in dataSet ) {
                         expect( isSymbol( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
+
+        } )
+
+    } )
+
+    describe( 'isNotSymbol()', () => {
+
+        it( 'should return false only when the value is a symbols', () => {
+
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'symbols' ) {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotSymbol( dataSet[ key ] ) ).to.be.false
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotSymbol( dataSet[ key ] ) ).to.be.true
                     }
 
                 }

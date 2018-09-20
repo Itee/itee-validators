@@ -9,8 +9,8 @@
  */
 
 import { isEmptyArray } from './isEmptyArray'
-import { isNotArray }   from './isNotArray'
-import { isNotObject }  from '../objects/isNotObject'
+import { isNotArray }   from './isArray'
+import { isNotObject }  from '../objects/isObject'
 
 /**
  * Check if given data is an array where all values are of object type
@@ -30,5 +30,28 @@ export function isArrayOfObject ( data ) {
     }
 
     return true
+
+}
+
+////
+
+/**
+ * Check if given data is not an array where all values are of object type
+ *
+ * @param data {*} The data to check against the array of object type
+ * @returns {boolean} true if data is not an array where all values are of object type, false otherwise
+ */
+export function isNotArrayOfObject ( data ) {
+
+    if ( isNotArray( data ) ) { return true }
+    if ( isEmptyArray( data ) ) { return true }
+
+    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+        if ( isNotObject( data[ index ] ) ) {
+            return true
+        }
+    }
+
+    return false
 
 }

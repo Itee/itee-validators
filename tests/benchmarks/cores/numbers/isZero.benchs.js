@@ -6,10 +6,25 @@
 
 /* global Itee, suite, benchmark */
 
-import { isZero } from '../../../../sources/cores/numbers/isZero'
+import { isZero, isZeroPositive, isZeroNegative } from '../../../../sources/cores/numbers/isZero'
 
-export default suite( 'isZero', () => {
+const isZeroSuite = suite( 'isZero', () => {
 
     benchmark( 'isZero()', Itee.TestsUtils.iterateOverDataMap( isZero ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
+
+const isZeroPositiveSuite = suite( 'isZeroPositive', () => {
+
+    benchmark( 'isZeroPositive()', Itee.TestsUtils.iterateOverDataMap( isZeroPositive ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+const isZeroNegativeSuite = suite( 'isZeroNegative', () => {
+
+    benchmark( 'isZeroNegative()', Itee.TestsUtils.iterateOverDataMap( isZeroNegative ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+export { isZeroSuite, isZeroNegativeSuite, isZeroPositiveSuite }
+

@@ -8,4 +8,3 @@
  */
 
 export * from './isBoolean'
-export * from './isNotBoolean'

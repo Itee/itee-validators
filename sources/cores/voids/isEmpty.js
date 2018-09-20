@@ -31,3 +31,15 @@ export function isEmpty ( data ) {
     return false
 
 }
+
+///
+
+/**
+ * Check fullness of given data
+ *
+ * @param data {*} The data to check against the emptiness
+ * @returns {boolean} true if data is considered as not empty, false otherwise.
+ */
+export function isNotEmpty ( data ) {
+    return !isEmpty( data )
+}

@@ -6,10 +6,19 @@
 
 /* global Itee, suite, benchmark */
 
-import { isEmpty } from '../../../../sources/cores/voids/isEmpty'
+import { isEmpty, isNotEmpty } from '../../../../sources/cores/voids/isEmpty'
 
-export default suite( 'isEmpty', () => {
+const isEmptySuite = suite( 'isEmpty', () => {
 
     benchmark( 'isEmpty()', Itee.TestsUtils.iterateOverDataMap( isEmpty ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
+
+const isNotEmptySuite = suite( 'isNotEmpty', () => {
+
+    benchmark( 'isNotEmpty()', Itee.TestsUtils.iterateOverDataMap( isNotEmpty ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+export { isEmptySuite, isNotEmptySuite }
+

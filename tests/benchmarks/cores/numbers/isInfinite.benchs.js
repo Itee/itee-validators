@@ -6,10 +6,31 @@
 
 /* global Itee, suite, benchmark */
 
-import { isInfinite } from '../../../../sources/cores/numbers/isInfinite'
+import { isInfinite, isInfinitePositive, isInfiniteNegative, isFinite } from '../../../../sources/cores/numbers/isInfinite'
 
-export default suite( 'isInfinite', () => {
+const isInfiniteSuite = suite( 'isInfinite', () => {
 
     benchmark( 'isInfinite()', Itee.TestsUtils.iterateOverDataMap( isInfinite ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
+
+const isInfinitePositiveSuite = suite( 'isInfinitePositive', () => {
+
+    benchmark( 'isInfinitePositive()', Itee.TestsUtils.iterateOverDataMap( isInfinitePositive ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+const isInfiniteNegativeSuite = suite( 'isInfiniteNegative', () => {
+
+    benchmark( 'isInfiniteNegative()', Itee.TestsUtils.iterateOverDataMap( isInfiniteNegative ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+const isFiniteSuite = suite( 'isFinite', () => {
+
+    benchmark( 'isFinite()', Itee.TestsUtils.iterateOverDataMap( isFinite ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+
+} )
+
+export { isFiniteSuite, isInfiniteSuite, isInfiniteNegativeSuite, isInfinitePositiveSuite }
+
