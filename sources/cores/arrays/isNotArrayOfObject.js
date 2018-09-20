@@ -29,6 +29,7 @@ export function isNotArrayOfObject ( data ) {
     }
 
     for ( let index = 0 ; index < dataLength ; index++ ) {
+        // Todo: Must be isNotObject because in case we have a single undefined in the array it match
         if ( isObject( data[ index ] ) ) {
             return true
         }

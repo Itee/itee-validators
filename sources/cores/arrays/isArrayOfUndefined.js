@@ -29,6 +29,7 @@ export function isArrayOfUndefined ( data ) {
     }
 
     for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
+        // Todo: Use isNotUndefined !!!
         if ( isDefined( data[ index ] ) ) {
             return false
         }

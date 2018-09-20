@@ -29,6 +29,7 @@ export function isArrayOfString ( data ) {
     }
 
     for ( let index = 0 ; index < dataLength ; index++ ) {
+        // Todo: Use isNotString in Safe mode (check String object too) !!!
         if ( isNotString( data[ index ] ) ) {
             return false
         }
