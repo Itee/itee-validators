@@ -8,7 +8,7 @@
  *
  */
 
-import { isNullOrUndefined } from '../voids/isNullOrUndefined'
+import { isNotDefined } from '../voids/isDefined'
 import { isZeroPositive } from './isZero'
 import { isInfinite, isInfinitePositive } from './isInfinite'
 
@@ -20,7 +20,7 @@ import { isInfinite, isInfinitePositive } from './isInfinite'
  */
 export function isNumber ( data ) {
 
-    if ( isNullOrUndefined( data ) ) { return false }
+    if ( isNotDefined( data ) ) { return false }
 
     return (data.constructor === Number)
 

@@ -125,8 +125,8 @@
  */
 
 import {
-    isNullOrUndefined,
-    isDefined
+    isDefined,
+    isNotDefined
 }                    from './voids/_voids'
 import {
     isFunction,
@@ -234,7 +234,7 @@ class Validator {
     check ( data, type, breakOnError = true ) {
 
         const validator = this.validators[ type ]
-        if ( isNullOrUndefined( validator ) ) {
+        if ( isNotDefined( validator ) ) {
             throw new TypeError( `Validator: Unable to find schema validation of type '${type}'` )
         }
 
@@ -249,13 +249,13 @@ class Validator {
             for ( let key in validator ) {
 
                 const subValidator = validator[ key ]
-                if ( isNullOrUndefined( subValidator ) ) {
+                if ( isNotDefined( subValidator ) ) {
                     throw new TypeError( `Validator: Missing validator for key '${key}' of type '${type}'` )
                 }
 
                 const value      = data[ key ]
                 const isRequired = subValidator.required
-                if ( isNullOrUndefined( value ) ) {
+                if ( isNotDefined( value ) ) {
                     if ( isRequired ) {
                         subResult = false
                     } else {
@@ -309,7 +309,7 @@ class Validator {
  * @type {Validator}
  */
 let validatorInstance = undefined
-if ( isNullOrUndefined( validatorInstance ) ) {
+if ( isNotDefined( validatorInstance ) ) {
     validatorInstance = new Validator()
 }
 

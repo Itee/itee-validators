@@ -8,7 +8,7 @@
  *
  */
 
-import { isNullOrUndefined } from '../voids/isNullOrUndefined'
+import { isNotDefined } from '../voids/isDefined'
 
 /**
  * Check if given data is an object
@@ -18,7 +18,7 @@ import { isNullOrUndefined } from '../voids/isNullOrUndefined'
  */
 export function isObject ( data ) {
 
-    if ( isNullOrUndefined( data ) ) { return false }
+    if ( isNotDefined( data ) ) { return false }
 
     return (data.constructor === Object)
 }

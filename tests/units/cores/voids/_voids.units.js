@@ -6,11 +6,11 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { TestsUtils }             from '../../../itee-validators.tests-utils.js'
-import { isEmptyUnits }           from './isEmpty.units'
-import { isNullUnits }            from './isNull.units'
-import { isNullOrUndefinedUnits } from './isNullOrUndefined.units'
-import { isUndefinedUnits }       from './isUndefined.units'
+import { TestsUtils }       from '../../../itee-validators.tests-utils.js'
+import { isEmptyUnits }     from './isEmpty.units'
+import { isNullUnits }      from './isNull.units'
+import { isDefinedUnits }   from './isDefined.units'
+import { isUndefinedUnits } from './isUndefined.units'
 
 function _voidsUnits () {
 
@@ -29,7 +29,7 @@ function _voidsUnits () {
         } )
 
         isEmptyUnits.call( this )
-        isNullOrUndefinedUnits.call( this )
+        isDefinedUnits.call( this )
         isNullUnits.call( this )
         isUndefinedUnits.call( this )
 
