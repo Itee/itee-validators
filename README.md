@@ -35,6 +35,13 @@ then you will be able to use like this:
 
 ## Release notes
 
+#### v3.0.0
+
+* Global refactoring of sources, benchs and units
+* Lot of fix about wrong methods implementation
+* Renaming isNullOrUndefined to isNotDefined
+* Fix gulp tasks
+
 #### v2.1.0
 
 * Add new class Validator that allow to validate complex data structure
