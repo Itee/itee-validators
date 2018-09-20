@@ -8,7 +8,10 @@
  *
  */
 
-import { isNotNull } from '../voids/isNotNull'
+import { isNullOrUndefined } from '../voids/isNullOrUndefined'
+import { isArray }           from '../arrays/isArray'
+import { isString }          from '../strings/isString'
+import { isNumber }          from '../numbers/isNumber'
 
 /**
  * Check if given data is an object
@@ -17,5 +20,12 @@ import { isNotNull } from '../voids/isNotNull'
  * @returns {boolean} true if data is object, false otherwise
  */
 export function isObject ( data ) {
-    return (isNotNull( data ) && (typeof data === 'object') && !Array.isArray( data ))
+
+    if ( isNullOrUndefined( data ) ) { return false }
+    if ( typeof data !== 'object' ) { return false }
+    if ( isNumber( data ) ) { return false }
+    if ( isString( data ) ) { return false }
+    if ( isArray( data ) ) { return false }
+
+    return true
 }
