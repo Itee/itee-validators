@@ -10,7 +10,7 @@
 
 /* global Itee, suite, benchmark */
 
-import { isArrayOfSingleElement }       from '../../../../sources/cores/arrays/isArrayOfSingleElement'
+import { isArrayOfSingleElement } from '../../../../sources/cores/arrays/isArrayOfSingleElement'
 
 
 export default suite( 'isArrayOfSingleElement', () => {

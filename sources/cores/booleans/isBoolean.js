@@ -24,4 +24,5 @@ export function isBoolean_alt ( value ) {
     return typeof value === 'boolean' || (typeof value === 'object' && value !== null && typeof value.valueOf() === 'boolean')
 
 }
+
 // #endif

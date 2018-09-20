@@ -10,7 +10,7 @@
 
 /* global Itee, suite, benchmark */
 
-import { isArrayOfObject }       from '../../../../sources/cores/arrays/isArrayOfObject'
+import { isArrayOfObject } from '../../../../sources/cores/arrays/isArrayOfObject'
 
 
 export default suite( 'isArrayOfObject', () => {

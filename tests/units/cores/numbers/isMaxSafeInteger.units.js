@@ -12,6 +12,7 @@
 
 import { isMaxSafeInteger } from '../../../../sources/cores/numbers/isMaxSafeInteger'
 
+
 function isMaxSafeIntegerUnits () {
 
     describe( 'isMaxSafeInteger()', () => {

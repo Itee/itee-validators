@@ -8,7 +8,6 @@
  *
  */
 
-
 /**
  * Check if the given data is a minimum positive number
  *

@@ -8,7 +8,6 @@
  *
  */
 
-
 /**
  * Check if given data is null or undefined
  *

@@ -10,6 +10,7 @@
 
 import { isNotString } from './isNotString'
 
+
 /**
  * Check if given data is not an empty string
  *
@@ -18,7 +19,7 @@ import { isNotString } from './isNotString'
  */
 export function isNotEmptyString ( data ) {
 
-    if( isNotString(data) ) {
+    if ( isNotString( data ) ) {
         return false
     }
 

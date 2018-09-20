@@ -10,7 +10,7 @@
 
 /* global Itee, suite, benchmark */
 
-import { isNotArrayOfArray }       from '../../../../sources/cores/arrays/isNotArrayOfArray'
+import { isNotArrayOfArray } from '../../../../sources/cores/arrays/isNotArrayOfArray'
 
 
 export default suite( 'isNotArrayOfArray', () => {

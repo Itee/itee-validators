@@ -10,7 +10,7 @@
 
 /* global Itee, suite, benchmark */
 
-import { isArrayOfMultiElement }       from '../../../../sources/cores/arrays/isArrayOfMultiElement'
+import { isArrayOfMultiElement } from '../../../../sources/cores/arrays/isArrayOfMultiElement'
 
 
 export default suite( 'isArrayOfMultiElement', () => {

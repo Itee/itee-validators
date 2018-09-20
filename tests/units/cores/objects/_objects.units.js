@@ -6,11 +6,12 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { TestsUtils } from '../../../itee-validators.tests-utils.js'
-import { isObjectUnits } from './isObject.units'
-import { isNotObjectUnits } from './isNotObject.units'
-import { isEmptyObjectUnits } from './isEmptyObject.units'
+import { TestsUtils }            from '../../../itee-validators.tests-utils.js'
+import { isObjectUnits }         from './isObject.units'
+import { isNotObjectUnits }      from './isNotObject.units'
+import { isEmptyObjectUnits }    from './isEmptyObject.units'
 import { isNotEmptyObjectUnits } from './isNotEmptyObject.units'
+
 
 function _objectsUnits () {
 

@@ -39,7 +39,7 @@ function createBuildsConfigs ( options ) {
     const configs = []
     for ( let formatIndex = 0, numberOfFormats = formats.length ; formatIndex < numberOfFormats ; ++formatIndex ) {
 
-        const format   = formats[ formatIndex ]
+        const format = formats[ formatIndex ]
 
         if ( dev ) {
 
@@ -87,7 +87,7 @@ function createBuildsConfigs ( options ) {
     }
 
     return configs
-    
+
 }
 
 module.exports = createBuildsConfigs

@@ -6,13 +6,14 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { TestsUtils } from '../../../itee-validators.tests-utils.js'
-import { isStringUnits } from './isString.units'
-import { isNotStringUnits } from './isNotString.units'
-import { isEmptyStringUnits } from './isEmptyString.units'
+import { TestsUtils }            from '../../../itee-validators.tests-utils.js'
+import { isStringUnits }         from './isString.units'
+import { isNotStringUnits }      from './isNotString.units'
+import { isEmptyStringUnits }    from './isEmptyString.units'
 import { isNotEmptyStringUnits } from './isNotEmptyString.units'
-import { isBlankStringUnits } from './isBlankString.units'
+import { isBlankStringUnits }    from './isBlankString.units'
 import { isNotBlankStringUnits } from './isNotBlankString.units'
+
 
 function _stringsUnits () {
 

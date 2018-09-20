@@ -11,6 +11,7 @@
 
 import { isNotUndefined } from '../../../../sources/cores/voids/isNotUndefined'
 
+
 function isNotUndefinedUnits () {
 
     describe( 'isNotUndefined()', () => {

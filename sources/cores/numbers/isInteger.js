@@ -24,10 +24,11 @@ export function isInteger_1 ( data ) {
 }
 
 export function isInteger_2 ( n ) {
-    return n === +n && n === (n | 0);
+    return n === +n && n === (n | 0)
 }
 
 export function isInteger_3 ( nVal ) {
-    return typeof nVal === "number" && isFinite( nVal ) && nVal > -9007199254740992 && nVal < 9007199254740992 && Math.floor( nVal ) === nVal;
+    return typeof nVal === 'number' && isFinite( nVal ) && nVal > -9007199254740992 && nVal < 9007199254740992 && Math.floor( nVal ) === nVal
 }
+
 // #endif

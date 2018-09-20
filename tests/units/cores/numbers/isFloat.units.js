@@ -12,6 +12,7 @@
 
 import { isFloat } from '../../../../sources/cores/numbers/isFloat'
 
+
 function isFloatUnits () {
 
     describe( 'isFloat()', () => {

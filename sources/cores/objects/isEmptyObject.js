@@ -10,6 +10,7 @@
 
 import { isNotObject } from './isNotObject'
 
+
 /**
  * Check if given data is an empty object
  *
@@ -18,7 +19,7 @@ import { isNotObject } from './isNotObject'
  */
 export function isEmptyObject ( data ) {
 
-    if( isNotObject(data) ) { return false }
+    if ( isNotObject( data ) ) { return false }
 
     if ( data.length === 0 ) {
         return true

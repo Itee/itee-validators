@@ -10,6 +10,7 @@
 
 import { isNumber } from './isNumber'
 
+
 /**
  * Check if the data is a positive number
  *

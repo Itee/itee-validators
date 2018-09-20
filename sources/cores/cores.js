@@ -149,6 +149,7 @@ import {
     isNotObject
 }                    from './objects/_objects'
 
+
 class Validator {
 
     constructor () {

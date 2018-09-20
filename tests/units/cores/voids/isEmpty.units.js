@@ -9,7 +9,8 @@
 
 /* global describe, expect, it */
 
-import { isEmpty }                from '../../../../sources/cores/voids/isEmpty'
+import { isEmpty } from '../../../../sources/cores/voids/isEmpty'
+
 
 function isEmptyUnits () {
 
@@ -28,7 +29,7 @@ function isEmptyUnits () {
                     for ( let key in dataSet ) {
 
                         const result = isEmpty( dataSet[ key ] )
-                        if ( allowed.includes(key) ) {
+                        if ( allowed.includes( key ) ) {
                             expect( result ).to.be.true
                         } else {
                             expect( result ).to.be.false
@@ -43,7 +44,7 @@ function isEmptyUnits () {
                     for ( let key in dataSet ) {
 
                         const result = isEmpty( dataSet[ key ] )
-                        if ( allowed.includes(key) ) {
+                        if ( allowed.includes( key ) ) {
                             expect( result ).to.be.true
                         } else {
                             expect( result ).to.be.false
@@ -58,7 +59,7 @@ function isEmptyUnits () {
                     for ( let key in dataSet ) {
 
                         const result = isEmpty( dataSet[ key ] )
-                        if ( allowed.includes(key) ) {
+                        if ( allowed.includes( key ) ) {
                             expect( result ).to.be.true
                         } else {
                             expect( result ).to.be.false

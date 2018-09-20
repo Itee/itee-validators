@@ -74,7 +74,7 @@ function CreateKarmaUnitsConfiguration ( config ) {
         browserNoActivityTimeout: 5000,
 
         // If browser does not capture in given timeout [ms], kill it
-        captureTimeout: 5000,
+        captureTimeout: 5000
 
     } )
 

@@ -12,6 +12,7 @@ import { isEmptyArray } from './isEmptyArray'
 import { isNotArray }   from './isNotArray'
 import { isNotNull }    from '../voids/isNotNull'
 
+
 /**
  * Check if given data is not an empty array where all values are null
  *

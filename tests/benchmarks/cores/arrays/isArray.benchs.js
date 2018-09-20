@@ -10,7 +10,7 @@
 
 /* global Itee, suite, benchmark */
 
-import { isArray }       from '../../../../sources/cores/arrays/isArray'
+import { isArray } from '../../../../sources/cores/arrays/isArray'
 
 
 export default suite( 'isArray', () => {

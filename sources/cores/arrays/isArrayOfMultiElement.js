@@ -10,6 +10,7 @@
 
 import { isNotArray } from './isNotArray'
 
+
 /**
  * Check if given data is an array with multiples values
  *
@@ -20,6 +21,6 @@ export function isArrayOfMultiElement ( data ) {
 
     if ( isNotArray( data ) ) { return false }
 
-    return ( data.length > 1 )
+    return (data.length > 1)
 
 }

@@ -10,6 +10,7 @@
 
 import { isNotArray } from './isNotArray'
 
+
 /**
  * Check if given data is an empty array
  *

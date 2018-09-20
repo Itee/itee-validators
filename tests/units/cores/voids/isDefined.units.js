@@ -11,6 +11,7 @@
 
 import { isDefined } from '../../../../sources/cores/voids/isDefined'
 
+
 function isDefinedUnits () {
 
     describe( 'isDefined()', () => {
@@ -26,7 +27,6 @@ function isDefinedUnits () {
                     for ( let key in dataSet ) {
                         expect( isDefined( dataSet[ key ] ) ).to.be.false
                     }
-
 
                 } else {
 

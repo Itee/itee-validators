@@ -10,7 +10,7 @@
 
 /* global Itee, suite, benchmark */
 
-import { isNotKelvin }       from '../../../../sources/physics/temperatures/isNotKelvin'
+import { isNotKelvin } from '../../../../sources/physics/temperatures/isNotKelvin'
 
 
 export default suite( 'isNotKelvin', () => {

@@ -22,4 +22,5 @@ export function isNumber ( data ) {
 export function isNumber_1 ( data ) {
     return (Number( data ) === data)
 }
+
 // #endif

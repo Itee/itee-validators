@@ -10,6 +10,7 @@
 
 import { isFahrenheit } from './isFahrenheit'
 
+
 /**
  *
  * @param data

@@ -8,8 +8,9 @@
  *
  */
 
-import { isArray } from './isArray'
+import { isArray }    from './isArray'
 import { isNotArray } from './isNotArray'
+
 
 /**
  * Check if given data is not an array of array
@@ -29,7 +30,7 @@ export function isNotArrayOfArray ( data ) {
     }
 
     for ( let index = 0 ; index < dataLength ; index++ ) {
-        if (isArray( data[ index ] ) ) {
+        if ( isArray( data[ index ] ) ) {
             return false
         }
     }

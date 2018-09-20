@@ -12,6 +12,7 @@
 
 import { isNotObject } from '../../../../sources/cores/objects/isNotObject'
 
+
 function isNotObjectUnits () {
 
     describe( 'isNotObject()', () => {
@@ -19,7 +20,7 @@ function isNotObjectUnits () {
         it( 'should return false only when the value is an object', () => {
 
             const dataMap = this._dataMap
-            for( let mapKey in dataMap ) {
+            for ( let mapKey in dataMap ) {
 
                 const dataSet = dataMap[ mapKey ]
                 if ( mapKey === 'objects' ) {

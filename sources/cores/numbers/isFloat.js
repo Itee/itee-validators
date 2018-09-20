@@ -26,4 +26,5 @@ export function isFloat_1 ( n ) {
 export function isFloat_2 ( x ) {
     return !!(x % 1)
 }
+
 // #endif

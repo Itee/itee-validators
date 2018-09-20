@@ -12,6 +12,7 @@
 
 import { isInteger } from '../../../../sources/cores/numbers/isInteger'
 
+
 function isIntegerUnits () {
 
     describe( 'isInteger()', () => {
@@ -24,7 +25,18 @@ function isIntegerUnits () {
                 const dataSet = dataMap[ mapKey ]
                 if ( mapKey === 'numbers' ) {
 
-                    const allowed = [ 'negativeMinSafeInteger', 'negativeHexa', 'negativePow', 'negativeInt', 'negativeNullInt', 'positiveNullInt', 'positiveInt', 'positivePow', 'positiveHexa', 'positiveMaxSafeInteger' ]
+                    const allowed = [
+                        'negativeMinSafeInteger',
+                        'negativeHexa',
+                        'negativePow',
+                        'negativeInt',
+                        'negativeNullInt',
+                        'positiveNullInt',
+                        'positiveInt',
+                        'positivePow',
+                        'positiveHexa',
+                        'positiveMaxSafeInteger'
+                    ]
 
                     for ( let key in dataSet ) {
 

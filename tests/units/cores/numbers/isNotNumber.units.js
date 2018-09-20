@@ -12,6 +12,7 @@
 
 import { isNotNumber } from '../../../../sources/cores/numbers/isNotNumber'
 
+
 function isNotNumberUnits () {
 
     describe( 'isNotNumber()', () => {
@@ -19,7 +20,7 @@ function isNotNumberUnits () {
         it( 'should return false only when the value is a number', () => {
 
             const dataMap = this._dataMap
-            for( let mapKey in dataMap ) {
+            for ( let mapKey in dataMap ) {
 
                 const dataSet = dataMap[ mapKey ]
                 if ( mapKey === 'numbers' ) {

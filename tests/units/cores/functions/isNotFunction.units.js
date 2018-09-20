@@ -12,6 +12,7 @@
 
 import { isNotFunction } from '../../../../sources/cores/functions/isNotFunction'
 
+
 function isNotFunctionUnits () {
 
     describe( 'isNotFunction()', () => {
@@ -19,7 +20,7 @@ function isNotFunctionUnits () {
         it( 'should return false only when the value is a functions', () => {
 
             const dataMap = this._dataMap
-            for( let mapKey in dataMap ) {
+            for ( let mapKey in dataMap ) {
 
                 const dataSet = dataMap[ mapKey ]
                 if ( mapKey === 'functions' ) {

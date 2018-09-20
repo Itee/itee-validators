@@ -12,6 +12,7 @@
 
 import { isString } from '../../../../sources/cores/strings/isString'
 
+
 function isStringUnits () {
 
     describe( 'isString()', () => {
@@ -19,7 +20,7 @@ function isStringUnits () {
         it( 'should return true only when the value is a string', () => {
 
             const dataMap = this._dataMap
-            for( let mapKey in dataMap ) {
+            for ( let mapKey in dataMap ) {
 
                 const dataSet = dataMap[ mapKey ]
                 if ( mapKey === 'strings' ) {

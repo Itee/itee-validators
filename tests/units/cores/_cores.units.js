@@ -15,6 +15,7 @@ import { _stringsUnits }   from './strings/_strings.units'
 import { _symbolsUnits }   from './symbols/_symbols.units'
 import { _voidsUnits }     from './voids/_voids.units'
 
+
 function _coresUnits () {
 
     describe( 'Cores', () => {

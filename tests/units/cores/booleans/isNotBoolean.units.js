@@ -11,6 +11,7 @@
 
 import { isNotBoolean } from '../../../../sources/cores/booleans/isNotBoolean'
 
+
 function isNotBooleanUnits () {
 
     describe( 'isNotBoolean()', () => {
@@ -18,7 +19,7 @@ function isNotBooleanUnits () {
         it( 'should return false only when the value is a boolean', () => {
 
             const dataMap = this._dataMap
-            for( let mapKey in dataMap ) {
+            for ( let mapKey in dataMap ) {
 
                 const dataSet = dataMap[ mapKey ]
                 if ( mapKey === 'booleans' ) {

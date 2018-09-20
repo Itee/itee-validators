@@ -12,6 +12,7 @@
 
 import { isFunction } from '../../../../sources/cores/functions/isFunction'
 
+
 function isFunctionUnits () {
 
     describe( 'isFunction()', () => {
@@ -19,7 +20,7 @@ function isFunctionUnits () {
         it( 'should return true only when the value is a functions', () => {
 
             const dataMap = this._dataMap
-            for( let mapKey in dataMap ) {
+            for ( let mapKey in dataMap ) {
 
                 const dataSet = dataMap[ mapKey ]
                 if ( mapKey === 'functions' ) {

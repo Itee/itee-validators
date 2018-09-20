@@ -10,7 +10,7 @@
 
 /* global Itee, suite, benchmark */
 
-import { isNotArrayOfUndefined }       from '../../../../sources/cores/arrays/isNotArrayOfUndefined'
+import { isNotArrayOfUndefined } from '../../../../sources/cores/arrays/isNotArrayOfUndefined'
 
 
 export default suite( 'isNotArrayOfUndefined', () => {

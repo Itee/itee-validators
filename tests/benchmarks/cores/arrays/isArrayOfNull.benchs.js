@@ -10,7 +10,7 @@
 
 /* global Itee, suite, benchmark */
 
-import { isArrayOfNull }       from '../../../../sources/cores/arrays/isArrayOfNull'
+import { isArrayOfNull } from '../../../../sources/cores/arrays/isArrayOfNull'
 
 
 export default suite( 'isArrayOfNull', () => {

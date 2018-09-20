@@ -10,7 +10,7 @@
 
 /* global Itee, suite, benchmark */
 
-import { isNotTemperature }       from '../../../../sources/physics/temperatures/isNotTemperature'
+import { isNotTemperature } from '../../../../sources/physics/temperatures/isNotTemperature'
 
 
 export default suite( 'isNotTemperature', () => {

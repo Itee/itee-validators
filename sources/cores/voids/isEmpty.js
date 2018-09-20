@@ -13,6 +13,7 @@ import { isEmptyObject }     from '../objects/isEmptyObject'
 import { isEmptyString }     from '../strings/isEmptyString'
 import { isNullOrUndefined } from './isNullOrUndefined'
 
+
 /**
  * Check emptiness of given data
  *

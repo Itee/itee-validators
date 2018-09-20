@@ -12,6 +12,7 @@
 
 import { isNumberPositive } from '../../../../sources/cores/numbers/isNumberPositive'
 
+
 function isNumberPositiveUnits () {
 
     describe( 'isNumberPositive()', () => {
@@ -19,12 +20,23 @@ function isNumberPositiveUnits () {
         it( 'should return true only when the value is a positive number', () => {
 
             const dataMap = this._dataMap
-            for( let mapKey in dataMap ) {
+            for ( let mapKey in dataMap ) {
 
                 const dataSet = dataMap[ mapKey ]
                 if ( mapKey === 'numbers' ) {
 
-                    const allowed = [ 'positiveInfinity', 'positiveMaxValue', 'positiveMinSafeInteger', 'positiveMinValue', 'positiveHexa', 'positivePow', 'positiveFloat', 'positiveInt', 'positiveNullFloat', 'positiveNullInt']
+                    const allowed = [
+                        'positiveInfinity',
+                        'positiveMaxValue',
+                        'positiveMinSafeInteger',
+                        'positiveMinValue',
+                        'positiveHexa',
+                        'positivePow',
+                        'positiveFloat',
+                        'positiveInt',
+                        'positiveNullFloat',
+                        'positiveNullInt'
+                    ]
 
                     for ( let key in dataSet ) {
 

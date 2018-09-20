@@ -10,7 +10,7 @@
 
 /* global Itee, suite, benchmark */
 
-import { isEmptyArray }       from '../../../../sources/cores/arrays/isEmptyArray'
+import { isEmptyArray } from '../../../../sources/cores/arrays/isEmptyArray'
 
 
 export default suite( 'isEmptyArray', () => {

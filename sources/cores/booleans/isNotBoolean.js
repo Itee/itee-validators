@@ -10,6 +10,7 @@
 
 import { isBoolean } from './isBoolean'
 
+
 /**
  * Check if given data is not a boolean
  *
@@ -24,4 +25,5 @@ export function isNotBoolean ( data ) {
 export function isNotBoolean_negbase ( data ) {
     return !isBoolean( data )
 }
+
 // #endif

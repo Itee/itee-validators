@@ -38,4 +38,5 @@ export function isString_3 ( val ) {
 export function isString_4 ( val ) {
     return (val === val + '')
 }
+
 // #endif

@@ -12,6 +12,7 @@
 
 import { isBlankString } from '../../../../sources/cores/strings/isBlankString'
 
+
 function isBlankStringUnits () {
 
     describe( 'isBlankString()', () => {

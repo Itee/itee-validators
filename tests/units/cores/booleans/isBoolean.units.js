@@ -12,6 +12,7 @@
 
 import { isBoolean } from '../../../../sources/cores/booleans/isBoolean'
 
+
 function isBooleanUnits () {
 
     describe( 'isBoolean()', () => {
@@ -19,7 +20,7 @@ function isBooleanUnits () {
         it( 'should return true only when the value is a boolean', () => {
 
             const dataMap = this._dataMap
-            for( let mapKey in dataMap ) {
+            for ( let mapKey in dataMap ) {
 
                 const dataSet = dataMap[ mapKey ]
                 if ( mapKey === 'booleans' ) {

@@ -10,7 +10,7 @@
 
 /* global Itee, suite, benchmark */
 
-import { isCelsius }       from '../../../../sources/physics/temperatures/isCelsius'
+import { isCelsius } from '../../../../sources/physics/temperatures/isCelsius'
 
 
 export default suite( 'isCelsius', () => {

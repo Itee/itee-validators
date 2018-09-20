@@ -12,6 +12,7 @@
 
 import { isNotEmptyObject } from '../../../../sources/cores/objects/isNotEmptyObject'
 
+
 function isNotEmptyObjectUnits () {
 
     describe( 'isNotEmptyObject()', () => {

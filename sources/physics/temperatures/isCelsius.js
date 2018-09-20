@@ -8,8 +8,9 @@
  *
  */
 
-import { isNumber } from '../../cores/numbers/isNumber'
+import { isNumber }              from '../../cores/numbers/isNumber'
 import { ABSOLUTE_ZERO_CELSIUS } from './constants'
+
 
 /**
  *

@@ -11,6 +11,7 @@
 
 import { isNull } from '../../../../sources/cores/voids/isNull'
 
+
 function isNullUnits () {
 
     describe( 'isNull()', () => {

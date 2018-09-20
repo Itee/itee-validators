@@ -11,6 +11,7 @@
 
 import { isNotEmpty } from '../../../../sources/cores/voids/isNotEmpty'
 
+
 function isNotEmptyUnits () {
 
     describe( 'isNotEmpty()', () => {
@@ -28,7 +29,7 @@ function isNotEmptyUnits () {
                     for ( let key in dataSet ) {
 
                         const result = isNotEmpty( dataSet[ key ] )
-                        if ( allowed.includes(key) ) {
+                        if ( allowed.includes( key ) ) {
                             expect( result ).to.be.false
                         } else {
                             expect( result ).to.be.true
@@ -43,7 +44,7 @@ function isNotEmptyUnits () {
                     for ( let key in dataSet ) {
 
                         const result = isNotEmpty( dataSet[ key ] )
-                        if ( allowed.includes(key) ) {
+                        if ( allowed.includes( key ) ) {
                             expect( result ).to.be.false
                         } else {
                             expect( result ).to.be.true
@@ -58,7 +59,7 @@ function isNotEmptyUnits () {
                     for ( let key in dataSet ) {
 
                         const result = isNotEmpty( dataSet[ key ] )
-                        if ( allowed.includes(key) ) {
+                        if ( allowed.includes( key ) ) {
                             expect( result ).to.be.false
                         } else {
                             expect( result ).to.be.true

@@ -12,6 +12,7 @@
 
 import { isSymbol } from '../../../../sources/cores/symbols/isSymbol'
 
+
 function isSymbolUnits () {
 
     describe( 'isSymbol()', () => {
@@ -19,7 +20,7 @@ function isSymbolUnits () {
         it( 'should return true only when the value is a symbols', () => {
 
             const dataMap = this._dataMap
-            for( let mapKey in dataMap ) {
+            for ( let mapKey in dataMap ) {
 
                 const dataSet = dataMap[ mapKey ]
                 if ( mapKey === 'symbols' ) {

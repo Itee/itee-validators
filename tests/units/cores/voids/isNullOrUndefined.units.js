@@ -11,6 +11,7 @@
 
 import { isNullOrUndefined } from '../../../../sources/cores/voids/isNullOrUndefined'
 
+
 function isNullOrUndefinedUnits () {
 
     describe( 'isNullOrUndefined()', () => {
@@ -26,7 +27,6 @@ function isNullOrUndefinedUnits () {
                     for ( let key in dataSet ) {
                         expect( isNullOrUndefined( dataSet[ key ] ) ).to.be.true
                     }
-
 
                 } else {
 

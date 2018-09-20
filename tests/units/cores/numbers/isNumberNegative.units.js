@@ -12,6 +12,7 @@
 
 import { isNumberNegative } from '../../../../sources/cores/numbers/isNumberNegative'
 
+
 function isNumberNegativeUnits () {
 
     describe( 'isNumberNegative()', () => {
@@ -19,12 +20,23 @@ function isNumberNegativeUnits () {
         it( 'should return true only when the value is a negative number', () => {
 
             const dataMap = this._dataMap
-            for( let mapKey in dataMap ) {
+            for ( let mapKey in dataMap ) {
 
                 const dataSet = dataMap[ mapKey ]
                 if ( mapKey === 'numbers' ) {
 
-                    const allowed = [ 'negativeInfinity', 'negativeMaxValue', 'negativeMinSafeInteger', 'negativeMinValue', 'negativeHexa', 'negativePow', 'negativeFloat', 'negativeInt', 'negativeNullFloat', 'negativeNullInt']
+                    const allowed = [
+                        'negativeInfinity',
+                        'negativeMaxValue',
+                        'negativeMinSafeInteger',
+                        'negativeMinValue',
+                        'negativeHexa',
+                        'negativePow',
+                        'negativeFloat',
+                        'negativeInt',
+                        'negativeNullFloat',
+                        'negativeNullInt'
+                    ]
 
                     for ( let key in dataSet ) {
 

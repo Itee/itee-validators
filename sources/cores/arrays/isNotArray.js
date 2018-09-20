@@ -10,6 +10,7 @@
 
 import { isArray } from './isArray'
 
+
 /**
  * Check if given data is not an array
  *
@@ -24,4 +25,5 @@ export function isNotArray ( data ) {
 export function isNotArray_0 ( data ) {
     return !isArray( data )
 }
+
 // #endif

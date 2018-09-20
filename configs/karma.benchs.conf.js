@@ -84,7 +84,7 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
         browsers: [ 'Chrome', 'Firefox', 'Edge' ],
-//        browsers: [ 'Chrome', 'Firefox', 'Edge', 'IE' ],
+        //        browsers: [ 'Chrome', 'Firefox', 'Edge', 'IE' ],
 
         // Format assertion errors and stack traces. Useful for removing vendors and compiled sources. Return an empty line '' to remove it.
         formatError: () => '',

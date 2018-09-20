@@ -46,7 +46,7 @@ const cyan      = colors.cyan
 const yellow    = colors.yellow
 const magenta   = colors.magenta
 
-const packageVersion = require('./package.json').version
+const packageVersion = require( './package.json' ).version
 
 /**
  * @method npm run help ( default )
@@ -76,21 +76,21 @@ gulp.task( 'help', ( done ) => {
     log( '' )
     log( '\t The available', green( '<options>' ), 'are:' )
     log( '' )
-    log( '\t\t', green( '-n' ), 'or', green( '--name' ), ' - The export name of the builded application', red( '(required for UMD module)' ), cyan('[Default: ""]'), '.' )
+    log( '\t\t', green( '-n' ), 'or', green( '--name' ), ' - The export name of the builded application', red( '(required for UMD module)' ), cyan( '[Default: ""]' ), '.' )
     log( '' )
-    log( '\t\t', green( '-i' ), 'or', green( '--input' ), ' - The main file path to build', cyan('[Default: "sources/main.js"]'), '.' )
+    log( '\t\t', green( '-i' ), 'or', green( '--input' ), ' - The main file path to build', cyan( '[Default: "sources/main.js"]' ), '.' )
     log( '' )
-    log( '\t\t', green( '-o' ), 'or', green( '--output' ), ' - The folder where output the build', cyan('[Default: "builds"]'), '.' )
+    log( '\t\t', green( '-o' ), 'or', green( '--output' ), ' - The folder where output the build', cyan( '[Default: "builds"]' ), '.' )
     log( '' )
-    log( '\t\t', green( '-f:' ), magenta( '<format>' ), 'or', green( '--format:' ), magenta( '<format>' ), ' - to specify the output build type', cyan('[Default: "amd,cjs,es,iife,umd"]'), '.' )
+    log( '\t\t', green( '-f:' ), magenta( '<format>' ), 'or', green( '--format:' ), magenta( '<format>' ), ' - to specify the output build type', cyan( '[Default: "amd,cjs,es,iife,umd"]' ), '.' )
     log( '\t\t', 'where format could be any of:', magenta( 'amd' ), magenta( 'cjs' ), magenta( 'es' ), magenta( 'iife' ), magenta( 'umd' ) )
     log( '' )
-    log( '\t\t', green( '-e:' ), magenta( '<env>' ), 'or', green( '--env:' ), magenta( '<env>' ), ' - to specify the build environment', cyan('[Default: "dev"]'), '.' )
+    log( '\t\t', green( '-e:' ), magenta( '<env>' ), 'or', green( '--env:' ), magenta( '<env>' ), ' - to specify the build environment', cyan( '[Default: "dev"]' ), '.' )
     log( '\t\t', 'where env could be any of:', magenta( 'dev' ), magenta( 'prod' ) )
     log( '' )
-    log( '\t\t', green( '-s' ), 'or', green( '--sourcemap' ), ' - to build with related source map', cyan('[Default: true]'), '.' )
+    log( '\t\t', green( '-s' ), 'or', green( '--sourcemap' ), ' - to build with related source map', cyan( '[Default: true]' ), '.' )
     log( '' )
-    log( '\t\t', green( '-t' ), 'or', green( '--treeshake' ), ' - allow to perform treeshaking when building', cyan('[Default: true]'), '.' )
+    log( '\t\t', green( '-t' ), 'or', green( '--treeshake' ), ' - allow to perform treeshaking when building', cyan( '[Default: true]' ), '.' )
     log( '' )
     log( '\t', blue( 'npm run' ), cyan( 'release' ), ' - Will run all the lint, test stuff, and if succeed will build the application.' )
     log( '' )
@@ -186,14 +186,14 @@ gulp.task( 'unit', ( done ) => {
         if ( exitCode !== 0 ) {
             done( `Karma server exit with code ${exitCode}` )
         } else {
-            log(`Karma server exit with code ${exitCode}`)
+            log( `Karma server exit with code ${exitCode}` )
             done()
         }
 
     } )
 
-    karmaServer.on('browser_error', ( browser, error ) => {
-        log( red(error.message) )
+    karmaServer.on( 'browser_error', ( browser, error ) => {
+        log( red( error.message ) )
     } )
 
     karmaServer.start()
@@ -214,14 +214,14 @@ gulp.task( 'bench', ( done ) => {
         if ( exitCode !== 0 ) {
             done( `Karma server exit with code ${exitCode}` )
         } else {
-            log(`Karma server exit with code ${exitCode}`)
+            log( `Karma server exit with code ${exitCode}` )
             done()
         }
 
     } )
 
-    karmaServer.on('browser_error', ( browser, error ) => {
-        log( red(error.message) )
+    karmaServer.on( 'browser_error', ( browser, error ) => {
+        log( red( error.message ) )
     } )
 
     karmaServer.start()
@@ -263,7 +263,7 @@ gulp.task( 'build-test', ( done ) => {
         }
     } )
 
-    const configs = require( './configs/rollup.test.conf' )(options)
+    const configs = require( './configs/rollup.test.conf' )( options )
 
     nextBuild()
 
@@ -323,7 +323,7 @@ gulp.task( 'build', ( done ) => {
         }
     } )
 
-    const configs = require( './configs/rollup.conf' )(options)
+    const configs = require( './configs/rollup.conf' )( options )
 
     nextBuild()
 

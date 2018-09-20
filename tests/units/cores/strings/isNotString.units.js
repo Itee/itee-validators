@@ -12,6 +12,7 @@
 
 import { isNotString } from '../../../../sources/cores/strings/isNotString'
 
+
 function isNotStringUnits () {
 
     describe( 'isNotString()', () => {
@@ -19,7 +20,7 @@ function isNotStringUnits () {
         it( 'should return false only when the value is a string', () => {
 
             const dataMap = this._dataMap
-            for( let mapKey in dataMap ) {
+            for ( let mapKey in dataMap ) {
 
                 const dataSet = dataMap[ mapKey ]
                 if ( mapKey === 'strings' ) {
