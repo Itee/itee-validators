@@ -8,8 +8,8 @@
  *
  */
 
-import { isObject } from './isObject'
-import { isNotEmpty } from '../voids/isNotEmpty'
+import { isEmptyObject } from './isEmptyObject'
+
 
 /**
  * Check if given data is not an empty object
@@ -18,5 +18,5 @@ import { isNotEmpty } from '../voids/isNotEmpty'
  * @returns {boolean} true if data is not an empty object, false otherwise
  */
 export function isNotEmptyObject ( data ) {
-    return (isObject( data ) && isNotEmpty( data ))
+    return !(isEmptyObject( data ))
 }

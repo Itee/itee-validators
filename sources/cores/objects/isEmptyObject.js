@@ -8,8 +8,7 @@
  *
  */
 
-import { isObject } from './isObject'
-import { isEmpty } from '../voids/isEmpty'
+import { isNotObject } from './isNotObject'
 
 /**
  * Check if given data is an empty object
@@ -18,5 +17,20 @@ import { isEmpty } from '../voids/isEmpty'
  * @returns {boolean} true if data is an empty object, false otherwise
  */
 export function isEmptyObject ( data ) {
-    return (isObject( data ) && isEmpty( data ))
+
+    if( isNotObject(data) ) { return false }
+
+    if ( data.length === 0 ) {
+        return true
+    }
+
+    // Otherwise, does it have any properties of its own?
+    for ( let key in data ) {
+        if ( Object.prototype.hasOwnProperty.call( data, key ) ) {
+            return false
+        }
+    }
+
+    return true
+
 }
