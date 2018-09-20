@@ -11,7 +11,6 @@
 /* global describe, expect, it */
 
 import { isNotArrayOfString } from '../../../../sources/cores/arrays/isNotArrayOfString'
-import { isNotArrayOfObject } from '../../../../sources/cores/arrays/isNotArrayOfObject'
 
 function isNotArrayOfStringUnits () {
 
@@ -69,10 +68,11 @@ function isNotArrayOfStringUnits () {
             const values = this._dataMap.arrays
             for ( let key in values ) {
 
+                const result = isNotArrayOfString( values[ key ] )
                 if ( key === 'strings' ) {
-                    expect( isNotArrayOfString( values[ key ] ) ).to.be.true
+                    expect( result ).to.be.false
                 } else {
-                    expect( isNotArrayOfString( values[ key ] ) ).to.be.false
+                    expect( result ).to.be.true
                 }
 
             }

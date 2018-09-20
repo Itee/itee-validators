@@ -11,7 +11,6 @@
 /* global describe, expect, it */
 
 import { isNotArrayOfObject } from '../../../../sources/cores/arrays/isNotArrayOfObject'
-import { isNotArrayOfNull }   from '../../../../sources/cores/arrays/isNotArrayOfNull'
 
 function isNotArrayOfObjectUnits () {
 
@@ -64,15 +63,16 @@ function isNotArrayOfObjectUnits () {
 
         //////////////// Specific part
 
-        it( 'should return false only when the value is an array of object', () => {
+        it.skip( 'should return false only when the value is an array of object', () => {
 
             const values = this._dataMap.arrays
             for ( let key in values ) {
 
+                const result = isNotArrayOfObject( values[ key ] )
                 if ( key === 'objects' ) {
-                    expect( isNotArrayOfObject( values[ key ] ) ).to.be.true
+                    expect( result ).to.be.false
                 } else {
-                    expect( isNotArrayOfObject( values[ key ] ) ).to.be.false
+                    expect( result ).to.be.true
                 }
 
             }

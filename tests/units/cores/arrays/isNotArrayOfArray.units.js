@@ -11,7 +11,6 @@
 /* global describe, expect, it */
 
 import { isNotArrayOfArray } from '../../../../sources/cores/arrays/isNotArrayOfArray'
-import { isEmptyArray }      from '../../../../sources/cores/arrays/isEmptyArray'
 
 function isNotArrayOfArrayUnits () {
 
@@ -69,10 +68,11 @@ function isNotArrayOfArrayUnits () {
             const values = this._dataMap.arrays
             for ( let key in values ) {
 
+                const result = isNotArrayOfArray( values[ key ] )
                 if ( key === 'arrays' ) {
-                    expect( isEmptyArray( values[ key ] ) ).to.be.true
+                    expect( result ).to.be.false
                 } else {
-                    expect( isEmptyArray( values[ key ] ) ).to.be.false
+                    expect( result ).to.be.true
                 }
 
             }

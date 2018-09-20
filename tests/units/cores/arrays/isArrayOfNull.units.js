@@ -11,7 +11,6 @@
 /* global describe, expect, it */
 
 import { isArrayOfNull }  from '../../../../sources/cores/arrays/isArrayOfNull'
-import { isArrayOfArray } from '../../../../sources/cores/arrays/isArrayOfArray'
 
 function isArrayOfNullUnits () {
 

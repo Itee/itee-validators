@@ -16,11 +16,11 @@ function isNotStringUnits () {
 
     describe( 'isNotString()', () => {
 
-        it( 'should return false when the value is a void', () => {
+        it( 'should return true when the value is a void', () => {
 
             const values = this._dataMap.voids
             for( let key in values ) {
-                expect( isNotString( values[ key ] ) ).to.be.false
+                expect( isNotString( values[ key ] ) ).to.be.true
             }
 
         } )

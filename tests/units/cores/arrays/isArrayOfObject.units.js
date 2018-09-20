@@ -11,7 +11,6 @@
 /* global describe, expect, it */
 
 import { isArrayOfObject } from '../../../../sources/cores/arrays/isArrayOfObject'
-import { isArrayOfArray }  from '../../../../sources/cores/arrays/isArrayOfArray'
 
 function isArrayOfObjectUnits () {
 

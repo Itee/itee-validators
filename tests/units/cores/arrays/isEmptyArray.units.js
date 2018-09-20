@@ -11,7 +11,6 @@
 /* global describe, expect, it */
 
 import { isEmptyArray }       from '../../../../sources/cores/arrays/isEmptyArray'
-import { isArrayOfUndefined } from '../../../../sources/cores/arrays/isArrayOfUndefined'
 
 function isEmptyArrayUnits () {
 

@@ -13,14 +13,14 @@ import { isNotEmpty } from '../../../../sources/cores/voids/isNotEmpty'
 
 function isNotEmptyUnits () {
 
-    describe( 'isNotEmpty()', () => {
+    describe.skip( 'isNotEmpty()', () => {
 
         // Specific dataset
 
-        it( 'should return false when the value is null', () => {
+        it( 'should return true when the value is null', () => {
 
             const value = this._dataMap.voids.null
-            expect( isNotEmpty( value ) ).to.be.false
+            expect( isNotEmpty( value ) ).to.be.true
 
         } )
 
@@ -58,11 +58,17 @@ function isNotEmptyUnits () {
 
         } )
 
-        it.skip( 'should return false when the value is a string', () => {
+        it( 'should return false only when the value is an empty string', () => {
 
-            const values = this._dataMap.strings
-            for( let key in values ) {
-                expect( isNotEmpty( values[ key ] ) ).to.be.false
+            const values  = this._dataMap.strings
+            const allowed = [ 'empty', 'stringNull', 'stringEmpty' ]
+            for ( let key in values ) {
+
+                if ( allowed.includes( key ) ) {
+                    expect( isNotEmpty( values[ key ] ) ).to.be.false
+                } else {
+                    expect( isNotEmpty( values[ key ] ) ).to.be.true
+                }
             }
 
         } )
@@ -76,20 +82,32 @@ function isNotEmptyUnits () {
 
         } )
 
-        it.skip( 'should return false when the value is an array', () => {
+        it( 'should return false only when the value is an empty array', () => {
 
-            const values = this._dataMap.arrays
-            for( let key in values ) {
-                expect( isNotEmpty( values[ key ] ) ).to.be.false
+            const values  = this._dataMap.arrays
+            const allowed = [ 'emptyArray', 'emptyArrayObject' ]
+            for ( let key in values ) {
+
+                if ( allowed.includes( key ) ) {
+                    expect( isNotEmpty( values[ key ] ) ).to.be.false
+                } else {
+                    expect( isNotEmpty( values[ key ] ) ).to.be.true
+                }
             }
 
         } )
 
-        it.skip( 'should return false when the value is an object', () => {
+        it( 'should return false only when the value is an empty object', () => {
 
-            const values = this._dataMap.objects
-            for( let key in values ) {
-                expect( isNotEmpty( values[ key ] ) ).to.be.false
+            const values  = this._dataMap.objects
+            const allowed = [ 'empty', 'instance' ]
+            for ( let key in values ) {
+
+                if ( allowed.includes( key ) ) {
+                    expect( isNotEmpty( values[ key ] ) ).to.be.false
+                } else {
+                    expect( isNotEmpty( values[ key ] ) ).to.be.true
+                }
             }
 
         } )
