@@ -8,8 +8,8 @@
  *
  */
 
-import { isNotArray } from './isNotArray'
-import { isDefined }  from '../voids/isDefined'
+import { isNotUndefined } from '../voids/isNotUndefined'
+import { isNotArray }     from './isNotArray'
 
 /**
  * Check if given data is not an empty array where all values are undefined
@@ -29,8 +29,7 @@ export function isArrayOfUndefined ( data ) {
     }
 
     for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
-        // Todo: Use isNotUndefined !!!
-        if ( isDefined( data[ index ] ) ) {
+        if ( isNotUndefined( data[ index ] ) ) {
             return false
         }
     }
