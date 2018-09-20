@@ -22,10 +22,6 @@ import { isNumber }          from '../numbers/isNumber'
 export function isObject ( data ) {
 
     if ( isNullOrUndefined( data ) ) { return false }
-    if ( typeof data !== 'object' ) { return false }
-    if ( isNumber( data ) ) { return false }
-    if ( isString( data ) ) { return false }
-    if ( isArray( data ) ) { return false }
 
-    return true
+    return (data.constructor === Object)
 }
