@@ -69,7 +69,7 @@ function isNotArrayOfUndefinedUnits () {
             for ( let key in values ) {
 
                 const result = isNotArrayOfUndefined( values[ key ] )
-                if ( key === 'undefined' ) {
+                if ( key === 'undefined' || key === 'void' ) {
                     expect( result ).to.be.false
                 } else {
                     expect( result ).to.be.true
