@@ -1,6 +1,6 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [MIT]{@link https://opensource.org/licenses/MIT}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module tests/cores/arrays
  * @desc Export the units tests about isArrayOfMultiElement method.
@@ -10,103 +10,40 @@
 
 /* global describe, expect, it */
 
-import { isArrayOfMultiElement } from '../../../../sources/cores/arrays'
+import { isArrayOfMultiElement } from '../../../../sources/cores/arrays/isArrayOfMultiElement'
 
 function isArrayOfMultiElementUnits () {
 
     describe( 'isArrayOfMultiElement()', () => {
 
-        it( 'should return false when the value is a void', () => {
+        it( 'should return true only when the value is a multi valued array', () => {
 
-            const dataSet = this._dataSet[ 'voids' ]
-            for ( let key in dataSet ) {
-                expect( isArrayOfMultiElement( dataSet[ key ] ) ).to.be.false
-            }
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
 
-        } )
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'arrays' ) {
 
-        it( 'should return false when the value is a boolean', () => {
+                    for ( let key in dataSet ) {
 
-            const dataSet = this._dataSet[ 'booleans' ]
-            for ( let key in dataSet ) {
-                expect( isArrayOfMultiElement( dataSet[ key ] ) ).to.be.false
-            }
+                        const value  = dataSet[ key ]
+                        const result = isArrayOfMultiElement( value )
+                        if ( value.length > 1 ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
 
-        } )
+                    }
 
-        it( 'should return false when the value is a number', () => {
+                } else {
 
-            const dataSet = this._dataSet[ 'numbers' ]
-            for ( let key in dataSet ) {
-                expect( isArrayOfMultiElement( dataSet[ key ] ) ).to.be.false
-            }
+                    for ( let key in dataSet ) {
+                        expect( isArrayOfMultiElement( dataSet[ key ] ) ).to.be.false
+                    }
 
-        } )
+                }
 
-        it( 'should return false when the value is a string', () => {
-
-            const dataSet = this._dataSet[ 'strings' ]
-            for ( let key in dataSet ) {
-                expect( isArrayOfMultiElement( dataSet[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is a function', () => {
-
-            const dataSet = this._dataSet[ 'functions' ]
-            for ( let key in dataSet ) {
-                expect( isArrayOfMultiElement( dataSet[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        //////////////// Specific part
-
-        it( 'should return false when the value is an empty array', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfMultiElement( dataSet[ 'emptyArray' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return false when the value is an empty array object', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfMultiElement( dataSet[ 'emptyArrayObject' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return false when the value is a single valued array of number', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfMultiElement( dataSet[ 'singleValued' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return true when the value is a multi valued array of number', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfMultiElement( dataSet[ 'multiValued' ] ) ).to.be.true
-
-        } )
-
-        /////////////////
-
-        it( 'should return false when the value is an typed array', () => {
-
-            const dataSet = this._dataSet[ 'typedArrays' ]
-            for ( let key in dataSet ) {
-                expect( isArrayOfMultiElement( dataSet[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is an object', () => {
-
-            const dataSet = this._dataSet[ 'objects' ]
-            for ( let key in dataSet ) {
-                expect( isArrayOfMultiElement( dataSet[ key ] ) ).to.be.false
             }
 
         } )

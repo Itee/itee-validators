@@ -1,6 +1,6 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [MIT]{@link https://opensource.org/licenses/MIT}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module tests/physics/temperatures
  * @desc Export the units tests about isKelvin method.
@@ -10,15 +10,21 @@
 
 /* global describe, expect, it */
 
-import { isKelvin } from '../../../../sources/physics/temperatures'
+import { isKelvin, isNotKelvin } from '../../../../sources/physics/temperatures/isKelvin'
 
 function isKelvinUnits () {
 
     describe( 'isKelvin()', () => {
 
-        it( 'should be implemented', () => {
+        it.skip( 'should be implemented', () => {
 
-            expect( true ).to.be.true
+            expect( isKelvin(0) ).to.be.true
+
+        } )
+
+        it.skip( 'should be implemented', () => {
+
+            expect( isNotKelvin(0) ).to.be.false
 
         } )
 

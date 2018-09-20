@@ -1,6 +1,6 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [MIT]{@link https://opensource.org/licenses/MIT}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module tests/cores/voids
  * @desc Export the units tests about isNullOrUndefined method.
@@ -9,87 +9,60 @@
 
 /* global describe, expect, it */
 
-import { isNullOrUndefined } from '../../../../sources/cores/voids'
+import { isNullOrUndefined, isDefined } from '../../../../sources/cores/voids/isNullOrUndefined'
 
 function isNullOrUndefinedUnits () {
 
     describe( 'isNullOrUndefined()', () => {
 
-        // Specific dataset
+        it( 'should return true only when the value is null or undefined', () => {
 
-        it( 'should return true when the value is null', () => {
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
 
-            const _dataSet = this.dataSet[ 'voids' ]
-            expect( isNullOrUndefined( _dataSet[ 0 ] ) ).to.be.true
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'voids' ) {
 
-        } )
+                    for ( let key in dataSet ) {
+                        expect( isNullOrUndefined( dataSet[ key ] ) ).to.be.true
+                    }
 
-        it( 'should return false when the value is undefined', () => {
+                } else {
 
-            const _dataSet = this.dataSet[ 'voids' ]
-            expect( isNullOrUndefined( _dataSet[ 1 ] ) ).to.be.false
+                    for ( let key in dataSet ) {
+                        expect( isNullOrUndefined( dataSet[ key ] ) ).to.be.false
+                    }
 
-        } )
+                }
 
-        it( 'should return false when the value is void(0)', () => {
-
-            const _dataSet = this.dataSet[ 'voids' ]
-            expect( isNullOrUndefined( _dataSet[ 2 ] ) ).to.be.false
-
-        } )
-
-        // Global dataset
-
-        it( 'should return false when the value is a boolean', () => {
-
-            const _dataSet = this.dataSet[ 'booleans' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNullOrUndefined( _dataSet[ i ] ) ).to.be.false
             }
 
         } )
 
-        it( 'should return false when the value is a number', () => {
+    } )
 
-            const _dataSet = this.dataSet[ 'numbers' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNullOrUndefined( _dataSet[ i ] ) ).to.be.false
-            }
+    describe( 'isDefined()', () => {
 
-        } )
+        it( 'should return false only when the value is null or undefined', () => {
 
-        it( 'should return false when the value is a string', () => {
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
 
-            const _dataSet = this.dataSet[ 'strings' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNullOrUndefined( _dataSet[ i ] ) ).to.be.false
-            }
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'voids' ) {
 
-        } )
+                    for ( let key in dataSet ) {
+                        expect( isDefined( dataSet[ key ] ) ).to.be.false
+                    }
 
-        it( 'should return false when the value is a function', () => {
+                } else {
 
-            const _dataSet = this.dataSet[ 'functions' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNullOrUndefined( _dataSet[ i ] ) ).to.be.false
-            }
+                    for ( let key in dataSet ) {
+                        expect( isDefined( dataSet[ key ] ) ).to.be.true
+                    }
 
-        } )
+                }
 
-        it( 'should return false when the value is an array', () => {
-
-            const _dataSet = this.dataSet[ 'arrays' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNullOrUndefined( _dataSet[ i ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is an object', () => {
-
-            const _dataSet = this.dataSet[ 'objects' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isNullOrUndefined( _dataSet[ i ] ) ).to.be.false
             }
 
         } )

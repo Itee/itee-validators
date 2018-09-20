@@ -1,6 +1,6 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [MIT]{@link https://opensource.org/licenses/MIT}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module tests/cores/arrays
  * @desc Export the units tests about isArray method.
@@ -10,80 +10,60 @@
 
 /* global describe, expect, it */
 
-import { isArray } from '../../../../sources/cores/arrays'
+import { isArray, isNotArray } from '../../../../sources/cores/arrays/isArray'
 
 function isArrayUnits () {
 
     describe( 'isArray()', () => {
 
-        it( 'should return false when the value is a void', () => {
+        it( 'should return true only when the value is a array', () => {
 
-            const dataSet = this._dataSet[ 'voids' ]
-            for ( let key in dataSet ) {
-                expect( isArray( dataSet[ key ] ) ).to.be.false
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'arrays' ) {
+
+                    for ( let key in dataSet ) {
+                        expect( isArray( dataSet[ key ] ) ).to.be.true
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isArray( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
             }
 
         } )
 
-        it( 'should return false when the value is a boolean', () => {
+    } )
 
-            const dataSet = this._dataSet[ 'booleans' ]
-            for ( let key in dataSet ) {
-                expect( isArray( dataSet[ key ] ) ).to.be.false
-            }
+    describe( 'isNotArray()', () => {
 
-        } )
+        it( 'should return false only when the value is a array', () => {
 
-        it( 'should return false when the value is a number', () => {
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
 
-            const dataSet = this._dataSet[ 'numbers' ]
-            for ( let key in dataSet ) {
-                expect( isArray( dataSet[ key ] ) ).to.be.false
-            }
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'arrays' ) {
 
-        } )
+                    for ( let key in dataSet ) {
+                        expect( isNotArray( dataSet[ key ] ) ).to.be.false
+                    }
 
-        it( 'should return false when the value is a string', () => {
+                } else {
 
-            const dataSet = this._dataSet[ 'strings' ]
-            for ( let key in dataSet ) {
-                expect( isArray( dataSet[ key ] ) ).to.be.false
-            }
+                    for ( let key in dataSet ) {
+                        expect( isNotArray( dataSet[ key ] ) ).to.be.true
+                    }
 
-        } )
+                }
 
-        it( 'should return false when the value is a function', () => {
-
-            const dataSet = this._dataSet[ 'functions' ]
-            for ( let key in dataSet ) {
-                expect( isArray( dataSet[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return true when the value is an array', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            for ( let key in dataSet ) {
-                expect( isArray( dataSet[ key ] ) ).to.be.true
-            }
-
-        } )
-
-        it( 'should return false when the value is an typed array', () => {
-
-            const dataSet = this._dataSet[ 'typedArrays' ]
-            for ( let key in dataSet ) {
-                expect( isArray( dataSet[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is an object', () => {
-
-            const dataSet = this._dataSet[ 'objects' ]
-            for ( let key in dataSet ) {
-                expect( isArray( dataSet[ key ] ) ).to.be.false
             }
 
         } )

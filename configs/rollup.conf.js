@@ -1,106 +1,99 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [MIT]{@link https://opensource.org/licenses/MIT}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module config/karmaBenchConfiguration
- *
+ * @module config
  * @description The file manage the rollup configuration for build sources
  *
- * @requires {@link module: [rollup-plugin-uglify-es]{@link https://github.com/gulpjs/gulp}}
- * @requires {@link module: [gulp]{@link https://github.com/gulpjs/gulp}}
+ * @requires {@link module: [path]{@link https://nodejs.org/api/path.html}}
+ * @requires {@link module: [rollup-plugin-re]{@link https://github.com/jetiny/rollup-plugin-re}}
+ * @requires {@link module: [rollup-plugin-uglify-es]{@link https://github.com/ezekielchentnik/rollup-plugin-uglify-es}}
  *
  */
 
-const uglify = require( 'rollup-plugin-uglify-es' )
-const strip  = require( 'rollup-plugin-strip' )
+const path    = require( 'path' )
+const replace = require( 'rollup-plugin-re' )
+const uglify  = require( 'rollup-plugin-uglify-es' )
 
-const stripConfig = {
-    // set this to `false` if you don't want to
-    // remove debugger statements
-    debugger: true,
-
-    // defaults to `[ 'console.*', 'assert.*' ]`
-    functions: [ 'console.*' ],
-    //    functions: [ 'throw\snew\sTypeError' ],
-    //    functions: [ /if\s*\(\s*[\w\(\s\)]*{[\w\s\('!\)]*}/g ],
-    //    functions: [ 'console.*', 'assert.*', 'debug', 'alert', 'throw new TypeError' ],
-
-    // set this to `false` if you're not using sourcemaps –
-    // defaults to `true`
-    sourceMap: false
+const replaceConfig = {
+    defines: {
+        IS_REMOVE: false
+    }
 }
 
-//plugins: [
-//    strip(),
-//    uglify()
-//],
-//
+/**
+ * @generator
+ * @param options
+ * @return {Array}
+ */
+function CreateBuildsConfigs ( options ) {
+    'use strict'
 
-export default [
-    {
-        input:   'sources/main.js',
-        plugins: [],
-        output:  {
-            indent: '\t',
-            format: 'es',
-            name:   'Itee.Validators',
-            file:   'builds/itee-validators.esm.js'
+    const name      = options.name
+    const input     = options.input
+    const output    = options.output
+    const formats   = options.format.split( ',' )
+    const env       = options.env.split( ',' )
+    const dev       = (env.includes( 'dev' ))
+    const prod      = (env.includes( 'prod' ))
+    const sourcemap = options.sourcemap
+    const treeshake = options.treeshake
+
+    const fileName = path.basename( input, '.js' )
+
+    const configs = []
+    for ( let formatIndex = 0, numberOfFormats = formats.length ; formatIndex < numberOfFormats ; ++formatIndex ) {
+
+        const format = formats[ formatIndex ]
+
+        if ( dev ) {
+
+            const outputPath = path.join( output, `${fileName}.${format}.js` )
+
+            configs.push( {
+                input:   input,
+                plugins: [
+                    replace( replaceConfig )
+                ],
+                treeshake: treeshake,
+                output:    {
+                    indent:    '\t',
+                    format:    format,
+                    name:      name,
+                    file:      outputPath,
+                    sourcemap: sourcemap
+                }
+            } )
+
         }
-    },
-    {
-        input:   'sources/main.js',
-        plugins: [
-            strip( stripConfig )
-        ],
-        output:  {
-            indent: '\t',
-            format: 'es',
-            name:   'Itee.Validators',
-            file:   'builds/itee-validators.esm.min.js'
+
+        if ( prod ) {
+
+            const outputPath = path.join( output, `${fileName}.${format}.min.js` )
+
+            configs.push( {
+                input:   input,
+                plugins: [
+                    replace( replaceConfig ),
+                    uglify()
+                ],
+                treeshake: treeshake,
+                output:    {
+                    indent:    '\t',
+                    format:    format,
+                    name:      name,
+                    file:      outputPath,
+                    sourcemap: sourcemap
+                }
+            } )
+
         }
-    },
-    {
-        input:   'sources/main.js',
-        plugins: [],
-        output:  {
-            indent: '\t',
-            format: 'cjs',
-            name:   'Itee.Validators',
-            file:   'builds/itee-validators.cjs.js'
-        }
-    },
-    {
-        input:   'sources/main.js',
-        plugins: [
-            strip( stripConfig )
-        ],
-        output:  {
-            indent: '\t',
-            format: 'cjs',
-            name:   'Itee.Validators',
-            file:   'builds/itee-validators.cjs.min.js'
-        }
-    },
-    {
-        input:   'sources/main.js',
-        plugins: [],
-        output:  {
-            indent: '\t',
-            format: 'iife',
-            name:   'Itee.Validators',
-            file:   'builds/itee-validators.iife.js'
-        }
-    },
-    {
-        input:   'sources/main.js',
-        plugins: [
-            strip( stripConfig )
-        ],
-        output:  {
-            indent: '\t',
-            format: 'iife',
-            name:   'Itee.Validators',
-            file:   'builds/itee-validators.iife.min.js'
-        }
+
     }
-]
+
+    return configs
+
+}
+
+module.exports = CreateBuildsConfigs
+

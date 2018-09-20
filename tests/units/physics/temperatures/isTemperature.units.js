@@ -1,6 +1,6 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [MIT]{@link https://opensource.org/licenses/MIT}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module tests/physics/temperatures
  * @desc Export the units tests about isTemperature method.
@@ -10,15 +10,21 @@
 
 /* global describe, expect, it */
 
-import { isTemperature } from '../../../../sources/physics/temperatures'
+import { isTemperature, isNotTemperature } from '../../../../sources/physics/temperatures/isTemperature'
 
 function isTemperatureUnits () {
 
     describe( 'isTemperature()', () => {
 
-        it( 'should be implemented', () => {
+        it.skip( 'should be implemented', () => {
 
-            expect( true ).to.be.true
+            expect( isTemperature(0) ).to.be.true
+
+        } )
+
+        it.skip( 'should be implemented', () => {
+
+            expect( isNotTemperature(0) ).to.be.false
 
         } )
 

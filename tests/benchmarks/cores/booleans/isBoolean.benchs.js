@@ -1,140 +1,25 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [MIT]{@link https://opensource.org/licenses/MIT}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  */
 
-/* global benchmark */
+/* global Itee, suite, benchmark */
 
-import { isBoolean } from '../../../../builds/itee-validators.esm'
-import { createDataMap } from '../../../TestsUtils'
+import { isBoolean, isBoolean_alt, isNotBoolean, isNotBoolean_negbase } from '../../../../sources/cores/booleans/isBoolean'
 
-//export default benchmark( 'isBoolean', () => {
-//
-//    const _dataSet = createDataMap()
-//    for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-//        isBoolean( _dataSet[ i ] )
-//    }
-//
-//} )
+const isBooleanSuite = suite( 'isBoolean', () => {
 
-function BooleanBenchs () {
+    benchmark( 'isBoolean()', Itee.TestsUtils.iterateOverDataMap( isBoolean ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+    benchmark( 'isBoolean_alt()', Itee.TestsUtils.iterateOverDataMap( isBoolean_alt ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
-    benchmark( 'isBoolean',
-        () => {
+} )
 
-            const _dataSet = this.dataset
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                isBoolean( _dataSet[ i ] )
-            }
+const isNotBooleanSuite = suite( 'isNotBoolean', () => {
 
-        },
-        {
-            setup:    function () {
+    benchmark( 'isNotBoolean()', Itee.TestsUtils.iterateOverDataMap( isNotBoolean ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+    benchmark( 'isNotBoolean_negbase()', Itee.TestsUtils.iterateOverDataMap( isNotBoolean_negbase ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
-                console.log( 'Setup of ' + this.name )
-                this.dataset = createDataMap()
+} )
 
-            },
-            teardown: function () {
-                delete this.dataset
-            }
-        } )
-
-}
-
-export { BooleanBenchs }
-
-//export default new Benchmark
-//    .Suite( 'Itee#Validators#Booleans#isBoolean()',
-//        {
-//
-//            // called when the suite starts running
-//            'onStart': function () {
-//                console.log( 'onStart' + this )
-//            },
-//
-//            // called between running benchmarks
-//            'onCycle': function () {
-//                console.log( 'onCycle' + this )
-//            },
-//
-//            // called when aborted
-//            'onAbort': function () {
-//                console.log( 'onAbort' )
-//            },
-//
-//            // called when a test errors
-//            'onError': function () {
-//                console.log( 'onError' )
-//            },
-//
-//            // called when reset
-//            'onReset': function () {
-//                console.log( 'onReset' )
-//            },
-//
-//            // called when the suite completes running
-//            'onComplete': function () {
-//                console.log( 'onComplete' + this )
-//            },
-//
-//        } )
-//    .add( 'typeof', () => {
-//
-//        const _dataSet = createDataMap()
-//        for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-//            isBoolean( _dataSet[ i ] )
-//        }
-//
-//    } )
-
-//function BooleanBenchs () {
-//
-//    return new Benchmark
-//        .Suite( 'Itee#Validators#Booleans#isBoolean()',
-//            {
-//
-//                // called when the suite starts running
-//                'onStart': function () {
-//                    console.log( 'onStart' )
-//                },
-//
-//                // called between running benchmarks
-//                'onCycle': function () {
-//                    console.log( 'onCycle' )
-//                },
-//
-//                // called when aborted
-//                'onAbort': function () {
-//                    console.log( 'onAbort' )
-//                },
-//
-//                // called when a test errors
-//                'onError': function () {
-//                    console.log( 'onError' )
-//                },
-//
-//                // called when reset
-//                'onReset': function () {
-//                    console.log( 'onReset' )
-//                },
-//
-//                // called when the suite completes running
-//                'onComplete': function () {
-//                    console.log( 'onComplete' )
-//                },
-//
-//            } )
-//        .add( 'typeof', () => {
-//
-//            const _dataSet = createDataMap()
-//            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-//                isBoolean( _dataSet[ i ] )
-//            }
-//
-//        } )
-//
-//}
-//
-//export { BooleanBenchs }
+export { isBooleanSuite, isNotBooleanSuite }

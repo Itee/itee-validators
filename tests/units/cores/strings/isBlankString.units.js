@@ -1,6 +1,6 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [MIT]{@link https://opensource.org/licenses/MIT}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module tests/cores/strings
  * @desc Export the units tests about isBlankString method.
@@ -10,17 +10,78 @@
 
 /* global describe, expect, it */
 
-import { isBlankString } from '../../../../sources/cores/strings'
+import { isBlankString, isNotBlankString } from '../../../../sources/cores/strings/isBlankString'
 
 function isBlankStringUnits () {
 
     describe( 'isBlankString()', () => {
 
-        it( 'should return false when the value is a void', () => {
+        it( 'should return true only when the value is a blank string', () => {
 
-            const dataSet = this._dataSet[ 'voids' ]
-            for ( let i = 0, n = dataSet.length ; i < n ; i++ ) {
-                expect( isBlankString( dataSet[ i ] ) ).to.be.false
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'strings' ) {
+
+                    const allowed = [ 'blank', 'stringBlank' ]
+
+                    for ( let key in dataSet ) {
+
+                        const result = isBlankString( dataSet[ key ] )
+                        if ( allowed.includes( key ) ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isBlankString( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
+
+        } )
+
+    } )
+
+    describe( 'isNotBlankString()', () => {
+
+        it( 'should return false only when the value is a blank string', () => {
+
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'strings' ) {
+
+                    const allowed = [ 'blank', 'stringBlank' ]
+
+                    for ( let key in dataSet ) {
+
+                        const result = isNotBlankString( dataSet[ key ] )
+                        if ( allowed.includes( key ) ) {
+                            expect( result ).to.be.false
+                        } else {
+                            expect( result ).to.be.true
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotBlankString( dataSet[ key ] ) ).to.be.true
+                    }
+
+                }
+
             }
 
         } )

@@ -1,8 +1,8 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [MIT]{@link https://opensource.org/licenses/MIT}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module sources/cores/cores
+ * @module cores/cores
  * @description Export the Validator singleton instance that allow to validate complex data structure
  * @example
  *
@@ -127,27 +127,27 @@
 import {
     isNullOrUndefined,
     isDefined
-} from './voids'
+}                    from './voids/_voids'
 import {
     isFunction,
     isNotFunction
-} from './functions'
-import { isBoolean } from './booleans'
+}                    from './functions/_functions'
+import { isBoolean } from './booleans/_booleans'
 import {
     isNumber,
     isInteger,
     isFloat
-} from './numbers'
-import { isArray } from './arrays'
-import { isSymbol } from './symbols'
+}                    from './numbers/_numbers'
+import { isArray }   from './arrays/_arrays'
+import { isSymbol }  from './symbols/_symbols'
 import {
     isString,
     isNotString
-} from './strings'
+}                    from './strings/_strings'
 import {
     isObject,
     isNotObject
-} from './objects'
+}                    from './objects/_objects'
 
 class Validator {
 
@@ -187,17 +187,9 @@ class Validator {
      */
     add ( type, validator ) {
 
-        if ( isNotString( type ) ) {
-            throw new TypeError( `Validator: Expect type to be a string` )
-        }
-
-        if ( isNotFunction( validator ) && isNotObject( validator ) ) {
-            throw new TypeError( `Validator: Expect validator to be an object or a function` )
-        }
-
-        if ( isDefined( this.validators[ type ] ) ) {
-            throw new TypeError( `Validator: a validator is already defined for type '${type}'` )
-        }
+        if ( isNotString( type ) ) { throw new TypeError( `Validator: Expect type to be a string` ) }
+        if ( isNotFunction( validator ) && isNotObject( validator ) ) { throw new TypeError( `Validator: Expect validator to be an object or a function` ) }
+        if ( isDefined( this.validators[ type ] ) ) { throw new TypeError( `Validator: a validator is already defined for type '${type}'` ) }
 
         this.validators[ type ] = validator
 
@@ -234,7 +226,7 @@ class Validator {
     /**
      * Will perform a deep structural comparison between the given data and the validation schema of the given type
      *
-     * @param data {any} - The data to validate
+     * @param data {*} - The data to validate
      * @param type {string} - The type of the validation schema to apply
      * @param breakOnError {boolean} - Return on first validation error ( true by default )
      * @return {boolean} - Return true is the data is validated, false otherwise

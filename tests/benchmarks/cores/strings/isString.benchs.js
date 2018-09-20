@@ -1,79 +1,29 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [MIT]{@link https://opensource.org/licenses/MIT}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  */
 
-import { isString } from '../../../../builds/itee-validators.esm'
-import { createDataMap } from '../../../TestsUtils'
+/* global Itee, suite, benchmark */
 
-function isString_0 ( val ) {
-    return (typeof val === 'string' || val instanceof String)
-}
+import { isString, isString_0, isString_1, isString_2, isString_3, isString_4, isNotString } from '../../../../sources/cores/strings/isString'
 
-function isString_1 ( val ) {
-    return (typeof val === 'string' || ((!!val && typeof val === 'object') && Object.prototype.toString.call( val ) === '[object String]'))
-}
+const isStringSuite = suite( 'isString', () => {
 
-function isString_2 ( val ) {
-    return (Object.prototype.toString.call( val ) === "[object String]")
-}
+    benchmark( 'isString()', Itee.TestsUtils.iterateOverDataMap( isString ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+    benchmark( 'isString_0()', Itee.TestsUtils.iterateOverDataMap( isString_0 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+    benchmark( 'isString_1()', Itee.TestsUtils.iterateOverDataMap( isString_1 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+    benchmark( 'isString_2()', Itee.TestsUtils.iterateOverDataMap( isString_2 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+    benchmark( 'isString_3()', Itee.TestsUtils.iterateOverDataMap( isString_3 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+    benchmark( 'isString_4()', Itee.TestsUtils.iterateOverDataMap( isString_4 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
-function isString_3 ( val ) {
-    return (val !== null && val !== undefined && val.constructor === String)
-}
+} )
 
-function isString_4 ( val ) {
-    return (val === val + '')
-}
+const isNotStringSuite = suite( 'isNotString', () => {
 
-export default new Benchmark
-    .Suite( 'Itee#Validators#Strings#isString()' )
-    .add( 'typeof', () => {
+    benchmark( 'isNotString()', Itee.TestsUtils.iterateOverDataMap( isNotString ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
-        const _dataSet = createDataMap()
-        for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-            isString( _dataSet[ i ] )
-        }
+} )
 
-    } )
-    .add( 'typeof || instanceof', () => {
+export { isStringSuite, isNotStringSuite }
 
-        const _dataSet = createDataMap()
-        for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-            isString_0( _dataSet[ i ] )
-        }
-
-    } )
-    .add( 'Object.prototype.toString', () => {
-
-        const _dataSet = createDataMap()
-        for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-            isString_1( _dataSet[ i ] )
-        }
-
-    } )
-    .add( 'constructor', () => {
-
-        const _dataSet = createDataMap()
-        for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-            isString_2( _dataSet[ i ] )
-        }
-
-    } )
-    .add( 'typeof || !!val || toString', () => {
-
-        const _dataSet = createDataMap()
-        for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-            isString_3( _dataSet[ i ] )
-        }
-
-    } )
-    .add( 'val+""', () => {
-
-        const _dataSet = createDataMap()
-        for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-            isString_4( _dataSet[ i ] )
-        }
-
-    } )

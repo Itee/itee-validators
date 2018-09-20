@@ -1,6 +1,6 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [MIT]{@link https://opensource.org/licenses/MIT}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module tests/cores/arrays
  * @desc Export the units tests about isArrayOfUndefined method.
@@ -10,166 +10,74 @@
 
 /* global describe, expect, it */
 
-import { isArrayOfUndefined } from '../../../../sources/cores/arrays'
+import { isArrayOfUndefined, isNotArrayOfUndefined } from '../../../../sources/cores/arrays/isArrayOfUndefined'
 
 function isArrayOfUndefinedUnits () {
 
     describe( 'isArrayOfUndefined()', () => {
 
-        it( 'should return false when the value is a void', () => {
+        it( 'should return true only when the value is a array of undefined', () => {
 
-            const dataSet = this._dataSet[ 'voids' ]
-            for ( let key in dataSet ) {
-                expect( isArrayOfUndefined( dataSet[ key ] ) ).to.be.false
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'arrays' ) {
+
+                    for ( let key in dataSet ) {
+
+                        const result = isArrayOfUndefined( dataSet[ key ] )
+                        if ( key === 'undefined' || key === 'void' ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isArrayOfUndefined( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
             }
 
         } )
 
-        it( 'should return false when the value is a boolean', () => {
+    } )
 
-            const dataSet = this._dataSet[ 'booleans' ]
-            for ( let key in dataSet ) {
-                expect( isArrayOfUndefined( dataSet[ key ] ) ).to.be.false
-            }
+    describe( 'isNotArrayOfUndefined()', () => {
 
-        } )
+        it( 'should return false only when the value is a array of undefined', () => {
 
-        it( 'should return false when the value is a number', () => {
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
 
-            const dataSet = this._dataSet[ 'numbers' ]
-            for ( let key in dataSet ) {
-                expect( isArrayOfUndefined( dataSet[ key ] ) ).to.be.false
-            }
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'arrays' ) {
 
-        } )
+                    for ( let key in dataSet ) {
 
-        it( 'should return false when the value is a string', () => {
+                        const result = isNotArrayOfUndefined( dataSet[ key ] )
+                        if ( key === 'undefined' || key === 'void' ) {
+                            expect( result ).to.be.false
+                        } else {
+                            expect( result ).to.be.true
+                        }
 
-            const dataSet = this._dataSet[ 'strings' ]
-            for ( let key in dataSet ) {
-                expect( isArrayOfUndefined( dataSet[ key ] ) ).to.be.false
-            }
+                    }
 
-        } )
+                } else {
 
-        it( 'should return false when the value is a function', () => {
+                    for ( let key in dataSet ) {
+                        expect( isNotArrayOfUndefined( dataSet[ key ] ) ).to.be.true
+                    }
 
-            const dataSet = this._dataSet[ 'functions' ]
-            for ( let key in dataSet ) {
-                expect( isArrayOfUndefined( dataSet[ key ] ) ).to.be.false
-            }
+                }
 
-        } )
-
-        //////////////// Specific part
-
-        it( 'should return false when the value is an empty array', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfUndefined( dataSet[ 'emptyArray' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return false when the value is an empty array object', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfUndefined( dataSet[ 'emptyArrayObject' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return false when the value is a single valued array of number', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfUndefined( dataSet[ 'singleValued' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return false when the value is a multi valued array of number', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfUndefined( dataSet[ 'multiValued' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return false when the value is an array of null', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfUndefined( dataSet[ 'null' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return true when the value is an array of undefined', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfUndefined( dataSet[ 'undefined' ] ) ).to.be.true
-
-        } )
-
-        it( 'should return false when the value is an array of voids', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfUndefined( dataSet[ 'voids' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return false when the value is an array of booleans', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfUndefined( dataSet[ 'booleans' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return false when the value is an array of numbers', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfUndefined( dataSet[ 'numbers' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return false when the value is an array of strings', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfUndefined( dataSet[ 'strings' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return false when the value is an array of functions', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfUndefined( dataSet[ 'functions' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return false when the value is an array of objects', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfUndefined( dataSet[ 'objects' ] ) ).to.be.false
-
-        } )
-
-        it( 'should return false when the value is an array of arrays', () => {
-
-            const dataSet = this._dataSet[ 'arrays' ]
-            expect( isArrayOfUndefined( dataSet[ 'arrays' ] ) ).to.be.false
-
-        } )
-
-        /////////////////
-
-        it( 'should return false when the value is an typed array', () => {
-
-            const dataSet = this._dataSet[ 'typedArrays' ]
-            for ( let key in dataSet ) {
-                expect( isArrayOfUndefined( dataSet[ key ] ) ).to.be.false
-            }
-
-        } )
-
-        it( 'should return false when the value is an object', () => {
-
-            const dataSet = this._dataSet[ 'objects' ]
-            for ( let key in dataSet ) {
-                expect( isArrayOfUndefined( dataSet[ key ] ) ).to.be.false
             }
 
         } )

@@ -1,6 +1,6 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [MIT]{@link https://opensource.org/licenses/MIT}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module tests/cores/voids
  * @desc Export the units tests about isEmpty method.
@@ -9,87 +9,138 @@
 
 /* global describe, expect, it */
 
-import { isEmpty } from '../../../../sources/cores/voids'
+import { isEmpty, isNotEmpty } from '../../../../sources/cores/voids/isEmpty'
 
 function isEmptyUnits () {
 
     describe( 'isEmpty()', () => {
 
-        // Specific dataset
+        it( 'should return true only when the value is an empty container (string, array, object)', () => {
 
-        it( 'should return true when the value is null', () => {
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
 
-            const _dataSet = this.dataSet[ 'voids' ]
-            expect( isEmpty( _dataSet[ 0 ] ) ).to.be.true
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'strings' ) {
 
-        } )
+                    const allowed = [ 'empty', 'stringNull', 'stringEmpty' ]
 
-        it( 'should return false when the value is undefined', () => {
+                    for ( let key in dataSet ) {
 
-            const _dataSet = this.dataSet[ 'voids' ]
-            expect( isEmpty( _dataSet[ 1 ] ) ).to.be.false
+                        const result = isEmpty( dataSet[ key ] )
+                        if ( allowed.includes( key ) ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
 
-        } )
+                    }
 
-        it( 'should return false when the value is void(0)', () => {
+                } else if ( mapKey === 'arrays' ) {
 
-            const _dataSet = this.dataSet[ 'voids' ]
-            expect( isEmpty( _dataSet[ 2 ] ) ).to.be.false
+                    const allowed = [ 'emptyArray', 'emptyArrayObject' ]
 
-        } )
+                    for ( let key in dataSet ) {
 
-        // Global dataset
+                        const result = isEmpty( dataSet[ key ] )
+                        if ( allowed.includes( key ) ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
 
-        it( 'should return false when the value is a boolean', () => {
+                    }
 
-            const _dataSet = this.dataSet[ 'booleans' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isEmpty( _dataSet[ i ] ) ).to.be.false
+                } else if ( mapKey === 'objects' ) {
+
+                    const allowed = [ 'empty', 'instance' ]
+
+                    for ( let key in dataSet ) {
+
+                        const result = isEmpty( dataSet[ key ] )
+                        if ( allowed.includes( key ) ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isEmpty( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
             }
 
         } )
 
-        it( 'should return false when the value is a number', () => {
+    } )
 
-            const _dataSet = this.dataSet[ 'numbers' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isEmpty( _dataSet[ i ] ) ).to.be.false
-            }
+    describe( 'isNotEmpty()', () => {
 
-        } )
+        it( 'should return false only when the value is an empty container (string, array, object)', () => {
 
-        it( 'should return false when the value is a string', () => {
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
 
-            const _dataSet = this.dataSet[ 'strings' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isEmpty( _dataSet[ i ] ) ).to.be.false
-            }
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'strings' ) {
 
-        } )
+                    const allowed = [ 'empty', 'stringNull', 'stringEmpty' ]
 
-        it( 'should return false when the value is a function', () => {
+                    for ( let key in dataSet ) {
 
-            const _dataSet = this.dataSet[ 'functions' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isEmpty( _dataSet[ i ] ) ).to.be.false
-            }
+                        const result = isNotEmpty( dataSet[ key ] )
+                        if ( allowed.includes( key ) ) {
+                            expect( result ).to.be.false
+                        } else {
+                            expect( result ).to.be.true
+                        }
 
-        } )
+                    }
 
-        it( 'should return false when the value is an array', () => {
+                } else if ( mapKey === 'arrays' ) {
 
-            const _dataSet = this.dataSet[ 'arrays' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isEmpty( _dataSet[ i ] ) ).to.be.false
-            }
+                    const allowed = [ 'emptyArray', 'emptyArrayObject' ]
 
-        } )
+                    for ( let key in dataSet ) {
 
-        it( 'should return false when the value is an object', () => {
+                        const result = isNotEmpty( dataSet[ key ] )
+                        if ( allowed.includes( key ) ) {
+                            expect( result ).to.be.false
+                        } else {
+                            expect( result ).to.be.true
+                        }
 
-            const _dataSet = this.dataSet[ 'objects' ]
-            for ( let i = 0, n = _dataSet.length ; i < n ; i++ ) {
-                expect( isEmpty( _dataSet[ i ] ) ).to.be.false
+                    }
+
+                } else if ( mapKey === 'objects' ) {
+
+                    const allowed = [ 'empty', 'instance' ]
+
+                    for ( let key in dataSet ) {
+
+                        const result = isNotEmpty( dataSet[ key ] )
+                        if ( allowed.includes( key ) ) {
+                            expect( result ).to.be.false
+                        } else {
+                            expect( result ).to.be.true
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotEmpty( dataSet[ key ] ) ).to.be.true
+                    }
+
+                }
+
             }
 
         } )
