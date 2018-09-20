@@ -17,3 +17,9 @@
 export function isArray ( data ) {
     return Array.isArray( data )
 }
+
+// #if IS_REMOVE
+export function isArray_0 ( data ) {
+    return data instanceof Array
+}
+// #endif
