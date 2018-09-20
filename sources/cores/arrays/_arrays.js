@@ -1,13 +1,9 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [MIT]{@link https://opensource.org/licenses/MIT}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module sources/cores/arrays
+ * @file sources/cores/_arrays
  * @description Export the validation methods about Arrays
- * @requires {@link module:sources/cores/voids}
- * @requires {@link module:sources/cores/strings}
- * @requires {@link module:sources/cores/objects}
- *
  */
 
 export * from './isArray'

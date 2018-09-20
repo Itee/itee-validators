@@ -2,9 +2,9 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module cores/arrays
+ * @desc Export function to validate if a value is an array of array or not
+ * @example todo
  *
  */
 
@@ -15,7 +15,7 @@ import { isNotString }  from '../strings/isNotString'
 /**
  * Check if given data is not an empty array where all values are string
  *
- * @param data {any} The data to check against the array of strings
+ * @param data {*} The data to check against the array of strings
  * @returns {boolean} true if data is not an empty array where all values are string, false otherwise
  */
 export function isArrayOfString ( data ) {

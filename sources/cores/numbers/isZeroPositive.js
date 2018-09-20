@@ -2,16 +2,16 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module cores/numbers/isZero
+ * @desc Export function to validate if a value is a finite number
+ * @example todo
  *
  */
 
 /**
  * Check if the given data is a positive zero
  *
- * @param data {any} The data to check against the positive zero value
+ * @param data {*} The data to check against the positive zero value
  * @returns {boolean} true if data is a positive zero, false otherwise
  */
 export function isZeroPositive ( data ) {

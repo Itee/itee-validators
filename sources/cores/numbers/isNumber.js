@@ -2,9 +2,9 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module cores/numbers/isNumber
+ * @desc Export function to validate if a value is a finite number
+ * @example todo
  *
  */
 
@@ -13,7 +13,7 @@ import { isNullOrUndefined } from '../voids/isNullOrUndefined'
 /**
  * Check if given data is a number
  *
- * @param data {any} The data to check against the maximum safe integer state
+ * @param data {*} The data to check against the maximum safe integer state
  * @returns {boolean} true if data is a number, false otherwise.
  */
 export function isNumber ( data ) {

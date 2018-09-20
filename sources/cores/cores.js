@@ -1,8 +1,8 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [MIT]{@link https://opensource.org/licenses/MIT}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module sources/cores/cores
+ * @module cores/cores
  * @description Export the Validator singleton instance that allow to validate complex data structure
  * @example
  *
@@ -226,7 +226,7 @@ class Validator {
     /**
      * Will perform a deep structural comparison between the given data and the validation schema of the given type
      *
-     * @param data {any} - The data to validate
+     * @param data {*} - The data to validate
      * @param type {string} - The type of the validation schema to apply
      * @param breakOnError {boolean} - Return on first validation error ( true by default )
      * @return {boolean} - Return true is the data is validated, false otherwise

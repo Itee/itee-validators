@@ -1,13 +1,13 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [MIT]{@link https://opensource.org/licenses/MIT}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module config/karmaBenchConfiguration
- *
+ * @module config
  * @description The file manage the rollup configuration for build sources
  *
- * @requires {@link module: [rollup-plugin-uglify-es]{@link https://github.com/gulpjs/gulp}}
- * @requires {@link module: [gulp]{@link https://github.com/gulpjs/gulp}}
+ * @requires {@link module: [path]{@link https://nodejs.org/api/path.html}}
+ * @requires {@link module: [rollup-plugin-re]{@link https://github.com/jetiny/rollup-plugin-re}}
+ * @requires {@link module: [rollup-plugin-uglify-es]{@link https://github.com/ezekielchentnik/rollup-plugin-uglify-es}}
  *
  */
 
@@ -21,7 +21,12 @@ const replaceConfig = {
     }
 }
 
-function createBuildsConfigs ( options ) {
+/**
+ * @generator
+ * @param options
+ * @return {Array}
+ */
+function CreateBuildsConfigs ( options ) {
     'use strict'
 
     const name      = options.name
@@ -90,5 +95,5 @@ function createBuildsConfigs ( options ) {
 
 }
 
-module.exports = createBuildsConfigs
+module.exports = CreateBuildsConfigs
 

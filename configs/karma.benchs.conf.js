@@ -1,9 +1,8 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [MIT]{@link https://opensource.org/licenses/MIT}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module config/karmaBenchConfiguration
- *
+ * @module config
  * @description The file manage the karma configuration for run benchmarks that are under `tests/benchmarks` folder
  *
  */
@@ -13,6 +12,7 @@
 /**
  * Will assign an appropriate configuration object about benchmarks for karma.
  *
+ * @generator
  * @param {object} config - The karma configuration object to extend
  */
 function CreateKarmaBenchmarkConfiguration ( config ) {

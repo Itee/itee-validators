@@ -17,14 +17,17 @@
  * You could find a complet explanation about these tasks using: <b>npm run help</b>.
  *
  * @requires {@link module: [gulp]{@link https://github.com/gulpjs/gulp}}
- * @requires {@link module: [gulp-util]{@link https://github.com/gulpjs/gulp-util}}
  * @requires {@link module: [gulp-jsdoc3]{@link https://github.com/mlucool/gulp-jsdoc3}}
  * @requires {@link module: [gulp-eslint]{@link https://github.com/adametry/gulp-eslint}}
- * @requires {@link module: [gulp-inject-string]{@link https://github.com/mikehazell/gulp-inject-string}}
- * @requires {@link module: [gulp-replace]{@link https://github.com/lazd/gulp-replace}}
  * @requires {@link module: [del]{@link https://github.com/sindresorhus/del}}
- * @requires {@link module: [run-sequence]{@link https://github.com/OverZealous/run-sequence}}
+ * @requires {@link module: [minimist]{@link https://github.com/substack/minimist}}
  * @requires {@link module: [rollup]{@link https://github.com/rollup/rollup}}
+ * @requires {@link module: [path]{@link https://nodejs.org/api/path.html}}
+ * @requires {@link module: [karma]{@link https://github.com/karma-runner/karma}}
+ * @requires {@link module: [fancy-log]{@link https://github.com/js-cli/fancy-log}}
+ * @requires {@link module: [ansi-colors]{@link https://github.com/doowb/ansi-colors}}
+ *
+ *
  */
 
 /* eslint-env node */
@@ -164,7 +167,7 @@ gulp.task( 'doc', ( done ) => {
         'gulpfile.js',
         './configs/*.js',
         './sources/**/*.js',
-        './tests/**/*.js'
+//        './tests/**/*.js'
     ]
 
     gulp.src( files, { read: false } )

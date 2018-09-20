@@ -1,11 +1,9 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [MIT]{@link https://opensource.org/licenses/MIT}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module sources/cores/objects
+ * @file sources/cores/_objects
  * @description Export the validation methods about objects
- * @requires {@link module:sources/cores/voids/isNull}
- * @requires {@link module:sources/cores/voids/isEmpty}
  */
 
 export * from './isEmptyObject'

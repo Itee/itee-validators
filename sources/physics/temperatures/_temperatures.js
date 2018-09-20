@@ -1,10 +1,9 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [MIT]{@link https://opensource.org/licenses/MIT}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module sources/physics/temperatures
+ * @file sources/physics/_temperatures
  * @description Export the validation methods about temperatures
- * @requires {@link module:sources/cores/numbers}
  */
 
 export * from './constants'

@@ -2,9 +2,9 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module cores/voids
+ * @desc Export function to validate if a value is a void
+ * @example todo
  *
  */
 
@@ -18,7 +18,7 @@ import { isNullOrUndefined } from './isNullOrUndefined'
  *
  * See: https://stackoverflow.com/questions/4346186/how-to-determine-if-a-function-is-empty
  *
- * @param data {any} The data to check against the emptiness
+ * @param data {*} The data to check against the emptiness
  * @returns {boolean} true if data is considered as empty, false otherwise.
  */
 export function isEmpty ( data ) {

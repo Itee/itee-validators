@@ -1,10 +1,9 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [MIT]{@link https://opensource.org/licenses/MIT}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module config/karmaUnitsConfiguration
- *
- * @description The file manage the karma configuration for run benchmarks that are under `tests/units` folder
+ * @module config
+ * @description The file manage the karma configuration for run units tests that are under `tests/units` folder
  *
  */
 
@@ -13,6 +12,7 @@
 /**
  * Will assign an appropriate configuration object about unit tests for karma.
  *
+ * @generator
  * @param {object} config - The karma configuration object to extend
  */
 function CreateKarmaUnitsConfiguration ( config ) {

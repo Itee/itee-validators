@@ -1,9 +1,8 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [MIT]{@link https://opensource.org/licenses/MIT}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module config/jsdocConfiguration
- *
+ * @module config
  * @description The configuration file of the jsdoc plugin
  *
  */
@@ -13,6 +12,7 @@
 /**
  * Will create an appropriate configuration object for jsdoc
  *
+ * @generator
  * @returns {object} The jsdoc configuration
  */
 function CreateJsdocConfiguration () {
@@ -29,7 +29,7 @@ function CreateJsdocConfiguration () {
         },
         'sourceType':   'module',
         'plugins':      [],
-        'recurseDepth': 5,
+        'recurseDepth': 2,
         'opts':         {
             'template':    'node_modules/docdash/',
             'encoding':    'utf8',

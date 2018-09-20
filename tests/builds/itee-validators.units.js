@@ -4,7 +4,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 */
 
@@ -417,7 +417,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/arrays
 	 * @desc Export the units tests about isArray method.
@@ -536,7 +536,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/arrays
 	 * @desc Export the units tests about isArrayOfArray method.
@@ -609,7 +609,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/arrays
 	 * @desc Export the units tests about isArrayOfMultiElement method.
@@ -710,7 +710,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/arrays
 	 * @desc Export the units tests about isArrayOfNull method.
@@ -830,7 +830,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/arrays
 	 * @desc Export the units tests about isArrayOfObject method.
@@ -907,7 +907,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/arrays
 	 * @desc Export the units tests about isArrayOfSingleElement method.
@@ -1031,7 +1031,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/arrays
 	 * @desc Export the units tests about isArrayOfString method.
@@ -1131,7 +1131,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/arrays
 	 * @desc Export the units tests about isArrayOfUndefined method.
@@ -1180,7 +1180,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/arrays
 	 * @desc Export the units tests about isEmptyArray method.
@@ -1229,7 +1229,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/arrays
 	 * @desc Export the units tests about isNotArray method.
@@ -1308,7 +1308,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/arrays
 	 * @desc Export the units tests about isNotArrayOfArray method.
@@ -1388,7 +1388,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/arrays
 	 * @desc Export the units tests about isNotArrayOfNull method.
@@ -1468,7 +1468,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/arrays
 	 * @desc Export the units tests about isNotArrayOfObject method.
@@ -1548,7 +1548,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/arrays
 	 * @desc Export the units tests about isNotArrayOfString method.
@@ -1628,7 +1628,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/arrays
 	 * @desc Export the units tests about isNotArrayOfUndefined method.
@@ -1701,7 +1701,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/arrays
 	 * @desc Export the units tests about isNotEmptyArray method.
@@ -1750,7 +1750,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 */
 
@@ -1816,7 +1816,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/arrays
 	 * @desc Export the units tests about isBoolean method.
@@ -1880,7 +1880,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/arrays
 	 * @desc Export the units tests about isBoolean method.
@@ -1921,7 +1921,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 */
 
@@ -1970,7 +1970,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/functions
 	 * @desc Export the units tests about isFunction method.
@@ -2032,7 +2032,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/functions
 	 * @desc Export the units tests about isNotFunction method.
@@ -2074,7 +2074,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 */
 
@@ -2123,7 +2123,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/numbers
 	 * @desc Export the units tests about isFinite method.
@@ -2196,7 +2196,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/numbers
 	 * @desc Export the units tests about isNumber method.
@@ -2267,7 +2267,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/numbers
 	 * @desc Export the units tests about isInfinite method.
@@ -2338,7 +2338,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/numbers
 	 * @desc Export the units tests about isInfiniteNegative method.
@@ -2407,7 +2407,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/numbers
 	 * @desc Export the units tests about isInfinitePositive method.
@@ -2478,7 +2478,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/numbers
 	 * @desc Export the units tests about isInteger method.
@@ -2560,7 +2560,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/numbers
 	 * @desc Export the units tests about isMaxNegative method.
@@ -2631,7 +2631,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/numbers
 	 * @desc Export the units tests about isMaxPositive method.
@@ -2702,7 +2702,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/numbers
 	 * @desc Export the units tests about isMaxSafeInteger method.
@@ -2773,7 +2773,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/numbers
 	 * @desc Export the units tests about isMinNegative method.
@@ -2844,7 +2844,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/numbers
 	 * @desc Export the units tests about isMinPositive method.
@@ -2915,7 +2915,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/numbers
 	 * @desc Export the units tests about isMinSafeInteger method.
@@ -2986,7 +2986,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/numbers
 	 * @desc Export the units tests about isNotNumber method.
@@ -3050,7 +3050,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/numbers
 	 * @desc Export the units tests about isNumber method.
@@ -3112,7 +3112,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/numbers
 	 * @desc Export the units tests about isNumberNegative method.
@@ -3194,7 +3194,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/numbers
 	 * @desc Export the units tests about isNumberPositive method.
@@ -3276,7 +3276,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/numbers
 	 * @desc Export the units tests about isZero method.
@@ -3347,7 +3347,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/numbers
 	 * @desc Export the units tests about isZeroNegative method.
@@ -3418,7 +3418,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/numbers
 	 * @desc Export the units tests about isZeroPositive method.
@@ -3469,7 +3469,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 */
 
@@ -3515,7 +3515,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/objects
 	 * @desc Export the units tests about isObject method.
@@ -3557,7 +3557,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/objects
 	 * @desc Export the units tests about isNotObject method.
@@ -3634,7 +3634,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/objects
 	 * @desc Export the units tests about isEmptyObject method.
@@ -3703,7 +3703,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/objects
 	 * @desc Export the units tests about isNotEmptyObject method.
@@ -3752,7 +3752,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 */
 
@@ -3783,7 +3783,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/strings
 	 * @desc Export the units tests about isString method.
@@ -3825,7 +3825,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/strings
 	 * @desc Export the units tests about isNotString method.
@@ -3893,7 +3893,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/strings
 	 * @desc Export the units tests about isEmptyString method.
@@ -3970,7 +3970,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/strings
 	 * @desc Export the units tests about isNotEmptyString method.
@@ -4046,7 +4046,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/strings
 	 * @desc Export the units tests about isBlankString method.
@@ -4120,7 +4120,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/strings
 	 * @desc Export the units tests about isNotBlankString method.
@@ -4169,7 +4169,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 */
 
@@ -4222,7 +4222,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/symbols
 	 * @desc Export the units tests about isSymbol method.
@@ -4284,7 +4284,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/symbols
 	 * @desc Export the units tests about isNotSymbol method.
@@ -4326,7 +4326,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 */
 
@@ -4375,7 +4375,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/voids
 	 * @desc Export the units tests about isDefined method.
@@ -4465,7 +4465,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/voids
 	 * @desc Export the units tests about isEmpty method.
@@ -4565,7 +4565,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/voids
 	 * @desc Export the units tests about isNotEmpty method.
@@ -4645,7 +4645,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/voids
 	 * @desc Export the units tests about isNotNull method.
@@ -4693,7 +4693,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/voids
 	 * @desc Export the units tests about isNotUndefined method.
@@ -4761,7 +4761,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/voids
 	 * @desc Export the units tests about isNull method.
@@ -4809,7 +4809,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/voids
 	 * @desc Export the units tests about isNullOrUndefined method.
@@ -4870,7 +4870,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/cores/voids
 	 * @desc Export the units tests about isUndefined method.
@@ -4918,7 +4918,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 */
 
@@ -4953,7 +4953,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 */
 
@@ -4976,7 +4976,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 */
 
@@ -4994,7 +4994,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/physics/temperatures
 	 * @desc Export the units tests about isCelsius method.
@@ -5022,7 +5022,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/physics/temperatures
 	 * @desc Export the units tests about isFahrenheit method.
@@ -5050,7 +5050,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/physics/temperatures
 	 * @desc Export the units tests about isKelvin method.
@@ -5078,7 +5078,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/physics/temperatures
 	 * @desc Export the units tests about isNotCelsius method.
@@ -5106,7 +5106,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/physics/temperatures
 	 * @desc Export the units tests about isNotFahrenheit method.
@@ -5134,7 +5134,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/physics/temperatures
 	 * @desc Export the units tests about isNotKelvin method.
@@ -5162,7 +5162,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/physics/temperatures
 	 * @desc Export the units tests about isNotTemperature method.
@@ -5190,7 +5190,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 * @module tests/physics/temperatures
 	 * @desc Export the units tests about isTemperature method.
@@ -5218,7 +5218,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 */
 
@@ -5253,7 +5253,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 */
 
@@ -5269,7 +5269,7 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
 	 */
 

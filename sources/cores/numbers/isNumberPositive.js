@@ -2,9 +2,9 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module cores/numbers/isNumber
+ * @desc Export function to validate if a value is a finite number
+ * @example todo
  *
  */
 
@@ -15,7 +15,7 @@ import { isZeroPositive }     from './isZeroPositive'
 /**
  * Check if the data is a positive number
  *
- * @param data {any} The data to check against the positivity
+ * @param data {*} The data to check against the positivity
  * @returns {boolean} true if data is a positive number, false otherwise.
  */
 export function isNumberPositive ( data ) {

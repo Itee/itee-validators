@@ -2,9 +2,9 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module cores/numbers/isNumber
+ * @desc Export function to validate if a value is a finite number
+ * @example todo
  *
  */
 
@@ -14,7 +14,7 @@ import { isNotNumber } from './isNotNumber'
 /**
  * Check if given data is a floating point number
  *
- * @param data {any} The data to check against the floating point
+ * @param data {*} The data to check against the floating point
  * @returns {boolean} true if data is a float, false otherwise
  */
 export function isFloat ( data ) {
