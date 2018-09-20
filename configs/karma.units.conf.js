@@ -27,10 +27,7 @@ function CreateKarmaUnitsConfiguration ( config ) {
         frameworks: [ 'mocha', 'chai' ],
 
         // list of files / patterns to load in the browser
-        files: [
-            'third_party/tests.utils.js',
-            'builds/itee-validators.units.js'
-        ],
+        files: [ 'builds/itee-validators.units.js' ],
 
         // list of files to exclude
         exclude: [],
@@ -59,8 +56,8 @@ function CreateKarmaUnitsConfiguration ( config ) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: [ 'Chrome' ],
-        //        browsers: ['Chrome', 'Firefox', 'Safari', 'IE'],
+        browsers: [ 'Chrome', 'Firefox', 'Edge' ],
+        //        browsers: [ 'Chrome', 'Firefox', 'Edge', 'IE' ],
 
         // Format assertion errors and stack traces. Useful for removing vendors and compiled sources. Return an empty line '' to remove it.
         formatError: () => '',
@@ -71,13 +68,13 @@ function CreateKarmaUnitsConfiguration ( config ) {
 
         // Concurrency level
         // how many browser should be started simultaneous
-        concurrency: 1,
+        concurrency: 4,
 
         // If, during test execution, Karma does not receive any message from a browser
-        browserNoActivityTimeout: 60000,
+        browserNoActivityTimeout: 5000,
 
         // If browser does not capture in given timeout [ms], kill it
-        captureTimeout: 60000,
+        captureTimeout: 5000,
 
     } )
 

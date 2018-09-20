@@ -37,8 +37,8 @@ function _voidsUnits () {
         isNotEmptyUnits.call( this )
         isNotNullUnits.call( this )
         isNotUndefinedUnits.call( this )
-        isNullUnits.call( this )
         isNullOrUndefinedUnits.call( this )
+        isNullUnits.call( this )
         isUndefinedUnits.call( this )
 
     } )

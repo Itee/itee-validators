@@ -11,7 +11,6 @@
 /* global describe, expect, it */
 
 import { isArrayOfArray }        from '../../../../sources/cores/arrays/isArrayOfArray'
-import { isArrayOfMultiElement } from '../../../../sources/cores/arrays/isArrayOfMultiElement'
 
 function isArrayOfArrayUnits () {
 
@@ -69,10 +68,11 @@ function isArrayOfArrayUnits () {
             const values = this._dataMap.arrays
             for ( let key in values ) {
 
+                const result = isArrayOfArray( values[key] )
                 if ( key === 'arrays' ) {
-                    expect( isArrayOfArray( values[ key ] ) ).to.be.true
+                    expect( result ).to.be.true
                 } else {
-                    expect( isArrayOfArray( values[ key ] ) ).to.be.false
+                    expect( result ).to.be.false
                 }
 
             }

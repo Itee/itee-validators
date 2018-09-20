@@ -10,8 +10,7 @@
 
 /* global describe, expect, it */
 
-import { isNotEmptyArray }    from '../../../../sources/cores/arrays/isNotEmptyArray'
-import { isNotArrayOfObject } from '../../../../sources/cores/arrays/isNotArrayOfObject'
+import { isNotEmptyArray }       from '../../../../sources/cores/arrays/isNotEmptyArray'
 
 function isNotEmptyArrayUnits () {
 
@@ -69,10 +68,11 @@ function isNotEmptyArrayUnits () {
             const values = this._dataMap.arrays
             for ( let key in values ) {
 
+                const result = isNotEmptyArray( values[ key ] )
                 if ( key === 'emptyArray' || key === 'emptyArrayObject' ) {
-                    expect( isNotEmptyArray( values[ key ] ) ).to.be.true
+                    expect( result ).to.be.false
                 } else {
-                    expect( isNotEmptyArray( values[ key ] ) ).to.be.false
+                    expect( result ).to.be.true
                 }
 
             }

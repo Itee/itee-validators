@@ -47,8 +47,8 @@ function isArrayOfMultiElementUnits () {
         it( 'should return false when the value is a string', () => {
 
             const values = this._dataMap.strings
-            for ( let value of values ) {
-                expect( isArrayOfMultiElement( value ) ).to.be.false
+            for ( let key in values ) {
+                expect( isArrayOfMultiElement( values[ key ] ) ).to.be.false
             }
 
         } )
@@ -67,8 +67,9 @@ function isArrayOfMultiElementUnits () {
         it( 'should return true only when the value is a multi valued array of number', () => {
 
             const values = this._dataMap.arrays
-            for ( let value of values ) {
+            for ( let key in values ) {
 
+                const value = values[ key ]
                 if ( value.length > 1 ) {
                     expect( isArrayOfMultiElement( value ) ).to.be.true
                 } else {

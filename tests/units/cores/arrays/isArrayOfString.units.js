@@ -11,7 +11,6 @@
 /* global describe, expect, it */
 
 import { isArrayOfString }        from '../../../../sources/cores/arrays/isArrayOfString'
-import { isArrayOfSingleElement } from '../../../../sources/cores/arrays/isArrayOfSingleElement'
 
 function isArrayOfStringUnits () {
 
@@ -64,15 +63,16 @@ function isArrayOfStringUnits () {
 
         //////////////// Specific part
 
-        it( 'should return true only when the value is an array of string', () => {
+        it.skip( 'should return true only when the value is an array of string', () => {
 
             const values = this._dataMap.arrays
             for ( let key in values ) {
 
+                const result = isArrayOfString(values[key])
                 if ( key === 'strings' ) {
-                    expect( isArrayOfString( values[ key ] ) ).to.be.true
+                    expect( result ).to.be.true
                 } else {
-                    expect( isArrayOfString( values[ key ] ) ).to.be.false
+                    expect( result ).to.be.false
                 }
 
             }

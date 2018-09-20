@@ -429,6 +429,7 @@ this.Itee = this.Itee || {};
 	    }
 
 	    for ( let index = 0 ; index < dataLength ; index++ ) {
+	        // Todo: Use isNotString in Safe mode (check String object too) !!!
 	        if ( isNotString( data[ index ] ) ) {
 	            return false
 	        }
@@ -527,6 +528,7 @@ this.Itee = this.Itee || {};
 	    }
 
 	    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
+	        // Todo: Use isNotUndefined !!!
 	        if ( isDefined( data[ index ] ) ) {
 	            return false
 	        }
@@ -716,6 +718,7 @@ this.Itee = this.Itee || {};
 	    }
 
 	    for ( let index = 0 ; index < dataLength ; index++ ) {
+	        // Todo: Must be isNotNull because in case we have a single null in the array it match
 	        if ( isNull( data[ index ] ) ) {
 	            return false
 	        }
@@ -770,6 +773,7 @@ this.Itee = this.Itee || {};
 	    }
 
 	    for ( let index = 0 ; index < dataLength ; index++ ) {
+	        // Todo: Must be isNotObject because in case we have a single undefined in the array it match
 	        if ( isObject( data[ index ] ) ) {
 	            return true
 	        }
@@ -940,6 +944,7 @@ this.Itee = this.Itee || {};
 	    }
 
 	    for ( let index = 0 ; index < dataLength ; index++ ) {
+	        // Todo: Must be isNotUndefined because in case we have a single undefined in the array it match
 	        if ( isUndefined( data[ index ] ) ) {
 	            return true
 	        }

@@ -185,9 +185,10 @@ gulp.task( 'unit', ( done ) => {
 
         if ( exitCode !== 0 ) {
             done( `Karma server exit with code ${exitCode}` )
+        } else {
+            log(`Karma server exit with code ${exitCode}`)
+            done()
         }
-
-        done()
 
     } )
 
@@ -212,9 +213,10 @@ gulp.task( 'bench', ( done ) => {
 
         if ( exitCode !== 0 ) {
             done( `Karma server exit with code ${exitCode}` )
+        } else {
+            log(`Karma server exit with code ${exitCode}`)
+            done()
         }
-
-        done()
 
     } )
 

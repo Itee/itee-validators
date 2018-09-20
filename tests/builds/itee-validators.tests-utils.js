@@ -1,4 +1,4 @@
-var Itee = (function (exports) {
+(function (exports) {
 	'use strict';
 
 	/**
@@ -396,6 +396,4 @@ var Itee = (function (exports) {
 
 	exports.TestsUtils = TestsUtils;
 
-	return exports;
-
-}({}));
+}((this.Itee = this.Itee || {})));

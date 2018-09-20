@@ -29,6 +29,7 @@ export function isNotArrayOfNull ( data ) {
     }
 
     for ( let index = 0 ; index < dataLength ; index++ ) {
+        // Todo: Must be isNotNull because in case we have a single null in the array it match
         if ( isNull( data[ index ] ) ) {
             return false
         }

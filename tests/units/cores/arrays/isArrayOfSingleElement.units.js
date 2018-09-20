@@ -11,7 +11,6 @@
 /* global describe, expect, it */
 
 import { isArrayOfSingleElement } from '../../../../sources/cores/arrays/isArrayOfSingleElement'
-import { isArrayOfObject }        from '../../../../sources/cores/arrays/isArrayOfObject'
 
 function isArrayOfSingleElementUnits () {
 
