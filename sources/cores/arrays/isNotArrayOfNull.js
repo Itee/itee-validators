@@ -8,8 +8,9 @@
  *
  */
 
-import { isNotArray } from './isNotArray'
-import { isNull }     from '../voids/isNull'
+import { isNotArray }   from './isNotArray'
+import { isNotNull }    from '../voids/isNotNull'
+
 
 /**
  * Check if given data is not an empty array where all values are not null
@@ -28,13 +29,12 @@ export function isNotArrayOfNull ( data ) {
         return true
     }
 
-    for ( let index = 0 ; index < dataLength ; index++ ) {
-        // Todo: Must be isNotNull because in case we have a single null in the array it match
-        if ( isNull( data[ index ] ) ) {
-            return false
+    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+        if ( isNotNull( data[ index ] ) ) {
+            return true
         }
     }
 
-    return true
+    return false
 
 }
