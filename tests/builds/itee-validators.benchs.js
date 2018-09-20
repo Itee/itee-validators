@@ -49,6 +49,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is not an array
 	 *
@@ -63,6 +64,7 @@ this.Itee = this.Itee || {};
 	function isNotArray_0 ( data ) {
 	    return !isArray( data )
 	}
+
 	// #endif
 
 	/**
@@ -75,6 +77,32 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
+	/**
+	 * Check if given data is an empty array
+	 *
+	 * @param data {any} The data to check against the empty array
+	 * @returns {boolean} true if data is an empty array, false otherwise
+	 */
+	function isEmptyArray ( data ) {
+
+	    if ( isNotArray( data ) ) { return false }
+
+	    return (data.length === 0)
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+
 	/**
 	 * Check if given data is an array of array
 	 *
@@ -83,16 +111,10 @@ this.Itee = this.Itee || {};
 	 */
 	function isArrayOfArray ( data ) {
 
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
+	    if ( isNotArray( data ) ) { return false }
+	    if ( isEmptyArray( data ) ) { return false }
 
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return false
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index += 1 ) {
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
 	        if ( isNotArray( data[ index ] ) ) {
 	            return false
 	        }
@@ -129,6 +151,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is an array with multiples values
 	 *
@@ -137,15 +160,9 @@ this.Itee = this.Itee || {};
 	 */
 	function isArrayOfMultiElement ( data ) {
 
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
+	    if ( isNotArray( data ) ) { return false }
 
-	    if ( data.length <= 1 ) {
-	        return false
-	    }
-
-	    return true
+	    return (data.length > 1)
 
 	}
 
@@ -196,6 +213,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is not an empty array where all values are null
 	 *
@@ -204,16 +222,10 @@ this.Itee = this.Itee || {};
 	 */
 	function isArrayOfNull ( data ) {
 
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
+	    if ( isNotArray( data ) ) { return false }
+	    if ( isEmptyArray( data ) ) { return false }
 
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return false
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index++ ) {
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
 	        if ( isNotNull( data[ index ] ) ) {
 	            return false
 	        }
@@ -250,6 +262,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is an object
 	 *
@@ -269,6 +282,7 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
+
 
 	/**
 	 * Check if given data is not an object
@@ -290,6 +304,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is an array where all values are of object type
 	 *
@@ -298,16 +313,10 @@ this.Itee = this.Itee || {};
 	 */
 	function isArrayOfObject ( data ) {
 
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
+	    if ( isNotArray( data ) ) { return false }
+	    if ( isEmptyArray( data ) ) { return false }
 
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return false
-	    }
-
-	    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
 	        if ( isNotObject( data[ index ] ) ) {
 	            return false
 	        }
@@ -344,6 +353,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is an array with a single value
 	 *
@@ -352,9 +362,7 @@ this.Itee = this.Itee || {};
 	 */
 	function isArrayOfSingleElement ( data ) {
 
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
+	    if ( isNotArray( data ) ) { return false }
 
 	    if ( data.length !== 1 ) {
 	        return false
@@ -392,13 +400,57 @@ this.Itee = this.Itee || {};
 	 */
 
 	/**
+	 * Check if given data is a string
+	 *
+	 * @param data {any} The data to check against the string type
+	 * @returns {boolean} true if data is a string, false otherwise.
+	 */
+	function isString ( data ) {
+	    return (typeof data === 'string' || data instanceof String)
+	}
+
+	// #if IS_REMOVE
+	function isString_0 ( val ) {
+	    return (typeof val === 'string')
+	}
+
+	function isString_1 ( val ) {
+	    return (typeof val === 'string' || ((!!val && typeof val === 'object') && Object.prototype.toString.call( val ) === '[object String]'))
+	}
+
+	function isString_2 ( val ) {
+	    return (Object.prototype.toString.call( val ) === '[object String]')
+	}
+
+	function isString_3 ( val ) {
+	    return (val !== null && val !== undefined && val.constructor === String)
+	}
+
+	function isString_4 ( val ) {
+	    return (val === val + '')
+	}
+
+	// #endif
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+
+	/**
 	 * Check if given data is not a string
 	 *
 	 * @param data {*} The data to check against the string type
 	 * @returns {boolean} true if data is not a string, false otherwise.
 	 */
 	function isNotString ( data ) {
-	    return (typeof data !== 'string')
+	    return !isString( data )
 	}
 
 	/**
@@ -411,6 +463,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is not an empty array where all values are string
 	 *
@@ -419,17 +472,10 @@ this.Itee = this.Itee || {};
 	 */
 	function isArrayOfString ( data ) {
 
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
+	    if ( isNotArray( data ) ) { return false }
+	    if ( isEmptyArray( data ) ) { return false }
 
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return false
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index++ ) {
-	        // Todo: Use isNotString in Safe mode (check String object too) !!!
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
 	        if ( isNotString( data[ index ] ) ) {
 	            return false
 	        }
@@ -460,6 +506,7 @@ this.Itee = this.Itee || {};
 	    return true
 
 	}
+
 	// #endif
 
 	/**
@@ -491,13 +538,13 @@ this.Itee = this.Itee || {};
 	 */
 
 	/**
-	 * Check if given data is not null and not undefined
+	 * Check if given data is defined
 	 *
-	 * @param data {any} The data to check against the existence
-	 * @returns {boolean} true if data is not null and not undefined, false otherwise.
+	 * @param data {any} The data to check against the undefiness
+	 * @returns {boolean} true if data is defined, false otherwise.
 	 */
-	function isDefined ( data ) {
-	    return ((data !== null) && (typeof data !== 'undefined'))
+	function isNotUndefined ( data ) {
+	    return (typeof data !== 'undefined')
 	}
 
 	/**
@@ -510,6 +557,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is not an empty array where all values are undefined
 	 *
@@ -518,18 +566,11 @@ this.Itee = this.Itee || {};
 	 */
 	function isArrayOfUndefined ( data ) {
 
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
+	    if ( isNotArray( data ) ) { return false }
+	    if ( isEmptyArray( data ) ) { return false }
 
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return false
-	    }
-
-	    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
-	        // Todo: Use isNotUndefined !!!
-	        if ( isDefined( data[ index ] ) ) {
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+	        if ( isNotUndefined( data[ index ] ) ) {
 	            return false
 	        }
 	    }
@@ -554,32 +595,6 @@ this.Itee = this.Itee || {};
 	    benchmark( 'isArrayOfUndefined()', Itee.TestsUtils.iterateOverDataMap( isArrayOfUndefined ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
 
 	} );
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is an empty array
-	 *
-	 * @param data {any} The data to check against the empty array
-	 * @returns {boolean} true if data is an empty array, false otherwise
-	 */
-	function isEmptyArray ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
-
-	    return (data.length === 0)
-
-	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
@@ -626,6 +641,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is not an array of array
 	 *
@@ -644,7 +660,7 @@ this.Itee = this.Itee || {};
 	    }
 
 	    for ( let index = 0 ; index < dataLength ; index++ ) {
-	        if (isArray( data[ index ] ) ) {
+	        if ( isArray( data[ index ] ) ) {
 	            return false
 	        }
 	    }
@@ -680,25 +696,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	/**
-	 * Check if given data is null
-	 *
-	 * @param data {any} The data to check against the nullity
-	 * @returns {boolean} true if data is null, false otherwise.
-	 */
-	function isNull ( data ) {
-	    return (data === null)
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
 
 	/**
 	 * Check if given data is not an empty array where all values are not null
@@ -708,23 +705,16 @@ this.Itee = this.Itee || {};
 	 */
 	function isNotArrayOfNull ( data ) {
 
-	    if ( isNotArray( data ) ) {
-	        return true
-	    }
+	    if ( isNotArray( data ) ) { return true }
+	    if ( isEmptyArray( data ) ) { return true }
 
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return true
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index++ ) {
-	        // Todo: Must be isNotNull because in case we have a single null in the array it match
-	        if ( isNull( data[ index ] ) ) {
-	            return false
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+	        if ( isNotNull( data[ index ] ) ) {
+	            return true
 	        }
 	    }
 
-	    return true
+	    return false
 
 	}
 
@@ -755,6 +745,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is not an array where all values are of object type
 	 *
@@ -763,18 +754,11 @@ this.Itee = this.Itee || {};
 	 */
 	function isNotArrayOfObject ( data ) {
 
-	    if ( isNotArray( data ) ) {
-	        return true
-	    }
+	    if ( isNotArray( data ) ) { return true }
+	    if ( isEmptyArray( data ) ) { return true }
 
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return true
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index++ ) {
-	        // Todo: Must be isNotObject because in case we have a single undefined in the array it match
-	        if ( isObject( data[ index ] ) ) {
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+	        if ( isNotObject( data[ index ] ) ) {
 	            return true
 	        }
 	    }
@@ -810,47 +794,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	/**
-	 * Check if given data is a string
-	 *
-	 * @param data {any} The data to check against the string type
-	 * @returns {boolean} true if data is a string, false otherwise.
-	 */
-	function isString ( data ) {
-	    return (typeof data === 'string' || data instanceof String)
-	}
-
-	// #if IS_REMOVE
-	function isString_0 ( val ) {
-	    return (typeof val === 'string')
-	}
-
-	function isString_1 ( val ) {
-	    return (typeof val === 'string' || ((!!val && typeof val === 'object') && Object.prototype.toString.call( val ) === '[object String]'))
-	}
-
-	function isString_2 ( val ) {
-	    return (Object.prototype.toString.call( val ) === '[object String]')
-	}
-
-	function isString_3 ( val ) {
-	    return (val !== null && val !== undefined && val.constructor === String)
-	}
-
-	function isString_4 ( val ) {
-	    return (val === val + '')
-	}
-	// #endif
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
 
 	/**
 	 * Check if given data is not an empty array where all values are not string
@@ -860,22 +803,16 @@ this.Itee = this.Itee || {};
 	 */
 	function isNotArrayOfString ( data ) {
 
-	    if ( isNotArray( data ) ) {
-	        return true
-	    }
+	    if ( isNotArray( data ) ) { return true }
+	    if ( isEmptyArray( data ) ) { return true }
 
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return true
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index++ ) {
-	        if ( isString( data[ index ] ) ) {
-	            return false
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+	        if ( isNotString( data[ index ] ) ) {
+	            return true
 	        }
 	    }
 
-	    return true
+	    return false
 
 	}
 
@@ -906,25 +843,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	/**
-	 * Check if given data is undefined
-	 *
-	 * @param data {any} The data to check against the undefiness
-	 * @returns {boolean} true if data is undefined, false otherwise.
-	 */
-	function isUndefined ( data ) {
-	    return (typeof data === 'undefined')
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
 
 	/**
 	 * Check if given data is not an empty array where all values are defined
@@ -934,18 +852,11 @@ this.Itee = this.Itee || {};
 	 */
 	function isNotArrayOfUndefined ( data ) {
 
-	    if ( isNotArray( data ) ) {
-	        return true
-	    }
+	    if ( isNotArray( data ) ) { return true }
+	    if ( isEmptyArray( data ) ) { return true }
 
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return true
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index++ ) {
-	        // Todo: Must be isNotUndefined because in case we have a single undefined in the array it match
-	        if ( isUndefined( data[ index ] ) ) {
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+	        if ( isNotUndefined( data[ index ] ) ) {
 	            return true
 	        }
 	    }
@@ -981,6 +892,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is not an empty array
 	 *
@@ -989,11 +901,10 @@ this.Itee = this.Itee || {};
 	 */
 	function isNotEmptyArray ( data ) {
 
-	    if ( isNotArray( data ) ) {
-	        return true
-	    }
+	    if ( isNotArray( data ) ) { return true }
 
 	    return (data.length > 0)
+
 	}
 
 	/**
@@ -1045,6 +956,7 @@ this.Itee = this.Itee || {};
 	    return typeof value === 'boolean' || (typeof value === 'object' && value !== null && typeof value.valueOf() === 'boolean')
 
 	}
+
 	// #endif
 
 	/**
@@ -1071,6 +983,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is not a boolean
 	 *
@@ -1085,6 +998,7 @@ this.Itee = this.Itee || {};
 	function isNotBoolean_negbase ( data ) {
 	    return !isBoolean( data )
 	}
+
 	// #endif
 
 	/**
@@ -1240,6 +1154,7 @@ this.Itee = this.Itee || {};
 	function isFloat_2 ( x ) {
 	    return !!(x % 1)
 	}
+
 	// #endif
 
 	/**
@@ -1382,12 +1297,13 @@ this.Itee = this.Itee || {};
 	}
 
 	function isInteger_2 ( n ) {
-	    return n === +n && n === (n | 0);
+	    return n === +n && n === (n | 0)
 	}
 
 	function isInteger_3 ( nVal ) {
-	    return typeof nVal === "number" && isFinite( nVal ) && nVal > -9007199254740992 && nVal < 9007199254740992 && Math.floor( nVal ) === nVal;
+	    return typeof nVal === 'number' && isFinite( nVal ) && nVal > -9007199254740992 && nVal < 9007199254740992 && Math.floor( nVal ) === nVal
 	}
+
 	// #endif
 
 	/**
@@ -1548,7 +1464,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if the given data is a minimum positive number
 	 *
@@ -1682,39 +1597,6 @@ this.Itee = this.Itee || {};
 	 */
 
 	/**
-	 * Check if the given data is not numerical
-	 *
-	 * @param data {any} The data to check against the numerical type
-	 * @returns {boolean} true if data is not numeric, false otherwise
-	 */
-	function isNotNumeric ( data ) {
-	    return (typeof data !== 'number')
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
-	 *
-	 */
-
-
-	suite( 'isNotNumeric', () => {
-
-	    benchmark( 'isNotNumeric()', Itee.TestsUtils.iterateOverDataMap( isNotNumeric ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
-
-	} );
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
 	 * Check if given data is a number
 	 *
 	 * @param data {any} The data to check against the maximum safe integer state
@@ -1728,6 +1610,7 @@ this.Itee = this.Itee || {};
 	function isNumber_1 ( data ) {
 	    return (Number( data ) === data)
 	}
+
 	// #endif
 
 	/**
@@ -1753,6 +1636,7 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
+
 
 	/**
 	 * Check if the data is a negative number
@@ -1787,6 +1671,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if the data is a positive number
 	 *
@@ -1807,39 +1692,6 @@ this.Itee = this.Itee || {};
 	suite( 'isNumberPositive', () => {
 
 	    benchmark( 'isNumberPositive()', Itee.TestsUtils.iterateOverDataMap( isNumberPositive ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
-
-	} );
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if the given data is numerical
-	 *
-	 * @param data {any} The data to check against the numerical type
-	 * @returns {boolean} true if data is numeric, false otherwise
-	 */
-	function isNumeric ( data ) {
-	    return (typeof data === 'number')
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
-	 *
-	 */
-
-
-	suite( 'isNumeric', () => {
-
-	    benchmark( 'isNumeric()', Itee.TestsUtils.iterateOverDataMap( isNumeric ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
 
 	} );
 
@@ -1958,29 +1810,17 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
-	 * Check emptiness of given data
+	 * Check if given data is an empty object
 	 *
-	 * See: https://stackoverflow.com/questions/4346186/how-to-determine-if-a-function-is-empty
-	 *
-	 * @param data {any} The data to check against the emptiness
-	 * @returns {boolean} true if data is considered as empty, false otherwise.
+	 * @param data {any} The data to check against the emptiness of the object
+	 * @returns {boolean} true if data is an empty object, false otherwise
 	 */
-	function isEmpty ( data ) {
+	function isEmptyObject ( data ) {
 
-	    // null and undefined are consider as "empty"
-	    if ( data === null ) {
-	        return true
-	    }
-	    if ( data === undefined ) {
-	        return true
-	    }
+	    if ( isNotObject( data ) ) { return false }
 
-	    // Assume if it has a length property with a non-zero value
-	    // that that property is correct.
-	    if ( data.length > 0 ) {
-	        return false
-	    }
 	    if ( data.length === 0 ) {
 	        return true
 	    }
@@ -1993,26 +1833,7 @@ this.Itee = this.Itee || {};
 	    }
 
 	    return true
-	}
 
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is an empty object
-	 *
-	 * @param data {any} The data to check against the emptiness of the object
-	 * @returns {boolean} true if data is an empty object, false otherwise
-	 */
-	function isEmptyObject ( data ) {
-	    return (isObject( data ) && isEmpty( data ))
 	}
 
 	/**
@@ -2038,25 +1859,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	/**
-	 * Check fullness of given data
-	 *
-	 * @param data {any} The data to check against the emptiness
-	 * @returns {boolean} true if data is considered as not empty, false otherwise.
-	 */
-	function isNotEmpty ( data ) {
-	    return !isEmpty( data )
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
 
 	/**
 	 * Check if given data is not an empty object
@@ -2065,7 +1867,7 @@ this.Itee = this.Itee || {};
 	 * @returns {boolean} true if data is not an empty object, false otherwise
 	 */
 	function isNotEmptyObject ( data ) {
-	    return (isObject( data ) && isNotEmpty( data ))
+	    return !(isEmptyObject( data ))
 	}
 
 	/**
@@ -2123,6 +1925,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if the given data is a blank string
 	 *
@@ -2131,7 +1934,7 @@ this.Itee = this.Itee || {};
 	 */
 	function isBlankString ( data ) {
 
-	    if( isNotString(data) ) {
+	    if ( isNotString( data ) ) {
 	        return false
 	    }
 
@@ -2161,6 +1964,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is an empty string
 	 *
@@ -2169,7 +1973,7 @@ this.Itee = this.Itee || {};
 	 */
 	function isEmptyString ( data ) {
 
-	    if( isNotString(data) ) {
+	    if ( isNotString( data ) ) {
 	        return false
 	    }
 
@@ -2200,6 +2004,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if the given data is not a blank string
 	 *
@@ -2208,7 +2013,7 @@ this.Itee = this.Itee || {};
 	 */
 	function isNotBlankString ( data ) {
 
-	    if( isNotString(data) ) {
+	    if ( isNotString( data ) ) {
 	        return false
 	    }
 
@@ -2238,6 +2043,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is not an empty string
 	 *
@@ -2246,7 +2052,7 @@ this.Itee = this.Itee || {};
 	 */
 	function isNotEmptyString ( data ) {
 
-	    if( isNotString(data) ) {
+	    if ( isNotString( data ) ) {
 	        return false
 	    }
 
@@ -2378,6 +2184,26 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not null and not undefined
+	 *
+	 * @param data {any} The data to check against the existence
+	 * @returns {boolean} true if data is not null and not undefined, false otherwise.
+	 */
+	function isDefined ( data ) {
+	    return ((data !== null) && (typeof data !== 'undefined'))
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
@@ -2391,6 +2217,56 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is null or undefined
+	 *
+	 * @param data {any} The data to check against the existence
+	 * @returns {boolean} true if data is null or undefined, false otherwise.
+	 */
+	function isNullOrUndefined ( data ) {
+	    return ((data === null) || (typeof data === 'undefined'))
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+
+	/**
+	 * Check emptiness of given data
+	 *
+	 * See: https://stackoverflow.com/questions/4346186/how-to-determine-if-a-function-is-empty
+	 *
+	 * @param data {any} The data to check against the emptiness
+	 * @returns {boolean} true if data is considered as empty, false otherwise.
+	 */
+	function isEmpty ( data ) {
+
+	    if ( isNullOrUndefined( data ) ) { return false }
+	    if ( isEmptyString( data ) ) { return true}
+	    if ( isEmptyArray( data ) ) { return true }
+	    if ( isEmptyObject( data ) ) { return true }
+
+	    return false
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
@@ -2401,6 +2277,27 @@ this.Itee = this.Itee || {};
 	    benchmark( 'isEmpty()', Itee.TestsUtils.iterateOverDataMap( isEmpty ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
 
 	} );
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+
+	/**
+	 * Check fullness of given data
+	 *
+	 * @param data {any} The data to check against the emptiness
+	 * @returns {boolean} true if data is considered as not empty, false otherwise.
+	 */
+	function isNotEmpty ( data ) {
+	    return !isEmpty( data )
+	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
@@ -2430,26 +2327,6 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is defined
-	 *
-	 * @param data {any} The data to check against the undefiness
-	 * @returns {boolean} true if data is defined, false otherwise.
-	 */
-	function isNotUndefined ( data ) {
-	    return (typeof data !== 'undefined')
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
@@ -2460,6 +2337,26 @@ this.Itee = this.Itee || {};
 	    benchmark( 'isNotUndefined()', Itee.TestsUtils.iterateOverDataMap( isNotUndefined ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
 
 	} );
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is null
+	 *
+	 * @param data {any} The data to check against the nullity
+	 * @returns {boolean} true if data is null, false otherwise.
+	 */
+	function isNull ( data ) {
+	    return (data === null)
+	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
@@ -2476,27 +2373,6 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-
-	/**
-	 * Check if given data is null or undefined
-	 *
-	 * @param data {any} The data to check against the existence
-	 * @returns {boolean} true if data is null or undefined, false otherwise.
-	 */
-	function isNullOrUndefined ( data ) {
-	    return ((data === null) || (typeof data === 'undefined'))
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
@@ -2507,6 +2383,26 @@ this.Itee = this.Itee || {};
 	    benchmark( 'isNullOrUndefined()', Itee.TestsUtils.iterateOverDataMap( isNullOrUndefined ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
 
 	} );
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is undefined
+	 *
+	 * @param data {any} The data to check against the undefiness
+	 * @returns {boolean} true if data is undefined, false otherwise.
+	 */
+	function isUndefined ( data ) {
+	    return (typeof data === 'undefined')
+	}
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}

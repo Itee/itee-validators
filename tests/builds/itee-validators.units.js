@@ -30,7 +30,7 @@ this.Itee = this.Itee || {};
 	    negativePow:            -2e+2,
 	    negativeFloat:          -1.0,
 	    negativeInt:            -1,
-	    negativeNullDouble:     -0.0,
+	    negativeNullFloat:      -0.0,
 	    negativeNullInt:        -0,
 	    nan:                    Number.NaN,
 	    positiveNullInt:        0,
@@ -425,78 +425,31 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isArrayUnits () {
 
 	    describe( 'isArray()', () => {
 
-	        it( 'should return false when the value is a void', () => {
+	        it( 'should return true only when the value is a array', () => {
 
-	            const values = this._dataMap.voids;
-	            for ( let key in values ) {
-	                expect( isArray( values[ key ] ) ).to.be.false;
-	            }
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	        } );
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
 
-	        it( 'should return false when the value is a boolean', () => {
+	                    for ( let key in dataSet ) {
+	                        expect( isArray( dataSet[ key ] ) ).to.be.true;
+	                    }
 
-	            const values = this._dataMap[ 'booleans' ];
-	            for ( let key in values ) {
-	                expect( isArray( values[ key ] ) ).to.be.false;
-	            }
+	                } else {
 
-	        } );
+	                    for ( let key in dataSet ) {
+	                        expect( isArray( dataSet[ key ] ) ).to.be.false;
+	                    }
 
-	        it( 'should return false when the value is a number', () => {
+	                }
 
-	            const values = this._dataMap[ 'numbers' ];
-	            for ( let key in values ) {
-	                expect( isArray( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for ( let key in values ) {
-	                expect( isArray( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for ( let key in values ) {
-	                expect( isArray( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is an array', () => {
-
-	            const values = this._dataMap.arrays;
-	            for ( let key in values ) {
-	                expect( isArray( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an typed array', () => {
-
-	            const values = this._dataMap.typedArrays;
-	            for ( let key in values ) {
-	                expect( isArray( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for ( let key in values ) {
-	                expect( isArray( values[ key ] ) ).to.be.false;
 	            }
 
 	        } );
@@ -515,6 +468,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is not an array
 	 *
@@ -524,6 +478,7 @@ this.Itee = this.Itee || {};
 	function isNotArray ( data ) {
 	    return !Array.isArray( data )
 	}
+
 	// #endif
 
 	/**
@@ -536,6 +491,32 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
+	/**
+	 * Check if given data is an empty array
+	 *
+	 * @param data {any} The data to check against the empty array
+	 * @returns {boolean} true if data is an empty array, false otherwise
+	 */
+	function isEmptyArray ( data ) {
+
+	    if ( isNotArray( data ) ) { return false }
+
+	    return (data.length === 0)
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+
 	/**
 	 * Check if given data is an array of array
 	 *
@@ -544,16 +525,10 @@ this.Itee = this.Itee || {};
 	 */
 	function isArrayOfArray ( data ) {
 
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
+	    if ( isNotArray( data ) ) { return false }
+	    if ( isEmptyArray( data ) ) { return false }
 
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return false
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index += 1 ) {
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
 	        if ( isNotArray( data[ index ] ) ) {
 	            return false
 	        }
@@ -573,89 +548,38 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isArrayOfArrayUnits () {
 
 	    describe( 'isArrayOfArray()', () => {
 
-	        it( 'should return false when the value is a void', () => {
+	        it( 'should return true only when the value is a array of arrays', () => {
 
-	            const values = this._dataMap.voids;
-	            for ( let key in values ) {
-	                expect( isArrayOfArray( values[ key ] ) ).to.be.false;
-	            }
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	        } );
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
 
-	        it( 'should return false when the value is a boolean', () => {
+	                    for ( let key in dataSet ) {
 
-	            const values = this._dataMap[ 'booleans' ];
-	            for ( let key in values ) {
-	                expect( isArrayOfArray( values[ key ] ) ).to.be.false;
-	            }
+	                        const result = isArrayOfArray( dataSet[ key ] );
+	                        if ( key === 'arrays' ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
 
-	        } );
+	                    }
 
-	        it( 'should return false when the value is a number', () => {
-
-	            const values = this._dataMap[ 'numbers' ];
-	            for ( let key in values ) {
-	                expect( isArrayOfArray( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for ( let key in values ) {
-	                expect( isArrayOfArray( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for ( let key in values ) {
-	                expect( isArrayOfArray( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        //////////////// Specific part
-
-	        it( 'should return true only when the value is an array of arrays', () => {
-
-	            const values = this._dataMap.arrays;
-	            for ( let key in values ) {
-
-	                const result = isArrayOfArray( values[key] );
-	                if ( key === 'arrays' ) {
-	                    expect( result ).to.be.true;
 	                } else {
-	                    expect( result ).to.be.false;
+
+	                    for ( let key in dataSet ) {
+	                        expect( isArrayOfArray( dataSet[ key ] ) ).to.be.false;
+	                    }
+
 	                }
 
-	            }
-
-	        } );
-
-	        /////////////////
-
-	        it( 'should return false when the value is an typed array', () => {
-
-	            const values = this._dataMap.typedArrays;
-	            for ( let key in values ) {
-	                expect( isArrayOfArray( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for ( let key in values ) {
-	                expect( isArrayOfArray( values[ key ] ) ).to.be.false;
 	            }
 
 	        } );
@@ -674,6 +598,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is an array with multiples values
 	 *
@@ -682,15 +607,9 @@ this.Itee = this.Itee || {};
 	 */
 	function isArrayOfMultiElement ( data ) {
 
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
+	    if ( isNotArray( data ) ) { return false }
 
-	    if ( data.length <= 1 ) {
-	        return false
-	    }
-
-	    return true
+	    return (data.length > 1)
 
 	}
 
@@ -709,85 +628,34 @@ this.Itee = this.Itee || {};
 
 	    describe( 'isArrayOfMultiElement()', () => {
 
-	        it( 'should return false when the value is a void', () => {
+	        it( 'should return true only when the value is a multi valued array', () => {
 
-	            const values = this._dataMap.voids;
-	            for ( let key in values ) {
-	                expect( isArrayOfMultiElement( values[ key ] ) ).to.be.false;
-	            }
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	        } );
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
 
-	        it( 'should return false when the value is a boolean', () => {
+	                    for ( let key in dataSet ) {
 
-	            const values = this._dataMap[ 'booleans' ];
-	            for ( let key in values ) {
-	                expect( isArrayOfMultiElement( values[ key ] ) ).to.be.false;
-	            }
+	                        const value  = dataSet[ key ];
+	                        const result = isArrayOfMultiElement( value );
+	                        if ( value.length > 1 ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
 
-	        } );
+	                    }
 
-	        it( 'should return false when the value is a number', () => {
-
-	            const values = this._dataMap[ 'numbers' ];
-	            for ( let key in values ) {
-	                expect( isArrayOfMultiElement( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for ( let key in values ) {
-	                expect( isArrayOfMultiElement( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for ( let key in values ) {
-	                expect( isArrayOfMultiElement( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        //////////////// Specific part
-
-	        it( 'should return true only when the value is a multi valued array of number', () => {
-
-	            const values = this._dataMap.arrays;
-	            for ( let key in values ) {
-
-	                const value = values[ key ];
-	                if ( value.length > 1 ) {
-	                    expect( isArrayOfMultiElement( value ) ).to.be.true;
 	                } else {
-	                    expect( isArrayOfMultiElement( value ) ).to.be.false;
+
+	                    for ( let key in dataSet ) {
+	                        expect( isArrayOfMultiElement( dataSet[ key ] ) ).to.be.false;
+	                    }
+
 	                }
 
-	            }
-
-	        } );
-
-	        /////////////////
-
-	        it( 'should return false when the value is an typed array', () => {
-
-	            const values = this._dataMap.typedArrays;
-	            for ( let key in values ) {
-	                expect( isArrayOfMultiElement( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for ( let key in values ) {
-	                expect( isArrayOfMultiElement( values[ key ] ) ).to.be.false;
 	            }
 
 	        } );
@@ -826,6 +694,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is not an empty array where all values are null
 	 *
@@ -834,16 +703,10 @@ this.Itee = this.Itee || {};
 	 */
 	function isArrayOfNull ( data ) {
 
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
+	    if ( isNotArray( data ) ) { return false }
+	    if ( isEmptyArray( data ) ) { return false }
 
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return false
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index++ ) {
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
 	        if ( isNotNull( data[ index ] ) ) {
 	            return false
 	        }
@@ -863,88 +726,38 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isArrayOfNullUnits () {
 
 	    describe( 'isArrayOfNull()', () => {
 
-	        it( 'should return false when the value is a void', () => {
-
-	            const values = this._dataMap.voids;
-	            for ( let key in values ) {
-	                expect( isArrayOfNull( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a boolean', () => {
-
-	            const values = this._dataMap[ 'booleans' ];
-	            for ( let key in values ) {
-	                expect( isArrayOfNull( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a number', () => {
-
-	            const values = this._dataMap[ 'numbers' ];
-	            for ( let key in values ) {
-	                expect( isArrayOfNull( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for ( let key in values ) {
-	                expect( isArrayOfNull( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for ( let key in values ) {
-	                expect( isArrayOfNull( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        //////////////// Specific part
-
 	        it( 'should return true only when the value is an array of null', () => {
 
-	            const values = this._dataMap.arrays;
-	            for ( let key in values ) {
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	                if ( key === 'null' ) {
-	                    expect( isArrayOfNull( values[ key ] ) ).to.be.true;
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isArrayOfNull( dataSet[ key ] );
+	                        if ( key === 'null' ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
 	                } else {
-	                    expect( isArrayOfNull( values[ key ] ) ).to.be.false;
+
+	                    for ( let key in dataSet ) {
+	                        expect( isArrayOfNull( dataSet[ key ] ) ).to.be.false;
+	                    }
+
 	                }
 
-	            }
-
-	        } );
-
-	        /////////////////
-
-	        it( 'should return false when the value is an typed array', () => {
-
-	            const values = this._dataMap.typedArrays;
-	            for ( let key in values ) {
-	                expect( isArrayOfNull( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for ( let key in values ) {
-	                expect( isArrayOfNull( values[ key ] ) ).to.be.false;
 	            }
 
 	        } );
@@ -962,6 +775,7 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
+
 
 	/**
 	 * Check if given data is an object
@@ -983,6 +797,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is not an object
 	 *
@@ -1003,6 +818,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is an array where all values are of object type
 	 *
@@ -1011,16 +827,10 @@ this.Itee = this.Itee || {};
 	 */
 	function isArrayOfObject ( data ) {
 
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
+	    if ( isNotArray( data ) ) { return false }
+	    if ( isEmptyArray( data ) ) { return false }
 
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return false
-	    }
-
-	    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
 	        if ( isNotObject( data[ index ] ) ) {
 	            return false
 	        }
@@ -1040,88 +850,38 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isArrayOfObjectUnits () {
 
 	    describe( 'isArrayOfObject()', () => {
 
-	        it( 'should return false when the value is a void', () => {
+	        it( 'should return true only when the value is a array of objects', () => {
 
-	            const values = this._dataMap.voids;
-	            for ( let key in values ) {
-	                expect( isArrayOfObject( values[ key ] ) ).to.be.false;
-	            }
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	        } );
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
 
-	        it( 'should return false when the value is a boolean', () => {
+	                    for ( let key in dataSet ) {
 
-	            const values = this._dataMap[ 'booleans' ];
-	            for ( let key in values ) {
-	                expect( isArrayOfObject( values[ key ] ) ).to.be.false;
-	            }
+	                        const result = isArrayOfObject( dataSet[ key ] );
+	                        if ( key === 'objects' ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
 
-	        } );
+	                    }
 
-	        it( 'should return false when the value is a number', () => {
-
-	            const values = this._dataMap[ 'numbers' ];
-	            for ( let key in values ) {
-	                expect( isArrayOfObject( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for ( let key in values ) {
-	                expect( isArrayOfObject( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for ( let key in values ) {
-	                expect( isArrayOfObject( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        //////////////// Specific part
-
-	        it( 'should return true only when the value is an array of objects', () => {
-
-	            const values = this._dataMap.arrays;
-	            for ( let key in values ) {
-
-	                if ( key === 'objects' ) {
-	                    expect( isArrayOfObject( values[ key ] ) ).to.be.true;
 	                } else {
-	                    expect( isArrayOfObject( values[ key ] ) ).to.be.false;
+
+	                    for ( let key in dataSet ) {
+	                        expect( isArrayOfObject( dataSet[ key ] ) ).to.be.false;
+	                    }
+
 	                }
 
-	            }
-
-	        } );
-
-	        /////////////////
-
-	        it( 'should return false when the value is an typed array', () => {
-
-	            const values = this._dataMap.typedArrays;
-	            for ( let key in values ) {
-	                expect( isArrayOfObject( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for ( let key in values ) {
-	                expect( isArrayOfObject( values[ key ] ) ).to.be.false;
 	            }
 
 	        } );
@@ -1140,6 +900,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is an array with a single value
 	 *
@@ -1148,9 +909,7 @@ this.Itee = this.Itee || {};
 	 */
 	function isArrayOfSingleElement ( data ) {
 
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
+	    if ( isNotArray( data ) ) { return false }
 
 	    if ( data.length !== 1 ) {
 	        return false
@@ -1170,1050 +929,38 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isArrayOfSingleElementUnits () {
 
 	    describe( 'isArrayOfSingleElement()', () => {
 
-	        it( 'should return false when the value is a void', () => {
-
-	            const values = this._dataMap.voids;
-	            for ( let key in values ) {
-	                expect( isArrayOfSingleElement( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a boolean', () => {
-
-	            const values = this._dataMap[ 'booleans' ];
-	            for ( let key in values ) {
-	                expect( isArrayOfSingleElement( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a number', () => {
-
-	            const values = this._dataMap[ 'numbers' ];
-	            for ( let key in values ) {
-	                expect( isArrayOfSingleElement( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for ( let key in values ) {
-	                expect( isArrayOfSingleElement( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for ( let key in values ) {
-	                expect( isArrayOfSingleElement( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        //////////////// Specific part
-
 	        it( 'should return true only when the value is a single valued array of number', () => {
 
-	            const values = this._dataMap.arrays;
-	            for ( let key in values ) {
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	                if ( key === 'singleValued' ) {
-	                    expect( isArrayOfSingleElement( values[ key ] ) ).to.be.true;
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isArrayOfSingleElement( dataSet[ key ] );
+	                        if ( key === 'singleValued' ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
 	                } else {
-	                    expect( isArrayOfSingleElement( values[ key ] ) ).to.be.false;
+
+	                    for ( let key in dataSet ) {
+	                        expect( isArrayOfSingleElement( dataSet[ key ] ) ).to.be.false;
+	                    }
+
 	                }
 
-	            }
-
-	        } );
-
-	        /////////////////
-
-	        it( 'should return false when the value is an typed array', () => {
-
-	            const values = this._dataMap.typedArrays;
-	            for ( let key in values ) {
-	                expect( isArrayOfSingleElement( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for ( let key in values ) {
-	                expect( isArrayOfSingleElement( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not a string
-	 *
-	 * @param data {*} The data to check against the string type
-	 * @returns {boolean} true if data is not a string, false otherwise.
-	 */
-	function isNotString ( data ) {
-	    return (typeof data !== 'string')
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not an empty array where all values are string
-	 *
-	 * @param data {any} The data to check against the array of strings
-	 * @returns {boolean} true if data is not an empty array where all values are string, false otherwise
-	 */
-	function isArrayOfString ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
-
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return false
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index++ ) {
-	        // Todo: Use isNotString in Safe mode (check String object too) !!!
-	        if ( isNotString( data[ index ] ) ) {
-	            return false
-	        }
-	    }
-
-	    return true
-
-	}
-	// #endif
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
-	 *
-	 * @module tests/cores/arrays
-	 * @desc Export the units tests about isArrayOfString method.
-	 * @requires {@link module:sources/cores/arrays}
-	 *
-	 */
-
-	function isArrayOfStringUnits () {
-
-	    describe( 'isArrayOfString()', () => {
-
-	        it( 'should return false when the value is a void', () => {
-
-	            const values = this._dataMap.voids;
-	            for ( let key in values ) {
-	                expect( isArrayOfString( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a boolean', () => {
-
-	            const values = this._dataMap[ 'booleans' ];
-	            for ( let key in values ) {
-	                expect( isArrayOfString( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a number', () => {
-
-	            const values = this._dataMap[ 'numbers' ];
-	            for ( let key in values ) {
-	                expect( isArrayOfString( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for ( let key in values ) {
-	                expect( isArrayOfString( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for ( let key in values ) {
-	                expect( isArrayOfString( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        //////////////// Specific part
-
-	        it.skip( 'should return true only when the value is an array of string', () => {
-
-	            const values = this._dataMap.arrays;
-	            for ( let key in values ) {
-
-	                const result = isArrayOfString(values[key]);
-	                if ( key === 'strings' ) {
-	                    expect( result ).to.be.true;
-	                } else {
-	                    expect( result ).to.be.false;
-	                }
-
-	            }
-
-	        } );
-
-	        /////////////////
-
-	        it( 'should return false when the value is an typed array', () => {
-
-	            const values = this._dataMap.typedArrays;
-	            for ( let key in values ) {
-	                expect( isArrayOfString( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for ( let key in values ) {
-	                expect( isArrayOfString( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not null and not undefined
-	 *
-	 * @param data {any} The data to check against the existence
-	 * @returns {boolean} true if data is not null and not undefined, false otherwise.
-	 */
-	function isDefined ( data ) {
-	    return ((data !== null) && (typeof data !== 'undefined'))
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not an empty array where all values are undefined
-	 *
-	 * @param data {any} The data to check against the array of undefined
-	 * @returns {boolean} true if data is not an empty array where all values are undefined, false otherwise
-	 */
-	function isArrayOfUndefined ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
-
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return false
-	    }
-
-	    for ( let index = 0, arrayLength = data.length ; index < arrayLength ; index += 1 ) {
-	        // Todo: Use isNotUndefined !!!
-	        if ( isDefined( data[ index ] ) ) {
-	            return false
-	        }
-	    }
-
-	    return true
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
-	 *
-	 * @module tests/cores/arrays
-	 * @desc Export the units tests about isArrayOfUndefined method.
-	 * @requires {@link module:sources/cores/arrays}
-	 *
-	 */
-
-	function isArrayOfUndefinedUnits () {
-
-	    describe( 'isArrayOfUndefined()', () => {
-
-	        it( 'should return false when the value is a void', () => {
-
-	            const values = this._dataMap.voids;
-	            for ( let key in values ) {
-	                expect( isArrayOfUndefined( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a boolean', () => {
-
-	            const values = this._dataMap[ 'booleans' ];
-	            for ( let key in values ) {
-	                expect( isArrayOfUndefined( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a number', () => {
-
-	            const values = this._dataMap[ 'numbers' ];
-	            for ( let key in values ) {
-	                expect( isArrayOfUndefined( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for ( let key in values ) {
-	                expect( isArrayOfUndefined( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for ( let key in values ) {
-	                expect( isArrayOfUndefined( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        //////////////// Specific part
-
-	        it.skip( 'should return true only when the value is an array of undefined', () => {
-
-	            const values = this._dataMap.arrays;
-	            for ( let key in values ) {
-
-	                const result = isArrayOfUndefined(values[key]);
-	                if ( key === 'undefined' ) {
-	                    expect( result ).to.be.true;
-	                } else {
-	                    expect( result ).to.be.false;
-	                }
-
-	            }
-
-	        } );
-
-	        /////////////////
-
-	        it( 'should return false when the value is an typed array', () => {
-
-	            const values = this._dataMap.typedArrays;
-	            for ( let key in values ) {
-	                expect( isArrayOfUndefined( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for ( let key in values ) {
-	                expect( isArrayOfUndefined( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is an empty array
-	 *
-	 * @param data {any} The data to check against the empty array
-	 * @returns {boolean} true if data is an empty array, false otherwise
-	 */
-	function isEmptyArray ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return false
-	    }
-
-	    return (data.length === 0)
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
-	 *
-	 * @module tests/cores/arrays
-	 * @desc Export the units tests about isEmptyArray method.
-	 * @requires {@link module:sources/cores/arrays}
-	 *
-	 */
-
-	function isEmptyArrayUnits () {
-
-	    describe( 'isEmptyArray()', () => {
-
-	        it( 'should return false when the value is a void', () => {
-
-	            const values = this._dataMap.voids;
-	            for ( let key in values ) {
-	                expect( isEmptyArray( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a boolean', () => {
-
-	            const values = this._dataMap[ 'booleans' ];
-	            for ( let key in values ) {
-	                expect( isEmptyArray( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a number', () => {
-
-	            const values = this._dataMap[ 'numbers' ];
-	            for ( let key in values ) {
-	                expect( isEmptyArray( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for ( let key in values ) {
-	                expect( isEmptyArray( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for ( let key in values ) {
-	                expect( isEmptyArray( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        //////////////// Specific part
-
-	        it( 'should return true only when the value is an empty array object', () => {
-
-	            const values = this._dataMap.arrays;
-	            for ( let key in values ) {
-
-	                if ( key === 'emptyArray' || key === 'emptyArrayObject' ) {
-	                    expect( isEmptyArray( values[ key ] ) ).to.be.true;
-	                } else {
-	                    expect( isEmptyArray( values[ key ] ) ).to.be.false;
-	                }
-
-	            }
-
-	        } );
-
-	        /////////////////
-
-	        it( 'should return false when the value is an typed array', () => {
-
-	            const values = this._dataMap.typedArrays;
-	            for ( let key in values ) {
-	                expect( isEmptyArray( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for ( let key in values ) {
-	                expect( isEmptyArray( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
-	 *
-	 * @module tests/cores/arrays
-	 * @desc Export the units tests about isNotArray method.
-	 * @requires {@link module:sources/cores/arrays}
-	 *
-	 */
-
-	function isNotArrayUnits () {
-
-	    describe( 'isNotArray()', () => {
-
-	        it( 'should return true when the value is a void', () => {
-
-	            const values = this._dataMap.voids;
-	            for( let key in values ) {
-	                expect( isNotArray( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a boolean', () => {
-
-	            const values = this._dataMap[ 'booleans' ];
-	            for( let key in values ) {
-	                expect( isNotArray( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a number', () => {
-
-	            const values = this._dataMap[ 'numbers' ];
-	            for( let key in values ) {
-	                expect( isNotArray( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for( let key in values ) {
-	                expect( isNotArray( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for( let key in values ) {
-	                expect( isNotArray( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an array', () => {
-
-	            const values = this._dataMap.arrays;
-	            for( let key in values ) {
-	                expect( isNotArray( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for( let key in values ) {
-	                expect( isNotArray( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not an array of array
-	 *
-	 * @param data {any} The data to check against the array of array type
-	 * @returns {boolean} true if data is not an array of array, false otherwise
-	 */
-	function isNotArrayOfArray ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return true
-	    }
-
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return true
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index++ ) {
-	        if (isArray( data[ index ] ) ) {
-	            return false
-	        }
-	    }
-
-	    return true
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
-	 *
-	 * @module tests/cores/arrays
-	 * @desc Export the units tests about isNotArrayOfArray method.
-	 * @requires {@link module:sources/cores/arrays}
-	 *
-	 */
-
-	function isNotArrayOfArrayUnits () {
-
-	    describe( 'isNotArrayOfArray()', () => {
-
-	        it( 'should return true when the value is a void', () => {
-
-	            const values = this._dataMap.voids;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfArray( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a boolean', () => {
-
-	            const values = this._dataMap[ 'booleans' ];
-	            for ( let key in values ) {
-	                expect( isNotArrayOfArray( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a number', () => {
-
-	            const values = this._dataMap[ 'numbers' ];
-	            for ( let key in values ) {
-	                expect( isNotArrayOfArray( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfArray( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfArray( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        //////////////// Specific part
-
-	        it( 'should return false only when the value is an array of arrays', () => {
-
-	            const values = this._dataMap.arrays;
-	            for ( let key in values ) {
-
-	                const result = isNotArrayOfArray( values[ key ] );
-	                if ( key === 'arrays' ) {
-	                    expect( result ).to.be.false;
-	                } else {
-	                    expect( result ).to.be.true;
-	                }
-
-	            }
-
-	        } );
-
-	        /////////////////
-
-	        it( 'should return true when the value is an typed array', () => {
-
-	            const values = this._dataMap.typedArrays;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfArray( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfArray( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is null
-	 *
-	 * @param data {any} The data to check against the nullity
-	 * @returns {boolean} true if data is null, false otherwise.
-	 */
-	function isNull ( data ) {
-	    return (data === null)
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not an empty array where all values are not null
-	 *
-	 * @param data {any} The data to check against the array of array type
-	 * @returns {boolean} true if data is not an empty array where all values are not null, false otherwise
-	 */
-	function isNotArrayOfNull ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return true
-	    }
-
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return true
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index++ ) {
-	        // Todo: Must be isNotNull because in case we have a single null in the array it match
-	        if ( isNull( data[ index ] ) ) {
-	            return false
-	        }
-	    }
-
-	    return true
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
-	 *
-	 * @module tests/cores/arrays
-	 * @desc Export the units tests about isNotArrayOfNull method.
-	 * @requires {@link module:sources/cores/arrays}
-	 *
-	 */
-
-	function isNotArrayOfNullUnits () {
-
-	    describe( 'isNotArrayOfNull()', () => {
-
-	        it( 'should return true when the value is a void', () => {
-
-	            const values = this._dataMap.voids;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfNull( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a boolean', () => {
-
-	            const values = this._dataMap[ 'booleans' ];
-	            for ( let key in values ) {
-	                expect( isNotArrayOfNull( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a number', () => {
-
-	            const values = this._dataMap[ 'numbers' ];
-	            for ( let key in values ) {
-	                expect( isNotArrayOfNull( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfNull( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfNull( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        //////////////// Specific part
-
-	        it.skip( 'should return false only when the value is an array of null', () => {
-
-	            const values = this._dataMap.arrays;
-	            for ( let key in values ) {
-
-	                const result = isNotArrayOfNull( values[ key ] );
-	                if ( key === 'null' ) {
-	                    expect( result ).to.be.false;
-	                } else {
-	                    expect( result ).to.be.true;
-	                }
-
-	            }
-
-	        } );
-
-	        /////////////////
-
-	        it( 'should return true when the value is an typed array', () => {
-
-	            const values = this._dataMap.typedArrays;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfNull( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfNull( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is not an array where all values are of object type
-	 *
-	 * @param data {any} The data to check against the array of object type
-	 * @returns {boolean} true if data is not an array where all values are of object type, false otherwise
-	 */
-	function isNotArrayOfObject ( data ) {
-
-	    if ( isNotArray( data ) ) {
-	        return true
-	    }
-
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return true
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index++ ) {
-	        // Todo: Must be isNotObject because in case we have a single undefined in the array it match
-	        if ( isObject( data[ index ] ) ) {
-	            return true
-	        }
-	    }
-
-	    return false
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
-	 *
-	 * @module tests/cores/arrays
-	 * @desc Export the units tests about isNotArrayOfObject method.
-	 * @requires {@link module:sources/cores/arrays}
-	 *
-	 */
-
-	function isNotArrayOfObjectUnits () {
-
-	    describe( 'isNotArrayOfObject()', () => {
-
-	        it( 'should return true when the value is a void', () => {
-
-	            const values = this._dataMap.voids;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfObject( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a boolean', () => {
-
-	            const values = this._dataMap[ 'booleans' ];
-	            for ( let key in values ) {
-	                expect( isNotArrayOfObject( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a number', () => {
-
-	            const values = this._dataMap[ 'numbers' ];
-	            for ( let key in values ) {
-	                expect( isNotArrayOfObject( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfObject( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfObject( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        //////////////// Specific part
-
-	        it.skip( 'should return false only when the value is an array of object', () => {
-
-	            const values = this._dataMap.arrays;
-	            for ( let key in values ) {
-
-	                const result = isNotArrayOfObject( values[ key ] );
-	                if ( key === 'objects' ) {
-	                    expect( result ).to.be.false;
-	                } else {
-	                    expect( result ).to.be.true;
-	                }
-
-	            }
-
-	        } );
-
-	        /////////////////
-
-	        it( 'should return true when the value is an typed array', () => {
-
-	            const values = this._dataMap.typedArrays;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfObject( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfObject( values[ key ] ) ).to.be.true;
 	            }
 
 	        } );
@@ -2241,6 +988,7 @@ this.Itee = this.Itee || {};
 	function isString ( data ) {
 	    return (typeof data === 'string' || data instanceof String)
 	}
+
 	// #endif
 
 	/**
@@ -2253,25 +1001,41 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
-	 * Check if given data is not an empty array where all values are not string
+	 * Check if given data is not a string
+	 *
+	 * @param data {*} The data to check against the string type
+	 * @returns {boolean} true if data is not a string, false otherwise.
+	 */
+	function isNotString ( data ) {
+	    return !isString( data )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+
+	/**
+	 * Check if given data is not an empty array where all values are string
 	 *
 	 * @param data {any} The data to check against the array of strings
-	 * @returns {boolean} true if data is not an empty array where all values are not string, false otherwise
+	 * @returns {boolean} true if data is not an empty array where all values are string, false otherwise
 	 */
-	function isNotArrayOfString ( data ) {
+	function isArrayOfString ( data ) {
 
-	    if ( isNotArray( data ) ) {
-	        return true
-	    }
+	    if ( isNotArray( data ) ) { return false }
+	    if ( isEmptyArray( data ) ) { return false }
 
-	    const dataLength = data.length;
-	    if ( dataLength === 0 ) {
-	        return true
-	    }
-
-	    for ( let index = 0 ; index < dataLength ; index++ ) {
-	        if ( isString( data[ index ] ) ) {
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+	        if ( isNotString( data[ index ] ) ) {
 	            return false
 	        }
 	    }
@@ -2280,99 +1044,50 @@ this.Itee = this.Itee || {};
 
 	}
 
+	// #endif
+
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/arrays
-	 * @desc Export the units tests about isNotArrayOfString method.
+	 * @desc Export the units tests about isArrayOfString method.
 	 * @requires {@link module:sources/cores/arrays}
 	 *
 	 */
 
-	function isNotArrayOfStringUnits () {
 
-	    describe( 'isNotArrayOfString()', () => {
+	function isArrayOfStringUnits () {
 
-	        it( 'should return true when the value is a void', () => {
+	    describe( 'isArrayOfString()', () => {
 
-	            const values = this._dataMap.voids;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfString( values[ key ] ) ).to.be.true;
-	            }
+	        it( 'should return true only when the value is a array of strings', () => {
 
-	        } );
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	        it( 'should return true when the value is a boolean', () => {
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
 
-	            const values = this._dataMap[ 'booleans' ];
-	            for ( let key in values ) {
-	                expect( isNotArrayOfString( values[ key ] ) ).to.be.true;
-	            }
+	                    for ( let key in dataSet ) {
 
-	        } );
+	                        const result = isArrayOfString( dataSet[ key ] );
+	                        if ( key === 'strings' ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
 
-	        it( 'should return true when the value is a number', () => {
+	                    }
 
-	            const values = this._dataMap[ 'numbers' ];
-	            for ( let key in values ) {
-	                expect( isNotArrayOfString( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfString( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfString( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        //////////////// Specific part
-
-	        it( 'should return false only when the value is an array of string', () => {
-
-	            const values = this._dataMap.arrays;
-	            for ( let key in values ) {
-
-	                const result = isNotArrayOfString( values[ key ] );
-	                if ( key === 'strings' ) {
-	                    expect( result ).to.be.false;
 	                } else {
-	                    expect( result ).to.be.true;
+
+	                    for ( let key in dataSet ) {
+	                        expect( isArrayOfString( dataSet[ key ] ) ).to.be.false;
+	                    }
+
 	                }
 
-	            }
-
-	        } );
-
-	        /////////////////
-
-	        it( 'should return true when the value is an typed array', () => {
-
-	            const values = this._dataMap.typedArrays;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfString( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfString( values[ key ] ) ).to.be.true;
 	            }
 
 	        } );
@@ -2392,13 +1107,13 @@ this.Itee = this.Itee || {};
 	 */
 
 	/**
-	 * Check if given data is undefined
+	 * Check if given data is defined
 	 *
 	 * @param data {any} The data to check against the undefiness
-	 * @returns {boolean} true if data is undefined, false otherwise.
+	 * @returns {boolean} true if data is defined, false otherwise.
 	 */
-	function isUndefined ( data ) {
-	    return (typeof data === 'undefined')
+	function isNotUndefined ( data ) {
+	    return (typeof data !== 'undefined')
 	}
 
 	/**
@@ -2411,13 +1126,189 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
-	 * Check if given data is not an empty array where all values are defined
+	 * Check if given data is not an empty array where all values are undefined
 	 *
 	 * @param data {any} The data to check against the array of undefined
-	 * @returns {boolean} true if data is not an empty array where all values are defined, false otherwise
+	 * @returns {boolean} true if data is not an empty array where all values are undefined, false otherwise
 	 */
-	function isNotArrayOfUndefined ( data ) {
+	function isArrayOfUndefined ( data ) {
+
+	    if ( isNotArray( data ) ) { return false }
+	    if ( isEmptyArray( data ) ) { return false }
+
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+	        if ( isNotUndefined( data[ index ] ) ) {
+	            return false
+	        }
+	    }
+
+	    return true
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 * @module tests/cores/arrays
+	 * @desc Export the units tests about isArrayOfUndefined method.
+	 * @requires {@link module:sources/cores/arrays}
+	 *
+	 */
+
+
+	function isArrayOfUndefinedUnits () {
+
+	    describe( 'isArrayOfUndefined()', () => {
+
+	        it( 'should return true only when the value is a array of undefined', () => {
+
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isArrayOfUndefined( dataSet[ key ] );
+	                        if ( key === 'undefined' || key === 'void' ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isArrayOfUndefined( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 * @module tests/cores/arrays
+	 * @desc Export the units tests about isEmptyArray method.
+	 * @requires {@link module:sources/cores/arrays}
+	 *
+	 */
+
+
+	function isEmptyArrayUnits () {
+
+	    describe( 'isEmptyArray()', () => {
+
+	        it( 'should return true only when the value is an empty array object', () => {
+
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isEmptyArray( dataSet[ key ] );
+	                        if ( key === 'emptyArray' || key === 'emptyArrayObject' ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isEmptyArray( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 * @module tests/cores/arrays
+	 * @desc Export the units tests about isNotArray method.
+	 * @requires {@link module:sources/cores/arrays}
+	 *
+	 */
+
+
+	function isNotArrayUnits () {
+
+	    describe( 'isNotArray()', () => {
+
+	        it( 'should return false only when the value is a array', () => {
+
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotArray( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotArray( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+
+	/**
+	 * Check if given data is not an array of array
+	 *
+	 * @param data {any} The data to check against the array of array type
+	 * @returns {boolean} true if data is not an array of array, false otherwise
+	 */
+	function isNotArrayOfArray ( data ) {
 
 	    if ( isNotArray( data ) ) {
 	        return true
@@ -2429,8 +1320,335 @@ this.Itee = this.Itee || {};
 	    }
 
 	    for ( let index = 0 ; index < dataLength ; index++ ) {
-	        // Todo: Must be isNotUndefined because in case we have a single undefined in the array it match
-	        if ( isUndefined( data[ index ] ) ) {
+	        if ( isArray( data[ index ] ) ) {
+	            return false
+	        }
+	    }
+
+	    return true
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 * @module tests/cores/arrays
+	 * @desc Export the units tests about isNotArrayOfArray method.
+	 * @requires {@link module:sources/cores/arrays}
+	 *
+	 */
+
+
+	function isNotArrayOfArrayUnits () {
+
+	    describe( 'isNotArrayOfArray()', () => {
+
+	        it( 'should return false only when the value is a array of arrays', () => {
+
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isNotArrayOfArray( dataSet[ key ] );
+	                        if ( key === 'arrays' ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotArrayOfArray( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+
+	/**
+	 * Check if given data is not an empty array where all values are not null
+	 *
+	 * @param data {any} The data to check against the array of array type
+	 * @returns {boolean} true if data is not an empty array where all values are not null, false otherwise
+	 */
+	function isNotArrayOfNull ( data ) {
+
+	    if ( isNotArray( data ) ) { return true }
+	    if ( isEmptyArray( data ) ) { return true }
+
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+	        if ( isNotNull( data[ index ] ) ) {
+	            return true
+	        }
+	    }
+
+	    return false
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 * @module tests/cores/arrays
+	 * @desc Export the units tests about isNotArrayOfNull method.
+	 * @requires {@link module:sources/cores/arrays}
+	 *
+	 */
+
+
+	function isNotArrayOfNullUnits () {
+
+	    describe( 'isNotArrayOfNull()', () => {
+
+	        it( 'should return false only when the value is an array of null', () => {
+
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isNotArrayOfNull( dataSet[ key ] );
+	                        if ( key === 'null' ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotArrayOfNull( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+
+	/**
+	 * Check if given data is not an array where all values are of object type
+	 *
+	 * @param data {any} The data to check against the array of object type
+	 * @returns {boolean} true if data is not an array where all values are of object type, false otherwise
+	 */
+	function isNotArrayOfObject ( data ) {
+
+	    if ( isNotArray( data ) ) { return true }
+	    if ( isEmptyArray( data ) ) { return true }
+
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+	        if ( isNotObject( data[ index ] ) ) {
+	            return true
+	        }
+	    }
+
+	    return false
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 * @module tests/cores/arrays
+	 * @desc Export the units tests about isNotArrayOfObject method.
+	 * @requires {@link module:sources/cores/arrays}
+	 *
+	 */
+
+
+	function isNotArrayOfObjectUnits () {
+
+	    describe( 'isNotArrayOfObject()', () => {
+
+	        it( 'should return false only when the value is a array of objects', () => {
+
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isNotArrayOfObject( dataSet[ key ] );
+	                        if ( key === 'objects' ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotArrayOfObject( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+
+	/**
+	 * Check if given data is not an empty array where all values are not string
+	 *
+	 * @param data {any} The data to check against the array of strings
+	 * @returns {boolean} true if data is not an empty array where all values are not string, false otherwise
+	 */
+	function isNotArrayOfString ( data ) {
+
+	    if ( isNotArray( data ) ) { return true }
+	    if ( isEmptyArray( data ) ) { return true }
+
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+	        if ( isNotString( data[ index ] ) ) {
+	            return true
+	        }
+	    }
+
+	    return false
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
+	 *
+	 * @module tests/cores/arrays
+	 * @desc Export the units tests about isNotArrayOfString method.
+	 * @requires {@link module:sources/cores/arrays}
+	 *
+	 */
+
+
+	function isNotArrayOfStringUnits () {
+
+	    describe( 'isNotArrayOfString()', () => {
+
+	        it( 'should return false only when the value is a array of strings', () => {
+
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isNotArrayOfString( dataSet[ key ] );
+	                        if ( key === 'strings' ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotArrayOfString( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+
+	/**
+	 * Check if given data is not an empty array where all values are defined
+	 *
+	 * @param data {any} The data to check against the array of undefined
+	 * @returns {boolean} true if data is not an empty array where all values are defined, false otherwise
+	 */
+	function isNotArrayOfUndefined ( data ) {
+
+	    if ( isNotArray( data ) ) { return true }
+	    if ( isEmptyArray( data ) ) { return true }
+
+	    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+	        if ( isNotUndefined( data[ index ] ) ) {
 	            return true
 	        }
 	    }
@@ -2449,89 +1667,38 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isNotArrayOfUndefinedUnits () {
 
 	    describe( 'isNotArrayOfUndefined()', () => {
 
-	        it( 'should return true when the value is a void', () => {
+	        it( 'should return false only when the value is a array of undefined', () => {
 
-	            const values = this._dataMap.voids;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfUndefined( values[ key ] ) ).to.be.true;
-	            }
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	        } );
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
 
-	        it( 'should return true when the value is a boolean', () => {
+	                    for ( let key in dataSet ) {
 
-	            const values = this._dataMap[ 'booleans' ];
-	            for ( let key in values ) {
-	                expect( isNotArrayOfUndefined( values[ key ] ) ).to.be.true;
-	            }
+	                        const result = isNotArrayOfUndefined( dataSet[ key ] );
+	                        if ( key === 'undefined' || key === 'void' ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
 
-	        } );
+	                    }
 
-	        it( 'should return true when the value is a number', () => {
-
-	            const values = this._dataMap[ 'numbers' ];
-	            for ( let key in values ) {
-	                expect( isNotArrayOfUndefined( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfUndefined( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfUndefined( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        //////////////// Specific part
-
-	        it.skip( 'should return false only when the value is an array of undefined', () => {
-
-	            const values = this._dataMap.arrays;
-	            for ( let key in values ) {
-
-	                const result = isNotArrayOfUndefined( values[ key ] );
-	                if ( key === 'undefined' ) {
-	                    expect( result ).to.be.false;
 	                } else {
-	                    expect( result ).to.be.true;
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotArrayOfUndefined( dataSet[ key ] ) ).to.be.true;
+	                    }
+
 	                }
 
-	            }
-
-	        } );
-
-	        /////////////////
-
-	        it( 'should return true when the value is an typed array', () => {
-
-	            const values = this._dataMap.typedArrays;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfUndefined( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for ( let key in values ) {
-	                expect( isNotArrayOfUndefined( values[ key ] ) ).to.be.true;
 	            }
 
 	        } );
@@ -2550,6 +1717,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is not an empty array
 	 *
@@ -2558,11 +1726,10 @@ this.Itee = this.Itee || {};
 	 */
 	function isNotEmptyArray ( data ) {
 
-	    if ( isNotArray( data ) ) {
-	        return true
-	    }
+	    if ( isNotArray( data ) ) { return true }
 
 	    return (data.length > 0)
+
 	}
 
 	/**
@@ -2575,89 +1742,38 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isNotEmptyArrayUnits () {
 
 	    describe( 'isNotEmptyArray()', () => {
 
-	        it( 'should return true when the value is a void', () => {
+	        it( 'should return false only when the value is an empty array object', () => {
 
-	            const values = this._dataMap.voids;
-	            for ( let key in values ) {
-	                expect( isNotEmptyArray( values[ key ] ) ).to.be.true;
-	            }
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	        } );
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'arrays' ) {
 
-	        it( 'should return true when the value is a boolean', () => {
+	                    for ( let key in dataSet ) {
 
-	            const values = this._dataMap[ 'booleans' ];
-	            for ( let key in values ) {
-	                expect( isNotEmptyArray( values[ key ] ) ).to.be.true;
-	            }
+	                        const result = isNotEmptyArray( dataSet[ key ] );
+	                        if ( key === 'emptyArray' || key === 'emptyArrayObject' ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
 
-	        } );
+	                    }
 
-	        it( 'should return true when the value is a number', () => {
-
-	            const values = this._dataMap[ 'numbers' ];
-	            for ( let key in values ) {
-	                expect( isNotEmptyArray( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for ( let key in values ) {
-	                expect( isNotEmptyArray( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for ( let key in values ) {
-	                expect( isNotEmptyArray( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        //////////////// Specific part
-
-	        it( 'should return false only when the value is an empty array', () => {
-
-	            const values = this._dataMap.arrays;
-	            for ( let key in values ) {
-
-	                const result = isNotEmptyArray( values[ key ] );
-	                if ( key === 'emptyArray' || key === 'emptyArrayObject' ) {
-	                    expect( result ).to.be.false;
 	                } else {
-	                    expect( result ).to.be.true;
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotEmptyArray( dataSet[ key ] ) ).to.be.true;
+	                    }
+
 	                }
 
-	            }
-
-	        } );
-
-	        /////////////////
-
-	        it( 'should return true when the value is an typed array', () => {
-
-	            const values = this._dataMap.typedArrays;
-	            for ( let key in values ) {
-	                expect( isNotEmptyArray( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for ( let key in values ) {
-	                expect( isNotEmptyArray( values[ key ] ) ).to.be.true;
 	            }
 
 	        } );
@@ -2671,6 +1787,7 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
+
 
 	function _arraysUnits () {
 
@@ -2729,6 +1846,7 @@ this.Itee = this.Itee || {};
 	function isBoolean ( data ) {
 	    return (typeof data === 'boolean')
 	}
+
 	// #endif
 
 	/**
@@ -2741,69 +1859,31 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isBooleanUnits () {
 
 	    describe( 'isBoolean()', () => {
 
-	        it( 'should return false when the value is a void', () => {
+	        it( 'should return true only when the value is a boolean', () => {
 
-	            const values = this._dataMap.voids;
-	            for( let key in values ) {
-	                expect( isBoolean( values[ key ] ) ).to.be.false;
-	            }
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	        } );
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'booleans' ) {
 
-	        it( 'should return true when the value is a boolean', () => {
+	                    for ( let key in dataSet ) {
+	                        expect( isBoolean( dataSet[ key ] ) ).to.be.true;
+	                    }
 
-	            const values = this._dataMap[ 'booleans' ];
-	            for( let key in values ) {
-	                expect( isBoolean( values[ key ] ) ).to.be.true;
-	            }
+	                } else {
 
-	        } );
+	                    for ( let key in dataSet ) {
+	                        expect( isBoolean( dataSet[ key ] ) ).to.be.false;
+	                    }
 
-	        it( 'should return false when the value is a number', () => {
+	                }
 
-	            const values = this._dataMap[ 'numbers' ];
-	            for( let key in values ) {
-	                expect( isBoolean( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for( let key in values ) {
-	                expect( isBoolean( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for( let key in values ) {
-	                expect( isBoolean( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an array', () => {
-
-	            const values = this._dataMap.arrays;
-	            for( let key in values ) {
-	                expect( isBoolean( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for( let key in values ) {
-	                expect( isBoolean( values[ key ] ) ).to.be.false;
 	            }
 
 	        } );
@@ -2822,6 +1902,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is not a boolean
 	 *
@@ -2831,6 +1912,7 @@ this.Itee = this.Itee || {};
 	function isNotBoolean ( data ) {
 	    return (typeof data !== 'boolean')
 	}
+
 	// #endif
 
 	/**
@@ -2842,69 +1924,31 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/booleans}
 	 */
 
+
 	function isNotBooleanUnits () {
 
 	    describe( 'isNotBoolean()', () => {
 
-	        it( 'should return true when the value is a void', () => {
+	        it( 'should return false only when the value is a boolean', () => {
 
-	            const values = this._dataMap.voids;
-	            for( let key in values ) {
-	                expect( isNotBoolean( values[ key ] ) ).to.be.true;
-	            }
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	        } );
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'booleans' ) {
 
-	        it( 'should return false when the value is a boolean', () => {
+	                    for ( let key in dataSet ) {
+	                        expect( isNotBoolean( dataSet[ key ] ) ).to.be.false;
+	                    }
 
-	            const values = this._dataMap[ 'booleans' ];
-	            for( let key in values ) {
-	                expect( isNotBoolean( values[ key ] ) ).to.be.false;
-	            }
+	                } else {
 
-	        } );
+	                    for ( let key in dataSet ) {
+	                        expect( isNotBoolean( dataSet[ key ] ) ).to.be.true;
+	                    }
 
-	        it( 'should return true when the value is a number', () => {
+	                }
 
-	            const values = this._dataMap[ 'numbers' ];
-	            for( let key in values ) {
-	                expect( isNotBoolean( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for( let key in values ) {
-	                expect( isNotBoolean( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for( let key in values ) {
-	                expect( isNotBoolean( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is an array', () => {
-
-	            const values = this._dataMap.arrays;
-	            for( let key in values ) {
-	                expect( isNotBoolean( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for( let key in values ) {
-	                expect( isNotBoolean( values[ key ] ) ).to.be.true;
 	            }
 
 	        } );
@@ -2918,6 +1962,7 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
+
 
 	function _booleansUnits () {
 
@@ -2972,69 +2017,31 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isFunctionUnits () {
 
 	    describe( 'isFunction()', () => {
 
-	        it( 'should return false when the value is a void', () => {
+	        it( 'should return true only when the value is a functions', () => {
 
-	            const values = this._dataMap.voids;
-	            for( let key in values ) {
-	                expect( isFunction( values[ key ] ) ).to.be.false;
-	            }
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	        } );
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'functions' ) {
 
-	        it( 'should return false when the value is a boolean', () => {
+	                    for ( let key in dataSet ) {
+	                        expect( isFunction( dataSet[ key ] ) ).to.be.true;
+	                    }
 
-	            const values = this._dataMap[ 'booleans' ];
-	            for( let key in values ) {
-	                expect( isFunction( values[ key ] ) ).to.be.false;
-	            }
+	                } else {
 
-	        } );
+	                    for ( let key in dataSet ) {
+	                        expect( isFunction( dataSet[ key ] ) ).to.be.false;
+	                    }
 
-	        it( 'should return false when the value is a number', () => {
+	                }
 
-	            const values = this._dataMap[ 'numbers' ];
-	            for( let key in values ) {
-	                expect( isFunction( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for( let key in values ) {
-	                expect( isFunction( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for( let key in values ) {
-	                expect( isFunction( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an array', () => {
-
-	            const values = this._dataMap.arrays;
-	            for( let key in values ) {
-	                expect( isFunction( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for( let key in values ) {
-	                expect( isFunction( values[ key ] ) ).to.be.false;
 	            }
 
 	        } );
@@ -3073,69 +2080,31 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isNotFunctionUnits () {
 
 	    describe( 'isNotFunction()', () => {
 
-	        it( 'should return true when the value is a void', () => {
+	        it( 'should return false only when the value is a functions', () => {
 
-	            const values = this._dataMap.voids;
-	            for( let key in values ) {
-	                expect( isNotFunction( values[ key ] ) ).to.be.true;
-	            }
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	        } );
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'functions' ) {
 
-	        it( 'should return true when the value is a boolean', () => {
+	                    for ( let key in dataSet ) {
+	                        expect( isNotFunction( dataSet[ key ] ) ).to.be.false;
+	                    }
 
-	            const values = this._dataMap[ 'booleans' ];
-	            for( let key in values ) {
-	                expect( isNotFunction( values[ key ] ) ).to.be.true;
-	            }
+	                } else {
 
-	        } );
+	                    for ( let key in dataSet ) {
+	                        expect( isNotFunction( dataSet[ key ] ) ).to.be.true;
+	                    }
 
-	        it( 'should return true when the value is a number', () => {
+	                }
 
-	            const values = this._dataMap[ 'numbers' ];
-	            for( let key in values ) {
-	                expect( isNotFunction( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for( let key in values ) {
-	                expect( isNotFunction( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for( let key in values ) {
-	                expect( isNotFunction( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is an array', () => {
-
-	            const values = this._dataMap.arrays;
-	            for( let key in values ) {
-	                expect( isNotFunction( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for( let key in values ) {
-	                expect( isNotFunction( values[ key ] ) ).to.be.true;
 	            }
 
 	        } );
@@ -3149,6 +2118,7 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
+
 
 	function _functionsUnits () {
 
@@ -3203,13 +2173,41 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isFiniteUnits () {
 
 	    describe( 'isFinite()', () => {
 
-	        it.skip( 'should be implemented', () => {
+	        it( 'should return true only when the value is a finite number', () => {
 
-	            expect( isFinite$1( 0 ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    const allowed = [ 'negativeInfinity', 'nan', 'positiveInfinity' ];
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isFinite$1( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isFinite$1( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
 
 	        } );
 
@@ -3236,6 +2234,7 @@ this.Itee = this.Itee || {};
 	function isFloat ( data ) {
 	    return data % 1 !== 0
 	}
+
 	// #endif
 
 	/**
@@ -3248,13 +2247,41 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isFloatUnits () {
 
 	    describe( 'isFloat()', () => {
 
-	        it.skip( 'should be implemented', () => {
+	        it( 'should return true only when the value is a float number', () => {
 
-	            expect( isFloat( 0 ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    const allowed = [ 'negativeMaxValue', 'negativeMinValue', 'negativeFloat', 'negativeNullFloat', 'positiveNullFloat', 'positiveFloat', 'positiveMinValue', 'positiveMaxValue' ];
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isFloat( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isFloat( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
 
 	        } );
 
@@ -3292,13 +2319,41 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isInfiniteUnits () {
 
 	    describe( 'isInfinite()', () => {
 
-	        it.skip( 'should be implemented', () => {
+	        it( 'should return true only when the value is an infinite number', () => {
 
-	            expect( isInfinite( 0 ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    const allowed = [ 'negativeInfinity', 'positiveInfinity' ];
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isInfinite( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isInfinite( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
 
 	        } );
 
@@ -3336,13 +2391,39 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isInfiniteNegativeUnits () {
 
 	    describe( 'isInfiniteNegative()', () => {
 
-	        it.skip( 'should be implemented', () => {
+	        it( 'should return true only when the value is a negative infinite number', () => {
 
-	            expect( isInfiniteNegative( 0 ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isInfiniteNegative( dataSet[ key ] );
+	                        if ( key === 'negativeInfinity' ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isInfiniteNegative( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
 
 	        } );
 
@@ -3380,13 +2461,39 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isInfinitePositiveUnits () {
 
 	    describe( 'isInfinitePositive()', () => {
 
-	        it.skip( 'should be implemented', () => {
+	        it( 'should return true only when the value is a positive infinite number', () => {
 
-	            expect( isInfinitePositive( 0 ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isInfinitePositive( dataSet[ key ] );
+	                        if ( key === 'positiveInfinity' ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isInfinitePositive( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
 
 	        } );
 
@@ -3413,6 +2520,7 @@ this.Itee = this.Itee || {};
 	function isInteger ( data ) {
 	    return (data === 0 && (1 / data) === Number.POSITIVE_INFINITY)
 	}
+
 	// #endif
 
 	/**
@@ -3425,13 +2533,52 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isIntegerUnits () {
 
 	    describe( 'isInteger()', () => {
 
-	        it.skip( 'should be implemented', () => {
+	        it( 'should return true only when the value is an integer number', () => {
 
-	            expect( isInteger( 0 ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    const allowed = [
+	                        'negativeMinSafeInteger',
+	                        'negativeHexa',
+	                        'negativePow',
+	                        'negativeInt',
+	                        'negativeNullInt',
+	                        'positiveNullInt',
+	                        'positiveInt',
+	                        'positivePow',
+	                        'positiveHexa',
+	                        'positiveMaxSafeInteger'
+	                    ];
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isInteger( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isInteger( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
 
 	        } );
 
@@ -3469,13 +2616,41 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isMaxNegativeUnits () {
 
 	    describe( 'isMaxNegative()', () => {
 
-	        it.skip( 'should be implemented', () => {
+	        it( 'should return true only when the value is equal to negative max number value', () => {
 
-	            expect( isMaxNegative( 0 ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    const allowed = [ 'negativeMaxValue' ];
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isMaxNegative( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isMaxNegative( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
 
 	        } );
 
@@ -3513,13 +2688,41 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isMaxPositiveUnits () {
 
 	    describe( 'isMaxPositive()', () => {
 
-	        it.skip( 'should be implemented', () => {
+	        it( 'should return true only when the value is equal to positive max number value', () => {
 
-	            expect( isMaxPositive( 0 ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    const allowed = [ 'positiveMaxValue' ];
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isMaxPositive( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isMaxPositive( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
 
 	        } );
 
@@ -3557,13 +2760,41 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isMaxSafeIntegerUnits () {
 
 	    describe( 'isMaxSafeInteger()', () => {
 
-	        it.skip( 'should be implemented', () => {
+	        it( 'should return true only when the value is a the max safe integer value', () => {
 
-	            expect( isMaxSafeInteger( 0 ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    const allowed = [ 'positiveMaxSafeInteger' ];
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isMaxSafeInteger( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isMaxSafeInteger( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
 
 	        } );
 
@@ -3601,13 +2832,41 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isMinNegativeUnits () {
 
 	    describe( 'isMinNegative()', () => {
 
-	        it.skip( 'should be implemented', () => {
+	        it( 'should return true only when the value is equal to negative minimum number value', () => {
 
-	            expect( isMinNegative( 0 ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    const allowed = [ 'negativeMinValue' ];
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isMinNegative( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isMinNegative( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
 
 	        } );
 
@@ -3624,7 +2883,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if the given data is a minimum positive number
@@ -3646,13 +2904,41 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isMinPositiveUnits () {
 
 	    describe( 'isMinPositive()', () => {
 
-	        it.skip( 'should be implemented', () => {
+	        it( 'should return true only when the value is equal to positive minimum number value', () => {
 
-	            expect( isMinPositive( 0 ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    const allowed = [ 'positiveMinValue' ];
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isMinPositive( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isMinPositive( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
 
 	        } );
 
@@ -3690,13 +2976,41 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isMinSafeIntegerUnits () {
 
 	    describe( 'isMinSafeInteger()', () => {
 
-	        it.skip( 'should be implemented', () => {
+	        it( 'should return true only when the value is a the min safe integer value', () => {
 
-	            expect( isMinSafeInteger( 0 ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    const allowed = [ 'positiveMinSafeInteger' ];
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isMinSafeInteger( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isMinSafeInteger( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
 
 	        } );
 
@@ -3734,57 +3048,32 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isNotNumberUnits () {
 
 	    describe( 'isNotNumber()', () => {
 
-	        it.skip( 'should be implemented', () => {
+	        it( 'should return false only when the value is a number', () => {
 
-	            expect( isNotNumber( 0 ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	        } );
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
 
-	    } );
+	                    for ( let key in dataSet ) {
+	                        expect( isNotNumber( dataSet[ key ] ) ).to.be.false;
+	                    }
 
-	}
+	                } else {
 
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
+	                    for ( let key in dataSet ) {
+	                        expect( isNotNumber( dataSet[ key ] ) ).to.be.true;
+	                    }
 
-	/**
-	 * Check if the given data is not numerical
-	 *
-	 * @param data {any} The data to check against the numerical type
-	 * @returns {boolean} true if data is not numeric, false otherwise
-	 */
-	function isNotNumeric ( data ) {
-	    return (typeof data !== 'number')
-	}
+	                }
 
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
-	 *
-	 * @module tests/cores/numbers
-	 * @desc Export the units tests about isNotNumeric method.
-	 * @requires {@link module:sources/cores/numbers}
-	 *
-	 */
-
-	function isNotNumericUnits () {
-
-	    describe( 'isNotNumeric()', () => {
-
-	        it.skip( 'should be implemented', () => {
-
-	            expect( isNotNumeric( 0 ) ).to.be.true;
+	            }
 
 	        } );
 
@@ -3811,6 +3100,7 @@ this.Itee = this.Itee || {};
 	function isNumber ( data ) {
 	    return (typeof data === 'number' && !Number.isNaN( data ))
 	}
+
 	// #endif
 
 	/**
@@ -3823,13 +3113,32 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isNumberUnits () {
 
 	    describe( 'isNumber()', () => {
 
-	        it.skip( 'should be implemented', () => {
+	        it( 'should return true only when the value is a number', () => {
 
-	            expect( isNumber( 0 ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNumber( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNumber( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
 
 	        } );
 
@@ -3846,6 +3155,7 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
+
 
 	/**
 	 * Check if the data is a negative number
@@ -3867,13 +3177,52 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isNumberNegativeUnits () {
 
 	    describe( 'isNumberNegative()', () => {
 
-	        it.skip( 'should be implemented', () => {
+	        it( 'should return true only when the value is a negative number', () => {
 
-	            expect( isNumberNegative( 0 ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    const allowed = [
+	                        'negativeInfinity',
+	                        'negativeMaxValue',
+	                        'negativeMinSafeInteger',
+	                        'negativeMinValue',
+	                        'negativeHexa',
+	                        'negativePow',
+	                        'negativeFloat',
+	                        'negativeInt',
+	                        'negativeNullFloat',
+	                        'negativeNullInt'
+	                    ];
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isNumberNegative( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNumberNegative( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
 
 	        } );
 
@@ -3890,6 +3239,7 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
+
 
 	/**
 	 * Check if the data is a positive number
@@ -3911,57 +3261,52 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isNumberPositiveUnits () {
 
 	    describe( 'isNumberPositive()', () => {
 
-	        it.skip( 'should be implemented', () => {
+	        it( 'should return true only when the value is a positive number', () => {
 
-	            expect( isNumberPositive( 0 ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	        } );
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
 
-	    } );
+	                    const allowed = [
+	                        'positiveInfinity',
+	                        'positiveMaxValue',
+	                        'positiveMinSafeInteger',
+	                        'positiveMinValue',
+	                        'positiveHexa',
+	                        'positivePow',
+	                        'positiveFloat',
+	                        'positiveInt',
+	                        'positiveNullFloat',
+	                        'positiveNullInt'
+	                    ];
 
-	}
+	                    for ( let key in dataSet ) {
 
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
+	                        const result = isNumberPositive( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
 
-	/**
-	 * Check if the given data is numerical
-	 *
-	 * @param data {any} The data to check against the numerical type
-	 * @returns {boolean} true if data is numeric, false otherwise
-	 */
-	function isNumeric ( data ) {
-	    return (typeof data === 'number')
-	}
+	                    }
 
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
-	 *
-	 * @module tests/cores/numbers
-	 * @desc Export the units tests about isNumeric method.
-	 * @requires {@link module:sources/cores/numbers}
-	 *
-	 */
+	                } else {
 
-	function isNumericUnits () {
+	                    for ( let key in dataSet ) {
+	                        expect( isNumberPositive( dataSet[ key ] ) ).to.be.false;
+	                    }
 
-	    describe( 'isNumeric()', () => {
+	                }
 
-	        it.skip( 'should be implemented', () => {
-
-	            expect( isNumeric( 0 ) ).to.be.true;
+	            }
 
 	        } );
 
@@ -3999,13 +3344,41 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isZeroUnits () {
 
 	    describe( 'isZero()', () => {
 
-	        it.skip( 'should be implemented', () => {
+	        it( 'should return true only when the value is zero', () => {
 
-	            expect( isZero( 0 ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    const allowed = [ 'negativeNullFloat', 'negativeNullInt', 'positiveNullInt', 'positiveNullFloat' ];
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isZero( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isZero( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
 
 	        } );
 
@@ -4043,13 +3416,41 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isZeroNegativeUnits () {
 
 	    describe( 'isZeroNegative()', () => {
 
-	        it.skip( 'should be implemented', () => {
+	        it( 'should return true only when the value is a negative zero', () => {
 
-	            expect( isZeroNegative( 0 ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    const allowed = [ 'negativeNullFloat', 'negativeNullInt' ];
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isZeroNegative( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isZeroNegative( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
 
 	        } );
 
@@ -4087,13 +3488,41 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isZeroPositiveUnits () {
 
 	    describe( 'isZeroPositive()', () => {
 
-	        it.skip( 'should be implemented', () => {
+	        it( 'should return true only when the value is a positive zero', () => {
 
-	            expect( isZeroPositive( 0 ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'numbers' ) {
+
+	                    const allowed = [ 'positiveNullInt', 'positiveNullFloat' ];
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isZeroPositive( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isZeroPositive( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
 
 	        } );
 
@@ -4106,6 +3535,7 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
+
 
 	function _numbersUnits () {
 
@@ -4136,11 +3566,9 @@ this.Itee = this.Itee || {};
 	        isMinPositiveUnits.call( this );
 	        isMinSafeIntegerUnits.call( this );
 	        isNotNumberUnits.call( this );
-	        isNotNumericUnits.call( this );
 	        isNumberUnits.call( this );
 	        isNumberNegativeUnits.call( this );
 	        isNumberPositiveUnits.call( this );
-	        isNumericUnits.call( this );
 	        isZeroUnits.call( this );
 	        isZeroNegativeUnits.call( this );
 	        isZeroPositiveUnits.call( this );
@@ -4159,15 +3587,31 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isObjectUnits () {
 
 	    describe( 'isObject()', () => {
 
-	        it( 'should return false when the value is a void', () => {
+	        it( 'should return true only when the value is an object', () => {
 
-	            const values = this._dataMap.voids;
-	            for( let key in values ) {
-	                expect( isObject( values[ key ] ) ).to.be.false;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'objects' ) {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isObject( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isObject( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
 	            }
 
 	        } );
@@ -4186,15 +3630,31 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isNotObjectUnits () {
 
 	    describe( 'isNotObject()', () => {
 
-	        it( 'should return true when the value is a void', () => {
+	        it( 'should return false only when the value is an object', () => {
 
-	            const values = this._dataMap.voids;
-	            for( let key in values ) {
-	                expect( isNotObject( values[ key ] ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'objects' ) {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotObject( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotObject( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                }
+
 	            }
 
 	        } );
@@ -4213,29 +3673,17 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
-	 * Check emptiness of given data
+	 * Check if given data is an empty object
 	 *
-	 * See: https://stackoverflow.com/questions/4346186/how-to-determine-if-a-function-is-empty
-	 *
-	 * @param data {any} The data to check against the emptiness
-	 * @returns {boolean} true if data is considered as empty, false otherwise.
+	 * @param data {any} The data to check against the emptiness of the object
+	 * @returns {boolean} true if data is an empty object, false otherwise
 	 */
-	function isEmpty ( data ) {
+	function isEmptyObject ( data ) {
 
-	    // null and undefined are consider as "empty"
-	    if ( data === null ) {
-	        return true
-	    }
-	    if ( data === undefined ) {
-	        return true
-	    }
+	    if ( isNotObject( data ) ) { return false }
 
-	    // Assume if it has a length property with a non-zero value
-	    // that that property is correct.
-	    if ( data.length > 0 ) {
-	        return false
-	    }
 	    if ( data.length === 0 ) {
 	        return true
 	    }
@@ -4248,26 +3696,7 @@ this.Itee = this.Itee || {};
 	    }
 
 	    return true
-	}
 
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is an empty object
-	 *
-	 * @param data {any} The data to check against the emptiness of the object
-	 * @returns {boolean} true if data is an empty object, false otherwise
-	 */
-	function isEmptyObject ( data ) {
-	    return (isObject( data ) && isEmpty( data ))
 	}
 
 	/**
@@ -4280,15 +3709,38 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isEmptyObjectUnits () {
 
 	    describe( 'isEmptyObject()', () => {
 
-	        it( 'should return false when the value is a void', () => {
+	        it( 'should return true only when the value is an empty object', () => {
 
-	            const values = this._dataMap.voids;
-	            for( let key in values ) {
-	                expect( isEmptyObject( values[ key ] ) ).to.be.false;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'objects' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isEmptyObject( dataSet[ key ] );
+	                        if ( key === 'empty' || key === 'instance' ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isEmptyObject( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
 	            }
 
 	        } );
@@ -4307,25 +3759,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-	/**
-	 * Check fullness of given data
-	 *
-	 * @param data {any} The data to check against the emptiness
-	 * @returns {boolean} true if data is considered as not empty, false otherwise.
-	 */
-	function isNotEmpty ( data ) {
-	    return !isEmpty( data )
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
 
 	/**
 	 * Check if given data is not an empty object
@@ -4334,7 +3767,7 @@ this.Itee = this.Itee || {};
 	 * @returns {boolean} true if data is not an empty object, false otherwise
 	 */
 	function isNotEmptyObject ( data ) {
-	    return (isObject( data ) && isNotEmpty( data ))
+	    return !(isEmptyObject( data ))
 	}
 
 	/**
@@ -4347,15 +3780,38 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isNotEmptyObjectUnits () {
 
 	    describe( 'isNotEmptyObject()', () => {
 
-	        it( 'should return false when the value is a void', () => {
+	        it( 'should return false only when the value is an empty object', () => {
 
-	            const values = this._dataMap.voids;
-	            for( let key in values ) {
-	                expect( isNotEmptyObject( values[ key ] ) ).to.be.false;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'objects' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isNotEmptyObject( dataSet[ key ] );
+	                        if ( key === 'empty' || key === 'instance' ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotEmptyObject( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                }
+
 	            }
 
 	        } );
@@ -4369,6 +3825,7 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
+
 
 	function _objectsUnits () {
 
@@ -4405,15 +3862,31 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isStringUnits () {
 
 	    describe( 'isString()', () => {
 
-	        it( 'should return false when the value is a void', () => {
+	        it( 'should return true only when the value is a string', () => {
 
-	            const values = this._dataMap.voids;
-	            for( let key in values ) {
-	                expect( isString( values[ key ] ) ).to.be.false;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'strings' ) {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isString( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isString( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
 	            }
 
 	        } );
@@ -4432,15 +3905,31 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isNotStringUnits () {
 
 	    describe( 'isNotString()', () => {
 
-	        it( 'should return true when the value is a void', () => {
+	        it( 'should return false only when the value is a string', () => {
 
-	            const values = this._dataMap.voids;
-	            for( let key in values ) {
-	                expect( isNotString( values[ key ] ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'strings' ) {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotString( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotString( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                }
+
 	            }
 
 	        } );
@@ -4459,6 +3948,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is an empty string
 	 *
@@ -4467,7 +3957,7 @@ this.Itee = this.Itee || {};
 	 */
 	function isEmptyString ( data ) {
 
-	    if( isNotString(data) ) {
+	    if ( isNotString( data ) ) {
 	        return false
 	    }
 
@@ -4485,15 +3975,40 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isEmptyStringUnits () {
 
 	    describe( 'isEmptyString()', () => {
 
-	        it( 'should return false when the value is a void', () => {
+	        it( 'should return true only when the value is an empty string', () => {
 
-	            const values = this._dataMap.voids;
-	            for( let key in values ) {
-	                expect( isEmptyString( values[ key ] ) ).to.be.false;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'strings' ) {
+
+	                    const allowed = [ 'empty', 'stringNull', 'stringEmpty' ];
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isEmptyString( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isEmptyString( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
 	            }
 
 	        } );
@@ -4512,6 +4027,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if given data is not an empty string
 	 *
@@ -4520,7 +4036,7 @@ this.Itee = this.Itee || {};
 	 */
 	function isNotEmptyString ( data ) {
 
-	    if( isNotString(data) ) {
+	    if ( isNotString( data ) ) {
 	        return false
 	    }
 
@@ -4538,15 +4054,40 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isNotEmptyStringUnits () {
 
 	    describe( 'isNotEmptyString()', () => {
 
-	        it( 'should return false when the value is a void', () => {
+	        it( 'should return false only when the value is an empty string', () => {
 
-	            const values = this._dataMap.voids;
-	            for( let key in values ) {
-	                expect( isNotEmptyString( values[ key ] ) ).to.be.false;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'strings' ) {
+
+	                    const allowed = [ 'empty', 'stringNull', 'stringEmpty' ];
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isNotEmptyString( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotEmptyString( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                }
+
 	            }
 
 	        } );
@@ -4565,6 +4106,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if the given data is a blank string
 	 *
@@ -4573,7 +4115,7 @@ this.Itee = this.Itee || {};
 	 */
 	function isBlankString ( data ) {
 
-	    if( isNotString(data) ) {
+	    if ( isNotString( data ) ) {
 	        return false
 	    }
 
@@ -4590,15 +4132,38 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isBlankStringUnits () {
 
 	    describe( 'isBlankString()', () => {
 
-	        it( 'should return false when the value is a void', () => {
+	        it( 'should return true only when the value is a blank string', () => {
 
-	            const values = this._dataMap.voids;
-	            for( let key in values ) {
-	                expect( isBlankString( values[ key ] ) ).to.be.false;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'strings' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isBlankString( dataSet[ key ] );
+	                        if ( key === 'blank' || key === 'stringBlank' ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isBlankString( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
 	            }
 
 	        } );
@@ -4617,6 +4182,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	/**
 	 * Check if the given data is not a blank string
 	 *
@@ -4625,7 +4191,7 @@ this.Itee = this.Itee || {};
 	 */
 	function isNotBlankString ( data ) {
 
-	    if( isNotString(data) ) {
+	    if ( isNotString( data ) ) {
 	        return false
 	    }
 
@@ -4642,15 +4208,38 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isNotBlankStringUnits () {
 
 	    describe( 'isNotBlankString()', () => {
 
-	        it( 'should return false when the value is a void', () => {
+	        it( 'should return false only when the value is a blank string', () => {
 
-	            const values = this._dataMap.voids;
-	            for( let key in values ) {
-	                expect( isNotBlankString( values[ key ] ) ).to.be.false;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'strings' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isNotBlankString( dataSet[ key ] );
+	                        if ( key === 'blank' || key === 'stringBlank' ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotBlankString( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                }
+
 	            }
 
 	        } );
@@ -4664,6 +4253,7 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
+
 
 	function _stringsUnits () {
 
@@ -4722,15 +4312,31 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isSymbolUnits () {
 
 	    describe( 'isSymbol()', () => {
 
-	        it( 'should return false when the value is a void', () => {
+	        it( 'should return true only when the value is a symbols', () => {
 
-	            const values = this._dataMap.voids;
-	            for( let key in values ) {
-	                expect( isSymbol( values[ key ] ) ).to.be.false;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'symbols' ) {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isSymbol( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isSymbol( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
 	            }
 
 	        } );
@@ -4769,15 +4375,31 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function isNotSymbolUnits () {
 
 	    describe( 'isNotSymbol()', () => {
 
-	        it( 'should return true when the value is a void', () => {
+	        it( 'should return false only when the value is a symbols', () => {
 
-	            const values = this._dataMap.voids;
-	            for( let key in values ) {
-	                expect( isNotSymbol( values[ key ] ) ).to.be.true;
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'symbols' ) {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotSymbol( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotSymbol( dataSet[ key ] ) ).to.be.true;
+	                    }
+
+	                }
+
 	            }
 
 	        } );
@@ -4791,6 +4413,7 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
+
 
 	function _symbolsUnits () {
 
@@ -4817,6 +4440,26 @@ this.Itee = this.Itee || {};
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is not null and not undefined
+	 *
+	 * @param data {any} The data to check against the existence
+	 * @returns {boolean} true if data is not null and not undefined, false otherwise.
+	 */
+	function isDefined ( data ) {
+	    return ((data !== null) && (typeof data !== 'undefined'))
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 * @module tests/cores/voids
@@ -4824,90 +4467,86 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/voids}
 	 */
 
+
 	function isDefinedUnits () {
 
 	    describe( 'isDefined()', () => {
 
-	        // Specific dataset
+	        it( 'should return false only when the value is null or undefined', () => {
 
-	        it( 'should return false when the value is null', () => {
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	            const value = this._dataMap.voids.null;
-	            expect( isDefined( value ) ).to.be.false;
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'voids' ) {
 
-	        } );
+	                    for ( let key in dataSet ) {
+	                        expect( isDefined( dataSet[ key ] ) ).to.be.false;
+	                    }
 
-	        it( 'should return false when the value is undefined', () => {
+	                } else {
 
-	            const value = this._dataMap.voids.undefined;
-	            expect( isDefined( value ) ).to.be.false;
+	                    for ( let key in dataSet ) {
+	                        expect( isDefined( dataSet[ key ] ) ).to.be.true;
+	                    }
 
-	        } );
+	                }
 
-	        it( 'should return false when the value is void(0)', () => {
-
-	            const value = this._dataMap.voids.void;
-	            expect( isDefined( value ) ).to.be.false;
-
-	        } );
-
-	        // Global dataset
-
-	        it( 'should return true when the value is a boolean', () => {
-
-	            const values = this._dataMap.booleans;
-	            for( let key in values ) {
-	                expect( isDefined( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a number', () => {
-
-	            const values = this._dataMap.numbers;
-	            for( let key in values ) {
-	                expect( isDefined( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for( let key in values ) {
-	                expect( isDefined( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for( let key in values ) {
-	                expect( isDefined( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is an array', () => {
-
-	            const values = this._dataMap.arrays;
-	            for( let key in values ) {
-	                expect( isDefined( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for( let key in values ) {
-	                expect( isDefined( values[ key ] ) ).to.be.true;
 	            }
 
 	        } );
 
 	    } );
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is null or undefined
+	 *
+	 * @param data {any} The data to check against the existence
+	 * @returns {boolean} true if data is null or undefined, false otherwise.
+	 */
+	function isNullOrUndefined ( data ) {
+	    return ((data === null) || (typeof data === 'undefined'))
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+
+	/**
+	 * Check emptiness of given data
+	 *
+	 * See: https://stackoverflow.com/questions/4346186/how-to-determine-if-a-function-is-empty
+	 *
+	 * @param data {any} The data to check against the emptiness
+	 * @returns {boolean} true if data is considered as empty, false otherwise.
+	 */
+	function isEmpty ( data ) {
+
+	    if ( isNullOrUndefined( data ) ) { return false }
+	    if ( isEmptyString( data ) ) { return true}
+	    if ( isEmptyArray( data ) ) { return true }
+	    if ( isEmptyObject( data ) ) { return true }
+
+	    return false
 
 	}
 
@@ -4920,109 +4559,97 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/voids}
 	 */
 
+
 	function isEmptyUnits () {
 
-	    describe.skip( 'isEmpty()', () => {
+	    describe( 'isEmpty()', () => {
 
-	        // Specific dataset
+	        it( 'should return true only when the value is an empty container (string, array, object)', () => {
 
-	        it( 'should return false when the value is null', () => {
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	            const value = this._dataMap.voids.null;
-	            expect( isEmpty( value ) ).to.be.false;
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'strings' ) {
 
-	        } );
+	                    const allowed = [ 'empty', 'stringNull', 'stringEmpty' ];
 
-	        it( 'should return false when the value is undefined', () => {
+	                    for ( let key in dataSet ) {
 
-	            const value = this._dataMap.voids.undefined;
-	            expect( isEmpty( value ) ).to.be.false;
+	                        const result = isEmpty( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
 
-	        } );
+	                    }
 
-	        it( 'should return false when the value is void(0)', () => {
+	                } else if ( mapKey === 'arrays' ) {
 
-	            const value = this._dataMap.voids.void;
-	            expect( isEmpty( value ) ).to.be.false;
+	                    const allowed = [ 'emptyArray', 'emptyArrayObject' ];
 
-	        } );
+	                    for ( let key in dataSet ) {
 
-	        // Global dataset
+	                        const result = isEmpty( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
 
-	        it( 'should return false when the value is a boolean', () => {
+	                    }
 
-	            const values = this._dataMap.booleans;
-	            for( let key in values ) {
-	                expect( isEmpty( values[ key ] ) ).to.be.false;
-	            }
+	                } else if ( mapKey === 'objects' ) {
 
-	        } );
+	                    const allowed = [ 'empty', 'instance' ];
 
-	        it( 'should return false when the value is a number', () => {
+	                    for ( let key in dataSet ) {
 
-	            const values = this._dataMap.numbers;
-	            for( let key in values ) {
-	                expect( isEmpty( values[ key ] ) ).to.be.false;
-	            }
+	                        const result = isEmpty( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
 
-	        } );
+	                    }
 
-	        it( 'should return true only when the value is an empty string', () => {
-
-	            const values  = this._dataMap.strings;
-	            const allowed = [ 'empty', 'stringNull', 'stringEmpty' ];
-	            for ( let key in values ) {
-
-	                if ( allowed.includes( key ) ) {
-	                    expect( isEmpty( values[ key ] ) ).to.be.true;
 	                } else {
-	                    expect( isEmpty( values[ key ] ) ).to.be.false;
+
+	                    for ( let key in dataSet ) {
+	                        expect( isEmpty( dataSet[ key ] ) ).to.be.false;
+	                    }
+
 	                }
-	            }
 
-	        } );
-
-	        it( 'should return false when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for( let key in values ) {
-	                expect( isEmpty( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return true only when the value is an empty array', () => {
-
-	            const values  = this._dataMap.arrays;
-	            const allowed = [ 'emptyArray', 'emptyArrayObject' ];
-	            for ( let key in values ) {
-
-	                if ( allowed.includes( key ) ) {
-	                    expect( isEmpty( values[ key ] ) ).to.be.true;
-	                } else {
-	                    expect( isEmpty( values[ key ] ) ).to.be.false;
-	                }
-	            }
-
-	        } );
-
-	        it( 'should return true only when the value is an empty object', () => {
-
-	            const values  = this._dataMap.objects;
-	            const allowed = [ 'empty', 'instance' ];
-	            for ( let key in values ) {
-
-	                if ( allowed.includes( key ) ) {
-	                    expect( isEmpty( values[ key ] ) ).to.be.true;
-	                } else {
-	                    expect( isEmpty( values[ key ] ) ).to.be.false;
-	                }
 	            }
 
 	        } );
 
 	    } );
 
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+
+	/**
+	 * Check fullness of given data
+	 *
+	 * @param data {any} The data to check against the emptiness
+	 * @returns {boolean} true if data is considered as not empty, false otherwise.
+	 */
+	function isNotEmpty ( data ) {
+	    return !isEmpty( data )
 	}
 
 	/**
@@ -5034,103 +4661,70 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/voids}
 	 */
 
+
 	function isNotEmptyUnits () {
 
-	    describe.skip( 'isNotEmpty()', () => {
+	    describe( 'isNotEmpty()', () => {
 
-	        // Specific dataset
+	        it( 'should return false only when the value is an empty container (string, array, object)', () => {
 
-	        it( 'should return true when the value is null', () => {
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	            const value = this._dataMap.voids.null;
-	            expect( isNotEmpty( value ) ).to.be.true;
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'strings' ) {
 
-	        } );
+	                    const allowed = [ 'empty', 'stringNull', 'stringEmpty' ];
 
-	        it( 'should return true when the value is undefined', () => {
+	                    for ( let key in dataSet ) {
 
-	            const value = this._dataMap.voids.undefined;
-	            expect( isNotEmpty( value ) ).to.be.true;
+	                        const result = isNotEmpty( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
 
-	        } );
+	                    }
 
-	        it( 'should return true when the value is void(0)', () => {
+	                } else if ( mapKey === 'arrays' ) {
 
-	            const value = this._dataMap.voids.void;
-	            expect( isNotEmpty( value ) ).to.be.true;
+	                    const allowed = [ 'emptyArray', 'emptyArrayObject' ];
 
-	        } );
+	                    for ( let key in dataSet ) {
 
-	        // Global dataset
+	                        const result = isNotEmpty( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
 
-	        it( 'should return true when the value is a boolean', () => {
+	                    }
 
-	            const values = this._dataMap.booleans;
-	            for( let key in values ) {
-	                expect( isNotEmpty( values[ key ] ) ).to.be.true;
-	            }
+	                } else if ( mapKey === 'objects' ) {
 
-	        } );
+	                    const allowed = [ 'empty', 'instance' ];
 
-	        it( 'should return true when the value is a number', () => {
+	                    for ( let key in dataSet ) {
 
-	            const values = this._dataMap.numbers;
-	            for( let key in values ) {
-	                expect( isNotEmpty( values[ key ] ) ).to.be.true;
-	            }
+	                        const result = isNotEmpty( dataSet[ key ] );
+	                        if ( allowed.includes( key ) ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
 
-	        } );
+	                    }
 
-	        it( 'should return false only when the value is an empty string', () => {
-
-	            const values  = this._dataMap.strings;
-	            const allowed = [ 'empty', 'stringNull', 'stringEmpty' ];
-	            for ( let key in values ) {
-
-	                if ( allowed.includes( key ) ) {
-	                    expect( isNotEmpty( values[ key ] ) ).to.be.false;
 	                } else {
-	                    expect( isNotEmpty( values[ key ] ) ).to.be.true;
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNotEmpty( dataSet[ key ] ) ).to.be.true;
+	                    }
+
 	                }
-	            }
 
-	        } );
-
-	        it( 'should return true when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for( let key in values ) {
-	                expect( isNotEmpty( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return false only when the value is an empty array', () => {
-
-	            const values  = this._dataMap.arrays;
-	            const allowed = [ 'emptyArray', 'emptyArrayObject' ];
-	            for ( let key in values ) {
-
-	                if ( allowed.includes( key ) ) {
-	                    expect( isNotEmpty( values[ key ] ) ).to.be.false;
-	                } else {
-	                    expect( isNotEmpty( values[ key ] ) ).to.be.true;
-	                }
-	            }
-
-	        } );
-
-	        it( 'should return false only when the value is an empty object', () => {
-
-	            const values  = this._dataMap.objects;
-	            const allowed = [ 'empty', 'instance' ];
-	            for ( let key in values ) {
-
-	                if ( allowed.includes( key ) ) {
-	                    expect( isNotEmpty( values[ key ] ) ).to.be.false;
-	                } else {
-	                    expect( isNotEmpty( values[ key ] ) ).to.be.true;
-	                }
 	            }
 
 	        } );
@@ -5148,111 +4742,44 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/voids}
 	 */
 
+
 	function isNotNullUnits () {
 
 	    describe( 'isNotNull()', () => {
 
-	        // Specific dataset
+	        it( 'should return false only when the value is null', () => {
 
-	        it( 'should return false when the value is null', () => {
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	            const value = this._dataMap.voids.null;
-	            expect( isNotNull( value ) ).to.be.false;
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'voids' ) {
 
-	        } );
+	                    for ( let key in dataSet ) {
 
-	        it( 'should return true when the value is undefined', () => {
+	                        const result = isNotNull( dataSet[ key ] );
+	                        if ( key === 'null' ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
 
-	            const value = this._dataMap.voids.undefined;
-	            expect( isNotNull( value ) ).to.be.true;
+	                    }
 
-	        } );
+	                } else {
 
-	        it( 'should return true when the value is void(0)', () => {
+	                    for ( let key in dataSet ) {
+	                        expect( isNotNull( dataSet[ key ] ) ).to.be.true;
+	                    }
 
-	            const value = this._dataMap.voids.void;
-	            expect( isNotNull( value ) ).to.be.true;
+	                }
 
-	        } );
-
-	        // Global dataset
-
-	        it( 'should return true when the value is a boolean', () => {
-
-	            const values = this._dataMap.booleans;
-	            for ( let key in values ) {
-	                expect( isNotNull( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a number', () => {
-
-	            const values = this._dataMap.numbers;
-	            for ( let key in values ) {
-	                expect( isNotNull( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for( let key in values ) {
-	                expect( isNotNull( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for( let key in values ) {
-	                expect( isNotNull( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is an array', () => {
-
-	            const values = this._dataMap.arrays;
-	            for( let key in values ) {
-	                expect( isNotNull( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for( let key in values ) {
-	                expect( isNotNull( values[ key ] ) ).to.be.true;
 	            }
 
 	        } );
 
 	    } );
 
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file Todo
-	 *
-	 * @example Todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is defined
-	 *
-	 * @param data {any} The data to check against the undefiness
-	 * @returns {boolean} true if data is defined, false otherwise.
-	 */
-	function isNotUndefined ( data ) {
-	    return (typeof data !== 'undefined')
 	}
 
 	/**
@@ -5264,181 +4791,38 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/voids}
 	 */
 
+
 	function isNotUndefinedUnits () {
 
 	    describe( 'isNotUndefined()', () => {
 
-	        // Specific dataset
+	        it( 'should return false only when the value is undefined', () => {
 
-	        it( 'should return true when the value is null', () => {
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	            const value = this._dataMap.voids.null;
-	            expect( isNotUndefined( value ) ).to.be.true;
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'voids' ) {
 
-	        } );
+	                    for ( let key in dataSet ) {
 
-	        it( 'should return false when the value is undefined', () => {
+	                        const result = isNotUndefined( dataSet[ key ] );
+	                        if ( key === 'undefined' || key === 'void' ) {
+	                            expect( result ).to.be.false;
+	                        } else {
+	                            expect( result ).to.be.true;
+	                        }
 
-	            const value = this._dataMap.voids.undefined;
-	            expect( isNotUndefined( value ) ).to.be.false;
+	                    }
 
-	        } );
+	                } else {
 
-	        it( 'should return false when the value is void(0)', () => {
+	                    for ( let key in dataSet ) {
+	                        expect( isNotUndefined( dataSet[ key ] ) ).to.be.true;
+	                    }
 
-	            const value = this._dataMap.voids.void;
-	            expect( isNotUndefined( value ) ).to.be.false;
+	                }
 
-	        } );
-
-	        // Global dataset
-
-	        it( 'should return true when the value is a boolean', () => {
-
-	            const values = this._dataMap.booleans;
-	            for( let key in values ) {
-	                expect( isNotUndefined( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a number', () => {
-
-	            const values = this._dataMap.numbers;
-	            for( let key in values ) {
-	                expect( isNotUndefined( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for( let key in values ) {
-	                expect( isNotUndefined( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for( let key in values ) {
-	                expect( isNotUndefined( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is an array', () => {
-
-	            const values = this._dataMap.arrays;
-	            for( let key in values ) {
-	                expect( isNotUndefined( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	        it( 'should return true when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for( let key in values ) {
-	                expect( isNotUndefined( values[ key ] ) ).to.be.true;
-	            }
-
-	        } );
-
-	    } );
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
-	 *
-	 * @module tests/cores/voids
-	 * @desc Export the units tests about isNull method.
-	 * @requires {@link module:sources/cores/voids}
-	 */
-
-	function isNullUnits () {
-
-	    describe( 'isNull()', () => {
-
-	        // Specific dataset
-
-	        it( 'should return true when the value is null', () => {
-
-	            const value = this._dataMap.voids.null;
-	            expect( isNull( value ) ).to.be.true;
-
-	        } );
-
-	        it( 'should return false when the value is undefined', () => {
-
-	            const value = this._dataMap.voids.undefined;
-	            expect( isNull( value ) ).to.be.false;
-
-	        } );
-
-	        it( 'should return false when the value is void(0)', () => {
-
-	            const value = this._dataMap.voids.void;
-	            expect( isNull( value ) ).to.be.false;
-
-	        } );
-
-	        // Global dataset
-
-	        it( 'should return false when the value is a boolean', () => {
-
-	            const values = this._dataMap.booleans;
-	            for ( let key in values ) {
-	                expect( isNull( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a number', () => {
-
-	            const values = this._dataMap.numbers;
-	            for ( let key in values ) {
-	                expect( isNull( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for ( let key in values ) {
-	                expect( isNull( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for ( let key in values ) {
-	                expect( isNull( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an array', () => {
-
-	            const values = this._dataMap.arrays;
-	            for ( let key in values ) {
-	                expect( isNull( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for ( let key in values ) {
-	                expect( isNull( values[ key ] ) ).to.be.false;
 	            }
 
 	        } );
@@ -5457,15 +4841,63 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+	/**
+	 * Check if given data is null
+	 *
+	 * @param data {any} The data to check against the nullity
+	 * @returns {boolean} true if data is null, false otherwise.
+	 */
+	function isNull ( data ) {
+	    return (data === null)
+	}
 
 	/**
-	 * Check if given data is null or undefined
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
-	 * @param data {any} The data to check against the existence
-	 * @returns {boolean} true if data is null or undefined, false otherwise.
+	 * @module tests/cores/voids
+	 * @desc Export the units tests about isNull method.
+	 * @requires {@link module:sources/cores/voids}
 	 */
-	function isNullOrUndefined ( data ) {
-	    return ((data === null) || (typeof data === 'undefined'))
+
+
+	function isNullUnits () {
+
+	    describe( 'isNull()', () => {
+
+	        it( 'should return true only when the value is null', () => {
+
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
+
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'voids' ) {
+
+	                    for ( let key in dataSet ) {
+
+	                        const result = isNull( dataSet[ key ] );
+	                        if ( key === 'null' ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
+
+	                    }
+
+	                } else {
+
+	                    for ( let key in dataSet ) {
+	                        expect( isNull( dataSet[ key ] ) ).to.be.false;
+	                    }
+
+	                }
+
+	            }
+
+	        } );
+
+	    } );
+
 	}
 
 	/**
@@ -5477,91 +4909,57 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/voids}
 	 */
 
+
 	function isNullOrUndefinedUnits () {
 
 	    describe( 'isNullOrUndefined()', () => {
 
-	        // Specific dataset
+	        it( 'should return true only when the value is null or undefined', () => {
 
-	        it( 'should return true when the value is null', () => {
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	            const value = this._dataMap.voids.null;
-	            expect( isNullOrUndefined( value ) ).to.be.true;
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'voids' ) {
 
-	        } );
+	                    for ( let key in dataSet ) {
+	                        expect( isNullOrUndefined( dataSet[ key ] ) ).to.be.true;
+	                    }
 
-	        it( 'should return true when the value is undefined', () => {
+	                } else {
 
-	            const value = this._dataMap.voids.undefined;
-	            expect( isNullOrUndefined( value ) ).to.be.true;
+	                    for ( let key in dataSet ) {
+	                        expect( isNullOrUndefined( dataSet[ key ] ) ).to.be.false;
+	                    }
 
-	        } );
+	                }
 
-	        it( 'should return true when the value is void(0)', () => {
-
-	            const value = this._dataMap.voids.void;
-	            expect( isNullOrUndefined( value ) ).to.be.true;
-
-	        } );
-
-	        // Global dataset
-
-	        it( 'should return false when the value is a boolean', () => {
-
-	            const values = this._dataMap.booleans;
-	            for( let key in values ) {
-	                expect( isNullOrUndefined( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a number', () => {
-
-	            const values = this._dataMap.numbers;
-	            for( let key in values ) {
-	                expect( isNullOrUndefined( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for( let key in values ) {
-	                expect( isNullOrUndefined( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for( let key in values ) {
-	                expect( isNullOrUndefined( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an array', () => {
-
-	            const values = this._dataMap.arrays;
-	            for( let key in values ) {
-	                expect( isNullOrUndefined( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for( let key in values ) {
-	                expect( isNullOrUndefined( values[ key ] ) ).to.be.false;
 	            }
 
 	        } );
 
 	    } );
 
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is undefined
+	 *
+	 * @param data {any} The data to check against the undefiness
+	 * @returns {boolean} true if data is undefined, false otherwise.
+	 */
+	function isUndefined ( data ) {
+	    return (typeof data === 'undefined')
 	}
 
 	/**
@@ -5573,85 +4971,38 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/voids}
 	 */
 
+
 	function isUndefinedUnits () {
 
 	    describe( 'isUndefined()', () => {
 
-	        // Specific dataset
+	        it( 'should return true only when the value is undefined', () => {
 
-	        it( 'should return false when the value is null', () => {
+	            const dataMap = this._dataMap;
+	            for ( let mapKey in dataMap ) {
 
-	            const value = this._dataMap.voids.null;
-	            expect( isUndefined( value ) ).to.be.false;
+	                const dataSet = dataMap[ mapKey ];
+	                if ( mapKey === 'voids' ) {
 
-	        } );
+	                    for ( let key in dataSet ) {
 
-	        it( 'should return true when the value is undefined', () => {
+	                        const result = isUndefined( dataSet[ key ] );
+	                        if ( key === 'undefined' || key === 'void' ) {
+	                            expect( result ).to.be.true;
+	                        } else {
+	                            expect( result ).to.be.false;
+	                        }
 
-	            const value = this._dataMap.voids.undefined;
-	            expect( isUndefined( value ) ).to.be.true;
+	                    }
 
-	        } );
+	                } else {
 
-	        it( 'should return true when the value is void(0)', () => {
+	                    for ( let key in dataSet ) {
+	                        expect( isUndefined( dataSet[ key ] ) ).to.be.false;
+	                    }
 
-	            const value = this._dataMap.voids.void;
-	            expect( isUndefined( value ) ).to.be.true;
+	                }
 
-	        } );
-
-	        // Global dataset
-
-	        it( 'should return false when the value is a boolean', () => {
-
-	            const values = this._dataMap.booleans;
-	            for( let key in values ) {
-	                expect( isUndefined( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a number', () => {
-
-	            const values = this._dataMap.numbers;
-	            for( let key in values ) {
-	                expect( isUndefined( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a string', () => {
-
-	            const values = this._dataMap.strings;
-	            for( let key in values ) {
-	                expect( isUndefined( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is a function', () => {
-
-	            const values = this._dataMap.functions;
-	            for( let key in values ) {
-	                expect( isUndefined( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an array', () => {
-
-	            const values = this._dataMap.arrays;
-	            for( let key in values ) {
-	                expect( isUndefined( values[ key ] ) ).to.be.false;
-	            }
-
-	        } );
-
-	        it( 'should return false when the value is an object', () => {
-
-	            const values = this._dataMap.objects;
-	            for( let key in values ) {
-	                expect( isUndefined( values[ key ] ) ).to.be.false;
 	            }
 
 	        } );
@@ -5665,6 +5016,7 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
+
 
 	function _voidsUnits () {
 
@@ -5700,6 +5052,7 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
+
 
 	function _coresUnits () {
 
@@ -5966,6 +5319,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function _temperaturesUnits () {
 
 	    describe( 'Temperatures', () => {
@@ -6001,6 +5355,7 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
+
 	function _physicsUnits () {
 
 	    describe( 'Physics', () => {
@@ -6016,6 +5371,7 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
+
 
 	const root = typeof window !== 'undefined' ? window :
 	    typeof global !== 'undefined' ? global :
