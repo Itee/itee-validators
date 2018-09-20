@@ -24,10 +24,12 @@ function isBlankStringUnits () {
                 const dataSet = dataMap[ mapKey ]
                 if ( mapKey === 'strings' ) {
 
+                    const allowed = [ 'blank', 'stringBlank' ]
+
                     for ( let key in dataSet ) {
 
                         const result = isBlankString( dataSet[ key ] )
-                        if ( key === 'blank' || key === 'stringBlank' ) {
+                        if ( allowed.includes( key ) ) {
                             expect( result ).to.be.true
                         } else {
                             expect( result ).to.be.false

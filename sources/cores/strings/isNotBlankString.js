@@ -8,7 +8,7 @@
  *
  */
 
-import { isNotString } from './isNotString'
+import { isBlankString } from './isBlankString'
 
 /**
  * Check if the given data is not a blank string
@@ -18,9 +18,6 @@ import { isNotString } from './isNotString'
  */
 export function isNotBlankString ( data ) {
 
-    if ( isNotString( data ) ) {
-        return false
-    }
+    return !(isBlankString( data ))
 
-    return (/\S/.test( data ))
 }
