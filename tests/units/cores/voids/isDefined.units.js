@@ -9,37 +9,9 @@
 
 /* global describe, expect, it */
 
-import { isNullOrUndefined, isDefined } from '../../../../sources/cores/voids/isNullOrUndefined'
+import { isDefined, isNotDefined } from '../../../../sources/cores/voids/isDefined'
 
-function isNullOrUndefinedUnits () {
-
-    describe( 'isNullOrUndefined()', () => {
-
-        it( 'should return true only when the value is null or undefined', () => {
-
-            const dataMap = this._dataMap
-            for ( let mapKey in dataMap ) {
-
-                const dataSet = dataMap[ mapKey ]
-                if ( mapKey === 'voids' ) {
-
-                    for ( let key in dataSet ) {
-                        expect( isNullOrUndefined( dataSet[ key ] ) ).to.be.true
-                    }
-
-                } else {
-
-                    for ( let key in dataSet ) {
-                        expect( isNullOrUndefined( dataSet[ key ] ) ).to.be.false
-                    }
-
-                }
-
-            }
-
-        } )
-
-    } )
+function isDefinedUnits () {
 
     describe( 'isDefined()', () => {
 
@@ -69,6 +41,34 @@ function isNullOrUndefinedUnits () {
 
     } )
 
+    describe( 'isNotDefined()', () => {
+
+        it( 'should return true only when the value is null or undefined', () => {
+
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'voids' ) {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotDefined( dataSet[ key ] ) ).to.be.true
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isNotDefined( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
+
+        } )
+
+    } )
+
 }
 
-export { isNullOrUndefinedUnits }
+export { isDefinedUnits }

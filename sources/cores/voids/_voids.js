@@ -8,5 +8,5 @@
 
 export * from './isEmpty'
 export * from './isNull'
-export * from './isNullOrUndefined'
+export * from './isDefined'
 export * from './isUndefined'
