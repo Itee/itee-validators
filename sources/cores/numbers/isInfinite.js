@@ -8,6 +8,8 @@
  *
  */
 
+import { isNotNumber } from './isNotNumber'
+
 /**
  * Check if the given data is an infinite number
  *
@@ -15,5 +17,9 @@
  * @returns {boolean} true if data is infinite, false otherwise
  */
 export function isInfinite ( data ) {
+
+    if ( isNotNumber( data ) ) { return false }
+    if ( Number.isNaN( data ) ) { return false }
+
     return !Number.isFinite( data )
 }
