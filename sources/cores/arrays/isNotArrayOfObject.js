@@ -9,7 +9,8 @@
  */
 
 import { isNotObject }  from '../objects/isNotObject'
-import { isNotArray } from './isNotArray'
+import { isEmptyArray } from './isEmptyArray'
+import { isNotArray }   from './isNotArray'
 
 /**
  * Check if given data is not an array where all values are of object type
@@ -19,14 +20,8 @@ import { isNotArray } from './isNotArray'
  */
 export function isNotArrayOfObject ( data ) {
 
-    if ( isNotArray( data ) ) {
-        return true
-    }
-
-    const dataLength = data.length
-    if ( dataLength === 0 ) {
-        return true
-    }
+    if ( isNotArray( data ) ) { return true }
+    if ( isEmptyArray( data ) ) { return true }
 
     for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
         if ( isNotObject( data[ index ] ) ) {

@@ -8,7 +8,8 @@
  *
  */
 
-import { isNotArray }  from './isNotArray'
+import { isEmptyArray }   from './isEmptyArray'
+import { isNotArray }     from './isNotArray'
 import { isNotUndefined } from '../voids/isNotUndefined'
 
 /**
@@ -19,16 +20,10 @@ import { isNotUndefined } from '../voids/isNotUndefined'
  */
 export function isNotArrayOfUndefined ( data ) {
 
-    if ( isNotArray( data ) ) {
-        return true
-    }
+    if ( isNotArray( data ) ) { return true }
+    if ( isEmptyArray( data ) ) { return true }
 
-    const dataLength = data.length
-    if ( dataLength === 0 ) {
-        return true
-    }
-
-    for ( let index = 0 ; index < dataLength ; index++ ) {
+    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
         if ( isNotUndefined( data[ index ] ) ) {
             return true
         }

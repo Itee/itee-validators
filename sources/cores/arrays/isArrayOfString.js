@@ -8,8 +8,9 @@
  *
  */
 
-import { isNotArray }  from './isNotArray'
-import { isNotString } from '../strings/isNotString'
+import { isEmptyArray } from './isEmptyArray'
+import { isNotArray }   from './isNotArray'
+import { isNotString }  from '../strings/isNotString'
 
 /**
  * Check if given data is not an empty array where all values are string
@@ -19,16 +20,10 @@ import { isNotString } from '../strings/isNotString'
  */
 export function isArrayOfString ( data ) {
 
-    if ( isNotArray( data ) ) {
-        return false
-    }
+    if ( isNotArray( data ) ) { return false }
+    if ( isEmptyArray( data ) ) { return false }
 
-    const dataLength = data.length
-    if ( dataLength === 0 ) {
-        return false
-    }
-
-    for ( let index = 0 ; index < dataLength ; index++ ) {
+    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
         if ( isNotString( data[ index ] ) ) {
             return false
         }
