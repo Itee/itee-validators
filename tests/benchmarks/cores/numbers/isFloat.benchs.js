@@ -8,7 +8,6 @@
 
 import { isFloat, isFloat_1, isFloat_2 } from '../../../../sources/cores/numbers/isFloat'
 
-
 export default suite( 'isFloat', () => {
 
     benchmark( 'isFloat()', Itee.TestsUtils.iterateOverDataMap( isFloat ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

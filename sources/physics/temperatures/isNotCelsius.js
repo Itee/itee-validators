@@ -10,7 +10,6 @@
 
 import { isCelsius } from './isCelsius'
 
-
 /**
  *
  * @param data

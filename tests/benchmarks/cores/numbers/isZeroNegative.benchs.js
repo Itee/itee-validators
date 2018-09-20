@@ -8,7 +8,6 @@
 
 import { isZeroNegative } from '../../../../sources/cores/numbers/isZeroNegative'
 
-
 export default suite( 'isZeroNegative', () => {
 
     benchmark( 'isZeroNegative()', Itee.TestsUtils.iterateOverDataMap( isZeroNegative ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

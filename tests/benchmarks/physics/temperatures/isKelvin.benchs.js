@@ -12,7 +12,6 @@
 
 import { isKelvin } from '../../../../sources/physics/temperatures/isKelvin'
 
-
 export default suite( 'isKelvin', () => {
 
     benchmark( 'isKelvin()', Itee.TestsUtils.iterateOverDataMap( isKelvin ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

@@ -12,7 +12,6 @@
 
 import { isMaxPositive } from '../../../../sources/cores/numbers/isMaxPositive'
 
-
 function isMaxPositiveUnits () {
 
     describe( 'isMaxPositive()', () => {

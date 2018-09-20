@@ -11,7 +11,6 @@
 
 import { isNotBoolean } from '../../../../sources/cores/booleans/isNotBoolean'
 
-
 function isNotBooleanUnits () {
 
     describe( 'isNotBoolean()', () => {

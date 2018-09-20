@@ -12,7 +12,6 @@ import { isKelvin }     from './isKelvin'
 import { isCelsius }    from './isCelsius'
 import { isFahrenheit } from './isFahrenheit'
 
-
 /**
  *
  * @param data

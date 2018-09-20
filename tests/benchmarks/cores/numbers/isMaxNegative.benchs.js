@@ -8,7 +8,6 @@
 
 import { isMaxNegative } from '../../../../sources/cores/numbers/isMaxNegative'
 
-
 export default suite( 'isMaxNegative', () => {
 
     benchmark( 'isMaxNegative()', Itee.TestsUtils.iterateOverDataMap( isMaxNegative ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

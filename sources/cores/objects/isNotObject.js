@@ -10,7 +10,6 @@
 
 import { isObject } from './isObject'
 
-
 /**
  * Check if given data is not an object
  *

@@ -12,7 +12,6 @@
 
 import { isNotArrayOfNull } from '../../../../sources/cores/arrays/isNotArrayOfNull'
 
-
 function isNotArrayOfNullUnits () {
 
     describe( 'isNotArrayOfNull()', () => {

@@ -10,7 +10,6 @@
 
 import { isString } from './isString'
 
-
 /**
  * Check if given data is not a string
  *

@@ -12,7 +12,6 @@
 
 import { isArrayOfObject } from '../../../../sources/cores/arrays/isArrayOfObject'
 
-
 export default suite( 'isArrayOfObject', () => {
 
     benchmark( 'isArrayOfObject()', Itee.TestsUtils.iterateOverDataMap( isArrayOfObject ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

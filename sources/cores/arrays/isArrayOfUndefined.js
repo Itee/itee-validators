@@ -12,7 +12,6 @@ import { isNotUndefined } from '../voids/isNotUndefined'
 import { isEmptyArray }   from './isEmptyArray'
 import { isNotArray }     from './isNotArray'
 
-
 /**
  * Check if given data is not an empty array where all values are undefined
  *

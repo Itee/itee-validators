@@ -10,7 +10,6 @@
 
 import { isArray } from './isArray'
 
-
 /**
  * Check if given data is not an array
  *

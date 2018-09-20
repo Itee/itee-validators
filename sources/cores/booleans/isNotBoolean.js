@@ -10,7 +10,6 @@
 
 import { isBoolean } from './isBoolean'
 
-
 /**
  * Check if given data is not a boolean
  *

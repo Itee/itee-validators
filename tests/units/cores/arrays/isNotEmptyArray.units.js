@@ -12,7 +12,6 @@
 
 import { isNotEmptyArray } from '../../../../sources/cores/arrays/isNotEmptyArray'
 
-
 function isNotEmptyArrayUnits () {
 
     describe( 'isNotEmptyArray()', () => {

@@ -12,7 +12,6 @@
 
 import { isNotTemperature } from '../../../../sources/physics/temperatures/isNotTemperature'
 
-
 export default suite( 'isNotTemperature', () => {
 
     benchmark( 'isNotTemperature()', Itee.TestsUtils.iterateOverDataMap( isNotTemperature ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

@@ -16,7 +16,6 @@ import { isNotKelvinUnits }      from './isNotKelvin.units'
 import { isNotTemperatureUnits } from './isNotTemperature.units'
 import { isTemperatureUnits }    from './isTemperature.units'
 
-
 function _temperaturesUnits () {
 
     describe( 'Temperatures', () => {

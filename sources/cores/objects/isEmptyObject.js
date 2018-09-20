@@ -10,7 +10,6 @@
 
 import { isNotObject } from './isNotObject'
 
-
 /**
  * Check if given data is an empty object
  *

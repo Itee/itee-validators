@@ -10,7 +10,6 @@
 
 import { isEmpty } from './isEmpty'
 
-
 /**
  * Check fullness of given data
  *

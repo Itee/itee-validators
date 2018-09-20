@@ -12,7 +12,6 @@
 
 import { isFunction } from '../../../../sources/cores/functions/isFunction'
 
-
 function isFunctionUnits () {
 
     describe( 'isFunction()', () => {

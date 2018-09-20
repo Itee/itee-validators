@@ -8,7 +8,6 @@
 
 import { isNotObject } from '../../../../sources/cores/objects/isNotObject'
 
-
 export default suite( 'isNotObject', () => {
 
     benchmark( 'isNotObject()', Itee.TestsUtils.iterateOverDataMap( isNotObject ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

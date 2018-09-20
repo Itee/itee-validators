@@ -12,7 +12,6 @@
 
 import { isEmptyObject } from '../../../../sources/cores/objects/isEmptyObject'
 
-
 function isEmptyObjectUnits () {
 
     describe( 'isEmptyObject()', () => {

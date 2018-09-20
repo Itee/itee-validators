@@ -11,7 +11,6 @@
 
 import { isDefined } from '../../../../sources/cores/voids/isDefined'
 
-
 function isDefinedUnits () {
 
     describe( 'isDefined()', () => {

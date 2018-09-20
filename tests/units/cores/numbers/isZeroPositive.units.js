@@ -12,7 +12,6 @@
 
 import { isZeroPositive } from '../../../../sources/cores/numbers/isZeroPositive'
 
-
 function isZeroPositiveUnits () {
 
     describe( 'isZeroPositive()', () => {

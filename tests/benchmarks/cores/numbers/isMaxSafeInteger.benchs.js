@@ -8,7 +8,6 @@
 
 import { isMaxSafeInteger } from '../../../../sources/cores/numbers/isMaxSafeInteger'
 
-
 export default suite( 'isMaxSafeInteger', () => {
 
     benchmark( 'isMaxSafeInteger()', Itee.TestsUtils.iterateOverDataMap( isMaxSafeInteger ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

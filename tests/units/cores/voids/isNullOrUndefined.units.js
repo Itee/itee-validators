@@ -11,7 +11,6 @@
 
 import { isNullOrUndefined } from '../../../../sources/cores/voids/isNullOrUndefined'
 
-
 function isNullOrUndefinedUnits () {
 
     describe( 'isNullOrUndefined()', () => {

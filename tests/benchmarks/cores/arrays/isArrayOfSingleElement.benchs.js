@@ -12,7 +12,6 @@
 
 import { isArrayOfSingleElement } from '../../../../sources/cores/arrays/isArrayOfSingleElement'
 
-
 export default suite( 'isArrayOfSingleElement', () => {
 
     benchmark( 'isArrayOfSingleElement()', Itee.TestsUtils.iterateOverDataMap( isArrayOfSingleElement ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

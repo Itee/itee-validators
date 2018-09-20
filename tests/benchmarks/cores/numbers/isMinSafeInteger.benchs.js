@@ -8,7 +8,6 @@
 
 import { isMinSafeInteger } from '../../../../sources/cores/numbers/isMinSafeInteger'
 
-
 export default suite( 'isMinSafeInteger', () => {
 
     benchmark( 'isMinSafeInteger()', Itee.TestsUtils.iterateOverDataMap( isMinSafeInteger ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

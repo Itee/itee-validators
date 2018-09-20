@@ -32,7 +32,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isArray', () => {
 
 	    benchmark( 'isArray()', Itee.TestsUtils.iterateOverDataMap( isArray ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -48,7 +47,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is not an array
@@ -77,7 +75,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is an empty array
 	 *
@@ -101,7 +98,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is an array of array
@@ -134,7 +130,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isArrayOfArray', () => {
 
 	    benchmark( 'isArrayOfArray()', Itee.TestsUtils.iterateOverDataMap( isArrayOfArray ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -150,7 +145,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is an array with multiples values
@@ -175,7 +169,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	suite( 'isArrayOfMultiElement', () => {
 
@@ -213,7 +206,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is not an empty array where all values are null
 	 *
@@ -245,7 +237,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isArrayOfNull', () => {
 
 	    benchmark( 'isArrayOfNull()', Itee.TestsUtils.iterateOverDataMap( isArrayOfNull ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -261,7 +252,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is an object
@@ -283,7 +273,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is not an object
 	 *
@@ -303,7 +292,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is an array where all values are of object type
@@ -336,7 +324,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isArrayOfObject', () => {
 
 	    benchmark( 'isArrayOfObject()', Itee.TestsUtils.iterateOverDataMap( isArrayOfObject ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -352,7 +339,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is an array with a single value
@@ -381,7 +367,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	suite( 'isArrayOfSingleElement', () => {
 
@@ -442,7 +427,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is not a string
 	 *
@@ -462,7 +446,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is not an empty array where all values are string
@@ -519,7 +502,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isArrayOfString', () => {
 
 	    benchmark( 'isArrayOfString()', Itee.TestsUtils.iterateOverDataMap( isArrayOfString ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -557,7 +539,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is not an empty array where all values are undefined
 	 *
@@ -589,7 +570,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isArrayOfUndefined', () => {
 
 	    benchmark( 'isArrayOfUndefined()', Itee.TestsUtils.iterateOverDataMap( isArrayOfUndefined ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -605,7 +585,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	suite( 'isEmptyArray', () => {
 
@@ -623,7 +602,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isNotArray', () => {
 
 	    benchmark( 'isNotArray()', Itee.TestsUtils.iterateOverDataMap( isNotArray ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -640,7 +618,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is not an array of array
@@ -679,7 +656,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isNotArrayOfArray', () => {
 
 	    benchmark( 'isNotArrayOfArray()', Itee.TestsUtils.iterateOverDataMap( isNotArrayOfArray ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -695,7 +671,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is not an empty array where all values are not null
@@ -728,7 +703,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isNotArrayOfNull', () => {
 
 	    benchmark( 'isNotArrayOfNull()', Itee.TestsUtils.iterateOverDataMap( isNotArrayOfNull ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -744,7 +718,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is not an array where all values are of object type
@@ -777,7 +750,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isNotArrayOfObject', () => {
 
 	    benchmark( 'isNotArrayOfObject()', Itee.TestsUtils.iterateOverDataMap( isNotArrayOfObject ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -793,7 +765,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is not an empty array where all values are not string
@@ -826,7 +797,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isNotArrayOfString', () => {
 
 	    benchmark( 'isNotArrayOfString()', Itee.TestsUtils.iterateOverDataMap( isNotArrayOfString ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -842,7 +812,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is not an empty array where all values are defined
@@ -875,7 +844,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isNotArrayOfUndefined', () => {
 
 	    benchmark( 'isNotArrayOfUndefined()', Itee.TestsUtils.iterateOverDataMap( isNotArrayOfUndefined ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -891,7 +859,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is not an empty array
@@ -916,7 +883,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	suite( 'isNotEmptyArray', () => {
 
@@ -965,7 +931,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isBoolean', () => {
 
 	    benchmark( 'isBoolean()', Itee.TestsUtils.iterateOverDataMap( isBoolean ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -982,7 +947,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is not a boolean
@@ -1006,7 +970,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	suite( 'isNotBoolean', () => {
 
@@ -1047,7 +1010,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isFunction', () => {
 
 	    benchmark( 'isFunction()', Itee.TestsUtils.iterateOverDataMap( isFunction ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -1079,7 +1041,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	suite( 'isNotFunction', () => {
 
@@ -1118,7 +1079,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	suite( 'isFinite', () => {
 
@@ -1163,7 +1123,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isFloat', () => {
 
 	    benchmark( 'isFloat()', Itee.TestsUtils.iterateOverDataMap( isFloat ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -1198,7 +1157,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isInfinite', () => {
 
 	    benchmark( 'isInfinite()', Itee.TestsUtils.iterateOverDataMap( isInfinite ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -1231,7 +1189,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isInfiniteNegative', () => {
 
 	    benchmark( 'isInfiniteNegative()', Itee.TestsUtils.iterateOverDataMap( isInfiniteNegative ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -1263,7 +1220,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	suite( 'isInfinitePositive', () => {
 
@@ -1312,7 +1268,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isInteger', () => {
 
 	    benchmark( 'isInteger()', Itee.TestsUtils.iterateOverDataMap( isInteger ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -1348,7 +1303,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isMaxNegative', () => {
 
 	    benchmark( 'isMaxNegative()', Itee.TestsUtils.iterateOverDataMap( isMaxNegative ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -1380,7 +1334,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	suite( 'isMaxPositive', () => {
 
@@ -1414,7 +1367,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isMaxSafeInteger', () => {
 
 	    benchmark( 'isMaxSafeInteger()', Itee.TestsUtils.iterateOverDataMap( isMaxSafeInteger ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -1446,7 +1398,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	suite( 'isMinNegative', () => {
 
@@ -1480,7 +1431,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isMinPositive', () => {
 
 	    benchmark( 'isMinPositive()', Itee.TestsUtils.iterateOverDataMap( isMinPositive ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -1512,7 +1462,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	suite( 'isMinSafeInteger', () => {
 
@@ -1546,7 +1495,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isNaN', () => {
 
 	    benchmark( 'isNaN()', Itee.TestsUtils.iterateOverDataMap( isNaN ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -1578,7 +1526,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	suite( 'isNotNumber', () => {
 
@@ -1619,7 +1566,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isNumber', () => {
 
 	    benchmark( 'isNumber()', Itee.TestsUtils.iterateOverDataMap( isNumber ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -1637,7 +1583,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if the data is a negative number
 	 *
@@ -1653,7 +1598,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	suite( 'isNumberNegative', () => {
 
@@ -1671,7 +1615,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if the data is a positive number
 	 *
@@ -1687,7 +1630,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	suite( 'isNumberPositive', () => {
 
@@ -1721,7 +1663,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isZero', () => {
 
 	    benchmark( 'isZero()', Itee.TestsUtils.iterateOverDataMap( isZero ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -1753,7 +1694,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	suite( 'isZeroNegative', () => {
 
@@ -1787,7 +1727,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isZeroPositive', () => {
 
 	    benchmark( 'isZeroPositive()', Itee.TestsUtils.iterateOverDataMap( isZeroPositive ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -1809,7 +1748,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is an empty object
@@ -1842,7 +1780,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isEmptyObject', () => {
 
 	    benchmark( 'isEmptyObject()', Itee.TestsUtils.iterateOverDataMap( isEmptyObject ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -1858,7 +1795,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is not an empty object
@@ -1876,7 +1812,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isNotEmptyObject', () => {
 
 	    benchmark( 'isNotEmptyObject()', Itee.TestsUtils.iterateOverDataMap( isNotEmptyObject ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -1889,7 +1824,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isNotObject', () => {
 
 	    benchmark( 'isNotObject()', Itee.TestsUtils.iterateOverDataMap( isNotObject ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -1901,7 +1835,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	suite( 'isObject', () => {
 
@@ -1925,7 +1858,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if the given data is a blank string
 	 *
@@ -1947,7 +1879,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isBlankString', () => {
 
 	    benchmark( 'isBlankString()', Itee.TestsUtils.iterateOverDataMap( isBlankString ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -1963,7 +1894,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is an empty string
@@ -1987,7 +1917,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isEmptyString', () => {
 
 	    benchmark( 'isEmptyString()', Itee.TestsUtils.iterateOverDataMap( isEmptyString ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -2003,7 +1932,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if the given data is not a blank string
@@ -2026,7 +1954,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isNotBlankString', () => {
 
 	    benchmark( 'isNotBlankString()', Itee.TestsUtils.iterateOverDataMap( isNotBlankString ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -2042,7 +1969,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is not an empty string
@@ -2066,7 +1992,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isNotEmptyString', () => {
 
 	    benchmark( 'isNotEmptyString()', Itee.TestsUtils.iterateOverDataMap( isNotEmptyString ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -2079,7 +2004,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isNotString', () => {
 
 	    benchmark( 'isNotString()', Itee.TestsUtils.iterateOverDataMap( isNotString ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -2091,7 +2015,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	suite( 'isString', () => {
 
@@ -2136,7 +2059,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isNotSymbol', () => {
 
 	    benchmark( 'isNotSymbol()', Itee.TestsUtils.iterateOverDataMap( isNotSymbol ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -2168,7 +2090,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	suite( 'isSymbol', () => {
 
@@ -2208,7 +2129,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isDefined', () => {
 
 	    benchmark( 'isDefined()', Itee.TestsUtils.iterateOverDataMap( isDefined ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -2245,7 +2165,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check emptiness of given data
 	 *
@@ -2271,7 +2190,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isEmpty', () => {
 
 	    benchmark( 'isEmpty()', Itee.TestsUtils.iterateOverDataMap( isEmpty ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -2287,7 +2205,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check fullness of given data
@@ -2305,7 +2222,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isNotEmpty', () => {
 
 	    benchmark( 'isNotEmpty()', Itee.TestsUtils.iterateOverDataMap( isNotEmpty ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -2318,7 +2234,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isNotNull', () => {
 
 	    benchmark( 'isNotNull()', Itee.TestsUtils.iterateOverDataMap( isNotNull ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -2330,7 +2245,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	suite( 'isNotUndefined', () => {
 
@@ -2364,7 +2278,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	suite( 'isNull', () => {
 
 	    benchmark( 'isNull()', Itee.TestsUtils.iterateOverDataMap( isNull ), Itee.TestsUtils.createDataMapBenchmarkOptions() );
@@ -2376,7 +2289,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	suite( 'isNullOrUndefined', () => {
 
@@ -2409,7 +2321,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	suite( 'isUndefined', () => {
 

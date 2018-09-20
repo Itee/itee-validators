@@ -12,7 +12,6 @@
 
 import { isInfinitePositive } from '../../../../sources/cores/numbers/isInfinitePositive'
 
-
 function isInfinitePositiveUnits () {
 
     describe( 'isInfinitePositive()', () => {

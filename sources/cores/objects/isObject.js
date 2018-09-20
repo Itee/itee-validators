@@ -10,7 +10,6 @@
 
 import { isNotNull } from '../voids/isNotNull'
 
-
 /**
  * Check if given data is an object
  *

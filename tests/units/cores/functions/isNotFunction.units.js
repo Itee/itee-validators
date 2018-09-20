@@ -12,7 +12,6 @@
 
 import { isNotFunction } from '../../../../sources/cores/functions/isNotFunction'
 
-
 function isNotFunctionUnits () {
 
     describe( 'isNotFunction()', () => {

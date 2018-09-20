@@ -12,7 +12,6 @@ import { isNotObjectUnits }      from './isNotObject.units'
 import { isEmptyObjectUnits }    from './isEmptyObject.units'
 import { isNotEmptyObjectUnits } from './isNotEmptyObject.units'
 
-
 function _objectsUnits () {
 
     describe( 'Objects', () => {

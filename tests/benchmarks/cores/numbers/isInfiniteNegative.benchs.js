@@ -8,7 +8,6 @@
 
 import { isInfiniteNegative } from '../../../../sources/cores/numbers/isInfiniteNegative'
 
-
 export default suite( 'isInfiniteNegative', () => {
 
     benchmark( 'isInfiniteNegative()', Itee.TestsUtils.iterateOverDataMap( isInfiniteNegative ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

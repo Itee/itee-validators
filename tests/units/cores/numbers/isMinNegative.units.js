@@ -12,7 +12,6 @@
 
 import { isMinNegative } from '../../../../sources/cores/numbers/isMinNegative'
 
-
 function isMinNegativeUnits () {
 
     describe( 'isMinNegative()', () => {

@@ -12,7 +12,6 @@
 
 import { isFahrenheit } from '../../../../sources/physics/temperatures/isFahrenheit'
 
-
 export default suite( 'isFahrenheit', () => {
 
     benchmark( 'isFahrenheit()', Itee.TestsUtils.iterateOverDataMap( isFahrenheit ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

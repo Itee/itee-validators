@@ -12,7 +12,6 @@
 
 import { isNotArrayOfString } from '../../../../sources/cores/arrays/isNotArrayOfString'
 
-
 export default suite( 'isNotArrayOfString', () => {
 
     benchmark( 'isNotArrayOfString()', Itee.TestsUtils.iterateOverDataMap( isNotArrayOfString ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

@@ -12,7 +12,6 @@ import { isNotKelvin }     from './isNotKelvin'
 import { isNotCelsius }    from './isNotCelsius'
 import { isNotFahrenheit } from './isNotFahrenheit'
 
-
 /**
  *
  * @param data

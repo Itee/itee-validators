@@ -8,7 +8,6 @@
 
 import { isNumber, isNumber_1 } from '../../../../sources/cores/numbers/isNumber'
 
-
 export default suite( 'isNumber', () => {
 
     benchmark( 'isNumber()', Itee.TestsUtils.iterateOverDataMap( isNumber ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

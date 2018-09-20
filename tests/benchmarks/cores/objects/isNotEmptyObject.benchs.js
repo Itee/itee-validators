@@ -8,7 +8,6 @@
 
 import { isNotEmptyObject } from '../../../../sources/cores/objects/isNotEmptyObject'
 
-
 export default suite( 'isNotEmptyObject', () => {
 
     benchmark( 'isNotEmptyObject()', Itee.TestsUtils.iterateOverDataMap( isNotEmptyObject ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

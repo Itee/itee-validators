@@ -8,7 +8,6 @@
 
 import { isFunction } from '../../../../sources/cores/functions/isFunction'
 
-
 export default suite( 'isFunction', () => {
 
     benchmark( 'isFunction()', Itee.TestsUtils.iterateOverDataMap( isFunction ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

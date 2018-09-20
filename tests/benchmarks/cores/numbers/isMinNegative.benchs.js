@@ -8,7 +8,6 @@
 
 import { isMinNegative } from '../../../../sources/cores/numbers/isMinNegative'
 
-
 export default suite( 'isMinNegative', () => {
 
     benchmark( 'isMinNegative()', Itee.TestsUtils.iterateOverDataMap( isMinNegative ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

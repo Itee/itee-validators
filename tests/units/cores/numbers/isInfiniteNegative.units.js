@@ -12,7 +12,6 @@
 
 import { isInfiniteNegative } from '../../../../sources/cores/numbers/isInfiniteNegative'
 
-
 function isInfiniteNegativeUnits () {
 
     describe( 'isInfiniteNegative()', () => {

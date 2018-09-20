@@ -12,7 +12,6 @@
 
 import { isString } from '../../../../sources/cores/strings/isString'
 
-
 function isStringUnits () {
 
     describe( 'isString()', () => {

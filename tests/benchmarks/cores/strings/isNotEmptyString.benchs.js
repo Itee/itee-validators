@@ -8,7 +8,6 @@
 
 import { isNotEmptyString } from '../../../../sources/cores/strings/isNotEmptyString'
 
-
 export default suite( 'isNotEmptyString', () => {
 
     benchmark( 'isNotEmptyString()', Itee.TestsUtils.iterateOverDataMap( isNotEmptyString ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

@@ -12,7 +12,6 @@
 
 import { isInteger } from '../../../../sources/cores/numbers/isInteger'
 
-
 function isIntegerUnits () {
 
     describe( 'isInteger()', () => {

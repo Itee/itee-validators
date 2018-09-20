@@ -8,7 +8,6 @@
 
 import { isBoolean, isBoolean_alt } from '../../../../sources/cores/booleans/isBoolean'
 
-
 export default suite( 'isBoolean', () => {
 
     benchmark( 'isBoolean()', Itee.TestsUtils.iterateOverDataMap( isBoolean ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

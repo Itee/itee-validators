@@ -8,7 +8,6 @@
 
 import { isNotSymbol } from '../../../../sources/cores/symbols/isNotSymbol'
 
-
 export default suite( 'isNotSymbol', () => {
 
     benchmark( 'isNotSymbol()', Itee.TestsUtils.iterateOverDataMap( isNotSymbol ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

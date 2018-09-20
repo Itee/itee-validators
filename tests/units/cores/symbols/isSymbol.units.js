@@ -12,7 +12,6 @@
 
 import { isSymbol } from '../../../../sources/cores/symbols/isSymbol'
 
-
 function isSymbolUnits () {
 
     describe( 'isSymbol()', () => {

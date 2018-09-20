@@ -10,7 +10,6 @@
 
 import { isNotArray } from './isNotArray'
 
-
 /**
  * Check if given data is an array with a single value
  *

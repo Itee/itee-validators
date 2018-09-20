@@ -8,7 +8,6 @@
 
 import { isDefined } from '../../../../sources/cores/voids/isDefined'
 
-
 export default suite( 'isDefined', () => {
 
     benchmark( 'isDefined()', Itee.TestsUtils.iterateOverDataMap( isDefined ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

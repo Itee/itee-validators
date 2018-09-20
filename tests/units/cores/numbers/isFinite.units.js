@@ -12,7 +12,6 @@
 
 import { isFinite } from '../../../../sources/cores/numbers/isFinite'
 
-
 function isFiniteUnits () {
 
     describe( 'isFinite()', () => {

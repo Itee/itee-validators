@@ -12,7 +12,6 @@
 
 import { isCelsius } from '../../../../sources/physics/temperatures/isCelsius'
 
-
 export default suite( 'isCelsius', () => {
 
     benchmark( 'isCelsius()', Itee.TestsUtils.iterateOverDataMap( isCelsius ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

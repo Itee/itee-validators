@@ -11,7 +11,6 @@
 
 import { isUndefined } from '../../../../sources/cores/voids/isUndefined'
 
-
 function isUndefinedUnits () {
 
     describe( 'isUndefined()', () => {

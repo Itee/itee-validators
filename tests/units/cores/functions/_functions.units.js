@@ -10,7 +10,6 @@ import { TestsUtils }         from '../../../itee-validators.tests-utils.js'
 import { isFunctionUnits }    from './isFunction.units'
 import { isNotFunctionUnits } from './isNotFunction.units'
 
-
 function _functionsUnits () {
 
     describe( 'Functions', () => {

@@ -8,7 +8,6 @@
 
 import { isBlankString } from '../../../../sources/cores/strings/isBlankString'
 
-
 export default suite( 'isBlankString', () => {
 
     benchmark( 'isBlankString()', Itee.TestsUtils.iterateOverDataMap( isBlankString ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

@@ -12,7 +12,6 @@
 
 import { isArrayOfMultiElement } from '../../../../sources/cores/arrays/isArrayOfMultiElement'
 
-
 export default suite( 'isArrayOfMultiElement', () => {
 
     benchmark( 'isArrayOfMultiElement()', Itee.TestsUtils.iterateOverDataMap( isArrayOfMultiElement ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

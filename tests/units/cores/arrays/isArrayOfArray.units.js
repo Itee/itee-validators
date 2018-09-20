@@ -12,7 +12,6 @@
 
 import { isArrayOfArray } from '../../../../sources/cores/arrays/isArrayOfArray'
 
-
 function isArrayOfArrayUnits () {
 
     describe( 'isArrayOfArray()', () => {

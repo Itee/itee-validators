@@ -425,7 +425,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function isArrayUnits () {
 
 	    describe( 'isArray()', () => {
@@ -468,7 +467,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is not an array
 	 *
@@ -490,7 +488,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is an empty array
@@ -515,7 +512,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is an array of array
@@ -547,7 +543,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/arrays}
 	 *
 	 */
-
 
 	function isArrayOfArrayUnits () {
 
@@ -598,7 +593,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is an array with multiples values
 	 *
@@ -622,7 +616,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/arrays}
 	 *
 	 */
-
 
 	function isArrayOfMultiElementUnits () {
 
@@ -694,7 +687,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is not an empty array where all values are null
 	 *
@@ -725,7 +717,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/arrays}
 	 *
 	 */
-
 
 	function isArrayOfNullUnits () {
 
@@ -776,7 +767,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is an object
 	 *
@@ -797,7 +787,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is not an object
 	 *
@@ -817,7 +806,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is an array where all values are of object type
@@ -849,7 +837,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/arrays}
 	 *
 	 */
-
 
 	function isArrayOfObjectUnits () {
 
@@ -900,7 +887,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is an array with a single value
 	 *
@@ -928,7 +914,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/arrays}
 	 *
 	 */
-
 
 	function isArrayOfSingleElementUnits () {
 
@@ -1001,7 +986,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is not a string
 	 *
@@ -1021,7 +1005,6 @@ this.Itee = this.Itee || {};
 	 * @example Todo
 	 *
 	 */
-
 
 	/**
 	 * Check if given data is not an empty array where all values are string
@@ -1055,7 +1038,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/arrays}
 	 *
 	 */
-
 
 	function isArrayOfStringUnits () {
 
@@ -1126,7 +1108,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is not an empty array where all values are undefined
 	 *
@@ -1157,7 +1138,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/arrays}
 	 *
 	 */
-
 
 	function isArrayOfUndefinedUnits () {
 
@@ -1208,7 +1188,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function isEmptyArrayUnits () {
 
 	    describe( 'isEmptyArray()', () => {
@@ -1258,7 +1237,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function isNotArrayUnits () {
 
 	    describe( 'isNotArray()', () => {
@@ -1301,7 +1279,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is not an array of array
 	 *
@@ -1338,7 +1315,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/arrays}
 	 *
 	 */
-
 
 	function isNotArrayOfArrayUnits () {
 
@@ -1389,7 +1365,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is not an empty array where all values are not null
 	 *
@@ -1420,7 +1395,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/arrays}
 	 *
 	 */
-
 
 	function isNotArrayOfNullUnits () {
 
@@ -1471,7 +1445,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is not an array where all values are of object type
 	 *
@@ -1502,7 +1475,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/arrays}
 	 *
 	 */
-
 
 	function isNotArrayOfObjectUnits () {
 
@@ -1553,7 +1525,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is not an empty array where all values are not string
 	 *
@@ -1584,7 +1555,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/arrays}
 	 *
 	 */
-
 
 	function isNotArrayOfStringUnits () {
 
@@ -1635,7 +1605,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is not an empty array where all values are defined
 	 *
@@ -1666,7 +1635,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/arrays}
 	 *
 	 */
-
 
 	function isNotArrayOfUndefinedUnits () {
 
@@ -1717,7 +1685,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is not an empty array
 	 *
@@ -1741,7 +1708,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/arrays}
 	 *
 	 */
-
 
 	function isNotEmptyArrayUnits () {
 
@@ -1787,7 +1753,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	function _arraysUnits () {
 
@@ -1859,7 +1824,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function isBooleanUnits () {
 
 	    describe( 'isBoolean()', () => {
@@ -1902,7 +1866,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is not a boolean
 	 *
@@ -1923,7 +1886,6 @@ this.Itee = this.Itee || {};
 	 * @desc Export the units tests about isBoolean method.
 	 * @requires {@link module:sources/cores/booleans}
 	 */
-
 
 	function isNotBooleanUnits () {
 
@@ -1962,7 +1924,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	function _booleansUnits () {
 
@@ -2016,7 +1977,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/functions}
 	 *
 	 */
-
 
 	function isFunctionUnits () {
 
@@ -2080,7 +2040,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function isNotFunctionUnits () {
 
 	    describe( 'isNotFunction()', () => {
@@ -2118,7 +2077,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	function _functionsUnits () {
 
@@ -2172,7 +2130,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/numbers}
 	 *
 	 */
-
 
 	function isFiniteUnits () {
 
@@ -2247,7 +2204,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function isFloatUnits () {
 
 	    describe( 'isFloat()', () => {
@@ -2318,7 +2274,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/numbers}
 	 *
 	 */
-
 
 	function isInfiniteUnits () {
 
@@ -2391,7 +2346,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function isInfiniteNegativeUnits () {
 
 	    describe( 'isInfiniteNegative()', () => {
@@ -2460,7 +2414,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/numbers}
 	 *
 	 */
-
 
 	function isInfinitePositiveUnits () {
 
@@ -2532,7 +2485,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/numbers}
 	 *
 	 */
-
 
 	function isIntegerUnits () {
 
@@ -2616,7 +2568,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function isMaxNegativeUnits () {
 
 	    describe( 'isMaxNegative()', () => {
@@ -2687,7 +2638,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/numbers}
 	 *
 	 */
-
 
 	function isMaxPositiveUnits () {
 
@@ -2760,7 +2710,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function isMaxSafeIntegerUnits () {
 
 	    describe( 'isMaxSafeInteger()', () => {
@@ -2831,7 +2780,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/numbers}
 	 *
 	 */
-
 
 	function isMinNegativeUnits () {
 
@@ -2904,7 +2852,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function isMinPositiveUnits () {
 
 	    describe( 'isMinPositive()', () => {
@@ -2975,7 +2922,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/numbers}
 	 *
 	 */
-
 
 	function isMinSafeIntegerUnits () {
 
@@ -3048,7 +2994,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function isNotNumberUnits () {
 
 	    describe( 'isNotNumber()', () => {
@@ -3113,7 +3058,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function isNumberUnits () {
 
 	    describe( 'isNumber()', () => {
@@ -3156,7 +3100,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if the data is a negative number
 	 *
@@ -3176,7 +3119,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/numbers}
 	 *
 	 */
-
 
 	function isNumberNegativeUnits () {
 
@@ -3240,7 +3182,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if the data is a positive number
 	 *
@@ -3260,7 +3201,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/numbers}
 	 *
 	 */
-
 
 	function isNumberPositiveUnits () {
 
@@ -3344,7 +3284,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function isZeroUnits () {
 
 	    describe( 'isZero()', () => {
@@ -3415,7 +3354,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/numbers}
 	 *
 	 */
-
 
 	function isZeroNegativeUnits () {
 
@@ -3488,7 +3426,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function isZeroPositiveUnits () {
 
 	    describe( 'isZeroPositive()', () => {
@@ -3535,7 +3472,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	function _numbersUnits () {
 
@@ -3587,7 +3523,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function isObjectUnits () {
 
 	    describe( 'isObject()', () => {
@@ -3629,7 +3564,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/objects}
 	 *
 	 */
-
 
 	function isNotObjectUnits () {
 
@@ -3673,7 +3607,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is an empty object
 	 *
@@ -3708,7 +3641,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/objects}
 	 *
 	 */
-
 
 	function isEmptyObjectUnits () {
 
@@ -3759,7 +3691,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is not an empty object
 	 *
@@ -3779,7 +3710,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/objects}
 	 *
 	 */
-
 
 	function isNotEmptyObjectUnits () {
 
@@ -3826,7 +3756,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function _objectsUnits () {
 
 	    describe( 'Objects', () => {
@@ -3861,7 +3790,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/strings}
 	 *
 	 */
-
 
 	function isStringUnits () {
 
@@ -3905,7 +3833,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function isNotStringUnits () {
 
 	    describe( 'isNotString()', () => {
@@ -3948,7 +3875,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is an empty string
 	 *
@@ -3974,7 +3900,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/strings}
 	 *
 	 */
-
 
 	function isEmptyStringUnits () {
 
@@ -4027,7 +3952,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is not an empty string
 	 *
@@ -4053,7 +3977,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/strings}
 	 *
 	 */
-
 
 	function isNotEmptyStringUnits () {
 
@@ -4106,7 +4029,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if the given data is a blank string
 	 *
@@ -4131,7 +4053,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/strings}
 	 *
 	 */
-
 
 	function isBlankStringUnits () {
 
@@ -4182,7 +4103,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check if the given data is not a blank string
 	 *
@@ -4207,7 +4127,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/strings}
 	 *
 	 */
-
 
 	function isNotBlankStringUnits () {
 
@@ -4253,7 +4172,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	function _stringsUnits () {
 
@@ -4311,7 +4229,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/symbols}
 	 *
 	 */
-
 
 	function isSymbolUnits () {
 
@@ -4375,7 +4292,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function isNotSymbolUnits () {
 
 	    describe( 'isNotSymbol()', () => {
@@ -4413,7 +4329,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	function _symbolsUnits () {
 
@@ -4466,7 +4381,6 @@ this.Itee = this.Itee || {};
 	 * @desc Export the units tests about isDefined method.
 	 * @requires {@link module:sources/cores/voids}
 	 */
-
 
 	function isDefinedUnits () {
 
@@ -4530,7 +4444,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check emptiness of given data
 	 *
@@ -4558,7 +4471,6 @@ this.Itee = this.Itee || {};
 	 * @desc Export the units tests about isEmpty method.
 	 * @requires {@link module:sources/cores/voids}
 	 */
-
 
 	function isEmptyUnits () {
 
@@ -4641,7 +4553,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	/**
 	 * Check fullness of given data
 	 *
@@ -4660,7 +4571,6 @@ this.Itee = this.Itee || {};
 	 * @desc Export the units tests about isNotEmpty method.
 	 * @requires {@link module:sources/cores/voids}
 	 */
-
 
 	function isNotEmptyUnits () {
 
@@ -4742,7 +4652,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/voids}
 	 */
 
-
 	function isNotNullUnits () {
 
 	    describe( 'isNotNull()', () => {
@@ -4790,7 +4699,6 @@ this.Itee = this.Itee || {};
 	 * @desc Export the units tests about isNotUndefined method.
 	 * @requires {@link module:sources/cores/voids}
 	 */
-
 
 	function isNotUndefinedUnits () {
 
@@ -4860,7 +4768,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/voids}
 	 */
 
-
 	function isNullUnits () {
 
 	    describe( 'isNull()', () => {
@@ -4908,7 +4815,6 @@ this.Itee = this.Itee || {};
 	 * @desc Export the units tests about isNullOrUndefined method.
 	 * @requires {@link module:sources/cores/voids}
 	 */
-
 
 	function isNullOrUndefinedUnits () {
 
@@ -4971,7 +4877,6 @@ this.Itee = this.Itee || {};
 	 * @requires {@link module:sources/cores/voids}
 	 */
 
-
 	function isUndefinedUnits () {
 
 	    describe( 'isUndefined()', () => {
@@ -5017,7 +4922,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function _voidsUnits () {
 
 	    describe( 'Voids', () => {
@@ -5052,7 +4956,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	function _coresUnits () {
 
@@ -5319,7 +5222,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function _temperaturesUnits () {
 
 	    describe( 'Temperatures', () => {
@@ -5355,7 +5257,6 @@ this.Itee = this.Itee || {};
 	 *
 	 */
 
-
 	function _physicsUnits () {
 
 	    describe( 'Physics', () => {
@@ -5371,7 +5272,6 @@ this.Itee = this.Itee || {};
 	 * @license [MIT]{@link https://opensource.org/licenses/MIT}
 	 *
 	 */
-
 
 	const root = typeof window !== 'undefined' ? window :
 	    typeof global !== 'undefined' ? global :

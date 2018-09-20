@@ -8,7 +8,6 @@
 
 import { isNotFunction } from '../../../../sources/cores/functions/isNotFunction'
 
-
 export default suite( 'isNotFunction', () => {
 
     benchmark( 'isNotFunction()', Itee.TestsUtils.iterateOverDataMap( isNotFunction ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

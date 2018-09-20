@@ -11,7 +11,6 @@
 import { isNumber }             from '../../cores/numbers/isNumber'
 import { ABSOLUTE_ZERO_KELVIN } from './constants'
 
-
 /**
  *
  * @param data

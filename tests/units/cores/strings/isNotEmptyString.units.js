@@ -12,7 +12,6 @@
 
 import { isNotEmptyString } from '../../../../sources/cores/strings/isNotEmptyString'
 
-
 function isNotEmptyStringUnits () {
 
     describe( 'isNotEmptyString()', () => {

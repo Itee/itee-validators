@@ -12,7 +12,6 @@
 
 import { isMinPositive } from '../../../../sources/cores/numbers/isMinPositive'
 
-
 function isMinPositiveUnits () {
 
     describe( 'isMinPositive()', () => {

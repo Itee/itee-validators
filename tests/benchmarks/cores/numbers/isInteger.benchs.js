@@ -8,7 +8,6 @@
 
 import { isInteger, isInteger_1, isInteger_2, isInteger_3 } from '../../../../sources/cores/numbers/isInteger'
 
-
 export default suite( 'isInteger', () => {
 
     benchmark( 'isInteger()', Itee.TestsUtils.iterateOverDataMap( isInteger ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

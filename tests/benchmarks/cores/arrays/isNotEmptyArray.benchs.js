@@ -12,7 +12,6 @@
 
 import { isNotEmptyArray } from '../../../../sources/cores/arrays/isNotEmptyArray'
 
-
 export default suite( 'isNotEmptyArray', () => {
 
     benchmark( 'isNotEmptyArray()', Itee.TestsUtils.iterateOverDataMap( isNotEmptyArray ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

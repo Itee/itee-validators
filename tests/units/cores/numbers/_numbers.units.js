@@ -27,7 +27,6 @@ import { isZeroUnits }             from './isZero.units'
 import { isZeroNegativeUnits }     from './isZeroNegative.units'
 import { isZeroPositiveUnits }     from './isZeroPositive.units'
 
-
 function _numbersUnits () {
 
     describe( 'Numbers', () => {

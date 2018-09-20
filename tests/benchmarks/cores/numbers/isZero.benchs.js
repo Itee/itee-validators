@@ -8,7 +8,6 @@
 
 import { isZero } from '../../../../sources/cores/numbers/isZero'
 
-
 export default suite( 'isZero', () => {
 
     benchmark( 'isZero()', Itee.TestsUtils.iterateOverDataMap( isZero ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

@@ -12,7 +12,6 @@
 
 import { isMinSafeInteger } from '../../../../sources/cores/numbers/isMinSafeInteger'
 
-
 function isMinSafeIntegerUnits () {
 
     describe( 'isMinSafeInteger()', () => {

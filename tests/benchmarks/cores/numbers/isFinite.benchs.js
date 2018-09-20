@@ -8,7 +8,6 @@
 
 import { isFinite } from '../../../../sources/cores/numbers/isFinite'
 
-
 export default suite( 'isFinite', () => {
 
     benchmark( 'isFinite()', Itee.TestsUtils.iterateOverDataMap( isFinite ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

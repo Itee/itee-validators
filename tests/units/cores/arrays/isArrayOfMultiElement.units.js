@@ -12,7 +12,6 @@
 
 import { isArrayOfMultiElement } from '../../../../sources/cores/arrays/isArrayOfMultiElement'
 
-
 function isArrayOfMultiElementUnits () {
 
     describe( 'isArrayOfMultiElement()', () => {

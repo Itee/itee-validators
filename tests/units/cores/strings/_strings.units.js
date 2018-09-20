@@ -14,7 +14,6 @@ import { isNotEmptyStringUnits } from './isNotEmptyString.units'
 import { isBlankStringUnits }    from './isBlankString.units'
 import { isNotBlankStringUnits } from './isNotBlankString.units'
 
-
 function _stringsUnits () {
 
     describe( 'Strings', () => {

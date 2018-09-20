@@ -12,7 +12,6 @@
 
 import { isObject } from '../../../../sources/cores/objects/isObject'
 
-
 function isObjectUnits () {
 
     describe( 'isObject()', () => {

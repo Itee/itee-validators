@@ -12,7 +12,6 @@
 
 import { isNotString } from '../../../../sources/cores/strings/isNotString'
 
-
 function isNotStringUnits () {
 
     describe( 'isNotString()', () => {

@@ -11,7 +11,6 @@
 import { isNumber }                 from '../../cores/numbers/isNumber'
 import { ABSOLUTE_ZERO_FAHRENHEIT } from './constants'
 
-
 /**
  *
  * @param data

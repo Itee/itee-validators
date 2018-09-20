@@ -12,7 +12,6 @@
 
 import { isArrayOfSingleElement } from '../../../../sources/cores/arrays/isArrayOfSingleElement'
 
-
 function isArrayOfSingleElementUnits () {
 
     describe( 'isArrayOfSingleElement()', () => {

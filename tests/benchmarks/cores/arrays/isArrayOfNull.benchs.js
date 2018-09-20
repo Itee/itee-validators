@@ -12,7 +12,6 @@
 
 import { isArrayOfNull } from '../../../../sources/cores/arrays/isArrayOfNull'
 
-
 export default suite( 'isArrayOfNull', () => {
 
     benchmark( 'isArrayOfNull()', Itee.TestsUtils.iterateOverDataMap( isArrayOfNull ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

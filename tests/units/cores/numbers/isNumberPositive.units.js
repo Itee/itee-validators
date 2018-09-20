@@ -12,7 +12,6 @@
 
 import { isNumberPositive } from '../../../../sources/cores/numbers/isNumberPositive'
 
-
 function isNumberPositiveUnits () {
 
     describe( 'isNumberPositive()', () => {

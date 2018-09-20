@@ -12,7 +12,6 @@
 
 import { isArray } from '../../../../sources/cores/arrays/isArray'
 
-
 export default suite( 'isArray', () => {
 
     benchmark( 'isArray()', Itee.TestsUtils.iterateOverDataMap( isArray ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

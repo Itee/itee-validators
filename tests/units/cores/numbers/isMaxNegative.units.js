@@ -12,7 +12,6 @@
 
 import { isMaxNegative } from '../../../../sources/cores/numbers/isMaxNegative'
 
-
 function isMaxNegativeUnits () {
 
     describe( 'isMaxNegative()', () => {

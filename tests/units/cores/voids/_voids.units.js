@@ -16,7 +16,6 @@ import { isNullUnits }            from './isNull.units'
 import { isNullOrUndefinedUnits } from './isNullOrUndefined.units'
 import { isUndefinedUnits }       from './isUndefined.units'
 
-
 function _voidsUnits () {
 
     describe( 'Voids', () => {

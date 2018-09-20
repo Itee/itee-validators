@@ -8,7 +8,6 @@
 
 import { isNotBoolean, isNotBoolean_negbase } from '../../../../sources/cores/booleans/isNotBoolean'
 
-
 export default suite( 'isNotBoolean', () => {
 
     benchmark( 'isNotBoolean()', Itee.TestsUtils.iterateOverDataMap( isNotBoolean ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

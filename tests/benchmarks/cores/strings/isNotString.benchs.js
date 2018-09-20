@@ -8,7 +8,6 @@
 
 import { isNotString } from '../../../../sources/cores/strings/isNotString'
 
-
 export default suite( 'isNotString', () => {
 
     benchmark( 'isNotString()', Itee.TestsUtils.iterateOverDataMap( isNotString ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

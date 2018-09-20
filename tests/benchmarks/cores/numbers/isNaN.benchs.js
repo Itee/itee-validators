@@ -8,7 +8,6 @@
 
 import { isNaN } from '../../../../sources/cores/numbers/isNaN'
 
-
 export default suite( 'isNaN', () => {
 
     benchmark( 'isNaN()', Itee.TestsUtils.iterateOverDataMap( isNaN ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

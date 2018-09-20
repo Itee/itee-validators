@@ -10,7 +10,6 @@
 
 import { isNotString } from './isNotString'
 
-
 /**
  * Check if the given data is not a blank string
  *

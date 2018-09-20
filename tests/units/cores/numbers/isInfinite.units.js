@@ -12,7 +12,6 @@
 
 import { isInfinite } from '../../../../sources/cores/numbers/isInfinite'
 
-
 function isInfiniteUnits () {
 
     describe( 'isInfinite()', () => {

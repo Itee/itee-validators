@@ -12,7 +12,6 @@
 
 import { isArrayOfUndefined } from '../../../../sources/cores/arrays/isArrayOfUndefined'
 
-
 export default suite( 'isArrayOfUndefined', () => {
 
     benchmark( 'isArrayOfUndefined()', Itee.TestsUtils.iterateOverDataMap( isArrayOfUndefined ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

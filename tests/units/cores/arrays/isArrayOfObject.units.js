@@ -12,7 +12,6 @@
 
 import { isArrayOfObject } from '../../../../sources/cores/arrays/isArrayOfObject'
 
-
 function isArrayOfObjectUnits () {
 
     describe( 'isArrayOfObject()', () => {

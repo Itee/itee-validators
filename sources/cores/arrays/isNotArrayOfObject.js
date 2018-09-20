@@ -12,7 +12,6 @@ import { isNotObject }  from '../objects/isNotObject'
 import { isEmptyArray } from './isEmptyArray'
 import { isNotArray }   from './isNotArray'
 
-
 /**
  * Check if given data is not an array where all values are of object type
  *

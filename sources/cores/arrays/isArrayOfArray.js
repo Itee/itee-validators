@@ -11,7 +11,6 @@
 import { isEmptyArray } from './isEmptyArray'
 import { isNotArray }   from './isNotArray'
 
-
 /**
  * Check if given data is an array of array
  *

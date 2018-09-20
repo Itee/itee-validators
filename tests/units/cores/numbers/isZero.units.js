@@ -12,7 +12,6 @@
 
 import { isZero } from '../../../../sources/cores/numbers/isZero'
 
-
 function isZeroUnits () {
 
     describe( 'isZero()', () => {

@@ -8,7 +8,6 @@
 
 import { isNotNull } from '../../../../sources/cores/voids/isNotNull'
 
-
 export default suite( 'isNotNull', () => {
 
     benchmark( 'isNotNull()', Itee.TestsUtils.iterateOverDataMap( isNotNull ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

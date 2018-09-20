@@ -11,7 +11,6 @@
 import { isArray }    from './isArray'
 import { isNotArray } from './isNotArray'
 
-
 /**
  * Check if given data is not an array of array
  *

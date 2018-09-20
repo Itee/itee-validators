@@ -8,7 +8,6 @@
 
 import { isMaxPositive } from '../../../../sources/cores/numbers/isMaxPositive'
 
-
 export default suite( 'isMaxPositive', () => {
 
     benchmark( 'isMaxPositive()', Itee.TestsUtils.iterateOverDataMap( isMaxPositive ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

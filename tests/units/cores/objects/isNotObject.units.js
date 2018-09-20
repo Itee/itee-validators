@@ -12,7 +12,6 @@
 
 import { isNotObject } from '../../../../sources/cores/objects/isNotObject'
 
-
 function isNotObjectUnits () {
 
     describe( 'isNotObject()', () => {

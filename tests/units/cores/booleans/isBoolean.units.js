@@ -12,7 +12,6 @@
 
 import { isBoolean } from '../../../../sources/cores/booleans/isBoolean'
 
-
 function isBooleanUnits () {
 
     describe( 'isBoolean()', () => {

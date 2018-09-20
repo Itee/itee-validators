@@ -12,7 +12,6 @@
 
 import { isNotNumber } from '../../../../sources/cores/numbers/isNotNumber'
 
-
 function isNotNumberUnits () {
 
     describe( 'isNotNumber()', () => {

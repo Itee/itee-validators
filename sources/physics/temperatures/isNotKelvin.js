@@ -10,7 +10,6 @@
 
 import { isKelvin } from './isKelvin'
 
-
 /**
  *
  * @param data

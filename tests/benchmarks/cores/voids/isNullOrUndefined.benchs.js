@@ -8,7 +8,6 @@
 
 import { isNullOrUndefined } from '../../../../sources/cores/voids/isNullOrUndefined'
 
-
 export default suite( 'isNullOrUndefined', () => {
 
     benchmark( 'isNullOrUndefined()', Itee.TestsUtils.iterateOverDataMap( isNullOrUndefined ), Itee.TestsUtils.createDataMapBenchmarkOptions() )

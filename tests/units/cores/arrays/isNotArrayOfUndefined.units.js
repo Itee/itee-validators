@@ -12,7 +12,6 @@
 
 import { isNotArrayOfUndefined } from '../../../../sources/cores/arrays/isNotArrayOfUndefined'
 
-
 function isNotArrayOfUndefinedUnits () {
 
     describe( 'isNotArrayOfUndefined()', () => {

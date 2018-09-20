@@ -11,7 +11,6 @@
 
 import { isNotEmpty } from '../../../../sources/cores/voids/isNotEmpty'
 
-
 function isNotEmptyUnits () {
 
     describe( 'isNotEmpty()', () => {
