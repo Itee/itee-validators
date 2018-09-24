@@ -1,6 +1,6 @@
 {
   "name": "itee-validators",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A library of validation functions use in various Itee projects",
   "main": "builds/itee-validators.cjs.js",
   "module": "builds/itee-validators.esm.js",
