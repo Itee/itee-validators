@@ -1,6 +1,8 @@
-before_install:
-  - sudo apt-get update
-  - sudo apt-get install firefox
+env:
+  - MOZ_HEADLESS=1
+  
+addons:
+  firefox: latest
 
 language: node_js
 
