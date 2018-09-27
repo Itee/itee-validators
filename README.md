@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/Itee/itee-validators.svg?branch=master)](https://travis-ci.com/Itee/itee-validators)
+___
+
 # <center>[Itee Validators]</center>
 
 The itee validators is a common validation library, it include all basic validation like number, arrays, voidness, etc... and contain specific validation function for itee packages.
