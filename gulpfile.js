@@ -250,7 +250,7 @@ gulp.task( 'build-test', ( done ) => {
             n: 'itee-validators',
             i: path.join( __dirname, 'sources' ),
             o: path.join( __dirname, 'builds' ),
-            f: 'es,cjs,iife,umd',
+            f: 'esm,cjs,iife,umd',
             e: 'dev',
             s: true,
             t: true
@@ -310,8 +310,8 @@ gulp.task( 'build', ( done ) => {
             n: 'Itee.Validators',
             i: path.join( __dirname, 'sources/itee-validators.js' ),
             o: path.join( __dirname, 'builds' ),
-            f: 'es,cjs,iife,umd',
-            e: 'dev',
+            f: 'esm,cjs,iife,umd',
+            e: 'dev,prod',
             s: true,
             t: true
         },
