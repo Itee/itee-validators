@@ -77,6 +77,11 @@ export function isNotNumber ( data ) {
 
 /////////
 
+//Todo: isInRange(x, y, value, xInclusive, yInclusive)
+//Todo: isInRangeZeroOne(value, zeroInclusive, oneInclusive) //inclusive
+
+/////////
+
 /**
  * Check if the given data is an integer number
  *
