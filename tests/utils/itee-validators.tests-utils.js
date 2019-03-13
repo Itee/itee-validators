@@ -6,6 +6,8 @@
 
 /* global Itee */
 
+// Todo: move into Itee-Utils package
+
 const voids = {
     null:      null,
     undefined: undefined,
