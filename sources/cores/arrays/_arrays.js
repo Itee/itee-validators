@@ -15,3 +15,7 @@ export * from './isArrayOfSingleElement'
 export * from './isArrayOfString'
 export * from './isArrayOfUndefined'
 export * from './isEmptyArray'
+
+//todo: isArrayOfNumbers
+//todo: isArrayOfBooleans
+//todo: isArrayOfFunctions
