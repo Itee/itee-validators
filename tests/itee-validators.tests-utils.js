@@ -9,7 +9,7 @@
 const voids = {
     null:      null,
     undefined: undefined,
-    void:      void(0)
+    void:      void ( 0 )
 }
 
 const booleans = {
@@ -39,7 +39,7 @@ const numbers = {
     positiveInfinity:       Number.POSITIVE_INFINITY
 }
 
-const strings = (() => {
+const strings = ( () => {
     'use strict'
 
     const dataMap = {
@@ -68,7 +68,7 @@ const strings = (() => {
 
     return dataMap
 
-})()
+} )()
 
 const functions = {
     anonymousFunction: function () {},
@@ -76,7 +76,7 @@ const functions = {
     arrowFunction:     () => {}
 }
 
-const arrays = (() => {
+const arrays = ( () => {
     'use strict'
 
     const dataMap = {
@@ -84,7 +84,7 @@ const arrays = (() => {
         emptyArrayObject: new Array(),
         singleValued:     [ 0 ],
         multiValued:      [ 0, 1, 2 ],
-        null:             (() => {
+        null:             ( () => {
 
             const nullArray = []
 
@@ -94,8 +94,8 @@ const arrays = (() => {
 
             return nullArray
 
-        })(),
-        undefined: (() => {
+        } )(),
+        undefined: ( () => {
 
             const undefinedArray = []
 
@@ -105,19 +105,19 @@ const arrays = (() => {
 
             return undefinedArray
 
-        })(),
-        void: (() => {
+        } )(),
+        void: ( () => {
 
             const undefinedArray = []
 
             for ( let index = 0 ; index < 3 ; index++ ) {
-                undefinedArray.push( void(0) )
+                undefinedArray.push( void ( 0 ) )
             }
 
             return undefinedArray
 
-        })(),
-        voids: (() => {
+        } )(),
+        voids: ( () => {
 
             const array = []
 
@@ -128,8 +128,8 @@ const arrays = (() => {
 
             return array
 
-        })(),
-        booleans: (() => {
+        } )(),
+        booleans: ( () => {
 
             const array = []
 
@@ -140,8 +140,8 @@ const arrays = (() => {
 
             return array
 
-        })(),
-        numbers: (() => {
+        } )(),
+        numbers: ( () => {
 
             const array = []
 
@@ -152,8 +152,8 @@ const arrays = (() => {
 
             return array
 
-        })(),
-        strings: (() => {
+        } )(),
+        strings: ( () => {
 
             const array = []
 
@@ -164,8 +164,8 @@ const arrays = (() => {
 
             return array
 
-        })(),
-        functions: (() => {
+        } )(),
+        functions: ( () => {
 
             const array = []
 
@@ -176,7 +176,7 @@ const arrays = (() => {
 
             return array
 
-        })(),
+        } )(),
         objects: [
             {
                 foo: 'bar'
@@ -190,7 +190,7 @@ const arrays = (() => {
 
     return dataMap
 
-})()
+} )()
 
 const typedArrays = {
     int8Array:    new Int8Array( [ 1, 2, 3 ] ),
@@ -302,9 +302,24 @@ const TestsUtils = {
             for ( let datasetKey in datamap ) {
 
                 const dataset = datamap[ datasetKey ]
-                for ( let i = 0, n = dataset.length ; i < n ; i++ ) {
 
-                    return func( dataset[ i ] )
+                if ( Array.isArray( dataset ) ) {
+
+                    for ( let i = 0, n = dataset.length ; i < n ; i++ ) {
+
+                        const data = dataset[ i ]
+                        func( data )
+
+                    }
+
+                } else {
+
+                    for ( let dataKey in dataset ) {
+
+                        const data = dataset[ dataKey ]
+                        func( data )
+
+                    }
 
                 }
 
@@ -363,7 +378,7 @@ const TestsUtils = {
         return {
 
             setup: function onSetup () {
-                this.dataset = Itee.TestsUtils.createDataMap()[ datasetName ]
+                this.dataset = Itee.TestsUtils.createDataSet()[ datasetName ]
             },
 
             teardown: function onTeardown () {
@@ -381,7 +396,7 @@ const TestsUtils = {
             const dataset = this.dataset
             for ( let i = 0, n = dataset.length ; i < n ; i++ ) {
 
-                return func( dataset[ i ] )
+                func( dataset[ i ] )
 
             }
 
