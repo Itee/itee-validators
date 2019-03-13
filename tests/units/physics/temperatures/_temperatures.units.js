@@ -6,7 +6,7 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { TestsUtils }         from '../../../itee-validators.tests-utils.js'
+import { TestsUtils }         from '../../../utils/itee-validators.tests-utils.js'
 import { isCelsiusUnits }     from './isCelsius.units'
 import { isFahrenheitUnits }  from './isFahrenheit.units'
 import { isKelvinUnits }      from './isKelvin.units'

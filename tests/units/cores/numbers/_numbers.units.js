@@ -6,7 +6,7 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { TestsUtils }            from '../../../itee-validators.tests-utils.js'
+import { TestsUtils }            from '../../../utils/itee-validators.tests-utils.js'
 import { isInfiniteUnits }       from './isInfinite.units'
 import { isMaxPositiveUnits }    from './isMax.units'
 import { isMinPositiveUnits }    from './isMin.units'

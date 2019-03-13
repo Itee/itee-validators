@@ -6,7 +6,7 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { TestsUtils }    from '../../../itee-validators.tests-utils.js'
+import { TestsUtils }    from '../../../utils/itee-validators.tests-utils.js'
 import { isSymbolUnits } from './isSymbol.units'
 
 function _symbolsUnits () {

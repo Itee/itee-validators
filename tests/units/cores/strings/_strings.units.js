@@ -6,7 +6,7 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { TestsUtils }         from '../../../itee-validators.tests-utils.js'
+import { TestsUtils }         from '../../../utils/itee-validators.tests-utils.js'
 import { isBlankStringUnits } from './isBlankString.units'
 import { isEmptyStringUnits } from './isEmptyString.units'
 import { isStringUnits }      from './isString.units'

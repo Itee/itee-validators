@@ -6,7 +6,7 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { TestsUtils }                  from '../../../itee-validators.tests-utils.js'
+import { TestsUtils }                  from '../../../utils/itee-validators.tests-utils.js'
 import { isArrayUnits }                from './isArray.units'
 import { isArrayOfArrayUnits }         from './isArrayOfArray.units'
 import { isArrayOfMultiElementUnits }  from './isArrayOfMultiElement.units'
