@@ -8,8 +8,11 @@
  *
  */
 
+import {
+    isArray,
+    isNotArray
+}                       from './isArray'
 import { isEmptyArray } from './isEmptyArray'
-import { isArray, isNotArray }   from './isArray'
 
 /**
  * Check if given data is an array of array

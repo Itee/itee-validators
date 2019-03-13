@@ -8,9 +8,12 @@
  *
  */
 
-import { isNotDefined } from '../voids/isDefined'
+import { isNotDefined }   from '../voids/isDefined'
+import {
+    isInfinite,
+    isInfinitePositive
+}                         from './isInfinite'
 import { isZeroPositive } from './isZero'
-import { isInfinite, isInfinitePositive } from './isInfinite'
 
 /**
  * Check if given data is a number
@@ -22,21 +25,20 @@ export function isNumber ( data ) {
 
     if ( isNotDefined( data ) ) { return false }
 
-    return (data.constructor === Number)
+    return ( data.constructor === Number )
 
 }
 
 // #if IS_REMOVE
 export function isNumber_0 ( data ) {
-    return (typeof data === 'number' && !Number.isNaN( data ))
+    return ( typeof data === 'number' && !Number.isNaN( data ) )
 }
 
 export function isNumber_1 ( data ) {
-    return (Number( data ) === data)
+    return ( Number( data ) === data )
 }
 
 // #endif
-
 
 /**
  * Check if the data is a positive number
@@ -48,7 +50,7 @@ export function isNumberPositive ( data ) {
 
     if ( isNotNumber( data ) ) { return false }
 
-    return (data > 0 || isZeroPositive( data ) || isInfinitePositive( data ))
+    return ( data > 0 || isZeroPositive( data ) || isInfinitePositive( data ) )
 
 }
 
@@ -59,7 +61,7 @@ export function isNumberPositive ( data ) {
  * @returns {boolean} true if data is a negative number, false otherwise.
  */
 export function isNumberNegative ( data ) {
-    return (isNumber( data ) && data < 0)
+    return ( isNumber( data ) && data < 0 )
 }
 
 //////
@@ -71,9 +73,8 @@ export function isNumberNegative ( data ) {
  * @returns {boolean} true if data is not of type number or not a number, false otherwise.
  */
 export function isNotNumber ( data ) {
-    return !(isNumber( data ))
+    return !( isNumber( data ) )
 }
-
 
 /////////
 
@@ -89,12 +90,12 @@ export function isNotNumber ( data ) {
  * @returns {boolean} true if data is an integer, false otherwise
  */
 export function isInteger ( data ) {
-    return Number.isInteger(data)
+    return Number.isInteger( data )
 }
 
 // #if IS_REMOVE
 export function isInteger_0 ( data ) {
-    return (data === 0 && (1 / data) === Number.POSITIVE_INFINITY)
+    return ( data === 0 && ( 1 / data ) === Number.POSITIVE_INFINITY )
 }
 
 export function isInteger_1 ( data ) {
@@ -102,14 +103,14 @@ export function isInteger_1 ( data ) {
 }
 
 export function isInteger_2 ( n ) {
-    return n === +n && n === (n | 0)
+    return n === +n && n === ( n | 0 )
 }
 
 export function isInteger_3 ( nVal ) {
     return typeof nVal === 'number' && isFinite( nVal ) && nVal > -9007199254740992 && nVal < 9007199254740992 && Math.floor( nVal ) === nVal
 }
-// #endif
 
+// #endif
 
 ////////
 
@@ -131,15 +132,14 @@ export function isFloat ( data ) {
 
 // #if IS_REMOVE
 export function isFloat_1 ( n ) {
-    return n === +n && n !== (n | 0)
+    return n === +n && n !== ( n | 0 )
 }
 
 export function isFloat_2 ( x ) {
-    return !!(x % 1)
+    return !!( x % 1 )
 }
 
 // #endif
-
 
 ////////
 

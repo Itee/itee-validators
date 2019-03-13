@@ -9,8 +9,8 @@
  */
 
 import { isNotUndefined } from '../voids/isUndefined'
-import { isEmptyArray }   from './isEmptyArray'
 import { isNotArray }     from './isArray'
+import { isEmptyArray }   from './isEmptyArray'
 
 /**
  * Check if given data is not an empty array where all values are undefined

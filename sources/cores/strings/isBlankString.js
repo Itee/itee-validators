@@ -22,7 +22,7 @@ export function isBlankString ( data ) {
     if ( isNotString( data ) ) { return false }
     if ( isEmptyString( data ) ) { return false }
 
-    return (!/\S/.test( data ))
+    return ( !/\S/.test( data ) )
 }
 
 ////
@@ -35,6 +35,6 @@ export function isBlankString ( data ) {
  */
 export function isNotBlankString ( data ) {
 
-    return !(isBlankString( data ))
+    return !( isBlankString( data ) )
 
 }

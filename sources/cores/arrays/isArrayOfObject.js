@@ -8,9 +8,9 @@
  *
  */
 
-import { isEmptyArray } from './isEmptyArray'
-import { isNotArray }   from './isArray'
 import { isNotObject }  from '../objects/isObject'
+import { isNotArray }   from './isArray'
+import { isEmptyArray } from './isEmptyArray'
 
 /**
  * Check if given data is an array where all values are of object type

@@ -22,7 +22,7 @@ export function isEmptyString ( data ) {
         return false
     }
 
-    return (data.length === 0)
+    return ( data.length === 0 )
 
 }
 
@@ -36,6 +36,6 @@ export function isEmptyString ( data ) {
  */
 export function isNotEmptyString ( data ) {
 
-    return !(isEmptyString(data))
+    return !( isEmptyString( data ) )
 
 }

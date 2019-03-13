@@ -20,6 +20,6 @@ export function isArrayOfMultiElement ( data ) {
 
     if ( isNotArray( data ) ) { return false }
 
-    return (data.length > 1)
+    return ( data.length > 1 )
 
 }

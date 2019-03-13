@@ -20,7 +20,7 @@ export function isEmptyArray ( data ) {
 
     if ( isNotArray( data ) ) { return false }
 
-    return (data.length === 0)
+    return ( data.length === 0 )
 
 }
 
@@ -36,6 +36,6 @@ export function isNotEmptyArray ( data ) {
 
     if ( isNotArray( data ) ) { return true }
 
-    return (data.length > 0)
+    return ( data.length > 0 )
 
 }

@@ -31,7 +31,7 @@ export function isInfinite ( data ) {
  * @returns {boolean} true if data is negative infinite, false otherwise
  */
 export function isInfiniteNegative ( data ) {
-    return (data === Number.NEGATIVE_INFINITY)
+    return ( data === Number.NEGATIVE_INFINITY )
 }
 
 /**
@@ -41,7 +41,7 @@ export function isInfiniteNegative ( data ) {
  * @returns {boolean} true if data is positive infinite, false otherwise
  */
 export function isInfinitePositive ( data ) {
-    return (data === Number.POSITIVE_INFINITY)
+    return ( data === Number.POSITIVE_INFINITY )
 }
 
 ///

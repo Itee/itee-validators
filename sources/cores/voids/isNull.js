@@ -15,7 +15,7 @@
  * @returns {boolean} true if data is null, false otherwise.
  */
 export function isNull ( data ) {
-    return (data === null)
+    return ( data === null )
 }
 
 ///
@@ -27,5 +27,5 @@ export function isNull ( data ) {
  * @returns {boolean} true if data is not null, false otherwise.
  */
 export function isNotNull ( data ) {
-    return (data !== null)
+    return ( data !== null )
 }

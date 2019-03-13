@@ -15,7 +15,7 @@
  * @returns {boolean} true if data is a function, false otherwise.
  */
 export function isFunction ( data ) {
-    return (typeof data === 'function')
+    return ( typeof data === 'function' )
 }
 
 ///
@@ -27,5 +27,5 @@ export function isFunction ( data ) {
  * @returns {boolean} true if data is not a function, false otherwise.
  */
 export function isNotFunction ( data ) {
-    return (typeof data !== 'function')
+    return ( typeof data !== 'function' )
 }

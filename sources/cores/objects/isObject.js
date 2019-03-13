@@ -20,7 +20,7 @@ export function isObject ( data ) {
 
     if ( isNotDefined( data ) ) { return false }
 
-    return (data.constructor === Object)
+    return ( data.constructor === Object )
 }
 
 ////

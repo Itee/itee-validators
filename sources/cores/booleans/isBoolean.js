@@ -15,14 +15,12 @@
  * @returns {boolean} true if data is a boolean, false otherwise.
  */
 export function isBoolean ( data ) {
-    return (typeof data === 'boolean')
+    return ( typeof data === 'boolean' )
 }
 
 // #if IS_REMOVE
 export function isBoolean_alt ( value ) {
-
-    return typeof value === 'boolean' || (typeof value === 'object' && value !== null && typeof value.valueOf() === 'boolean')
-
+    return typeof value === 'boolean' || ( typeof value === 'object' && value !== null && typeof value.valueOf() === 'boolean' )
 }
 
 // #endif
@@ -36,7 +34,7 @@ export function isBoolean_alt ( value ) {
  * @returns {boolean} true if data is not a boolean, false otherwise.
  */
 export function isNotBoolean ( data ) {
-    return (typeof data !== 'boolean')
+    return ( typeof data !== 'boolean' )
 }
 
 // #if IS_REMOVE

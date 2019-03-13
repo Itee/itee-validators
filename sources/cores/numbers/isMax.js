@@ -15,7 +15,7 @@
  * @returns {boolean} true if data is positive maximum, false otherwise
  */
 export function isMaxPositive ( data ) {
-    return (data === Number.MAX_VALUE)
+    return ( data === Number.MAX_VALUE )
 }
 
 /**
@@ -25,5 +25,5 @@ export function isMaxPositive ( data ) {
  * @returns {boolean} true if data is negative maximum, false otherwise
  */
 export function isMaxNegative ( data ) {
-    return (data === -Number.MAX_VALUE)
+    return ( data === -Number.MAX_VALUE )
 }

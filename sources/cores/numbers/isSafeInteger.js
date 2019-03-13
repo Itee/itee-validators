@@ -15,7 +15,7 @@
  * @returns {boolean} true if data is a maximum safe integer, false otherwise
  */
 export function isMaxSafeInteger ( data ) {
-    return (data === Number.MAX_SAFE_INTEGER)
+    return ( data === Number.MAX_SAFE_INTEGER )
 }
 
 /**
@@ -25,5 +25,5 @@ export function isMaxSafeInteger ( data ) {
  * @returns {boolean} true if data is a minimum safe integer, false otherwise
  */
 export function isMinSafeInteger ( data ) {
-    return (data === Number.MIN_SAFE_INTEGER)
+    return ( data === Number.MIN_SAFE_INTEGER )
 }
