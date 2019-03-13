@@ -10,7 +10,10 @@
 
 /* global describe, expect, it */
 
-import { isKelvin, isNotKelvin } from '../../../../sources/physics/temperatures/isKelvin'
+import {
+    isKelvin,
+    isNotKelvin
+} from '../../../../sources/physics/temperatures/isKelvin'
 
 function isKelvinUnits () {
 
@@ -18,13 +21,13 @@ function isKelvinUnits () {
 
         it.skip( 'should be implemented', () => {
 
-            expect( isKelvin(0) ).to.be.true
+            expect( isKelvin( 0 ) ).to.be.true
 
         } )
 
         it.skip( 'should be implemented', () => {
 
-            expect( isNotKelvin(0) ).to.be.false
+            expect( isNotKelvin( 0 ) ).to.be.false
 
         } )
 

@@ -6,7 +6,10 @@
 
 /* global Itee, suite, benchmark */
 
-import { isObject, isNotObject } from '../../../../sources/cores/objects/isObject'
+import {
+    isNotObject,
+    isObject
+} from '../../../../sources/cores/objects/isObject'
 
 const isObjectSuite = suite( 'isObject', () => {
 
@@ -20,4 +23,7 @@ const isNotObjectSuite = suite( 'isNotObject', () => {
 
 } )
 
-export { isObjectSuite, isNotObjectSuite }
+export {
+    isObjectSuite,
+    isNotObjectSuite
+}

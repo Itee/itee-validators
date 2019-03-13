@@ -10,7 +10,10 @@
 
 /* global Itee, suite, benchmark */
 
-import { isKelvin, isNotKelvin } from '../../../../sources/physics/temperatures/isKelvin'
+import {
+    isKelvin,
+    isNotKelvin
+} from '../../../../sources/physics/temperatures/isKelvin'
 
 const isKelvinSuite = suite( 'isKelvin', () => {
 
@@ -24,4 +27,7 @@ const isNotKelvinSuite = suite( 'isNotKelvin', () => {
 
 } )
 
-export { isKelvinSuite, isNotKelvinSuite }
+export {
+    isKelvinSuite,
+    isNotKelvinSuite
+}

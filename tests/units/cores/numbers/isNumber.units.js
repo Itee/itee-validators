@@ -10,7 +10,14 @@
 
 /* global describe, expect, it */
 
-import { isNumber, isNumberPositive, isNumberNegative, isNotNumber, isInteger, isFloat } from '../../../../sources/cores/numbers/isNumber'
+import {
+    isFloat,
+    isInteger,
+    isNotNumber,
+    isNumber,
+    isNumberNegative,
+    isNumberPositive
+} from '../../../../sources/cores/numbers/isNumber'
 
 function isNumberUnits () {
 

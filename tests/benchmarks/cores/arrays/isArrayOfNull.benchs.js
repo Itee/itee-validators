@@ -10,7 +10,10 @@
 
 /* global Itee, suite, benchmark */
 
-import { isArrayOfNull, isNotArrayOfNull } from '../../../../sources/cores/arrays/isArrayOfNull'
+import {
+    isArrayOfNull,
+    isNotArrayOfNull
+} from '../../../../sources/cores/arrays/isArrayOfNull'
 
 const isArrayOfNullSuite = suite( 'isArrayOfNull', () => {
 
@@ -24,5 +27,8 @@ const isNotArrayOfNullSuite = suite( 'isNotArrayOfNull', () => {
 
 } )
 
-export { isArrayOfNullSuite, isNotArrayOfNullSuite }
+export {
+    isArrayOfNullSuite,
+    isNotArrayOfNullSuite
+}
 

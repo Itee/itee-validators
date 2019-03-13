@@ -7,9 +7,9 @@
 /* global describe, beforeEach, afterEach */
 
 import { TestsUtils }       from '../../../itee-validators.tests-utils.js'
+import { isDefinedUnits }   from './isDefined.units'
 import { isEmptyUnits }     from './isEmpty.units'
 import { isNullUnits }      from './isNull.units'
-import { isDefinedUnits }   from './isDefined.units'
 import { isUndefinedUnits } from './isUndefined.units'
 
 function _voidsUnits () {

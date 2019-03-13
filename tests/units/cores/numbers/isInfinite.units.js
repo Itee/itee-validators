@@ -10,7 +10,12 @@
 
 /* global describe, expect, it */
 
-import { isInfinite, isFinite, isInfiniteNegative, isInfinitePositive } from '../../../../sources/cores/numbers/isInfinite'
+import {
+    isFinite,
+    isInfinite,
+    isInfiniteNegative,
+    isInfinitePositive
+} from '../../../../sources/cores/numbers/isInfinite'
 
 function isInfiniteUnits () {
 

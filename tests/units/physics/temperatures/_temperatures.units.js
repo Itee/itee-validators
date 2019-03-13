@@ -6,11 +6,11 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { TestsUtils }            from '../../../itee-validators.tests-utils.js'
-import { isCelsiusUnits }        from './isCelsius.units'
-import { isFahrenheitUnits }     from './isFahrenheit.units'
-import { isKelvinUnits }         from './isKelvin.units'
-import { isTemperatureUnits }    from './isTemperature.units'
+import { TestsUtils }         from '../../../itee-validators.tests-utils.js'
+import { isCelsiusUnits }     from './isCelsius.units'
+import { isFahrenheitUnits }  from './isFahrenheit.units'
+import { isKelvinUnits }      from './isKelvin.units'
+import { isTemperatureUnits } from './isTemperature.units'
 
 function _temperaturesUnits () {
 

@@ -10,7 +10,10 @@
 
 /* global Itee, suite, benchmark */
 
-import { isArrayOfObject, isNotArrayOfObject } from '../../../../sources/cores/arrays/isArrayOfObject'
+import {
+    isArrayOfObject,
+    isNotArrayOfObject
+} from '../../../../sources/cores/arrays/isArrayOfObject'
 
 const isArrayOfObjectSuite = suite( 'isArrayOfObject', () => {
 
@@ -24,4 +27,7 @@ const isNotArrayOfObjectSuite = suite( 'isNotArrayOfObject', () => {
 
 } )
 
-export { isArrayOfObjectSuite, isNotArrayOfObjectSuite }
+export {
+    isArrayOfObjectSuite,
+    isNotArrayOfObjectSuite
+}

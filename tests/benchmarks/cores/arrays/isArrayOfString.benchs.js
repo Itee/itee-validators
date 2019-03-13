@@ -10,7 +10,11 @@
 
 /* global Itee, suite, benchmark */
 
-import { isArrayOfString, isArrayOfString_1, isNotArrayOfString } from '../../../../sources/cores/arrays/isArrayOfString'
+import {
+    isArrayOfString,
+    isArrayOfString_1,
+    isNotArrayOfString
+} from '../../../../sources/cores/arrays/isArrayOfString'
 
 const isArrayOfStringSuite = suite( 'isArrayOfString', () => {
 
@@ -25,5 +29,8 @@ const isNotArrayOfStringSuite = suite( 'isNotArrayOfString', () => {
 
 } )
 
-export { isArrayOfStringSuite, isNotArrayOfStringSuite }
+export {
+    isArrayOfStringSuite,
+    isNotArrayOfStringSuite
+}
 

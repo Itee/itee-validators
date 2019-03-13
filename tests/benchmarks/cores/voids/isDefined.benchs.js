@@ -6,7 +6,10 @@
 
 /* global Itee, suite, benchmark */
 
-import { isDefined, isNotDefined } from '../../../../sources/cores/voids/isDefined'
+import {
+    isDefined,
+    isNotDefined
+} from '../../../../sources/cores/voids/isDefined'
 
 const isDefinedSuite = suite( 'isDefined', () => {
 
@@ -20,6 +23,8 @@ const isNotDefinedSuite = suite( 'isNotDefined', () => {
 
 } )
 
-
-export { isDefinedSuite, isNotDefinedSuite }
+export {
+    isDefinedSuite,
+    isNotDefinedSuite
+}
 

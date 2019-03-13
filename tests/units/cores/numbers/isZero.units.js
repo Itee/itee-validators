@@ -10,7 +10,11 @@
 
 /* global describe, expect, it */
 
-import { isZero, isZeroPositive, isZeroNegative } from '../../../../sources/cores/numbers/isZero'
+import {
+    isZero,
+    isZeroNegative,
+    isZeroPositive
+} from '../../../../sources/cores/numbers/isZero'
 
 function isZeroUnits () {
 

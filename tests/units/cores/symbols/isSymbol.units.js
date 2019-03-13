@@ -10,7 +10,10 @@
 
 /* global describe, expect, it */
 
-import { isSymbol, isNotSymbol } from '../../../../sources/cores/symbols/isSymbol'
+import {
+    isNotSymbol,
+    isSymbol
+} from '../../../../sources/cores/symbols/isSymbol'
 
 function isSymbolUnits () {
 

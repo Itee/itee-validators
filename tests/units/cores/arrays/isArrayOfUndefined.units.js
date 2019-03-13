@@ -10,7 +10,10 @@
 
 /* global describe, expect, it */
 
-import { isArrayOfUndefined, isNotArrayOfUndefined } from '../../../../sources/cores/arrays/isArrayOfUndefined'
+import {
+    isArrayOfUndefined,
+    isNotArrayOfUndefined
+} from '../../../../sources/cores/arrays/isArrayOfUndefined'
 
 function isArrayOfUndefinedUnits () {
 

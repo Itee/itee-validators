@@ -10,7 +10,10 @@
 
 /* global describe, expect, it */
 
-import { isMaxSafeInteger, isMinSafeInteger } from '../../../../sources/cores/numbers/isSafeInteger'
+import {
+    isMaxSafeInteger,
+    isMinSafeInteger
+} from '../../../../sources/cores/numbers/isSafeInteger'
 
 function isMaxSafeIntegerUnits () {
 

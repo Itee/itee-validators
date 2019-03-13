@@ -6,7 +6,10 @@
 
 /* global Itee, suite, benchmark */
 
-import { isFunction, isNotFunction } from '../../../../sources/cores/functions/isFunction'
+import {
+    isFunction,
+    isNotFunction
+} from '../../../../sources/cores/functions/isFunction'
 
 const isFunctionSuite = suite( 'isFunction', () => {
 
@@ -20,5 +23,8 @@ const isNotFunctionSuite = suite( 'isNotFunction', () => {
 
 } )
 
-export { isFunctionSuite, isNotFunctionSuite }
+export {
+    isFunctionSuite,
+    isNotFunctionSuite
+}
 

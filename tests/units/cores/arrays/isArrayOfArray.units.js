@@ -10,7 +10,10 @@
 
 /* global describe, expect, it */
 
-import { isArrayOfArray, isNotArrayOfArray } from '../../../../sources/cores/arrays/isArrayOfArray'
+import {
+    isArrayOfArray,
+    isNotArrayOfArray
+} from '../../../../sources/cores/arrays/isArrayOfArray'
 
 function isArrayOfArrayUnits () {
 

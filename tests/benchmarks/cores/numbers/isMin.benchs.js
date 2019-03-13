@@ -6,7 +6,10 @@
 
 /* global Itee, suite, benchmark */
 
-import { isMinPositive, isMinNegative } from '../../../../sources/cores/numbers/isMin'
+import {
+    isMinNegative,
+    isMinPositive
+} from '../../../../sources/cores/numbers/isMin'
 
 const isMinPositiveSuite = suite( 'isMinPositive', () => {
 
@@ -20,4 +23,7 @@ const isMinNegativeSuite = suite( 'isMinNegative', () => {
 
 } )
 
-export { isMinNegativeSuite, isMinPositiveSuite }
+export {
+    isMinNegativeSuite,
+    isMinPositiveSuite
+}

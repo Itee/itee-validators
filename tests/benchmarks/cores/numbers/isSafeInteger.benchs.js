@@ -6,7 +6,10 @@
 
 /* global Itee, suite, benchmark */
 
-import { isMaxSafeInteger, isMinSafeInteger } from '../../../../sources/cores/numbers/isSafeInteger'
+import {
+    isMaxSafeInteger,
+    isMinSafeInteger
+} from '../../../../sources/cores/numbers/isSafeInteger'
 
 const isMaxSafeIntegerSuite = suite( 'isMaxSafeInteger', () => {
 
@@ -20,5 +23,8 @@ const isMinSafeIntegerSuite = suite( 'isMinSafeInteger', () => {
 
 } )
 
-export { isMaxSafeIntegerSuite, isMinSafeIntegerSuite }
+export {
+    isMaxSafeIntegerSuite,
+    isMinSafeIntegerSuite
+}
 

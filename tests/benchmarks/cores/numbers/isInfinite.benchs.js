@@ -6,7 +6,12 @@
 
 /* global Itee, suite, benchmark */
 
-import { isInfinite, isInfinitePositive, isInfiniteNegative, isFinite } from '../../../../sources/cores/numbers/isInfinite'
+import {
+    isFinite,
+    isInfinite,
+    isInfiniteNegative,
+    isInfinitePositive
+} from '../../../../sources/cores/numbers/isInfinite'
 
 const isInfiniteSuite = suite( 'isInfinite', () => {
 
@@ -32,5 +37,10 @@ const isFiniteSuite = suite( 'isFinite', () => {
 
 } )
 
-export { isFiniteSuite, isInfiniteSuite, isInfiniteNegativeSuite, isInfinitePositiveSuite }
+export {
+    isFiniteSuite,
+    isInfiniteSuite,
+    isInfiniteNegativeSuite,
+    isInfinitePositiveSuite
+}
 

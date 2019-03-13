@@ -10,7 +10,10 @@
 
 /* global describe, expect, it */
 
-import { isCelsius, isNotCelsius } from '../../../../sources/physics/temperatures/isCelsius'
+import {
+    isCelsius,
+    isNotCelsius
+} from '../../../../sources/physics/temperatures/isCelsius'
 
 function isCelsiusUnits () {
 
@@ -18,13 +21,13 @@ function isCelsiusUnits () {
 
         it.skip( 'should be implemented', () => {
 
-            expect( isCelsius(0) ).to.be.true
+            expect( isCelsius( 0 ) ).to.be.true
 
         } )
 
         it.skip( 'should be implemented', () => {
 
-            expect( isNotCelsius(0) ).to.be.false
+            expect( isNotCelsius( 0 ) ).to.be.false
 
         } )
 

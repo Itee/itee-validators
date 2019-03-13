@@ -6,7 +6,10 @@
 
 /* global Itee, suite, benchmark */
 
-import { isBlankString, isNotBlankString } from '../../../../sources/cores/strings/isBlankString'
+import {
+    isBlankString,
+    isNotBlankString
+} from '../../../../sources/cores/strings/isBlankString'
 
 const isBlankStringSuite = suite( 'isBlankString', () => {
 
@@ -20,5 +23,8 @@ const isNotBlankStringSuite = suite( 'isNotBlankString', () => {
 
 } )
 
-export { isBlankStringSuite, isNotBlankStringSuite }
+export {
+    isBlankStringSuite,
+    isNotBlankStringSuite
+}
 
