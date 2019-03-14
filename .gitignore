@@ -60,3 +60,4 @@ typings/
 .idea/
 /documentation/
 /tests/builds/
+/tests/reports/
