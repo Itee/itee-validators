@@ -13,7 +13,6 @@
 import {
     isArray,
     isArray_0,
-    isArray_1,
     isNotArray,
     isNotArray_0
 } from '../../../../sources/cores/arrays/isArray'
@@ -22,7 +21,6 @@ const isArraySuite = suite( 'isArray', () => {
 
     benchmark( 'isArray()', Itee.TestsUtils.iterateOverDataMap( isArray ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
     benchmark( 'isArray_0()', Itee.TestsUtils.iterateOverDataMap( isArray_0 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
-    benchmark( 'isArray_1()', Itee.TestsUtils.iterateOverDataMap( isArray_1 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
 
