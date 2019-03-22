@@ -22,15 +22,9 @@ stages:
 
 jobs:
   include:
-    - stage: compile
-      name: "Build Tests"
-      script: npm run build-test
-    - script: npm run build
-      name: "Build Sources"
-
     - stage: test
-    - script: npm run test
       name: "Run Tests"
+      script: npm run build-test && npm run test
 
     - stage: deploy
       if: branch = master
