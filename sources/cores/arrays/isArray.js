@@ -33,11 +33,6 @@ export function isArray_0 ( data ) {
     return data instanceof Array
 }
 
-// Not exported alternative for benchmark
-export function isArray_1 ( data ) {
-    return data.constructor === Array
-}
-
 // #endif
 
 ////////////////////
