@@ -6,7 +6,7 @@
  * @description Export the validation methods about voids notions like null or undefined
  */
 
+export * from './isDefined'
 export * from './isEmpty'
 export * from './isNull'
-export * from './isDefined'
 export * from './isUndefined'
