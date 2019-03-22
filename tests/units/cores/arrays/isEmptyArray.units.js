@@ -10,7 +10,10 @@
 
 /* global describe, expect, it */
 
-import { isEmptyArray, isNotEmptyArray } from '../../../../sources/cores/arrays/isEmptyArray'
+import {
+    isEmptyArray,
+    isNotEmptyArray
+} from '../../../../sources/cores/arrays/isEmptyArray'
 
 function isEmptyArrayUnits () {
 

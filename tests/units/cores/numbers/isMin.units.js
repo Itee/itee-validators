@@ -10,7 +10,10 @@
 
 /* global describe, expect, it */
 
-import { isMinPositive, isMinNegative } from '../../../../sources/cores/numbers/isMin'
+import {
+    isMinNegative,
+    isMinPositive
+} from '../../../../sources/cores/numbers/isMin'
 
 function isMinPositiveUnits () {
 

@@ -6,7 +6,12 @@
 
 /* global Itee, suite, benchmark */
 
-import { isBoolean, isBoolean_alt, isNotBoolean, isNotBoolean_negbase } from '../../../../sources/cores/booleans/isBoolean'
+import {
+    isBoolean,
+    isBoolean_alt,
+    isNotBoolean,
+    isNotBoolean_negbase
+} from '../../../../sources/cores/booleans/isBoolean'
 
 const isBooleanSuite = suite( 'isBoolean', () => {
 
@@ -22,4 +27,7 @@ const isNotBooleanSuite = suite( 'isNotBoolean', () => {
 
 } )
 
-export { isBooleanSuite, isNotBooleanSuite }
+export {
+    isBooleanSuite,
+    isNotBooleanSuite
+}

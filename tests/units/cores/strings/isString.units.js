@@ -10,7 +10,10 @@
 
 /* global describe, expect, it */
 
-import { isString, isNotString } from '../../../../sources/cores/strings/isString'
+import {
+    isNotString,
+    isString
+} from '../../../../sources/cores/strings/isString'
 
 function isStringUnits () {
 

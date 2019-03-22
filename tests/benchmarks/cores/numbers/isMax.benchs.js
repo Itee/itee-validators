@@ -6,7 +6,10 @@
 
 /* global Itee, suite, benchmark */
 
-import { isMaxPositive, isMaxNegative } from '../../../../sources/cores/numbers/isMax'
+import {
+    isMaxNegative,
+    isMaxPositive
+} from '../../../../sources/cores/numbers/isMax'
 
 const isMaxPositiveSuite = suite( 'isMaxPositive', () => {
 
@@ -20,5 +23,8 @@ const isMaxNegativeSuite = suite( 'isMaxNegative', () => {
 
 } )
 
-export { isMaxNegativeSuite, isMaxPositiveSuite }
+export {
+    isMaxNegativeSuite,
+    isMaxPositiveSuite
+}
 

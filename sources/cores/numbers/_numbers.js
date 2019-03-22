@@ -9,7 +9,7 @@
 
 export * from './isInfinite'
 export * from './isMax'
-export * from './isSafeInteger'
 export * from './isMin'
 export * from './isNumber'
+export * from './isSafeInteger'
 export * from './isZero'

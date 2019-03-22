@@ -4,13 +4,17 @@
  *
  */
 
-/* global describe */
+/* global describe, expect, it */
 
 function _mathsUnits () {
 
     describe( 'Maths', () => {
 
-        console.log( 'MathsUnits' )
+        it.skip( 'should be implemented', () => {
+
+            expect( true ).to.be.true
+
+        } )
 
     } )
 

@@ -7,21 +7,21 @@
 /* global Itee, suite, benchmark */
 
 import {
+    isFloat,
+    isFloat_1,
+    isFloat_2,
+    isInteger,
+    isInteger_0,
+    isInteger_1,
+    isInteger_2,
+    isInteger_3,
+    isNaN,
+    isNotNumber,
     isNumber,
     isNumber_0,
     isNumber_1,
-    isNotNumber,
-    isNumberPositive,
     isNumberNegative,
-    isInteger_0,
-    isInteger_3,
-    isInteger_2,
-    isInteger_1,
-    isFloat_2,
-    isFloat_1,
-    isFloat,
-    isInteger,
-    isNaN
+    isNumberPositive
 } from '../../../../sources/cores/numbers/isNumber'
 
 const isNumberSuite = suite( 'isNumber', () => {
@@ -74,5 +74,13 @@ const isNaNSuite = suite( 'isNaN', () => {
 
 } )
 
-export { isFloatSuite, isIntegerSuite, isNumberSuite, isNaNSuite, isNotNumberSuite, isNumberNegativeSuite, isNumberPositiveSuite }
+export {
+    isFloatSuite,
+    isIntegerSuite,
+    isNumberSuite,
+    isNaNSuite,
+    isNotNumberSuite,
+    isNumberNegativeSuite,
+    isNumberPositiveSuite
+}
 

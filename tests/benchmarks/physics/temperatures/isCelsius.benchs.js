@@ -10,7 +10,10 @@
 
 /* global Itee, suite, benchmark */
 
-import { isCelsius, isNotCelsius } from '../../../../sources/physics/temperatures/isCelsius'
+import {
+    isCelsius,
+    isNotCelsius
+} from '../../../../sources/physics/temperatures/isCelsius'
 
 const isCelsiusSuite = suite( 'isCelsius', () => {
 
@@ -24,4 +27,7 @@ const isNotCelsiusSuite = suite( 'isNotCelsius', () => {
 
 } )
 
-export { isCelsiusSuite, isNotCelsiusSuite }
+export {
+    isCelsiusSuite,
+    isNotCelsiusSuite
+}

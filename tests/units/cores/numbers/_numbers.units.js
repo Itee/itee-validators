@@ -6,12 +6,12 @@
 
 /* global describe, beforeEach, afterEach */
 
-import { TestsUtils }            from '../../../itee-validators.tests-utils.js'
+import { TestsUtils }            from '../../../utils/itee-validators.tests-utils.js'
 import { isInfiniteUnits }       from './isInfinite.units'
 import { isMaxPositiveUnits }    from './isMax.units'
-import { isMaxSafeIntegerUnits } from './isSafeInteger.units'
 import { isMinPositiveUnits }    from './isMin.units'
 import { isNumberUnits }         from './isNumber.units'
+import { isMaxSafeIntegerUnits } from './isSafeInteger.units'
 import { isZeroUnits }           from './isZero.units'
 
 function _numbersUnits () {

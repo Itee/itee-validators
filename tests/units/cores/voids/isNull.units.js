@@ -9,7 +9,10 @@
 
 /* global describe, expect, it */
 
-import { isNull, isNotNull } from '../../../../sources/cores/voids/isNull'
+import {
+    isNotNull,
+    isNull
+} from '../../../../sources/cores/voids/isNull'
 
 function isNullUnits () {
 

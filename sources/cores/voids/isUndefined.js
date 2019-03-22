@@ -15,7 +15,7 @@
  * @returns {boolean} true if data is undefined, false otherwise.
  */
 export function isUndefined ( data ) {
-    return (typeof data === 'undefined')
+    return ( typeof data === 'undefined' )
 }
 
 ///
@@ -27,5 +27,5 @@ export function isUndefined ( data ) {
  * @returns {boolean} true if data is defined, false otherwise.
  */
 export function isNotUndefined ( data ) {
-    return (typeof data !== 'undefined')
+    return ( typeof data !== 'undefined' )
 }

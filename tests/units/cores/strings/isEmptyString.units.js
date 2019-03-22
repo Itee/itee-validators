@@ -10,7 +10,10 @@
 
 /* global describe, expect, it */
 
-import { isEmptyString, isNotEmptyString } from '../../../../sources/cores/strings/isEmptyString'
+import {
+    isEmptyString,
+    isNotEmptyString
+} from '../../../../sources/cores/strings/isEmptyString'
 
 function isEmptyStringUnits () {
 

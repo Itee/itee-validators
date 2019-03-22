@@ -17,7 +17,7 @@ import { ABSOLUTE_ZERO_CELSIUS } from './constants'
  * @return {boolean|*|boolean}
  */
 export function isCelsius ( data ) {
-    return (isNumber( data ) && data >= ABSOLUTE_ZERO_CELSIUS)
+    return ( isNumber( data ) && data >= ABSOLUTE_ZERO_CELSIUS )
 }
 
 ///

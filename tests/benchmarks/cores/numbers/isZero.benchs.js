@@ -6,7 +6,11 @@
 
 /* global Itee, suite, benchmark */
 
-import { isZero, isZeroPositive, isZeroNegative } from '../../../../sources/cores/numbers/isZero'
+import {
+    isZero,
+    isZeroNegative,
+    isZeroPositive
+} from '../../../../sources/cores/numbers/isZero'
 
 const isZeroSuite = suite( 'isZero', () => {
 
@@ -26,5 +30,9 @@ const isZeroNegativeSuite = suite( 'isZeroNegative', () => {
 
 } )
 
-export { isZeroSuite, isZeroNegativeSuite, isZeroPositiveSuite }
+export {
+    isZeroSuite,
+    isZeroNegativeSuite,
+    isZeroPositiveSuite
+}
 

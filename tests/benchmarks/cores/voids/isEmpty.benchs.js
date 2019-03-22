@@ -6,7 +6,10 @@
 
 /* global Itee, suite, benchmark */
 
-import { isEmpty, isNotEmpty } from '../../../../sources/cores/voids/isEmpty'
+import {
+    isEmpty,
+    isNotEmpty
+} from '../../../../sources/cores/voids/isEmpty'
 
 const isEmptySuite = suite( 'isEmpty', () => {
 
@@ -20,5 +23,8 @@ const isNotEmptySuite = suite( 'isNotEmpty', () => {
 
 } )
 
-export { isEmptySuite, isNotEmptySuite }
+export {
+    isEmptySuite,
+    isNotEmptySuite
+}
 

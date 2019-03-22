@@ -15,7 +15,7 @@
  * @returns {boolean} true if data is a symbol, false otherwise.
  */
 export function isSymbol ( data ) {
-    return (typeof data === 'symbol')
+    return ( typeof data === 'symbol' )
 }
 
 /////
@@ -27,5 +27,5 @@ export function isSymbol ( data ) {
  * @returns {boolean} true if data is not a symbol, false otherwise.
  */
 export function isNotSymbol ( data ) {
-    return (typeof data !== 'symbol')
+    return ( typeof data !== 'symbol' )
 }

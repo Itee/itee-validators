@@ -39,7 +39,19 @@ function CreateKarmaUnitsConfiguration ( config ) {
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: [ 'mocha' ],
+        reporters: [ 'mocha', 'html' ],
+
+        htmlReporter: {
+            outputFile: 'reports/report.html',
+
+            // Optional
+            pageTitle:       'Unit Tests',
+            subPageTitle:    'Result of unit testing for Itee-Validators library.',
+            groupSuites:     true,
+            useCompactStyle: false,
+            useLegacyStyle:  false,
+            showOnlyFailed:  false
+        },
 
         // web server port
         port: 9876,
@@ -56,10 +68,10 @@ function CreateKarmaUnitsConfiguration ( config ) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: [ 'Firefox' ],
-        //        browsers: [ 'Firefox', 'Chrome' ],
-        //        browsers: [ 'Firefox', 'Chrome', 'Edge' ],
-        //        browsers: [ 'Firefox', 'Chrome', 'Edge', 'IE' ],
+        //        browsers: [ 'Firefox' ],
+        //        browsers: [ 'Chrome' ],
+        //        browsers: [ 'Edge' ],
+        browsers: [ 'Firefox', 'Chrome', 'Edge' ],
 
         // Format assertion errors and stack traces. Useful for removing vendors and compiled sources. Return an empty line '' to remove it.
         formatError: () => '',

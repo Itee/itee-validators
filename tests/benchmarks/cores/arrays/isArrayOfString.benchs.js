@@ -10,12 +10,16 @@
 
 /* global Itee, suite, benchmark */
 
-import { isArrayOfString, isArrayOfString_1, isNotArrayOfString } from '../../../../sources/cores/arrays/isArrayOfString'
+import {
+    isArrayOfString,
+    isArrayOfString_1,
+    isNotArrayOfString
+} from '../../../../sources/cores/arrays/isArrayOfString'
 
 const isArrayOfStringSuite = suite( 'isArrayOfString', () => {
 
     benchmark( 'isArrayOfString()', Itee.TestsUtils.iterateOverDataMap( isArrayOfString ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
-    benchmark( 'isArrayOfString()', Itee.TestsUtils.iterateOverDataMap( isArrayOfString_1 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+    benchmark( 'isArrayOfString_1()', Itee.TestsUtils.iterateOverDataMap( isArrayOfString_1 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
 
@@ -25,5 +29,8 @@ const isNotArrayOfStringSuite = suite( 'isNotArrayOfString', () => {
 
 } )
 
-export { isArrayOfStringSuite, isNotArrayOfStringSuite }
+export {
+    isArrayOfStringSuite,
+    isNotArrayOfStringSuite
+}
 

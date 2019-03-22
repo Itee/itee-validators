@@ -124,30 +124,30 @@
  *
  */
 
-import {
-    isDefined,
-    isNotDefined
-}                    from './voids/_voids'
+import { isArray }   from './arrays/_arrays'
+import { isBoolean } from './booleans/_booleans'
 import {
     isFunction,
     isNotFunction
 }                    from './functions/_functions'
-import { isBoolean } from './booleans/_booleans'
 import {
-    isNumber,
+    isFloat,
     isInteger,
-    isFloat
+    isNumber
 }                    from './numbers/_numbers'
-import { isArray }   from './arrays/_arrays'
+import {
+    isNotObject,
+    isObject
+}                    from './objects/_objects'
+import {
+    isNotString,
+    isString
+}                    from './strings/_strings'
 import { isSymbol }  from './symbols/_symbols'
 import {
-    isString,
-    isNotString
-}                    from './strings/_strings'
-import {
-    isObject,
-    isNotObject
-}                    from './objects/_objects'
+    isDefined,
+    isNotDefined
+}                    from './voids/_voids'
 
 class Validator {
 

@@ -10,7 +10,13 @@
 
 /* global Itee, suite, benchmark */
 
-import { isArray, isArray_0, isArray_1, isNotArray, isNotArray_0 } from '../../../../sources/cores/arrays/isArray'
+import {
+    isArray,
+    isArray_0,
+    isArray_1,
+    isNotArray,
+    isNotArray_0
+} from '../../../../sources/cores/arrays/isArray'
 
 const isArraySuite = suite( 'isArray', () => {
 
@@ -27,4 +33,7 @@ const isNotArraySuite = suite( 'isNotArray', () => {
 
 } )
 
-export { isArraySuite, isNotArraySuite }
+export {
+    isArraySuite,
+    isNotArraySuite
+}

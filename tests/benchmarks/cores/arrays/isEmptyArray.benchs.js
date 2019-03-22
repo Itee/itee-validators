@@ -10,7 +10,10 @@
 
 /* global Itee, suite, benchmark */
 
-import { isEmptyArray, isNotEmptyArray } from '../../../../sources/cores/arrays/isEmptyArray'
+import {
+    isEmptyArray,
+    isNotEmptyArray
+} from '../../../../sources/cores/arrays/isEmptyArray'
 
 const isEmptyArraySuite = suite( 'isEmptyArray', () => {
 
@@ -24,5 +27,8 @@ const isNotEmptyArraySuite = suite( 'isNotEmptyArray', () => {
 
 } )
 
-export { isEmptyArraySuite, isNotEmptyArraySuite }
+export {
+    isEmptyArraySuite,
+    isNotEmptyArraySuite
+}
 

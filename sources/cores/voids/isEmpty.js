@@ -8,10 +8,10 @@
  *
  */
 
-import { isEmptyArray }      from '../arrays/isEmptyArray'
-import { isEmptyObject }     from '../objects/isEmptyObject'
-import { isEmptyString }     from '../strings/isEmptyString'
-import { isNotDefined } from './isDefined'
+import { isEmptyArray }  from '../arrays/isEmptyArray'
+import { isEmptyObject } from '../objects/isEmptyObject'
+import { isEmptyString } from '../strings/isEmptyString'
+import { isNotDefined }  from './isDefined'
 
 /**
  * Check emptiness of given data

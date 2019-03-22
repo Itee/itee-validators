@@ -6,7 +6,15 @@
 
 /* global Itee, suite, benchmark */
 
-import { isString, isString_0, isString_1, isString_2, isString_3, isString_4, isNotString } from '../../../../sources/cores/strings/isString'
+import {
+    isNotString,
+    isString,
+    isString_0,
+    isString_1,
+    isString_2,
+    isString_3,
+    isString_4
+} from '../../../../sources/cores/strings/isString'
 
 const isStringSuite = suite( 'isString', () => {
 
@@ -25,5 +33,8 @@ const isNotStringSuite = suite( 'isNotString', () => {
 
 } )
 
-export { isStringSuite, isNotStringSuite }
+export {
+    isStringSuite,
+    isNotStringSuite
+}
 

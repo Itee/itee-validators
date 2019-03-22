@@ -8,7 +8,6 @@
  *
  */
 
-
 /**
  * Check if given data is not null and not undefined
  *
@@ -16,7 +15,7 @@
  * @returns {boolean} true if data is not null and not undefined, false otherwise.
  */
 export function isDefined ( data ) {
-    return ((data !== null) && (typeof data !== 'undefined'))
+    return ( ( data !== null ) && ( typeof data !== 'undefined' ) )
 }
 
 /////
@@ -28,5 +27,5 @@ export function isDefined ( data ) {
  * @returns {boolean} true if data is null or undefined, false otherwise.
  */
 export function isNotDefined ( data ) {
-    return ((data === null) || (typeof data === 'undefined'))
+    return ( ( data === null ) || ( typeof data === 'undefined' ) )
 }

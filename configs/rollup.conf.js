@@ -11,15 +11,11 @@
  *
  */
 
-const path    = require( 'path' )
-const replace = require( 'rollup-plugin-re' )
-const uglify  = require( 'rollup-plugin-uglify-es' )
-
-const replaceConfig = {
-    defines: {
-        IS_REMOVE: false
-    }
-}
+const path        = require( 'path' )
+const commonJs    = require( 'rollup-plugin-commonjs' )
+const nodeResolve = require( 'rollup-plugin-node-resolve' )
+const replace     = require( 'rollup-plugin-re' )
+const uglify      = require( 'rollup-plugin-uglify-es' )
 
 /**
  * @generator
@@ -34,8 +30,8 @@ function CreateBuildsConfigs ( options ) {
     const output    = options.output
     const formats   = options.format.split( ',' )
     const env       = options.env.split( ',' )
-    const dev       = (env.includes( 'dev' ))
-    const prod      = (env.includes( 'prod' ))
+    const dev       = ( env.includes( 'dev' ) )
+    const prod      = ( env.includes( 'prod' ) )
     const sourcemap = options.sourcemap
     const treeshake = options.treeshake
 
@@ -53,7 +49,16 @@ function CreateBuildsConfigs ( options ) {
             configs.push( {
                 input:   input,
                 plugins: [
-                    replace( replaceConfig )
+                    replace( {
+                        defines: {
+                            IS_REMOVE: false,
+                            IS_NODE:   ( format === 'cjs' )
+                        }
+                    } ),
+                    commonJs( {
+                        include: 'node_modules/**'
+                    } ),
+                    nodeResolve()
                 ],
                 treeshake: treeshake,
                 output:    {
@@ -74,7 +79,16 @@ function CreateBuildsConfigs ( options ) {
             configs.push( {
                 input:   input,
                 plugins: [
-                    replace( replaceConfig ),
+                    replace( {
+                        defines: {
+                            IS_REMOVE: false,
+                            IS_NODE:   ( format === 'cjs' )
+                        }
+                    } ),
+                    commonJs( {
+                        include: 'node_modules/**'
+                    } ),
+                    nodeResolve(),
                     uglify()
                 ],
                 treeshake: treeshake,

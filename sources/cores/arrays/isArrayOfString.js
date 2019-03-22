@@ -8,9 +8,9 @@
  *
  */
 
-import { isEmptyArray } from './isEmptyArray'
-import { isNotArray }   from './isArray'
 import { isNotString }  from '../strings/isString'
+import { isNotArray }   from './isArray'
+import { isEmptyArray } from './isEmptyArray'
 
 /**
  * Check if given data is not an empty array where all values are string
@@ -56,7 +56,6 @@ export function isArrayOfString_1 ( data ) {
 }
 
 // #endif
-
 
 /////
 

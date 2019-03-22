@@ -10,7 +10,10 @@
 
 /* global Itee, suite, benchmark */
 
-import { isArrayOfUndefined, isNotArrayOfUndefined } from '../../../../sources/cores/arrays/isArrayOfUndefined'
+import {
+    isArrayOfUndefined,
+    isNotArrayOfUndefined
+} from '../../../../sources/cores/arrays/isArrayOfUndefined'
 
 const isArrayOfUndefinedSuite = suite( 'isArrayOfUndefined', () => {
 
@@ -24,5 +27,8 @@ const isNotArrayOfUndefinedSuite = suite( 'isNotArrayOfUndefined', () => {
 
 } )
 
-export { isArrayOfUndefinedSuite, isNotArrayOfUndefinedSuite }
+export {
+    isArrayOfUndefinedSuite,
+    isNotArrayOfUndefinedSuite
+}
 

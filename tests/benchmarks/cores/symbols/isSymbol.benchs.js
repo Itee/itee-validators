@@ -6,7 +6,10 @@
 
 /* global Itee, suite, benchmark */
 
-import { isSymbol, isNotSymbol } from '../../../../sources/cores/symbols/isSymbol'
+import {
+    isNotSymbol,
+    isSymbol
+} from '../../../../sources/cores/symbols/isSymbol'
 
 const isSymbolSuite = suite( 'isSymbol', () => {
 
@@ -20,5 +23,8 @@ const isNotSymbolSuite = suite( 'isNotSymbol', () => {
 
 } )
 
-export { isSymbolSuite, isNotSymbolSuite }
+export {
+    isSymbolSuite,
+    isNotSymbolSuite
+}
 

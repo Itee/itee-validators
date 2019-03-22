@@ -23,3 +23,7 @@
 export * from './cores/_cores'
 export * from './maths/_maths'
 export * from './physics/_physics'
+
+// #if IS_NODE
+export * from './files/_files'
+// #endif

@@ -15,7 +15,7 @@
  * @returns {boolean} true if data is positive minimum, false otherwise
  */
 export function isMinPositive ( data ) {
-    return (data === Number.MIN_VALUE)
+    return ( data === Number.MIN_VALUE )
 }
 
 /**
@@ -25,5 +25,5 @@ export function isMinPositive ( data ) {
  * @returns {boolean} true if data is negative minimum, false otherwise
  */
 export function isMinNegative ( data ) {
-    return (data === -Number.MIN_VALUE)
+    return ( data === -Number.MIN_VALUE )
 }

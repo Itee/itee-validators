@@ -44,5 +44,5 @@ export function isEmptyObject ( data ) {
  * @returns {boolean} true if data is not an empty object, false otherwise
  */
 export function isNotEmptyObject ( data ) {
-    return !(isEmptyObject( data ))
+    return !( isEmptyObject( data ) )
 }
