@@ -1,8 +1,8 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
-	(factory((global.Itee = global.Itee || {}, global.Itee.Validators = {})));
-}(this, (function (exports) { 'use strict';
+	(global = global || self, factory((global.Itee = global.Itee || {}, global.Itee.Validators = {})));
+}(this, function (exports) { 'use strict';
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
@@ -66,7 +66,7 @@
 
 	    if ( isNotArray( data ) ) { return false }
 
-	    return (data.length === 0)
+	    return ( data.length === 0 )
 
 	}
 
@@ -82,7 +82,7 @@
 
 	    if ( isNotArray( data ) ) { return true }
 
-	    return (data.length > 0)
+	    return ( data.length > 0 )
 
 	}
 
@@ -160,7 +160,7 @@
 
 	    if ( isNotArray( data ) ) { return false }
 
-	    return (data.length > 1)
+	    return ( data.length > 1 )
 
 	}
 
@@ -181,7 +181,7 @@
 	 * @returns {boolean} true if data is null, false otherwise.
 	 */
 	function isNull ( data ) {
-	    return (data === null)
+	    return ( data === null )
 	}
 
 	///
@@ -193,7 +193,7 @@
 	 * @returns {boolean} true if data is not null, false otherwise.
 	 */
 	function isNotNull ( data ) {
-	    return (data !== null)
+	    return ( data !== null )
 	}
 
 	/**
@@ -260,7 +260,6 @@
 	 *
 	 */
 
-
 	/**
 	 * Check if given data is not null and not undefined
 	 *
@@ -268,7 +267,7 @@
 	 * @returns {boolean} true if data is not null and not undefined, false otherwise.
 	 */
 	function isDefined ( data ) {
-	    return ((data !== null) && (typeof data !== 'undefined'))
+	    return ( ( data !== null ) && ( typeof data !== 'undefined' ) )
 	}
 
 	/////
@@ -280,7 +279,7 @@
 	 * @returns {boolean} true if data is null or undefined, false otherwise.
 	 */
 	function isNotDefined ( data ) {
-	    return ((data === null) || (typeof data === 'undefined'))
+	    return ( ( data === null ) || ( typeof data === 'undefined' ) )
 	}
 
 	/**
@@ -303,7 +302,7 @@
 
 	    if ( isNotDefined( data ) ) { return false }
 
-	    return (data.constructor === Object)
+	    return ( data.constructor === Object )
 	}
 
 	////
@@ -417,9 +416,8 @@
 	 * @returns {boolean} true if data is a string, false otherwise.
 	 */
 	function isString ( data ) {
-	    return (typeof data === 'string' || data instanceof String)
+	    return ( typeof data === 'string' || data instanceof String )
 	}
-
 
 
 
@@ -468,7 +466,6 @@
 
 
 
-
 	/////
 
 	/**
@@ -509,7 +506,7 @@
 	 * @returns {boolean} true if data is undefined, false otherwise.
 	 */
 	function isUndefined ( data ) {
-	    return (typeof data === 'undefined')
+	    return ( typeof data === 'undefined' )
 	}
 
 	///
@@ -521,7 +518,7 @@
 	 * @returns {boolean} true if data is defined, false otherwise.
 	 */
 	function isNotUndefined ( data ) {
-	    return (typeof data !== 'undefined')
+	    return ( typeof data !== 'undefined' )
 	}
 
 	/**
@@ -586,6 +583,10 @@
 	 * @description Export the validation methods about Arrays
 	 */
 
+	//todo: isArrayOfNumbers
+	//todo: isArrayOfBooleans
+	//todo: isArrayOfFunctions
+
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -603,7 +604,7 @@
 	 * @returns {boolean} true if data is a boolean, false otherwise.
 	 */
 	function isBoolean ( data ) {
-	    return (typeof data === 'boolean')
+	    return ( typeof data === 'boolean' )
 	}
 
 
@@ -617,7 +618,25 @@
 	 * @returns {boolean} true if data is not a boolean, false otherwise.
 	 */
 	function isNotBoolean ( data ) {
-	    return (typeof data !== 'boolean')
+	    return ( typeof data !== 'boolean' )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	function isTrue ( value ) {
+	    return ( isBoolean( value ) && ( value === true ) )
+	}
+
+	function isFalse ( value ) {
+	    return ( isBoolean( value ) && ( value === false ) )
 	}
 
 	/**
@@ -626,6 +645,355 @@
 	 *
 	 * @file sources/cores/_booleans
 	 * @description Export the validation methods about booleans
+	 *
+	 */
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @module cores/functions
+	 * @desc Export function to validate if a value is a function or not
+	 * @example todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is a function
+	 *
+	 * @param data {*} The data to check against the functionality
+	 * @returns {boolean} true if data is a function, false otherwise.
+	 */
+	function isFunction ( data ) {
+	    return ( typeof data === 'function' )
+	}
+
+	///
+
+	/**
+	 * Check if given data is not a function
+	 *
+	 * @param data {*} The data to check against the functionality
+	 * @returns {boolean} true if data is not a function, false otherwise.
+	 */
+	function isNotFunction ( data ) {
+	    return ( typeof data !== 'function' )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file sources/cores/_functions
+	 * @description Export the validation methods about functions
+	 *
+	 */
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @module cores/numbers/isZero
+	 * @desc Export function to validate if a value is a finite number
+	 * @example todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is zero
+	 *
+	 * @param data {*} The data to check against the zero value
+	 * @returns {boolean} true if data is zero, false otherwise
+	 */
+	function isZero ( data ) {
+	    return ( data === 0 )
+	}
+
+	/**
+	 * Check if the given data is a positive zero
+	 *
+	 * @param data {*} The data to check against the positive zero value
+	 * @returns {boolean} true if data is a positive zero, false otherwise
+	 */
+	function isZeroPositive ( data ) {
+	    return ( data === 0 && ( 1 / data ) === Number.POSITIVE_INFINITY )
+	}
+
+	/**
+	 * Check if the given data is a negative zero
+	 *
+	 * @param data {*} The data to check against the negative zero value
+	 * @returns {boolean} true if data is a negative zero, false otherwise
+	 */
+	function isZeroNegative ( data ) {
+	    return ( data === 0 && ( 1 / data ) === Number.NEGATIVE_INFINITY )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @module cores/numbers/isNumber
+	 * @desc Export function to validate if a value is a finite number
+	 * @example todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is a number
+	 *
+	 * @param data {*} The data to check against the maximum safe integer state
+	 * @returns {boolean} true if data is a number, false otherwise.
+	 */
+	function isNumber ( data ) {
+
+	    if ( isNotDefined( data ) ) { return false }
+
+	    return ( data.constructor === Number )
+
+	}
+
+
+
+	/**
+	 * Check if the data is a positive number
+	 *
+	 * @param data {*} The data to check against the positivity
+	 * @returns {boolean} true if data is a positive number, false otherwise.
+	 */
+	function isNumberPositive ( data ) {
+
+	    if ( isNotNumber( data ) ) { return false }
+
+	    return ( data > 0 || isZeroPositive( data ) || isInfinitePositive( data ) )
+
+	}
+
+	/**
+	 * Check if the data is a negative number
+	 *
+	 * @param data {*} The data to check against the negativity
+	 * @returns {boolean} true if data is a negative number, false otherwise.
+	 */
+	function isNumberNegative ( data ) {
+	    return ( isNumber( data ) && data < 0 )
+	}
+
+	//////
+
+	/**
+	 * Check if given data is not a number
+	 *
+	 * @param data {*} The data to check against the number type
+	 * @returns {boolean} true if data is not of type number or not a number, false otherwise.
+	 */
+	function isNotNumber ( data ) {
+	    return !( isNumber( data ) )
+	}
+
+	/////////
+
+	//Todo: isInRange(x, y, value, xInclusive, yInclusive)
+	//Todo: isInRangeZeroOne(value, zeroInclusive, oneInclusive) //inclusive
+
+	/////////
+
+	/**
+	 * Check if the given data is an integer number
+	 *
+	 * @param data {*} The data to check against the integer state
+	 * @returns {boolean} true if data is an integer, false otherwise
+	 */
+	function isInteger ( data ) {
+	    return Number.isInteger( data )
+	}
+
+
+
+	////////
+
+	/**
+	 * Check if given data is a floating point number
+	 *
+	 * @param data {*} The data to check against the floating point
+	 * @returns {boolean} true if data is a float, false otherwise
+	 */
+	function isFloat ( data ) {
+
+	    if ( isNotNumber( data ) ) { return false }
+	    if ( Number.isNaN( data ) ) { return false }
+	    if ( isInfinite( data ) ) { return false}
+
+	    return data % 1 !== 0
+
+	}
+
+
+
+	////////
+
+	/**
+	 * Check if given data is not a number
+	 *
+	 * @param data {*} The data to check against the maximum safe integer state
+	 * @returns {boolean} true if data is not a number, false otherwise.
+	 */
+	function isNaN ( data ) {
+	    return Number.isNaN( data )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @module cores/numbers/isInfinite
+	 * @desc Export function to validate if a value is a finite number
+	 * @example todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is an infinite number
+	 *
+	 * @param data {*} The data to check against the infinite state
+	 * @returns {boolean} true if data is infinite, false otherwise
+	 */
+	function isInfinite ( data ) {
+
+	    if ( isNotNumber( data ) ) { return false }
+	    if ( Number.isNaN( data ) ) { return false }
+
+	    return !Number.isFinite( data )
+	}
+
+	/**
+	 * Check if the given data is an infinite negative number
+	 *
+	 * @param data {*} The data to check against the negative infinite state
+	 * @returns {boolean} true if data is negative infinite, false otherwise
+	 */
+	function isInfiniteNegative ( data ) {
+	    return ( data === Number.NEGATIVE_INFINITY )
+	}
+
+	/**
+	 * Check if the given data is an infinite positive number
+	 *
+	 * @param data {*} The data to check against the positive infinite state
+	 * @returns {boolean} true if data is positive infinite, false otherwise
+	 */
+	function isInfinitePositive ( data ) {
+	    return ( data === Number.POSITIVE_INFINITY )
+	}
+
+	///
+
+	/**
+	 * Check if the given data is a finite number
+	 *
+	 * @param data {*} The data to check against the finite state
+	 * @returns {boolean} true if data is finite, false otherwise
+	 */
+	function isFinite ( data ) {
+	    return Number.isFinite( data )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @module cores/numbers/isMax
+	 * @desc Export function to validate if a value is a finite number
+	 * @example todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is a maximum positive number
+	 *
+	 * @param data {*} The data to check against the positive maximum state
+	 * @returns {boolean} true if data is positive maximum, false otherwise
+	 */
+	function isMaxPositive ( data ) {
+	    return ( data === Number.MAX_VALUE )
+	}
+
+	/**
+	 * Check if the given data is a maximum negative number
+	 *
+	 * @param data {*} The data to check against the maximum infinite state
+	 * @returns {boolean} true if data is negative maximum, false otherwise
+	 */
+	function isMaxNegative ( data ) {
+	    return ( data === -Number.MAX_VALUE )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @module cores/numbers/isMin
+	 * @desc Export function to validate if a value is a finite number
+	 * @example todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is a minimum positive number
+	 *
+	 * @param data {*} The data to check against the positive minimum state
+	 * @returns {boolean} true if data is positive minimum, false otherwise
+	 */
+	function isMinPositive ( data ) {
+	    return ( data === Number.MIN_VALUE )
+	}
+
+	/**
+	 * Check if the given data is a minimum negative number
+	 *
+	 * @param data {*} The data to check against the minimum infinite state
+	 * @returns {boolean} true if data is negative minimum, false otherwise
+	 */
+	function isMinNegative ( data ) {
+	    return ( data === -Number.MIN_VALUE )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @module cores/numbers/isSafeInteger
+	 * @desc Export function to validate if a value is a finite number
+	 * @example todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is a maximum safe integer number
+	 *
+	 * @param data {*} The data to check against the maximum safe integer state
+	 * @returns {boolean} true if data is a maximum safe integer, false otherwise
+	 */
+	function isMaxSafeInteger ( data ) {
+	    return ( data === Number.MAX_SAFE_INTEGER )
+	}
+
+	/**
+	 * Check if the given data is a minimum safe integer number
+	 *
+	 * @param data {*} The data to check against the minimum safe integer state
+	 * @returns {boolean} true if data is a minimum safe integer, false otherwise
+	 */
+	function isMinSafeInteger ( data ) {
+	    return ( data === Number.MIN_SAFE_INTEGER )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file sources/cores/_numbers
+	 * @description Export the validation methods about numbers
 	 *
 	 */
 
@@ -673,8 +1041,16 @@
 	 * @returns {boolean} true if data is not an empty object, false otherwise
 	 */
 	function isNotEmptyObject ( data ) {
-	    return !(isEmptyObject( data ))
+	    return !( isEmptyObject( data ) )
 	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file sources/cores/_objects
+	 * @description Export the validation methods about objects
+	 */
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
@@ -698,7 +1074,7 @@
 	        return false
 	    }
 
-	    return (data.length === 0)
+	    return ( data.length === 0 )
 
 	}
 
@@ -712,9 +1088,95 @@
 	 */
 	function isNotEmptyString ( data ) {
 
-	    return !(isEmptyString(data))
+	    return !( isEmptyString( data ) )
 
 	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @module cores/strings
+	 * @desc Export function to validate if a value is a string
+	 * @example todo
+	 *
+	 */
+
+	/**
+	 * Check if the given data is a blank string
+	 *
+	 * @param data {*} The data to check against the blankness of the string
+	 * @returns {boolean} true if data is a blank string, false otherwise.
+	 */
+	function isBlankString ( data ) {
+
+	    if ( isNotString( data ) ) { return false }
+	    if ( isEmptyString( data ) ) { return false }
+
+	    return ( !/\S/.test( data ) )
+	}
+
+	////
+
+	/**
+	 * Check if the given data is not a blank string
+	 *
+	 * @param data {*} The data to check against the blankness of the string
+	 * @returns {boolean} true if data is not a blank string, false otherwise.
+	 */
+	function isNotBlankString ( data ) {
+
+	    return !( isBlankString( data ) )
+
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file sources/cores/_strings
+	 * @description Export the validation methods about strings
+	 */
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @module cores/symbols
+	 * @desc Export function to validate if a value is a symbol
+	 * @example todo
+	 *
+	 */
+
+	/**
+	 * Check if given data is a symbol
+	 *
+	 * @param data {*} The data to check against the symbol type
+	 * @returns {boolean} true if data is a symbol, false otherwise.
+	 */
+	function isSymbol ( data ) {
+	    return ( typeof data === 'symbol' )
+	}
+
+	/////
+
+	/**
+	 * Check if given data is not a symbol
+	 *
+	 * @param data {*} The data to check against the symbol type
+	 * @returns {boolean} true if data is not a symbol, false otherwise.
+	 */
+	function isNotSymbol ( data ) {
+	    return ( typeof data !== 'symbol' )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file sources/cores/_symbols
+	 * @description Export the validation methods about symbols
+	 */
 
 	/**
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
@@ -763,448 +1225,6 @@
 	 *
 	 * @file sources/cores/_voids
 	 * @description Export the validation methods about voids notions like null or undefined
-	 */
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module cores/functions
-	 * @desc Export function to validate if a value is a function or not
-	 * @example todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is a function
-	 *
-	 * @param data {*} The data to check against the functionality
-	 * @returns {boolean} true if data is a function, false otherwise.
-	 */
-	function isFunction ( data ) {
-	    return (typeof data === 'function')
-	}
-
-	///
-
-	/**
-	 * Check if given data is not a function
-	 *
-	 * @param data {*} The data to check against the functionality
-	 * @returns {boolean} true if data is not a function, false otherwise.
-	 */
-	function isNotFunction ( data ) {
-	    return (typeof data !== 'function')
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file sources/cores/_functions
-	 * @description Export the validation methods about functions
-	 *
-	 */
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module cores/numbers/isZero
-	 * @desc Export function to validate if a value is a finite number
-	 * @example todo
-	 *
-	 */
-
-	/**
-	 * Check if the given data is zero
-	 *
-	 * @param data {*} The data to check against the zero value
-	 * @returns {boolean} true if data is zero, false otherwise
-	 */
-	function isZero ( data ) {
-	    return (data === 0)
-	}
-
-	/**
-	 * Check if the given data is a positive zero
-	 *
-	 * @param data {*} The data to check against the positive zero value
-	 * @returns {boolean} true if data is a positive zero, false otherwise
-	 */
-	function isZeroPositive ( data ) {
-	    return (data === 0 && (1 / data) === Number.POSITIVE_INFINITY)
-	}
-
-	/**
-	 * Check if the given data is a negative zero
-	 *
-	 * @param data {*} The data to check against the negative zero value
-	 * @returns {boolean} true if data is a negative zero, false otherwise
-	 */
-	function isZeroNegative ( data ) {
-	    return (data === 0 && (1 / data) === Number.NEGATIVE_INFINITY)
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module cores/numbers/isNumber
-	 * @desc Export function to validate if a value is a finite number
-	 * @example todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is a number
-	 *
-	 * @param data {*} The data to check against the maximum safe integer state
-	 * @returns {boolean} true if data is a number, false otherwise.
-	 */
-	function isNumber ( data ) {
-
-	    if ( isNotDefined( data ) ) { return false }
-
-	    return (data.constructor === Number)
-
-	}
-
-
-
-
-	/**
-	 * Check if the data is a positive number
-	 *
-	 * @param data {*} The data to check against the positivity
-	 * @returns {boolean} true if data is a positive number, false otherwise.
-	 */
-	function isNumberPositive ( data ) {
-
-	    if ( isNotNumber( data ) ) { return false }
-
-	    return (data > 0 || isZeroPositive( data ) || isInfinitePositive( data ))
-
-	}
-
-	/**
-	 * Check if the data is a negative number
-	 *
-	 * @param data {*} The data to check against the negativity
-	 * @returns {boolean} true if data is a negative number, false otherwise.
-	 */
-	function isNumberNegative ( data ) {
-	    return (isNumber( data ) && data < 0)
-	}
-
-	//////
-
-	/**
-	 * Check if given data is not a number
-	 *
-	 * @param data {*} The data to check against the number type
-	 * @returns {boolean} true if data is not of type number or not a number, false otherwise.
-	 */
-	function isNotNumber ( data ) {
-	    return !(isNumber( data ))
-	}
-
-
-	/////////
-
-	/**
-	 * Check if the given data is an integer number
-	 *
-	 * @param data {*} The data to check against the integer state
-	 * @returns {boolean} true if data is an integer, false otherwise
-	 */
-	function isInteger ( data ) {
-	    return Number.isInteger(data)
-	}
-
-
-
-
-	////////
-
-	/**
-	 * Check if given data is a floating point number
-	 *
-	 * @param data {*} The data to check against the floating point
-	 * @returns {boolean} true if data is a float, false otherwise
-	 */
-	function isFloat ( data ) {
-
-	    if ( isNotNumber( data ) ) { return false }
-	    if ( Number.isNaN( data ) ) { return false }
-	    if ( isInfinite( data ) ) { return false}
-
-	    return data % 1 !== 0
-
-	}
-
-
-
-
-	////////
-
-	/**
-	 * Check if given data is not a number
-	 *
-	 * @param data {*} The data to check against the maximum safe integer state
-	 * @returns {boolean} true if data is not a number, false otherwise.
-	 */
-	function isNaN ( data ) {
-	    return Number.isNaN( data )
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module cores/numbers/isInfinite
-	 * @desc Export function to validate if a value is a finite number
-	 * @example todo
-	 *
-	 */
-
-	/**
-	 * Check if the given data is an infinite number
-	 *
-	 * @param data {*} The data to check against the infinite state
-	 * @returns {boolean} true if data is infinite, false otherwise
-	 */
-	function isInfinite ( data ) {
-
-	    if ( isNotNumber( data ) ) { return false }
-	    if ( Number.isNaN( data ) ) { return false }
-
-	    return !Number.isFinite( data )
-	}
-
-	/**
-	 * Check if the given data is an infinite negative number
-	 *
-	 * @param data {*} The data to check against the negative infinite state
-	 * @returns {boolean} true if data is negative infinite, false otherwise
-	 */
-	function isInfiniteNegative ( data ) {
-	    return (data === Number.NEGATIVE_INFINITY)
-	}
-
-	/**
-	 * Check if the given data is an infinite positive number
-	 *
-	 * @param data {*} The data to check against the positive infinite state
-	 * @returns {boolean} true if data is positive infinite, false otherwise
-	 */
-	function isInfinitePositive ( data ) {
-	    return (data === Number.POSITIVE_INFINITY)
-	}
-
-	///
-
-	/**
-	 * Check if the given data is a finite number
-	 *
-	 * @param data {*} The data to check against the finite state
-	 * @returns {boolean} true if data is finite, false otherwise
-	 */
-	function isFinite ( data ) {
-	    return Number.isFinite( data )
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module cores/numbers/isMax
-	 * @desc Export function to validate if a value is a finite number
-	 * @example todo
-	 *
-	 */
-
-	/**
-	 * Check if the given data is a maximum positive number
-	 *
-	 * @param data {*} The data to check against the positive maximum state
-	 * @returns {boolean} true if data is positive maximum, false otherwise
-	 */
-	function isMaxPositive ( data ) {
-	    return (data === Number.MAX_VALUE)
-	}
-
-	/**
-	 * Check if the given data is a maximum negative number
-	 *
-	 * @param data {*} The data to check against the maximum infinite state
-	 * @returns {boolean} true if data is negative maximum, false otherwise
-	 */
-	function isMaxNegative ( data ) {
-	    return (data === -Number.MAX_VALUE)
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module cores/numbers/isSafeInteger
-	 * @desc Export function to validate if a value is a finite number
-	 * @example todo
-	 *
-	 */
-
-	/**
-	 * Check if the given data is a maximum safe integer number
-	 *
-	 * @param data {*} The data to check against the maximum safe integer state
-	 * @returns {boolean} true if data is a maximum safe integer, false otherwise
-	 */
-	function isMaxSafeInteger ( data ) {
-	    return (data === Number.MAX_SAFE_INTEGER)
-	}
-
-	/**
-	 * Check if the given data is a minimum safe integer number
-	 *
-	 * @param data {*} The data to check against the minimum safe integer state
-	 * @returns {boolean} true if data is a minimum safe integer, false otherwise
-	 */
-	function isMinSafeInteger ( data ) {
-	    return (data === Number.MIN_SAFE_INTEGER)
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module cores/numbers/isMin
-	 * @desc Export function to validate if a value is a finite number
-	 * @example todo
-	 *
-	 */
-
-	/**
-	 * Check if the given data is a minimum positive number
-	 *
-	 * @param data {*} The data to check against the positive minimum state
-	 * @returns {boolean} true if data is positive minimum, false otherwise
-	 */
-	function isMinPositive ( data ) {
-	    return (data === Number.MIN_VALUE)
-	}
-
-	/**
-	 * Check if the given data is a minimum negative number
-	 *
-	 * @param data {*} The data to check against the minimum infinite state
-	 * @returns {boolean} true if data is negative minimum, false otherwise
-	 */
-	function isMinNegative ( data ) {
-	    return (data === -Number.MIN_VALUE)
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file sources/cores/_numbers
-	 * @description Export the validation methods about numbers
-	 *
-	 */
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module cores/symbols
-	 * @desc Export function to validate if a value is a symbol
-	 * @example todo
-	 *
-	 */
-
-	/**
-	 * Check if given data is a symbol
-	 *
-	 * @param data {*} The data to check against the symbol type
-	 * @returns {boolean} true if data is a symbol, false otherwise.
-	 */
-	function isSymbol ( data ) {
-	    return (typeof data === 'symbol')
-	}
-
-	/////
-
-	/**
-	 * Check if given data is not a symbol
-	 *
-	 * @param data {*} The data to check against the symbol type
-	 * @returns {boolean} true if data is not a symbol, false otherwise.
-	 */
-	function isNotSymbol ( data ) {
-	    return (typeof data !== 'symbol')
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file sources/cores/_symbols
-	 * @description Export the validation methods about symbols
-	 */
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @module cores/strings
-	 * @desc Export function to validate if a value is a string
-	 * @example todo
-	 *
-	 */
-
-	/**
-	 * Check if the given data is a blank string
-	 *
-	 * @param data {*} The data to check against the blankness of the string
-	 * @returns {boolean} true if data is a blank string, false otherwise.
-	 */
-	function isBlankString ( data ) {
-
-	    if ( isNotString( data ) ) { return false }
-	    if ( isEmptyString( data ) ) { return false }
-
-	    return (!/\S/.test( data ))
-	}
-
-	////
-
-	/**
-	 * Check if the given data is not a blank string
-	 *
-	 * @param data {*} The data to check against the blankness of the string
-	 * @returns {boolean} true if data is not a blank string, false otherwise.
-	 */
-	function isNotBlankString ( data ) {
-
-	    return !(isBlankString( data ))
-
-	}
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file sources/cores/_strings
-	 * @description Export the validation methods about strings
-	 */
-
-	/**
-	 * @author [Tristan Valcke]{@link https://github.com/Itee}
-	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
-	 *
-	 * @file sources/cores/_objects
-	 * @description Export the validation methods about objects
 	 */
 
 	/**
@@ -1501,6 +1521,232 @@
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	function isArrayBuffer ( data ) {
+	    return ( data instanceof ArrayBuffer )
+	}
+
+	function isNotArrayBuffer ( data ) {
+	    return !isArrayBuffer( data )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	function isBigInt64Array ( data ) {
+	    return ( data instanceof BigInt64Array )
+	}
+
+	function isNotBigInt64Array ( data ) {
+	    return !isBigInt64Array( data )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	function isBigUint64Array ( data ) {
+	    return ( data instanceof BigUint64Array )
+	}
+
+	function isNotBigUint64Array ( data ) {
+	    return !isBigUint64Array( data )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	function isFloat32Array ( data ) {
+	    return ( data instanceof Float32Array )
+	}
+
+	function isNotFloat32Array ( data ) {
+	    return !isFloat32Array( data )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	function isFloat64Array ( data ) {
+	    return ( data instanceof Float64Array )
+	}
+
+	function isNotFloat64Array ( data ) {
+	    return !isFloat64Array( data )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	function isInt16Array ( data ) {
+	    return ( data instanceof Int16Array )
+	}
+
+	function isNotInt16Array ( data ) {
+	    return !isInt16Array( data )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	function isInt32Array ( data ) {
+	    return ( data instanceof Int32Array )
+	}
+
+	function isNotInt32Array ( data ) {
+	    return !isInt32Array( data )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	function isInt8Array ( data ) {
+	    return ( data instanceof Int8Array )
+	}
+
+	function isNotInt8Array ( data ) {
+	    return !isInt8Array( data )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	function isUint16Array ( data ) {
+	    return ( data instanceof Uint16Array )
+	}
+
+	function isNotUint16Array ( data ) {
+	    return !isUint16Array( data )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	function isUint32Array ( data ) {
+	    return ( data instanceof Uint32Array )
+	}
+
+	function isNotUint32Array ( data ) {
+	    return !isUint32Array( data )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	function isUint8Array ( data ) {
+	    return ( data instanceof Uint8Array )
+	}
+
+	function isNotUint8Array ( data ) {
+	    return !isUint8Array( data )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file Todo
+	 *
+	 * @example Todo
+	 *
+	 */
+
+	function isUint8ClampedArray ( data ) {
+	    return ( data instanceof Uint8ClampedArray )
+	}
+
+	function isNotUint8ClampedArray ( data ) {
+	    return !isUint8ClampedArray( data )
+	}
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
+	 * @file sources/cores/_cores
+	 * @description This is the cores main export entry point.
+	 * It expose all exports of the voids, booleans, numbers, symbols, strings, arrays, objects and functions validators.
+	 *
+	 */
+
+	/**
+	 * @author [Tristan Valcke]{@link https://github.com/Itee}
+	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+	 *
 	 * @file sources/cores/_cores
 	 * @description This is the cores main export entry point.
 	 * It expose all exports of the voids, booleans, numbers, symbols, strings, arrays, objects and functions validators.
@@ -1547,7 +1793,7 @@
 	 * @return {boolean|*|boolean}
 	 */
 	function isCelsius ( data ) {
-	    return (isNumber( data ) && data >= ABSOLUTE_ZERO_CELSIUS)
+	    return ( isNumber( data ) && data >= ABSOLUTE_ZERO_CELSIUS )
 	}
 
 	///
@@ -1577,7 +1823,7 @@
 	 * @return {boolean|*|boolean}
 	 */
 	function isFahrenheit ( data ) {
-	    return (isNumber( data ) && data >= ABSOLUTE_ZERO_FAHRENHEIT)
+	    return ( isNumber( data ) && data >= ABSOLUTE_ZERO_FAHRENHEIT )
 	}
 
 	///
@@ -1607,11 +1853,10 @@
 	 * @return {boolean|*|boolean}
 	 */
 	function isKelvin ( data ) {
-	    return (isNumber( data ) && data >= ABSOLUTE_ZERO_KELVIN)
+	    return ( isNumber( data ) && data >= ABSOLUTE_ZERO_KELVIN )
 	}
 
 	///
-
 
 	/**
 	 *
@@ -1638,7 +1883,7 @@
 	 * @return {boolean|*|boolean}
 	 */
 	function isTemperature ( data ) {
-	    return (isKelvin( data ) || isCelsius( data ) || isFahrenheit( data ))
+	    return ( isKelvin( data ) || isCelsius( data ) || isFahrenheit( data ) )
 	}
 
 	///
@@ -1649,7 +1894,7 @@
 	 * @return {boolean}
 	 */
 	function isNotTemperature ( data ) {
-	    return (isNotKelvin( data ) && isNotCelsius( data ) && isNotFahrenheit( data ))
+	    return ( isNotKelvin( data ) && isNotCelsius( data ) && isNotFahrenheit( data ) )
 	}
 
 	/**
@@ -1710,6 +1955,8 @@
 	exports.isNotEmptyArray = isNotEmptyArray;
 	exports.isBoolean = isBoolean;
 	exports.isNotBoolean = isNotBoolean;
+	exports.isTrue = isTrue;
+	exports.isFalse = isFalse;
 	exports.isFunction = isFunction;
 	exports.isNotFunction = isNotFunction;
 	exports.isInfinite = isInfinite;
@@ -1718,8 +1965,6 @@
 	exports.isFinite = isFinite;
 	exports.isMaxPositive = isMaxPositive;
 	exports.isMaxNegative = isMaxNegative;
-	exports.isMaxSafeInteger = isMaxSafeInteger;
-	exports.isMinSafeInteger = isMinSafeInteger;
 	exports.isMinPositive = isMinPositive;
 	exports.isMinNegative = isMinNegative;
 	exports.isNumber = isNumber;
@@ -1729,6 +1974,8 @@
 	exports.isInteger = isInteger;
 	exports.isFloat = isFloat;
 	exports.isNaN = isNaN;
+	exports.isMaxSafeInteger = isMaxSafeInteger;
+	exports.isMinSafeInteger = isMinSafeInteger;
 	exports.isZero = isZero;
 	exports.isZeroPositive = isZeroPositive;
 	exports.isZeroNegative = isZeroNegative;
@@ -1744,12 +1991,36 @@
 	exports.isNotString = isNotString;
 	exports.isSymbol = isSymbol;
 	exports.isNotSymbol = isNotSymbol;
+	exports.isArrayBuffer = isArrayBuffer;
+	exports.isNotArrayBuffer = isNotArrayBuffer;
+	exports.isBigInt64Array = isBigInt64Array;
+	exports.isNotBigInt64Array = isNotBigInt64Array;
+	exports.isBigUint64Array = isBigUint64Array;
+	exports.isNotBigUint64Array = isNotBigUint64Array;
+	exports.isFloat32Array = isFloat32Array;
+	exports.isNotFloat32Array = isNotFloat32Array;
+	exports.isFloat64Array = isFloat64Array;
+	exports.isNotFloat64Array = isNotFloat64Array;
+	exports.isInt16Array = isInt16Array;
+	exports.isNotInt16Array = isNotInt16Array;
+	exports.isInt32Array = isInt32Array;
+	exports.isNotInt32Array = isNotInt32Array;
+	exports.isInt8Array = isInt8Array;
+	exports.isNotInt8Array = isNotInt8Array;
+	exports.isUint16Array = isUint16Array;
+	exports.isNotUint16Array = isNotUint16Array;
+	exports.isUint32Array = isUint32Array;
+	exports.isNotUint32Array = isNotUint32Array;
+	exports.isUint8Array = isUint8Array;
+	exports.isNotUint8Array = isNotUint8Array;
+	exports.isUint8ClampedArray = isUint8ClampedArray;
+	exports.isNotUint8ClampedArray = isNotUint8ClampedArray;
+	exports.isDefined = isDefined;
+	exports.isNotDefined = isNotDefined;
 	exports.isEmpty = isEmpty;
 	exports.isNotEmpty = isNotEmpty;
 	exports.isNull = isNull;
 	exports.isNotNull = isNotNull;
-	exports.isDefined = isDefined;
-	exports.isNotDefined = isNotDefined;
 	exports.isUndefined = isUndefined;
 	exports.isNotUndefined = isNotUndefined;
 	exports.ABSOLUTE_ZERO_KELVIN = ABSOLUTE_ZERO_KELVIN;
@@ -1766,5 +2037,5 @@
 
 	Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=itee-validators.umd.js.map
