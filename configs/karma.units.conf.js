@@ -68,10 +68,10 @@ function CreateKarmaUnitsConfiguration ( config ) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        //        browsers: [ 'Firefox' ],
+        browsers: [ 'Firefox' ],
         //        browsers: [ 'Chrome' ],
         //        browsers: [ 'Edge' ],
-        browsers: [ 'Firefox', 'Chrome', 'Edge' ],
+        //        browsers: [ 'Firefox', 'Chrome', 'Edge' ],
 
         // Format assertion errors and stack traces. Useful for removing vendors and compiled sources. Return an empty line '' to remove it.
         formatError: () => '',

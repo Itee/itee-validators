@@ -1,14 +1,21 @@
+language: node_js
+node_js:
+  - "7"
+  - "8"
+  - "9"
+  - "10"
+
 env:
   - MOZ_HEADLESS=1
 
 addons:
   firefox: latest
 
-language: node_js
+before_script: npm run clean && npm run build-test
 
-node_js:
-  - "6"
-  - "7"
-  - "8"
-  - "9"
-  - "10"
+jobs:
+  include:
+    - stage: deploy
+      if: branch = master
+      node_js: "10"
+      script: npm run release && npx semantic-release
