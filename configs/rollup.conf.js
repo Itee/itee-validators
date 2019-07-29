@@ -47,7 +47,10 @@ function CreateBuildsConfigs ( options ) {
             const outputPath = path.join( output, `${fileName}.${format}.js` )
 
             configs.push( {
-                input:   input,
+                input:    input,
+                external: [
+                    'fs'
+                ],
                 plugins: [
                     replace( {
                         defines: {
@@ -58,7 +61,9 @@ function CreateBuildsConfigs ( options ) {
                     commonJs( {
                         include: 'node_modules/**'
                     } ),
-                    nodeResolve()
+                    nodeResolve( {
+                        preferBuiltins: true
+                    } )
                 ],
                 treeshake: treeshake,
                 output:    {
@@ -77,7 +82,10 @@ function CreateBuildsConfigs ( options ) {
             const outputPath = path.join( output, `${fileName}.${format}.min.js` )
 
             configs.push( {
-                input:   input,
+                input:    input,
+                external: [
+                    'fs'
+                ],
                 plugins: [
                     replace( {
                         defines: {
@@ -88,7 +96,9 @@ function CreateBuildsConfigs ( options ) {
                     commonJs( {
                         include: 'node_modules/**'
                     } ),
-                    nodeResolve(),
+                    nodeResolve( {
+                        preferBuiltins: true
+                    } ),
                     uglify()
                 ],
                 treeshake: treeshake,
