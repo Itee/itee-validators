@@ -27,7 +27,7 @@ const isArraySuite = suite( 'isArray', () => {
 const isNotArraySuite = suite( 'isNotArray', () => {
 
     benchmark( 'isNotArray()', Itee.TestsUtils.iterateOverDataMap( isNotArray ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
-    benchmark( 'isNotArray()', Itee.TestsUtils.iterateOverDataMap( isNotArray_0 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+    benchmark( 'isNotArray_0()', Itee.TestsUtils.iterateOverDataMap( isNotArray_0 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
 
