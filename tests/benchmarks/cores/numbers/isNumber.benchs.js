@@ -63,8 +63,8 @@ const isIntegerSuite = suite( 'isInteger', () => {
 const isFloatSuite = suite( 'isFloat', () => {
 
     benchmark( 'isFloat()', Itee.TestsUtils.iterateOverDataMap( isFloat ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
-    benchmark( 'isFloat()', Itee.TestsUtils.iterateOverDataMap( isFloat_1 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
-    benchmark( 'isFloat()', Itee.TestsUtils.iterateOverDataMap( isFloat_2 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+    benchmark( 'isFloat_1()', Itee.TestsUtils.iterateOverDataMap( isFloat_1 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+    benchmark( 'isFloat_2()', Itee.TestsUtils.iterateOverDataMap( isFloat_2 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
 
