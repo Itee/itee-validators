@@ -42,7 +42,7 @@ function CreateKarmaUnitsConfiguration ( config ) {
         reporters: [ 'mocha', 'html' ],
 
         htmlReporter: {
-            outputFile: 'reports/report.html',
+            outputFile: '../documentation/UnitTestsReport.html',
 
             // Optional
             pageTitle:       'Unit Tests',
