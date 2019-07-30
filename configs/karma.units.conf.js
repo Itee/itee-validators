@@ -9,6 +9,8 @@
 
 /* eslint-env node */
 
+const packageInfos = require( '../package' )
+
 /**
  * Will assign an appropriate configuration object about unit tests for karma.
  *
@@ -27,7 +29,7 @@ function CreateKarmaUnitsConfiguration ( config ) {
         frameworks: [ 'mocha', 'chai' ],
 
         // list of files / patterns to load in the browser
-        files: [ 'builds/itee-validators.units.js' ],
+        files: [ `builds/${packageInfos.name}.units.js` ],
 
         // list of files to exclude
         exclude: [],

@@ -10,8 +10,9 @@
  *
  */
 
-const commonJs    = require( 'rollup-plugin-commonjs' )
-const nodeResolve = require( 'rollup-plugin-node-resolve' )
+const packageInfos = require( '../package' )
+const commonJs     = require( 'rollup-plugin-commonjs' )
+const nodeResolve  = require( 'rollup-plugin-node-resolve' )
 
 /**
  *
@@ -24,8 +25,8 @@ function CreateTestsBuildsConfigs ( /*options*/ ) {
 
     return [
         {
-            input:   'tests/units/itee-validators.units.js',
-            plugins: [
+            input:     `tests/units/${packageInfos.name}.units.js`,
+            plugins:   [
                 commonJs( {
                     include: 'node_modules/**'
                 } ),
@@ -36,12 +37,12 @@ function CreateTestsBuildsConfigs ( /*options*/ ) {
                 indent: '\t',
                 format: 'iife',
                 name:   'Itee.Units',
-                file:   'tests/builds/itee-validators.units.js'
+                file:   `tests/builds/${packageInfos.name}.units.js`
             }
         },
         {
-            input:   'tests/benchmarks/itee-validators.benchs.js',
-            plugins: [
+            input:     `tests/benchmarks/${packageInfos.name}.benchs.js`,
+            plugins:   [
                 commonJs( {
                     include: 'node_modules/**'
                 } ),
@@ -52,12 +53,12 @@ function CreateTestsBuildsConfigs ( /*options*/ ) {
                 indent: '\t',
                 format: 'iife',
                 name:   'Itee.Benchs',
-                file:   'tests/builds/itee-validators.benchs.js'
+                file:   `tests/builds/${packageInfos.name}.benchs.js`
             }
         },
         {
-            input:   'tests/utils/itee-validators.tests-utils.js',
-            plugins: [
+            input:     `tests/utils/${packageInfos.name}.tests-utils.js`,
+            plugins:   [
                 commonJs( {
                     include: 'node_modules/**'
                 } ),
@@ -68,7 +69,7 @@ function CreateTestsBuildsConfigs ( /*options*/ ) {
                 indent: '\t',
                 format: 'iife',
                 name:   'Itee',
-                file:   'tests/builds/itee-validators.tests-utils.js',
+                file:   `tests/builds/${packageInfos.name}.tests-utils.js`,
                 extend: true
             }
         }

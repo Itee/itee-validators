@@ -9,6 +9,8 @@
 
 /* eslint-env node */
 
+const packageInfos = require( '../package' )
+
 /**
  * Will assign an appropriate configuration object about benchmarks for karma.
  *
@@ -29,8 +31,8 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
 
         // list of files / patterns to load in the browser
         files: [
-            'builds/itee-validators.tests-utils.js',
-            'builds/itee-validators.benchs.js'
+            `builds/${packageInfos.name}.tests-utils.js`,
+            `builds/${packageInfos.name}.benchs.js`
         ],
 
         // list of files to exclude
