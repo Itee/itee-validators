@@ -39,7 +39,7 @@ function CreateEslintConfiguration () {
             'no-multiple-empty-lines':  [ 1, { 'max': 2 } ],
             'no-mixed-spaces-and-tabs': 'off',
             'mocha/no-exclusive-tests': 'error',
-            'no-console':               'off',
+            'no-console':               'warn',
             'no-multi-spaces':          [
                 'error', {
                     exceptions: {

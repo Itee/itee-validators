@@ -114,6 +114,7 @@ gulp.task( 'clean', () => {
 
     return del( [
         './builds',
+        './tests/builds',
         './documentation'
     ] )
 
@@ -243,30 +244,7 @@ gulp.task( 'test', gulp.series( 'unit', 'bench' ) )
 
 gulp.task( 'build-test', ( done ) => {
 
-    const options = parseArgs( process.argv, {
-        string:  [ 'n', 'i', 'f', 'e' ],
-        boolean: [ 's', 't' ],
-        default: {
-            n: 'itee-validators',
-            i: path.join( __dirname, 'sources' ),
-            o: path.join( __dirname, 'builds' ),
-            f: 'esm,cjs,iife,umd',
-            e: 'dev',
-            s: true,
-            t: true
-        },
-        alias: {
-            n: 'name',
-            i: 'input',
-            o: 'output',
-            f: 'format',
-            e: 'env',
-            s: 'sourcemap',
-            t: 'treeshake'
-        }
-    } )
-
-    const configs = require( './configs/rollup.test.conf' )( options )
+    const configs = require( './configs/rollup.test.conf' )()
 
     nextBuild()
 

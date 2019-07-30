@@ -9,6 +9,8 @@
 
 /* eslint-env node */
 
+const packageInfos = require( '../package' )
+
 /**
  * Will assign an appropriate configuration object about benchmarks for karma.
  *
@@ -29,8 +31,8 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
 
         // list of files / patterns to load in the browser
         files: [
-            'builds/itee-validators.tests-utils.js',
-            'builds/itee-validators.benchs.js'
+            `builds/${packageInfos.name}.tests-utils.js`,
+            `builds/${packageInfos.name}.benchs.js`
         ],
 
         // list of files to exclude
@@ -84,9 +86,9 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
         browsers: [ 'Firefox' ],
-        //        browsers: [ 'Firefox', 'Chrome' ],
+        //        browsers: [ 'Chrome' ],
+        //        browsers: [ 'Edge' ],
         //        browsers: [ 'Firefox', 'Chrome', 'Edge' ],
-        //        browsers: [ 'Firefox', 'Chrome', 'Edge', 'IE' ],
 
         // Format assertion errors and stack traces. Useful for removing vendors and compiled sources. Return an empty line '' to remove it.
         formatError: () => '',

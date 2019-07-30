@@ -33,7 +33,7 @@ function CreateJsdocConfiguration () {
         'opts':         {
             'template':    'node_modules/docdash/',
             'encoding':    'utf8',
-            'destination': './documentation/',
+            'destination': './documentation/API/',
             'recurse':     true,
             'verbose':     true,
             'private':     true

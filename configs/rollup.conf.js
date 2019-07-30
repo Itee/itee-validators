@@ -29,68 +29,34 @@ function CreateBuildsConfigs ( options ) {
     const input     = options.input
     const output    = options.output
     const formats   = options.format.split( ',' )
-    const env       = options.env.split( ',' )
-    const dev       = ( env.includes( 'dev' ) )
-    const prod      = ( env.includes( 'prod' ) )
+    const envs      = options.env.split( ',' )
     const sourcemap = options.sourcemap
     const treeshake = options.treeshake
-
-    const fileName = path.basename( input, '.js' )
+    const fileName  = path.basename( input, '.js' )
 
     const configs = []
+
     for ( let formatIndex = 0, numberOfFormats = formats.length ; formatIndex < numberOfFormats ; ++formatIndex ) {
 
-        const format = formats[ formatIndex ]
+        for ( let envIndex = 0, numberOfEnvs = envs.length ; envIndex < numberOfEnvs ; envIndex++ ) {
 
-        if ( dev ) {
-
-            const outputPath = path.join( output, `${fileName}.${format}.js` )
+            const env            = envs[ envIndex ]
+            const prod           = ( env.includes( 'prod' ) )
+            const format         = formats[ formatIndex ]
+            const buildForNodeJS = ( format === 'cjs' )
+            const outputPath     = ( prod ) ? path.join( output, `${fileName}.${format}.min.js` ) : path.join( output, `${fileName}.${format}.js` )
 
             configs.push( {
                 input:    input,
-                external: [
-                    'fs'
-                ],
+                external: ( buildForNodeJS ) ? [
+                    'fs',
+                    'path'
+                ] : [],
                 plugins: [
                     replace( {
                         defines: {
                             IS_REMOVE: false,
-                            IS_NODE:   ( format === 'cjs' )
-                        }
-                    } ),
-                    commonJs( {
-                        include: 'node_modules/**'
-                    } ),
-                    nodeResolve( {
-                        preferBuiltins: true
-                    } )
-                ],
-                treeshake: treeshake,
-                output:    {
-                    indent:    '\t',
-                    format:    format,
-                    name:      name,
-                    file:      outputPath,
-                    sourcemap: sourcemap
-                }
-            } )
-
-        }
-
-        if ( prod ) {
-
-            const outputPath = path.join( output, `${fileName}.${format}.min.js` )
-
-            configs.push( {
-                input:    input,
-                external: [
-                    'fs'
-                ],
-                plugins: [
-                    replace( {
-                        defines: {
-                            IS_REMOVE: false,
-                            IS_NODE:   ( format === 'cjs' )
+                            IS_NODE:   buildForNodeJS
                         }
                     } ),
                     commonJs( {
@@ -99,15 +65,42 @@ function CreateBuildsConfigs ( options ) {
                     nodeResolve( {
                         preferBuiltins: true
                     } ),
-                    uglify()
+                    prod && uglify()
                 ],
+                onwarn: ( { loc, frame, message } ) => {
+
+                    // Ignore some errors
+                    if ( message.includes( 'Circular dependency' ) ) { return }
+                    if ( message.includes( 'plugin uglify is deprecated' ) ) { return }
+
+                    if ( loc ) {
+                        process.stderr.write( `/!\\ ${loc.file} (${loc.line}:${loc.column}) ${frame} ${message}\n` )
+                    } else {
+                        process.stderr.write( `/!\\ ${message}\n` )
+                    }
+                },
                 treeshake: treeshake,
                 output:    {
-                    indent:    '\t',
-                    format:    format,
-                    name:      name,
-                    file:      outputPath,
-                    sourcemap: sourcemap
+                    // core options
+                    file:    outputPath,
+                    format:  format,
+                    name:    name,
+                    globals: {},
+
+                    // advanced options
+                    paths:     {},
+                    banner:    '',
+                    footer:    '',
+                    intro:     '',
+                    outro:     '',
+                    sourcemap: sourcemap,
+                    interop:   true,
+
+                    // danger zone
+                    exports: 'auto',
+                    amd:     {},
+                    indent:  '\t',
+                    strict:  true
                 }
             } )
 
