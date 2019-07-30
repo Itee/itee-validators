@@ -167,7 +167,7 @@ gulp.task( 'doc', ( done ) => {
         'gulpfile.js',
         './configs/*.js',
         './sources/**/*.js',
-//        './tests/**/*.js'
+        './tests/**/*.js'
     ]
 
     gulp.src( files, { read: false } )
