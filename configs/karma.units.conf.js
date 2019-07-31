@@ -84,10 +84,14 @@ function CreateKarmaUnitsConfiguration ( config ) {
         concurrency: 4,
 
         // If, during test execution, Karma does not receive any message from a browser
-        browserNoActivityTimeout: 5000,
+        browserNoActivityTimeout: 60000,
+        browserDisconnectTimeout: 60000,
 
         // If browser does not capture in given timeout [ms], kill it
-        captureTimeout: 5000
+        captureTimeout: 60000,
+
+        // How long will Karma wait for browser process to terminate before sending a SIGKILL signal.
+        processKillTimeout: 360000
 
     } )
 
