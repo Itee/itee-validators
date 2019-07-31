@@ -1,7 +1,7 @@
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [MIT]{@link https://opensource.org/licenses/MIT}
- * @module gulpfile
+ * @module Building
  *
  * @description The gulp tasks file. It allow to run some tasks from command line interface.<br>
  * The available tasks are:
