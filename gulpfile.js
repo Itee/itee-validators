@@ -14,6 +14,7 @@
  * <li>unit</li>
  * <li>bench</li>
  * <li>test</li>
+ * <li>build-test</li>
  * <li>build</li>
  * <li>release</li>
  * </ul>
@@ -230,10 +231,6 @@ gulp.task( 'bench', ( done ) => {
  * @description Will run unit tests and benchmarks using karma
  */
 gulp.task( 'test', gulp.series( 'unit', 'bench' ) )
-
-///
-/// BUILDS
-///
 
 /**
  * @method npm run build-test
