@@ -2,7 +2,7 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/cores
+ * @module sources/cores/cores
  * @description Export the Validator singleton instance that allow to validate complex data structure
  * @example
  *

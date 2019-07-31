@@ -2,12 +2,9 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module config
+ * @module Config-Karma-Benchs
  * @description The file manage the karma configuration for run benchmarks that are under `tests/benchmarks` folder
- *
  */
-
-/* eslint-env node */
 
 const packageInfos = require( '../package' )
 
@@ -26,7 +23,6 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        //        frameworks: [],
         frameworks: [ 'benchmark' ],
 
         // list of files / patterns to load in the browser

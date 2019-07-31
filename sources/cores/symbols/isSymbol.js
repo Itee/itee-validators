@@ -2,7 +2,7 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/symbols
+ * @module sources/cores/symbols/isSymbol
  * @desc Export function to validate if a value is a symbol
  * @example todo
  *

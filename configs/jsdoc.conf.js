@@ -2,12 +2,9 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module config
+ * @module Config-JsDoc
  * @description The configuration file of the jsdoc plugin
- *
  */
-
-/* eslint-env node */
 
 /**
  * Will create an appropriate configuration object for jsdoc
@@ -31,19 +28,11 @@ function CreateJsdocConfiguration () {
         'plugins':      [],
         'recurseDepth': 2,
         'opts':         {
-            'template':    'node_modules/docdash/',
             'encoding':    'utf8',
             'destination': './documentation/API/',
             'recurse':     true,
             'verbose':     true,
             'private':     true
-        },
-        'templates': {
-            'cleverLinks':    false,
-            'monospaceLinks': false,
-            'default':        {
-                'includeDate': false
-            }
         }
     }
 

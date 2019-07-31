@@ -2,7 +2,7 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file sources/cores/_numbers
+ * @module sources/cores/numbers
  * @description Export the validation methods about numbers
  *
  */

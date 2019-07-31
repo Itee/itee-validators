@@ -2,9 +2,8 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module config
+ * @module Config-EsLint
  * @description The configuration file of the eslint plugin
- *
  */
 
 /**
@@ -22,11 +21,11 @@ function CreateEslintConfiguration () {
             'es6':     true
         },
         globals: {
-            'BigInt64Array':  "readonly",
-            'BigUint64Array': "readonly"
+            'BigInt64Array':  'readonly',
+            'BigUint64Array': 'readonly'
         },
         parserOptions: {
-            ecmaVersion: 6,
+            ecmaVersion: 2018,
             sourceType:  'module'
         },
         extends: [
