@@ -54,11 +54,11 @@ function CreateRollupConfigs ( options ) {
             const outputPath = ( prod ) ? path.join( output, `${fileName}.${format}.min.js` ) : path.join( output, `${fileName}.${format}.js` )
 
             configs.push( {
-                input:     input,
-                external:  ( [ 'esm', 'cjs' ].includes( format ) ) ? [
+                input:    input,
+                external: ( [ 'esm', 'cjs' ].includes( format ) ) ? [
                     'fs'
                 ] : [],
-                plugins:   [
+                plugins: [
                     replace( {
                         defines: {
                             IS_REMOVE: prod
@@ -76,7 +76,7 @@ function CreateRollupConfigs ( options ) {
                     } ),
                     prod && uglify()
                 ],
-                onwarn:    ( { loc, frame, message } ) => {
+                onwarn: ( { loc, frame, message } ) => {
 
                     // Ignore some errors
                     if ( message.includes( 'Circular dependency' ) ) { return }
@@ -94,9 +94,7 @@ function CreateRollupConfigs ( options ) {
                     file:    outputPath,
                     format:  format,
                     name:    name,
-                    globals: {
-                        fs: 'fs'
-                    },
+                    globals: {},
 
                     // advanced options
                     paths:     {},
