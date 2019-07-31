@@ -2,19 +2,31 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module files/directories/isValidDirectoryPath
+ * @description Export function to validate if a value is a valid directory path
+ * @example todo
  *
  */
 
 import { isValidPath }     from '../paths/isValidPath'
 import { isDirectoryPath } from './isDirectoryPath'
 
-export function isValidDirectoryPath ( path ) {
-    return ( isValidPath( path ) && isDirectoryPath( path ) )
+/**
+ * Check if given data is a valid directory path
+ *
+ * @param data {*} The data to check against the directory path type
+ * @returns {boolean} true if data is a valid directory path, false otherwise
+ */
+export function isValidDirectoryPath ( data ) {
+    return ( isValidPath( data ) && isDirectoryPath( data ) )
 }
 
-export function isInvalidDirectoryPath ( path ) {
-    return !isValidDirectoryPath( path )
+/**
+ * Check if given data is an invalid directory path
+ *
+ * @param data {*} The data to check against the directory path type
+ * @returns {boolean} true if data is an invalid directory path, false otherwise
+ */
+export function isInvalidDirectoryPath ( data ) {
+    return !isValidDirectoryPath( data )
 }

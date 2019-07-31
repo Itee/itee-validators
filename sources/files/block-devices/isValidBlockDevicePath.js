@@ -2,19 +2,31 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module files/block-devices/isValidBlockDevicePath
+ * @description Export function to validate if a value is a valid block device path.
+ * @example todo
  *
  */
 
 import { isValidPath }       from '../paths/isValidPath'
 import { isBlockDevicePath } from './isBlockDevicePath'
 
-export function isValidBlockDevicePath ( path ) {
-    return ( isValidPath( path ) && isBlockDevicePath( path ) )
+/**
+ * Check if given data is a valid block device path
+ *
+ * @param data {*} The data to check against the block device path type
+ * @returns {boolean} true if data is a valid block device path, false otherwise
+ */
+export function isValidBlockDevicePath ( data ) {
+    return ( isValidPath( data ) && isBlockDevicePath( data ) )
 }
 
-export function isInvalidBlockDevicePath ( path ) {
-    return !isValidBlockDevicePath( path )
+/**
+ * Check if given data is an invalid block device path
+ *
+ * @param data {*} The data to check against the block device path type
+ * @returns {boolean} true if data is an invalid block device path, false otherwise
+ */
+export function isInvalidBlockDevicePath ( data ) {
+    return !isValidBlockDevicePath( data )
 }

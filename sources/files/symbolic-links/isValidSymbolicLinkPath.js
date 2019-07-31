@@ -2,19 +2,31 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module files/symbolic-links/isSocketPath
+ * @description Export function to validate if a value is a valid symbolic links path
+ * @example todo
  *
  */
 
 import { isValidPath }        from '../paths/isValidPath'
 import { isSymbolicLinkPath } from './isSymbolicLinkPath'
 
-export function isValidSymbolicLinkPath ( path ) {
-    return ( isValidPath( path ) && isSymbolicLinkPath( path ) )
+/**
+ * Check if given data is a valid symbolic link path
+ *
+ * @param data {*} The data to check against the symbolic link path type
+ * @returns {boolean} true if data is a valid symbolic link path, false otherwise
+ */
+export function isValidSymbolicLinkPath ( data ) {
+    return ( isValidPath( data ) && isSymbolicLinkPath( data ) )
 }
 
-export function isInvalidSymbolicLinkPath ( path ) {
-    return !isValidSymbolicLinkPath( path )
+/**
+ * Check if given data is an invalid symbolic link path
+ *
+ * @param data {*} The data to check against the symbolic link path type
+ * @returns {boolean} true if data is an invalid symbolic link path, false otherwise
+ */
+export function isInvalidSymbolicLinkPath ( data ) {
+    return !isValidSymbolicLinkPath( data )
 }

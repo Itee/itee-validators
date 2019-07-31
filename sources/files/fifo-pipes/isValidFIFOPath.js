@@ -2,19 +2,34 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
+ * @module files/fifo-pipes/isValidFIFOPath
+ * @description Export function to validate if a value is a valid fifo pipes path
  *
- * @example Todo
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example todo
  *
  */
 
 import { isValidPath } from '../paths/isValidPath'
 import { isFIFOPath }  from './isFIFOPath'
 
-export function isValidFIFOPath ( path ) {
-    return ( isValidPath( path ) && isFIFOPath( path ) )
+/**
+ * Check if given data is a valid fifo path
+ *
+ * @param data {*} The data to check against the fifo path type
+ * @returns {boolean} true if data is a valid fifo path, false otherwise
+ */
+export function isValidFIFOPath ( data ) {
+    return ( isValidPath( data ) && isFIFOPath( data ) )
 }
 
-export function isInvalidFIFOPath ( path ) {
-    return !isValidFIFOPath( path )
+/**
+ * Check if given data is an invalid fifo path
+ *
+ * @param data {*} The data to check against the fifo path type
+ * @returns {boolean} true if data is an invalid fifo path, false otherwise
+ */
+export function isInvalidFIFOPath ( data ) {
+    return !isValidFIFOPath( data )
 }

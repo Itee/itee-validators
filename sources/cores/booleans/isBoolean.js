@@ -2,7 +2,7 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/booleans
+ * @module cores/booleans/isBoolean
  * @desc Export function to validate if a value is a boolean or not
  * @example todo
  *
@@ -19,8 +19,8 @@ export function isBoolean ( data ) {
 }
 
 // #if IS_REMOVE
-export function isBoolean_alt ( value ) {
-    return typeof value === 'boolean' || ( typeof value === 'object' && value !== null && typeof value.valueOf() === 'boolean' )
+export function isBoolean_alt ( data ) {
+    return typeof data === 'boolean' || ( typeof data === 'object' && data !== null && typeof data.valueOf() === 'boolean' )
 }
 
 // #endif

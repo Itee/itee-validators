@@ -2,9 +2,8 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file sources/cores/_cores
- * @description This is the cores main export entry point.
- * It expose all exports of the voids, booleans, numbers, symbols, strings, arrays, objects and functions validators.
+ * @file sources/cores/_typed_arrays
+ * @description This is the cores main export entry point. It expose all exports of the array buffer.
  *
  */
 
