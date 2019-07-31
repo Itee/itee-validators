@@ -2,36 +2,25 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module config
+ * @module Configs
  * @description The file manage the rollup configuration for build tests
- *
- * @requires {@link module: [rollup-plugin-commonjs]{@link https://github.com/rollup/rollup-plugin-commonjs}}
- * @requires {@link module: [rollup-plugin-node-resolve]{@link https://github.com/rollup/rollup-plugin-node-resolve}}
- *
  */
 
 const packageInfos = require( '../package' )
-const commonJs     = require( 'rollup-plugin-commonjs' )
-const nodeResolve  = require( 'rollup-plugin-node-resolve' )
 
 /**
+ * Will create an appropriate configuration object for rollup, related to the given arguments.
  *
  * @generator
- * @param options
- * @return {Array.<json>}
+ * @return {Array.<json>} An array of rollup configuration
  */
-function CreateTestsBuildsConfigs ( /*options*/ ) {
+function CreateTestsRollupConfigs ( /*options*/ ) {
     'use strict'
 
     return [
         {
-            input:     `tests/units/${packageInfos.name}.units.js`,
-            plugins:   [
-                commonJs( {
-                    include: 'node_modules/**'
-                } ),
-                nodeResolve()
-            ],
+            input:   `tests/units/${packageInfos.name}.units.js`,
+            plugins: [],
             treeshake: true,
             output:    {
                 indent: '\t',
@@ -41,13 +30,8 @@ function CreateTestsBuildsConfigs ( /*options*/ ) {
             }
         },
         {
-            input:     `tests/benchmarks/${packageInfos.name}.benchs.js`,
-            plugins:   [
-                commonJs( {
-                    include: 'node_modules/**'
-                } ),
-                nodeResolve()
-            ],
+            input:   `tests/benchmarks/${packageInfos.name}.benchs.js`,
+            plugins: [],
             treeshake: true,
             output:    {
                 indent: '\t',
@@ -57,13 +41,8 @@ function CreateTestsBuildsConfigs ( /*options*/ ) {
             }
         },
         {
-            input:     `tests/utils/${packageInfos.name}.tests-utils.js`,
-            plugins:   [
-                commonJs( {
-                    include: 'node_modules/**'
-                } ),
-                nodeResolve()
-            ],
+            input:   `tests/utils/${packageInfos.name}.tests-utils.js`,
+            plugins: [],
             treeshake: true,
             output:    {
                 indent: '\t',
@@ -77,4 +56,4 @@ function CreateTestsBuildsConfigs ( /*options*/ ) {
 
 }
 
-module.exports = CreateTestsBuildsConfigs
+module.exports = CreateTestsRollupConfigs

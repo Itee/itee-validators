@@ -2,27 +2,26 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module config
+ * @module Configs
  * @description The file manage the rollup configuration for build sources
  *
  * @requires {@link module: [path]{@link https://nodejs.org/api/path.html}}
  * @requires {@link module: [rollup-plugin-re]{@link https://github.com/jetiny/rollup-plugin-re}}
  * @requires {@link module: [rollup-plugin-uglify-es]{@link https://github.com/ezekielchentnik/rollup-plugin-uglify-es}}
- *
  */
 
 const path        = require( 'path' )
-const commonJs    = require( 'rollup-plugin-commonjs' )
-const nodeResolve = require( 'rollup-plugin-node-resolve' )
 const replace     = require( 'rollup-plugin-re' )
 const uglify      = require( 'rollup-plugin-uglify-es' )
 
 /**
+ * Will create an appropriate configuration object for rollup, related to the given arguments.
+ *
  * @generator
  * @param options
- * @return {Array}
+ * @return {Array.<json>} An array of rollup configuration
  */
-function CreateBuildsConfigs ( options ) {
+function CreateRollupConfigs ( options ) {
     'use strict'
 
     const name      = options.name
@@ -40,30 +39,22 @@ function CreateBuildsConfigs ( options ) {
 
         for ( let envIndex = 0, numberOfEnvs = envs.length ; envIndex < numberOfEnvs ; envIndex++ ) {
 
-            const env            = envs[ envIndex ]
-            const prod           = ( env.includes( 'prod' ) )
-            const format         = formats[ formatIndex ]
-            const buildForNodeJS = ( format === 'cjs' )
-            const outputPath     = ( prod ) ? path.join( output, `${fileName}.${format}.min.js` ) : path.join( output, `${fileName}.${format}.js` )
+            const env        = envs[ envIndex ]
+            const prod       = ( env.includes( 'prod' ) )
+            const format     = formats[ formatIndex ]
+            const outputPath = ( prod ) ? path.join( output, `${fileName}.${format}.min.js` ) : path.join( output, `${fileName}.${format}.js` )
 
             configs.push( {
                 input:    input,
-                external: ( buildForNodeJS ) ? [
+                external: [
                     'fs',
                     'path'
-                ] : [],
+                ],
                 plugins: [
                     replace( {
                         defines: {
-                            IS_REMOVE: false,
-                            IS_NODE:   buildForNodeJS
+                            IS_REMOVE: prod
                         }
-                    } ),
-                    commonJs( {
-                        include: 'node_modules/**'
-                    } ),
-                    nodeResolve( {
-                        preferBuiltins: true
                     } ),
                     prod && uglify()
                 ],
@@ -112,5 +103,5 @@ function CreateBuildsConfigs ( options ) {
 
 }
 
-module.exports = CreateBuildsConfigs
+module.exports = CreateRollupConfigs
 
