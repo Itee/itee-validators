@@ -2,12 +2,9 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module config
+ * @module Configs
  * @description The file manage the karma configuration for run units tests that are under `tests/units` folder
- *
  */
-
-/* eslint-env node */
 
 const packageInfos = require( '../package' )
 
