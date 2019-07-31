@@ -1,8 +1,10 @@
+import fs from 'fs';
+
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/arrays
+ * @module sources/cores/arrays/isArray
  * @desc Export function to validate if a value is an array or not
  * @example
  *
@@ -44,7 +46,7 @@ function isNotArray ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/arrays
+ * @module sources/cores/arrays/isEmptyArray
  * @desc Export function to validate if a value is an array of array or not
  * @example todo
  *
@@ -84,7 +86,7 @@ function isNotEmptyArray ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/arrays
+ * @module sources/cores/arrays/isArrayOfArray
  * @desc Export function to validate if a value is an array of array or not
  * @example todo
  *
@@ -138,7 +140,7 @@ function isNotArrayOfArray ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/arrays
+ * @module sources/cores/arrays/isArrayOfMultiElement
  * @desc Export function to validate if a value is an array of array or not
  * @example todo
  *
@@ -162,7 +164,7 @@ function isArrayOfMultiElement ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/voids
+ * @module sources/cores/voids/isNull
  * @desc Export function to validate if a value is a void
  * @example todo
  *
@@ -194,7 +196,7 @@ function isNotNull ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/arrays
+ * @module sources/cores/arrays/isArrayOfNull
  * @desc Export function to validate if a value is an array of array or not
  * @example todo
  *
@@ -248,7 +250,7 @@ function isNotArrayOfNull ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/voids
+ * @module sources/cores/voids/isDefined
  * @desc Export function to validate if a value is a void
  * @example todo
  *
@@ -280,7 +282,7 @@ function isNotDefined ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/objects
+ * @module sources/cores/objects/isObject
  * @desc Export function to validate if a value is an object
  * @example todo
  *
@@ -315,7 +317,7 @@ function isNotObject ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/arrays
+ * @module sources/cores/arrays/isArrayOfObject
  * @desc Export function to validate if a value is an array of array or not
  * @example todo
  *
@@ -369,7 +371,7 @@ function isNotArrayOfObject ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/arrays
+ * @module sources/cores/arrays/isArrayOfSingleElement
  * @desc Export function to validate if a value is an array of array or not
  * @example todo
  *
@@ -397,7 +399,7 @@ function isArrayOfSingleElement ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/strings
+ * @module sources/cores/strings/isString
  * @desc Export function to validate if a value is a string
  * @example todo
  *
@@ -431,7 +433,7 @@ function isNotString ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/arrays
+ * @module sources/cores/arrays/isArrayOfString
  * @desc Export function to validate if a value is an array of array or not
  * @example todo
  *
@@ -487,7 +489,7 @@ function isNotArrayOfString ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/voids
+ * @module sources/cores/voids/isUndefined
  * @desc Export function to validate if a value is a void
  * @example todo
  *
@@ -519,7 +521,7 @@ function isNotUndefined ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/arrays
+ * @module sources/cores/arrays/isArrayOfUndefined
  * @desc Export function to validate if a value is an array of array or not
  * @example todo
  *
@@ -573,19 +575,7 @@ function isNotArrayOfUndefined ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file sources/cores/_arrays
- * @description Export the validation methods about Arrays
- */
-
-//todo: isArrayOfNumbers
-//todo: isArrayOfBooleans
-//todo: isArrayOfFunctions
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module cores/booleans
+ * @module sources/cores/booleans/isBoolean
  * @desc Export function to validate if a value is a boolean or not
  * @example todo
  *
@@ -619,34 +609,37 @@ function isNotBoolean ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/booleans/isTrue
+ * @desc Export function to validate if a value is a boolean set to true or false
+ * @example todo
  *
  */
 
-function isTrue ( value ) {
-    return ( isBoolean( value ) && ( value === true ) )
+/**
+ * Check if given data is a boolean with value to true
+ *
+ * @param data {*} The data to check against true value
+ * @returns {boolean} true if data is a boolean set to true, false otherwise.
+ */
+function isTrue ( data ) {
+    return ( isBoolean( data ) && ( data === true ) )
 }
 
-function isFalse ( value ) {
-    return ( isBoolean( value ) && ( value === false ) )
+/**
+ * Check if given data is a boolean with value to false
+ *
+ * @param data {*} The data to check against false value
+ * @returns {boolean} true if data is a boolean set to false, false otherwise.
+ */
+function isFalse ( data ) {
+    return ( isBoolean( data ) && ( data === false ) )
 }
 
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file sources/cores/_booleans
- * @description Export the validation methods about booleans
- *
- */
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module cores/functions
+ * @module sources/cores/functions/isFunction
  * @desc Export function to validate if a value is a function or not
  * @example todo
  *
@@ -678,16 +671,7 @@ function isNotFunction ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file sources/cores/_functions
- * @description Export the validation methods about functions
- *
- */
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module cores/numbers/isZero
+ * @module sources/cores/numbers/isZero
  * @desc Export function to validate if a value is a finite number
  * @example todo
  *
@@ -727,7 +711,7 @@ function isZeroNegative ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/numbers/isNumber
+ * @module sources/cores/numbers/isNumber
  * @desc Export function to validate if a value is a finite number
  * @example todo
  *
@@ -840,7 +824,7 @@ function isNaN ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/numbers/isInfinite
+ * @module sources/cores/numbers/isInfinite
  * @desc Export function to validate if a value is a finite number
  * @example todo
  *
@@ -896,7 +880,7 @@ function isFinite ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/numbers/isMax
+ * @module sources/cores/numbers/isMax
  * @desc Export function to validate if a value is a finite number
  * @example todo
  *
@@ -926,7 +910,7 @@ function isMaxNegative ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/numbers/isMin
+ * @module sources/cores/numbers/isMin
  * @desc Export function to validate if a value is a finite number
  * @example todo
  *
@@ -956,7 +940,7 @@ function isMinNegative ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/numbers/isSafeInteger
+ * @module sources/cores/numbers/isSafeInteger
  * @desc Export function to validate if a value is a finite number
  * @example todo
  *
@@ -986,16 +970,7 @@ function isMinSafeInteger ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file sources/cores/_numbers
- * @description Export the validation methods about numbers
- *
- */
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module cores/objects
+ * @module sources/cores/objects/isEmptyObject
  * @desc Export function to validate if a value is an object
  * @example todo
  *
@@ -1042,16 +1017,8 @@ function isNotEmptyObject ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file sources/cores/_objects
- * @description Export the validation methods about objects
- */
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module cores/strings
- * @desc Export function to validate if a value is a string
+ * @module sources/cores/strings/isEmptyString
+ * @desc Export function to validate if a value is a empty string
  * @example todo
  *
  */
@@ -1090,8 +1057,8 @@ function isNotEmptyString ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/strings
- * @desc Export function to validate if a value is a string
+ * @module sources/cores/strings/isBlankString
+ * @desc Export function to validate if a value is a blank string
  * @example todo
  *
  */
@@ -1128,15 +1095,7 @@ function isNotBlankString ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file sources/cores/_strings
- * @description Export the validation methods about strings
- */
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module cores/symbols
+ * @module sources/cores/symbols/isSymbol
  * @desc Export function to validate if a value is a symbol
  * @example todo
  *
@@ -1168,15 +1127,7 @@ function isNotSymbol ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file sources/cores/_symbols
- * @description Export the validation methods about symbols
- */
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module cores/voids
+ * @module sources/cores/voids/isEmpty
  * @desc Export function to validate if a value is a void
  * @example todo
  *
@@ -1217,15 +1168,7 @@ function isNotEmpty ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file sources/cores/_voids
- * @description Export the validation methods about voids notions like null or undefined
- */
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module cores/cores
+ * @module sources/cores/cores
  * @description Export the Validator singleton instance that allow to validate complex data structure
  * @example
  *
@@ -1515,16 +1458,28 @@ if ( isNotDefined( validatorInstance ) ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/typed-arrays/isArrayBuffer
+ * @desc Export function to validate if a value is a array buffer
+ * @example todo
  *
  */
 
+/**
+ * Check if given data is a array buffer
+ *
+ * @param data {*} The data to check against the array buffer type
+ * @returns {boolean} true if data is a array buffer, false otherwise.
+ */
 function isArrayBuffer ( data ) {
     return ( data instanceof ArrayBuffer )
 }
 
+/**
+ * Check if given data is not a array buffer
+ *
+ * @param data {*} The data to check against the array buffer type
+ * @returns {boolean} true if data is not a array buffer, false otherwise.
+ */
 function isNotArrayBuffer ( data ) {
     return !isArrayBuffer( data )
 }
@@ -1533,16 +1488,28 @@ function isNotArrayBuffer ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/typed-arrays/isBigInt64Array
+ * @desc Export function to validate if a value is a big int 64 array buffer
+ * @example todo
  *
  */
 
+/**
+ * Check if given data is a big int 64 array
+ *
+ * @param data {*} The data to check against the big int 64 array type
+ * @returns {boolean} true if data is a big int 64 array, false otherwise.
+ */
 function isBigInt64Array ( data ) {
     return ( data instanceof BigInt64Array )
 }
 
+/**
+ * Check if given data is not a big int 64 array
+ *
+ * @param data {*} The data to check against the big int 64 array type
+ * @returns {boolean} true if data is not a big int 64 array, false otherwise.
+ */
 function isNotBigInt64Array ( data ) {
     return !isBigInt64Array( data )
 }
@@ -1551,16 +1518,28 @@ function isNotBigInt64Array ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/typed-arrays/isBigUint64Array
+ * @desc Export function to validate if a value is a big unsigned int 64 array buffer
+ * @example todo
  *
  */
 
+/**
+ * Check if given data is a big unsigned int 64 array
+ *
+ * @param data {*} The data to check against the big unsigned int 64 array type
+ * @returns {boolean} true if data is a big unsigned int 64 array, false otherwise.
+ */
 function isBigUint64Array ( data ) {
     return ( data instanceof BigUint64Array )
 }
 
+/**
+ * Check if given data is not a big unsigned int 64 array
+ *
+ * @param data {*} The data to check against the big unsigned int 64 array type
+ * @returns {boolean} true if data is not a big unsigned int 64 array, false otherwise.
+ */
 function isNotBigUint64Array ( data ) {
     return !isBigUint64Array( data )
 }
@@ -1569,16 +1548,28 @@ function isNotBigUint64Array ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/typed-arrays/isFloat32Array
+ * @desc Export function to validate if a value is a float 32 array buffer
+ * @example todo
  *
  */
 
+/**
+ * Check if given data is a float 32 array 
+ *
+ * @param data {*} The data to check against the float 32 array  type
+ * @returns {boolean} true if data is a float 32 array , false otherwise.
+ */
 function isFloat32Array ( data ) {
     return ( data instanceof Float32Array )
 }
 
+/**
+ * Check if given data is not a float 32 array
+ *
+ * @param data {*} The data to check against the float 32 array  type
+ * @returns {boolean} true if data is not a float 32 array , false otherwise.
+ */
 function isNotFloat32Array ( data ) {
     return !isFloat32Array( data )
 }
@@ -1587,16 +1578,28 @@ function isNotFloat32Array ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/typed-arrays/isFloat64Array
+ * @desc Export function to validate if a value is a float 64 array buffer
+ * @example todo
  *
  */
 
+/**
+ * Check if given data is a float 64 array
+ *
+ * @param data {*} The data to check against the float 64 array  type
+ * @returns {boolean} true if data is a float 64 array , false otherwise.
+ */
 function isFloat64Array ( data ) {
     return ( data instanceof Float64Array )
 }
 
+/**
+ * Check if given data is not a float 64 array
+ *
+ * @param data {*} The data to check against the float 64 array  type
+ * @returns {boolean} true if data is not a float 64 array , false otherwise.
+ */
 function isNotFloat64Array ( data ) {
     return !isFloat64Array( data )
 }
@@ -1605,16 +1608,28 @@ function isNotFloat64Array ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/typed-arrays/isInt16Array
+ * @desc Export function to validate if a value is a int 16 array buffer
+ * @example todo
  *
  */
 
+/**
+ * Check if given data is a int 16 array
+ *
+ * @param data {*} The data to check against the int 16 array  type
+ * @returns {boolean} true if data is a int 16 array , false otherwise.
+ */
 function isInt16Array ( data ) {
     return ( data instanceof Int16Array )
 }
 
+/**
+ * Check if given data is not a int 16 array
+ *
+ * @param data {*} The data to check against the int 16 array  type
+ * @returns {boolean} true if data is not a int 16 array , false otherwise.
+ */
 function isNotInt16Array ( data ) {
     return !isInt16Array( data )
 }
@@ -1623,16 +1638,28 @@ function isNotInt16Array ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/typed-arrays/isInt32Array
+ * @desc Export function to validate if a value is a int 32 array buffer
+ * @example todo
  *
  */
 
+/**
+ * Check if given data is a int 32 array
+ *
+ * @param data {*} The data to check against the int 32 array  type
+ * @returns {boolean} true if data is a int 32 array , false otherwise.
+ */
 function isInt32Array ( data ) {
     return ( data instanceof Int32Array )
 }
 
+/**
+ * Check if given data is not a int 32 array
+ *
+ * @param data {*} The data to check against the int 32 array  type
+ * @returns {boolean} true if data is not a int 32 array , false otherwise.
+ */
 function isNotInt32Array ( data ) {
     return !isInt32Array( data )
 }
@@ -1641,16 +1668,28 @@ function isNotInt32Array ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/typed-arrays/isInt8Array
+ * @desc Export function to validate if a value is a int 8 array buffer
+ * @example todo
  *
  */
 
+/**
+ * Check if given data is a int 8 array
+ *
+ * @param data {*} The data to check against the int 8 array  type
+ * @returns {boolean} true if data is a int 8 array , false otherwise.
+ */
 function isInt8Array ( data ) {
     return ( data instanceof Int8Array )
 }
 
+/**
+ * Check if given data is not a int 8 array
+ *
+ * @param data {*} The data to check against the int 8 array  type
+ * @returns {boolean} true if data is not a int 8 array , false otherwise.
+ */
 function isNotInt8Array ( data ) {
     return !isInt8Array( data )
 }
@@ -1659,16 +1698,28 @@ function isNotInt8Array ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/typed-arrays/isUint16Array
+ * @desc Export function to validate if a value is a unsigned int 16 array buffer
+ * @example todo
  *
  */
 
+/**
+ * Check if given data is a unsigned int 16 array
+ *
+ * @param data {*} The data to check against the unsigned int 16 array  type
+ * @returns {boolean} true if data is a unsigned int 16 array , false otherwise.
+ */
 function isUint16Array ( data ) {
     return ( data instanceof Uint16Array )
 }
 
+/**
+ * Check if given data is not a unsigned int 16 array
+ *
+ * @param data {*} The data to check against the unsigned int 16 array  type
+ * @returns {boolean} true if data is not a unsigned int 16 array , false otherwise.
+ */
 function isNotUint16Array ( data ) {
     return !isUint16Array( data )
 }
@@ -1677,16 +1728,28 @@ function isNotUint16Array ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/typed-arrays/isUint32Array
+ * @desc Export function to validate if a value is a unsigned int 32 array buffer
+ * @example todo
  *
  */
 
+/**
+ * Check if given data is a unsigned int 32 array
+ *
+ * @param data {*} The data to check against the unsigned int 32 array  type
+ * @returns {boolean} true if data is a unsigned int 32 array , false otherwise.
+ */
 function isUint32Array ( data ) {
     return ( data instanceof Uint32Array )
 }
 
+/**
+ * Check if given data is not a unsigned int 32 array
+ *
+ * @param data {*} The data to check against the unsigned int 32 array  type
+ * @returns {boolean} true if data is not a unsigned int 32 array , false otherwise.
+ */
 function isNotUint32Array ( data ) {
     return !isUint32Array( data )
 }
@@ -1695,16 +1758,28 @@ function isNotUint32Array ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/typed-arrays/isUint8Array
+ * @desc Export function to validate if a value is a unsigned int 8 array buffer
+ * @example todo
  *
  */
 
+/**
+ * Check if given data is a unsigned int 8 array
+ *
+ * @param data {*} The data to check against the unsigned int 8 array  type
+ * @returns {boolean} true if data is a unsigned int 8 array , false otherwise.
+ */
 function isUint8Array ( data ) {
     return ( data instanceof Uint8Array )
 }
 
+/**
+ * Check if given data is not a unsigned int 8 array
+ *
+ * @param data {*} The data to check against the unsigned int 8 array  type
+ * @returns {boolean} true if data is not a unsigned int 8 array , false otherwise.
+ */
 function isNotUint8Array ( data ) {
     return !isUint8Array( data )
 }
@@ -1713,16 +1788,28 @@ function isNotUint8Array ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file Todo
- *
- * @example Todo
+ * @module sources/cores/typed-arrays/isUint8ClampedArray
+ * @desc Export function to validate if a value is a unsigned clamped int 8 array buffer
+ * @example todo
  *
  */
 
+/**
+ * Check if given data is a unsigned clamped int 8 array
+ *
+ * @param data {*} The data to check against the unsigned clamped int 8 array  type
+ * @returns {boolean} true if data is a unsigned clamped int 8 array , false otherwise.
+ */
 function isUint8ClampedArray ( data ) {
     return ( data instanceof Uint8ClampedArray )
 }
 
+/**
+ * Check if given data is not a unsigned clamped int 8 array
+ *
+ * @param data {*} The data to check against the unsigned clamped int 8 array  type
+ * @returns {boolean} true if data is not a unsigned clamped int 8 array , false otherwise.
+ */
 function isNotUint8ClampedArray ( data ) {
     return !isUint8ClampedArray( data )
 }
@@ -1731,51 +1818,585 @@ function isNotUint8ClampedArray ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file sources/cores/_cores
- * @description This is the cores main export entry point.
- * It expose all exports of the voids, booleans, numbers, symbols, strings, arrays, objects and functions validators.
+ * @module sources/file-system/block-devices/isBlockDevicePath
+ * @description Export function to validate if a value is a block device path
  *
- */
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
  *
- * @file sources/cores/_cores
- * @description This is the cores main export entry point.
- * It expose all exports of the voids, booleans, numbers, symbols, strings, arrays, objects and functions validators.
- *
- */
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @file sources/maths/_maths
- * @description This is the maths export entry point.
- * It expose all exports of the ... sub-folder.
- *
- */
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module physics/temperatues
- * @desc Export constants about temperatures
  * @example todo
  *
  */
 
-const ABSOLUTE_ZERO_KELVIN     = 0.00000000045;
-const ABSOLUTE_ZERO_CELSIUS    = -273.14999999955;
+/**
+ * Check if given path is a block device path
+ *
+ * @param path {string|Buffer|URL} The data to check against the block device path type
+ * @returns {boolean} true if path is a block device path, false otherwise
+ */
+function isBlockDevicePath ( path ) {
+    return fs.statSync( path ).isBlockDevice()
+}
+
+/**
+ * Check if given path is not a block device path
+ *
+ * @param path {string|Buffer|URL} The data to check against the block device path type
+ * @returns {boolean} true if path is not a block device path, false otherwise
+ */
+function isNotBlockDevicePath ( path ) {
+    return !isBlockDevicePath( path )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/paths/isValidPath
+ * @description Export function to validate if a value is a valid path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example todo
+ *
+ */
+
+/**
+ * Check if given data is a valid file path
+ *
+ * @param data {*} The data to check against the path type
+ * @returns {boolean} true if data is a valid path, false otherwise
+ */
+function isValidPath ( data ) {
+    return fs.existsSync( data )
+}
+
+/**
+ * Check if given data is not a valid file path
+ *
+ * @param data {*} The data to check against the path type
+ * @returns {boolean} true if data is a valid path, false otherwise
+ */
+function isInvalidPath ( data ) {
+    return !isValidPath( data )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/block-devices/isValidBlockDevicePath
+ * @description Export function to validate if a value is a valid block device path.
+ * @example todo
+ *
+ */
+
+/**
+ * Check if given data is a valid block device path
+ *
+ * @param data {*} The data to check against the block device path type
+ * @returns {boolean} true if data is a valid block device path, false otherwise
+ */
+function isValidBlockDevicePath ( data ) {
+    return ( isValidPath( data ) && isBlockDevicePath( data ) )
+}
+
+/**
+ * Check if given data is an invalid block device path
+ *
+ * @param data {*} The data to check against the block device path type
+ * @returns {boolean} true if data is an invalid block device path, false otherwise
+ */
+function isInvalidBlockDevicePath ( data ) {
+    return !isValidBlockDevicePath( data )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/character-devices/isCharacterDevicePath
+ * @description Export function to validate if a value is a character device path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example todo
+ *
+ */
+
+/**
+ * Check if given path is a character device path
+ *
+ * @param path {string|Buffer|URL} The data to check against the character device path type
+ * @returns {boolean} true if path is a character device path, false otherwise
+ */
+function isCharacterDevicePath ( path ) {
+    return fs.statSync( path ).isCharacterDevice()
+}
+
+/**
+ * Check if given path is not a character device path
+ *
+ * @param path {string|Buffer|URL} The data to check against the character device path type
+ * @returns {boolean} true if path is not a character device path, false otherwise
+ */
+function isNotCharacterDevicePath ( path ) {
+    return !isCharacterDevicePath( path )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/character-devices/isValidCharacterDevicePath
+ * @description Export function to validate if a value is a valid character device path
+ * @example todo
+ *
+ */
+
+/**
+ * Check if given data is a valid character device path
+ *
+ * @param data {*} The data to check against the character device path type
+ * @returns {boolean} true if data is a valid character device path, false otherwise
+ */
+function isValidCharacterDevicePath ( data ) {
+    return ( isValidPath( data ) && isCharacterDevicePath( data ) )
+}
+
+/**
+ * Check if given data is an invalid character device path
+ *
+ * @param data {*} The data to check against the character device path type
+ * @returns {boolean} true if data is an invalid character device path, false otherwise
+ */
+function isInvalidCharacterDevicePath ( data ) {
+    return !isValidCharacterDevicePath( data )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/directories/isDirectoryPath
+ * @description Export function to validate if a value is a directories path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example todo
+ *
+ */
+
+/**
+ * Check if given path is a directory path
+ *
+ * @param path {string|Buffer|URL} The data to check against the directory path type
+ * @returns {boolean} true if path is a directory path, false otherwise
+ */
+function isDirectoryPath ( path ) {
+    return fs.statSync( path ).isDirectory()
+}
+
+/**
+ * Check if given path is a not directory path
+ *
+ * @param path {string|Buffer|URL} The data to check against the directory path type
+ * @returns {boolean} true if path is a not directory path, false otherwise
+ */
+function isNotDirectoryPath ( path ) {
+    return !isDirectoryPath( path )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/directories/isEmptyDirectory
+ * @description Export function to validate if a value is a empty directories
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example todo
+ *
+ */
+
+/**
+ * Check if given directory path is an empty directory
+ *
+ * @param directoryPath {string|Buffer|URL} The directory path to check the emptiness
+ * @returns {boolean} true if directory is empty, false otherwise
+ */
+function isEmptyDirectory ( directoryPath ) {
+    return ( fs.readdirSync( directoryPath ).length === 0 )
+}
+
+/**
+ * Check if given directory path is not an empty directory
+ *
+ * @param directoryPath {string|Buffer|URL} The directory path to check the emptiness
+ * @returns {boolean} true if directory is not empty, false otherwise
+ */
+function isNotEmptyDirectory ( directoryPath ) {
+    return !isEmptyDirectory( directoryPath )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/directories/isValidDirectoryPath
+ * @description Export function to validate if a value is a valid directory path
+ * @example todo
+ *
+ */
+
+/**
+ * Check if given data is a valid directory path
+ *
+ * @param data {*} The data to check against the directory path type
+ * @returns {boolean} true if data is a valid directory path, false otherwise
+ */
+function isValidDirectoryPath ( data ) {
+    return ( isValidPath( data ) && isDirectoryPath( data ) )
+}
+
+/**
+ * Check if given data is an invalid directory path
+ *
+ * @param data {*} The data to check against the directory path type
+ * @returns {boolean} true if data is an invalid directory path, false otherwise
+ */
+function isInvalidDirectoryPath ( data ) {
+    return !isValidDirectoryPath( data )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/fifo-pipes/isFIFOPath
+ * @description Export function to validate if a value is a fifo pipes path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example todo
+ *
+ */
+
+/**
+ * Check if given path is a fifo path
+ *
+ * @param path {string|Buffer|URL} The data to check against the fifo path type
+ * @returns {boolean} true if path is a fifo path, false otherwise
+ */
+function isFIFOPath ( path ) {
+    return fs.statSync( path ).isFIFO()
+}
+
+/**
+ * Check if given path is not a fifo path
+ *
+ * @param path {string|Buffer|URL} The data to check against the fifo path type
+ * @returns {boolean} true if path is not a fifo path, false otherwise
+ */
+function isNotFIFOPath ( path ) {
+    return !isFIFOPath( path )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/fifo-pipes/isValidFIFOPath
+ * @description Export function to validate if a value is a valid fifo pipes path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example todo
+ *
+ */
+
+/**
+ * Check if given data is a valid fifo path
+ *
+ * @param data {*} The data to check against the fifo path type
+ * @returns {boolean} true if data is a valid fifo path, false otherwise
+ */
+function isValidFIFOPath ( data ) {
+    return ( isValidPath( data ) && isFIFOPath( data ) )
+}
+
+/**
+ * Check if given data is an invalid fifo path
+ *
+ * @param data {*} The data to check against the fifo path type
+ * @returns {boolean} true if data is an invalid fifo path, false otherwise
+ */
+function isInvalidFIFOPath ( data ) {
+    return !isValidFIFOPath( data )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/files/isEmptyFile
+ * @description Export function to validate if a value is an empty file
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example todo
+ *
+ */
+
+/**
+ * Check if given file path is an empty file more or less a threshold in bytes.
+ *
+ * @param filePath {string|Buffer|URL} The directory path to check the emptiness
+ * @param threshold {number} An amount of byte below which it consider the file as empty ( 0 as default ).
+ * @returns {boolean} true if file is empty, false otherwise
+ */
+function isEmptyFile ( filePath, threshold = 0 ) {
+    return ( fs.statSync( filePath ).size <= threshold )
+}
+
+/**
+ * Check if given file path is not an empty file more or less a threshold in bytes.
+ *
+ * @param filePath {string|Buffer|URL} The directory path to check the emptiness
+ * @param threshold {number} An amount of byte above which it consider the file as not empty ( 0 as default ).
+ * @returns {boolean} true if file is not empty, false otherwise
+ */
+function isNotEmptyFile ( filePath, threshold = 0 ) {
+    return ( fs.statSync( filePath ).size > threshold )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/files/isFilePath
+ * @description Export function to validate if a value is a file path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example todo
+ *
+ */
+
+/**
+ * Check if given path is a file path
+ *
+ * @param path {string|Buffer|URL} The data to check against the file path type
+ * @returns {boolean} true if path is a file path, false otherwise
+ */
+function isFilePath ( path ) {
+    return fs.statSync( path ).isFile()
+}
+
+/**
+ * Check if given path is not a file path
+ *
+ * @param path {string|Buffer|URL} The data to check against the file path type
+ * @returns {boolean} true if path is not a file path, false otherwise
+ */
+function isNotFilePath ( path ) {
+    return !isFilePath( path )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/files/isValidFilePath
+ * @description Export function to validate if a value is a valid file path
+ * @example todo
+ *
+ */
+
+/**
+ * Check if given data is a valid file path
+ *
+ * @param data {*} The data to check against the file path type
+ * @returns {boolean} true if data is a valid file path, false otherwise
+ */
+function isValidFilePath ( data ) {
+    return ( isValidPath( data ) && isFilePath( data ) )
+}
+
+/**
+ * Check if given data is an invalid file path
+ *
+ * @param data {*} The data to check against the file path type
+ * @returns {boolean} true if data is an invalid file path, false otherwise
+ */
+function isInvalidFilePath ( data ) {
+    return !isValidFilePath( data )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/sockets/isSocketPath
+ * @description Export function to validate if a value is a socket path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example todo
+ *
+ */
+
+/**
+ * Check if given path is a socket path
+ *
+ * @param path {string|Buffer|URL} The data to check against the socket path type
+ * @returns {boolean} true if path is a socket path, false otherwise
+ */
+function isSocketPath ( path ) {
+    return fs.statSync( path ).isSocket()
+}
+
+/**
+ * Check if given path is not a socket path
+ *
+ * @param path {string|Buffer|URL} The data to check against the socket path type
+ * @returns {boolean} true if path is not a socket path, false otherwise
+ */
+function isNotSocketPath ( path ) {
+    return !isSocketPath( path )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/sockets/isValidSocketPath
+ * @description Export function to validate if a value is a valid socket path
+ * @example todo
+ *
+ */
+
+/**
+ * Check if given data is a valid socket path
+ *
+ * @param data {*} The data to check against the socket path type
+ * @returns {boolean} true if data is a valid socket path, false otherwise
+ */
+function isValidSocketPath ( data ) {
+    return ( isValidPath( data ) && isSocketPath( data ) )
+}
+
+/**
+ * Check if given data is an invalid socket path
+ *
+ * @param data {*} The data to check against the socket path type
+ * @returns {boolean} true if data is an invalid socket path, false otherwise
+ */
+function isInvalidSocketPath ( data ) {
+    return !isValidSocketPath( data )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/symbolic-links/isSocketPath
+ * @description Export function to validate if a value is a symbolic links path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example todo
+ *
+ */
+
+/**
+ * Check if given path is a symbolic link path
+ *
+ * @param path {string|Buffer|URL} The data to check against the symbolic link path type
+ * @returns {boolean} true if path is a symbolic link path, false otherwise
+ */
+function isSymbolicLinkPath ( path ) {
+    return fs.statSync( path ).isSymbolicLink()
+}
+
+/**
+ * Check if given path is not a symbolic link path
+ *
+ * @param path {string|Buffer|URL} The data to check against the symbolic link path type
+ * @returns {boolean} true if path is not a symbolic link path, false otherwise
+ */
+function isNotSymbolicLinkPath ( path ) {
+    return !isSymbolicLinkPath( path )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/symbolic-links/isSocketPath
+ * @description Export function to validate if a value is a valid symbolic links path
+ * @example todo
+ *
+ */
+
+/**
+ * Check if given data is a valid symbolic link path
+ *
+ * @param data {*} The data to check against the symbolic link path type
+ * @returns {boolean} true if data is a valid symbolic link path, false otherwise
+ */
+function isValidSymbolicLinkPath ( data ) {
+    return ( isValidPath( data ) && isSymbolicLinkPath( data ) )
+}
+
+/**
+ * Check if given data is an invalid symbolic link path
+ *
+ * @param data {*} The data to check against the symbolic link path type
+ * @returns {boolean} true if data is an invalid symbolic link path, false otherwise
+ */
+function isInvalidSymbolicLinkPath ( data ) {
+    return !isValidSymbolicLinkPath( data )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/physics/constants
+ * @desc Export constants about temperatures
+ *
+ */
+
+/**
+ * @const
+ * @type {number}
+ * @default 0.00000000045
+ * @desc This value corresponding to the absolute zero kelvin value
+ */
+const ABSOLUTE_ZERO_KELVIN = 0.00000000045;
+
+/**
+ * @const
+ * @type {number}
+ * @default -273.14999999955
+ * @desc This value corresponding to the absolute zero celsius value
+ */
+const ABSOLUTE_ZERO_CELSIUS = -273.14999999955;
+
+/**
+ * @const
+ * @type {number}
+ * @default -459.67
+ * @desc This value corresponding to the absolute zero fahrenheit value
+ */
 const ABSOLUTE_ZERO_FAHRENHEIT = -459.67;
 
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module physics/temperatues
+ * @module sources/physics/temperatues
  * @desc Export function to validate if a value is a temperature
  * @example todo
  *
@@ -1805,7 +2426,7 @@ function isNotCelsius ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module physics/temperatues
+ * @module sources/physics/temperatues
  * @desc Export function to validate if a value is a temperature
  * @example todo
  *
@@ -1835,7 +2456,7 @@ function isNotFahrenheit ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module physics/temperatues
+ * @module sources/physics/temperatues
  * @desc Export function to validate if a value is a temperature
  * @example todo
  *
@@ -1865,7 +2486,7 @@ function isNotKelvin ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module physics/temperatues
+ * @module sources/physics/temperatues
  * @desc Export function to validate if a value is a temperature
  * @example todo
  *
@@ -1873,8 +2494,8 @@ function isNotKelvin ( data ) {
 
 /**
  *
- * @param data
- * @return {boolean|*|boolean}
+ * @param data {*}
+ * @return {boolean}
  */
 function isTemperature ( data ) {
     return ( isKelvin( data ) || isCelsius( data ) || isFahrenheit( data ) )
@@ -1884,52 +2505,12 @@ function isTemperature ( data ) {
 
 /**
  *
- * @param data
+ * @param data {*}
  * @return {boolean}
  */
 function isNotTemperature ( data ) {
     return ( isNotKelvin( data ) && isNotCelsius( data ) && isNotFahrenheit( data ) )
 }
 
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @file sources/physics/_temperatures
- * @description Export the validation methods about temperatures
- */
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @file sources/physics/_physics
- * @description This is the physics export entry point.
- * It expose all exports of the temperatures sub-folder.
- *
- */
-
-/**
- * __________________________________________________________________________________________________________________________________________________________________________________________________
- * _/\\\\\\\\\\\________________________________________________________/\\\________/\\\_________________/\\\\\\__________________/\\\_______________________________________________________________
- * _\/////\\\///________________________________________________________\/\\\_______\/\\\________________\////\\\_________________\/\\\______________________________________________________________
- * ______\/\\\_________/\\\______________________________________________\//\\\______/\\\____________________\/\\\_____/\\\________\/\\\_____________________/\\\____________________________________
- * _______\/\\\______/\\\\\\\\\\\_____/\\\\\\\\______/\\\\\\\\_____________\//\\\____/\\\____/\\\\\\\\\_______\/\\\____\///_________\/\\\___/\\\\\\\\\_____/\\\\\\\\\\\_____/\\\\\_____/\\/\\\\\\\___
- * ________\/\\\_____\////\\\////____/\\\/////\\\___/\\\/////\\\_____________\//\\\__/\\\____\////////\\\______\/\\\_____/\\\___/\\\\\\\\\__\////////\\\___\////\\\////____/\\\///\\\__\/\\\/////\\\_
- * _________\/\\\________\/\\\_______/\\\\\\\\\\\___/\\\\\\\\\\\_______________\//\\\/\\\_______/\\\\\\\\\\_____\/\\\____\/\\\__/\\\////\\\____/\\\\\\\\\\_____\/\\\_______/\\\__\//\\\_\/\\\___\///_
- * __________\/\\\________\/\\\_/\\__\//\\///////___\//\\///////_________________\//\\\\\_______/\\\/////\\\_____\/\\\____\/\\\_\/\\\__\/\\\___/\\\/////\\\_____\/\\\_/\\__\//\\\__/\\\__\/\\\_______
- * ________/\\\\\\\\\\\____\//\\\\\____\//\\\\\\\\\\__\//\\\\\\\\\\________________\//\\\_______\//\\\\\\\\/\\__/\\\\\\\\\_\/\\\_\//\\\\\\\/\\_\//\\\\\\\\/\\____\//\\\\\____\///\\\\\/___\/\\\______
- * ________\///////////______\/////______\//////////____\//////////__________________\///_________\////////\//__\/////////__\///___\///////\//___\////////\//______\/////_______\/////_____\///______
- * __________________________________________________________________________________________________________________________________________________________________________________________________
- *
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @file sources/itee-validators
- * @description This is the main entry point to bundle the itee validators package.
- * It expose all exports of the cores, maths and physics sub-folder.
- *
- */
-
-export { isArray, isNotArray, isArrayOfArray, isNotArrayOfArray, isArrayOfMultiElement, isArrayOfNull, isNotArrayOfNull, isArrayOfObject, isNotArrayOfObject, isArrayOfSingleElement, isArrayOfString, isNotArrayOfString, isArrayOfUndefined, isNotArrayOfUndefined, isEmptyArray, isNotEmptyArray, isBoolean, isNotBoolean, isTrue, isFalse, validatorInstance as Validator, isFunction, isNotFunction, isInfinite, isInfiniteNegative, isInfinitePositive, isFinite, isMaxPositive, isMaxNegative, isMinPositive, isMinNegative, isNumber, isNumberPositive, isNumberNegative, isNotNumber, isInteger, isFloat, isNaN, isMaxSafeInteger, isMinSafeInteger, isZero, isZeroPositive, isZeroNegative, isEmptyObject, isNotEmptyObject, isObject, isNotObject, isBlankString, isNotBlankString, isEmptyString, isNotEmptyString, isString, isNotString, isSymbol, isNotSymbol, isArrayBuffer, isNotArrayBuffer, isBigInt64Array, isNotBigInt64Array, isBigUint64Array, isNotBigUint64Array, isFloat32Array, isNotFloat32Array, isFloat64Array, isNotFloat64Array, isInt16Array, isNotInt16Array, isInt32Array, isNotInt32Array, isInt8Array, isNotInt8Array, isUint16Array, isNotUint16Array, isUint32Array, isNotUint32Array, isUint8Array, isNotUint8Array, isUint8ClampedArray, isNotUint8ClampedArray, isDefined, isNotDefined, isEmpty, isNotEmpty, isNull, isNotNull, isUndefined, isNotUndefined, ABSOLUTE_ZERO_KELVIN, ABSOLUTE_ZERO_CELSIUS, ABSOLUTE_ZERO_FAHRENHEIT, isCelsius, isNotCelsius, isFahrenheit, isNotFahrenheit, isKelvin, isNotKelvin, isTemperature, isNotTemperature };
+export { ABSOLUTE_ZERO_CELSIUS, ABSOLUTE_ZERO_FAHRENHEIT, ABSOLUTE_ZERO_KELVIN, validatorInstance as Validator, isArray, isArrayBuffer, isArrayOfArray, isArrayOfMultiElement, isArrayOfNull, isArrayOfObject, isArrayOfSingleElement, isArrayOfString, isArrayOfUndefined, isBigInt64Array, isBigUint64Array, isBlankString, isBlockDevicePath, isBoolean, isCelsius, isCharacterDevicePath, isDefined, isDirectoryPath, isEmpty, isEmptyArray, isEmptyDirectory, isEmptyFile, isEmptyObject, isEmptyString, isFIFOPath, isFahrenheit, isFalse, isFilePath, isFinite, isFloat, isFloat32Array, isFloat64Array, isFunction, isInfinite, isInfiniteNegative, isInfinitePositive, isInt16Array, isInt32Array, isInt8Array, isInteger, isInvalidBlockDevicePath, isInvalidCharacterDevicePath, isInvalidDirectoryPath, isInvalidFIFOPath, isInvalidFilePath, isInvalidPath, isInvalidSocketPath, isInvalidSymbolicLinkPath, isKelvin, isMaxNegative, isMaxPositive, isMaxSafeInteger, isMinNegative, isMinPositive, isMinSafeInteger, isNaN, isNotArray, isNotArrayBuffer, isNotArrayOfArray, isNotArrayOfNull, isNotArrayOfObject, isNotArrayOfString, isNotArrayOfUndefined, isNotBigInt64Array, isNotBigUint64Array, isNotBlankString, isNotBlockDevicePath, isNotBoolean, isNotCelsius, isNotCharacterDevicePath, isNotDefined, isNotDirectoryPath, isNotEmpty, isNotEmptyArray, isNotEmptyDirectory, isNotEmptyFile, isNotEmptyObject, isNotEmptyString, isNotFIFOPath, isNotFahrenheit, isNotFilePath, isNotFloat32Array, isNotFloat64Array, isNotFunction, isNotInt16Array, isNotInt32Array, isNotInt8Array, isNotKelvin, isNotNull, isNotNumber, isNotObject, isNotSocketPath, isNotString, isNotSymbol, isNotSymbolicLinkPath, isNotTemperature, isNotUint16Array, isNotUint32Array, isNotUint8Array, isNotUint8ClampedArray, isNotUndefined, isNull, isNumber, isNumberNegative, isNumberPositive, isObject, isSocketPath, isString, isSymbol, isSymbolicLinkPath, isTemperature, isTrue, isUint16Array, isUint32Array, isUint8Array, isUint8ClampedArray, isUndefined, isValidBlockDevicePath, isValidCharacterDevicePath, isValidDirectoryPath, isValidFIFOPath, isValidFilePath, isValidPath, isValidSocketPath, isValidSymbolicLinkPath, isZero, isZeroNegative, isZeroPositive };
 //# sourceMappingURL=itee-validators.esm.js.map
