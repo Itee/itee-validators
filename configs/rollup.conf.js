@@ -48,8 +48,7 @@ function CreateRollupConfigs ( options ) {
             configs.push( {
                 input:    input,
                 external: [
-                    'fs',
-                    'path'
+                    'fs'
                 ],
                 plugins: [
                     replace( {
@@ -77,7 +76,9 @@ function CreateRollupConfigs ( options ) {
                     file:    outputPath,
                     format:  format,
                     name:    name,
-                    globals: {},
+                    globals: {
+                        fs: 'fs'
+                    },
 
                     // advanced options
                     paths:     {},
