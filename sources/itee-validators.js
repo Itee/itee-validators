@@ -21,6 +21,6 @@
  */
 
 export * from './cores/_cores'
-export * from './files/_files'
+export * from './file-system/_file-system'
 export * from './maths/_maths'
 export * from './physics/_physics'
