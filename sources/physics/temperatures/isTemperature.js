@@ -2,7 +2,7 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module physics/temperatues
+ * @module sources/physics/temperatues
  * @desc Export function to validate if a value is a temperature
  * @example todo
  *
@@ -23,8 +23,8 @@ import {
 
 /**
  *
- * @param data
- * @return {boolean|*|boolean}
+ * @param data {*}
+ * @return {boolean}
  */
 export function isTemperature ( data ) {
     return ( isKelvin( data ) || isCelsius( data ) || isFahrenheit( data ) )
@@ -34,7 +34,7 @@ export function isTemperature ( data ) {
 
 /**
  *
- * @param data
+ * @param data {*}
  * @return {boolean}
  */
 export function isNotTemperature ( data ) {

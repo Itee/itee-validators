@@ -2,7 +2,7 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module cores/booleans/isBoolean
+ * @module sources/cores/booleans/isBoolean
  * @desc Export function to validate if a value is a boolean or not
  * @example todo
  *

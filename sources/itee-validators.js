@@ -14,7 +14,7 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @file sources/itee-validators
+ * @module IteeValidators
  * @description This is the main entry point to bundle the itee validators package.
  * It expose all exports of the cores, maths and physics sub-folder.
  *
