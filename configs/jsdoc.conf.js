@@ -28,19 +28,11 @@ function CreateJsdocConfiguration () {
         'plugins':      [],
         'recurseDepth': 2,
         'opts':         {
-            'template':    'node_modules/docdash/',
             'encoding':    'utf8',
             'destination': './documentation/API/',
             'recurse':     true,
             'verbose':     true,
             'private':     true
-        },
-        'templates': {
-            'cleverLinks':    false,
-            'monospaceLinks': false,
-            'default':        {
-                'includeDate': false
-            }
         }
     }
 
