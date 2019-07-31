@@ -19,8 +19,8 @@ function CreateTestsRollupConfigs ( /*options*/ ) {
 
     return [
         {
-            input:   `tests/units/${packageInfos.name}.units.js`,
-            plugins: [],
+            input:     `tests/units/${packageInfos.name}.units.js`,
+            plugins:   [],
             treeshake: true,
             output:    {
                 indent: '\t',
@@ -30,8 +30,8 @@ function CreateTestsRollupConfigs ( /*options*/ ) {
             }
         },
         {
-            input:   `tests/benchmarks/${packageInfos.name}.benchs.js`,
-            plugins: [],
+            input:     `tests/benchmarks/${packageInfos.name}.benchs.js`,
+            plugins:   [],
             treeshake: true,
             output:    {
                 indent: '\t',
@@ -41,8 +41,8 @@ function CreateTestsRollupConfigs ( /*options*/ ) {
             }
         },
         {
-            input:   `tests/utils/${packageInfos.name}.tests-utils.js`,
-            plugins: [],
+            input:     `tests/utils/${packageInfos.name}.tests-utils.js`,
+            plugins:   [],
             treeshake: true,
             output:    {
                 indent: '\t',
