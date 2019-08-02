@@ -31,8 +31,11 @@
     "validator",
     "library"
   ],
-  "author": "Itee",
-  "license": "MIT",
+  "author": {
+    "name": "Itee (Tristan Valcke)",
+    "url": "https://github.com/Itee"
+  },
+  "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/Itee/itee-validators/issues"
   },
