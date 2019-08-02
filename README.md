@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Itee/itee-validators.svg?branch=master)](https://travis-ci.com/Itee/itee-validators)
+[![Build Status](https://travis-ci.org/Itee/itee-validators.svg?branch=master)](https://travis-ci.org/Itee/itee-validators)
 ___
 
 # <center>[Itee Validators]</center>
