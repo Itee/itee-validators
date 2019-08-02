@@ -12,7 +12,7 @@
  * @requires {@link module: [rollup-plugin-node-resolve]{@link https://github.com/rollup/rollup-plugin-node-resolve}}
  * @requires {@link module: [path]{@link https://nodejs.org/api/path.html}}
  * @requires {@link module: [rollup-plugin-re]{@link https://github.com/jetiny/rollup-plugin-re}}
- * @requires {@link module: [rollup-plugin-uglify-es]{@link https://github.com/ezekielchentnik/rollup-plugin-uglify-es}}
+ * @requires {@link module: [rollup-plugin-terser]{@link https://github.com/TrySound/rollup-plugin-terser}}
  */
 
 const builtins = require( 'rollup-plugin-node-builtins' )
@@ -21,7 +21,7 @@ const json     = require( 'rollup-plugin-json' )
 const path     = require( 'path' )
 const replace  = require( 'rollup-plugin-re' )
 const resolve  = require( 'rollup-plugin-node-resolve' )
-const uglify   = require( 'rollup-plugin-uglify-es' )
+const terser   = require( 'rollup-plugin-terser' ).terser
 
 /**
  * Will create an appropriate configuration object for rollup, related to the given arguments.
@@ -74,7 +74,7 @@ function CreateRollupConfigs ( options ) {
                     ( [ 'iife', 'umd' ].includes( format ) ) && builtins( {
                         fs: true
                     } ),
-                    prod && uglify()
+                    prod && terser()
                 ],
                 onwarn: ( { loc, frame, message } ) => {
 
