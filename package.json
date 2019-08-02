@@ -43,7 +43,12 @@
   "dependencies": {},
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.4",
+    "@semantic-release/commit-analyzer": "^6.2.0",
+    "@semantic-release/error": "^2.2.0",
     "@semantic-release/git": "^7.0.16",
+    "@semantic-release/github": "^5.4.2",
+    "@semantic-release/npm": "^5.1.13",
+    "@semantic-release/release-notes-generator": "^7.2.1",
     "ansi-colors": "^4.1.1",
     "benchmark": "^2.1.4",
     "chai": "^4.2.0",
@@ -83,17 +88,5 @@
   },
   "optionalDependencies": {
     "leveldown": "^5.1.1"
-  },
-  "release": {
-    "branch": "master",
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/error",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      "@semantic-release/github",
-      "@semantic-release/git"
-    ]
   }
 }
