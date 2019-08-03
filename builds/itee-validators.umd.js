@@ -1559,7 +1559,7 @@
 	 */
 
 	/**
-	 * Check if given data is a float 32 array 
+	 * Check if given data is a float 32 array
 	 *
 	 * @param data {*} The data to check against the float 32 array  type
 	 * @returns {boolean} true if data is a float 32 array , false otherwise.
@@ -12739,7 +12739,7 @@
 		fetchSpec: "^5.1.1"
 	};
 	var _requiredBy$1 = [
-		"/"
+		"#DEV:/"
 	];
 	var _resolved$1 = "https://registry.npmjs.org/leveldown/-/leveldown-5.1.1.tgz";
 	var _shasum$1 = "5d3a043f0ec76e91e189117ec3627bef0436c0dc";

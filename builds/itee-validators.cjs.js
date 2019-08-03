@@ -1561,7 +1561,7 @@ function isNotBigUint64Array ( data ) {
  */
 
 /**
- * Check if given data is a float 32 array 
+ * Check if given data is a float 32 array
  *
  * @param data {*} The data to check against the float 32 array  type
  * @returns {boolean} true if data is a float 32 array , false otherwise.
