@@ -35,8 +35,6 @@ export function isArrayOfArray ( data ) {
 
 }
 
-////////
-
 /**
  * Check if given data is not an array of array
  *

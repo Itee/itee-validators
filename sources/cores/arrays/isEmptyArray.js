@@ -24,8 +24,6 @@ export function isEmptyArray ( data ) {
 
 }
 
-///////
-
 /**
  * Check if given data is not an empty array
  *

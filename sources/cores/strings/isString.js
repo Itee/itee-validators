@@ -18,7 +18,18 @@ export function isString ( data ) {
     return ( typeof data === 'string' || data instanceof String )
 }
 
-// #if IS_REMOVE
+/**
+ * Check if given data is not a string
+ *
+ * @param data {*} The data to check against the string type
+ * @returns {boolean} true if data is not a string, false otherwise.
+ */
+export function isNotString ( data ) {
+    return !isString( data )
+}
+
+// #if IS_REMOVE_ON_BUILD
+
 export function isString_0 ( val ) {
     return ( typeof val === 'string' )
 }
@@ -40,15 +51,3 @@ export function isString_4 ( val ) {
 }
 
 // #endif
-
-//////
-
-/**
- * Check if given data is not a string
- *
- * @param data {*} The data to check against the string type
- * @returns {boolean} true if data is not a string, false otherwise.
- */
-export function isNotString ( data ) {
-    return !isString( data )
-}

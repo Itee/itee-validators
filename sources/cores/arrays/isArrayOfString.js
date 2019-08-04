@@ -33,7 +33,29 @@ export function isArrayOfString ( data ) {
 
 }
 
-// #if IS_REMOVE
+/**
+ * Check if given data is not an empty array where all values are not string
+ *
+ * @param data {*} The data to check against the array of strings
+ * @returns {boolean} true if data is not an empty array where all values are not string, false otherwise
+ */
+export function isNotArrayOfString ( data ) {
+
+    if ( isNotArray( data ) ) { return true }
+    if ( isEmptyArray( data ) ) { return true }
+
+    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
+        if ( isNotString( data[ index ] ) ) {
+            return true
+        }
+    }
+
+    return false
+
+}
+
+// #if IS_REMOVE_ON_BUILD
+
 export function isArrayOfString_1 ( data ) {
 
     if ( !Array.isArray( data ) ) {
@@ -56,26 +78,3 @@ export function isArrayOfString_1 ( data ) {
 }
 
 // #endif
-
-/////
-
-/**
- * Check if given data is not an empty array where all values are not string
- *
- * @param data {*} The data to check against the array of strings
- * @returns {boolean} true if data is not an empty array where all values are not string, false otherwise
- */
-export function isNotArrayOfString ( data ) {
-
-    if ( isNotArray( data ) ) { return true }
-    if ( isEmptyArray( data ) ) { return true }
-
-    for ( let index = 0, dataLength = data.length ; index < dataLength ; index++ ) {
-        if ( isNotString( data[ index ] ) ) {
-            return true
-        }
-    }
-
-    return false
-
-}

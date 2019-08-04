@@ -32,8 +32,6 @@ export function isEmpty ( data ) {
 
 }
 
-///
-
 /**
  * Check fullness of given data
  *

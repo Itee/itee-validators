@@ -26,8 +26,6 @@ export function isEmptyString ( data ) {
 
 }
 
-////
-
 /**
  * Check if given data is not an empty string
  *

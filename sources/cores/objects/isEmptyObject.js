@@ -35,8 +35,6 @@ export function isEmptyObject ( data ) {
 
 }
 
-////
-
 /**
  * Check if given data is not an empty object
  *

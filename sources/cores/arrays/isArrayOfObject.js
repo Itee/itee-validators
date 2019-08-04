@@ -33,8 +33,6 @@ export function isArrayOfObject ( data ) {
 
 }
 
-////
-
 /**
  * Check if given data is not an array where all values are of object type
  *

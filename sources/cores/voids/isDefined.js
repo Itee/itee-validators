@@ -18,8 +18,6 @@ export function isDefined ( data ) {
     return ( ( data !== null ) && ( typeof data !== 'undefined' ) )
 }
 
-/////
-
 /**
  * Check if given data is null or undefined
  *

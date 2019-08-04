@@ -18,8 +18,6 @@ export function isFunction ( data ) {
     return ( typeof data === 'function' )
 }
 
-///
-
 /**
  * Check if given data is not a function
  *
