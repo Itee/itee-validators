@@ -22,6 +22,33 @@ const path     = require( 'path' )
 const replace  = require( 'rollup-plugin-re' )
 const resolve  = require( 'rollup-plugin-node-resolve' )
 const terser   = require( 'rollup-plugin-terser' ).terser
+const packageInfos = require( '../package' )
+function computeBanner ( format ) {
+
+    let banner = ''
+
+    switch ( format ) {
+
+        case 'cjs':
+            banner = `console.log('Itee Validator v${packageInfos.version} - CommonJs')`
+            break
+
+        case 'esm':
+            banner = `console.log('Itee Validator v${packageInfos.version} - EsModule')`
+            break
+
+        case 'iife':
+            banner = `console.log('Itee Validator v${packageInfos.version} - Standalone')`
+            break
+
+        default:
+            throw new RangeError( `Invalid switch parameter: ${format}` )
+
+    }
+
+    return banner
+
+}
 
 /**
  * Will create an appropriate configuration object for rollup, related to the given arguments.
@@ -98,7 +125,7 @@ function CreateRollupConfigs ( options ) {
 
                     // advanced options
                     paths:     {},
-                    banner:    '',
+                    banner:    ( isProd ) ? '' : computeBanner( format ),
                     footer:    '',
                     intro:     '',
                     outro:     '',
