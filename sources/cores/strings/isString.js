@@ -18,7 +18,7 @@ export function isString ( data ) {
     return ( typeof data === 'string' || data instanceof String )
 }
 
-// #if IS_REMOVE
+// #if IS_REMOVE_ON_BUILD
 export function isString_0 ( val ) {
     return ( typeof val === 'string' )
 }

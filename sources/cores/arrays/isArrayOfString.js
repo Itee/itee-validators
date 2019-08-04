@@ -33,7 +33,7 @@ export function isArrayOfString ( data ) {
 
 }
 
-// #if IS_REMOVE
+// #if IS_REMOVE_ON_BUILD
 export function isArrayOfString_1 ( data ) {
 
     if ( !Array.isArray( data ) ) {

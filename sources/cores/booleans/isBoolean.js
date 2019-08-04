@@ -18,7 +18,7 @@ export function isBoolean ( data ) {
     return ( typeof data === 'boolean' )
 }
 
-// #if IS_REMOVE
+// #if IS_REMOVE_ON_BUILD
 export function isBoolean_alt ( data ) {
     return typeof data === 'boolean' || ( typeof data === 'object' && data !== null && typeof data.valueOf() === 'boolean' )
 }
@@ -37,7 +37,7 @@ export function isNotBoolean ( data ) {
     return ( typeof data !== 'boolean' )
 }
 
-// #if IS_REMOVE
+// #if IS_REMOVE_ON_BUILD
 export function isNotBoolean_negbase ( data ) {
     return !isBoolean( data )
 }

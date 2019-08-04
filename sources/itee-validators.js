@@ -21,6 +21,9 @@
  */
 
 export * from './cores/_cores'
-export * from './file-system/_file-system'
 export * from './maths/_maths'
 export * from './physics/_physics'
+
+// #if IS_BACKEND_SPECIFIC
+export * from './file-system/_file-system'
+// #endif

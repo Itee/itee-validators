@@ -26,7 +26,7 @@ export function isArray ( data ) {
     return Array.isArray( data )
 }
 
-// #if IS_REMOVE
+// #if IS_REMOVE_ON_BUILD
 
 // Not exported alternative for benchmark
 export function isArray_0 ( data ) {
@@ -47,7 +47,7 @@ export function isNotArray ( data ) {
     return !Array.isArray( data )
 }
 
-// #if IS_REMOVE
+// #if IS_REMOVE_ON_BUILD
 
 export function isNotArray_0 ( data ) {
     return !isArray( data )

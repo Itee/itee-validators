@@ -29,7 +29,7 @@ export function isNumber ( data ) {
 
 }
 
-// #if IS_REMOVE
+// #if IS_REMOVE_ON_BUILD
 export function isNumber_0 ( data ) {
     return ( typeof data === 'number' && !Number.isNaN( data ) )
 }
@@ -93,7 +93,7 @@ export function isInteger ( data ) {
     return Number.isInteger( data )
 }
 
-// #if IS_REMOVE
+// #if IS_REMOVE_ON_BUILD
 export function isInteger_0 ( data ) {
     return ( data === 0 && ( 1 / data ) === Number.POSITIVE_INFINITY )
 }
@@ -130,7 +130,7 @@ export function isFloat ( data ) {
 
 }
 
-// #if IS_REMOVE
+// #if IS_REMOVE_ON_BUILD
 export function isFloat_1 ( n ) {
     return n === +n && n !== ( n | 0 )
 }
