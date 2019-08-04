@@ -1,3 +1,4 @@
+console.log('Itee.Validators v4.0.1 - CommonJs')
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -34,10 +35,6 @@ function isArray ( data ) {
     return Array.isArray( data )
 }
 
-
-
-////////////////////
-
 /**
  * Check if given data is not an array
  *
@@ -71,8 +68,6 @@ function isEmptyArray ( data ) {
     return ( data.length === 0 )
 
 }
-
-///////
 
 /**
  * Check if given data is not an empty array
@@ -118,8 +113,6 @@ function isArrayOfArray ( data ) {
     return true
 
 }
-
-////////
 
 /**
  * Check if given data is not an array of array
@@ -186,8 +179,6 @@ function isNull ( data ) {
     return ( data === null )
 }
 
-///
-
 /**
  * Check if given data is not null
  *
@@ -228,8 +219,6 @@ function isArrayOfNull ( data ) {
     return true
 
 }
-
-/////
 
 /**
  * Check if given data is not an empty array where all values are not null
@@ -272,8 +261,6 @@ function isDefined ( data ) {
     return ( ( data !== null ) && ( typeof data !== 'undefined' ) )
 }
 
-/////
-
 /**
  * Check if given data is null or undefined
  *
@@ -306,8 +293,6 @@ function isObject ( data ) {
 
     return ( data.constructor === Object )
 }
-
-////
 
 /**
  * Check if given data is not an object
@@ -349,8 +334,6 @@ function isArrayOfObject ( data ) {
     return true
 
 }
-
-////
 
 /**
  * Check if given data is not an array where all values are of object type
@@ -421,10 +404,6 @@ function isString ( data ) {
     return ( typeof data === 'string' || data instanceof String )
 }
 
-
-
-//////
-
 /**
  * Check if given data is not a string
  *
@@ -465,10 +444,6 @@ function isArrayOfString ( data ) {
     return true
 
 }
-
-
-
-/////
 
 /**
  * Check if given data is not an empty array where all values are not string
@@ -511,8 +486,6 @@ function isUndefined ( data ) {
     return ( typeof data === 'undefined' )
 }
 
-///
-
 /**
  * Check if given data is defined
  *
@@ -554,8 +527,6 @@ function isArrayOfUndefined ( data ) {
 
 }
 
-////
-
 /**
  * Check if given data is not an empty array where all values are defined
  *
@@ -596,10 +567,6 @@ function isNotArrayOfUndefined ( data ) {
 function isBoolean ( data ) {
     return ( typeof data === 'boolean' )
 }
-
-
-
-//////
 
 /**
  * Check if given data is not a boolean
@@ -660,8 +627,6 @@ function isFalse ( data ) {
 function isFunction ( data ) {
     return ( typeof data === 'function' )
 }
-
-///
 
 /**
  * Check if given data is not a function
@@ -737,8 +702,6 @@ function isNumber ( data ) {
 
 }
 
-
-
 /**
  * Check if the data is a positive number
  *
@@ -763,8 +726,6 @@ function isNumberNegative ( data ) {
     return ( isNumber( data ) && data < 0 )
 }
 
-//////
-
 /**
  * Check if given data is not a number
  *
@@ -775,13 +736,6 @@ function isNotNumber ( data ) {
     return !( isNumber( data ) )
 }
 
-/////////
-
-//Todo: isInRange(x, y, value, xInclusive, yInclusive)
-//Todo: isInRangeZeroOne(value, zeroInclusive, oneInclusive) //inclusive
-
-/////////
-
 /**
  * Check if the given data is an integer number
  *
@@ -791,10 +745,6 @@ function isNotNumber ( data ) {
 function isInteger ( data ) {
     return Number.isInteger( data )
 }
-
-
-
-////////
 
 /**
  * Check if given data is a floating point number
@@ -811,10 +761,6 @@ function isFloat ( data ) {
     return data % 1 !== 0
 
 }
-
-
-
-////////
 
 /**
  * Check if given data is not a number
@@ -869,8 +815,6 @@ function isInfiniteNegative ( data ) {
 function isInfinitePositive ( data ) {
     return ( data === Number.POSITIVE_INFINITY )
 }
-
-///
 
 /**
  * Check if the given data is a finite number
@@ -1007,8 +951,6 @@ function isEmptyObject ( data ) {
 
 }
 
-////
-
 /**
  * Check if given data is not an empty object
  *
@@ -1044,8 +986,6 @@ function isEmptyString ( data ) {
     return ( data.length === 0 )
 
 }
-
-////
 
 /**
  * Check if given data is not an empty string
@@ -1083,8 +1023,6 @@ function isBlankString ( data ) {
     return ( !/\S/.test( data ) )
 }
 
-////
-
 /**
  * Check if the given data is not a blank string
  *
@@ -1116,8 +1054,6 @@ function isNotBlankString ( data ) {
 function isSymbol ( data ) {
     return ( typeof data === 'symbol' )
 }
-
-/////
 
 /**
  * Check if given data is not a symbol
@@ -1157,8 +1093,6 @@ function isEmpty ( data ) {
     return false
 
 }
-
-///
 
 /**
  * Check fullness of given data
@@ -1824,6 +1758,151 @@ function isNotUint8ClampedArray ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
+ * @module sources/physics/constants
+ * @desc Export constants about temperatures
+ *
+ */
+
+/**
+ * @const
+ * @type {number}
+ * @default 0.00000000045
+ * @desc This value corresponding to the absolute zero kelvin value
+ */
+const ABSOLUTE_ZERO_KELVIN = 0.00000000045;
+
+/**
+ * @const
+ * @type {number}
+ * @default -273.14999999955
+ * @desc This value corresponding to the absolute zero celsius value
+ */
+const ABSOLUTE_ZERO_CELSIUS = -273.14999999955;
+
+/**
+ * @const
+ * @type {number}
+ * @default -459.67
+ * @desc This value corresponding to the absolute zero fahrenheit value
+ */
+const ABSOLUTE_ZERO_FAHRENHEIT = -459.67;
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/physics/temperatues
+ * @desc Export function to validate if a value is a temperature
+ * @example todo
+ *
+ */
+
+/**
+ *
+ * @param data
+ * @return {boolean|*|boolean}
+ */
+function isCelsius ( data ) {
+    return ( isNumber( data ) && data >= ABSOLUTE_ZERO_CELSIUS )
+}
+
+/**
+ *
+ * @param data
+ * @return {boolean}
+ */
+function isNotCelsius ( data ) {
+    return !isCelsius( data )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/physics/temperatues
+ * @desc Export function to validate if a value is a temperature
+ * @example todo
+ *
+ */
+
+/**
+ *
+ * @param data
+ * @return {boolean|*|boolean}
+ */
+function isFahrenheit ( data ) {
+    return ( isNumber( data ) && data >= ABSOLUTE_ZERO_FAHRENHEIT )
+}
+
+/**
+ *
+ * @param data
+ * @return {boolean}
+ */
+function isNotFahrenheit ( data ) {
+    return !isFahrenheit( data )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/physics/temperatues
+ * @desc Export function to validate if a value is a temperature
+ * @example todo
+ *
+ */
+
+/**
+ *
+ * @param data
+ * @return {boolean|*|boolean}
+ */
+function isKelvin ( data ) {
+    return ( isNumber( data ) && data >= ABSOLUTE_ZERO_KELVIN )
+}
+
+/**
+ *
+ * @param data
+ * @return {boolean}
+ */
+function isNotKelvin ( data ) {
+    return !isKelvin( data )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/physics/temperatues
+ * @desc Export function to validate if a value is a temperature
+ * @example todo
+ *
+ */
+
+/**
+ *
+ * @param data {*}
+ * @return {boolean}
+ */
+function isTemperature ( data ) {
+    return ( isKelvin( data ) || isCelsius( data ) || isFahrenheit( data ) )
+}
+
+/**
+ *
+ * @param data {*}
+ * @return {boolean}
+ */
+function isNotTemperature ( data ) {
+    return ( isNotKelvin( data ) && isNotCelsius( data ) && isNotFahrenheit( data ) )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
  * @module sources/file-system/block-devices/isBlockDevicePath
  * @description Export function to validate if a value is a block device path
  *
@@ -2363,159 +2442,6 @@ function isValidSymbolicLinkPath ( data ) {
  */
 function isInvalidSymbolicLinkPath ( data ) {
     return !isValidSymbolicLinkPath( data )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/physics/constants
- * @desc Export constants about temperatures
- *
- */
-
-/**
- * @const
- * @type {number}
- * @default 0.00000000045
- * @desc This value corresponding to the absolute zero kelvin value
- */
-const ABSOLUTE_ZERO_KELVIN = 0.00000000045;
-
-/**
- * @const
- * @type {number}
- * @default -273.14999999955
- * @desc This value corresponding to the absolute zero celsius value
- */
-const ABSOLUTE_ZERO_CELSIUS = -273.14999999955;
-
-/**
- * @const
- * @type {number}
- * @default -459.67
- * @desc This value corresponding to the absolute zero fahrenheit value
- */
-const ABSOLUTE_ZERO_FAHRENHEIT = -459.67;
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/physics/temperatues
- * @desc Export function to validate if a value is a temperature
- * @example todo
- *
- */
-
-/**
- *
- * @param data
- * @return {boolean|*|boolean}
- */
-function isCelsius ( data ) {
-    return ( isNumber( data ) && data >= ABSOLUTE_ZERO_CELSIUS )
-}
-
-///
-
-/**
- *
- * @param data
- * @return {boolean}
- */
-function isNotCelsius ( data ) {
-    return !isCelsius( data )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/physics/temperatues
- * @desc Export function to validate if a value is a temperature
- * @example todo
- *
- */
-
-/**
- *
- * @param data
- * @return {boolean|*|boolean}
- */
-function isFahrenheit ( data ) {
-    return ( isNumber( data ) && data >= ABSOLUTE_ZERO_FAHRENHEIT )
-}
-
-///
-
-/**
- *
- * @param data
- * @return {boolean}
- */
-function isNotFahrenheit ( data ) {
-    return !isFahrenheit( data )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/physics/temperatues
- * @desc Export function to validate if a value is a temperature
- * @example todo
- *
- */
-
-/**
- *
- * @param data
- * @return {boolean|*|boolean}
- */
-function isKelvin ( data ) {
-    return ( isNumber( data ) && data >= ABSOLUTE_ZERO_KELVIN )
-}
-
-///
-
-/**
- *
- * @param data
- * @return {boolean}
- */
-function isNotKelvin ( data ) {
-    return !isKelvin( data )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/physics/temperatues
- * @desc Export function to validate if a value is a temperature
- * @example todo
- *
- */
-
-/**
- *
- * @param data {*}
- * @return {boolean}
- */
-function isTemperature ( data ) {
-    return ( isKelvin( data ) || isCelsius( data ) || isFahrenheit( data ) )
-}
-
-///
-
-/**
- *
- * @param data {*}
- * @return {boolean}
- */
-function isNotTemperature ( data ) {
-    return ( isNotKelvin( data ) && isNotCelsius( data ) && isNotFahrenheit( data ) )
 }
 
 exports.ABSOLUTE_ZERO_CELSIUS = ABSOLUTE_ZERO_CELSIUS;
