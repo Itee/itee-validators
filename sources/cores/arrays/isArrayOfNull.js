@@ -33,8 +33,6 @@ export function isArrayOfNull ( data ) {
 
 }
 
-/////
-
 /**
  * Check if given data is not an empty array where all values are not null
  *

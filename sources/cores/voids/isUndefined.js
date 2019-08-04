@@ -18,8 +18,6 @@ export function isUndefined ( data ) {
     return ( typeof data === 'undefined' )
 }
 
-///
-
 /**
  * Check if given data is defined
  *

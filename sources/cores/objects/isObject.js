@@ -23,8 +23,6 @@ export function isObject ( data ) {
     return ( data.constructor === Object )
 }
 
-////
-
 /**
  * Check if given data is not an object
  *

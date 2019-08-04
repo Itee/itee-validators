@@ -18,8 +18,6 @@ export function isNull ( data ) {
     return ( data === null )
 }
 
-///
-
 /**
  * Check if given data is not null
  *

@@ -20,8 +20,6 @@ export function isCelsius ( data ) {
     return ( isNumber( data ) && data >= ABSOLUTE_ZERO_CELSIUS )
 }
 
-///
-
 /**
  *
  * @param data

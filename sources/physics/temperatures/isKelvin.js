@@ -20,8 +20,6 @@ export function isKelvin ( data ) {
     return ( isNumber( data ) && data >= ABSOLUTE_ZERO_KELVIN )
 }
 
-///
-
 /**
  *
  * @param data

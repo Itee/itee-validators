@@ -8,6 +8,9 @@
  *
  */
 
+//Todo: isInRange(x, y, value, xInclusive, yInclusive)
+//Todo: isInRangeZeroOne(value, zeroInclusive, oneInclusive) //inclusive
+
 import { isNotDefined }   from '../voids/isDefined'
 import {
     isInfinite,
@@ -28,17 +31,6 @@ export function isNumber ( data ) {
     return ( data.constructor === Number )
 
 }
-
-// #if IS_REMOVE_ON_BUILD
-export function isNumber_0 ( data ) {
-    return ( typeof data === 'number' && !Number.isNaN( data ) )
-}
-
-export function isNumber_1 ( data ) {
-    return ( Number( data ) === data )
-}
-
-// #endif
 
 /**
  * Check if the data is a positive number
@@ -64,8 +56,6 @@ export function isNumberNegative ( data ) {
     return ( isNumber( data ) && data < 0 )
 }
 
-//////
-
 /**
  * Check if given data is not a number
  *
@@ -76,13 +66,6 @@ export function isNotNumber ( data ) {
     return !( isNumber( data ) )
 }
 
-/////////
-
-//Todo: isInRange(x, y, value, xInclusive, yInclusive)
-//Todo: isInRangeZeroOne(value, zeroInclusive, oneInclusive) //inclusive
-
-/////////
-
 /**
  * Check if the given data is an integer number
  *
@@ -92,27 +75,6 @@ export function isNotNumber ( data ) {
 export function isInteger ( data ) {
     return Number.isInteger( data )
 }
-
-// #if IS_REMOVE_ON_BUILD
-export function isInteger_0 ( data ) {
-    return ( data === 0 && ( 1 / data ) === Number.POSITIVE_INFINITY )
-}
-
-export function isInteger_1 ( data ) {
-    return data % 1 === 0
-}
-
-export function isInteger_2 ( n ) {
-    return n === +n && n === ( n | 0 )
-}
-
-export function isInteger_3 ( nVal ) {
-    return typeof nVal === 'number' && isFinite( nVal ) && nVal > -9007199254740992 && nVal < 9007199254740992 && Math.floor( nVal ) === nVal
-}
-
-// #endif
-
-////////
 
 /**
  * Check if given data is a floating point number
@@ -130,19 +92,6 @@ export function isFloat ( data ) {
 
 }
 
-// #if IS_REMOVE_ON_BUILD
-export function isFloat_1 ( n ) {
-    return n === +n && n !== ( n | 0 )
-}
-
-export function isFloat_2 ( x ) {
-    return !!( x % 1 )
-}
-
-// #endif
-
-////////
-
 /**
  * Check if given data is not a number
  *
@@ -152,3 +101,44 @@ export function isFloat_2 ( x ) {
 export function isNaN ( data ) {
     return Number.isNaN( data )
 }
+
+
+// #if IS_REMOVE_ON_BUILD
+
+export function isNumber_0 ( data ) {
+    return ( typeof data === 'number' && !Number.isNaN( data ) )
+}
+
+export function isNumber_1 ( data ) {
+    return ( Number( data ) === data )
+}
+
+///
+
+export function isInteger_0 ( data ) {
+    return ( data === 0 && ( 1 / data ) === Number.POSITIVE_INFINITY )
+}
+
+export function isInteger_1 ( data ) {
+    return data % 1 === 0
+}
+
+export function isInteger_2 ( n ) {
+    return n === +n && n === ( n | 0 )
+}
+
+export function isInteger_3 ( nVal ) {
+    return typeof nVal === 'number' && isFinite( nVal ) && nVal > -9007199254740992 && nVal < 9007199254740992 && Math.floor( nVal ) === nVal
+}
+
+///
+
+export function isFloat_1 ( n ) {
+    return n === +n && n !== ( n | 0 )
+}
+
+export function isFloat_2 ( x ) {
+    return !!( x % 1 )
+}
+
+// #endif

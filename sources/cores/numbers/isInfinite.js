@@ -44,8 +44,6 @@ export function isInfinitePositive ( data ) {
     return ( data === Number.POSITIVE_INFINITY )
 }
 
-///
-
 /**
  * Check if the given data is a finite number
  *

@@ -20,8 +20,6 @@ export function isFahrenheit ( data ) {
     return ( isNumber( data ) && data >= ABSOLUTE_ZERO_FAHRENHEIT )
 }
 
-///
-
 /**
  *
  * @param data

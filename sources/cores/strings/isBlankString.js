@@ -25,8 +25,6 @@ export function isBlankString ( data ) {
     return ( !/\S/.test( data ) )
 }
 
-////
-
 /**
  * Check if the given data is not a blank string
  *

@@ -26,17 +26,6 @@ export function isArray ( data ) {
     return Array.isArray( data )
 }
 
-// #if IS_REMOVE_ON_BUILD
-
-// Not exported alternative for benchmark
-export function isArray_0 ( data ) {
-    return data instanceof Array
-}
-
-// #endif
-
-////////////////////
-
 /**
  * Check if given data is not an array
  *
@@ -47,7 +36,12 @@ export function isNotArray ( data ) {
     return !Array.isArray( data )
 }
 
+
 // #if IS_REMOVE_ON_BUILD
+
+export function isArray_0 ( data ) {
+    return data instanceof Array
+}
 
 export function isNotArray_0 ( data ) {
     return !isArray( data )

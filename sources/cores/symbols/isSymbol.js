@@ -18,8 +18,6 @@ export function isSymbol ( data ) {
     return ( typeof data === 'symbol' )
 }
 
-/////
-
 /**
  * Check if given data is not a symbol
  *

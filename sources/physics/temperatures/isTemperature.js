@@ -30,8 +30,6 @@ export function isTemperature ( data ) {
     return ( isKelvin( data ) || isCelsius( data ) || isFahrenheit( data ) )
 }
 
-///
-
 /**
  *
  * @param data {*}
