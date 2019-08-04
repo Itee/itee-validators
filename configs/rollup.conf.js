@@ -83,14 +83,14 @@ function CreateRollupConfigs ( options ) {
             const outputPath = ( isProd ) ? path.join( output, `${fileName}.${format}.min.js` ) : path.join( output, `${fileName}.${format}.js` )
 
             configs.push( {
-                input:     input,
-                external:  ( format === 'cjs' ) ? [
+                input:    input,
+                external: ( format === 'cjs' ) ? [
                     'fs'
                 ] : [],
-                plugins:   [
+                plugins: [
                     replace( {
                         defines: {
-                            IS_REMOVE_ON_BUILD: false,
+                            IS_REMOVE_ON_BUILD:  false,
                             IS_BACKEND_SPECIFIC: ( format === 'cjs' )
                         }
                     } ),
@@ -102,7 +102,7 @@ function CreateRollupConfigs ( options ) {
                     } ),
                     isProd && terser()
                 ],
-                onwarn:    ( { loc, frame, message } ) => {
+                onwarn: ( { loc, frame, message } ) => {
 
                     // Ignore some errors
                     if ( message.includes( 'Circular dependency' ) ) { return }
@@ -113,6 +113,7 @@ function CreateRollupConfigs ( options ) {
                     } else {
                         process.stderr.write( `/!\\ ${message}\n` )
                     }
+
                 },
                 treeshake: treeshake,
                 output:    {
