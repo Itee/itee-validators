@@ -1,4 +1,4 @@
-console.log('Itee.Validators v4.0.1 - EsModule')
+console.log('Itee.Validators v5.0.1 - EsModule')
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}

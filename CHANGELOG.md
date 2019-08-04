@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/Itee/itee-validators/compare/v5.0.0...v5.0.1) (2019-08-04)
+
+
+### Bug Fixes
+
+* **package:** add postversion script to build with latest package version ([e47c645](https://github.com/Itee/itee-validators/commit/e47c645))
+
 # [5.0.0](https://github.com/Itee/itee-validators/compare/v4.0.1...v5.0.0) (2019-08-04)
 
 
