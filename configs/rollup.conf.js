@@ -6,23 +6,20 @@
  * @description The file manage the rollup configuration for build the library using differents arguments. It allow to build with two type of environment (dev and prod), and differents output format.
  * Use npm run help to display all available build options.
  *
- * @requires {@link module: [rollup-plugin-node-builtins]{@link https://github.com/calvinmetcalf/rollup-plugin-node-builtins}}
  * @requires {@link module: [rollup-plugin-commonjs]{@link https://github.com/rollup/rollup-plugin-commonjs}}
- * @requires {@link module: [rollup-plugin-json]{@link https://github.com/rollup/rollup-plugin-json}}
  * @requires {@link module: [rollup-plugin-node-resolve]{@link https://github.com/rollup/rollup-plugin-node-resolve}}
  * @requires {@link module: [path]{@link https://nodejs.org/api/path.html}}
  * @requires {@link module: [rollup-plugin-re]{@link https://github.com/jetiny/rollup-plugin-re}}
  * @requires {@link module: [rollup-plugin-terser]{@link https://github.com/TrySound/rollup-plugin-terser}}
  */
 
-const builtins = require( 'rollup-plugin-node-builtins' )
-const commonjs = require( 'rollup-plugin-commonjs' )
-const json     = require( 'rollup-plugin-json' )
-const path     = require( 'path' )
-const replace  = require( 'rollup-plugin-re' )
-const resolve  = require( 'rollup-plugin-node-resolve' )
-const terser   = require( 'rollup-plugin-terser' ).terser
 const packageInfos = require( '../package' )
+const commonjs     = require( 'rollup-plugin-commonjs' )
+const path         = require( 'path' )
+const replace      = require( 'rollup-plugin-re' )
+const resolve      = require( 'rollup-plugin-node-resolve' )
+const terser       = require( 'rollup-plugin-terser' ).terser
+
 function computeBanner ( format ) {
 
     let banner = ''
@@ -76,19 +73,20 @@ function CreateRollupConfigs ( options ) {
         for ( let envIndex = 0, numberOfEnvs = envs.length ; envIndex < numberOfEnvs ; envIndex++ ) {
 
             const env        = envs[ envIndex ]
-            const prod       = ( env.includes( 'prod' ) )
+            const isProd     = ( env.includes( 'prod' ) )
             const format     = formats[ formatIndex ]
-            const outputPath = ( prod ) ? path.join( output, `${fileName}.${format}.min.js` ) : path.join( output, `${fileName}.${format}.js` )
+            const outputPath = ( isProd ) ? path.join( output, `${fileName}.${format}.min.js` ) : path.join( output, `${fileName}.${format}.js` )
 
             configs.push( {
-                input:    input,
-                external: ( [ 'esm', 'cjs' ].includes( format ) ) ? [
+                input:     input,
+                external:  ( format === 'cjs' ) ? [
                     'fs'
                 ] : [],
-                plugins: [
+                plugins:   [
                     replace( {
                         defines: {
-                            IS_REMOVE: prod
+                            IS_REMOVE_ON_BUILD: false,
+                            IS_BACKEND_SPECIFIC: ( format === 'cjs' )
                         }
                     } ),
                     commonjs( {
@@ -97,13 +95,9 @@ function CreateRollupConfigs ( options ) {
                     resolve( {
                         preferBuiltins: true
                     } ),
-                    json( {} ),
-                    ( [ 'iife', 'umd' ].includes( format ) ) && builtins( {
-                        fs: true
-                    } ),
-                    prod && terser()
+                    isProd && terser()
                 ],
-                onwarn: ( { loc, frame, message } ) => {
+                onwarn:    ( { loc, frame, message } ) => {
 
                     // Ignore some errors
                     if ( message.includes( 'Circular dependency' ) ) { return }
