@@ -20,22 +20,27 @@ const replace      = require( 'rollup-plugin-re' )
 const resolve      = require( 'rollup-plugin-node-resolve' )
 const terser       = require( 'rollup-plugin-terser' ).terser
 
-function computeBanner ( format ) {
+function _computeBanner ( name, format ) {
 
-    let banner = ''
+    const packageName = name || packageInfos.name
+    let prettyFormat  = ''
 
     switch ( format ) {
 
         case 'cjs':
-            banner = `console.log('Itee Validator v${packageInfos.version} - CommonJs')`
+            prettyFormat = 'CommonJs'
             break
 
         case 'esm':
-            banner = `console.log('Itee Validator v${packageInfos.version} - EsModule')`
+            prettyFormat = 'EsModule'
             break
 
         case 'iife':
-            banner = `console.log('Itee Validator v${packageInfos.version} - Standalone')`
+            prettyFormat = 'Standalone'
+            break
+
+        case 'umd':
+            prettyFormat = 'Universal'
             break
 
         default:
@@ -43,7 +48,7 @@ function computeBanner ( format ) {
 
     }
 
-    return banner
+    return `console.log('${packageName} v${packageInfos.version} - ${prettyFormat}')`
 
 }
 
@@ -119,7 +124,7 @@ function CreateRollupConfigs ( options ) {
 
                     // advanced options
                     paths:     {},
-                    banner:    ( isProd ) ? '' : computeBanner( format ),
+                    banner:    ( isProd ) ? '' : _computeBanner( name, format ),
                     footer:    '',
                     intro:     '',
                     outro:     '',
