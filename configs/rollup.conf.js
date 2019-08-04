@@ -7,9 +7,9 @@
  * Use npm run help to display all available build options.
  *
  * @requires {@link module: [rollup-plugin-commonjs]{@link https://github.com/rollup/rollup-plugin-commonjs}}
- * @requires {@link module: [rollup-plugin-node-resolve]{@link https://github.com/rollup/rollup-plugin-node-resolve}}
  * @requires {@link module: [path]{@link https://nodejs.org/api/path.html}}
  * @requires {@link module: [rollup-plugin-re]{@link https://github.com/jetiny/rollup-plugin-re}}
+ * @requires {@link module: [rollup-plugin-node-resolve]{@link https://github.com/rollup/rollup-plugin-node-resolve}}
  * @requires {@link module: [rollup-plugin-terser]{@link https://github.com/TrySound/rollup-plugin-terser}}
  */
 
@@ -20,22 +20,27 @@ const replace      = require( 'rollup-plugin-re' )
 const resolve      = require( 'rollup-plugin-node-resolve' )
 const terser       = require( 'rollup-plugin-terser' ).terser
 
-function computeBanner ( format ) {
+function _computeBanner ( name, format ) {
 
-    let banner = ''
+    const packageName = name || packageInfos.name
+    let prettyFormat  = ''
 
     switch ( format ) {
 
         case 'cjs':
-            banner = `console.log('Itee Validator v${packageInfos.version} - CommonJs')`
+            prettyFormat = 'CommonJs'
             break
 
         case 'esm':
-            banner = `console.log('Itee Validator v${packageInfos.version} - EsModule')`
+            prettyFormat = 'EsModule'
             break
 
         case 'iife':
-            banner = `console.log('Itee Validator v${packageInfos.version} - Standalone')`
+            prettyFormat = 'Standalone'
+            break
+
+        case 'umd':
+            prettyFormat = 'Universal'
             break
 
         default:
@@ -43,7 +48,7 @@ function computeBanner ( format ) {
 
     }
 
-    return banner
+    return `console.log('${packageName} v${packageInfos.version} - ${prettyFormat}')`
 
 }
 
@@ -78,14 +83,14 @@ function CreateRollupConfigs ( options ) {
             const outputPath = ( isProd ) ? path.join( output, `${fileName}.${format}.min.js` ) : path.join( output, `${fileName}.${format}.js` )
 
             configs.push( {
-                input:     input,
-                external:  ( format === 'cjs' ) ? [
+                input:    input,
+                external: ( format === 'cjs' ) ? [
                     'fs'
                 ] : [],
-                plugins:   [
+                plugins: [
                     replace( {
                         defines: {
-                            IS_REMOVE_ON_BUILD: false,
+                            IS_REMOVE_ON_BUILD:  false,
                             IS_BACKEND_SPECIFIC: ( format === 'cjs' )
                         }
                     } ),
@@ -97,7 +102,7 @@ function CreateRollupConfigs ( options ) {
                     } ),
                     isProd && terser()
                 ],
-                onwarn:    ( { loc, frame, message } ) => {
+                onwarn: ( { loc, frame, message } ) => {
 
                     // Ignore some errors
                     if ( message.includes( 'Circular dependency' ) ) { return }
@@ -108,6 +113,7 @@ function CreateRollupConfigs ( options ) {
                     } else {
                         process.stderr.write( `/!\\ ${message}\n` )
                     }
+
                 },
                 treeshake: treeshake,
                 output:    {
@@ -119,7 +125,7 @@ function CreateRollupConfigs ( options ) {
 
                     // advanced options
                     paths:     {},
-                    banner:    ( isProd ) ? '' : computeBanner( format ),
+                    banner:    ( isProd ) ? '' : _computeBanner( name, format ),
                     footer:    '',
                     intro:     '',
                     outro:     '',
