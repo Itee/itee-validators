@@ -1,5 +1,4 @@
-import fs from 'fs';
-
+console.log('Itee.Validators v4.0.1 - EsModule')
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -27,10 +26,6 @@ import fs from 'fs';
 function isArray ( data ) {
     return Array.isArray( data )
 }
-
-
-
-////////////////////
 
 /**
  * Check if given data is not an array
@@ -65,8 +60,6 @@ function isEmptyArray ( data ) {
     return ( data.length === 0 )
 
 }
-
-///////
 
 /**
  * Check if given data is not an empty array
@@ -112,8 +105,6 @@ function isArrayOfArray ( data ) {
     return true
 
 }
-
-////////
 
 /**
  * Check if given data is not an array of array
@@ -180,8 +171,6 @@ function isNull ( data ) {
     return ( data === null )
 }
 
-///
-
 /**
  * Check if given data is not null
  *
@@ -222,8 +211,6 @@ function isArrayOfNull ( data ) {
     return true
 
 }
-
-/////
 
 /**
  * Check if given data is not an empty array where all values are not null
@@ -266,8 +253,6 @@ function isDefined ( data ) {
     return ( ( data !== null ) && ( typeof data !== 'undefined' ) )
 }
 
-/////
-
 /**
  * Check if given data is null or undefined
  *
@@ -300,8 +285,6 @@ function isObject ( data ) {
 
     return ( data.constructor === Object )
 }
-
-////
 
 /**
  * Check if given data is not an object
@@ -343,8 +326,6 @@ function isArrayOfObject ( data ) {
     return true
 
 }
-
-////
 
 /**
  * Check if given data is not an array where all values are of object type
@@ -415,10 +396,6 @@ function isString ( data ) {
     return ( typeof data === 'string' || data instanceof String )
 }
 
-
-
-//////
-
 /**
  * Check if given data is not a string
  *
@@ -459,10 +436,6 @@ function isArrayOfString ( data ) {
     return true
 
 }
-
-
-
-/////
 
 /**
  * Check if given data is not an empty array where all values are not string
@@ -505,8 +478,6 @@ function isUndefined ( data ) {
     return ( typeof data === 'undefined' )
 }
 
-///
-
 /**
  * Check if given data is defined
  *
@@ -548,8 +519,6 @@ function isArrayOfUndefined ( data ) {
 
 }
 
-////
-
 /**
  * Check if given data is not an empty array where all values are defined
  *
@@ -590,10 +559,6 @@ function isNotArrayOfUndefined ( data ) {
 function isBoolean ( data ) {
     return ( typeof data === 'boolean' )
 }
-
-
-
-//////
 
 /**
  * Check if given data is not a boolean
@@ -654,8 +619,6 @@ function isFalse ( data ) {
 function isFunction ( data ) {
     return ( typeof data === 'function' )
 }
-
-///
 
 /**
  * Check if given data is not a function
@@ -731,8 +694,6 @@ function isNumber ( data ) {
 
 }
 
-
-
 /**
  * Check if the data is a positive number
  *
@@ -757,8 +718,6 @@ function isNumberNegative ( data ) {
     return ( isNumber( data ) && data < 0 )
 }
 
-//////
-
 /**
  * Check if given data is not a number
  *
@@ -769,13 +728,6 @@ function isNotNumber ( data ) {
     return !( isNumber( data ) )
 }
 
-/////////
-
-//Todo: isInRange(x, y, value, xInclusive, yInclusive)
-//Todo: isInRangeZeroOne(value, zeroInclusive, oneInclusive) //inclusive
-
-/////////
-
 /**
  * Check if the given data is an integer number
  *
@@ -785,10 +737,6 @@ function isNotNumber ( data ) {
 function isInteger ( data ) {
     return Number.isInteger( data )
 }
-
-
-
-////////
 
 /**
  * Check if given data is a floating point number
@@ -805,10 +753,6 @@ function isFloat ( data ) {
     return data % 1 !== 0
 
 }
-
-
-
-////////
 
 /**
  * Check if given data is not a number
@@ -863,8 +807,6 @@ function isInfiniteNegative ( data ) {
 function isInfinitePositive ( data ) {
     return ( data === Number.POSITIVE_INFINITY )
 }
-
-///
 
 /**
  * Check if the given data is a finite number
@@ -1001,8 +943,6 @@ function isEmptyObject ( data ) {
 
 }
 
-////
-
 /**
  * Check if given data is not an empty object
  *
@@ -1038,8 +978,6 @@ function isEmptyString ( data ) {
     return ( data.length === 0 )
 
 }
-
-////
 
 /**
  * Check if given data is not an empty string
@@ -1077,8 +1015,6 @@ function isBlankString ( data ) {
     return ( !/\S/.test( data ) )
 }
 
-////
-
 /**
  * Check if the given data is not a blank string
  *
@@ -1110,8 +1046,6 @@ function isNotBlankString ( data ) {
 function isSymbol ( data ) {
     return ( typeof data === 'symbol' )
 }
-
-/////
 
 /**
  * Check if given data is not a symbol
@@ -1151,8 +1085,6 @@ function isEmpty ( data ) {
     return false
 
 }
-
-///
 
 /**
  * Check fullness of given data
@@ -1818,551 +1750,6 @@ function isNotUint8ClampedArray ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module sources/file-system/block-devices/isBlockDevicePath
- * @description Export function to validate if a value is a block device path
- *
- * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
- *
- * @example todo
- *
- */
-
-/**
- * Check if given path is a block device path
- *
- * @param path {string|Buffer|URL} The data to check against the block device path type
- * @returns {boolean} true if path is a block device path, false otherwise
- */
-function isBlockDevicePath ( path ) {
-    return fs.statSync( path ).isBlockDevice()
-}
-
-/**
- * Check if given path is not a block device path
- *
- * @param path {string|Buffer|URL} The data to check against the block device path type
- * @returns {boolean} true if path is not a block device path, false otherwise
- */
-function isNotBlockDevicePath ( path ) {
-    return !isBlockDevicePath( path )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/file-system/paths/isValidPath
- * @description Export function to validate if a value is a valid path
- *
- * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
- *
- * @example todo
- *
- */
-
-/**
- * Check if given data is a valid file path
- *
- * @param data {*} The data to check against the path type
- * @returns {boolean} true if data is a valid path, false otherwise
- */
-function isValidPath ( data ) {
-    return fs.existsSync( data )
-}
-
-/**
- * Check if given data is not a valid file path
- *
- * @param data {*} The data to check against the path type
- * @returns {boolean} true if data is a valid path, false otherwise
- */
-function isInvalidPath ( data ) {
-    return !isValidPath( data )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/file-system/block-devices/isValidBlockDevicePath
- * @description Export function to validate if a value is a valid block device path.
- * @example todo
- *
- */
-
-/**
- * Check if given data is a valid block device path
- *
- * @param data {*} The data to check against the block device path type
- * @returns {boolean} true if data is a valid block device path, false otherwise
- */
-function isValidBlockDevicePath ( data ) {
-    return ( isValidPath( data ) && isBlockDevicePath( data ) )
-}
-
-/**
- * Check if given data is an invalid block device path
- *
- * @param data {*} The data to check against the block device path type
- * @returns {boolean} true if data is an invalid block device path, false otherwise
- */
-function isInvalidBlockDevicePath ( data ) {
-    return !isValidBlockDevicePath( data )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/file-system/character-devices/isCharacterDevicePath
- * @description Export function to validate if a value is a character device path
- *
- * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
- *
- * @example todo
- *
- */
-
-/**
- * Check if given path is a character device path
- *
- * @param path {string|Buffer|URL} The data to check against the character device path type
- * @returns {boolean} true if path is a character device path, false otherwise
- */
-function isCharacterDevicePath ( path ) {
-    return fs.statSync( path ).isCharacterDevice()
-}
-
-/**
- * Check if given path is not a character device path
- *
- * @param path {string|Buffer|URL} The data to check against the character device path type
- * @returns {boolean} true if path is not a character device path, false otherwise
- */
-function isNotCharacterDevicePath ( path ) {
-    return !isCharacterDevicePath( path )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/file-system/character-devices/isValidCharacterDevicePath
- * @description Export function to validate if a value is a valid character device path
- * @example todo
- *
- */
-
-/**
- * Check if given data is a valid character device path
- *
- * @param data {*} The data to check against the character device path type
- * @returns {boolean} true if data is a valid character device path, false otherwise
- */
-function isValidCharacterDevicePath ( data ) {
-    return ( isValidPath( data ) && isCharacterDevicePath( data ) )
-}
-
-/**
- * Check if given data is an invalid character device path
- *
- * @param data {*} The data to check against the character device path type
- * @returns {boolean} true if data is an invalid character device path, false otherwise
- */
-function isInvalidCharacterDevicePath ( data ) {
-    return !isValidCharacterDevicePath( data )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/file-system/directories/isDirectoryPath
- * @description Export function to validate if a value is a directories path
- *
- * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
- *
- * @example todo
- *
- */
-
-/**
- * Check if given path is a directory path
- *
- * @param path {string|Buffer|URL} The data to check against the directory path type
- * @returns {boolean} true if path is a directory path, false otherwise
- */
-function isDirectoryPath ( path ) {
-    return fs.statSync( path ).isDirectory()
-}
-
-/**
- * Check if given path is a not directory path
- *
- * @param path {string|Buffer|URL} The data to check against the directory path type
- * @returns {boolean} true if path is a not directory path, false otherwise
- */
-function isNotDirectoryPath ( path ) {
-    return !isDirectoryPath( path )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/file-system/directories/isEmptyDirectory
- * @description Export function to validate if a value is a empty directories
- *
- * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
- *
- * @example todo
- *
- */
-
-/**
- * Check if given directory path is an empty directory
- *
- * @param directoryPath {string|Buffer|URL} The directory path to check the emptiness
- * @returns {boolean} true if directory is empty, false otherwise
- */
-function isEmptyDirectory ( directoryPath ) {
-    return ( fs.readdirSync( directoryPath ).length === 0 )
-}
-
-/**
- * Check if given directory path is not an empty directory
- *
- * @param directoryPath {string|Buffer|URL} The directory path to check the emptiness
- * @returns {boolean} true if directory is not empty, false otherwise
- */
-function isNotEmptyDirectory ( directoryPath ) {
-    return !isEmptyDirectory( directoryPath )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/file-system/directories/isValidDirectoryPath
- * @description Export function to validate if a value is a valid directory path
- * @example todo
- *
- */
-
-/**
- * Check if given data is a valid directory path
- *
- * @param data {*} The data to check against the directory path type
- * @returns {boolean} true if data is a valid directory path, false otherwise
- */
-function isValidDirectoryPath ( data ) {
-    return ( isValidPath( data ) && isDirectoryPath( data ) )
-}
-
-/**
- * Check if given data is an invalid directory path
- *
- * @param data {*} The data to check against the directory path type
- * @returns {boolean} true if data is an invalid directory path, false otherwise
- */
-function isInvalidDirectoryPath ( data ) {
-    return !isValidDirectoryPath( data )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/file-system/fifo-pipes/isFIFOPath
- * @description Export function to validate if a value is a fifo pipes path
- *
- * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
- *
- * @example todo
- *
- */
-
-/**
- * Check if given path is a fifo path
- *
- * @param path {string|Buffer|URL} The data to check against the fifo path type
- * @returns {boolean} true if path is a fifo path, false otherwise
- */
-function isFIFOPath ( path ) {
-    return fs.statSync( path ).isFIFO()
-}
-
-/**
- * Check if given path is not a fifo path
- *
- * @param path {string|Buffer|URL} The data to check against the fifo path type
- * @returns {boolean} true if path is not a fifo path, false otherwise
- */
-function isNotFIFOPath ( path ) {
-    return !isFIFOPath( path )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/file-system/fifo-pipes/isValidFIFOPath
- * @description Export function to validate if a value is a valid fifo pipes path
- *
- * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
- *
- * @example todo
- *
- */
-
-/**
- * Check if given data is a valid fifo path
- *
- * @param data {*} The data to check against the fifo path type
- * @returns {boolean} true if data is a valid fifo path, false otherwise
- */
-function isValidFIFOPath ( data ) {
-    return ( isValidPath( data ) && isFIFOPath( data ) )
-}
-
-/**
- * Check if given data is an invalid fifo path
- *
- * @param data {*} The data to check against the fifo path type
- * @returns {boolean} true if data is an invalid fifo path, false otherwise
- */
-function isInvalidFIFOPath ( data ) {
-    return !isValidFIFOPath( data )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/file-system/files/isEmptyFile
- * @description Export function to validate if a value is an empty file
- *
- * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
- *
- * @example todo
- *
- */
-
-/**
- * Check if given file path is an empty file more or less a threshold in bytes.
- *
- * @param filePath {string|Buffer|URL} The directory path to check the emptiness
- * @param threshold {number} An amount of byte below which it consider the file as empty ( 0 as default ).
- * @returns {boolean} true if file is empty, false otherwise
- */
-function isEmptyFile ( filePath, threshold = 0 ) {
-    return ( fs.statSync( filePath ).size <= threshold )
-}
-
-/**
- * Check if given file path is not an empty file more or less a threshold in bytes.
- *
- * @param filePath {string|Buffer|URL} The directory path to check the emptiness
- * @param threshold {number} An amount of byte above which it consider the file as not empty ( 0 as default ).
- * @returns {boolean} true if file is not empty, false otherwise
- */
-function isNotEmptyFile ( filePath, threshold = 0 ) {
-    return ( fs.statSync( filePath ).size > threshold )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/file-system/files/isFilePath
- * @description Export function to validate if a value is a file path
- *
- * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
- *
- * @example todo
- *
- */
-
-/**
- * Check if given path is a file path
- *
- * @param path {string|Buffer|URL} The data to check against the file path type
- * @returns {boolean} true if path is a file path, false otherwise
- */
-function isFilePath ( path ) {
-    return fs.statSync( path ).isFile()
-}
-
-/**
- * Check if given path is not a file path
- *
- * @param path {string|Buffer|URL} The data to check against the file path type
- * @returns {boolean} true if path is not a file path, false otherwise
- */
-function isNotFilePath ( path ) {
-    return !isFilePath( path )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/file-system/files/isValidFilePath
- * @description Export function to validate if a value is a valid file path
- * @example todo
- *
- */
-
-/**
- * Check if given data is a valid file path
- *
- * @param data {*} The data to check against the file path type
- * @returns {boolean} true if data is a valid file path, false otherwise
- */
-function isValidFilePath ( data ) {
-    return ( isValidPath( data ) && isFilePath( data ) )
-}
-
-/**
- * Check if given data is an invalid file path
- *
- * @param data {*} The data to check against the file path type
- * @returns {boolean} true if data is an invalid file path, false otherwise
- */
-function isInvalidFilePath ( data ) {
-    return !isValidFilePath( data )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/file-system/sockets/isSocketPath
- * @description Export function to validate if a value is a socket path
- *
- * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
- *
- * @example todo
- *
- */
-
-/**
- * Check if given path is a socket path
- *
- * @param path {string|Buffer|URL} The data to check against the socket path type
- * @returns {boolean} true if path is a socket path, false otherwise
- */
-function isSocketPath ( path ) {
-    return fs.statSync( path ).isSocket()
-}
-
-/**
- * Check if given path is not a socket path
- *
- * @param path {string|Buffer|URL} The data to check against the socket path type
- * @returns {boolean} true if path is not a socket path, false otherwise
- */
-function isNotSocketPath ( path ) {
-    return !isSocketPath( path )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/file-system/sockets/isValidSocketPath
- * @description Export function to validate if a value is a valid socket path
- * @example todo
- *
- */
-
-/**
- * Check if given data is a valid socket path
- *
- * @param data {*} The data to check against the socket path type
- * @returns {boolean} true if data is a valid socket path, false otherwise
- */
-function isValidSocketPath ( data ) {
-    return ( isValidPath( data ) && isSocketPath( data ) )
-}
-
-/**
- * Check if given data is an invalid socket path
- *
- * @param data {*} The data to check against the socket path type
- * @returns {boolean} true if data is an invalid socket path, false otherwise
- */
-function isInvalidSocketPath ( data ) {
-    return !isValidSocketPath( data )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/file-system/symbolic-links/isSocketPath
- * @description Export function to validate if a value is a symbolic links path
- *
- * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
- *
- * @example todo
- *
- */
-
-/**
- * Check if given path is a symbolic link path
- *
- * @param path {string|Buffer|URL} The data to check against the symbolic link path type
- * @returns {boolean} true if path is a symbolic link path, false otherwise
- */
-function isSymbolicLinkPath ( path ) {
-    return fs.statSync( path ).isSymbolicLink()
-}
-
-/**
- * Check if given path is not a symbolic link path
- *
- * @param path {string|Buffer|URL} The data to check against the symbolic link path type
- * @returns {boolean} true if path is not a symbolic link path, false otherwise
- */
-function isNotSymbolicLinkPath ( path ) {
-    return !isSymbolicLinkPath( path )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/file-system/symbolic-links/isSocketPath
- * @description Export function to validate if a value is a valid symbolic links path
- * @example todo
- *
- */
-
-/**
- * Check if given data is a valid symbolic link path
- *
- * @param data {*} The data to check against the symbolic link path type
- * @returns {boolean} true if data is a valid symbolic link path, false otherwise
- */
-function isValidSymbolicLinkPath ( data ) {
-    return ( isValidPath( data ) && isSymbolicLinkPath( data ) )
-}
-
-/**
- * Check if given data is an invalid symbolic link path
- *
- * @param data {*} The data to check against the symbolic link path type
- * @returns {boolean} true if data is an invalid symbolic link path, false otherwise
- */
-function isInvalidSymbolicLinkPath ( data ) {
-    return !isValidSymbolicLinkPath( data )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
  * @module sources/physics/constants
  * @desc Export constants about temperatures
  *
@@ -2411,8 +1798,6 @@ function isCelsius ( data ) {
     return ( isNumber( data ) && data >= ABSOLUTE_ZERO_CELSIUS )
 }
 
-///
-
 /**
  *
  * @param data
@@ -2440,8 +1825,6 @@ function isNotCelsius ( data ) {
 function isFahrenheit ( data ) {
     return ( isNumber( data ) && data >= ABSOLUTE_ZERO_FAHRENHEIT )
 }
-
-///
 
 /**
  *
@@ -2471,8 +1854,6 @@ function isKelvin ( data ) {
     return ( isNumber( data ) && data >= ABSOLUTE_ZERO_KELVIN )
 }
 
-///
-
 /**
  *
  * @param data
@@ -2501,8 +1882,6 @@ function isTemperature ( data ) {
     return ( isKelvin( data ) || isCelsius( data ) || isFahrenheit( data ) )
 }
 
-///
-
 /**
  *
  * @param data {*}
@@ -2512,5 +1891,5 @@ function isNotTemperature ( data ) {
     return ( isNotKelvin( data ) && isNotCelsius( data ) && isNotFahrenheit( data ) )
 }
 
-export { ABSOLUTE_ZERO_CELSIUS, ABSOLUTE_ZERO_FAHRENHEIT, ABSOLUTE_ZERO_KELVIN, validatorInstance as Validator, isArray, isArrayBuffer, isArrayOfArray, isArrayOfMultiElement, isArrayOfNull, isArrayOfObject, isArrayOfSingleElement, isArrayOfString, isArrayOfUndefined, isBigInt64Array, isBigUint64Array, isBlankString, isBlockDevicePath, isBoolean, isCelsius, isCharacterDevicePath, isDefined, isDirectoryPath, isEmpty, isEmptyArray, isEmptyDirectory, isEmptyFile, isEmptyObject, isEmptyString, isFIFOPath, isFahrenheit, isFalse, isFilePath, isFinite, isFloat, isFloat32Array, isFloat64Array, isFunction, isInfinite, isInfiniteNegative, isInfinitePositive, isInt16Array, isInt32Array, isInt8Array, isInteger, isInvalidBlockDevicePath, isInvalidCharacterDevicePath, isInvalidDirectoryPath, isInvalidFIFOPath, isInvalidFilePath, isInvalidPath, isInvalidSocketPath, isInvalidSymbolicLinkPath, isKelvin, isMaxNegative, isMaxPositive, isMaxSafeInteger, isMinNegative, isMinPositive, isMinSafeInteger, isNaN, isNotArray, isNotArrayBuffer, isNotArrayOfArray, isNotArrayOfNull, isNotArrayOfObject, isNotArrayOfString, isNotArrayOfUndefined, isNotBigInt64Array, isNotBigUint64Array, isNotBlankString, isNotBlockDevicePath, isNotBoolean, isNotCelsius, isNotCharacterDevicePath, isNotDefined, isNotDirectoryPath, isNotEmpty, isNotEmptyArray, isNotEmptyDirectory, isNotEmptyFile, isNotEmptyObject, isNotEmptyString, isNotFIFOPath, isNotFahrenheit, isNotFilePath, isNotFloat32Array, isNotFloat64Array, isNotFunction, isNotInt16Array, isNotInt32Array, isNotInt8Array, isNotKelvin, isNotNull, isNotNumber, isNotObject, isNotSocketPath, isNotString, isNotSymbol, isNotSymbolicLinkPath, isNotTemperature, isNotUint16Array, isNotUint32Array, isNotUint8Array, isNotUint8ClampedArray, isNotUndefined, isNull, isNumber, isNumberNegative, isNumberPositive, isObject, isSocketPath, isString, isSymbol, isSymbolicLinkPath, isTemperature, isTrue, isUint16Array, isUint32Array, isUint8Array, isUint8ClampedArray, isUndefined, isValidBlockDevicePath, isValidCharacterDevicePath, isValidDirectoryPath, isValidFIFOPath, isValidFilePath, isValidPath, isValidSocketPath, isValidSymbolicLinkPath, isZero, isZeroNegative, isZeroPositive };
+export { ABSOLUTE_ZERO_CELSIUS, ABSOLUTE_ZERO_FAHRENHEIT, ABSOLUTE_ZERO_KELVIN, validatorInstance as Validator, isArray, isArrayBuffer, isArrayOfArray, isArrayOfMultiElement, isArrayOfNull, isArrayOfObject, isArrayOfSingleElement, isArrayOfString, isArrayOfUndefined, isBigInt64Array, isBigUint64Array, isBlankString, isBoolean, isCelsius, isDefined, isEmpty, isEmptyArray, isEmptyObject, isEmptyString, isFahrenheit, isFalse, isFinite, isFloat, isFloat32Array, isFloat64Array, isFunction, isInfinite, isInfiniteNegative, isInfinitePositive, isInt16Array, isInt32Array, isInt8Array, isInteger, isKelvin, isMaxNegative, isMaxPositive, isMaxSafeInteger, isMinNegative, isMinPositive, isMinSafeInteger, isNaN, isNotArray, isNotArrayBuffer, isNotArrayOfArray, isNotArrayOfNull, isNotArrayOfObject, isNotArrayOfString, isNotArrayOfUndefined, isNotBigInt64Array, isNotBigUint64Array, isNotBlankString, isNotBoolean, isNotCelsius, isNotDefined, isNotEmpty, isNotEmptyArray, isNotEmptyObject, isNotEmptyString, isNotFahrenheit, isNotFloat32Array, isNotFloat64Array, isNotFunction, isNotInt16Array, isNotInt32Array, isNotInt8Array, isNotKelvin, isNotNull, isNotNumber, isNotObject, isNotString, isNotSymbol, isNotTemperature, isNotUint16Array, isNotUint32Array, isNotUint8Array, isNotUint8ClampedArray, isNotUndefined, isNull, isNumber, isNumberNegative, isNumberPositive, isObject, isString, isSymbol, isTemperature, isTrue, isUint16Array, isUint32Array, isUint8Array, isUint8ClampedArray, isUndefined, isZero, isZeroNegative, isZeroPositive };
 //# sourceMappingURL=itee-validators.esm.js.map
