@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/Itee/itee-validators/compare/v5.0.1...v5.1.0) (2019-08-05)
+
+
+### Features
+
+* **docs:** add online documentation ([1b1d16e](https://github.com/Itee/itee-validators/commit/1b1d16e))
+
 ## [5.0.1](https://github.com/Itee/itee-validators/compare/v5.0.0...v5.0.1) (2019-08-04)
 
 

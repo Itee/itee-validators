@@ -1,4 +1,4 @@
-console.log('Itee.Validators v5.0.1 - CommonJs')
+console.log('Itee.Validators v5.1.0 - CommonJs')
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
