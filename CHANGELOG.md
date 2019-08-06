@@ -1,3 +1,10 @@
+## [5.1.1](https://github.com/Itee/itee-validators/compare/v5.1.0...v5.1.1) (2019-08-06)
+
+
+### Bug Fixes
+
+* **gulpfile:** rename documentation to docs in files to clean ([bf40160](https://github.com/Itee/itee-validators/commit/bf40160))
+
 # [5.1.0](https://github.com/Itee/itee-validators/compare/v5.0.1...v5.1.0) (2019-08-05)
 
 
