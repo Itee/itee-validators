@@ -20,7 +20,7 @@ function CreateJsdocConfiguration () {
             'dictionaries':     [ 'jsdoc', 'closure' ]
         },
         'source': {
-            'include':        [ 'README.md' ],
+            'include':        [],
             'includePattern': '.+\\.js(doc|x)?$',
             'excludePattern': '(node_modules|docs|builds|tests)'
         },
