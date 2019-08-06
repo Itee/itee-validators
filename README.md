@@ -1,13 +1,23 @@
-[![Build Status](https://travis-ci.org/Itee/itee-validators.svg?branch=master)](https://travis-ci.org/Itee/itee-validators)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-___
 
-# <center>[Itee Validators]</center>
+<h1 align="center">[Itee Validators]</h1>
+<br>
 
-The itee validators is a common validation library, it include all basic validation like number, arrays, voidness, etc... and contain specific validation function for itee packages.
+<p align="center">The itee validators is a common validation library, it include all basic validation like number, arrays, voidness, etc... and contain specific validation function for itee packages.</p>
+<br>
 
+<p align="center">
+    <a href="https://www.npmjs.com/package/itee-validators">
+        <img src="https://img.shields.io/npm/v/itee-validators" alt="Current package version">
+    </a>
+    <a href="https://travis-ci.org/Itee/itee-validators">
+        <img src="https://travis-ci.org/Itee/itee-validators.svg?branch=master" alt="Build status">
+    </a>
+    <a href="https://github.com/semantic-release/semantic-release">
+        <img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="Build status">
+    </a>
+</p>
 
-## How to install
+<h2>How to install</h2>
 
 From npm:
 
@@ -19,11 +29,13 @@ If you want to build the repository from source follow these instructions:
     npm install
     npm run build
     
-then copy/paste the builded module you need from builds folder.
+then you can copy/paste the module you need from builds folder.
     
-## How to use
+<h2>How to use</h2>
 
-First of all, you should take a look to the documentation ! In case you have clone the repository you could auto-generate the library documentation using: 
+<p align="center">At begin was <a href="https://itee.github.io/itee-validators/">RTFM</a> !</p>
+<br>
+In case you have clone the repository you could also auto-generate the library documentation using: 
 
     npm run doc
 
@@ -37,7 +49,7 @@ then you will be able to use like this:
         // Do something else...
     }
 
-## License (BSD-3-Clause)
+<h2>License (BSD-3-Clause)</h2>
 
 **Copyright (c) 2015-Present, Itee, Valcke Tristan [https://github.com/Itee](https://github.com/Itee). All rights reserved.**
 
