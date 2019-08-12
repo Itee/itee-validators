@@ -17,6 +17,7 @@
     </a>
 </p>
 
+<br>
 <h2>How to install</h2>
 
 From npm:
@@ -31,6 +32,7 @@ If you want to build the repository from source follow these instructions:
     
 then you can copy/paste the module you need from builds folder.
     
+<br>
 <h2>How to use</h2>
 
 <p align="center">At begin was <a href="https://itee.github.io/itee-validators/">RTFM</a> !</p>
@@ -49,6 +51,7 @@ then you will be able to use like this:
         // Do something else...
     }
 
+<br>
 <h2>License (BSD-3-Clause)</h2>
 
 **Copyright (c) 2015-Present, Itee, Valcke Tristan [https://github.com/Itee](https://github.com/Itee). All rights reserved.**
