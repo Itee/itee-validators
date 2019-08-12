@@ -1,3 +1,10 @@
+## [5.1.2](https://github.com/Itee/itee-validators/compare/v5.1.1...v5.1.2) (2019-08-12)
+
+
+### Bug Fixes
+
+* **npmdoc:** remove docs from npm package, and fix wrong path for unit test report ([02069b6](https://github.com/Itee/itee-validators/commit/02069b6))
+
 ## [5.1.1](https://github.com/Itee/itee-validators/compare/v5.1.0...v5.1.1) (2019-08-06)
 
 
