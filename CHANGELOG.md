@@ -1,3 +1,10 @@
+# [5.2.0](https://github.com/Itee/itee-validators/compare/v5.1.2...v5.2.0) (2020-07-21)
+
+
+### Features
+
+* **isnull:** add new isnull alternative ([f457379](https://github.com/Itee/itee-validators/commit/f457379c7839f764b859df33cca9d4cddf2fe653))
+
 ## [5.1.2](https://github.com/Itee/itee-validators/compare/v5.1.1...v5.1.2) (2019-08-12)
 
 

@@ -1,4 +1,4 @@
-console.log('Itee.Validators v5.1.2 - EsModule')
+console.log('Itee.Validators v5.2.0 - EsModule')
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -170,6 +170,8 @@ function isArrayOfMultiElement ( data ) {
 function isNull ( data ) {
     return ( data === null )
 }
+
+
 
 /**
  * Check if given data is not null

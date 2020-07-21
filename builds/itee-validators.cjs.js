@@ -1,4 +1,4 @@
-console.log('Itee.Validators v5.1.2 - CommonJs')
+console.log('Itee.Validators v5.2.0 - CommonJs')
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -178,6 +178,8 @@ function isArrayOfMultiElement ( data ) {
 function isNull ( data ) {
     return ( data === null )
 }
+
+
 
 /**
  * Check if given data is not null

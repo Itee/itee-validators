@@ -1,4 +1,4 @@
-console.log('Itee.Validators v5.1.2 - Standalone')
+console.log('Itee.Validators v5.2.0 - Standalone')
 this.Itee = this.Itee || {};
 this.Itee.Validators = (function (exports) {
 	'use strict';
@@ -174,6 +174,8 @@ this.Itee.Validators = (function (exports) {
 	function isNull ( data ) {
 	    return ( data === null )
 	}
+
+
 
 	/**
 	 * Check if given data is not null
