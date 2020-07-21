@@ -8,12 +8,14 @@
 
 import {
     isNotNull,
-    isNull
+    isNull,
+    isNull_0
 } from '../../../../sources/cores/voids/isNull'
 
 const isNullSuite = suite( 'isNull', () => {
 
     benchmark( 'isNull()', Itee.TestsUtils.iterateOverDataMap( isNull ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
+    benchmark( 'isNull_0()', Itee.TestsUtils.iterateOverDataMap( isNull_0 ), Itee.TestsUtils.createDataMapBenchmarkOptions() )
 
 } )
 

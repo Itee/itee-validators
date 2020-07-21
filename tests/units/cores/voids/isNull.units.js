@@ -11,7 +11,8 @@
 
 import {
     isNotNull,
-    isNull
+    isNull,
+    isNull_0
 } from '../../../../sources/cores/voids/isNull'
 
 function isNullUnits () {
@@ -41,6 +42,41 @@ function isNullUnits () {
 
                     for ( let key in dataSet ) {
                         expect( isNull( dataSet[ key ] ) ).to.be.false
+                    }
+
+                }
+
+            }
+
+        } )
+
+    } )
+
+    describe( 'isNull_0()', () => {
+
+        it( 'should return true only when the value is null', () => {
+
+            const dataMap = this._dataMap
+            for ( let mapKey in dataMap ) {
+
+                const dataSet = dataMap[ mapKey ]
+                if ( mapKey === 'voids' ) {
+
+                    for ( let key in dataSet ) {
+
+                        const result = isNull_0( dataSet[ key ] )
+                        if ( key === 'null' ) {
+                            expect( result ).to.be.true
+                        } else {
+                            expect( result ).to.be.false
+                        }
+
+                    }
+
+                } else {
+
+                    for ( let key in dataSet ) {
+                        expect( isNull_0( dataSet[ key ] ) ).to.be.false
                     }
 
                 }
