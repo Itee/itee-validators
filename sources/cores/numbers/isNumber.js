@@ -16,6 +16,7 @@
  *
  */
 
+// Todo: Negations
 //Todo: isInRange(x, y, value, xInclusive, yInclusive)
 //Todo: isInRangeZeroOne(value, zeroInclusive, oneInclusive) //inclusive
 
@@ -50,6 +51,7 @@ export function isNumberPositive ( data ) {
 
     if ( isNotNumber( data ) ) { return false }
 
+    // Todo: Math.sign
     return ( data > 0 || isZeroPositive( data ) || isInfinitePositive( data ) )
 
 }

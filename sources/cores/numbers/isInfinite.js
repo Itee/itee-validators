@@ -26,6 +26,7 @@ import { isNotNumber } from './isNumber'
  */
 export function isInfinite ( data ) {
 
+    // Todo: is required to check notnumber ?
     if ( isNotNumber( data ) ) { return false }
     if ( Number.isNaN( data ) ) { return false }
 

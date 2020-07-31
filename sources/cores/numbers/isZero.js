@@ -16,6 +16,8 @@
  *
  */
 
+// Todo: negations
+
 /**
  * Check if the given data is zero
  *
@@ -23,6 +25,7 @@
  * @returns {boolean} true if data is zero, false otherwise
  */
 export function isZero ( data ) {
+    //Todo protect truthy values
     return ( data === 0 )
 }
 
