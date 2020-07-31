@@ -3,8 +3,16 @@
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module sources/cores/objects/isEmptyObject
- * @desc Export function to validate if a value is an object
- * @example todo
+ * @desc Export function to validate if a value is an empty object
+ * @example
+ *
+ * import { isEmptyObject } from 'itee-validators'
+ *
+ * if( isEmptyObject( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

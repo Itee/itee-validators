@@ -3,8 +3,16 @@
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module sources/cores/arrays/isArrayOfMultiElement
- * @desc Export function to validate if a value is an array of array or not
- * @example todo
+ * @desc Export function to validate if a value is an array with more than one value
+ * @example
+ *
+ * import { isArrayOfMultiElement } from 'itee-validators'
+ *
+ * if( isArrayOfMultiElement( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

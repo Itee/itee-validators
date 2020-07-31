@@ -7,7 +7,15 @@
  *
  * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
  *
- * @example todo
+ * @example
+ *
+ * import { isFilePath } from 'itee-validators'
+ *
+ * if( isFilePath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

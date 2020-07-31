@@ -4,7 +4,15 @@
  *
  * @module sources/file-system/directories/isValidDirectoryPath
  * @description Export function to validate if a value is a valid directory path
- * @example todo
+ * @example
+ *
+ * import { isValidDirectoryPath } from 'itee-validators'
+ *
+ * if( isValidDirectoryPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

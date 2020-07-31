@@ -3,9 +3,16 @@
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module sources/cores/arrays/isArrayOfNull
- * @desc Export function to validate if a value is an array of array or not
- * @example todo
+ * @desc Export function to validate if a value is an array of null values or not
+ * @example
  *
+ * import { isArrayOfNull } from 'itee-validators'
+ *
+ * if( isArrayOfNull( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * } *
  */
 
 import { isNotNull }    from '../voids/isNull'
@@ -15,7 +22,7 @@ import { isEmptyArray } from './isEmptyArray'
 /**
  * Check if given data is not an empty array where all values are null
  *
- * @param data {*} The data to check against the array of array type
+ * @param data {*} The data to check against the array of null type
  * @returns {boolean} true if data is not an empty array where all values are null, false otherwise
  */
 export function isArrayOfNull ( data ) {
@@ -36,7 +43,7 @@ export function isArrayOfNull ( data ) {
 /**
  * Check if given data is not an empty array where all values are not null
  *
- * @param data {*} The data to check against the array of array type
+ * @param data {*} The data to check against the array of null type
  * @returns {boolean} true if data is not an empty array where all values are not null, false otherwise
  */
 export function isNotArrayOfNull ( data ) {

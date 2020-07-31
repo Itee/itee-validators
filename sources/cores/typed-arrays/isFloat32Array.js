@@ -4,7 +4,15 @@
  *
  * @module sources/cores/typed-arrays/isFloat32Array
  * @desc Export function to validate if a value is a float 32 array buffer
- * @example todo
+ * @example
+ *
+ * import { isFloat32Array } from 'itee-validators'
+ *
+ * if( isFloat32Array( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

@@ -4,7 +4,15 @@
  *
  * @module sources/cores/symbols/isSymbol
  * @desc Export function to validate if a value is a symbol
- * @example todo
+ * @example
+ *
+ * import { isSymbol } from 'itee-validators'
+ *
+ * if( isSymbol( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

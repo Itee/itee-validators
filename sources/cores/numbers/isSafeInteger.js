@@ -3,8 +3,16 @@
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module sources/cores/numbers/isSafeInteger
- * @desc Export function to validate if a value is a finite number
- * @example todo
+ * @desc Export function to validate if a value is a safe integer number
+ * @example
+ *
+ * import { isMaxSafeInteger } from 'itee-validators'
+ *
+ * if( isMaxSafeInteger( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

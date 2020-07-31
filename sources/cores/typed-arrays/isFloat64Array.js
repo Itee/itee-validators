@@ -4,7 +4,15 @@
  *
  * @module sources/cores/typed-arrays/isFloat64Array
  * @desc Export function to validate if a value is a float 64 array buffer
- * @example todo
+ * @example
+ *
+ * import { isFloat64Array } from 'itee-validators'
+ *
+ * if( isFloat64Array( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

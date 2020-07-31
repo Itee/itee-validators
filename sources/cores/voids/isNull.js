@@ -3,8 +3,16 @@
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module sources/cores/voids/isNull
- * @desc Export function to validate if a value is a void
- * @example todo
+ * @desc Export function to validate if a value is null or not
+ * @example
+ *
+ * import { isNull } from 'itee-validators'
+ *
+ * if( isNull( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

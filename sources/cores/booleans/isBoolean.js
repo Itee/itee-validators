@@ -4,7 +4,15 @@
  *
  * @module sources/cores/booleans/isBoolean
  * @desc Export function to validate if a value is a boolean or not
- * @example todo
+ * @example
+ *
+ * import { isBoolean } from 'itee-validators'
+ *
+ * if( isBoolean( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

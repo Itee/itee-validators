@@ -4,7 +4,15 @@
  *
  * @module sources/file-system/symbolic-links/isSocketPath
  * @description Export function to validate if a value is a valid symbolic links path
- * @example todo
+ * @example
+ *
+ * import { isValidSymbolicLinkPath } from 'itee-validators'
+ *
+ * if( isValidSymbolicLinkPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

@@ -4,7 +4,15 @@
  *
  * @module sources/cores/objects/isObject
  * @desc Export function to validate if a value is an object
- * @example todo
+ * @example
+ *
+ * import { isObject } from 'itee-validators'
+ *
+ * if( isObject( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

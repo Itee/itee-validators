@@ -3,8 +3,16 @@
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module sources/cores/numbers/isMin
- * @desc Export function to validate if a value is a finite number
- * @example todo
+ * @desc Export function to validate if a value is a minimum javascript number
+ * @example
+ *
+ * import { isMaxPositive } from 'itee-validators'
+ *
+ * if( isMaxPositive( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

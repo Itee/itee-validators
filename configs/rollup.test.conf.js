@@ -2,7 +2,7 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module Config-Rollup-Test
+ * @module configs/Rollup-Test
  * @description The file manage the rollup configuration for build tests
  */
 
