@@ -14,6 +14,7 @@ import {
     isMaxSafeInteger,
     isMinSafeInteger
 } from '../../../../sources/cores/numbers/isSafeInteger'
+import { expect } from 'chai'
 
 function isMaxSafeIntegerUnits () {
 

@@ -14,6 +14,7 @@ import {
     isBlankString,
     isNotBlankString
 } from '../../../../sources/cores/strings/isBlankString'
+import { expect } from 'chai'
 
 function isBlankStringUnits () {
 

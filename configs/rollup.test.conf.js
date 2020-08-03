@@ -18,17 +18,35 @@ function CreateTestsRollupConfigs ( /*options*/ ) {
     'use strict'
 
     return [
+        // Units
+        // For karma
         {
             input:     `tests/units/${packageInfos.name}.units.js`,
+            external:  [ 'chai' ],
+            plugins:   [],
+            treeshake: true,
+            output:    {
+                indent:  '\t',
+                format:  'iife',
+                name:    'Itee.Units',
+                globals: { 'chai': 'chai' },
+                file:    `tests/builds/${packageInfos.name}.units.iife.js`
+            }
+        },
+        // For node
+        {
+            input:     `tests/units/${packageInfos.name}.units.js`,
+            external:  [ 'chai' ],
             plugins:   [],
             treeshake: true,
             output:    {
                 indent: '\t',
-                format: 'iife',
+                format: 'cjs',
                 name:   'Itee.Units',
-                file:   `tests/builds/${packageInfos.name}.units.js`
+                file:   `tests/builds/${packageInfos.name}.units.cjs.js`
             }
         },
+        // Benchs
         {
             input:     `tests/benchmarks/${packageInfos.name}.benchs.js`,
             plugins:   [],

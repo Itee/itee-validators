@@ -14,6 +14,7 @@ import {
     isCelsius,
     isNotCelsius
 } from '../../../../sources/physics/temperatures/isCelsius'
+import { expect } from 'chai'
 
 function isCelsiusUnits () {
 

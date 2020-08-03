@@ -18,6 +18,7 @@ import {
     isNumberNegative,
     isNumberPositive
 } from '../../../../sources/cores/numbers/isNumber'
+import { expect } from 'chai'
 
 function isNumberUnits () {
 

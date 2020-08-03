@@ -14,6 +14,7 @@ import {
     isFunction,
     isNotFunction
 } from '../../../../sources/cores/functions/isFunction'
+import { expect } from 'chai'
 
 function isFunctionUnits () {
 
