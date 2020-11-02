@@ -14,6 +14,7 @@ import {
     isArrayOfUndefined,
     isNotArrayOfUndefined
 } from '../../../../sources/cores/arrays/isArrayOfUndefined'
+import { expect } from 'chai'
 
 function isArrayOfUndefinedUnits () {
 

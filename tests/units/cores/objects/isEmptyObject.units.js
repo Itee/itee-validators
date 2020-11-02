@@ -14,6 +14,7 @@ import {
     isEmptyObject,
     isNotEmptyObject
 } from '../../../../sources/cores/objects/isEmptyObject'
+import { expect } from 'chai'
 
 function isEmptyObjectUnits () {
 

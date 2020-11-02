@@ -14,6 +14,7 @@ import {
     isKelvin,
     isNotKelvin
 } from '../../../../sources/physics/temperatures/isKelvin'
+import { expect } from 'chai'
 
 function isKelvinUnits () {
 

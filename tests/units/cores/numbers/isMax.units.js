@@ -14,6 +14,7 @@ import {
     isMaxNegative,
     isMaxPositive
 } from '../../../../sources/cores/numbers/isMax'
+import { expect } from 'chai'
 
 function isMaxPositiveUnits () {
 
