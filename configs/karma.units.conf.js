@@ -2,7 +2,7 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module Config-Karma-Units
+ * @module configs/Karma-Units
  * @description The file manage the karma configuration for run units tests that are under `tests/units` folder
  */
 

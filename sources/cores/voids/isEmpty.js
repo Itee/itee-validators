@@ -3,8 +3,16 @@
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module sources/cores/voids/isEmpty
- * @desc Export function to validate if a value is a void
- * @example todo
+ * @desc Export function to validate if a value could be considered as empty
+ * @example
+ *
+ * import { isEmpty } from 'itee-validators'
+ *
+ * if( isEmpty( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

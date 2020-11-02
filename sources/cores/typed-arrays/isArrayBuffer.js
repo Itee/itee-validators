@@ -4,7 +4,15 @@
  *
  * @module sources/cores/typed-arrays/isArrayBuffer
  * @desc Export function to validate if a value is a array buffer
- * @example todo
+ * @example
+ *
+ * import { isArrayBuffer } from 'itee-validators'
+ *
+ * if( isArrayBuffer( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

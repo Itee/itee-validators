@@ -4,7 +4,15 @@
  *
  * @module sources/cores/voids/isUndefined
  * @desc Export function to validate if a value is a void
- * @example todo
+ * @example
+ *
+ * import { isNull } from 'itee-validators'
+ *
+ * if( isNull( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

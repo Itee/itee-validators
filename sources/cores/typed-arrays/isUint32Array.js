@@ -4,7 +4,15 @@
  *
  * @module sources/cores/typed-arrays/isUint32Array
  * @desc Export function to validate if a value is a unsigned int 32 array buffer
- * @example todo
+ * @example
+ *
+ * import { isUint32Array } from 'itee-validators'
+ *
+ * if( isUint32Array( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

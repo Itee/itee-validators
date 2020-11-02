@@ -7,7 +7,15 @@
  *
  * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
  *
- * @example todo
+ * @example
+ *
+ * import { isSymbolicLinkPath } from 'itee-validators'
+ *
+ * if( isSymbolicLinkPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

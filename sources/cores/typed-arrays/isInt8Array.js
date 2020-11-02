@@ -4,7 +4,15 @@
  *
  * @module sources/cores/typed-arrays/isInt8Array
  * @desc Export function to validate if a value is a int 8 array buffer
- * @example todo
+ * @example
+ *
+ * import { isInt8Array } from 'itee-validators'
+ *
+ * if( isInt8Array( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

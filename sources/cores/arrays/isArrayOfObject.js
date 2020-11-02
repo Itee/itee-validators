@@ -3,8 +3,16 @@
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module sources/cores/arrays/isArrayOfObject
- * @desc Export function to validate if a value is an array of array or not
- * @example todo
+ * @desc Export function to validate if a value is an array of objects or not
+ * @example
+ *
+ * import { isArrayOfObject } from 'itee-validators'
+ *
+ * if( isArrayOfObject( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

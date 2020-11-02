@@ -4,7 +4,15 @@
  *
  * @module sources/file-system/sockets/isValidSocketPath
  * @description Export function to validate if a value is a valid socket path
- * @example todo
+ * @example
+ *
+ * import { isValidSocketPath } from 'itee-validators'
+ *
+ * if( isValidSocketPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

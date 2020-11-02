@@ -38,7 +38,7 @@
                     return false
                 }
 
-                return !(value < 0 || value > 255)
+                return !(value <= 0 || value > 255)
 
             } )
 
@@ -156,7 +156,7 @@ class Validator {
         /**
          * The validators store, by default it contains validators for Boolean, Number, Integer, Float, Array, String, Object, Symbol and Function
          *
-         * @type {(function|object)}
+         * @type {object}
          */
         this.validators = {
             Boolean:  isBoolean,

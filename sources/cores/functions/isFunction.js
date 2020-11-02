@@ -4,7 +4,15 @@
  *
  * @module sources/cores/functions/isFunction
  * @desc Export function to validate if a value is a function or not
- * @example todo
+ * @example
+ *
+ * import { isFunction } from 'itee-validators'
+ *
+ * if( isFunction( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

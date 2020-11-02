@@ -4,7 +4,15 @@
  *
  * @module sources/file-system/block-devices/isValidBlockDevicePath
  * @description Export function to validate if a value is a valid block device path.
- * @example todo
+ * @example
+ *
+ * import { isValidBlockDevicePath } from 'itee-validators'
+ *
+ * if( isValidBlockDevicePath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

@@ -4,7 +4,15 @@
  *
  * @module sources/cores/typed-arrays/isUint16Array
  * @desc Export function to validate if a value is a unsigned int 16 array buffer
- * @example todo
+ * @example
+ *
+ * import { isUint16Array } from 'itee-validators'
+ *
+ * if( isUint16Array( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

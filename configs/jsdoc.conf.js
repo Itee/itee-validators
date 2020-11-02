@@ -2,7 +2,7 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module Config-JsDoc
+ * @module configs/JsDoc
  * @description The configuration file of the jsdoc plugin
  */
 
@@ -33,6 +33,33 @@ function CreateJsdocConfiguration () {
             'recurse':     true,
             'verbose':     true,
             'private':     true
+        },
+        'templates': {
+            'includeDate': false,
+            'navType':     'inline',
+            'theme':       [
+                                     'cerulean',
+                                     'cosmo',
+                                     'darkly',
+                                     'cyborg',
+                                     'flatly',
+                                     'journal',
+                                     'lumen',
+                                     'paper',
+                                     'readable',
+                                     'sandstone',
+                                     'simplex',
+                                     'slate',
+                                     'spacelab',
+                                     'superhero',
+                                     'united',
+                                     'yeti'
+                                 ][ 10 ],
+            'linenums':          true,
+            'collapseSymbols':   true,
+            'outputSourceFiles': true,
+            'sort':              'longname, version, since',
+            'search':            true
         }
     }
 

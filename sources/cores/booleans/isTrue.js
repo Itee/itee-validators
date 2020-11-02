@@ -4,7 +4,15 @@
  *
  * @module sources/cores/booleans/isTrue
  * @desc Export function to validate if a value is a boolean set to true or false
- * @example todo
+ * @example
+ *
+ * import { isTrue } from 'itee-validators'
+ *
+ * if( isTrue( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

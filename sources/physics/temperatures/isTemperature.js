@@ -4,7 +4,15 @@
  *
  * @module sources/physics/temperatues
  * @desc Export function to validate if a value is a temperature
- * @example todo
+ * @example
+ *
+ * import { isTemperature } from 'itee-validators'
+ *
+ * if( isTemperature( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

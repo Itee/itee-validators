@@ -4,7 +4,15 @@
  *
  * @module sources/cores/typed-arrays/isInt16Array
  * @desc Export function to validate if a value is a int 16 array buffer
- * @example todo
+ * @example
+ *
+ * import { isInt16Array } from 'itee-validators'
+ *
+ * if( isInt16Array( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

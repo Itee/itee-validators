@@ -4,7 +4,15 @@
  *
  * @module sources/cores/arrays/isArrayOfArray
  * @desc Export function to validate if a value is an array of array or not
- * @example todo
+ * @example
+ *
+ * import { isArrayOfArray } from 'itee-validators'
+ *
+ * if( isArrayOfArray( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

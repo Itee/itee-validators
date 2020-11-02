@@ -4,7 +4,15 @@
  *
  * @module sources/cores/typed-arrays/isUint8Array
  * @desc Export function to validate if a value is a unsigned int 8 array buffer
- * @example todo
+ * @example
+ *
+ * import { isUint8Array } from 'itee-validators'
+ *
+ * if( isUint8Array( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

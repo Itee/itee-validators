@@ -3,10 +3,20 @@
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module sources/cores/numbers/isZero
- * @desc Export function to validate if a value is a finite number
- * @example todo
+ * @desc Export function to validate if a value is zero, with a special sign
+ * @example
+ *
+ * import { isZero } from 'itee-validators'
+ *
+ * if( isZero( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
+
+// Todo: negations
 
 /**
  * Check if the given data is zero
@@ -15,6 +25,7 @@
  * @returns {boolean} true if data is zero, false otherwise
  */
 export function isZero ( data ) {
+    //Todo protect truthy values
     return ( data === 0 )
 }
 

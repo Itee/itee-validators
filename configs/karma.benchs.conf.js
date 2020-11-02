@@ -2,7 +2,7 @@
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module Config-Karma-Benchs
+ * @module configs/Karma-Benchs
  * @description The file manage the karma configuration for run benchmarks that are under `tests/benchmarks` folder
  */
 
