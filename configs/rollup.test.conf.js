@@ -47,6 +47,7 @@ function CreateTestsRollupConfigs ( /*options*/ ) {
             }
         },
         // Benchs
+        // For karma
         {
             input:     `tests/benchmarks/${packageInfos.name}.benchs.js`,
             plugins:   [],
@@ -55,7 +56,18 @@ function CreateTestsRollupConfigs ( /*options*/ ) {
                 indent: '\t',
                 format: 'iife',
                 name:   'Itee.Benchs',
-                file:   `tests/builds/${packageInfos.name}.benchs.js`
+                file:   `tests/builds/${packageInfos.name}.benchs.iife.js`
+            }
+        },
+        {
+            input:     `tests/benchmarks/${packageInfos.name}.benchs.js`,
+            plugins:   [],
+            treeshake: true,
+            output:    {
+                indent: '\t',
+                format: 'cjs',
+                name:   'Itee.Benchs',
+                file:   `tests/builds/${packageInfos.name}.benchs.cjs.js`
             }
         },
         {
