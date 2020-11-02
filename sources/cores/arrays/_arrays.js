@@ -8,14 +8,13 @@
 
 export * from './isArray'
 export * from './isArrayOfArray'
+export * from './isArrayOfBoolean'
+export * from './isArrayOfFunction'
 export * from './isArrayOfMultiElement'
 export * from './isArrayOfNull'
+export * from './isArrayOfNumber'
 export * from './isArrayOfObject'
 export * from './isArrayOfSingleElement'
 export * from './isArrayOfString'
 export * from './isArrayOfUndefined'
 export * from './isEmptyArray'
-
-//todo: isArrayOfNumbers
-//todo: isArrayOfBooleans
-//todo: isArrayOfFunctions
