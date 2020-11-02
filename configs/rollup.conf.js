@@ -62,14 +62,8 @@ function _computeBanner ( name, format ) {
 function CreateRollupConfigs ( options ) {
     'use strict'
 
-    const name      = options.name
-    const input     = options.input
-    const output    = options.output
-    const formats   = options.format.split( ',' )
-    const envs      = options.env.split( ',' )
-    const sourcemap = options.sourcemap
-    const treeshake = options.treeshake
-    const fileName  = path.basename( input, '.js' )
+    const { name, input, output, formats, envs, sourcemap, treeshake } = options
+    const fileName                                                     = path.basename( input, '.js' )
 
     const configs = []
 
@@ -83,11 +77,11 @@ function CreateRollupConfigs ( options ) {
             const outputPath = ( isProd ) ? path.join( output, `${fileName}.${format}.min.js` ) : path.join( output, `${fileName}.${format}.js` )
 
             configs.push( {
-                input:    input,
-                external: ( format === 'cjs' ) ? [
+                input:     input,
+                external:  ( format === 'cjs' ) ? [
                     'fs'
                 ] : [],
-                plugins: [
+                plugins:   [
                     replace( {
                         defines: {
                             IS_REMOVE_ON_BUILD:  false,
@@ -102,7 +96,7 @@ function CreateRollupConfigs ( options ) {
                     } ),
                     isProd && terser()
                 ],
-                onwarn: ( { loc, frame, message } ) => {
+                onwarn:    ( { loc, frame, message } ) => {
 
                     // Ignore some errors
                     if ( message.includes( 'Circular dependency' ) ) { return }
