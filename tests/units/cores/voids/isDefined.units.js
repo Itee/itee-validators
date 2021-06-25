@@ -13,6 +13,7 @@ import {
     isDefined,
     isNotDefined
 } from '../../../../sources/cores/voids/isDefined'
+import { expect } from 'chai'
 
 function isDefinedUnits () {
 

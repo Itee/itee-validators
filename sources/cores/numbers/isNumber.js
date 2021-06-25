@@ -3,11 +3,20 @@
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module sources/cores/numbers/isNumber
- * @desc Export function to validate if a value is a finite number
- * @example todo
+ * @desc Export function to validate if a value is a number, or with special sign
+ * @example
+ *
+ * import { isNumber } from 'itee-validators'
+ *
+ * if( isNumber( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 
+// Todo: Negations
 //Todo: isInRange(x, y, value, xInclusive, yInclusive)
 //Todo: isInRangeZeroOne(value, zeroInclusive, oneInclusive) //inclusive
 
@@ -42,6 +51,7 @@ export function isNumberPositive ( data ) {
 
     if ( isNotNumber( data ) ) { return false }
 
+    // Todo: Math.sign
     return ( data > 0 || isZeroPositive( data ) || isInfinitePositive( data ) )
 
 }
@@ -95,7 +105,7 @@ export function isFloat ( data ) {
 /**
  * Check if given data is not a number
  *
- * @param data {*} The data to check against the maximum safe integer state
+ * @param data {*} The data to check against the NaN state
  * @returns {boolean} true if data is not a number, false otherwise.
  */
 export function isNaN ( data ) {

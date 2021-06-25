@@ -14,6 +14,7 @@ import {
     isMinNegative,
     isMinPositive
 } from '../../../../sources/cores/numbers/isMin'
+import { expect } from 'chai'
 
 function isMinPositiveUnits () {
 

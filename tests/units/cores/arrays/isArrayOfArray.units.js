@@ -14,6 +14,7 @@ import {
     isArrayOfArray,
     isNotArrayOfArray
 } from '../../../../sources/cores/arrays/isArrayOfArray'
+import { expect } from 'chai'
 
 function isArrayOfArrayUnits () {
 

@@ -3,8 +3,16 @@
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module sources/cores/numbers/isInfinite
- * @desc Export function to validate if a value is a finite number
- * @example todo
+ * @desc Export function to validate if a value is a finite or infinite number
+ * @example
+ *
+ * import { isInfinite } from 'itee-validators'
+ *
+ * if( isInfinite( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 
@@ -18,6 +26,7 @@ import { isNotNumber } from './isNumber'
  */
 export function isInfinite ( data ) {
 
+    // Todo: is required to check notnumber ?
     if ( isNotNumber( data ) ) { return false }
     if ( Number.isNaN( data ) ) { return false }
 

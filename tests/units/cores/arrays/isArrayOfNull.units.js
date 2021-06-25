@@ -14,6 +14,7 @@ import {
     isArrayOfNull,
     isNotArrayOfNull
 } from '../../../../sources/cores/arrays/isArrayOfNull'
+import { expect } from 'chai'
 
 function isArrayOfNullUnits () {
 

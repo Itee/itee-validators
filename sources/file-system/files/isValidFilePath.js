@@ -4,7 +4,15 @@
  *
  * @module sources/file-system/files/isValidFilePath
  * @description Export function to validate if a value is a valid file path
- * @example todo
+ * @example
+ *
+ * import { isValidFilePath } from 'itee-validators'
+ *
+ * if( isValidFilePath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

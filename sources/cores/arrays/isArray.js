@@ -3,8 +3,8 @@
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module sources/cores/arrays/isArray
- * @desc Export function to validate if a value is an array or not
- * @example
+ * @desc Export functions to validate if a value is an array or not
+ * @example {@lang javascript}
  *
  * import { isArray } from 'itee-validators'
  *

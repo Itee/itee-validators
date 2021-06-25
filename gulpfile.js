@@ -297,8 +297,8 @@ gulp.task( 'build', ( done ) => {
             n: 'Itee.Validators',
             i: path.join( __dirname, 'sources', `${packageInfos.name}.js` ),
             o: path.join( __dirname, 'builds' ),
-            f: 'esm,cjs,iife',
-            e: 'dev,prod',
+            f: ['esm','cjs','iife'],
+            e: ['dev','prod'],
             s: true,
             t: true
         },
@@ -306,8 +306,8 @@ gulp.task( 'build', ( done ) => {
             n: 'name',
             i: 'input',
             o: 'output',
-            f: 'format',
-            e: 'env',
+            f: 'formats',
+            e: 'envs',
             s: 'sourcemap',
             t: 'treeshake'
         }

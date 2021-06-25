@@ -4,7 +4,15 @@
  *
  * @module sources/cores/typed-arrays/isInt32Array
  * @desc Export function to validate if a value is a int 32 array buffer
- * @example todo
+ * @example
+ *
+ * import { isInt32Array } from 'itee-validators'
+ *
+ * if( isInt32Array( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

@@ -11,6 +11,7 @@
 /* global describe, expect, it */
 
 import { isArrayOfMultiElement } from '../../../../sources/cores/arrays/isArrayOfMultiElement'
+import { expect } from 'chai'
 
 function isArrayOfMultiElementUnits () {
 

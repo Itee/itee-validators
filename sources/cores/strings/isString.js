@@ -4,7 +4,15 @@
  *
  * @module sources/cores/strings/isString
  * @desc Export function to validate if a value is a string
- * @example todo
+ * @example
+ *
+ * import { isString } from 'itee-validators'
+ *
+ * if( isString( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

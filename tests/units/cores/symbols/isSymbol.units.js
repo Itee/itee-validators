@@ -14,6 +14,7 @@ import {
     isNotSymbol,
     isSymbol
 } from '../../../../sources/cores/symbols/isSymbol'
+import { expect } from 'chai'
 
 function isSymbolUnits () {
 

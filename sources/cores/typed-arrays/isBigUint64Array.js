@@ -4,7 +4,15 @@
  *
  * @module sources/cores/typed-arrays/isBigUint64Array
  * @desc Export function to validate if a value is a big unsigned int 64 array buffer
- * @example todo
+ * @example
+ *
+ * import { isBigUint64Array } from 'itee-validators'
+ *
+ * if( isBigUint64Array( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

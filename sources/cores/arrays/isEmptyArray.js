@@ -3,8 +3,16 @@
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module sources/cores/arrays/isEmptyArray
- * @desc Export function to validate if a value is an array of array or not
- * @example todo
+ * @desc Export function to validate if a value is an array of null length or not
+ * @example
+ *
+ * import { isEmptyArray } from 'itee-validators'
+ *
+ * if( isEmptyArray( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

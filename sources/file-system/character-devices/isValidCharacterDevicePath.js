@@ -4,7 +4,15 @@
  *
  * @module sources/file-system/character-devices/isValidCharacterDevicePath
  * @description Export function to validate if a value is a valid character device path
- * @example todo
+ * @example
+ *
+ * import { isValidCharacterDevicePath } from 'itee-validators'
+ *
+ * if( isValidCharacterDevicePath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

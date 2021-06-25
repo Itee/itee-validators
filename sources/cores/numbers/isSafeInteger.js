@@ -3,8 +3,16 @@
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module sources/cores/numbers/isSafeInteger
- * @desc Export function to validate if a value is a finite number
- * @example todo
+ * @desc Export function to validate if a value is a safe integer number
+ * @example
+ *
+ * import { isMaxSafeInteger } from 'itee-validators'
+ *
+ * if( isMaxSafeInteger( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 
@@ -17,6 +25,7 @@
 export function isMaxSafeInteger ( data ) {
     return ( data === Number.MAX_SAFE_INTEGER )
 }
+// Todo: Neg
 
 /**
  * Check if the given data is a minimum safe integer number
@@ -27,3 +36,4 @@ export function isMaxSafeInteger ( data ) {
 export function isMinSafeInteger ( data ) {
     return ( data === Number.MIN_SAFE_INTEGER )
 }
+// Todo: Neg

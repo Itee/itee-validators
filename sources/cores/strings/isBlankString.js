@@ -4,7 +4,15 @@
  *
  * @module sources/cores/strings/isBlankString
  * @desc Export function to validate if a value is a blank string
- * @example todo
+ * @example
+ *
+ * import { isBlankString } from 'itee-validators'
+ *
+ * if( isBlankString( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

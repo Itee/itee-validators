@@ -4,7 +4,15 @@
  *
  * @module sources/cores/typed-arrays/isBigInt64Array
  * @desc Export function to validate if a value is a big int 64 array buffer
- * @example todo
+ * @example
+ *
+ * import { isBigInt64Array } from 'itee-validators'
+ *
+ * if( isBigInt64Array( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 

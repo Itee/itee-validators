@@ -4,7 +4,15 @@
  *
  * @module sources/cores/typed-arrays/isUint8ClampedArray
  * @desc Export function to validate if a value is a unsigned clamped int 8 array buffer
- * @example todo
+ * @example
+ *
+ * import { isUint8ClampedArray } from 'itee-validators'
+ *
+ * if( isUint8ClampedArray( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
  *
  */
 
