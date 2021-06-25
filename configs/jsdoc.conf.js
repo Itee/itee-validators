@@ -54,7 +54,7 @@ function CreateJsdocConfiguration () {
                                      'superhero',
                                      'united',
                                      'yeti'
-                                 ][ 10 ],
+                                 ][ 2 ],
             'linenums':          true,
             'collapseSymbols':   true,
             'outputSourceFiles': true,
