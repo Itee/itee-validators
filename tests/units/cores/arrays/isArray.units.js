@@ -8,7 +8,7 @@
  *
  */
 
-/* global describe, it */
+/* global describe, expect, it */
 
 import {
     isArray,
