@@ -123,7 +123,7 @@ function CreateRollupConfigs ( options ) {
                     footer:    '',
                     intro:     '',
                     outro:     '',
-                    sourcemap: sourcemap,
+                    sourcemap: !isProd,
                     interop:   true,
 
                     // danger zone
