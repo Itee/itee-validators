@@ -14,7 +14,6 @@ import {
     isNull,
     isNull_0
 } from '../../../../sources/cores/voids/isNull'
-import { expect } from 'chai'
 
 function isNullUnits () {
 

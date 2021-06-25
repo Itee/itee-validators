@@ -15,7 +15,6 @@ import {
     isZeroNegative,
     isZeroPositive
 } from '../../../../sources/cores/numbers/isZero'
-import { expect } from 'chai'
 
 function isZeroUnits () {
 

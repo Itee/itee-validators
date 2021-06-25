@@ -14,7 +14,6 @@ import {
     isFahrenheit,
     isNotFahrenheit
 } from '../../../../sources/physics/temperatures/isFahrenheit'
-import { expect } from 'chai'
 
 function isFahrenheitUnits () {
 

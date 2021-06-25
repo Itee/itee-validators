@@ -14,7 +14,6 @@ import {
     isArray,
     isNotArray
 } from '../../../../sources/cores/arrays/isArray'
-import { expect } from 'chai'
 
 function isArrayUnits () {
 
@@ -23,7 +22,6 @@ function isArrayUnits () {
         it( 'should return true only when the value is a array', () => {
 
             const dataMap = this._dataMap
-            console.log(dataMap)
             for ( let mapKey in dataMap ) {
 
                 const dataSet = dataMap[ mapKey ]
