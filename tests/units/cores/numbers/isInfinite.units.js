@@ -16,7 +16,6 @@ import {
     isInfiniteNegative,
     isInfinitePositive
 } from '../../../../sources/cores/numbers/isInfinite'
-import { expect } from 'chai'
 
 function isInfiniteUnits () {
 

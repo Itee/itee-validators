@@ -14,7 +14,6 @@ import {
     isNotObject,
     isObject
 } from '../../../../sources/cores/objects/isObject'
-import { expect } from 'chai'
 
 function isObjectUnits () {
 

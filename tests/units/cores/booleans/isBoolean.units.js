@@ -14,7 +14,6 @@ import {
     isBoolean,
     isNotBoolean
 } from '../../../../sources/cores/booleans/isBoolean'
-import { expect } from 'chai'
 
 function isBooleanUnits () {
 

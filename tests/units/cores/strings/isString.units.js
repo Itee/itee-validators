@@ -14,7 +14,6 @@ import {
     isNotString,
     isString
 } from '../../../../sources/cores/strings/isString'
-import { expect } from 'chai'
 
 function isStringUnits () {
 
