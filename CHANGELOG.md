@@ -1,3 +1,19 @@
+# [5.3.0](https://github.com/Itee/itee-validators/compare/v5.2.0...v5.3.0) (2021-07-05)
+
+
+### Bug Fixes
+
+* **config:** remove sourcemap generation for production env ([b94d958](https://github.com/Itee/itee-validators/commit/b94d958286b030e031d6ed2a1e7eb4d7a569b753))
+* **doc:** fix missing global declaration for expect method ([efef6f6](https://github.com/Itee/itee-validators/commit/efef6f63b4699a2cc579f878bc2ae42ac0706192))
+* **force:** fix some typo and indentation ([84ac6bf](https://github.com/Itee/itee-validators/commit/84ac6bfda3221bf6a89ca243c820e3a1d389bd48))
+* **tests:** fix unused dependency ([348413f](https://github.com/Itee/itee-validators/commit/348413f515f1a17183f5bb0410fa37277f9cdec7))
+
+
+### Features
+
+* **dom:** add isEventTarget function to initiat dom validators implementation ([565a056](https://github.com/Itee/itee-validators/commit/565a056732b92146d33378dd783127b97c08c09a))
+* **isarray:** add new isarray methods for boolean, functions and numbers ([543af55](https://github.com/Itee/itee-validators/commit/543af5578605303415d379676a72b8511ff7f109))
+
 # [5.2.0](https://github.com/Itee/itee-validators/compare/v5.1.2...v5.2.0) (2020-07-21)
 
 

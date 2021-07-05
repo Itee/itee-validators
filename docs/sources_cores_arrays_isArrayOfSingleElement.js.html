@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Documentation Source: sources/cores/arrays/isArrayOfSingleElement.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.darkly.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Documentation</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
+				<ul class="dropdown-menu inline">
+					<li><a href="module-Building.html">Building</a></li><li><a href="module-configs_EsLint.html">configs/EsLint</a></li><li><a href="module-configs_JsDoc.html">configs/JsDoc</a></li><li><a href="module-configs_Karma-Benchs.html">configs/Karma-Benchs</a></li><li><a href="module-configs_Karma-Units.html">configs/Karma-Units</a></li><li><a href="module-configs_Rollup.html">configs/Rollup</a></li><li><a href="module-configs_Rollup-Test.html">configs/Rollup-Test</a></li><li><a href="module-sources_cores.html">sources/cores</a></li><li><a href="module-sources_cores_arrays.html">sources/cores/arrays</a></li><li><a href="module-sources_cores_arrays_isArray.html">sources/cores/arrays/isArray</a></li><li><a href="module-sources_cores_arrays_isArrayOfArray.html">sources/cores/arrays/isArrayOfArray</a></li><li><a href="module-sources_cores_arrays_isArrayOfBoolean.html">sources/cores/arrays/isArrayOfBoolean</a></li><li><a href="module-sources_cores_arrays_isArrayOfMultiElement.html">sources/cores/arrays/isArrayOfMultiElement</a></li><li><a href="module-sources_cores_arrays_isArrayOfNull.html">sources/cores/arrays/isArrayOfNull</a></li><li><a href="module-sources_cores_arrays_isArrayOfObject.html">sources/cores/arrays/isArrayOfObject</a></li><li><a href="module-sources_cores_arrays_isArrayOfSingleElement.html">sources/cores/arrays/isArrayOfSingleElement</a></li><li><a href="module-sources_cores_arrays_isArrayOfString.html">sources/cores/arrays/isArrayOfString</a></li><li><a href="module-sources_cores_arrays_isArrayOfUndefined.html">sources/cores/arrays/isArrayOfUndefined</a></li><li><a href="module-sources_cores_arrays_isEmptyArray.html">sources/cores/arrays/isEmptyArray</a></li><li><a href="module-sources_cores_booleans.html">sources/cores/booleans</a></li><li><a href="module-sources_cores_booleans_isBoolean.html">sources/cores/booleans/isBoolean</a></li><li><a href="module-sources_cores_booleans_isTrue.html">sources/cores/booleans/isTrue</a></li><li><a href="module-sources_cores_cores.html">sources/cores/cores</a></li><li><a href="module-sources_cores_functions.html">sources/cores/functions</a></li><li><a href="module-sources_cores_functions_isFunction.html">sources/cores/functions/isFunction</a></li><li><a href="module-sources_cores_numbers.html">sources/cores/numbers</a></li><li><a href="module-sources_cores_numbers_isInfinite.html">sources/cores/numbers/isInfinite</a></li><li><a href="module-sources_cores_numbers_isMax.html">sources/cores/numbers/isMax</a></li><li><a href="module-sources_cores_numbers_isMin.html">sources/cores/numbers/isMin</a></li><li><a href="module-sources_cores_numbers_isNumber.html">sources/cores/numbers/isNumber</a></li><li><a href="module-sources_cores_numbers_isSafeInteger.html">sources/cores/numbers/isSafeInteger</a></li><li><a href="module-sources_cores_numbers_isZero.html">sources/cores/numbers/isZero</a></li><li><a href="module-sources_cores_objects.html">sources/cores/objects</a></li><li><a href="module-sources_cores_objects_isEmptyObject.html">sources/cores/objects/isEmptyObject</a></li><li><a href="module-sources_cores_objects_isObject.html">sources/cores/objects/isObject</a></li><li><a href="module-sources_cores_strings.html">sources/cores/strings</a></li><li><a href="module-sources_cores_strings_isBlankString.html">sources/cores/strings/isBlankString</a></li><li><a href="module-sources_cores_strings_isEmptyString.html">sources/cores/strings/isEmptyString</a></li><li><a href="module-sources_cores_strings_isString.html">sources/cores/strings/isString</a></li><li><a href="module-sources_cores_symbols.html">sources/cores/symbols</a></li><li><a href="module-sources_cores_symbols_isSymbol.html">sources/cores/symbols/isSymbol</a></li><li><a href="module-sources_cores_typed-arrays.html">sources/cores/typed-arrays</a></li><li><a href="module-sources_cores_typed-arrays_isArrayBuffer.html">sources/cores/typed-arrays/isArrayBuffer</a></li><li><a href="module-sources_cores_typed-arrays_isBigInt64Array.html">sources/cores/typed-arrays/isBigInt64Array</a></li><li><a href="module-sources_cores_typed-arrays_isBigUint64Array.html">sources/cores/typed-arrays/isBigUint64Array</a></li><li><a href="module-sources_cores_typed-arrays_isFloat32Array.html">sources/cores/typed-arrays/isFloat32Array</a></li><li><a href="module-sources_cores_typed-arrays_isFloat64Array.html">sources/cores/typed-arrays/isFloat64Array</a></li><li><a href="module-sources_cores_typed-arrays_isInt8Array.html">sources/cores/typed-arrays/isInt8Array</a></li><li><a href="module-sources_cores_typed-arrays_isInt16Array.html">sources/cores/typed-arrays/isInt16Array</a></li><li><a href="module-sources_cores_typed-arrays_isInt32Array.html">sources/cores/typed-arrays/isInt32Array</a></li><li><a href="module-sources_cores_typed-arrays_isUint8Array.html">sources/cores/typed-arrays/isUint8Array</a></li><li><a href="module-sources_cores_typed-arrays_isUint8ClampedArray.html">sources/cores/typed-arrays/isUint8ClampedArray</a></li><li><a href="module-sources_cores_typed-arrays_isUint16Array.html">sources/cores/typed-arrays/isUint16Array</a></li><li><a href="module-sources_cores_typed-arrays_isUint32Array.html">sources/cores/typed-arrays/isUint32Array</a></li><li><a href="module-sources_cores_voids.html">sources/cores/voids</a></li><li><a href="module-sources_cores_voids_isDefined.html">sources/cores/voids/isDefined</a></li><li><a href="module-sources_cores_voids_isEmpty.html">sources/cores/voids/isEmpty</a></li><li><a href="module-sources_cores_voids_isNull.html">sources/cores/voids/isNull</a></li><li><a href="module-sources_cores_voids_isUndefined.html">sources/cores/voids/isUndefined</a></li><li><a href="module-sources_file-system.html">sources/file-system</a></li><li><a href="module-sources_file-system_block-devices.html">sources/file-system/block-devices</a></li><li><a href="module-sources_file-system_block-devices_isBlockDevicePath.html">sources/file-system/block-devices/isBlockDevicePath</a></li><li><a href="module-sources_file-system_block-devices_isValidBlockDevicePath.html">sources/file-system/block-devices/isValidBlockDevicePath</a></li><li><a href="module-sources_file-system_character-devices.html">sources/file-system/character-devices</a></li><li><a href="module-sources_file-system_character-devices_isCharacterDevicePath.html">sources/file-system/character-devices/isCharacterDevicePath</a></li><li><a href="module-sources_file-system_character-devices_isValidCharacterDevicePath.html">sources/file-system/character-devices/isValidCharacterDevicePath</a></li><li><a href="module-sources_file-system_directories.html">sources/file-system/directories</a></li><li><a href="module-sources_file-system_directories_isDirectoryPath.html">sources/file-system/directories/isDirectoryPath</a></li><li><a href="module-sources_file-system_directories_isEmptyDirectory.html">sources/file-system/directories/isEmptyDirectory</a></li><li><a href="module-sources_file-system_directories_isValidDirectoryPath.html">sources/file-system/directories/isValidDirectoryPath</a></li><li><a href="module-sources_file-system_fifo-pipes.html">sources/file-system/fifo-pipes</a></li><li><a href="module-sources_file-system_fifo-pipes_isFIFOPath.html">sources/file-system/fifo-pipes/isFIFOPath</a></li><li><a href="module-sources_file-system_fifo-pipes_isValidFIFOPath.html">sources/file-system/fifo-pipes/isValidFIFOPath</a></li><li><a href="module-sources_file-system_files.html">sources/file-system/files</a></li><li><a href="module-sources_file-system_files_isEmptyFile.html">sources/file-system/files/isEmptyFile</a></li><li><a href="module-sources_file-system_files_isFilePath.html">sources/file-system/files/isFilePath</a></li><li><a href="module-sources_file-system_files_isValidFilePath.html">sources/file-system/files/isValidFilePath</a></li><li><a href="module-sources_file-system_paths.html">sources/file-system/paths</a></li><li><a href="module-sources_file-system_paths_isValidPath.html">sources/file-system/paths/isValidPath</a></li><li><a href="module-sources_file-system_sockets.html">sources/file-system/sockets</a></li><li><a href="module-sources_file-system_sockets_isSocketPath.html">sources/file-system/sockets/isSocketPath</a></li><li><a href="module-sources_file-system_sockets_isValidSocketPath.html">sources/file-system/sockets/isValidSocketPath</a></li><li><a href="module-sources_file-system_symbolic-links.html">sources/file-system/symbolic-links</a></li><li><a href="module-sources_file-system_symbolic-links_isSocketPath.html">sources/file-system/symbolic-links/isSocketPath</a></li><li><a href="module-sources_itee-validators.html">sources/itee-validators</a></li><li><a href="module-sources_maths.html">sources/maths</a></li><li><a href="module-sources_physics.html">sources/physics</a></li><li><a href="module-sources_physics_constants.html">sources/physics/constants</a></li><li><a href="module-sources_physics_temperatues.html">sources/physics/temperatues</a></li><li><a href="module-sources_physics_temperatures.html">sources/physics/temperatures</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu inline">
+					<li><a href="global.html#isEventTarget">isEventTarget</a></li><li><a href="global.html#npmrunbench">npm run bench</a></li><li><a href="global.html#npmrunbuild">npm run build</a></li><li><a href="global.html#npmrunbuild-test">npm run build-test</a></li><li><a href="global.html#npmrunclean">npm run clean</a></li><li><a href="global.html#npmrundoc">npm run doc</a></li><li><a href="global.html#npmrunhelpdefault">npm run help ( default )</a></li><li><a href="global.html#npmrunlint">npm run lint</a></li><li><a href="global.html#npmrunpatch">npm run patch</a></li><li><a href="global.html#npmrunrelease">npm run release</a></li><li><a href="global.html#npmruntest">npm run test</a></li><li><a href="global.html#npmrununit">npm run unit</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: sources/cores/arrays/isArrayOfSingleElement.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/cores/arrays/isArrayOfSingleElement
+ * @desc Export function to validate if a value is an array of single value or not
+ * @example
+ *
+ * import { isArrayOfSingleElement } from 'itee-validators'
+ *
+ * if( isArrayOfSingleElement( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */
+
+import { isNotArray } from './isArray'
+
+/**
+ * Check if given data is an array with a single value
+ *
+ * @param data {*} The data to check against the single valued array
+ * @returns {boolean} true if data is an array with a single value, false otherwise
+ */
+export function isArrayOfSingleElement ( data ) {
+
+    if ( isNotArray( data ) ) { return false }
+
+    if ( data.length !== 1 ) {
+        return false
+    }
+
+    return true
+
+}
+</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a>
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+<script>
+	$( function () {
+		$( '#main' ).localScroll( {
+			offset : { top : 60 } //offset by the height of your header (give or take a few px, see what works for you)
+		} );
+		$( "dt.name" ).each( function () {
+			var $this = $( this ).find("h4");
+			var icon = $( "<i/>" ).addClass( "icon-plus-sign" ).addClass( "pull-right" ).addClass( "icon-white" );
+			var dt = $(this);
+			var children = dt.next( "dd" );
+
+			dt.prepend( icon ).css( {cursor : "pointer"} );
+			dt.addClass( "member-collapsed" ).addClass( "member" );
+
+
+			children.hide();
+
+			dt.children().on( "click", function () {
+				children = dt.next( "dd" );
+				children.slideToggle( "fast", function () {
+
+					if ( children.is( ":visible" ) ) {
+						icon.addClass( "icon-minus-sign" ).removeClass( "icon-plus-sign" ).removeClass( "icon-white" );
+						dt.addClass( "member-open" ).animate( "member-collapsed" );
+					} else {
+						icon.addClass( "icon-plus-sign" ).removeClass( "icon-minus-sign" ).addClass( "icon-white" );
+						dt.addClass( "member-collapsed" ).removeClass( "member-open" );
+					}
+				} );
+			} );
+
+		} );
+	} );
+</script>
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>
