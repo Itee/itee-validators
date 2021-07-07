@@ -1,3 +1,10 @@
+## [5.3.2](https://github.com/Itee/itee-validators/compare/v5.3.1...v5.3.2) (2021-07-07)
+
+
+### Bug Fixes
+
+* **packagelock:** apply npm audit fix ([cc4a78b](https://github.com/Itee/itee-validators/commit/cc4a78bc0ccabc380931d3508cbf783036c58208))
+
 ## [5.3.1](https://github.com/Itee/itee-validators/compare/v5.3.0...v5.3.1) (2021-07-07)
 
 
