@@ -1,3 +1,10 @@
+## [5.3.1](https://github.com/Itee/itee-validators/compare/v5.3.0...v5.3.1) (2021-07-07)
+
+
+### Bug Fixes
+
+* **releaserc:** fix missing dev maps ([5e41b9d](https://github.com/Itee/itee-validators/commit/5e41b9d7bb222e91cc72f85c7a699b4a21fef364))
+
 # [5.3.0](https://github.com/Itee/itee-validators/compare/v5.2.0...v5.3.0) (2021-07-05)
 
 
