@@ -1,3 +1,10 @@
+## [5.3.3](https://github.com/Itee/itee-validators/compare/v5.3.2...v5.3.3) (2021-07-21)
+
+
+### Bug Fixes
+
+* **readme:** fix readme tags ([0d8fc2e](https://github.com/Itee/itee-validators/commit/0d8fc2e3c40dd7a3220bb404e68458c9ce167e9b))
+
 ## [5.3.2](https://github.com/Itee/itee-validators/compare/v5.3.1...v5.3.2) (2021-07-07)
 
 
