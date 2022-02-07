@@ -25,6 +25,7 @@
 export function isMaxSafeInteger ( data ) {
     return ( data === Number.MAX_SAFE_INTEGER )
 }
+
 // Todo: Neg
 
 /**
@@ -36,4 +37,5 @@ export function isMaxSafeInteger ( data ) {
 export function isMinSafeInteger ( data ) {
     return ( data === Number.MIN_SAFE_INTEGER )
 }
+
 // Todo: Neg

@@ -85,11 +85,11 @@ function CreateRollupConfigs ( options ) {
 
 
             configs.push( {
-                input:     input,
-                external:  ( format === 'cjs' ) ? [
+                input:    input,
+                external: ( format === 'cjs' ) ? [
                     'fs'
                 ] : [],
-                plugins:   [
+                plugins: [
                     replace( {
                         defines: {
                             IS_REMOVE_ON_BUILD:  false,
@@ -104,7 +104,7 @@ function CreateRollupConfigs ( options ) {
                     } ),
                     isProd && terser()
                 ],
-                onwarn:    ( {
+                onwarn: ( {
                     loc,
                     frame,
                     message

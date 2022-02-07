@@ -55,17 +55,17 @@ const strings = ( () => {
 
     const voidDataMap = voids
     for ( let i = 0, m = voidDataMap.length ; i < m ; i++ ) {
-        dataMap[ voidDataMap[ i ] ] = `${voidDataMap[ i ]}`
+        dataMap[ voidDataMap[ i ] ] = `${ voidDataMap[ i ] }`
     }
 
     const booleanDataMap = booleans
     for ( let j = 0, n = booleanDataMap.length ; j < n ; j++ ) {
-        dataMap[ booleanDataMap[ j ] ] = `${booleanDataMap[ j ]}`
+        dataMap[ booleanDataMap[ j ] ] = `${ booleanDataMap[ j ] }`
     }
 
     const numericDataMap = numbers
     for ( let k = 0, o = numericDataMap.length ; k < o ; k++ ) {
-        dataMap[ numericDataMap[ k ] ] = `${numericDataMap[ k ]}`
+        dataMap[ numericDataMap[ k ] ] = `${ numericDataMap[ k ] }`
     }
 
     return dataMap
@@ -251,7 +251,7 @@ const TestsUtils = {
 
             const map = globalDataMap[ optionKey ]
             if ( map === undefined ) {
-                throw ReferenceError( `The global data map does not contain element for key: ${optionKey}` )
+                throw ReferenceError( `The global data map does not contain element for key: ${ optionKey }` )
             }
 
             const option = dataMapOptions[ optionKey ]

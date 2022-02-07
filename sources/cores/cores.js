@@ -189,7 +189,7 @@ class Validator {
 
         if ( isNotString( type ) ) { throw new TypeError( `Validator: Expect type to be a string` ) }
         if ( isNotFunction( validator ) && isNotObject( validator ) ) { throw new TypeError( `Validator: Expect validator to be an object or a function` ) }
-        if ( isDefined( this.validators[ type ] ) ) { throw new TypeError( `Validator: a validator is already defined for type '${type}'` ) }
+        if ( isDefined( this.validators[ type ] ) ) { throw new TypeError( `Validator: a validator is already defined for type '${ type }'` ) }
 
         this.validators[ type ] = validator
 
@@ -235,7 +235,7 @@ class Validator {
 
         const validator = this.validators[ type ]
         if ( isNotDefined( validator ) ) {
-            throw new TypeError( `Validator: Unable to find schema validation of type '${type}'` )
+            throw new TypeError( `Validator: Unable to find schema validation of type '${ type }'` )
         }
 
         let result = true
@@ -250,7 +250,7 @@ class Validator {
 
                 const subValidator = validator[ key ]
                 if ( isNotDefined( subValidator ) ) {
-                    throw new TypeError( `Validator: Missing validator for key '${key}' of type '${type}'` )
+                    throw new TypeError( `Validator: Missing validator for key '${ key }' of type '${ type }'` )
                 }
 
                 const value      = data[ key ]
@@ -268,7 +268,7 @@ class Validator {
                 if ( isDefined( validatorFunction ) ) {
 
                     if ( isNotFunction( validatorFunction ) ) {
-                        throw new TypeError( `Validator: Invalid validation function for '${key}' with type '${type}'` )
+                        throw new TypeError( `Validator: Invalid validation function for '${ key }' with type '${ type }'` )
                     }
 
                     subResult = validatorFunction( value )
@@ -281,7 +281,7 @@ class Validator {
 
                 if ( subResult === false ) {
 
-                    this.errors.push( `Validator: Invalid property '${key}' of type '${subValidator.type}' with value '${value}' in object of type '${type}'` )
+                    this.errors.push( `Validator: Invalid property '${ key }' of type '${ subValidator.type }' with value '${ value }' in object of type '${ type }'` )
                     result = false
                     if ( breakOnError ) {
                         break
@@ -293,7 +293,7 @@ class Validator {
 
         } else {
 
-            throw new TypeError( `Validator: Unknown validator of type '${type}'` )
+            throw new TypeError( `Validator: Unknown validator of type '${ type }'` )
 
         }
 

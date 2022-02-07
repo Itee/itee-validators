@@ -21,7 +21,7 @@ function CreateTestsRollupConfigs ( /*options*/ ) {
         // Units
         // For karma
         {
-            input:     `tests/units/${packageInfos.name}.units.js`,
+            input:     `tests/units/${ packageInfos.name }.units.js`,
             external:  [ 'chai' ],
             plugins:   [],
             treeshake: true,
@@ -30,12 +30,12 @@ function CreateTestsRollupConfigs ( /*options*/ ) {
                 format:  'iife',
                 name:    'Itee.Units',
                 globals: { 'chai': 'chai' },
-                file:    `tests/builds/${packageInfos.name}.units.iife.js`
+                file:    `tests/builds/${ packageInfos.name }.units.iife.js`
             }
         },
         // For node
         {
-            input:     `tests/units/${packageInfos.name}.units.js`,
+            input:     `tests/units/${ packageInfos.name }.units.js`,
             external:  [ 'chai' ],
             plugins:   [],
             treeshake: true,
@@ -43,42 +43,42 @@ function CreateTestsRollupConfigs ( /*options*/ ) {
                 indent: '\t',
                 format: 'cjs',
                 name:   'Itee.Units',
-                file:   `tests/builds/${packageInfos.name}.units.cjs.js`
+                file:   `tests/builds/${ packageInfos.name }.units.cjs.js`
             }
         },
         // Benchs
         // For karma
         {
-            input:     `tests/benchmarks/${packageInfos.name}.benchs.js`,
+            input:     `tests/benchmarks/${ packageInfos.name }.benchs.js`,
             plugins:   [],
             treeshake: true,
             output:    {
                 indent: '\t',
                 format: 'iife',
                 name:   'Itee.Benchs',
-                file:   `tests/builds/${packageInfos.name}.benchs.iife.js`
+                file:   `tests/builds/${ packageInfos.name }.benchs.iife.js`
             }
         },
         {
-            input:     `tests/benchmarks/${packageInfos.name}.benchs.js`,
+            input:     `tests/benchmarks/${ packageInfos.name }.benchs.js`,
             plugins:   [],
             treeshake: true,
             output:    {
                 indent: '\t',
                 format: 'cjs',
                 name:   'Itee.Benchs',
-                file:   `tests/builds/${packageInfos.name}.benchs.cjs.js`
+                file:   `tests/builds/${ packageInfos.name }.benchs.cjs.js`
             }
         },
         {
-            input:     `tests/utils/${packageInfos.name}.tests-utils.js`,
+            input:     `tests/utils/${ packageInfos.name }.tests-utils.js`,
             plugins:   [],
             treeshake: true,
             output:    {
                 indent: '\t',
                 format: 'iife',
                 name:   'Itee',
-                file:   `tests/builds/${packageInfos.name}.tests-utils.js`,
+                file:   `tests/builds/${ packageInfos.name }.tests-utils.js`,
                 extend: true
             }
         }
