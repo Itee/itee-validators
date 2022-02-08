@@ -1,4 +1,4 @@
-console.log('Itee.Validators v5.3.3 - CommonJs')
+console.log('Itee.Validators v5.3.4 - CommonJs')
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -1269,6 +1269,7 @@ function isMinNegative ( data ) {
 function isMaxSafeInteger ( data ) {
     return ( data === Number.MAX_SAFE_INTEGER )
 }
+
 // Todo: Neg
 
 /**
@@ -1280,6 +1281,7 @@ function isMaxSafeInteger ( data ) {
 function isMinSafeInteger ( data ) {
     return ( data === Number.MIN_SAFE_INTEGER )
 }
+
 // Todo: Neg
 
 /**
@@ -1676,7 +1678,7 @@ class Validator {
 
         if ( isNotString( type ) ) { throw new TypeError( `Validator: Expect type to be a string` ) }
         if ( isNotFunction( validator ) && isNotObject( validator ) ) { throw new TypeError( `Validator: Expect validator to be an object or a function` ) }
-        if ( isDefined( this.validators[ type ] ) ) { throw new TypeError( `Validator: a validator is already defined for type '${type}'` ) }
+        if ( isDefined( this.validators[ type ] ) ) { throw new TypeError( `Validator: a validator is already defined for type '${ type }'` ) }
 
         this.validators[ type ] = validator;
 
@@ -1722,7 +1724,7 @@ class Validator {
 
         const validator = this.validators[ type ];
         if ( isNotDefined( validator ) ) {
-            throw new TypeError( `Validator: Unable to find schema validation of type '${type}'` )
+            throw new TypeError( `Validator: Unable to find schema validation of type '${ type }'` )
         }
 
         let result = true;
@@ -1737,7 +1739,7 @@ class Validator {
 
                 const subValidator = validator[ key ];
                 if ( isNotDefined( subValidator ) ) {
-                    throw new TypeError( `Validator: Missing validator for key '${key}' of type '${type}'` )
+                    throw new TypeError( `Validator: Missing validator for key '${ key }' of type '${ type }'` )
                 }
 
                 const value      = data[ key ];
@@ -1755,7 +1757,7 @@ class Validator {
                 if ( isDefined( validatorFunction ) ) {
 
                     if ( isNotFunction( validatorFunction ) ) {
-                        throw new TypeError( `Validator: Invalid validation function for '${key}' with type '${type}'` )
+                        throw new TypeError( `Validator: Invalid validation function for '${ key }' with type '${ type }'` )
                     }
 
                     subResult = validatorFunction( value );
@@ -1768,7 +1770,7 @@ class Validator {
 
                 if ( subResult === false ) {
 
-                    this.errors.push( `Validator: Invalid property '${key}' of type '${subValidator.type}' with value '${value}' in object of type '${type}'` );
+                    this.errors.push( `Validator: Invalid property '${ key }' of type '${ subValidator.type }' with value '${ value }' in object of type '${ type }'` );
                     result = false;
                     if ( breakOnError ) {
                         break
@@ -1780,7 +1782,7 @@ class Validator {
 
         } else {
 
-            throw new TypeError( `Validator: Unknown validator of type '${type}'` )
+            throw new TypeError( `Validator: Unknown validator of type '${ type }'` )
 
         }
 
@@ -2461,7 +2463,7 @@ function isNotTemperature ( data ) {
  * @returns {boolean} true if path is a block device path, false otherwise
  */
 function isBlockDevicePath ( path ) {
-    return fs__default['default'].statSync( path ).isBlockDevice()
+    return fs__default["default"].statSync( path ).isBlockDevice()
 }
 
 /**
@@ -2502,7 +2504,7 @@ function isNotBlockDevicePath ( path ) {
  * @returns {boolean} true if data is a valid path, false otherwise
  */
 function isValidPath ( data ) {
-    return fs__default['default'].existsSync( data )
+    return fs__default["default"].existsSync( data )
 }
 
 /**
@@ -2581,7 +2583,7 @@ function isInvalidBlockDevicePath ( data ) {
  * @returns {boolean} true if path is a character device path, false otherwise
  */
 function isCharacterDevicePath ( path ) {
-    return fs__default['default'].statSync( path ).isCharacterDevice()
+    return fs__default["default"].statSync( path ).isCharacterDevice()
 }
 
 /**
@@ -2660,7 +2662,7 @@ function isInvalidCharacterDevicePath ( data ) {
  * @returns {boolean} true if path is a directory path, false otherwise
  */
 function isDirectoryPath ( path ) {
-    return fs__default['default'].statSync( path ).isDirectory()
+    return fs__default["default"].statSync( path ).isDirectory()
 }
 
 /**
@@ -2701,7 +2703,7 @@ function isNotDirectoryPath ( path ) {
  * @returns {boolean} true if directory is empty, false otherwise
  */
 function isEmptyDirectory ( directoryPath ) {
-    return ( fs__default['default'].readdirSync( directoryPath ).length === 0 )
+    return ( fs__default["default"].readdirSync( directoryPath ).length === 0 )
 }
 
 /**
@@ -2780,7 +2782,7 @@ function isInvalidDirectoryPath ( data ) {
  * @returns {boolean} true if path is a fifo path, false otherwise
  */
 function isFIFOPath ( path ) {
-    return fs__default['default'].statSync( path ).isFIFO()
+    return fs__default["default"].statSync( path ).isFIFO()
 }
 
 /**
@@ -2863,7 +2865,7 @@ function isInvalidFIFOPath ( data ) {
  * @returns {boolean} true if file is empty, false otherwise
  */
 function isEmptyFile ( filePath, threshold = 0 ) {
-    return ( fs__default['default'].statSync( filePath ).size <= threshold )
+    return ( fs__default["default"].statSync( filePath ).size <= threshold )
 }
 
 /**
@@ -2874,7 +2876,7 @@ function isEmptyFile ( filePath, threshold = 0 ) {
  * @returns {boolean} true if file is not empty, false otherwise
  */
 function isNotEmptyFile ( filePath, threshold = 0 ) {
-    return ( fs__default['default'].statSync( filePath ).size > threshold )
+    return ( fs__default["default"].statSync( filePath ).size > threshold )
 }
 
 /**
@@ -2905,7 +2907,7 @@ function isNotEmptyFile ( filePath, threshold = 0 ) {
  * @returns {boolean} true if path is a file path, false otherwise
  */
 function isFilePath ( path ) {
-    return fs__default['default'].statSync( path ).isFile()
+    return fs__default["default"].statSync( path ).isFile()
 }
 
 /**
@@ -2984,7 +2986,7 @@ function isInvalidFilePath ( data ) {
  * @returns {boolean} true if path is a socket path, false otherwise
  */
 function isSocketPath ( path ) {
-    return fs__default['default'].statSync( path ).isSocket()
+    return fs__default["default"].statSync( path ).isSocket()
 }
 
 /**
@@ -3063,7 +3065,7 @@ function isInvalidSocketPath ( data ) {
  * @returns {boolean} true if path is a symbolic link path, false otherwise
  */
 function isSymbolicLinkPath ( path ) {
-    return fs__default['default'].statSync( path ).isSymbolicLink()
+    return fs__default["default"].statSync( path ).isSymbolicLink()
 }
 
 /**

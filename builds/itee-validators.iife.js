@@ -1,4 +1,4 @@
-console.log('Itee.Validators v5.3.3 - Standalone')
+console.log('Itee.Validators v5.3.4 - Standalone')
 this.Itee = this.Itee || {};
 this.Itee.Validators = (function (exports) {
 	'use strict';
@@ -1263,6 +1263,7 @@ this.Itee.Validators = (function (exports) {
 	function isMaxSafeInteger ( data ) {
 	    return ( data === Number.MAX_SAFE_INTEGER )
 	}
+
 	// Todo: Neg
 
 	/**
@@ -1274,6 +1275,7 @@ this.Itee.Validators = (function (exports) {
 	function isMinSafeInteger ( data ) {
 	    return ( data === Number.MIN_SAFE_INTEGER )
 	}
+
 	// Todo: Neg
 
 	/**
@@ -1670,7 +1672,7 @@ this.Itee.Validators = (function (exports) {
 
 	        if ( isNotString( type ) ) { throw new TypeError( `Validator: Expect type to be a string` ) }
 	        if ( isNotFunction( validator ) && isNotObject( validator ) ) { throw new TypeError( `Validator: Expect validator to be an object or a function` ) }
-	        if ( isDefined( this.validators[ type ] ) ) { throw new TypeError( `Validator: a validator is already defined for type '${type}'` ) }
+	        if ( isDefined( this.validators[ type ] ) ) { throw new TypeError( `Validator: a validator is already defined for type '${ type }'` ) }
 
 	        this.validators[ type ] = validator;
 
@@ -1716,7 +1718,7 @@ this.Itee.Validators = (function (exports) {
 
 	        const validator = this.validators[ type ];
 	        if ( isNotDefined( validator ) ) {
-	            throw new TypeError( `Validator: Unable to find schema validation of type '${type}'` )
+	            throw new TypeError( `Validator: Unable to find schema validation of type '${ type }'` )
 	        }
 
 	        let result = true;
@@ -1731,7 +1733,7 @@ this.Itee.Validators = (function (exports) {
 
 	                const subValidator = validator[ key ];
 	                if ( isNotDefined( subValidator ) ) {
-	                    throw new TypeError( `Validator: Missing validator for key '${key}' of type '${type}'` )
+	                    throw new TypeError( `Validator: Missing validator for key '${ key }' of type '${ type }'` )
 	                }
 
 	                const value      = data[ key ];
@@ -1749,7 +1751,7 @@ this.Itee.Validators = (function (exports) {
 	                if ( isDefined( validatorFunction ) ) {
 
 	                    if ( isNotFunction( validatorFunction ) ) {
-	                        throw new TypeError( `Validator: Invalid validation function for '${key}' with type '${type}'` )
+	                        throw new TypeError( `Validator: Invalid validation function for '${ key }' with type '${ type }'` )
 	                    }
 
 	                    subResult = validatorFunction( value );
@@ -1762,7 +1764,7 @@ this.Itee.Validators = (function (exports) {
 
 	                if ( subResult === false ) {
 
-	                    this.errors.push( `Validator: Invalid property '${key}' of type '${subValidator.type}' with value '${value}' in object of type '${type}'` );
+	                    this.errors.push( `Validator: Invalid property '${ key }' of type '${ subValidator.type }' with value '${ value }' in object of type '${ type }'` );
 	                    result = false;
 	                    if ( breakOnError ) {
 	                        break
@@ -1774,7 +1776,7 @@ this.Itee.Validators = (function (exports) {
 
 	        } else {
 
-	            throw new TypeError( `Validator: Unknown validator of type '${type}'` )
+	            throw new TypeError( `Validator: Unknown validator of type '${ type }'` )
 
 	        }
 
@@ -2535,5 +2537,5 @@ this.Itee.Validators = (function (exports) {
 
 	return exports;
 
-}({}));
+})({});
 //# sourceMappingURL=itee-validators.iife.js.map
