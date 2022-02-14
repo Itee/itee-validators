@@ -1,3 +1,10 @@
+## [5.3.5](https://github.com/Itee/itee-validators/compare/v5.3.4...v5.3.5) (2022-02-14)
+
+
+### Bug Fixes
+
+* **package:** update deps to latest version ([4248576](https://github.com/Itee/itee-validators/commit/424857653ba08ce5eb6483a9afbbf8eba8f46931))
+
 ## [5.3.4](https://github.com/Itee/itee-validators/compare/v5.3.3...v5.3.4) (2022-02-08)
 
 
