@@ -19,7 +19,8 @@
  *
  */
 
-import fs from 'fs'
+import fs             from 'fs'
+import { isFilePath } from './isFilePath'
 
 /**
  * Check if given file path is an empty file more or less a threshold in bytes.
@@ -29,7 +30,7 @@ import fs from 'fs'
  * @returns {boolean} true if file is empty, false otherwise
  */
 export function isEmptyFile ( filePath, threshold = 0 ) {
-    return ( fs.statSync( filePath ).size <= threshold )
+    return isFilePath(filePath) && ( fs.statSync( filePath ).size <= threshold )
 }
 
 /**
@@ -40,5 +41,5 @@ export function isEmptyFile ( filePath, threshold = 0 ) {
  * @returns {boolean} true if file is not empty, false otherwise
  */
 export function isNotEmptyFile ( filePath, threshold = 0 ) {
-    return ( fs.statSync( filePath ).size > threshold )
+    return !isEmptyFile(filePath, threshold)
 }

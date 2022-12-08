@@ -13,3 +13,5 @@ export * from './isMin'
 export * from './isNumber'
 export * from './isSafeInteger'
 export * from './isZero'
+
+// Todo isMultipleOf( multiple, value )

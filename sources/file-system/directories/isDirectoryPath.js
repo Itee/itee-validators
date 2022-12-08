@@ -20,6 +20,7 @@
  */
 
 import fs from 'fs'
+import { isDefined } from '../../cores/voids/isDefined'
 
 /**
  * Check if given path is a directory path
@@ -28,7 +29,8 @@ import fs from 'fs'
  * @returns {boolean} true if path is a directory path, false otherwise
  */
 export function isDirectoryPath ( path ) {
-    return fs.statSync( path ).isDirectory()
+    const stat = fs.statSync( path, { throwIfNoEntry: false } )
+    return isDefined(stat) && stat.isDirectory()
 }
 
 /**

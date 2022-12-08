@@ -4,10 +4,20 @@
  *
  */
 
+/**
+ *
+ * @param data
+ * @returns {boolean}
+ */
 export function isEventTarget ( data ) {
     return ( data instanceof EventTarget )
 }
 
+/**
+ *
+ * @param data
+ * @returns {boolean}
+ */
 export function isNotEventTarget ( data ) {
     return !isEventTarget( data )
 }

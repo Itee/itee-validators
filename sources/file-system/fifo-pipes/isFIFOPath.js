@@ -20,6 +20,7 @@
  */
 
 import fs from 'fs'
+import { isDefined } from '../../cores/voids/isDefined'
 
 /**
  * Check if given path is a fifo path
@@ -28,7 +29,8 @@ import fs from 'fs'
  * @returns {boolean} true if path is a fifo path, false otherwise
  */
 export function isFIFOPath ( path ) {
-    return fs.statSync( path ).isFIFO()
+    const stat = fs.statSync( path, { throwIfNoEntry: false } )
+    return isDefined(stat) && stat.isFIFO()
 }
 
 /**
