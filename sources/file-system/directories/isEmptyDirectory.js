@@ -20,6 +20,7 @@
  */
 
 import fs from 'fs'
+import { isDirectoryPath } from './isDirectoryPath'
 
 /**
  * Check if given directory path is an empty directory
@@ -28,7 +29,7 @@ import fs from 'fs'
  * @returns {boolean} true if directory is empty, false otherwise
  */
 export function isEmptyDirectory ( directoryPath ) {
-    return ( fs.readdirSync( directoryPath ).length === 0 )
+    return isDirectoryPath(directoryPath) && ( fs.readdirSync( directoryPath ).length === 0 )
 }
 
 /**
