@@ -19,7 +19,8 @@
  *
  */
 
-import fs from 'fs'
+import fs            from 'fs'
+import { isDefined } from '../../cores/voids/isDefined'
 
 /**
  * Check if given path is a block device path
@@ -28,7 +29,8 @@ import fs from 'fs'
  * @returns {boolean} true if path is a block device path, false otherwise
  */
 export function isBlockDevicePath ( path ) {
-    return fs.statSync( path ).isBlockDevice()
+    const stat = fs.statSync( path, { throwIfNoEntry: false } )
+    return isDefined(stat) && stat.isBlockDevice()
 }
 
 /**
