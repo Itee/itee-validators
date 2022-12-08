@@ -26,7 +26,10 @@ function CreateKarmaUnitsConfiguration ( config ) {
         frameworks: [ 'mocha', 'chai' ],
 
         // list of files / patterns to load in the browser
-        files: [ `builds/${ packageInfos.name }.units.iife.js` ],
+        files: [
+//            '../node_modules/itee-utils/builds/itee-utils.iife.js',
+            `builds/${ packageInfos.name }.units.iife.js`
+        ],
 
         // list of files to exclude
         exclude: [],
@@ -60,7 +63,7 @@ function CreateKarmaUnitsConfiguration ( config ) {
 
         // level of logging
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-        logLevel: config.LOG_INFO,
+        logLevel: config.LOG_DEBUG,
 
         // enable / disable watching file and executing tests whenever any file changes
         autoWatch: false,
@@ -73,7 +76,7 @@ function CreateKarmaUnitsConfiguration ( config ) {
         //        browsers: [ 'Firefox', 'Chrome', 'Edge' ],
 
         // Format assertion errors and stack traces. Useful for removing vendors and compiled sources. Return an empty line '' to remove it.
-        formatError: () => '',
+        //formatError: () => '',
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits

@@ -48,13 +48,13 @@
     "build-test": "gulp build-test",
     "bench": "gulp bench",
     "unit": "gulp unit",
+    "bench_node": "node ./tests/builds/itee-validators.benchs.cjs.js",
     "test": "gulp test",
     "build": "gulp build",
     "release": "gulp release",
     "semantic-release": "semantic-release --dry-run --no-ci",
     "postversion": "gulp build"
   },
-  "dependencies": {},
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.1.3",
