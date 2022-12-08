@@ -20,6 +20,7 @@
  */
 
 import fs from 'fs'
+import { isDefined } from '../../cores/voids/isDefined'
 
 /**
  * Check if given path is a file path
@@ -28,7 +29,8 @@ import fs from 'fs'
  * @returns {boolean} true if path is a file path, false otherwise
  */
 export function isFilePath ( path ) {
-    return fs.statSync( path ).isFile()
+    const stat = fs.statSync( path, { throwIfNoEntry: false } )
+    return isDefined(stat) && stat.isFile()
 }
 
 /**
