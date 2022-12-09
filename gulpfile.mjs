@@ -37,28 +37,39 @@
 
 /* eslint-env node */
 
-const packageInfos    = require( './package.json' )
-const childProcess    = require( 'child_process' )
-const { nodeResolve } = require( '@rollup/plugin-node-resolve' )
-const cleanup         = require( 'rollup-plugin-cleanup' )
-const fs              = require( 'fs' )
-const glob            = require( 'glob' )
-const gulp            = require( 'gulp' )
-const jsdoc           = require( 'gulp-jsdoc3' )
-const eslint          = require( 'gulp-eslint' )
-const del             = require( 'del' )
-const parseArgs       = require( 'minimist' )
-const rollup          = require( 'rollup' )
-const path            = require( 'path' )
-const karma           = require( 'karma' )
-const log             = require( 'fancy-log' )
-const colors          = require( 'ansi-colors' )
-const red             = colors.red
-const green           = colors.green
-const blue            = colors.blue
-const cyan            = colors.cyan
-const yellow          = colors.yellow
-const magenta         = colors.magenta
+import childProcess           from 'child_process'
+import { nodeResolve }        from '@rollup/plugin-node-resolve'
+import cleanup                from 'rollup-plugin-cleanup'
+import fs                     from 'fs'
+import glob                   from 'glob'
+import gulp                   from 'gulp'
+import jsdoc                  from 'gulp-jsdoc3'
+import eslint                 from 'gulp-eslint'
+import { deleteAsync }        from 'del'
+import parseArgs              from 'minimist'
+import { rollup }             from 'rollup'
+import path                   from 'path'
+import karma                  from 'karma'
+import log                    from 'fancy-log'
+import colors                 from 'ansi-colors'
+import { fileURLToPath }      from 'url'
+import jsdocConfiguration     from './configs/jsdoc.conf.js'
+import rollupConfigurator     from './configs/rollup.conf.js'
+import rollupTestConfigurator from './configs/rollup.test.conf.js'
+
+const red     = colors.red
+const green   = colors.green
+const blue    = colors.blue
+const cyan    = colors.cyan
+const yellow  = colors.yellow
+const magenta = colors.magenta
+
+// eslint-disable-next-line
+const __dirname = path.dirname( fileURLToPath( import.meta.url ) )
+
+const packageInfos = JSON.parse( fs.readFileSync(
+    new URL( './package.json', import.meta.url )
+) )
 
 /**
  * @method npm run help ( default )
@@ -89,7 +100,8 @@ gulp.task( 'help', ( done ) => {
     log( '\t\t\t', green( '-i' ), 'or', green( '--input' ), ' - The main file path to build', cyan( '[Default: "sources/main.js"]' ), '.' )
     log( '\t\t\t', green( '-o' ), 'or', green( '--output' ), ' - The folder where output the build', cyan( '[Default: "builds"]' ), '.' )
     log( '\t\t\t', green( '-f:' ), magenta( '<format>' ), 'or', green( '--format:' ), magenta( '<format>' ), ' - to specify the output build type. Where format could be any of:', magenta( 'amd' ), magenta( 'cjs' ), magenta( 'es' ), magenta( 'iife' ), magenta( 'umd' ), cyan( '[Default: "amd,cjs,es,iife,umd"]' ), '.' )
-    log( '\t\t\t', green( '-e:' ), magenta( '<env>' ), 'or', green( '--env:' ), magenta( '<env>' ), ' - to specify the build environment. Where env could be any of:', magenta( 'dev' ), magenta( 'prod' ), cyan( '[Default: "dev"]' ), '.' )
+    log( '\t\t\t', green( '-e:' ), magenta( '<env>' ), 'or', green( '--env:' ), magenta( '<env>' ), ' - to specify the build environment. Where env could be any of:', magenta(
+        'dev' ), magenta( 'prod' ), cyan( '[Default: "dev"]' ), '.' )
     log( '\t\t\t', green( '-s' ), 'or', green( '--sourcemap' ), ' - to build with related source map', cyan( '[Default: true]' ), '.' )
     log( '\t\t\t', green( '-t' ), 'or', green( '--treeshake' ), ' - allow to perform treeshaking when building', cyan( '[Default: true]' ), '.' )
     log( '\t', blue( 'npm run' ), cyan( 'release' ), ' - Will run all the lint, test stuff, and if succeed will build the application.' )
@@ -99,7 +111,6 @@ gulp.task( 'help', ( done ) => {
     log( '' )
 
     done()
-
 } )
 
 /**
@@ -126,7 +137,7 @@ gulp.task( 'clean', () => {
         './docs'
     ]
 
-    return del( filesToClean )
+    return deleteAsync( filesToClean )
 
 } )
 
@@ -138,10 +149,10 @@ gulp.task( 'clean', () => {
 gulp.task( 'lint', () => {
 
     const filesToLint = [
-        'gulpfile.js',
+        '!gulpfile.mjs',
         'configs/**/*.js',
         'sources/**/*.js',
-        'tests/**/*.js',
+        '!tests/**/*.js',
         '!tests/builds/*.js'
     ]
 
@@ -171,10 +182,15 @@ gulp.task( 'lint', () => {
  */
 gulp.task( 'doc', ( done ) => {
 
-    const config     = require( './configs/jsdoc.conf' )
+    //const config     = require( './configs/jsdoc.conf' )
+
+    //    const rawdata      = fs.readFileSync( './configs/jsdoc.conf.js' )
+    //    const config = JSON.parse( rawdata )
+    const config = jsdocConfiguration
+
     const filesToDoc = [
         'README.md',
-        'gulpfile.js',
+        'gulpfile.mjs',
         './configs/*.js',
         './sources/**/*.js',
         './tests/**/*.js'
@@ -212,25 +228,21 @@ gulp.task( 'unit-node', ( done ) => {
  */
 gulp.task( 'unit-browser', async ( done ) => {
 
-    const exitCode = await new Promise( async resolve => {
-
-        const configFile  = path.normalize( `${ __dirname }/configs/karma.units.conf.js` )
-        const karmaConfig = karma.config.parseConfig( configFile )
-        const karmaServer = new karma.Server( karmaConfig, resolve )
-        karmaServer.on( 'browser_error', ( browser, error ) => {
-            log( red( error.message ) )
-        } )
-
-        await karmaServer.start()
-
+    const configFile  = path.normalize( `${ __dirname }/configs/karma.units.conf.js` )
+    const karmaConfig = karma.config.parseConfig( configFile )
+    const karmaServer = new karma.Server( karmaConfig, ( exitCode ) => {
+        if ( exitCode === 0 ) {
+            log( `Karma server exit with code ${ exitCode }` )
+            done()
+        } else {
+            done( `Karma server exit with code ${ exitCode }` )
+        }
+    } )
+    karmaServer.on( 'browser_error', ( browser, error ) => {
+        log( red( error.message ) )
     } )
 
-    if ( exitCode !== 0 ) {
-        done( `Karma server exit with code ${ exitCode }` )
-    } else {
-        log( `Karma server exit with code ${ exitCode }` )
-        done()
-    }
+    await karmaServer.start()
 
 } )
 
@@ -254,25 +266,21 @@ gulp.task( 'bench-node', ( done ) => {
 } )
 gulp.task( 'bench-browser', async ( done ) => {
 
-    const exitCode = await new Promise( async resolve => {
-
-        const configFile  = path.normalize( `${ __dirname }/configs/karma.benchs.conf.js` )
-        const karmaConfig = karma.config.parseConfig( configFile )
-        const karmaServer = new karma.Server( karmaConfig, resolve )
-        karmaServer.on( 'browser_error', ( browser, error ) => {
-            log( red( error.message ) )
-        } )
-
-        await karmaServer.start()
-
+    const configFile  = path.normalize( `${ __dirname }/configs/karma.benchs.conf.js` )
+    const karmaConfig = karma.config.parseConfig( configFile )
+    const karmaServer = new karma.Server( karmaConfig, ( exitCode ) => {
+        if ( exitCode === 0 ) {
+            log( `Karma server exit with code ${ exitCode }` )
+            done()
+        } else {
+            done( `Karma server exit with code ${ exitCode }` )
+        }
+    } )
+    karmaServer.on( 'browser_error', ( browser, error ) => {
+        log( red( error.message ) )
     } )
 
-    if ( exitCode !== 0 ) {
-        done( `Karma server exit with code ${ exitCode }` )
-    } else {
-        log( `Karma server exit with code ${ exitCode }` )
-        done()
-    }
+    await karmaServer.start()
 
 } )
 
@@ -309,8 +317,12 @@ gulp.task( 'compute-test-bundle-side-effect', async ( done ) => {
         'LineFileSplitter.js'
     ]
 
-    const sourcesFiles = glob.sync( path.join( sourcesDir, '**' ) )
-                             .map( filePath => path.normalize( filePath ) )
+    let sourcesGlob    = path.join( sourcesDir, '**' )
+    sourcesGlob        = sourcesGlob.replaceAll( '\\', '/' )
+    const sourcesFiles = glob.sync( sourcesGlob )
+                             .map( filePath => {
+                                 return path.normalize( filePath )
+                             } )
                              .filter( filePath => {
                                  const fileName         = path.basename( filePath )
                                  const isJsFile         = fileName.endsWith( '.js' )
@@ -386,7 +398,7 @@ gulp.task( 'compute-test-bundle-side-effect', async ( done ) => {
             fs.mkdirSync( temporaryDir, { recursive: true } )
             fs.writeFileSync( temporaryFile, temporaryFileData )
 
-            const bundle     = await rollup.rollup( config )
+            const bundle     = await rollup( config )
             const { output } = await bundle.generate( config.output )
 
             if ( output[ 0 ].code.length > 1 ) {
@@ -578,6 +590,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                         let paramName = param.name
                         if ( !paramName ) {
                             paramName = `param${ pIndex }`
+                            // eslint-disable-next-line no-console
                             console.warn( `Missing parameter name for [${ docData.longname }]. Defaulting to [${ paramName }]` )
                         }
 
@@ -613,7 +626,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                     // Todo check throws
 
                     // Get user define rules
-                    const rules = []
+                    // const rules = []
 
 
                     // Infer basic rules
@@ -680,7 +693,6 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                             let indent   = 1 + 1 + 1 + 1
                             let openTry  = ''
                             let closeTry = ''
-                            let counter  = expects.length
                             for ( let expect of expects ) {
                                 openTry += '' +
                                     `${ I( indent ) }try {` + '\n' +
@@ -690,7 +702,6 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                                 closeTry = `${ I( indent ) }}` + '\n' + `${ closeTry }`
 
                                 indent++
-                                counter--
                             }
                             const _expect = '' +
                                 `${ openTry }` +
@@ -718,7 +729,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                             let dataSets      = ''
                             let forLoopOpens  = ''
                             let forLoopCloses = ''
-                            let arguments     = []
+                            let args          = []
                             for ( let parameter of parameters ) {
 
                                 const parameterType = parameter.types[ 0 ]
@@ -729,7 +740,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                                     `${ I( localIndent ) }for ( let key${ index } in dataSet${ index } ) {` + '\n' +
                                     `${ I( localIndent + 1 ) }const dataSetValue${ index } = dataSet${ index }[ key${ index } ]` + '\n'
 
-                                arguments.push( `dataSetValue${ index }` )
+                                args.push( `dataSetValue${ index }` )
 
                                 forLoopCloses = `${ I( localIndent ) }}` + '\n' + `${ forLoopCloses }`
 
@@ -737,7 +748,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                                 localIndent++
                             }
 
-                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ key }( ${ arguments.join( ', ' ) } )` + '\n'
+                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ key }( ${ args.join( ', ' ) } )` + '\n'
                             const expect = `${ I( localIndent ) }expect(result).to.be.a('undefined')` + '\n'
 
                             const param = '' +
@@ -766,7 +777,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                             let dataSets      = ''
                             let forLoopOpens  = ''
                             let forLoopCloses = ''
-                            let arguments     = []
+                            let args          = []
                             for ( let parameter of parameters ) {
 
                                 const parameterType = parameter.types[ 0 ]
@@ -787,7 +798,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                                         `${ I( localIndent ) }for ( let key${ index } in dataSet${ index } ) {` + '\n' +
                                         `${ I( localIndent + 1 ) }const dataSetValue${ index } = dataSet${ index }[ key${ index } ]` + '\n'
 
-                                    arguments.push( `dataSetValue${ index }` )
+                                    args.push( `dataSetValue${ index }` )
 
                                     forLoopCloses = `${ I( localIndent ) }}` + '\n' +
                                         `${ I( localIndent - 1 ) }}` + '\n' +
@@ -800,7 +811,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                                         `${ I( localIndent ) }for ( let key${ index } in dataSet${ index } ) {` + '\n' +
                                         `${ I( localIndent + 1 ) }const dataSetValue${ index } = dataSet${ index }[ key${ index } ]` + '\n'
 
-                                    arguments.push( `dataSetValue${ index }` )
+                                    args.push( `dataSetValue${ index }` )
 
                                     forLoopCloses = `${ I( localIndent ) }}` + '\n' + `${ forLoopCloses }`
 
@@ -811,7 +822,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                                 localIndent++
                             }
 
-                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ key }( ${ arguments.join( ', ' ) } )` + '\n'
+                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ key }( ${ args.join( ', ' ) } )` + '\n'
 
                             let expect = ''
                             if ( lowerName.startsWith( 'array' ) ) {
@@ -844,7 +855,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                             let dataSets      = ''
                             let forLoopOpens  = ''
                             let forLoopCloses = ''
-                            let arguments     = []
+                            let args          = []
                             for ( let parameter of parameters ) {
 
                                 const parameterType = parameter.types[ 0 ]
@@ -855,7 +866,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                                     `${ I( localIndent ) }for ( let key${ index } in dataSet${ index } ) {` + '\n' +
                                     `${ I( localIndent + 1 ) }const dataSetValue${ index } = dataSet${ index }[ key${ index } ]` + '\n'
 
-                                arguments.push( `dataSetValue${ index }` )
+                                args.push( `dataSetValue${ index }` )
 
                                 forLoopCloses = `${ I( localIndent ) }}` + '\n' + `${ forLoopCloses }`
 
@@ -863,7 +874,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                                 localIndent++
                             }
 
-                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ key }( ${ arguments.join( ', ' ) } )` + '\n'
+                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ key }( ${ args.join( ', ' ) } )` + '\n'
 
                             let returnTypesLabel = []
                             let expects          = []
@@ -882,7 +893,6 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                             }
                             let openTry  = ''
                             let closeTry = ''
-                            let counter  = expects.length
                             for ( let expect of expects ) {
                                 openTry += '' +
                                     `${ I( localIndent ) }try {` + '\n' +
@@ -892,7 +902,6 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                                 closeTry = `${ I( localIndent ) }}` + '\n' + `${ closeTry }`
 
                                 localIndent++
-                                counter--
                             }
                             const _expect = '' +
                                 `${ openTry }` +
@@ -1211,7 +1220,7 @@ gulp.task( 'compute-test-bench', async ( done ) => {
 } )
 gulp.task( 'bundle-tests', async ( done ) => {
 
-    const configs = require( './configs/rollup.test.conf' )()
+    const configs = rollupTestConfigurator()
 
     for ( let config of configs ) {
 
@@ -1219,7 +1228,7 @@ gulp.task( 'bundle-tests', async ( done ) => {
 
         try {
 
-            const bundle = await rollup.rollup( config )
+            const bundle = await rollup( config )
             await bundle.write( config.output )
 
         } catch ( error ) {
@@ -1385,7 +1394,7 @@ gulp.task( 'build', ( done ) => {
         }
     } )
 
-    const configs = require( './configs/rollup.conf' )( options )
+    const configs = rollupConfigurator( options )
 
     nextBuild()
 
@@ -1405,10 +1414,10 @@ gulp.task( 'build', ( done ) => {
             const config = configs.pop()
             log( `Building ${ config.output.file }` )
 
-            rollup.rollup( config )
-                  .then( ( bundle ) => { return bundle.write( config.output ) } )
-                  .then( () => { nextBuild() } )
-                  .catch( nextBuild )
+            rollup( config )
+                .then( ( bundle ) => { return bundle.write( config.output ) } )
+                .then( () => { nextBuild() } )
+                .catch( nextBuild )
 
         }
 
@@ -1421,7 +1430,7 @@ gulp.task( 'build', ( done ) => {
  * @global
  * @description Will perform a complet release of the library including 'clean', 'lint', 'doc', 'build-test', 'test' and finally 'build'.
  */
-gulp.task( 'release', gulp.series( 'clean', 'lint', 'doc', 'build-tests', 'test', 'build' ) )
+gulp.task( 'release', gulp.series( 'help', 'clean', 'lint', 'doc', 'build-tests', 'test', 'build' ) )
 
 //---------
 

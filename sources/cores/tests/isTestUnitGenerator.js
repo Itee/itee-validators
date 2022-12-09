@@ -7,6 +7,7 @@
  * This is noParamNoReturn
  */
 function noParamNoReturn () {
+    // eslint-disable-next-line no-console
     console.log( 'Hello' )
 }
 
@@ -31,6 +32,7 @@ function noParamTwoReturn () {
  * @param {string} paramA
  */
 function oneParamNoReturn ( paramA = '' ) {
+    // eslint-disable-next-line no-console
     console.log( paramA )
 }
 
@@ -62,6 +64,7 @@ function oneParamTwoReturn ( paramA = 0 ) {
  * @param {number} paramB
  */
 function twoParamNoReturn ( paramA = '', paramB = 123 ) {
+    // eslint-disable-next-line no-console
     console.log( `${ paramA }:${ paramB }` )
 }
 
@@ -105,7 +108,7 @@ export {
 
     oneParamNoReturn,
     oneParamOneReturn,
-    //oneParamTwoReturn,
+    oneParamTwoReturn,
 
     twoParamNoReturn,
     twoParamOneReturn,

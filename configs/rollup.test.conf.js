@@ -24,12 +24,12 @@ function CreateTestsRollupConfigs ( /*options*/ ) {
         /** Units **/
         // For karma
         {
-            input:     `tests/units/${ packageInfos.name }.units.js`,
-            external:  [
+            input:    `tests/units/${ packageInfos.name }.units.js`,
+            external: [
                 'mocha',
                 'chai'
             ],
-            plugins:   [
+            plugins: [
                 nodeResolve(), // required to bundle itee-utils that cannot be integrated as standalone file (why???)=> because circular ref with itee validator package -_-'
                 replace( {
                     replaces: {
@@ -65,14 +65,14 @@ function CreateTestsRollupConfigs ( /*options*/ ) {
                     'mocha': 'Mocha',
                     'chai':  'chai'
                 },
-                file:    `tests/builds/${ packageInfos.name }.units.iife.js`
+                file: `tests/builds/${ packageInfos.name }.units.iife.js`
             }
         },
         // For node
         {
-            input:     `tests/units/${ packageInfos.name }.units.js`,
-            external:  [ 'itee-utils', 'mocha', 'chai', 'fs' ],
-            plugins:   [
+            input:    `tests/units/${ packageInfos.name }.units.js`,
+            external: [ 'itee-utils', 'mocha', 'chai', 'fs' ],
+            plugins:  [
                 cleanup( {
                     comments: 'none'
                 } )
@@ -82,17 +82,17 @@ function CreateTestsRollupConfigs ( /*options*/ ) {
                 indent: '\t',
                 format: 'cjs',
                 //                name:   'Itee.Units',
-                file: `tests/builds/${ packageInfos.name }.units.cjs.js`
+                file:   `tests/builds/${ packageInfos.name }.units.cjs.js`
             }
         },
         /** Benchs **/
         // For karma
         {
-            input:     `tests/benchmarks/${ packageInfos.name }.benchs.js`,
-            external:  [
+            input:    `tests/benchmarks/${ packageInfos.name }.benchs.js`,
+            external: [
                 'benchmark'
             ],
-            plugins:   [
+            plugins: [
                 nodeResolve(),
                 replace( {
                     replaces: {
@@ -147,25 +147,25 @@ function CreateTestsRollupConfigs ( /*options*/ ) {
                 tryCatchDeoptimization:           true,
                 unknownGlobalSideEffects:         false
             },
-            output:    {
+            output: {
                 indent:  '\t',
                 format:  'iife',
                 name:    'Itee.Benchmarks',
                 globals: {
                     'benchmark': 'Benchmark'
                 },
-                file:    `tests/builds/${ packageInfos.name }.benchs.iife.js`
+                file: `tests/builds/${ packageInfos.name }.benchs.iife.js`
             }
         },
         // For Node
         {
-            input:     `tests/benchmarks/${ packageInfos.name }.benchs.js`,
-            external:  [
+            input:    `tests/benchmarks/${ packageInfos.name }.benchs.js`,
+            external: [
                 'benchmark',
                 'itee-utils',
                 'fs'
             ],
-            plugins:   [
+            plugins: [
                 nodeResolve(),
                 cleanup( {
                     comments: 'none'
