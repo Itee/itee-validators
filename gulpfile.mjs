@@ -1430,7 +1430,7 @@ gulp.task( 'build', ( done ) => {
  * @global
  * @description Will perform a complet release of the library including 'clean', 'lint', 'doc', 'build-test', 'test' and finally 'build'.
  */
-gulp.task( 'release', gulp.series( 'help', 'clean', 'lint', 'doc', 'build-tests', 'test', 'build' ) )
+gulp.task( 'release', gulp.series( 'clean', 'lint', 'doc', 'build-tests', 'test', 'build' ) )
 
 //---------
 
