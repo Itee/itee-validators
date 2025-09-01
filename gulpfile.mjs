@@ -560,6 +560,11 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                 return ( data.kind === 'function' && !data.undocumented )
             } )
 
+            if ( jsonData.length === 0 ) {
+                log( yellow( `No usable exports found in [${ sourceFile }]. Ignore it !` ) )
+                continue
+            }
+
             let describes = ''
             const I       = n => '\t'.repeat( n )
             I._           = I( 1 )
