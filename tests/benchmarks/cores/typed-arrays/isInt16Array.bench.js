@@ -5,6 +5,7 @@ import * as isInt16ArrayNamespace from '../../../../sources/cores/typed-arrays/i
 
 const isInt16ArraySuite = Benchmark.Suite( 'isInt16ArrayNamespace.isInt16Array', Testing.createSuiteOptions() )
                                      .add( 'isInt16Array()', Testing.iterateOverDataMap( isInt16ArrayNamespace.isInt16Array ), Testing.createBenchmarkOptions() )
+
 const isNotInt16ArraySuite = Benchmark.Suite( 'isInt16ArrayNamespace.isNotInt16Array', Testing.createSuiteOptions() )
                                      .add( 'isNotInt16Array()', Testing.iterateOverDataMap( isInt16ArrayNamespace.isNotInt16Array ), Testing.createBenchmarkOptions() )
 

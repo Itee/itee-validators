@@ -5,6 +5,7 @@ import * as isSafeIntegerNamespace from '../../../../sources/cores/numbers/isSaf
 
 const isMaxSafeIntegerSuite = Benchmark.Suite( 'isSafeIntegerNamespace.isMaxSafeInteger', Testing.createSuiteOptions() )
                                      .add( 'isMaxSafeInteger()', Testing.iterateOverDataMap( isSafeIntegerNamespace.isMaxSafeInteger ), Testing.createBenchmarkOptions() )
+
 const isMinSafeIntegerSuite = Benchmark.Suite( 'isSafeIntegerNamespace.isMinSafeInteger', Testing.createSuiteOptions() )
                                      .add( 'isMinSafeInteger()', Testing.iterateOverDataMap( isSafeIntegerNamespace.isMinSafeInteger ), Testing.createBenchmarkOptions() )
 

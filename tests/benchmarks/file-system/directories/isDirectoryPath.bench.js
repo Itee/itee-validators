@@ -5,6 +5,7 @@ import * as isDirectoryPathNamespace from '../../../../sources/file-system/direc
 
 const isDirectoryPathSuite = Benchmark.Suite( 'isDirectoryPathNamespace.isDirectoryPath', Testing.createSuiteOptions() )
                                      .add( 'isDirectoryPath()', Testing.iterateOverDataMap( isDirectoryPathNamespace.isDirectoryPath ), Testing.createBenchmarkOptions() )
+
 const isNotDirectoryPathSuite = Benchmark.Suite( 'isDirectoryPathNamespace.isNotDirectoryPath', Testing.createSuiteOptions() )
                                      .add( 'isNotDirectoryPath()', Testing.iterateOverDataMap( isDirectoryPathNamespace.isNotDirectoryPath ), Testing.createBenchmarkOptions() )
 

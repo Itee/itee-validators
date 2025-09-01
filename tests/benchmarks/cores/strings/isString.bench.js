@@ -3,8 +3,6 @@ import Benchmark   from 'benchmark'
 import { Testing } from 'itee-utils'
 import * as isStringNamespace from '../../../../sources/cores/strings/isString.js'
 
-const isNotStringSuite = Benchmark.Suite( 'isStringNamespace.isNotString', Testing.createSuiteOptions() )
-                                     .add( 'isNotString()', Testing.iterateOverDataMap( isStringNamespace.isNotString ), Testing.createBenchmarkOptions() )
 const isStringSuite = Benchmark.Suite( 'isStringNamespace.isString', Testing.createSuiteOptions() )
                                      .add( 'isString()', Testing.iterateOverDataMap( isStringNamespace.isString ), Testing.createBenchmarkOptions() )
                                      .add( 'isString_0()', Testing.iterateOverDataMap( isStringNamespace.isString_0 ), Testing.createBenchmarkOptions() )
@@ -13,5 +11,8 @@ const isStringSuite = Benchmark.Suite( 'isStringNamespace.isString', Testing.cre
                                      .add( 'isString_3()', Testing.iterateOverDataMap( isStringNamespace.isString_3 ), Testing.createBenchmarkOptions() )
                                      .add( 'isString_4()', Testing.iterateOverDataMap( isStringNamespace.isString_4 ), Testing.createBenchmarkOptions() )
 
-export { isNotStringSuite,isStringSuite }
+const isNotStringSuite = Benchmark.Suite( 'isStringNamespace.isNotString', Testing.createSuiteOptions() )
+                                     .add( 'isNotString()', Testing.iterateOverDataMap( isStringNamespace.isNotString ), Testing.createBenchmarkOptions() )
+
+export { isStringSuite,isNotStringSuite }
 

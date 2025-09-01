@@ -5,6 +5,7 @@ import * as isFilePathNamespace from '../../../../sources/file-system/files/isFi
 
 const isFilePathSuite = Benchmark.Suite( 'isFilePathNamespace.isFilePath', Testing.createSuiteOptions() )
                                      .add( 'isFilePath()', Testing.iterateOverDataMap( isFilePathNamespace.isFilePath ), Testing.createBenchmarkOptions() )
+
 const isNotFilePathSuite = Benchmark.Suite( 'isFilePathNamespace.isNotFilePath', Testing.createSuiteOptions() )
                                      .add( 'isNotFilePath()', Testing.iterateOverDataMap( isFilePathNamespace.isNotFilePath ), Testing.createBenchmarkOptions() )
 

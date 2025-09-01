@@ -5,6 +5,7 @@ import * as isFahrenheitNamespace from '../../../../sources/physics/temperatures
 
 const isFahrenheitSuite = Benchmark.Suite( 'isFahrenheitNamespace.isFahrenheit', Testing.createSuiteOptions() )
                                      .add( 'isFahrenheit()', Testing.iterateOverDataMap( isFahrenheitNamespace.isFahrenheit ), Testing.createBenchmarkOptions() )
+
 const isNotFahrenheitSuite = Benchmark.Suite( 'isFahrenheitNamespace.isNotFahrenheit', Testing.createSuiteOptions() )
                                      .add( 'isNotFahrenheit()', Testing.iterateOverDataMap( isFahrenheitNamespace.isNotFahrenheit ), Testing.createBenchmarkOptions() )
 

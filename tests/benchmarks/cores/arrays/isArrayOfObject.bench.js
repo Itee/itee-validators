@@ -5,6 +5,7 @@ import * as isArrayOfObjectNamespace from '../../../../sources/cores/arrays/isAr
 
 const isArrayOfObjectSuite = Benchmark.Suite( 'isArrayOfObjectNamespace.isArrayOfObject', Testing.createSuiteOptions() )
                                      .add( 'isArrayOfObject()', Testing.iterateOverDataMap( isArrayOfObjectNamespace.isArrayOfObject ), Testing.createBenchmarkOptions() )
+
 const isNotArrayOfObjectSuite = Benchmark.Suite( 'isArrayOfObjectNamespace.isNotArrayOfObject', Testing.createSuiteOptions() )
                                      .add( 'isNotArrayOfObject()', Testing.iterateOverDataMap( isArrayOfObjectNamespace.isNotArrayOfObject ), Testing.createBenchmarkOptions() )
 

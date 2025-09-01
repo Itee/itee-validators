@@ -5,6 +5,7 @@ import * as isFunctionNamespace from '../../../../sources/cores/functions/isFunc
 
 const isFunctionSuite = Benchmark.Suite( 'isFunctionNamespace.isFunction', Testing.createSuiteOptions() )
                                      .add( 'isFunction()', Testing.iterateOverDataMap( isFunctionNamespace.isFunction ), Testing.createBenchmarkOptions() )
+
 const isNotFunctionSuite = Benchmark.Suite( 'isFunctionNamespace.isNotFunction', Testing.createSuiteOptions() )
                                      .add( 'isNotFunction()', Testing.iterateOverDataMap( isFunctionNamespace.isNotFunction ), Testing.createBenchmarkOptions() )
 

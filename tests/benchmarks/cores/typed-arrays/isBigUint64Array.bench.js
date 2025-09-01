@@ -5,6 +5,7 @@ import * as isBigUint64ArrayNamespace from '../../../../sources/cores/typed-arra
 
 const isBigUint64ArraySuite = Benchmark.Suite( 'isBigUint64ArrayNamespace.isBigUint64Array', Testing.createSuiteOptions() )
                                      .add( 'isBigUint64Array()', Testing.iterateOverDataMap( isBigUint64ArrayNamespace.isBigUint64Array ), Testing.createBenchmarkOptions() )
+
 const isNotBigUint64ArraySuite = Benchmark.Suite( 'isBigUint64ArrayNamespace.isNotBigUint64Array', Testing.createSuiteOptions() )
                                      .add( 'isNotBigUint64Array()', Testing.iterateOverDataMap( isBigUint64ArrayNamespace.isNotBigUint64Array ), Testing.createBenchmarkOptions() )
 

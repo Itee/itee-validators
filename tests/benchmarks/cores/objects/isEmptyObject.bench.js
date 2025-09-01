@@ -5,6 +5,7 @@ import * as isEmptyObjectNamespace from '../../../../sources/cores/objects/isEmp
 
 const isEmptyObjectSuite = Benchmark.Suite( 'isEmptyObjectNamespace.isEmptyObject', Testing.createSuiteOptions() )
                                      .add( 'isEmptyObject()', Testing.iterateOverDataMap( isEmptyObjectNamespace.isEmptyObject ), Testing.createBenchmarkOptions() )
+
 const isNotEmptyObjectSuite = Benchmark.Suite( 'isEmptyObjectNamespace.isNotEmptyObject', Testing.createSuiteOptions() )
                                      .add( 'isNotEmptyObject()', Testing.iterateOverDataMap( isEmptyObjectNamespace.isNotEmptyObject ), Testing.createBenchmarkOptions() )
 
