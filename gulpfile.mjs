@@ -204,7 +204,7 @@ gulp.task( 'doc', ( done ) => {
 // TESTING
 
 /**
- *
+ * @description Will run unit tests with node
  */
 gulp.task( 'run-unit-tests-for-node', ( done ) => {
 
@@ -220,11 +220,8 @@ gulp.task( 'run-unit-tests-for-node', ( done ) => {
     } )
 
 } )
-
 /**
- * @method npm run unit
- * @global
- * @description Will run unit tests using karma
+ * @description Will run unit tests with karma
  */
 gulp.task( 'run-unit-tests-for-browser', async ( done ) => {
 
@@ -245,12 +242,14 @@ gulp.task( 'run-unit-tests-for-browser', async ( done ) => {
     await karmaServer.start()
 
 } )
-
 /**
- *
+ * @description Will run unit tests in back and front environments
  */
 gulp.task( 'run-unit-tests', gulp.series( 'run-unit-tests-for-node', 'run-unit-tests-for-browser' ) )
 
+/**
+ * @description Will run benchmarks with node
+ */
 gulp.task( 'run-benchmarks-for-node', ( done ) => {
 
     const benchsPath = path.join( __dirname, `tests/builds/${ packageInfos.name }.benchs.cjs.js` )
@@ -264,6 +263,9 @@ gulp.task( 'run-benchmarks-for-node', ( done ) => {
     } )
 
 } )
+/**
+ * @description Will run benchmarks with karma
+ */
 gulp.task( 'run-benchmarks-for-browser', async ( done ) => {
 
     const configFile  = path.normalize( `${ __dirname }/configs/karma.benchs.conf.js` )
@@ -283,23 +285,20 @@ gulp.task( 'run-benchmarks-for-browser', async ( done ) => {
     await karmaServer.start()
 
 } )
-
 /**
- * @method npm run bench
- * @global
- * @description Will run benchmarks using karma
+ * @description Will run benchmarks in back and front environments
  */
 gulp.task( 'run-benchmarks', gulp.series( 'run-benchmarks-for-node', 'run-benchmarks-for-browser' ) )
 
 /**
  * @method npm run test
  * @global
- * @description Will run unit tests and benchmarks using karma
+ * @description Will run unit tests and benchmarks for node (backend) and karma (frontend) environments
  */
 gulp.task( 'test', gulp.series( 'run-unit-tests', 'run-benchmarks' ) )
 
 /**
- * In view to detect bundling side effects this task will
+ * @description In view to detect bundling side effects this task will
  * create intermediary file for each individual export from this package
  * and then create rollup config for each of them and bundle
  */
@@ -1429,7 +1428,7 @@ gulp.task( 'build', ( done ) => {
  * @method npm run release
  * @global
  * @description Will perform a complet release of the library including 'clean', 'lint', 'doc', 'build-test', 'test' and finally 'build'.
- */
+*/
 gulp.task( 'release', gulp.series( 'clean', 'lint', 'doc', 'build-tests', 'test', 'build' ) )
 
 //---------
