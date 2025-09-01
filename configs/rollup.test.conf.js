@@ -85,7 +85,8 @@ function CreateTestsRollupConfigs ( /*options*/ ) {
                 file:   `tests/builds/${ packageInfos.name }.units.cjs.js`
             }
         },
-        /** Benchs **/
+
+        /** Benchmarks **/
         // For karma
         {
             input:    `tests/benchmarks/${ packageInfos.name }.benchs.js`,
