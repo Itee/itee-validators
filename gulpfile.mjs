@@ -209,13 +209,12 @@ gulp.task( 'doc', ( done ) => {
  * create intermediary file for each individual export from this package
  * and then create rollup config for each of them and bundle
  */
-gulp.task( 'compute-test-bundle-side-effect', async ( done ) => {
+gulp.task( 'check-bundling-side-effect', async ( done ) => {
 
     const baseDir        = __dirname
     const sourcesDir     = path.join( baseDir, 'sources' )
     const testsDir       = path.join( baseDir, 'tests' )
-    const bundlesDir     = path.join( testsDir, 'bundles' )
-    const sideEffectsDir = path.join( bundlesDir, 'side-effects' )
+    const sideEffectsDir = path.join( testsDir, 'bundles/side-effects' )
     const temporariesDir = path.join( sideEffectsDir, '_tmp' )
 
     const filePathsToIgnore = [
@@ -223,8 +222,8 @@ gulp.task( 'compute-test-bundle-side-effect', async ( done ) => {
         'LineFileSplitter.js'
     ]
 
-    let sourcesGlob    = path.join( sourcesDir, '**' )
-    sourcesGlob        = sourcesGlob.replaceAll( '\\', '/' )
+    let sourcesGlob    = path.join( sourcesDir, '/**' )
+    // sourcesGlob        = sourcesGlob.replaceAll( '\\', '/' )
     const sourcesFiles = glob.sync( sourcesGlob )
         .map( filePath => {
             return path.normalize( filePath )
@@ -309,7 +308,9 @@ gulp.task( 'compute-test-bundle-side-effect', async ( done ) => {
 
             if ( output[ 0 ].code.length > 1 ) {
                 log( red( `[${ specificFilePath }] contain side-effects !` ) )
-                await bundle.write( config.output )
+                // Todo: make option to log or to write
+                log( output[ 0 ].code )
+                // await bundle.write( config.output )
             } else {
                 log( green( `[${ specificFilePath }] is side-effect free.` ) )
             }
@@ -320,12 +321,14 @@ gulp.task( 'compute-test-bundle-side-effect', async ( done ) => {
 
     }
 
-    fs.rmSync( temporariesDir, { recursive: true } )
+    // Todo: depends on option to log or to write
+    fs.rmSync( sideEffectsDir, { recursive: true } )
+    // fs.rmSync( temporariesDir, { recursive: true } )
 
     done()
 
 } )
-gulp.task( 'compute-test-bundle-by-source-file-export', async ( done ) => {
+gulp.task( 'check-bundling-by-source-file-export', async ( done ) => {
 
     const baseDir    = __dirname
     const sourcesDir = path.join( baseDir, 'sources' )
@@ -418,7 +421,7 @@ gulp.task( 'compute-test-bundle-by-source-file-export', async ( done ) => {
     done()
 
 } )
-gulp.task( 'compute-test-bundles', gulp.series( 'compute-test-bundle-side-effect', 'compute-test-bundle-by-source-file-export' ) )
+gulp.task( 'check-bundling', gulp.series( 'check-bundling-side-effect', 'check-bundling-by-source-file-export' ) )
 
 /**
  * @description Will generate unit test files from source code using type inference from comments
@@ -1244,7 +1247,7 @@ gulp.task( 'run-benchmarks', gulp.series( 'run-benchmarks-for-node', 'run-benchm
  * @global
  * @description Will build all tests.
  */
-gulp.task( 'build-tests', gulp.series( 'compute-test-bundles', 'build-unit-tests', 'build-benchmarks' ) )
+gulp.task( 'build-tests', gulp.series( 'check-bundling', 'build-unit-tests', 'build-benchmarks' ) )
 
 /**
  * @method npm run test
@@ -1323,4 +1326,5 @@ gulp.task( 'release', gulp.series( 'clean', 'lint', 'doc', 'build-tests', 'test'
 
 //---------
 
-gulp.task( 'default', gulp.series( 'help' ) )
+gulp.task( 'default', gulp.series( 'check-bundling-side-effect' ) )
+// gulp.task( 'default', gulp.series( 'help' ) )
