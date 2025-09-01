@@ -19,31 +19,6 @@ function isUint16ArrayUnits () {
 
 	describe( 'isUint16ArrayUnits', () => {
 
-		describe( 'isNotUint16Array()', () => {
-
-			it( 'is bundlable', () => {
-
-				expect(isUint16ArrayNamespace.isNotUint16Array).to.exist
-
-			} )
-
-			it( 'return type is boolean when data is of any type', () => {
-
-				const dataMap0 = this._dataMap
-				for ( let dataSetKey0 in dataMap0 ) {
-					const dataSet0 = dataMap0[ dataSetKey0 ]
-
-					for ( let key0 in dataSet0 ) {
-						const dataSetValue0 = dataSet0[ key0 ]
-						const result = isUint16ArrayNamespace.isNotUint16Array( dataSetValue0 )
-						expect(result).to.be.a('boolean')
-					}
-				}
-
-			} )
-
-		} )
-
 		describe( 'isUint16Array()', () => {
 
 			it( 'is bundlable', () => {
@@ -61,6 +36,31 @@ function isUint16ArrayUnits () {
 					for ( let key0 in dataSet0 ) {
 						const dataSetValue0 = dataSet0[ key0 ]
 						const result = isUint16ArrayNamespace.isUint16Array( dataSetValue0 )
+						expect(result).to.be.a('boolean')
+					}
+				}
+
+			} )
+
+		} )
+
+		describe( 'isNotUint16Array()', () => {
+
+			it( 'is bundlable', () => {
+
+				expect(isUint16ArrayNamespace.isNotUint16Array).to.exist
+
+			} )
+
+			it( 'return type is boolean when data is of any type', () => {
+
+				const dataMap0 = this._dataMap
+				for ( let dataSetKey0 in dataMap0 ) {
+					const dataSet0 = dataMap0[ dataSetKey0 ]
+
+					for ( let key0 in dataSet0 ) {
+						const dataSetValue0 = dataSet0[ key0 ]
+						const result = isUint16ArrayNamespace.isNotUint16Array( dataSetValue0 )
 						expect(result).to.be.a('boolean')
 					}
 				}

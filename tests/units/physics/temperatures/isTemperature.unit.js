@@ -19,31 +19,6 @@ function isTemperatureUnits () {
 
 	describe( 'isTemperatureUnits', () => {
 
-		describe( 'isNotTemperature()', () => {
-
-			it( 'is bundlable', () => {
-
-				expect(isTemperatureNamespace.isNotTemperature).to.exist
-
-			} )
-
-			it( 'return type is boolean when data is of any type', () => {
-
-				const dataMap0 = this._dataMap
-				for ( let dataSetKey0 in dataMap0 ) {
-					const dataSet0 = dataMap0[ dataSetKey0 ]
-
-					for ( let key0 in dataSet0 ) {
-						const dataSetValue0 = dataSet0[ key0 ]
-						const result = isTemperatureNamespace.isNotTemperature( dataSetValue0 )
-						expect(result).to.be.a('boolean')
-					}
-				}
-
-			} )
-
-		} )
-
 		describe( 'isTemperature()', () => {
 
 			it( 'is bundlable', () => {
@@ -61,6 +36,31 @@ function isTemperatureUnits () {
 					for ( let key0 in dataSet0 ) {
 						const dataSetValue0 = dataSet0[ key0 ]
 						const result = isTemperatureNamespace.isTemperature( dataSetValue0 )
+						expect(result).to.be.a('boolean')
+					}
+				}
+
+			} )
+
+		} )
+
+		describe( 'isNotTemperature()', () => {
+
+			it( 'is bundlable', () => {
+
+				expect(isTemperatureNamespace.isNotTemperature).to.exist
+
+			} )
+
+			it( 'return type is boolean when data is of any type', () => {
+
+				const dataMap0 = this._dataMap
+				for ( let dataSetKey0 in dataMap0 ) {
+					const dataSet0 = dataMap0[ dataSetKey0 ]
+
+					for ( let key0 in dataSet0 ) {
+						const dataSetValue0 = dataSet0[ key0 ]
+						const result = isTemperatureNamespace.isNotTemperature( dataSetValue0 )
 						expect(result).to.be.a('boolean')
 					}
 				}

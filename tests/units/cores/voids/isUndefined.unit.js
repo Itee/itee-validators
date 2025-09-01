@@ -19,31 +19,6 @@ function isUndefinedUnits () {
 
 	describe( 'isUndefinedUnits', () => {
 
-		describe( 'isNotUndefined()', () => {
-
-			it( 'is bundlable', () => {
-
-				expect(isUndefinedNamespace.isNotUndefined).to.exist
-
-			} )
-
-			it( 'return type is boolean when data is of any type', () => {
-
-				const dataMap0 = this._dataMap
-				for ( let dataSetKey0 in dataMap0 ) {
-					const dataSet0 = dataMap0[ dataSetKey0 ]
-
-					for ( let key0 in dataSet0 ) {
-						const dataSetValue0 = dataSet0[ key0 ]
-						const result = isUndefinedNamespace.isNotUndefined( dataSetValue0 )
-						expect(result).to.be.a('boolean')
-					}
-				}
-
-			} )
-
-		} )
-
 		describe( 'isUndefined()', () => {
 
 			it( 'is bundlable', () => {
@@ -61,6 +36,31 @@ function isUndefinedUnits () {
 					for ( let key0 in dataSet0 ) {
 						const dataSetValue0 = dataSet0[ key0 ]
 						const result = isUndefinedNamespace.isUndefined( dataSetValue0 )
+						expect(result).to.be.a('boolean')
+					}
+				}
+
+			} )
+
+		} )
+
+		describe( 'isNotUndefined()', () => {
+
+			it( 'is bundlable', () => {
+
+				expect(isUndefinedNamespace.isNotUndefined).to.exist
+
+			} )
+
+			it( 'return type is boolean when data is of any type', () => {
+
+				const dataMap0 = this._dataMap
+				for ( let dataSetKey0 in dataMap0 ) {
+					const dataSet0 = dataMap0[ dataSetKey0 ]
+
+					for ( let key0 in dataSet0 ) {
+						const dataSetValue0 = dataSet0[ key0 ]
+						const result = isUndefinedNamespace.isNotUndefined( dataSetValue0 )
 						expect(result).to.be.a('boolean')
 					}
 				}

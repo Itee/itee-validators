@@ -19,31 +19,6 @@ function isUint8ArrayUnits () {
 
 	describe( 'isUint8ArrayUnits', () => {
 
-		describe( 'isNotUint8Array()', () => {
-
-			it( 'is bundlable', () => {
-
-				expect(isUint8ArrayNamespace.isNotUint8Array).to.exist
-
-			} )
-
-			it( 'return type is boolean when data is of any type', () => {
-
-				const dataMap0 = this._dataMap
-				for ( let dataSetKey0 in dataMap0 ) {
-					const dataSet0 = dataMap0[ dataSetKey0 ]
-
-					for ( let key0 in dataSet0 ) {
-						const dataSetValue0 = dataSet0[ key0 ]
-						const result = isUint8ArrayNamespace.isNotUint8Array( dataSetValue0 )
-						expect(result).to.be.a('boolean')
-					}
-				}
-
-			} )
-
-		} )
-
 		describe( 'isUint8Array()', () => {
 
 			it( 'is bundlable', () => {
@@ -61,6 +36,31 @@ function isUint8ArrayUnits () {
 					for ( let key0 in dataSet0 ) {
 						const dataSetValue0 = dataSet0[ key0 ]
 						const result = isUint8ArrayNamespace.isUint8Array( dataSetValue0 )
+						expect(result).to.be.a('boolean')
+					}
+				}
+
+			} )
+
+		} )
+
+		describe( 'isNotUint8Array()', () => {
+
+			it( 'is bundlable', () => {
+
+				expect(isUint8ArrayNamespace.isNotUint8Array).to.exist
+
+			} )
+
+			it( 'return type is boolean when data is of any type', () => {
+
+				const dataMap0 = this._dataMap
+				for ( let dataSetKey0 in dataMap0 ) {
+					const dataSet0 = dataMap0[ dataSetKey0 ]
+
+					for ( let key0 in dataSet0 ) {
+						const dataSetValue0 = dataSet0[ key0 ]
+						const result = isUint8ArrayNamespace.isNotUint8Array( dataSetValue0 )
 						expect(result).to.be.a('boolean')
 					}
 				}
