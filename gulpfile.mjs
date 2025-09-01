@@ -208,13 +208,15 @@ gulp.task( 'doc', ( done ) => {
  * @description In view to detect bundling side effects this task will
  * create intermediary file for each individual export from this package
  * and then create rollup config for each of them and bundle
+ * Todo: Check for differents target env like next task below this one
  */
 gulp.task( 'check-bundling-side-effect', async ( done ) => {
 
     const baseDir        = __dirname
     const sourcesDir     = path.join( baseDir, 'sources' )
     const testsDir       = path.join( baseDir, 'tests' )
-    const sideEffectsDir = path.join( testsDir, 'bundles/side-effects' )
+    const bundleDir      = path.join( testsDir, 'bundles' )
+    const sideEffectsDir = path.join( bundleDir, 'side-effects' )
     const temporariesDir = path.join( sideEffectsDir, '_tmp' )
 
     const filePathsToIgnore = [
@@ -308,8 +310,8 @@ gulp.task( 'check-bundling-side-effect', async ( done ) => {
 
             if ( output[ 0 ].code.length > 1 ) {
                 log( red( `[${ specificFilePath }] contain side-effects !` ) )
-                // Todo: make option to log or to write
-                log( output[ 0 ].code )
+                // Todo: make option to log, to write or nothing
+                // log( output[ 0 ].code )
                 // await bundle.write( config.output )
             } else {
                 log( green( `[${ specificFilePath }] is side-effect free.` ) )
@@ -322,7 +324,7 @@ gulp.task( 'check-bundling-side-effect', async ( done ) => {
     }
 
     // Todo: depends on option to log or to write
-    fs.rmSync( sideEffectsDir, { recursive: true } )
+    fs.rmSync( bundleDir, { recursive: true } )
     // fs.rmSync( temporariesDir, { recursive: true } )
 
     done()
@@ -408,7 +410,8 @@ gulp.task( 'check-bundling-by-source-file-export', async ( done ) => {
             log( `Building bundle ${ config.output.file }` )
 
             const bundle = await rollup( config )
-            await bundle.write( config.output )
+            const { output } = await bundle.generate( config.output )
+            // await bundle.write( config.output )
 
         } catch ( error ) {
 
@@ -1326,5 +1329,4 @@ gulp.task( 'release', gulp.series( 'clean', 'lint', 'doc', 'build-tests', 'test'
 
 //---------
 
-gulp.task( 'default', gulp.series( 'check-bundling-side-effect' ) )
-// gulp.task( 'default', gulp.series( 'help' ) )
+gulp.task( 'default', gulp.series( 'help' ) )
