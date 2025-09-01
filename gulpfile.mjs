@@ -206,7 +206,7 @@ gulp.task( 'doc', ( done ) => {
 /**
  *
  */
-gulp.task( 'unit-node', ( done ) => {
+gulp.task( 'run-unit-tests-for-node', ( done ) => {
 
     const mochaPath = path.join( __dirname, 'node_modules/mocha/bin/mocha' )
     const testsPath = path.join( __dirname, `tests/builds/${ packageInfos.name }.units.cjs.js` )
@@ -226,7 +226,7 @@ gulp.task( 'unit-node', ( done ) => {
  * @global
  * @description Will run unit tests using karma
  */
-gulp.task( 'unit-browser', async ( done ) => {
+gulp.task( 'run-unit-tests-for-browser', async ( done ) => {
 
     const configFile  = path.normalize( `${ __dirname }/configs/karma.units.conf.js` )
     const karmaConfig = karma.config.parseConfig( configFile )
@@ -249,9 +249,9 @@ gulp.task( 'unit-browser', async ( done ) => {
 /**
  *
  */
-gulp.task( 'unit', gulp.series( 'unit-node', 'unit-browser' ) )
+gulp.task( 'run-unit-tests', gulp.series( 'run-unit-tests-for-node', 'run-unit-tests-for-browser' ) )
 
-gulp.task( 'bench-node', ( done ) => {
+gulp.task( 'run-benchmarks-for-node', ( done ) => {
 
     const benchsPath = path.join( __dirname, `tests/builds/${ packageInfos.name }.benchs.cjs.js` )
     const benchmark  = childProcess.spawn( 'node', [ benchsPath ], { stdio: 'inherit' } )
@@ -264,7 +264,7 @@ gulp.task( 'bench-node', ( done ) => {
     } )
 
 } )
-gulp.task( 'bench-browser', async ( done ) => {
+gulp.task( 'run-benchmarks-for-browser', async ( done ) => {
 
     const configFile  = path.normalize( `${ __dirname }/configs/karma.benchs.conf.js` )
     const karmaConfig = karma.config.parseConfig( configFile )
@@ -289,14 +289,14 @@ gulp.task( 'bench-browser', async ( done ) => {
  * @global
  * @description Will run benchmarks using karma
  */
-gulp.task( 'bench', gulp.series( 'bench-node', 'bench-browser' ) )
+gulp.task( 'run-benchmarks', gulp.series( 'run-benchmarks-for-node', 'run-benchmarks-for-browser' ) )
 
 /**
  * @method npm run test
  * @global
  * @description Will run unit tests and benchmarks using karma
  */
-gulp.task( 'test', gulp.series( 'unit', 'bench' ) )
+gulp.task( 'test', gulp.series( 'run-unit-tests', 'run-benchmarks' ) )
 
 /**
  * In view to detect bundling side effects this task will
