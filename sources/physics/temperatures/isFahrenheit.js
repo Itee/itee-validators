@@ -21,7 +21,7 @@ import { ABSOLUTE_ZERO_FAHRENHEIT } from './constants'
 
 /**
  *
- * @param data
+ * @param data {*}
  * @return {boolean}
  */
 export function isFahrenheit ( data ) {
@@ -30,7 +30,7 @@ export function isFahrenheit ( data ) {
 
 /**
  *
- * @param data
+ * @param data {*}
  * @return {boolean}
  */
 export function isNotFahrenheit ( data ) {

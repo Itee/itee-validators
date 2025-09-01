@@ -21,7 +21,7 @@ import { ABSOLUTE_ZERO_KELVIN } from './constants'
 
 /**
  *
- * @param data
+ * @param data {*}
  * @return {boolean}
  */
 export function isKelvin ( data ) {
@@ -30,7 +30,7 @@ export function isKelvin ( data ) {
 
 /**
  *
- * @param data
+ * @param data {*}
  * @return {boolean}
  */
 export function isNotKelvin ( data ) {
