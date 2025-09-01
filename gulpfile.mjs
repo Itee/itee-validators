@@ -444,7 +444,6 @@ gulp.task( 'compute-test-bundle-by-source-file-export', async ( done ) => {
 
     for ( let sourceFile of sourcesFiles ) {
 
-
         const specificFilePath = sourceFile.replace( sourcesDir, '' )
         const specificDir      = path.dirname( specificFilePath )
         const fileName         = path.basename( sourceFile, path.extname( sourceFile ) )
@@ -515,7 +514,10 @@ gulp.task( 'compute-test-bundle-by-source-file-export', async ( done ) => {
 } )
 gulp.task( 'compute-test-bundles', gulp.series( 'compute-test-bundle-side-effect', 'compute-test-bundle-by-source-file-export' ) )
 
-gulp.task( 'compute-test-unit', async ( done ) => {
+/**
+ * @description Will generate unit test files from source code using type inference from comments
+ */
+gulp.task( 'compute-unit-tests', async ( done ) => {
 
     const basePath   = __dirname
     const sourcesDir = path.join( basePath, 'sources' )
@@ -1023,7 +1025,10 @@ gulp.task( 'compute-test-unit', async ( done ) => {
     done()
 
 } )
-gulp.task( 'compute-test-bench', async ( done ) => {
+/**
+ * @description Will generate benchmarks files from source code against provided alternatives
+ */
+gulp.task( 'compute-benchmarks', async ( done ) => {
 
     const basePath   = __dirname
     const sourcesDir = path.join( basePath, 'sources' )
@@ -1179,6 +1184,9 @@ gulp.task( 'compute-test-bench', async ( done ) => {
     done()
 
 } )
+/**
+ * @description Will generate unit test bundles based on provided configs
+ */
 gulp.task( 'bundle-unit-tests', async ( done ) => {
 
     const configs = rollupUnitTestsConfigurator()
@@ -1203,6 +1211,9 @@ gulp.task( 'bundle-unit-tests', async ( done ) => {
     done()
 
 } )
+/**
+ * @description Will generate benchmarks bundles based on provided configs
+ */
 gulp.task( 'bundle-benchmarks', async ( done ) => {
 
     const configs = rollupBenchesConfigurator()
@@ -1230,9 +1241,9 @@ gulp.task( 'bundle-benchmarks', async ( done ) => {
 /**
  * @method npm run build-test
  * @global
- * @description Will build itee client tests.
+ * @description Will build all tests.
  */
-gulp.task( 'build-tests', gulp.series( 'compute-test-bundles', 'compute-test-unit', 'compute-test-bench', 'bundle-unit-tests', 'bundle-benchmarks' ) )
+gulp.task( 'build-tests', gulp.series( 'compute-test-bundles', 'compute-unit-tests', 'compute-benchmarks', 'bundle-unit-tests', 'bundle-benchmarks' ) )
 
 /**
  * @method npm run build
