@@ -205,100 +205,6 @@ gulp.task( 'doc', ( done ) => {
 // TESTING
 
 /**
- * @description Will run unit tests with node
- */
-gulp.task( 'run-unit-tests-for-node', ( done ) => {
-
-    const mochaPath = path.join( __dirname, 'node_modules/mocha/bin/mocha' )
-    const testsPath = path.join( __dirname, `tests/builds/${ packageInfos.name }.units.cjs.js` )
-    const mocha     = childProcess.spawn( 'node', [ mochaPath, testsPath ], { stdio: 'inherit' } )
-    mocha.on( 'close', ( code ) => {
-
-        ( code === 0 )
-            ? done()
-            : done( `mocha exited with code ${ code }` )
-
-    } )
-
-} )
-/**
- * @description Will run unit tests with karma
- */
-gulp.task( 'run-unit-tests-for-browser', async ( done ) => {
-
-    const configFile  = path.normalize( `${ __dirname }/configs/karma.units.conf.js` )
-    const karmaConfig = karma.config.parseConfig( configFile )
-    const karmaServer = new karma.Server( karmaConfig, ( exitCode ) => {
-        if ( exitCode === 0 ) {
-            log( `Karma server exit with code ${ exitCode }` )
-            done()
-        } else {
-            done( `Karma server exit with code ${ exitCode }` )
-        }
-    } )
-    karmaServer.on( 'browser_error', ( browser, error ) => {
-        log( red( error.message ) )
-    } )
-
-    await karmaServer.start()
-
-} )
-/**
- * @description Will run unit tests in back and front environments
- */
-gulp.task( 'run-unit-tests', gulp.series( 'run-unit-tests-for-node', 'run-unit-tests-for-browser' ) )
-
-/**
- * @description Will run benchmarks with node
- */
-gulp.task( 'run-benchmarks-for-node', ( done ) => {
-
-    const benchsPath = path.join( __dirname, `tests/builds/${ packageInfos.name }.benchs.cjs.js` )
-    const benchmark  = childProcess.spawn( 'node', [ benchsPath ], { stdio: 'inherit' } )
-    benchmark.on( 'close', ( code ) => {
-
-        ( code === 0 )
-            ? done()
-            : done( `benchmark exited with code ${ code }` )
-
-    } )
-
-} )
-/**
- * @description Will run benchmarks with karma
- */
-gulp.task( 'run-benchmarks-for-browser', async ( done ) => {
-
-    const configFile  = path.normalize( `${ __dirname }/configs/karma.benchs.conf.js` )
-    const karmaConfig = karma.config.parseConfig( configFile )
-    const karmaServer = new karma.Server( karmaConfig, ( exitCode ) => {
-        if ( exitCode === 0 ) {
-            log( `Karma server exit with code ${ exitCode }` )
-            done()
-        } else {
-            done( `Karma server exit with code ${ exitCode }` )
-        }
-    } )
-    karmaServer.on( 'browser_error', ( browser, error ) => {
-        log( red( error.message ) )
-    } )
-
-    await karmaServer.start()
-
-} )
-/**
- * @description Will run benchmarks in back and front environments
- */
-gulp.task( 'run-benchmarks', gulp.series( 'run-benchmarks-for-node', 'run-benchmarks-for-browser' ) )
-
-/**
- * @method npm run test
- * @global
- * @description Will run unit tests and benchmarks for node (backend) and karma (frontend) environments
- */
-gulp.task( 'test', gulp.series( 'run-unit-tests', 'run-benchmarks' ) )
-
-/**
  * @description In view to detect bundling side effects this task will
  * create intermediary file for each individual export from this package
  * and then create rollup config for each of them and bundle
@@ -320,24 +226,24 @@ gulp.task( 'compute-test-bundle-side-effect', async ( done ) => {
     let sourcesGlob    = path.join( sourcesDir, '**' )
     sourcesGlob        = sourcesGlob.replaceAll( '\\', '/' )
     const sourcesFiles = glob.sync( sourcesGlob )
-                             .map( filePath => {
-                                 return path.normalize( filePath )
-                             } )
-                             .filter( filePath => {
-                                 const fileName         = path.basename( filePath )
-                                 const isJsFile         = fileName.endsWith( '.js' )
-                                 const isNotPrivateFile = !fileName.startsWith( '_' )
-                                 const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
-                                 return isJsFile && isNotPrivateFile && isNotIgnoredFile
-                             } )
+        .map( filePath => {
+            return path.normalize( filePath )
+        } )
+        .filter( filePath => {
+            const fileName         = path.basename( filePath )
+            const isJsFile         = fileName.endsWith( '.js' )
+            const isNotPrivateFile = !fileName.startsWith( '_' )
+            const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
+            return isJsFile && isNotPrivateFile && isNotIgnoredFile
+        } )
 
     for ( let sourceFile of sourcesFiles ) {
 
         const {
-                  dir:  sourceDir,
-                  base: sourceBase,
-                  name: sourceName
-              }                = path.parse( sourceFile )
+            dir:  sourceDir,
+            base: sourceBase,
+            name: sourceName
+        }                = path.parse( sourceFile )
         const specificFilePath = sourceFile.replace( sourcesDir, '' )
         const specificDir      = path.dirname( specificFilePath )
 
@@ -361,10 +267,10 @@ gulp.task( 'compute-test-bundle-side-effect', async ( done ) => {
                 //                commonJs()
             ],
             onwarn:    ( {
-                loc,
-                frame,
-                message
-            } ) => {
+                             loc,
+                             frame,
+                             message
+                         } ) => {
 
                 // Ignore some errors
                 if ( message.includes( 'Circular dependency' ) ) { return }
@@ -433,14 +339,14 @@ gulp.task( 'compute-test-bundle-by-source-file-export', async ( done ) => {
     ]
 
     const sourcesFiles = glob.sync( path.join( sourcesDir, '**' ) )
-                             .map( filePath => path.normalize( filePath ) )
-                             .filter( filePath => {
-                                 const fileName         = path.basename( filePath )
-                                 const isJsFile         = fileName.endsWith( '.js' )
-                                 const isNotPrivateFile = !fileName.startsWith( '_' )
-                                 const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
-                                 return isJsFile && isNotPrivateFile && isNotIgnoredFile
-                             } )
+        .map( filePath => path.normalize( filePath ) )
+        .filter( filePath => {
+            const fileName         = path.basename( filePath )
+            const isJsFile         = fileName.endsWith( '.js' )
+            const isNotPrivateFile = !fileName.startsWith( '_' )
+            const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
+            return isJsFile && isNotPrivateFile && isNotIgnoredFile
+        } )
 
     for ( let sourceFile of sourcesFiles ) {
 
@@ -463,10 +369,10 @@ gulp.task( 'compute-test-bundle-by-source-file-export', async ( done ) => {
                 } )
             ],
             onwarn:    ( {
-                loc,
-                frame,
-                message
-            } ) => {
+                             loc,
+                             frame,
+                             message
+                         } ) => {
 
                 // Ignore some errors
                 if ( message.includes( 'Circular dependency' ) ) { return }
@@ -530,14 +436,14 @@ gulp.task( 'compute-unit-tests', async ( done ) => {
     ]
 
     const sourcesFiles = glob.sync( path.join( sourcesDir, '**' ) )
-                             .map( filePath => path.normalize( filePath ) )
-                             .filter( filePath => {
-                                 const fileName         = path.basename( filePath )
-                                 const isJsFile         = fileName.endsWith( '.js' )
-                                 const isNotPrivateFile = !fileName.startsWith( '_' )
-                                 const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
-                                 return isJsFile && isNotPrivateFile && isNotIgnoredFile
-                             } )
+        .map( filePath => path.normalize( filePath ) )
+        .filter( filePath => {
+            const fileName         = path.basename( filePath )
+            const isJsFile         = fileName.endsWith( '.js' )
+            const isNotPrivateFile = !fileName.startsWith( '_' )
+            const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
+            return isJsFile && isNotPrivateFile && isNotIgnoredFile
+        } )
 
     const unitsImportMap = []
     for ( let sourceFile of sourcesFiles ) {
@@ -1026,6 +932,81 @@ gulp.task( 'compute-unit-tests', async ( done ) => {
 
 } )
 /**
+ * @description Will generate unit test bundles based on provided configs
+ */
+gulp.task( 'bundle-unit-tests', async ( done ) => {
+
+    const configs = rollupUnitTestsConfigurator()
+
+    for ( let config of configs ) {
+
+        log( `Building ${ config.output.file }` )
+
+        try {
+
+            const bundle = await rollup( config )
+            await bundle.write( config.output )
+
+        } catch ( error ) {
+
+            log( red( error ) )
+
+        }
+
+    }
+
+    done()
+
+} )
+/**
+ * @description Will compte and generate bundle for unit tests
+ */
+gulp.task( 'build-unit-tests', gulp.series( 'compute-unit-tests', 'bundle-unit-tests' ) )
+/**
+ * @description Will run unit tests with node
+ */
+gulp.task( 'run-unit-tests-for-node', ( done ) => {
+
+    const mochaPath = path.join( __dirname, 'node_modules/mocha/bin/mocha' )
+    const testsPath = path.join( __dirname, `tests/builds/${ packageInfos.name }.units.cjs.js` )
+    const mocha     = childProcess.spawn( 'node', [ mochaPath, testsPath ], { stdio: 'inherit' } )
+    mocha.on( 'close', ( code ) => {
+
+        ( code === 0 )
+            ? done()
+            : done( `mocha exited with code ${ code }` )
+
+    } )
+
+} )
+/**
+ * @description Will run unit tests with karma
+ */
+gulp.task( 'run-unit-tests-for-browser', async ( done ) => {
+
+    const configFile  = path.normalize( `${ __dirname }/configs/karma.units.conf.js` )
+    const karmaConfig = karma.config.parseConfig( configFile )
+    const karmaServer = new karma.Server( karmaConfig, ( exitCode ) => {
+        if ( exitCode === 0 ) {
+            log( `Karma server exit with code ${ exitCode }` )
+            done()
+        } else {
+            done( `Karma server exit with code ${ exitCode }` )
+        }
+    } )
+    karmaServer.on( 'browser_error', ( browser, error ) => {
+        log( red( error.message ) )
+    } )
+
+    await karmaServer.start()
+
+} )
+/**
+ * @description Will run unit tests in back and front environments
+ */
+gulp.task( 'run-unit-tests', gulp.series( 'run-unit-tests-for-node', 'run-unit-tests-for-browser' ) )
+
+/**
  * @description Will generate benchmarks files from source code against provided alternatives
  */
 gulp.task( 'compute-benchmarks', async ( done ) => {
@@ -1041,14 +1022,14 @@ gulp.task( 'compute-benchmarks', async ( done ) => {
     ]
 
     const sourcesFiles = glob.sync( path.join( sourcesDir, '**' ) )
-                             .map( filePath => path.normalize( filePath ) )
-                             .filter( filePath => {
-                                 const fileName         = path.basename( filePath )
-                                 const isJsFile         = fileName.endsWith( '.js' )
-                                 const isNotPrivateFile = !fileName.startsWith( '_' )
-                                 const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
-                                 return isJsFile && isNotPrivateFile && isNotIgnoredFile
-                             } )
+        .map( filePath => path.normalize( filePath ) )
+        .filter( filePath => {
+            const fileName         = path.basename( filePath )
+            const isJsFile         = fileName.endsWith( '.js' )
+            const isNotPrivateFile = !fileName.startsWith( '_' )
+            const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
+            return isJsFile && isNotPrivateFile && isNotIgnoredFile
+        } )
 
     const benchRootImports = []
     for ( let sourceFile of sourcesFiles ) {
@@ -1185,33 +1166,6 @@ gulp.task( 'compute-benchmarks', async ( done ) => {
 
 } )
 /**
- * @description Will generate unit test bundles based on provided configs
- */
-gulp.task( 'bundle-unit-tests', async ( done ) => {
-
-    const configs = rollupUnitTestsConfigurator()
-
-    for ( let config of configs ) {
-
-        log( `Building ${ config.output.file }` )
-
-        try {
-
-            const bundle = await rollup( config )
-            await bundle.write( config.output )
-
-        } catch ( error ) {
-
-            log( red( error ) )
-
-        }
-
-    }
-
-    done()
-
-} )
-/**
  * @description Will generate benchmarks bundles based on provided configs
  */
 gulp.task( 'bundle-benchmarks', async ( done ) => {
@@ -1239,11 +1193,65 @@ gulp.task( 'bundle-benchmarks', async ( done ) => {
 
 } )
 /**
+ * @description Will compte and generate bundle for benchmarks
+ */
+gulp.task( 'build-benchmarks', gulp.series( 'compute-benchmarks', 'bundle-benchmarks' ) )
+/**
+ * @description Will run benchmarks with node
+ */
+gulp.task( 'run-benchmarks-for-node', ( done ) => {
+
+    const benchsPath = path.join( __dirname, `tests/builds/${ packageInfos.name }.benchs.cjs.js` )
+    const benchmark  = childProcess.spawn( 'node', [ benchsPath ], { stdio: 'inherit' } )
+    benchmark.on( 'close', ( code ) => {
+
+        ( code === 0 )
+            ? done()
+            : done( `benchmark exited with code ${ code }` )
+
+    } )
+
+} )
+/**
+ * @description Will run benchmarks with karma
+ */
+gulp.task( 'run-benchmarks-for-browser', async ( done ) => {
+
+    const configFile  = path.normalize( `${ __dirname }/configs/karma.benchs.conf.js` )
+    const karmaConfig = karma.config.parseConfig( configFile )
+    const karmaServer = new karma.Server( karmaConfig, ( exitCode ) => {
+        if ( exitCode === 0 ) {
+            log( `Karma server exit with code ${ exitCode }` )
+            done()
+        } else {
+            done( `Karma server exit with code ${ exitCode }` )
+        }
+    } )
+    karmaServer.on( 'browser_error', ( browser, error ) => {
+        log( red( error.message ) )
+    } )
+
+    await karmaServer.start()
+
+} )
+/**
+ * @description Will run benchmarks in back and front environments
+ */
+gulp.task( 'run-benchmarks', gulp.series( 'run-benchmarks-for-node', 'run-benchmarks-for-browser' ) )
+
+/**
  * @method npm run build-test
  * @global
  * @description Will build all tests.
  */
-gulp.task( 'build-tests', gulp.series( 'compute-test-bundles', 'compute-unit-tests', 'compute-benchmarks', 'bundle-unit-tests', 'bundle-benchmarks' ) )
+gulp.task( 'build-tests', gulp.series( 'compute-test-bundles', 'build-unit-tests', 'build-benchmarks' ) )
+
+/**
+ * @method npm run test
+ * @global
+ * @description Will run unit tests and benchmarks for node (backend) and karma (frontend) environments
+ */
+gulp.task( 'test', gulp.series( 'run-unit-tests', 'run-benchmarks' ) )
 
 /**
  * @method npm run build
