@@ -37,25 +37,26 @@
 
 /* eslint-env node */
 
-import childProcess           from 'child_process'
-import { nodeResolve }        from '@rollup/plugin-node-resolve'
-import cleanup                from 'rollup-plugin-cleanup'
-import fs                     from 'fs'
-import glob                   from 'glob'
-import gulp                   from 'gulp'
-import jsdoc                  from 'gulp-jsdoc3'
-import eslint                 from 'gulp-eslint'
-import { deleteAsync }        from 'del'
-import parseArgs              from 'minimist'
-import { rollup }             from 'rollup'
-import path                   from 'path'
-import karma                  from 'karma'
-import log                    from 'fancy-log'
-import colors                 from 'ansi-colors'
-import { fileURLToPath }      from 'url'
-import jsdocConfiguration     from './configs/jsdoc.conf.js'
-import rollupConfigurator     from './configs/rollup.conf.js'
-import rollupTestConfigurator from './configs/rollup.test.conf.js'
+import childProcess                from 'child_process'
+import { nodeResolve }             from '@rollup/plugin-node-resolve'
+import cleanup                     from 'rollup-plugin-cleanup'
+import fs                          from 'fs'
+import glob                        from 'glob'
+import gulp                        from 'gulp'
+import jsdoc                       from 'gulp-jsdoc3'
+import eslint                      from 'gulp-eslint'
+import { deleteAsync }             from 'del'
+import parseArgs                   from 'minimist'
+import { rollup }                  from 'rollup'
+import path                        from 'path'
+import karma                       from 'karma'
+import log                         from 'fancy-log'
+import colors                      from 'ansi-colors'
+import { fileURLToPath }           from 'url'
+import jsdocConfiguration          from './configs/jsdoc.conf.js'
+import rollupConfigurator          from './configs/rollup.conf.js'
+import rollupUnitTestsConfigurator from './configs/rollup.units.conf.js'
+import rollupBenchesConfigurator   from './configs/rollup.benchs.conf.js'
 
 const red     = colors.red
 const green   = colors.green
@@ -1178,9 +1179,33 @@ gulp.task( 'compute-test-bench', async ( done ) => {
     done()
 
 } )
-gulp.task( 'bundle-tests', async ( done ) => {
+gulp.task( 'bundle-unit-tests', async ( done ) => {
 
-    const configs = rollupTestConfigurator()
+    const configs = rollupUnitTestsConfigurator()
+
+    for ( let config of configs ) {
+
+        log( `Building ${ config.output.file }` )
+
+        try {
+
+            const bundle = await rollup( config )
+            await bundle.write( config.output )
+
+        } catch ( error ) {
+
+            log( red( error ) )
+
+        }
+
+    }
+
+    done()
+
+} )
+gulp.task( 'bundle-benchmarks', async ( done ) => {
+
+    const configs = rollupBenchesConfigurator()
 
     for ( let config of configs ) {
 
@@ -1207,7 +1232,7 @@ gulp.task( 'bundle-tests', async ( done ) => {
  * @global
  * @description Will build itee client tests.
  */
-gulp.task( 'build-tests', gulp.series( 'compute-test-bundles', 'compute-test-unit', 'compute-test-bench', 'bundle-tests' ) )
+gulp.task( 'build-tests', gulp.series( 'compute-test-bundles', 'compute-test-unit', 'compute-test-bench', 'bundle-unit-tests', 'bundle-benchmarks' ) )
 
 /**
  * @method npm run build
