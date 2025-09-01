@@ -4,7 +4,7 @@
  *
  * @module sources/cores
  * @description This is the cores main export entry point.
- * It expose all exports of the voids, booleans, numbers, symbols, strings, arrays, typed arrays, objects and functions validators.
+ * It exposes all exports of the voids, booleans, numbers, symbols, strings, arrays, typed arrays, objects and functions validators.
  *
  */
 
