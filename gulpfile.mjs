@@ -1024,14 +1024,10 @@ gulp.task( 'compute-test-unit', async ( done ) => {
 } )
 gulp.task( 'compute-test-bench', async ( done ) => {
 
-    function isClass ( v ) {
-        return typeof v === 'function' && /^\s*class\s+/.test( v.toString() )
-    }
-
-    const sourcesDir     = path.join( __dirname, 'sources' )
-    const testBasePath   = path.join( __dirname, 'tests' )
-    const bundleBasePath = path.join( testBasePath, 'bundles', 'files' )
-    const benchBasePath  = path.join( testBasePath, 'benchmarks' )
+    const basePath   = __dirname
+    const sourcesDir = path.join( basePath, 'sources' )
+    const testsDir   = path.join( basePath, 'tests' )
+    const benchsDir  = path.join( testsDir, 'benchmarks' )
 
     const filePathsToIgnore = [
         `${ packageInfos.name }.js`,
@@ -1049,18 +1045,15 @@ gulp.task( 'compute-test-bench', async ( done ) => {
                              } )
 
     const benchRootImports = []
-    for ( let sourcesFilesPath of sourcesFiles ) {
+    for ( let sourceFile of sourcesFiles ) {
 
-        const specificFilePath = sourcesFilesPath.replace( sourcesDir, '' )
-        const specificDirPath  = path.dirname( specificFilePath )
+        const specificFilePath = sourceFile.replace( sourcesDir, '' )
+        const specificDir  = path.dirname( specificFilePath )
 
-        const fileName      = path.basename( sourcesFilesPath, path.extname( sourcesFilesPath ) )
+        const fileName      = path.basename( sourceFile, path.extname( sourceFile ) )
         const benchFileName = `${ fileName }.bench.js`
-        const benchDirPath  = path.join( benchBasePath, specificDirPath )
+        const benchDirPath  = path.join( benchsDir, specificDir )
         const benchFilePath = path.join( benchDirPath, benchFileName )
-
-        const bundleFileName = `${ fileName }.bundle.js`
-        const bundleFilePath = path.join( bundleBasePath, specificDirPath, bundleFileName )
 
         const nsName         = `${ fileName }Namespace`
         const importDirPath  = path.relative( benchDirPath, sourcesDir )
@@ -1068,93 +1061,64 @@ gulp.task( 'compute-test-bench', async ( done ) => {
 
         try {
 
-            const Target = require( bundleFilePath )
+            const jsdocPath   = path.join(basePath, '/node_modules/jsdoc/jsdoc.js')
+            const jsdocOutput = childProcess.execFileSync( 'node', [ jsdocPath, '-X', sourceFile ] ).toString()
 
-            const targetEntries = Object.entries( Target ).map( entry => {
-                return {
-                    key:   entry[ 0 ],
-                    value: entry[ 1 ]
+            const usedLongnames = []
+            const jsonData    = JSON.parse( jsdocOutput ).filter( data => {
+
+                if( data.kind !== 'function' ) {
+                    return false
+                } else if(usedLongnames.includes(data.longname)) {
+                    return false
+                } else {
+                    usedLongnames.push(data.longname)
+                    return true
                 }
+
             } )
-            if ( targetEntries.length === 0 ) {
-                log( yellow( `No usable exports found in [${ bundleFilePath }]. Ignore it !` ) )
+
+            if ( jsonData.length === 0 ) {
+                log( yellow( `No usable exports found in [${ sourceFile }]. Ignore it !` ) )
                 continue
             }
 
-            // Compute suite groups
-            const targetKeys      = Object.keys( Target )
-            const suiteGroups     = []
-            let currentSuiteGroup = []
-            const usedIndexes     = []
-            for ( let index = 0 ; index < targetEntries.length ; index++ ) {
-                if ( usedIndexes.includes( index ) ) { continue }
-                usedIndexes.push( index )
+            // Compute benchmark suites by grouping logically function by name[_x]
+            const suiteGroups     = {}
+            for ( let docData of jsonData ) {
 
-                if ( currentSuiteGroup === null ) {
-                    currentSuiteGroup = []
-                }
+                try {
 
-                const entry = targetEntries[ index ]
-                currentSuiteGroup.push( entry )
+                    const functionName = docData.name
+                    const nameSplits = functionName.split('_')
+                    const rootName = nameSplits[0]
 
-                const matchKeys = targetKeys.filter( key => key !== entry.key && key.startsWith( `${ entry.key }_` ) )
-                if ( matchKeys.length > 0 ) {
-
-                    for ( let matchKey of matchKeys ) {
-                        const matchIndex = targetKeys.indexOf( matchKey )
-                        usedIndexes.push( matchIndex )
-
-                        const matchEntry = targetEntries[ matchIndex ]
-                        currentSuiteGroup.push( matchEntry )
+                    if(!(rootName in suiteGroups)) {
+                        suiteGroups[rootName] = []
                     }
 
+                    suiteGroups[rootName].push(functionName)
+
+                } catch ( error ) {
+
+                    log( red( error.message ) )
+
                 }
 
-                suiteGroups.push( currentSuiteGroup )
-                currentSuiteGroup = null
             }
 
             // Generate suites
-            const suitesToExports = []
             let benchSuites       = ''
-            for ( let suiteGroup of suiteGroups ) {
+            const suitesToExports = []
+            for( let suiteGroupName in suiteGroups) {
+                suitesToExports.push( `${ suiteGroupName }Suite` )
+                benchSuites += `const ${ suiteGroupName }Suite = Benchmark.Suite( '${ nsName }.${ suiteGroupName }', Testing.createSuiteOptions() )` + '\n'
 
-                let firstInGroup = true
-                for ( let suiteGroupElement of suiteGroup ) {
-
-                    const key   = suiteGroupElement.key
-                    const value = suiteGroupElement.value
-
-                    if ( firstInGroup ) {
-                        firstInGroup = false
-
-                        const typeOfValue = typeof ( value )
-                        if ( typeOfValue !== 'function' ) {
-                            log( yellow( `Unable to generate benchmark for [${ key }] of type [${ typeOfValue }]` ) )
-                            break
-                        } else if ( isClass( value ) ) {
-                            log( yellow( `Unable to generate benchmark for class [${ key }]` ) )
-                            break
-                        }
-
-                        suitesToExports.push( `${ key }Suite` )
-
-                        benchSuites += '' +
-                            `const ${ key }Suite = Benchmark.Suite( '${ nsName }.${ key }', Testing.createSuiteOptions() )` + '\n'
-
-                    }
-
-                    benchSuites += `                                     .add( '${ key }()', Testing.iterateOverDataMap( ${ nsName }.${ key } ), Testing.createBenchmarkOptions() )` + '\n'
+                for( let suiteGroupValue of suiteGroups[suiteGroupName]) {
+                    benchSuites += `                                     .add( '${ suiteGroupValue }()', Testing.iterateOverDataMap( ${ nsName }.${ suiteGroupValue } ), Testing.createBenchmarkOptions() )` + '\n'
                 }
 
-                //                benchSuites += '\n'
-
-            }
-
-            // In case nothing was genereated just ignore file
-            if ( benchSuites.length === 0 ) {
-                log( yellow( `Nothing was generated for current file. Skip it !` ) )
-                continue
+                benchSuites += '\n'
             }
 
             const template = '' + '\n' +
@@ -1163,11 +1127,11 @@ gulp.task( 'compute-test-bench', async ( done ) => {
                 `import * as ${ nsName } from '${ importFilePath }'` + '\n' +
                 '\n' +
                 `${ benchSuites }` +
-                '\n' +
+                // '\n' +
                 `export { ${ suitesToExports } }` + '\n' +
                 '\n'
 
-            const importBenchFilePath = path.relative( benchBasePath, benchFilePath ).replace( /\\/g, '/' )
+            const importBenchFilePath = path.relative( benchsDir, benchFilePath ).replace( /\\/g, '/' )
             benchRootImports.push( {
                 path:    importBenchFilePath,
                 exports: suitesToExports
@@ -1179,7 +1143,7 @@ gulp.task( 'compute-test-bench', async ( done ) => {
 
         } catch ( error ) {
 
-            log( red( error ) )
+            log( red( error.message ) )
 
         }
 
@@ -1208,7 +1172,7 @@ gulp.task( 'compute-test-bench', async ( done ) => {
         `\tsuite.run()` + '\n' +
         `}` + '\n'
 
-    const benchsFilePath = path.join( benchBasePath, `${ packageInfos.name }.benchs.js` )
+    const benchsFilePath = path.join( benchsDir, `${ packageInfos.name }.benchs.js` )
     fs.writeFileSync( benchsFilePath, benchsTemplate )
 
     done()
