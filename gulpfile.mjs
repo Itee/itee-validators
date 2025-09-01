@@ -498,7 +498,7 @@ gulp.task( 'compute-test-bundle-by-source-file-export', async ( done ) => {
 
             log( `Building bundle ${ config.output.file }` )
 
-            const bundle = await rollup.rollup( config )
+            const bundle = await rollup( config )
             await bundle.write( config.output )
 
         } catch ( error ) {
