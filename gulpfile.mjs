@@ -513,13 +513,12 @@ gulp.task( 'compute-test-bundle-by-source-file-export', async ( done ) => {
 
 } )
 gulp.task( 'compute-test-bundles', gulp.series( 'compute-test-bundle-side-effect', 'compute-test-bundle-by-source-file-export' ) )
+
 gulp.task( 'compute-test-unit', async ( done ) => {
 
     const basePath   = __dirname
     const sourcesDir = path.join( basePath, 'sources' )
     const testsDir   = path.join( basePath, 'tests' )
-    const bundlesDir = path.join( testsDir, 'bundles' )
-    const inputsDir  = path.join( bundlesDir, 'files' )
     const unitsDir   = path.join( testsDir, 'units' )
 
     const filePathsToIgnore = [
@@ -548,9 +547,6 @@ gulp.task( 'compute-test-unit', async ( done ) => {
         const unitDirPath  = path.join( unitsDir, specificDir )
         const unitFilePath = path.join( unitDirPath, unitFileName )
 
-        const bundleFileName = `${ fileName }.bundle.js`
-        const bundleFilePath = path.join( inputsDir, specificDir, bundleFileName )
-
         const nsName         = `${ fileName }Namespace`
         const unitName       = `${ fileName }Units`
         const importDirPath  = path.relative( unitDirPath, sourcesDir )
@@ -558,11 +554,11 @@ gulp.task( 'compute-test-unit', async ( done ) => {
 
         try {
 
-            const jsdocOutput = childProcess.execFileSync( 'node', [ './node_modules/jsdoc/jsdoc.js', '-X', sourceFile ] ).toString()
+            const jsdocPath   = path.join(basePath, '/node_modules/jsdoc/jsdoc.js')
+            const jsdocOutput = childProcess.execFileSync( 'node', [ jsdocPath, '-X', sourceFile ] ).toString()
             const jsonData    = JSON.parse( jsdocOutput ).filter( data => {
                 return ( data.kind === 'function' && !data.undocumented )
             } )
-            const Target      = require( bundleFilePath )
 
             let describes = ''
             const I       = n => '\t'.repeat( n )
@@ -572,14 +568,9 @@ gulp.task( 'compute-test-unit', async ( done ) => {
             I.____        = I( 4 )
             I._____       = I( 5 )
 
-            for ( let key of Object.keys( Target ) ) {
+            for ( let docData of jsonData ) {
 
                 try {
-
-                    const matchDocData = jsonData.filter( data => data.name === key )
-                    if ( matchDocData.length === 0 ) { continue }
-
-                    const docData = matchDocData[ 0 ]
 
                     //check input parameters and types
                     const docParameters = docData.params || []
@@ -635,7 +626,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
 
                         if ( returns.length === 0 ) {
 
-                            const result = `${ I( 1 + 1 + 1 + 1 ) }const result = ${ nsName }.${ key }()` + '\n'
+                            const result = `${ I( 1 + 1 + 1 + 1 ) }const result = ${ nsName }.${ docData.name }()` + '\n'
                             const expect = `${ I( 1 + 1 + 1 + 1 ) }expect(result).to.be.a('undefined')` + '\n'
 
                             its += '' +
@@ -651,7 +642,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                             const firstReturnType = returns[ 0 ]
                             const lowerName       = firstReturnType.toLowerCase()
 
-                            const result = `${ I( 1 + 1 + 1 + 1 ) }const result = ${ nsName }.${ key }()` + '\n'
+                            const result = `${ I( 1 + 1 + 1 + 1 ) }const result = ${ nsName }.${ docData.name }()` + '\n'
 
                             let expect = ''
                             if ( lowerName.startsWith( 'array' ) ) {
@@ -671,7 +662,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
 
                         } else {
 
-                            const result = `${ I( 1 + 1 + 1 + 1 ) }const result = ${ nsName }.${ key }()` + '\n'
+                            const result = `${ I( 1 + 1 + 1 + 1 ) }const result = ${ nsName }.${ docData.name }()` + '\n'
 
                             let returnTypesLabel = []
                             let expects          = []
@@ -747,7 +738,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                                 localIndent++
                             }
 
-                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ key }( ${ args.join( ', ' ) } )` + '\n'
+                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ docData.name }( ${ args.join( ', ' ) } )` + '\n'
                             const expect = `${ I( localIndent ) }expect(result).to.be.a('undefined')` + '\n'
 
                             const param = '' +
@@ -821,7 +812,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                                 localIndent++
                             }
 
-                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ key }( ${ args.join( ', ' ) } )` + '\n'
+                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ docData.name }( ${ args.join( ', ' ) } )` + '\n'
 
                             let expect = ''
                             if ( lowerName.startsWith( 'array' ) ) {
@@ -873,7 +864,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                                 localIndent++
                             }
 
-                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ key }( ${ args.join( ', ' ) } )` + '\n'
+                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ docData.name }( ${ args.join( ', ' ) } )` + '\n'
 
                             let returnTypesLabel = []
                             let expects          = []
@@ -926,17 +917,18 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                     }
 
                     describes += '' +
-                        `${ I.__ }describe( '${ key }()', () => {` + '\n' +
+                        `${ I.__ }describe( '${ docData.name }()', () => {` + '\n' +
                         '\n' +
                         `${ I.___ }it( 'is bundlable', () => {` + '\n' +
                         '\n' +
-                        `${ I.____ }expect(${ nsName }.${ key }).to.exist` + '\n' +
+                        `${ I.____ }expect(${ nsName }.${ docData.name }).to.exist` + '\n' +
                         '\n' +
                         `${ I.___ }} )` + '\n' +
                         '\n' +
                         `${ its }` +
                         '\n' +
-                        `${ I.__ }} )` + '\n\n'
+                        `${ I.__ }} )` + '\n' +
+                        '\n'
 
                 } catch ( error ) {
 
@@ -1247,121 +1239,6 @@ gulp.task( 'bundle-tests', async ( done ) => {
  * @description Will build itee client tests.
  */
 gulp.task( 'build-tests', gulp.series( 'compute-test-bundles', 'compute-test-unit', 'compute-test-bench', 'bundle-tests' ) )
-
-///**
-// * deprecated
-// */
-//gulp.task( 'compute-test-bundle', async ( done ) => {
-//
-//    try {
-//        const IteeUtils = require( './builds/itee-utils.cjs' )
-//
-//        const basePath       = __dirname
-//        const testsPath      = path.join( basePath, 'tests' )
-//        const tempBasePath   = path.join( testsPath, 'tmp' )
-//        const bundleBasePath = path.join( testsPath, 'bundles' )
-//
-//        for ( let key of Object.keys( IteeUtils ) ) {
-//
-//            // Create temp file per package export
-//            const tmpFileName = `${ key }.js`
-//            const tmpFileData = `import {${ key }} from '../../builds/itee-utils.esm'\nconsole.log(${ key })\n`
-//            const tmpFilePath = path.join( tempBasePath, tmpFileName )
-//
-//
-//            fs.mkdirSync( tempBasePath, { recursive: true } )
-//            fs.writeFileSync( tmpFilePath, tmpFileData )
-//
-//            // Bundle temporary file
-//            const bundleFileName = `${ key }.bundle.js`
-//            const bundleFilePath = path.join( bundleBasePath, bundleFileName )
-//            const config         = {
-//                input:     tmpFilePath,
-//                external:  [ 'itee-validators' ],
-//                treeshake: true,
-//                output:    {
-//                    indent: '\t',
-//                    format: 'esm',
-//                    file: bundleFilePath
-//                }
-//            }
-//
-//            log( `Building bundle ${ bundleFilePath }` )
-//
-//            const bundle = await rollup.rollup( config )
-//            await bundle.write( config.output )
-//
-//        }
-//
-//        // Remove temporary file
-//        fs.rmSync( tempBasePath, { recursive: true } )
-//        done()
-//
-//    } catch ( error ) {
-//
-//        done( error )
-//
-//    }
-//
-//} )
-//
-///**
-// * @method npm run build-test
-// * @global
-// * @description Will build itee client tests.
-// */
-//gulp.task( 'build-test', async ( done ) => {
-//
-//    const configs = require( './configs/rollup.test.conf' )()
-//
-//    for ( let config of configs ) {
-//
-//        log( `Building ${ config.output.file }` )
-//
-//        try {
-//
-//            const bundle = await rollup.rollup( config )
-//            await bundle.write( config.output )
-//
-//        } catch ( error ) {
-//
-//            log( red( error ) )
-//
-//        }
-//
-//    }
-//
-//    done()
-//
-//    //    nextBuild()
-//    //
-//    //    function nextBuild ( error ) {
-//    //        'use strict'
-//    //
-//    //        if ( error ) {
-//    //
-//    //            done( error )
-//    //
-//    //        } else if ( configs.length === 0 ) {
-//    //
-//    //            done()
-//    //
-//    //        } else {
-//    //
-//    //            const config = configs.pop()
-//    //            log( `Building ${config.output.file}` )
-//    //
-//    //            rollup.rollup( config )
-//    //                  .then( ( bundle ) => { return bundle.write( config.output ) } )
-//    //                  .then( () => { nextBuild() } )
-//    //                  .catch( nextBuild )
-//    //
-//    //        }
-//    //
-//    //    }
-//
-//} )
-
 
 /**
  * @method npm run build
