@@ -76,9 +76,9 @@ function CreateUnitsRollupConfigs ( /*options*/ ) {
             plugins:  [
                 replace( {
                     replaces: {
-                        'coresUnits.call':          '//coresUnits.call',
+                        'coresUnits.call': '//coresUnits.call',
 
-                        'isEventTargetUnits.call':          '//isEventTargetUnits.call',
+                        'isEventTargetUnits.call': '//isEventTargetUnits.call',
                     }
                 } ),
                 cleanup( {
