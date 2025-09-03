@@ -61,7 +61,6 @@ import { isSocketPathUnits }   from './file-system/sockets/isSocketPath.unit.js'
 import { isValidSocketPathUnits }   from './file-system/sockets/isValidSocketPath.unit.js'
 import { isSymbolicLinkPathUnits }   from './file-system/symbolic-links/isSymbolicLinkPath.unit.js'
 import { isValidSymbolicLinkPathUnits }   from './file-system/symbolic-links/isValidSymbolicLinkPath.unit.js'
-import { constantsUnits }   from './physics/temperatures/constants.unit.js'
 import { isCelsiusUnits }   from './physics/temperatures/isCelsius.unit.js'
 import { isFahrenheitUnits }   from './physics/temperatures/isFahrenheit.unit.js'
 import { isKelvinUnits }   from './physics/temperatures/isKelvin.unit.js'
@@ -137,7 +136,6 @@ describe( 'Itee#Validators', () => {
     isValidSocketPathUnits.call( root )
     isSymbolicLinkPathUnits.call( root )
     isValidSymbolicLinkPathUnits.call( root )
-    constantsUnits.call( root )
     isCelsiusUnits.call( root )
     isFahrenheitUnits.call( root )
     isKelvinUnits.call( root )

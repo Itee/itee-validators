@@ -150,7 +150,6 @@ gulp.task( 'clean', () => {
 gulp.task( 'lint', () => {
 
     const filesToLint = [
-        '!gulpfile.mjs',
         'configs/**/*.js',
         'sources/**/*.js',
         '!tests/**/*.js',
@@ -183,12 +182,7 @@ gulp.task( 'lint', () => {
  */
 gulp.task( 'doc', ( done ) => {
 
-    //const config     = require( './configs/jsdoc.conf' )
-
-    //    const rawdata      = fs.readFileSync( './configs/jsdoc.conf.js' )
-    //    const config = JSON.parse( rawdata )
-    const config = jsdocConfiguration
-
+    const config     = jsdocConfiguration
     const filesToDoc = [
         'README.md',
         'gulpfile.mjs',

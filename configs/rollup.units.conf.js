@@ -3,7 +3,7 @@
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
  * @module configs/Rollup-Test
- * @description The file manage the rollup configuration for build tests
+ * @description The file manage the rollup configuration for build unit tests for browser and node environments
  */
 
 const packageInfos    = require( '../package' )
@@ -21,7 +21,7 @@ function CreateUnitsRollupConfigs ( /*options*/ ) {
     'use strict'
 
     return [
-        // For karma
+        // For Karma
         {
             input:    `tests/units/${ packageInfos.name }.units.js`,
             external: [
@@ -32,6 +32,8 @@ function CreateUnitsRollupConfigs ( /*options*/ ) {
                 nodeResolve(), // required to bundle itee-utils that cannot be integrated as standalone file (why???)=> because circular ref with itee validator package -_-'
                 replace( {
                     replaces: {
+                        // 'coresUnits.call':          '//coresUnits.call',
+
                         'isBlockDevicePathUnits.call':          '//isBlockDevicePathUnits.call',
                         'isValidBlockDevicePathUnits.call':     '//isValidBlockDevicePathUnits.call',
                         'isCharacterDevicePathUnits.call':      '//isCharacterDevicePathUnits.call',
@@ -72,6 +74,13 @@ function CreateUnitsRollupConfigs ( /*options*/ ) {
             input:    `tests/units/${ packageInfos.name }.units.js`,
             external: [ 'itee-utils', 'mocha', 'chai', 'fs' ],
             plugins:  [
+                replace( {
+                    replaces: {
+                        'coresUnits.call':          '//coresUnits.call',
+
+                        'isEventTargetUnits.call':          '//isEventTargetUnits.call',
+                    }
+                } ),
                 cleanup( {
                     comments: 'none'
                 } )
@@ -80,7 +89,6 @@ function CreateUnitsRollupConfigs ( /*options*/ ) {
             output:    {
                 indent: '\t',
                 format: 'cjs',
-                //                name:   'Itee.Units',
                 file:   `tests/builds/${ packageInfos.name }.units.cjs.js`
             }
         }

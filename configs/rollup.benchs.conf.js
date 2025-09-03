@@ -21,7 +21,7 @@ function CreateBenchmarksRollupConfigs ( /*options*/ ) {
     'use strict'
 
     return [
-        // For karma
+        // For Karma
         {
             input:    `tests/benchmarks/${ packageInfos.name }.benchs.js`,
             external: [
@@ -97,7 +97,6 @@ function CreateBenchmarksRollupConfigs ( /*options*/ ) {
             input:    `tests/benchmarks/${ packageInfos.name }.benchs.js`,
             external: [
                 'benchmark',
-                'itee-utils',
                 'fs'
             ],
             plugins: [
@@ -113,19 +112,6 @@ function CreateBenchmarksRollupConfigs ( /*options*/ ) {
                 file:   `tests/builds/${ packageInfos.name }.benchs.cjs.js`
             }
         }
-        // Utils for karma
-        //        {
-        //            input:     `tests/utils/${ packageInfos.name }.utils.js`,
-        //            plugins:   [],
-        //            treeshake: true,
-        //            output:    {
-        //                indent: '\t',
-        //                format: 'iife',
-        //                name:   'Itee',
-        //                file:   `tests/builds/${ packageInfos.name }.utils.iife.js`,
-        //                extend: true
-        //            }
-        //        }
     ]
 
 }
