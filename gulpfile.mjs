@@ -856,8 +856,8 @@ gulp.task( 'compute-unit-tests', async ( done ) => {
             const template = '' +
                 `import { expect }       from 'chai'` + '\n' +
                 `import { describe, it } from 'mocha'` + '\n' +
-                `import { Testing }      from 'itee-utils/sources/testings/benchmarks'` + '\n' +
-                `//import { Testing }      from 'itee-utils'` + '\n' +
+                `//import { Testing }      from 'itee-utils/sources/testings/benchmarks'` + '\n' +
+                `import { Testing }      from 'itee-utils'` + '\n' +
                 `import * as ${ nsName } from '${ importFilePath }'` + '\n' +
                 '\n' +
                 `function ${ unitName } () {` + '\n' +

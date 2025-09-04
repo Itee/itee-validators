@@ -21,7 +21,7 @@
 
 import fs from 'fs'
 import { isDefined } from '../../cores/voids/isDefined'
-import {isNotString} from "itee-validators";
+import {isNotString} from '../../cores/strings/isString';
 
 /**
  * Check if given path is a symbolic link path
