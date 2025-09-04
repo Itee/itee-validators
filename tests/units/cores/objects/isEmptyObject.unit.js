@@ -1,7 +1,7 @@
 import { expect }       from 'chai'
 import { describe, it } from 'mocha'
-import { Testing }      from 'itee-utils/sources/testings/benchmarks'
-//import { Testing }      from 'itee-utils'
+//import { Testing }      from 'itee-utils/sources/testings/benchmarks'
+import { Testing }      from 'itee-utils'
 import * as isEmptyObjectNamespace from '../../../../sources/cores/objects/isEmptyObject.js'
 
 function isEmptyObjectUnits () {
