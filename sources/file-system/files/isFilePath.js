@@ -30,7 +30,7 @@ import {isNotString} from '../../cores/strings/isString';
  * @returns {boolean} true if path is a file path, false otherwise
  */
 export function isFilePath ( path ) {
-    if( isNotString(path) && !(path instanceof  Buffer) && !(path instanceof URL) ) {
+    if( isNotString(path) && !(path instanceof Buffer) && !(path instanceof URL) ) {
         throw new TypeError('Invalid path type! Expect string, buffer or url.')
     }
 

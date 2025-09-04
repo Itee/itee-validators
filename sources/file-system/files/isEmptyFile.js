@@ -31,7 +31,7 @@ import {isNotString} from '../../cores/strings/isString';
  * @returns {boolean} true if file is empty, false otherwise
  */
 export function isEmptyFile ( filePath, threshold = 0 ) {
-    if( isNotString(filePath) && !(filePath instanceof  Buffer) && !(filePath instanceof URL) ) {
+    if( isNotString(filePath) && !(filePath instanceof Buffer) && !(filePath instanceof URL) ) {
         throw new TypeError('Invalid path type! Expect string, buffer or url.')
     }
 
