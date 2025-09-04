@@ -2295,7 +2295,7 @@ const ABSOLUTE_ZERO_FAHRENHEIT = -459.67;
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module sources/physics/temperatues
+ * @module sources/physics/temperatures
  * @desc Export function to validate if a value is a Celsius temperature
  * @example
  *
@@ -2311,7 +2311,7 @@ const ABSOLUTE_ZERO_FAHRENHEIT = -459.67;
 
 /**
  *
- * @param data
+ * @param data {*}
  * @return {boolean}
  */
 function isCelsius ( data ) {
@@ -2320,7 +2320,7 @@ function isCelsius ( data ) {
 
 /**
  *
- * @param data
+ * @param data {*}
  * @return {boolean}
  */
 function isNotCelsius ( data ) {
@@ -2331,7 +2331,7 @@ function isNotCelsius ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module sources/physics/temperatues
+ * @module sources/physics/temperatures
  * @desc Export function to validate if a value is a Fahrenheit temperature
  * @example
  *
@@ -2347,7 +2347,7 @@ function isNotCelsius ( data ) {
 
 /**
  *
- * @param data
+ * @param data {*}
  * @return {boolean}
  */
 function isFahrenheit ( data ) {
@@ -2356,7 +2356,7 @@ function isFahrenheit ( data ) {
 
 /**
  *
- * @param data
+ * @param data {*}
  * @return {boolean}
  */
 function isNotFahrenheit ( data ) {
@@ -2367,7 +2367,7 @@ function isNotFahrenheit ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module sources/physics/temperatues
+ * @module sources/physics/temperatures
  * @desc Export function to validate if a value is a kelvin temperature
  * @example
  *
@@ -2383,7 +2383,7 @@ function isNotFahrenheit ( data ) {
 
 /**
  *
- * @param data
+ * @param data {*}
  * @return {boolean}
  */
 function isKelvin ( data ) {
@@ -2392,7 +2392,7 @@ function isKelvin ( data ) {
 
 /**
  *
- * @param data
+ * @param data {*}
  * @return {boolean}
  */
 function isNotKelvin ( data ) {
@@ -2403,7 +2403,7 @@ function isNotKelvin ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module sources/physics/temperatues
+ * @module sources/physics/temperatures
  * @desc Export function to validate if a value is a temperature
  * @example
  *
@@ -2463,7 +2463,12 @@ function isNotTemperature ( data ) {
  * @returns {boolean} true if path is a block device path, false otherwise
  */
 function isBlockDevicePath ( path ) {
-    return fs__default["default"].statSync( path ).isBlockDevice()
+    if( isNotString(path) && !(path instanceof Buffer) && !(path instanceof URL) ) {
+        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+    }
+
+    const stat = fs__default["default"].statSync( path, { throwIfNoEntry: false } );
+    return isDefined(stat) && stat.isBlockDevice()
 }
 
 /**
@@ -2583,7 +2588,12 @@ function isInvalidBlockDevicePath ( data ) {
  * @returns {boolean} true if path is a character device path, false otherwise
  */
 function isCharacterDevicePath ( path ) {
-    return fs__default["default"].statSync( path ).isCharacterDevice()
+    if( isNotString(path) && !(path instanceof Buffer) && !(path instanceof URL) ) {
+        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+    }
+
+    const stat = fs__default["default"].statSync( path, { throwIfNoEntry: false } );
+    return isDefined(stat) && stat.isCharacterDevice()
 }
 
 /**
@@ -2662,7 +2672,12 @@ function isInvalidCharacterDevicePath ( data ) {
  * @returns {boolean} true if path is a directory path, false otherwise
  */
 function isDirectoryPath ( path ) {
-    return fs__default["default"].statSync( path ).isDirectory()
+    if( isNotString(path) && !(path instanceof Buffer) && !(path instanceof URL) ) {
+        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+    }
+
+    const stat = fs__default["default"].statSync( path, { throwIfNoEntry: false } );
+    return isDefined(stat) && stat.isDirectory()
 }
 
 /**
@@ -2703,7 +2718,7 @@ function isNotDirectoryPath ( path ) {
  * @returns {boolean} true if directory is empty, false otherwise
  */
 function isEmptyDirectory ( directoryPath ) {
-    return ( fs__default["default"].readdirSync( directoryPath ).length === 0 )
+    return isDirectoryPath(directoryPath) && ( fs__default["default"].readdirSync( directoryPath ).length === 0 )
 }
 
 /**
@@ -2782,7 +2797,12 @@ function isInvalidDirectoryPath ( data ) {
  * @returns {boolean} true if path is a fifo path, false otherwise
  */
 function isFIFOPath ( path ) {
-    return fs__default["default"].statSync( path ).isFIFO()
+    if( isNotString(path) && !(path instanceof Buffer) && !(path instanceof URL) ) {
+        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+    }
+
+    const stat = fs__default["default"].statSync( path, { throwIfNoEntry: false } );
+    return isDefined(stat) && stat.isFIFO()
 }
 
 /**
@@ -2840,6 +2860,52 @@ function isInvalidFIFOPath ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
+ * @module sources/file-system/files/isFilePath
+ * @description Export function to validate if a value is a file path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isFilePath } from 'itee-validators'
+ *
+ * if( isFilePath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */
+
+/**
+ * Check if given path is a file path
+ *
+ * @param path {string|Buffer|URL} The data to check against the file path type
+ * @returns {boolean} true if path is a file path, false otherwise
+ */
+function isFilePath ( path ) {
+    if( isNotString(path) && !(path instanceof Buffer) && !(path instanceof URL) ) {
+        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+    }
+
+    const stat = fs__default["default"].statSync( path, { throwIfNoEntry: false } );
+    return isDefined(stat) && stat.isFile()
+}
+
+/**
+ * Check if given path is not a file path
+ *
+ * @param path {string|Buffer|URL} The data to check against the file path type
+ * @returns {boolean} true if path is not a file path, false otherwise
+ */
+function isNotFilePath ( path ) {
+    return !isFilePath( path )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
  * @module sources/file-system/files/isEmptyFile
  * @description Export function to validate if a value is an empty file
  *
@@ -2865,7 +2931,11 @@ function isInvalidFIFOPath ( data ) {
  * @returns {boolean} true if file is empty, false otherwise
  */
 function isEmptyFile ( filePath, threshold = 0 ) {
-    return ( fs__default["default"].statSync( filePath ).size <= threshold )
+    if( isNotString(filePath) && !(filePath instanceof Buffer) && !(filePath instanceof URL) ) {
+        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+    }
+
+    return isFilePath(filePath) && ( fs__default["default"].statSync( filePath ).size <= threshold )
 }
 
 /**
@@ -2876,48 +2946,7 @@ function isEmptyFile ( filePath, threshold = 0 ) {
  * @returns {boolean} true if file is not empty, false otherwise
  */
 function isNotEmptyFile ( filePath, threshold = 0 ) {
-    return ( fs__default["default"].statSync( filePath ).size > threshold )
-}
-
-/**
- * @author [Tristan Valcke]{@link https://github.com/Itee}
- * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
- *
- * @module sources/file-system/files/isFilePath
- * @description Export function to validate if a value is a file path
- *
- * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
- *
- * @example
- *
- * import { isFilePath } from 'itee-validators'
- *
- * if( isFilePath( value ) ) {
- *     //...
- * } else {
- *     //...
- * }
- *
- */
-
-/**
- * Check if given path is a file path
- *
- * @param path {string|Buffer|URL} The data to check against the file path type
- * @returns {boolean} true if path is a file path, false otherwise
- */
-function isFilePath ( path ) {
-    return fs__default["default"].statSync( path ).isFile()
-}
-
-/**
- * Check if given path is not a file path
- *
- * @param path {string|Buffer|URL} The data to check against the file path type
- * @returns {boolean} true if path is not a file path, false otherwise
- */
-function isNotFilePath ( path ) {
-    return !isFilePath( path )
+    return !isEmptyFile(filePath, threshold)
 }
 
 /**
@@ -2986,7 +3015,12 @@ function isInvalidFilePath ( data ) {
  * @returns {boolean} true if path is a socket path, false otherwise
  */
 function isSocketPath ( path ) {
-    return fs__default["default"].statSync( path ).isSocket()
+    if( isNotString(path) && !(path instanceof Buffer) && !(path instanceof URL) ) {
+        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+    }
+
+    const stat = fs__default["default"].statSync( path, { throwIfNoEntry: false } );
+    return isDefined(stat) && stat.isSocket()
 }
 
 /**
@@ -3065,7 +3099,12 @@ function isInvalidSocketPath ( data ) {
  * @returns {boolean} true if path is a symbolic link path, false otherwise
  */
 function isSymbolicLinkPath ( path ) {
-    return fs__default["default"].statSync( path ).isSymbolicLink()
+    if( isNotString(path) && !(path instanceof Buffer) && !(path instanceof URL) ) {
+        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+    }
+
+    const stat = fs__default["default"].statSync( path, { throwIfNoEntry: false } );
+    return isDefined(stat) && stat.isSymbolicLink()
 }
 
 /**

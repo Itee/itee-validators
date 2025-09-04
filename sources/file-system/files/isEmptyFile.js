@@ -21,6 +21,7 @@
 
 import fs             from 'fs'
 import { isFilePath } from './isFilePath'
+import {isNotString} from '../../cores/strings/isString';
 
 /**
  * Check if given file path is an empty file more or less a threshold in bytes.
@@ -30,6 +31,10 @@ import { isFilePath } from './isFilePath'
  * @returns {boolean} true if file is empty, false otherwise
  */
 export function isEmptyFile ( filePath, threshold = 0 ) {
+    if( isNotString(filePath) && !(filePath instanceof Buffer) && !(filePath instanceof URL) ) {
+        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+    }
+
     return isFilePath(filePath) && ( fs.statSync( filePath ).size <= threshold )
 }
 

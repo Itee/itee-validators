@@ -21,6 +21,7 @@
 
 import fs from 'fs'
 import { isDefined } from '../../cores/voids/isDefined'
+import {isNotString} from '../../cores/strings/isString';
 
 /**
  * Check if given path is a file path
@@ -29,6 +30,10 @@ import { isDefined } from '../../cores/voids/isDefined'
  * @returns {boolean} true if path is a file path, false otherwise
  */
 export function isFilePath ( path ) {
+    if( isNotString(path) && !(path instanceof Buffer) && !(path instanceof URL) ) {
+        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+    }
+
     const stat = fs.statSync( path, { throwIfNoEntry: false } )
     return isDefined(stat) && stat.isFile()
 }
