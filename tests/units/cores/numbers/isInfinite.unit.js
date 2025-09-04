@@ -1,6 +1,7 @@
 import { expect }       from 'chai'
 import { describe, it } from 'mocha'
-import { Testing }      from 'itee-utils'
+import { Testing }      from 'itee-utils/sources/testings/benchmarks'
+//import { Testing }      from 'itee-utils'
 import * as isInfiniteNamespace from '../../../../sources/cores/numbers/isInfinite.js'
 
 function isInfiniteUnits () {
@@ -18,31 +19,6 @@ function isInfiniteUnits () {
 	} )
 
 	describe( 'isInfiniteUnits', () => {
-
-		describe( 'isFinite()', () => {
-
-			it( 'is bundlable', () => {
-
-				expect(isInfiniteNamespace.isFinite).to.exist
-
-			} )
-
-			it( 'return type is boolean when data is of any type', () => {
-
-				const dataMap0 = this._dataMap
-				for ( let dataSetKey0 in dataMap0 ) {
-					const dataSet0 = dataMap0[ dataSetKey0 ]
-
-					for ( let key0 in dataSet0 ) {
-						const dataSetValue0 = dataSet0[ key0 ]
-						const result = isInfiniteNamespace.isFinite( dataSetValue0 )
-						expect(result).to.be.a('boolean')
-					}
-				}
-
-			} )
-
-		} )
 
 		describe( 'isInfinite()', () => {
 
@@ -111,6 +87,31 @@ function isInfiniteUnits () {
 					for ( let key0 in dataSet0 ) {
 						const dataSetValue0 = dataSet0[ key0 ]
 						const result = isInfiniteNamespace.isInfinitePositive( dataSetValue0 )
+						expect(result).to.be.a('boolean')
+					}
+				}
+
+			} )
+
+		} )
+
+		describe( 'isFinite()', () => {
+
+			it( 'is bundlable', () => {
+
+				expect(isInfiniteNamespace.isFinite).to.exist
+
+			} )
+
+			it( 'return type is boolean when data is of any type', () => {
+
+				const dataMap0 = this._dataMap
+				for ( let dataSetKey0 in dataMap0 ) {
+					const dataSet0 = dataMap0[ dataSetKey0 ]
+
+					for ( let key0 in dataSet0 ) {
+						const dataSetValue0 = dataSet0[ key0 ]
+						const result = isInfiniteNamespace.isFinite( dataSetValue0 )
 						expect(result).to.be.a('boolean')
 					}
 				}

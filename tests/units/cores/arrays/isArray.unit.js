@@ -1,6 +1,7 @@
 import { expect }       from 'chai'
 import { describe, it } from 'mocha'
-import { Testing }      from 'itee-utils'
+import { Testing }      from 'itee-utils/sources/testings/benchmarks'
+//import { Testing }      from 'itee-utils'
 import * as isArrayNamespace from '../../../../sources/cores/arrays/isArray.js'
 
 function isArrayUnits () {

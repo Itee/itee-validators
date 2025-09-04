@@ -17,76 +17,11 @@ const cleanup         = require( 'rollup-plugin-cleanup' )
  * @generator
  * @return {Array.<json>} An array of rollup configuration
  */
-function CreateTestsRollupConfigs ( /*options*/ ) {
+function CreateBenchmarksRollupConfigs ( /*options*/ ) {
     'use strict'
 
     return [
-        /** Units **/
-        // For karma
-        {
-            input:    `tests/units/${ packageInfos.name }.units.js`,
-            external: [
-                'mocha',
-                'chai'
-            ],
-            plugins: [
-                nodeResolve(), // required to bundle itee-utils that cannot be integrated as standalone file (why???)=> because circular ref with itee validator package -_-'
-                replace( {
-                    replaces: {
-                        'isBlockDevicePathUnits.call':          '//isBlockDevicePathUnits.call',
-                        'isValidBlockDevicePathUnits.call':     '//isValidBlockDevicePathUnits.call',
-                        'isCharacterDevicePathUnits.call':      '//isCharacterDevicePathUnits.call',
-                        'isValidCharacterDevicePathUnits.call': '//isValidCharacterDevicePathUnits.call',
-                        'isDirectoryPathUnits.call':            '//isDirectoryPathUnits.call',
-                        'isValidDirectoryPathUnits.call':       '//isValidDirectoryPathUnits.call',
-                        'isEmptyDirectoryUnits.call':           '//isEmptyDirectoryUnits.call',
-                        'isFIFOPathUnits.call':                 '//isFIFOPathUnits.call',
-                        'isValidFIFOPathUnits.call':            '//isValidFIFOPathUnits.call',
-                        'isFilePathUnits.call':                 '//isFilePathUnits.call',
-                        'isValidFilePathUnits.call':            '//isValidFilePathUnits.call',
-                        'isEmptyFileUnits.call':                '//isEmptyFileUnits.call',
-                        'isValidPathUnits.call':                '//isValidPathUnits.call',
-                        'isSocketPathUnits.call':               '//isSocketPathUnits.call',
-                        'isValidSocketPathUnits.call':          '//isValidSocketPathUnits.call',
-                        'isSymbolicLinkPathUnits.call':         '//isSymbolicLinkPathUnits.call',
-                        'isValidSymbolicLinkPathUnits.call':    '//isValidSymbolicLinkPathUnits.call'
-                    }
-                } ),
-                cleanup( {
-                    comments: 'none'
-                } )
-            ],
-            treeshake: true,
-            output:    {
-                indent:  '\t',
-                format:  'iife',
-                name:    'Itee.Units',
-                globals: {
-                    'mocha': 'Mocha',
-                    'chai':  'chai'
-                },
-                file: `tests/builds/${ packageInfos.name }.units.iife.js`
-            }
-        },
-        // For node
-        {
-            input:    `tests/units/${ packageInfos.name }.units.js`,
-            external: [ 'itee-utils', 'mocha', 'chai', 'fs' ],
-            plugins:  [
-                cleanup( {
-                    comments: 'none'
-                } )
-            ],
-            treeshake: true,
-            output:    {
-                indent: '\t',
-                format: 'cjs',
-                //                name:   'Itee.Units',
-                file:   `tests/builds/${ packageInfos.name }.units.cjs.js`
-            }
-        },
-        /** Benchs **/
-        // For karma
+        // For Karma
         {
             input:    `tests/benchmarks/${ packageInfos.name }.benchs.js`,
             external: [
@@ -95,6 +30,15 @@ function CreateTestsRollupConfigs ( /*options*/ ) {
             plugins: [
                 nodeResolve(),
                 replace( {
+                    // Even this variable are not used in this package, we need it because
+                    // they are used in dependency package itee-utils that use them to focus some build stuff
+                    // May be there is a better way to perform this specification than using global comment variable
+                    // that need to be inherited in all children package
+                    defines: {
+                        IS_KEEP_ON_BUILD:     false,
+                        IS_BACKEND_SPECIFIC:  false,
+                        IS_FRONTEND_SPECIFIC: true,
+                    },
                     replaces: {
                         '\tisBlockDevicePathSuite,':            '\t//isBlockDevicePathSuite,',
                         '\tisCharacterDevicePathSuite,':        '\t//isCharacterDevicePathSuite,',
@@ -162,37 +106,34 @@ function CreateTestsRollupConfigs ( /*options*/ ) {
             input:    `tests/benchmarks/${ packageInfos.name }.benchs.js`,
             external: [
                 'benchmark',
-                'itee-utils',
                 'fs'
             ],
             plugins: [
+                replace( {
+                    // Even this variable are not used in this package, we need it because
+                    // they are used in dependency package itee-utils that use them to focus some build stuff
+                    // May be there is a better way to perform this specification than using global comment variable
+                    // that need to be inherited in all children package
+                    defines: {
+                        IS_KEEP_ON_BUILD:     false,
+                        IS_BACKEND_SPECIFIC:  true,
+                        IS_FRONTEND_SPECIFIC: false,
+                    }
+                } ),
                 nodeResolve(),
                 cleanup( {
                     comments: 'none'
                 } )
             ],
-            treeshake: false,
+            treeshake: true,
             output:    {
                 indent: '\t',
                 format: 'cjs',
                 file:   `tests/builds/${ packageInfos.name }.benchs.cjs.js`
             }
         }
-        // Utils for karma
-        //        {
-        //            input:     `tests/utils/${ packageInfos.name }.utils.js`,
-        //            plugins:   [],
-        //            treeshake: true,
-        //            output:    {
-        //                indent: '\t',
-        //                format: 'iife',
-        //                name:   'Itee',
-        //                file:   `tests/builds/${ packageInfos.name }.utils.iife.js`,
-        //                extend: true
-        //            }
-        //        }
     ]
 
 }
 
-module.exports = CreateTestsRollupConfigs
+module.exports = CreateBenchmarksRollupConfigs

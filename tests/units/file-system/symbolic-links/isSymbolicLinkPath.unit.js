@@ -1,6 +1,7 @@
 import { expect }       from 'chai'
 import { describe, it } from 'mocha'
-import { Testing }      from 'itee-utils'
+import { Testing }      from 'itee-utils/sources/testings/benchmarks'
+//import { Testing }      from 'itee-utils'
 import * as isSymbolicLinkPathNamespace from '../../../../sources/file-system/symbolic-links/isSymbolicLinkPath.js'
 
 function isSymbolicLinkPathUnits () {
@@ -19,28 +20,6 @@ function isSymbolicLinkPathUnits () {
 
 	describe( 'isSymbolicLinkPathUnits', () => {
 
-		describe( 'isNotSymbolicLinkPath()', () => {
-
-			it( 'is bundlable', () => {
-
-				expect(isSymbolicLinkPathNamespace.isNotSymbolicLinkPath).to.exist
-
-			} )
-
-			it( 'return type is boolean when path is of type string', () => {
-
-				const dataSet0 = this._dataMap[ 'strings' ]
-
-				for ( let key0 in dataSet0 ) {
-					const dataSetValue0 = dataSet0[ key0 ]
-					const result = isSymbolicLinkPathNamespace.isNotSymbolicLinkPath( dataSetValue0 )
-					expect(result).to.be.a('boolean')
-				}
-
-			} )
-
-		} )
-
 		describe( 'isSymbolicLinkPath()', () => {
 
 			it( 'is bundlable', () => {
@@ -56,6 +35,28 @@ function isSymbolicLinkPathUnits () {
 				for ( let key0 in dataSet0 ) {
 					const dataSetValue0 = dataSet0[ key0 ]
 					const result = isSymbolicLinkPathNamespace.isSymbolicLinkPath( dataSetValue0 )
+					expect(result).to.be.a('boolean')
+				}
+
+			} )
+
+		} )
+
+		describe( 'isNotSymbolicLinkPath()', () => {
+
+			it( 'is bundlable', () => {
+
+				expect(isSymbolicLinkPathNamespace.isNotSymbolicLinkPath).to.exist
+
+			} )
+
+			it( 'return type is boolean when path is of type string', () => {
+
+				const dataSet0 = this._dataMap[ 'strings' ]
+
+				for ( let key0 in dataSet0 ) {
+					const dataSetValue0 = dataSet0[ key0 ]
+					const result = isSymbolicLinkPathNamespace.isNotSymbolicLinkPath( dataSetValue0 )
 					expect(result).to.be.a('boolean')
 				}
 

@@ -13,7 +13,6 @@ import { isArrayOfUndefinedUnits }   from './cores/arrays/isArrayOfUndefined.uni
 import { isEmptyArrayUnits }   from './cores/arrays/isEmptyArray.unit.js'
 import { isBooleanUnits }   from './cores/booleans/isBoolean.unit.js'
 import { isTrueUnits }   from './cores/booleans/isTrue.unit.js'
-import { coresUnits }   from './cores/cores.unit.js'
 import { isFunctionUnits }   from './cores/functions/isFunction.unit.js'
 import { isInfiniteUnits }   from './cores/numbers/isInfinite.unit.js'
 import { isMaxUnits }   from './cores/numbers/isMax.unit.js'
@@ -61,7 +60,6 @@ import { isSocketPathUnits }   from './file-system/sockets/isSocketPath.unit.js'
 import { isValidSocketPathUnits }   from './file-system/sockets/isValidSocketPath.unit.js'
 import { isSymbolicLinkPathUnits }   from './file-system/symbolic-links/isSymbolicLinkPath.unit.js'
 import { isValidSymbolicLinkPathUnits }   from './file-system/symbolic-links/isValidSymbolicLinkPath.unit.js'
-import { constantsUnits }   from './physics/temperatures/constants.unit.js'
 import { isCelsiusUnits }   from './physics/temperatures/isCelsius.unit.js'
 import { isFahrenheitUnits }   from './physics/temperatures/isFahrenheit.unit.js'
 import { isKelvinUnits }   from './physics/temperatures/isKelvin.unit.js'
@@ -89,7 +87,6 @@ describe( 'Itee#Validators', () => {
     isEmptyArrayUnits.call( root )
     isBooleanUnits.call( root )
     isTrueUnits.call( root )
-    coresUnits.call( root )
     isFunctionUnits.call( root )
     isInfiniteUnits.call( root )
     isMaxUnits.call( root )
@@ -137,7 +134,6 @@ describe( 'Itee#Validators', () => {
     isValidSocketPathUnits.call( root )
     isSymbolicLinkPathUnits.call( root )
     isValidSymbolicLinkPathUnits.call( root )
-    constantsUnits.call( root )
     isCelsiusUnits.call( root )
     isFahrenheitUnits.call( root )
     isKelvinUnits.call( root )

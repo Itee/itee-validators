@@ -6,7 +6,7 @@
 
 /**
  *
- * @param data
+ * @param data {*}
  * @returns {boolean}
  */
 export function isEventTarget ( data ) {
@@ -15,7 +15,7 @@ export function isEventTarget ( data ) {
 
 /**
  *
- * @param data
+ * @param data {*}
  * @returns {boolean}
  */
 export function isNotEventTarget ( data ) {

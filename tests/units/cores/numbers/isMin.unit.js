@@ -1,6 +1,7 @@
 import { expect }       from 'chai'
 import { describe, it } from 'mocha'
-import { Testing }      from 'itee-utils'
+import { Testing }      from 'itee-utils/sources/testings/benchmarks'
+//import { Testing }      from 'itee-utils'
 import * as isMinNamespace from '../../../../sources/cores/numbers/isMin.js'
 
 function isMinUnits () {
@@ -19,31 +20,6 @@ function isMinUnits () {
 
 	describe( 'isMinUnits', () => {
 
-		describe( 'isMinNegative()', () => {
-
-			it( 'is bundlable', () => {
-
-				expect(isMinNamespace.isMinNegative).to.exist
-
-			} )
-
-			it( 'return type is boolean when data is of any type', () => {
-
-				const dataMap0 = this._dataMap
-				for ( let dataSetKey0 in dataMap0 ) {
-					const dataSet0 = dataMap0[ dataSetKey0 ]
-
-					for ( let key0 in dataSet0 ) {
-						const dataSetValue0 = dataSet0[ key0 ]
-						const result = isMinNamespace.isMinNegative( dataSetValue0 )
-						expect(result).to.be.a('boolean')
-					}
-				}
-
-			} )
-
-		} )
-
 		describe( 'isMinPositive()', () => {
 
 			it( 'is bundlable', () => {
@@ -61,6 +37,31 @@ function isMinUnits () {
 					for ( let key0 in dataSet0 ) {
 						const dataSetValue0 = dataSet0[ key0 ]
 						const result = isMinNamespace.isMinPositive( dataSetValue0 )
+						expect(result).to.be.a('boolean')
+					}
+				}
+
+			} )
+
+		} )
+
+		describe( 'isMinNegative()', () => {
+
+			it( 'is bundlable', () => {
+
+				expect(isMinNamespace.isMinNegative).to.exist
+
+			} )
+
+			it( 'return type is boolean when data is of any type', () => {
+
+				const dataMap0 = this._dataMap
+				for ( let dataSetKey0 in dataMap0 ) {
+					const dataSet0 = dataMap0[ dataSetKey0 ]
+
+					for ( let key0 in dataSet0 ) {
+						const dataSetValue0 = dataSet0[ key0 ]
+						const result = isMinNamespace.isMinNegative( dataSetValue0 )
 						expect(result).to.be.a('boolean')
 					}
 				}

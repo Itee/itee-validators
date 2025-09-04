@@ -1,6 +1,7 @@
 import { expect }       from 'chai'
 import { describe, it } from 'mocha'
-import { Testing }      from 'itee-utils'
+import { Testing }      from 'itee-utils/sources/testings/benchmarks'
+//import { Testing }      from 'itee-utils'
 import * as isInt32ArrayNamespace from '../../../../sources/cores/typed-arrays/isInt32Array.js'
 
 function isInt32ArrayUnits () {

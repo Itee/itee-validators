@@ -21,6 +21,7 @@
 
 import fs from 'fs'
 import { isDefined } from '../../cores/voids/isDefined'
+import {isNotString} from "itee-validators";
 
 /**
  * Check if given path is a symbolic link path
@@ -29,6 +30,10 @@ import { isDefined } from '../../cores/voids/isDefined'
  * @returns {boolean} true if path is a symbolic link path, false otherwise
  */
 export function isSymbolicLinkPath ( path ) {
+    if( isNotString(path) && !(path instanceof  Buffer) && !(path instanceof URL) ) {
+        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+    }
+
     const stat = fs.statSync( path, { throwIfNoEntry: false } )
     return isDefined(stat) && stat.isSymbolicLink()
 }

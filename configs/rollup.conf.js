@@ -83,7 +83,6 @@ function CreateRollupConfigs ( options ) {
             const format     = formats[ formatIndex ]
             const outputPath = ( isProd ) ? path.join( output, `${ fileName }.${ format }.min.js` ) : path.join( output, `${ fileName }.${ format }.js` )
 
-
             configs.push( {
                 input:    input,
                 external: ( format === 'cjs' ) ? [

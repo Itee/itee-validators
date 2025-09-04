@@ -37,25 +37,26 @@
 
 /* eslint-env node */
 
-import childProcess           from 'child_process'
-import { nodeResolve }        from '@rollup/plugin-node-resolve'
-import cleanup                from 'rollup-plugin-cleanup'
-import fs                     from 'fs'
-import glob                   from 'glob'
-import gulp                   from 'gulp'
-import jsdoc                  from 'gulp-jsdoc3'
-import eslint                 from 'gulp-eslint'
-import { deleteAsync }        from 'del'
-import parseArgs              from 'minimist'
-import { rollup }             from 'rollup'
-import path                   from 'path'
-import karma                  from 'karma'
-import log                    from 'fancy-log'
-import colors                 from 'ansi-colors'
-import { fileURLToPath }      from 'url'
-import jsdocConfiguration     from './configs/jsdoc.conf.js'
-import rollupConfigurator     from './configs/rollup.conf.js'
-import rollupTestConfigurator from './configs/rollup.test.conf.js'
+import childProcess                from 'child_process'
+import { nodeResolve }             from '@rollup/plugin-node-resolve'
+import cleanup                     from 'rollup-plugin-cleanup'
+import fs                          from 'fs'
+import glob                        from 'glob'
+import gulp                        from 'gulp'
+import jsdoc                       from 'gulp-jsdoc3'
+import eslint                      from 'gulp-eslint'
+import { deleteAsync }             from 'del'
+import parseArgs                   from 'minimist'
+import { rollup }                  from 'rollup'
+import path                        from 'path'
+import karma                       from 'karma'
+import log                         from 'fancy-log'
+import colors                      from 'ansi-colors'
+import { fileURLToPath }           from 'url'
+import jsdocConfiguration          from './configs/jsdoc.conf.js'
+import rollupConfigurator          from './configs/rollup.conf.js'
+import rollupUnitTestsConfigurator from './configs/rollup.units.conf.js'
+import rollupBenchesConfigurator   from './configs/rollup.benchs.conf.js'
 
 const red     = colors.red
 const green   = colors.green
@@ -149,7 +150,6 @@ gulp.task( 'clean', () => {
 gulp.task( 'lint', () => {
 
     const filesToLint = [
-        '!gulpfile.mjs',
         'configs/**/*.js',
         'sources/**/*.js',
         '!tests/**/*.js',
@@ -182,12 +182,7 @@ gulp.task( 'lint', () => {
  */
 gulp.task( 'doc', ( done ) => {
 
-    //const config     = require( './configs/jsdoc.conf' )
-
-    //    const rawdata      = fs.readFileSync( './configs/jsdoc.conf.js' )
-    //    const config = JSON.parse( rawdata )
-    const config = jsdocConfiguration
-
+    const config     = jsdocConfiguration
     const filesToDoc = [
         'README.md',
         'gulpfile.mjs',
@@ -204,112 +199,18 @@ gulp.task( 'doc', ( done ) => {
 // TESTING
 
 /**
- *
- */
-gulp.task( 'unit-node', ( done ) => {
-
-    const mochaPath = path.join( __dirname, 'node_modules/mocha/bin/mocha' )
-    const testsPath = path.join( __dirname, `tests/builds/${ packageInfos.name }.units.cjs.js` )
-    const mocha     = childProcess.spawn( 'node', [ mochaPath, testsPath ], { stdio: 'inherit' } )
-    mocha.on( 'close', ( code ) => {
-
-        ( code === 0 )
-            ? done()
-            : done( `mocha exited with code ${ code }` )
-
-    } )
-
-} )
-
-/**
- * @method npm run unit
- * @global
- * @description Will run unit tests using karma
- */
-gulp.task( 'unit-browser', async ( done ) => {
-
-    const configFile  = path.normalize( `${ __dirname }/configs/karma.units.conf.js` )
-    const karmaConfig = karma.config.parseConfig( configFile )
-    const karmaServer = new karma.Server( karmaConfig, ( exitCode ) => {
-        if ( exitCode === 0 ) {
-            log( `Karma server exit with code ${ exitCode }` )
-            done()
-        } else {
-            done( `Karma server exit with code ${ exitCode }` )
-        }
-    } )
-    karmaServer.on( 'browser_error', ( browser, error ) => {
-        log( red( error.message ) )
-    } )
-
-    await karmaServer.start()
-
-} )
-
-/**
- *
- */
-gulp.task( 'unit', gulp.series( 'unit-node', 'unit-browser' ) )
-
-gulp.task( 'bench-node', ( done ) => {
-
-    const benchsPath = path.join( __dirname, `tests/builds/${ packageInfos.name }.benchs.cjs.js` )
-    const benchmark  = childProcess.spawn( 'node', [ benchsPath ], { stdio: 'inherit' } )
-    benchmark.on( 'close', ( code ) => {
-
-        ( code === 0 )
-            ? done()
-            : done( `benchmark exited with code ${ code }` )
-
-    } )
-
-} )
-gulp.task( 'bench-browser', async ( done ) => {
-
-    const configFile  = path.normalize( `${ __dirname }/configs/karma.benchs.conf.js` )
-    const karmaConfig = karma.config.parseConfig( configFile )
-    const karmaServer = new karma.Server( karmaConfig, ( exitCode ) => {
-        if ( exitCode === 0 ) {
-            log( `Karma server exit with code ${ exitCode }` )
-            done()
-        } else {
-            done( `Karma server exit with code ${ exitCode }` )
-        }
-    } )
-    karmaServer.on( 'browser_error', ( browser, error ) => {
-        log( red( error.message ) )
-    } )
-
-    await karmaServer.start()
-
-} )
-
-/**
- * @method npm run bench
- * @global
- * @description Will run benchmarks using karma
- */
-gulp.task( 'bench', gulp.series( 'bench-node', 'bench-browser' ) )
-
-/**
- * @method npm run test
- * @global
- * @description Will run unit tests and benchmarks using karma
- */
-gulp.task( 'test', gulp.series( 'unit', 'bench' ) )
-
-/**
- * In view to detect bundling side effects this task will
+ * @description In view to detect bundling side effects this task will
  * create intermediary file for each individual export from this package
  * and then create rollup config for each of them and bundle
+ * Todo: Check for differents target env like next task below this one
  */
-gulp.task( 'compute-test-bundle-side-effect', async ( done ) => {
+gulp.task( 'check-bundling-side-effect', async ( done ) => {
 
     const baseDir        = __dirname
     const sourcesDir     = path.join( baseDir, 'sources' )
     const testsDir       = path.join( baseDir, 'tests' )
-    const bundlesDir     = path.join( testsDir, 'bundles' )
-    const sideEffectsDir = path.join( bundlesDir, 'side-effects' )
+    const bundleDir      = path.join( testsDir, 'bundles' )
+    const sideEffectsDir = path.join( bundleDir, 'side-effects' )
     const temporariesDir = path.join( sideEffectsDir, '_tmp' )
 
     const filePathsToIgnore = [
@@ -317,27 +218,27 @@ gulp.task( 'compute-test-bundle-side-effect', async ( done ) => {
         'LineFileSplitter.js'
     ]
 
-    let sourcesGlob    = path.join( sourcesDir, '**' )
-    sourcesGlob        = sourcesGlob.replaceAll( '\\', '/' )
+    let sourcesGlob    = path.join( sourcesDir, '/**' )
+    // sourcesGlob        = sourcesGlob.replaceAll( '\\', '/' )
     const sourcesFiles = glob.sync( sourcesGlob )
-                             .map( filePath => {
-                                 return path.normalize( filePath )
-                             } )
-                             .filter( filePath => {
-                                 const fileName         = path.basename( filePath )
-                                 const isJsFile         = fileName.endsWith( '.js' )
-                                 const isNotPrivateFile = !fileName.startsWith( '_' )
-                                 const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
-                                 return isJsFile && isNotPrivateFile && isNotIgnoredFile
-                             } )
+        .map( filePath => {
+            return path.normalize( filePath )
+        } )
+        .filter( filePath => {
+            const fileName         = path.basename( filePath )
+            const isJsFile         = fileName.endsWith( '.js' )
+            const isNotPrivateFile = !fileName.startsWith( '_' )
+            const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
+            return isJsFile && isNotPrivateFile && isNotIgnoredFile
+        } )
 
     for ( let sourceFile of sourcesFiles ) {
 
         const {
-                  dir:  sourceDir,
-                  base: sourceBase,
-                  name: sourceName
-              }                = path.parse( sourceFile )
+            dir:  sourceDir,
+            base: sourceBase,
+            name: sourceName
+        }                = path.parse( sourceFile )
         const specificFilePath = sourceFile.replace( sourcesDir, '' )
         const specificDir      = path.dirname( specificFilePath )
 
@@ -361,10 +262,10 @@ gulp.task( 'compute-test-bundle-side-effect', async ( done ) => {
                 //                commonJs()
             ],
             onwarn:    ( {
-                loc,
-                frame,
-                message
-            } ) => {
+                             loc,
+                             frame,
+                             message
+                         } ) => {
 
                 // Ignore some errors
                 if ( message.includes( 'Circular dependency' ) ) { return }
@@ -403,7 +304,9 @@ gulp.task( 'compute-test-bundle-side-effect', async ( done ) => {
 
             if ( output[ 0 ].code.length > 1 ) {
                 log( red( `[${ specificFilePath }] contain side-effects !` ) )
-                await bundle.write( config.output )
+                // Todo: make option to log, to write or nothing
+                // log( output[ 0 ].code )
+                // await bundle.write( config.output )
             } else {
                 log( green( `[${ specificFilePath }] is side-effect free.` ) )
             }
@@ -414,12 +317,14 @@ gulp.task( 'compute-test-bundle-side-effect', async ( done ) => {
 
     }
 
-    fs.rmSync( temporariesDir, { recursive: true } )
+    // Todo: depends on option to log or to write
+    fs.rmSync( bundleDir, { recursive: true } )
+    // fs.rmSync( temporariesDir, { recursive: true } )
 
     done()
 
 } )
-gulp.task( 'compute-test-bundle-by-source-file-export', async ( done ) => {
+gulp.task( 'check-bundling-by-source-file-export', async ( done ) => {
 
     const baseDir    = __dirname
     const sourcesDir = path.join( baseDir, 'sources' )
@@ -433,17 +338,16 @@ gulp.task( 'compute-test-bundle-by-source-file-export', async ( done ) => {
     ]
 
     const sourcesFiles = glob.sync( path.join( sourcesDir, '**' ) )
-                             .map( filePath => path.normalize( filePath ) )
-                             .filter( filePath => {
-                                 const fileName         = path.basename( filePath )
-                                 const isJsFile         = fileName.endsWith( '.js' )
-                                 const isNotPrivateFile = !fileName.startsWith( '_' )
-                                 const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
-                                 return isJsFile && isNotPrivateFile && isNotIgnoredFile
-                             } )
+        .map( filePath => path.normalize( filePath ) )
+        .filter( filePath => {
+            const fileName         = path.basename( filePath )
+            const isJsFile         = fileName.endsWith( '.js' )
+            const isNotPrivateFile = !fileName.startsWith( '_' )
+            const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
+            return isJsFile && isNotPrivateFile && isNotIgnoredFile
+        } )
 
     for ( let sourceFile of sourcesFiles ) {
-
 
         const specificFilePath = sourceFile.replace( sourcesDir, '' )
         const specificDir      = path.dirname( specificFilePath )
@@ -464,10 +368,10 @@ gulp.task( 'compute-test-bundle-by-source-file-export', async ( done ) => {
                 } )
             ],
             onwarn:    ( {
-                loc,
-                frame,
-                message
-            } ) => {
+                             loc,
+                             frame,
+                             message
+                         } ) => {
 
                 // Ignore some errors
                 if ( message.includes( 'Circular dependency' ) ) { return }
@@ -499,8 +403,9 @@ gulp.task( 'compute-test-bundle-by-source-file-export', async ( done ) => {
 
             log( `Building bundle ${ config.output.file }` )
 
-            const bundle = await rollup.rollup( config )
-            await bundle.write( config.output )
+            const bundle = await rollup( config )
+            const { output } = await bundle.generate( config.output )
+            // await bundle.write( config.output )
 
         } catch ( error ) {
 
@@ -513,30 +418,33 @@ gulp.task( 'compute-test-bundle-by-source-file-export', async ( done ) => {
     done()
 
 } )
-gulp.task( 'compute-test-bundles', gulp.series( 'compute-test-bundle-side-effect', 'compute-test-bundle-by-source-file-export' ) )
-gulp.task( 'compute-test-unit', async ( done ) => {
+gulp.task( 'check-bundling', gulp.series( 'check-bundling-side-effect', 'check-bundling-by-source-file-export' ) )
+
+/**
+ * @description Will generate unit test files from source code using type inference from comments
+ */
+gulp.task( 'compute-unit-tests', async ( done ) => {
 
     const basePath   = __dirname
     const sourcesDir = path.join( basePath, 'sources' )
     const testsDir   = path.join( basePath, 'tests' )
-    const bundlesDir = path.join( testsDir, 'bundles' )
-    const inputsDir  = path.join( bundlesDir, 'files' )
     const unitsDir   = path.join( testsDir, 'units' )
 
     const filePathsToIgnore = [
         `${ packageInfos.name }.js`,
-        'isTestUnitGenerator.js'
+        'isTestUnitGenerator.js',
+        'cores.js'
     ]
 
     const sourcesFiles = glob.sync( path.join( sourcesDir, '**' ) )
-                             .map( filePath => path.normalize( filePath ) )
-                             .filter( filePath => {
-                                 const fileName         = path.basename( filePath )
-                                 const isJsFile         = fileName.endsWith( '.js' )
-                                 const isNotPrivateFile = !fileName.startsWith( '_' )
-                                 const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
-                                 return isJsFile && isNotPrivateFile && isNotIgnoredFile
-                             } )
+        .map( filePath => path.normalize( filePath ) )
+        .filter( filePath => {
+            const fileName         = path.basename( filePath )
+            const isJsFile         = fileName.endsWith( '.js' )
+            const isNotPrivateFile = !fileName.startsWith( '_' )
+            const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
+            return isJsFile && isNotPrivateFile && isNotIgnoredFile
+        } )
 
     const unitsImportMap = []
     for ( let sourceFile of sourcesFiles ) {
@@ -549,9 +457,6 @@ gulp.task( 'compute-test-unit', async ( done ) => {
         const unitDirPath  = path.join( unitsDir, specificDir )
         const unitFilePath = path.join( unitDirPath, unitFileName )
 
-        const bundleFileName = `${ fileName }.bundle.js`
-        const bundleFilePath = path.join( inputsDir, specificDir, bundleFileName )
-
         const nsName         = `${ fileName }Namespace`
         const unitName       = `${ fileName }Units`
         const importDirPath  = path.relative( unitDirPath, sourcesDir )
@@ -559,11 +464,16 @@ gulp.task( 'compute-test-unit', async ( done ) => {
 
         try {
 
-            const jsdocOutput = childProcess.execFileSync( 'node', [ './node_modules/jsdoc/jsdoc.js', '-X', sourceFile ] ).toString()
+            const jsdocPath   = path.join(basePath, '/node_modules/jsdoc/jsdoc.js')
+            const jsdocOutput = childProcess.execFileSync( 'node', [ jsdocPath, '-X', sourceFile ] ).toString()
             const jsonData    = JSON.parse( jsdocOutput ).filter( data => {
                 return ( data.kind === 'function' && !data.undocumented )
             } )
-            const Target      = require( bundleFilePath )
+
+            if ( jsonData.length === 0 ) {
+                log( yellow( `No usable exports found in [${ sourceFile }]. Ignore it !` ) )
+                continue
+            }
 
             let describes = ''
             const I       = n => '\t'.repeat( n )
@@ -573,14 +483,9 @@ gulp.task( 'compute-test-unit', async ( done ) => {
             I.____        = I( 4 )
             I._____       = I( 5 )
 
-            for ( let key of Object.keys( Target ) ) {
+            for ( let docData of jsonData ) {
 
                 try {
-
-                    const matchDocData = jsonData.filter( data => data.name === key )
-                    if ( matchDocData.length === 0 ) { continue }
-
-                    const docData = matchDocData[ 0 ]
 
                     //check input parameters and types
                     const docParameters = docData.params || []
@@ -636,7 +541,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
 
                         if ( returns.length === 0 ) {
 
-                            const result = `${ I( 1 + 1 + 1 + 1 ) }const result = ${ nsName }.${ key }()` + '\n'
+                            const result = `${ I( 1 + 1 + 1 + 1 ) }const result = ${ nsName }.${ docData.name }()` + '\n'
                             const expect = `${ I( 1 + 1 + 1 + 1 ) }expect(result).to.be.a('undefined')` + '\n'
 
                             its += '' +
@@ -652,7 +557,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                             const firstReturnType = returns[ 0 ]
                             const lowerName       = firstReturnType.toLowerCase()
 
-                            const result = `${ I( 1 + 1 + 1 + 1 ) }const result = ${ nsName }.${ key }()` + '\n'
+                            const result = `${ I( 1 + 1 + 1 + 1 ) }const result = ${ nsName }.${ docData.name }()` + '\n'
 
                             let expect = ''
                             if ( lowerName.startsWith( 'array' ) ) {
@@ -672,7 +577,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
 
                         } else {
 
-                            const result = `${ I( 1 + 1 + 1 + 1 ) }const result = ${ nsName }.${ key }()` + '\n'
+                            const result = `${ I( 1 + 1 + 1 + 1 ) }const result = ${ nsName }.${ docData.name }()` + '\n'
 
                             let returnTypesLabel = []
                             let expects          = []
@@ -748,7 +653,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                                 localIndent++
                             }
 
-                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ key }( ${ args.join( ', ' ) } )` + '\n'
+                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ docData.name }( ${ args.join( ', ' ) } )` + '\n'
                             const expect = `${ I( localIndent ) }expect(result).to.be.a('undefined')` + '\n'
 
                             const param = '' +
@@ -822,7 +727,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                                 localIndent++
                             }
 
-                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ key }( ${ args.join( ', ' ) } )` + '\n'
+                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ docData.name }( ${ args.join( ', ' ) } )` + '\n'
 
                             let expect = ''
                             if ( lowerName.startsWith( 'array' ) ) {
@@ -874,7 +779,7 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                                 localIndent++
                             }
 
-                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ key }( ${ args.join( ', ' ) } )` + '\n'
+                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ docData.name }( ${ args.join( ', ' ) } )` + '\n'
 
                             let returnTypesLabel = []
                             let expects          = []
@@ -927,17 +832,18 @@ gulp.task( 'compute-test-unit', async ( done ) => {
                     }
 
                     describes += '' +
-                        `${ I.__ }describe( '${ key }()', () => {` + '\n' +
+                        `${ I.__ }describe( '${ docData.name }()', () => {` + '\n' +
                         '\n' +
                         `${ I.___ }it( 'is bundlable', () => {` + '\n' +
                         '\n' +
-                        `${ I.____ }expect(${ nsName }.${ key }).to.exist` + '\n' +
+                        `${ I.____ }expect(${ nsName }.${ docData.name }).to.exist` + '\n' +
                         '\n' +
                         `${ I.___ }} )` + '\n' +
                         '\n' +
                         `${ its }` +
                         '\n' +
-                        `${ I.__ }} )` + '\n\n'
+                        `${ I.__ }} )` + '\n' +
+                        '\n'
 
                 } catch ( error ) {
 
@@ -950,7 +856,8 @@ gulp.task( 'compute-test-unit', async ( done ) => {
             const template = '' +
                 `import { expect }       from 'chai'` + '\n' +
                 `import { describe, it } from 'mocha'` + '\n' +
-                `import { Testing }      from 'itee-utils'` + '\n' +
+                `import { Testing }      from 'itee-utils/sources/testings/benchmarks'` + '\n' +
+                `//import { Testing }      from 'itee-utils'` + '\n' +
                 `import * as ${ nsName } from '${ importFilePath }'` + '\n' +
                 '\n' +
                 `function ${ unitName } () {` + '\n' +
@@ -1026,45 +933,117 @@ gulp.task( 'compute-test-unit', async ( done ) => {
     done()
 
 } )
-gulp.task( 'compute-test-bench', async ( done ) => {
+/**
+ * @description Will generate unit test bundles based on provided configs
+ */
+gulp.task( 'bundle-unit-tests', async ( done ) => {
 
-    function isClass ( v ) {
-        return typeof v === 'function' && /^\s*class\s+/.test( v.toString() )
+    const configs = rollupUnitTestsConfigurator()
+
+    for ( let config of configs ) {
+
+        log( `Building ${ config.output.file }` )
+
+        try {
+
+            const bundle = await rollup( config )
+            await bundle.write( config.output )
+
+        } catch ( error ) {
+
+            log( red( error ) )
+
+        }
+
     }
 
-    const sourcesDir     = path.join( __dirname, 'sources' )
-    const testBasePath   = path.join( __dirname, 'tests' )
-    const bundleBasePath = path.join( testBasePath, 'bundles', 'files' )
-    const benchBasePath  = path.join( testBasePath, 'benchmarks' )
+    done()
+
+} )
+/**
+ * @description Will compte and generate bundle for unit tests
+ */
+gulp.task( 'build-unit-tests', gulp.series( 'compute-unit-tests', 'bundle-unit-tests' ) )
+/**
+ * @description Will run unit tests with node
+ */
+gulp.task( 'run-unit-tests-for-node', ( done ) => {
+
+    const mochaPath = path.join( __dirname, 'node_modules/mocha/bin/mocha' )
+    const testsPath = path.join( __dirname, `tests/builds/${ packageInfos.name }.units.cjs.js` )
+    const mocha     = childProcess.spawn( 'node', [ mochaPath, testsPath ], { stdio: 'inherit' } )
+    mocha.on( 'close', ( code ) => {
+
+        ( code === 0 )
+            ? done()
+            : done( `mocha exited with code ${ code }` )
+
+    } )
+
+} )
+/**
+ * @description Will run unit tests with karma
+ */
+gulp.task( 'run-unit-tests-for-browser', async ( done ) => {
+
+    const configFile  = path.normalize( `${ __dirname }/configs/karma.units.conf.js` )
+    const karmaConfig = karma.config.parseConfig( configFile )
+    const karmaServer = new karma.Server( karmaConfig, ( exitCode ) => {
+        if ( exitCode === 0 ) {
+            log( `Karma server exit with code ${ exitCode }` )
+            done()
+        } else {
+            done( `Karma server exit with code ${ exitCode }` )
+        }
+    } )
+    karmaServer.on( 'browser_error', ( browser, error ) => {
+        log( red( error.message ) )
+    } )
+
+    await karmaServer.start()
+
+} )
+/**
+ * @description Will run unit tests in back and front environments
+ */
+gulp.task( 'run-unit-tests', gulp.series( 'run-unit-tests-for-node'/*, 'run-unit-tests-for-browser'*/ ) )
+
+/**
+ * @description Will generate benchmarks files from source code against provided alternatives
+ */
+gulp.task( 'compute-benchmarks', async ( done ) => {
+
+    const basePath   = __dirname
+    const sourcesDir = path.join( basePath, 'sources' )
+    const testsDir   = path.join( basePath, 'tests' )
+    const benchsDir  = path.join( testsDir, 'benchmarks' )
 
     const filePathsToIgnore = [
         `${ packageInfos.name }.js`,
-        'isTestUnitGenerator.js'
+        'isTestUnitGenerator.js',
+        'cores.js'
     ]
 
     const sourcesFiles = glob.sync( path.join( sourcesDir, '**' ) )
-                             .map( filePath => path.normalize( filePath ) )
-                             .filter( filePath => {
-                                 const fileName         = path.basename( filePath )
-                                 const isJsFile         = fileName.endsWith( '.js' )
-                                 const isNotPrivateFile = !fileName.startsWith( '_' )
-                                 const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
-                                 return isJsFile && isNotPrivateFile && isNotIgnoredFile
-                             } )
+        .map( filePath => path.normalize( filePath ) )
+        .filter( filePath => {
+            const fileName         = path.basename( filePath )
+            const isJsFile         = fileName.endsWith( '.js' )
+            const isNotPrivateFile = !fileName.startsWith( '_' )
+            const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
+            return isJsFile && isNotPrivateFile && isNotIgnoredFile
+        } )
 
     const benchRootImports = []
-    for ( let sourcesFilesPath of sourcesFiles ) {
+    for ( let sourceFile of sourcesFiles ) {
 
-        const specificFilePath = sourcesFilesPath.replace( sourcesDir, '' )
-        const specificDirPath  = path.dirname( specificFilePath )
+        const specificFilePath = sourceFile.replace( sourcesDir, '' )
+        const specificDir  = path.dirname( specificFilePath )
 
-        const fileName      = path.basename( sourcesFilesPath, path.extname( sourcesFilesPath ) )
+        const fileName      = path.basename( sourceFile, path.extname( sourceFile ) )
         const benchFileName = `${ fileName }.bench.js`
-        const benchDirPath  = path.join( benchBasePath, specificDirPath )
+        const benchDirPath  = path.join( benchsDir, specificDir )
         const benchFilePath = path.join( benchDirPath, benchFileName )
-
-        const bundleFileName = `${ fileName }.bundle.js`
-        const bundleFilePath = path.join( bundleBasePath, specificDirPath, bundleFileName )
 
         const nsName         = `${ fileName }Namespace`
         const importDirPath  = path.relative( benchDirPath, sourcesDir )
@@ -1072,106 +1051,78 @@ gulp.task( 'compute-test-bench', async ( done ) => {
 
         try {
 
-            const Target = require( bundleFilePath )
+            const jsdocPath   = path.join(basePath, '/node_modules/jsdoc/jsdoc.js')
+            const jsdocOutput = childProcess.execFileSync( 'node', [ jsdocPath, '-X', sourceFile ] ).toString()
 
-            const targetEntries = Object.entries( Target ).map( entry => {
-                return {
-                    key:   entry[ 0 ],
-                    value: entry[ 1 ]
+            const usedLongnames = []
+            const jsonData    = JSON.parse( jsdocOutput ).filter( data => {
+
+                if( data.kind !== 'function' ) {
+                    return false
+                } else if(usedLongnames.includes(data.longname)) {
+                    return false
+                } else {
+                    usedLongnames.push(data.longname)
+                    return true
                 }
+
             } )
-            if ( targetEntries.length === 0 ) {
-                log( yellow( `No usable exports found in [${ bundleFilePath }]. Ignore it !` ) )
+
+            if ( jsonData.length === 0 ) {
+                log( yellow( `No usable exports found in [${ sourceFile }]. Ignore it !` ) )
                 continue
             }
 
-            // Compute suite groups
-            const targetKeys      = Object.keys( Target )
-            const suiteGroups     = []
-            let currentSuiteGroup = []
-            const usedIndexes     = []
-            for ( let index = 0 ; index < targetEntries.length ; index++ ) {
-                if ( usedIndexes.includes( index ) ) { continue }
-                usedIndexes.push( index )
+            // Compute benchmark suites by grouping logically function by name[_x]
+            const suiteGroups     = {}
+            for ( let docData of jsonData ) {
 
-                if ( currentSuiteGroup === null ) {
-                    currentSuiteGroup = []
-                }
+                try {
 
-                const entry = targetEntries[ index ]
-                currentSuiteGroup.push( entry )
+                    const functionName = docData.name
+                    const nameSplits = functionName.split('_')
+                    const rootName = nameSplits[0]
 
-                const matchKeys = targetKeys.filter( key => key !== entry.key && key.startsWith( `${ entry.key }_` ) )
-                if ( matchKeys.length > 0 ) {
-
-                    for ( let matchKey of matchKeys ) {
-                        const matchIndex = targetKeys.indexOf( matchKey )
-                        usedIndexes.push( matchIndex )
-
-                        const matchEntry = targetEntries[ matchIndex ]
-                        currentSuiteGroup.push( matchEntry )
+                    if(!(rootName in suiteGroups)) {
+                        suiteGroups[rootName] = []
                     }
 
+                    suiteGroups[rootName].push(functionName)
+
+                } catch ( error ) {
+
+                    log( red( error.message ) )
+
                 }
 
-                suiteGroups.push( currentSuiteGroup )
-                currentSuiteGroup = null
             }
 
             // Generate suites
-            const suitesToExports = []
             let benchSuites       = ''
-            for ( let suiteGroup of suiteGroups ) {
+            const suitesToExports = []
+            for( let suiteGroupName in suiteGroups) {
+                suitesToExports.push( `${ suiteGroupName }Suite` )
+                benchSuites += `const ${ suiteGroupName }Suite = Benchmark.Suite( '${ nsName }.${ suiteGroupName }', Testing.createSuiteOptions() )` + '\n'
 
-                let firstInGroup = true
-                for ( let suiteGroupElement of suiteGroup ) {
-
-                    const key   = suiteGroupElement.key
-                    const value = suiteGroupElement.value
-
-                    if ( firstInGroup ) {
-                        firstInGroup = false
-
-                        const typeOfValue = typeof ( value )
-                        if ( typeOfValue !== 'function' ) {
-                            log( yellow( `Unable to generate benchmark for [${ key }] of type [${ typeOfValue }]` ) )
-                            break
-                        } else if ( isClass( value ) ) {
-                            log( yellow( `Unable to generate benchmark for class [${ key }]` ) )
-                            break
-                        }
-
-                        suitesToExports.push( `${ key }Suite` )
-
-                        benchSuites += '' +
-                            `const ${ key }Suite = Benchmark.Suite( '${ nsName }.${ key }', Testing.createSuiteOptions() )` + '\n'
-
-                    }
-
-                    benchSuites += `                                     .add( '${ key }()', Testing.iterateOverDataMap( ${ nsName }.${ key } ), Testing.createBenchmarkOptions() )` + '\n'
+                for( let suiteGroupValue of suiteGroups[suiteGroupName]) {
+                    benchSuites += `                                     .add( '${ suiteGroupValue }()', Testing.iterateOverDataMap( ${ nsName }.${ suiteGroupValue } ), Testing.createBenchmarkOptions() )` + '\n'
                 }
 
-                //                benchSuites += '\n'
-
-            }
-
-            // In case nothing was genereated just ignore file
-            if ( benchSuites.length === 0 ) {
-                log( yellow( `Nothing was generated for current file. Skip it !` ) )
-                continue
+                benchSuites += '\n'
             }
 
             const template = '' + '\n' +
                 `import Benchmark   from 'benchmark'` + '\n' +
-                `import { Testing } from 'itee-utils'` + '\n' +
+                `import { Testing } from 'itee-utils/sources/testings/benchmarks'` + '\n' +
+                // `import { Testing } from 'itee-utils'` + '\n' +
                 `import * as ${ nsName } from '${ importFilePath }'` + '\n' +
                 '\n' +
                 `${ benchSuites }` +
-                '\n' +
+                // '\n' +
                 `export { ${ suitesToExports } }` + '\n' +
                 '\n'
 
-            const importBenchFilePath = path.relative( benchBasePath, benchFilePath ).replace( /\\/g, '/' )
+            const importBenchFilePath = path.relative( benchsDir, benchFilePath ).replace( /\\/g, '/' )
             benchRootImports.push( {
                 path:    importBenchFilePath,
                 exports: suitesToExports
@@ -1183,7 +1134,7 @@ gulp.task( 'compute-test-bench', async ( done ) => {
 
         } catch ( error ) {
 
-            log( red( error ) )
+            log( red( error.message ) )
 
         }
 
@@ -1212,15 +1163,18 @@ gulp.task( 'compute-test-bench', async ( done ) => {
         `\tsuite.run()` + '\n' +
         `}` + '\n'
 
-    const benchsFilePath = path.join( benchBasePath, `${ packageInfos.name }.benchs.js` )
+    const benchsFilePath = path.join( benchsDir, `${ packageInfos.name }.benchs.js` )
     fs.writeFileSync( benchsFilePath, benchsTemplate )
 
     done()
 
 } )
-gulp.task( 'bundle-tests', async ( done ) => {
+/**
+ * @description Will generate benchmarks bundles based on provided configs
+ */
+gulp.task( 'bundle-benchmarks', async ( done ) => {
 
-    const configs = rollupTestConfigurator()
+    const configs = rollupBenchesConfigurator()
 
     for ( let config of configs ) {
 
@@ -1243,126 +1197,65 @@ gulp.task( 'bundle-tests', async ( done ) => {
 
 } )
 /**
+ * @description Will compte and generate bundle for benchmarks
+ */
+gulp.task( 'build-benchmarks', gulp.series( 'compute-benchmarks', 'bundle-benchmarks' ) )
+/**
+ * @description Will run benchmarks with node
+ */
+gulp.task( 'run-benchmarks-for-node', ( done ) => {
+
+    const benchsPath = path.join( __dirname, `tests/builds/${ packageInfos.name }.benchs.cjs.js` )
+    const benchmark  = childProcess.spawn( 'node', [ benchsPath ], { stdio: 'inherit' } )
+    benchmark.on( 'close', ( code ) => {
+
+        ( code === 0 )
+            ? done()
+            : done( `benchmark exited with code ${ code }` )
+
+    } )
+
+} )
+/**
+ * @description Will run benchmarks with karma
+ */
+gulp.task( 'run-benchmarks-for-browser', async ( done ) => {
+
+    const configFile  = path.normalize( `${ __dirname }/configs/karma.benchs.conf.js` )
+    const karmaConfig = karma.config.parseConfig( configFile )
+    const karmaServer = new karma.Server( karmaConfig, ( exitCode ) => {
+        if ( exitCode === 0 ) {
+            log( `Karma server exit with code ${ exitCode }` )
+            done()
+        } else {
+            done( `Karma server exit with code ${ exitCode }` )
+        }
+    } )
+    karmaServer.on( 'browser_error', ( browser, error ) => {
+        log( red( error.message ) )
+    } )
+
+    await karmaServer.start()
+
+} )
+/**
+ * @description Will run benchmarks in back and front environments
+ */
+gulp.task( 'run-benchmarks', gulp.series( 'run-benchmarks-for-node'/*, 'run-benchmarks-for-browser'*/ ) )
+
+/**
  * @method npm run build-test
  * @global
- * @description Will build itee client tests.
+ * @description Will build all tests.
  */
-gulp.task( 'build-tests', gulp.series( 'compute-test-bundles', 'compute-test-unit', 'compute-test-bench', 'bundle-tests' ) )
+gulp.task( 'build-tests', gulp.series( 'check-bundling', 'build-unit-tests', 'build-benchmarks' ) )
 
-///**
-// * deprecated
-// */
-//gulp.task( 'compute-test-bundle', async ( done ) => {
-//
-//    try {
-//        const IteeUtils = require( './builds/itee-utils.cjs' )
-//
-//        const basePath       = __dirname
-//        const testsPath      = path.join( basePath, 'tests' )
-//        const tempBasePath   = path.join( testsPath, 'tmp' )
-//        const bundleBasePath = path.join( testsPath, 'bundles' )
-//
-//        for ( let key of Object.keys( IteeUtils ) ) {
-//
-//            // Create temp file per package export
-//            const tmpFileName = `${ key }.js`
-//            const tmpFileData = `import {${ key }} from '../../builds/itee-utils.esm'\nconsole.log(${ key })\n`
-//            const tmpFilePath = path.join( tempBasePath, tmpFileName )
-//
-//
-//            fs.mkdirSync( tempBasePath, { recursive: true } )
-//            fs.writeFileSync( tmpFilePath, tmpFileData )
-//
-//            // Bundle temporary file
-//            const bundleFileName = `${ key }.bundle.js`
-//            const bundleFilePath = path.join( bundleBasePath, bundleFileName )
-//            const config         = {
-//                input:     tmpFilePath,
-//                external:  [ 'itee-validators' ],
-//                treeshake: true,
-//                output:    {
-//                    indent: '\t',
-//                    format: 'esm',
-//                    file: bundleFilePath
-//                }
-//            }
-//
-//            log( `Building bundle ${ bundleFilePath }` )
-//
-//            const bundle = await rollup.rollup( config )
-//            await bundle.write( config.output )
-//
-//        }
-//
-//        // Remove temporary file
-//        fs.rmSync( tempBasePath, { recursive: true } )
-//        done()
-//
-//    } catch ( error ) {
-//
-//        done( error )
-//
-//    }
-//
-//} )
-//
-///**
-// * @method npm run build-test
-// * @global
-// * @description Will build itee client tests.
-// */
-//gulp.task( 'build-test', async ( done ) => {
-//
-//    const configs = require( './configs/rollup.test.conf' )()
-//
-//    for ( let config of configs ) {
-//
-//        log( `Building ${ config.output.file }` )
-//
-//        try {
-//
-//            const bundle = await rollup.rollup( config )
-//            await bundle.write( config.output )
-//
-//        } catch ( error ) {
-//
-//            log( red( error ) )
-//
-//        }
-//
-//    }
-//
-//    done()
-//
-//    //    nextBuild()
-//    //
-//    //    function nextBuild ( error ) {
-//    //        'use strict'
-//    //
-//    //        if ( error ) {
-//    //
-//    //            done( error )
-//    //
-//    //        } else if ( configs.length === 0 ) {
-//    //
-//    //            done()
-//    //
-//    //        } else {
-//    //
-//    //            const config = configs.pop()
-//    //            log( `Building ${config.output.file}` )
-//    //
-//    //            rollup.rollup( config )
-//    //                  .then( ( bundle ) => { return bundle.write( config.output ) } )
-//    //                  .then( () => { nextBuild() } )
-//    //                  .catch( nextBuild )
-//    //
-//    //        }
-//    //
-//    //    }
-//
-//} )
-
+/**
+ * @method npm run test
+ * @global
+ * @description Will run unit tests and benchmarks for node (backend) and karma (frontend) environments
+ */
+gulp.task( 'test', gulp.series( 'run-unit-tests', 'run-benchmarks' ) )
 
 /**
  * @method npm run build
@@ -1429,7 +1322,7 @@ gulp.task( 'build', ( done ) => {
  * @method npm run release
  * @global
  * @description Will perform a complet release of the library including 'clean', 'lint', 'doc', 'build-test', 'test' and finally 'build'.
- */
+*/
 gulp.task( 'release', gulp.series( 'clean', 'lint', 'doc', 'build-tests', 'test', 'build' ) )
 
 //---------
