@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Itee-Validators Module: sources/cores/cores</title>
+	<title>Itee-Validators Source: configs/rollup.benchs.conf.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -67,319 +67,159 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
 			
 
-	<h1 class="page-title">Module: sources/cores/cores</h1>
+		<h1 class="page-title">Source: configs/rollup.benchs.conf.js</h1>
+    
 <section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module configs/Rollup-Test
+ * @description The file manage the rollup configuration for build tests
+ */
 
-<header>
-    
-</header>
+const packageInfos    = require( '../package' )
+const { nodeResolve } = require( '@rollup/plugin-node-resolve' )
+const replace         = require( 'rollup-plugin-re' )
+const cleanup         = require( 'rollup-plugin-cleanup' )
 
+/**
+ * Will create an appropriate configuration object for rollup, related to the given arguments.
+ *
+ * @generator
+ * @return {Array.&lt;json>} An array of rollup configuration
+ */
+function CreateBenchmarksRollupConfigs ( /*options*/ ) {
+    'use strict'
 
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description">Export the Validator singleton instance that allow to validate complex data structure</div>
-        
+    return [
+        // For Karma
+        {
+            input:    `tests/benchmarks/${ packageInfos.name }.benchs.js`,
+            external: [
+                'benchmark'
+            ],
+            plugins: [
+                nodeResolve(),
+                replace( {
+                    // Even this variable are not used in this package, we need it because
+                    // they are used in dependency package itee-utils that use them to focus some build stuff
+                    // May be there is a better way to perform this specification than using global comment variable
+                    // that need to be inherited in all children package
+                    defines: {
+                        IS_KEEP_ON_BUILD:     false,
+                        IS_BACKEND_SPECIFIC:  false,
+                        IS_FRONTEND_SPECIFIC: true,
+                    },
+                    replaces: {
+                        '\tisBlockDevicePathSuite,':            '\t//isBlockDevicePathSuite,',
+                        '\tisCharacterDevicePathSuite,':        '\t//isCharacterDevicePathSuite,',
+                        '\tisDirectoryPathSuite,':              '\t//isDirectoryPathSuite,',
+                        '\tisEmptyDirectorySuite,':             '\t//isEmptyDirectorySuite,',
+                        '\tisEmptyFileSuite,':                  '\t//isEmptyFileSuite,',
+                        '\tisFIFOPathSuite,':                   '\t//isFIFOPathSuite,',
+                        '\tisFilePathSuite,':                   '\t//isFilePathSuite,',
+                        '\tisInvalidBlockDevicePathSuite,':     '\t//isInvalidBlockDevicePathSuite,',
+                        '\tisInvalidCharacterDevicePath,':      '\t//isInvalidCharacterDevicePath,',
+                        '\tisInvalidCharacterDevicePathSuite,': '\t//isInvalidCharacterDevicePathSuite,',
+                        '\tisInvalidDirectoryPathSuite,':       '\t//isInvalidDirectoryPathSuite,',
+                        '\tisInvalidFIFOPathSuite,':            '\t//isInvalidFIFOPathSuite,',
+                        '\tisInvalidFilePathSuite,':            '\t//isInvalidFilePathSuite,',
+                        '\tisInvalidPathSuite,':                '\t//isInvalidPathSuite,',
+                        '\tisInvalidSocketPathSuite,':          '\t//isInvalidSocketPathSuite,',
+                        '\tisInvalidSymbolicLinkPathSuite,':    '\t//isInvalidSymbolicLinkPathSuite,',
+                        '\tisNotBlockDevicePathSuite,':         '\t//isNotBlockDevicePathSuite,',
+                        '\tisNotCharacterDevicePathSuite,':     '\t//isNotCharacterDevicePathSuite,',
+                        '\tisNotDirectoryPathSuite,':           '\t//isNotDirectoryPathSuite,',
+                        '\tisNotEmptyDirectorySuite,':          '\t//isNotEmptyDirectorySuite,',
+                        '\tisNotEmptyFileSuite,':               '\t//isNotEmptyFileSuite,',
+                        '\tisNotFIFOPathSuite,':                '\t//isNotFIFOPathSuite,',
+                        '\tisNotFilePathSuite,':                '\t//isNotFilePathSuite,',
+                        '\tisNotSocketPathSuite,':              '\t//isNotSocketPathSuite,',
+                        '\tisNotSymbolicLinkPathSuite,':        '\t//isNotSymbolicLinkPathSuite,',
+                        '\tisSocketPathSuite,':                 '\t//isSocketPathSuite,',
+                        '\tisSymbolicLinkPathSuite,':           '\t//isSymbolicLinkPathSuite,',
+                        '\tisValidBlockDevicePathSuite,':       '\t//isValidBlockDevicePathSuite,',
+                        '\tisValidCharacterDevicePathSuite,':   '\t//isValidCharacterDevicePathSuite,',
+                        '\tisValidDirectoryPathSuite,':         '\t//isValidDirectoryPathSuite,',
+                        '\tisValidFIFOPathSuite,':              '\t//isValidFIFOPathSuite,',
+                        '\tisValidFilePathSuite,':              '\t//isValidFilePathSuite,',
+                        '\tisValidPathSuite,':                  '\t//isValidPathSuite,',
+                        '\tisValidSocketPathSuite,':            '\t//isValidSocketPathSuite,',
+                        '\tisValidSymbolicLinkPathSuite,':      '\t//isValidSymbolicLinkPathSuite,',
 
-        
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-	<dt class="tag-author method-doc-label method-doc-details-label">Author:</dt>
-	<dd class="tag-author">
-		<ul>
-			<li><a href="https://github.com/Itee">Tristan Valcke</a></li>
-			</ul>
-	</dd>
-	
-
-	
-
-	
-	<dt class="tag-license method-doc-label method-doc-details-label">License:</dt>
-	<dd class="tag-license">
-		<ul class="dummy">
-			<li><a href="https://opensource.org/licenses/BSD-3-Clause">BSD-3-Clause</a></li>
-		</ul>
-	</dd>
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="sources_cores_cores.js.html">sources/cores/cores.js</a>,
-				 <a href="sources_cores_cores.js.html#sunlight-1-line-1">line 1</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-        
-            <h3>Example</h3>
-            
-    <pre class="sunlight-highlight-javascript">const validator = Itee.Validators.Validator
-
- // Using unique function for One registered type
- // Usefull when a simple data structure is used multiple times
- validator.add( &#x27;ColorType&#x27;, color =&gt; {
-
-                const r = color.r
-                if ( color.r === undefined || Itee.Validators.isNotNumber( r ) ) {
-                    return false
-                }
-
-                const g = color.g
-                if ( color.g === undefined || Itee.Validators.isNotNumber( g ) ) {
-                    return false
-                }
-
-                const b = color.b
-                if ( color.b === undefined || Itee.Validators.isNotNumber( b ) ) {
-                    return false
-                }
-
-                return true
-            } )
-
- // Using schema composition
- // Usefull for design validation schema faster and based on previous declared validation types
- validator.add( &#x27;Range_0_255&#x27;, ( value ) =&gt; {
-
-                if ( Itee.Validators.isNotNumber( value ) ) {
-                    return false
-                }
-
-                return !(value &lt;= 0 || value &gt; 255)
-
-            } )
-
- validator.add( &#x27;ColorSchema&#x27;, {
-                r: {
-                    required: true,
-                    type:     &#x27;Range_0_255&#x27;
-                },
-                g: {
-                    required: true,
-                    type:     &#x27;Range_0_255&#x27;
-                },
-                b: {
-                    required: true,
-                    type:     &#x27;Range_0_255&#x27;
-                }
-            } )
-
- validator.add( &#x27;ColorStructure&#x27;, {
-                color_from_type: {
-                    type: &#x27;ColorType&#x27;
-                },
-                col_from_schema: {
-                    type: &#x27;ColorSchema&#x27;
-                },
-                col_from_fn:     {
-                    // Inner function
-	                // Usefull for specific validation requirement that cannot match other previous validation schema or type
-                    fn: function ColorValidator ( color ) {
-
-                        const r = color.r
-                        if ( color.r === undefined || Itee.Validators.isNotNumber( r ) ) {
-                            return false
-                        }
-
-                        const g = color.g
-                        if ( color.g === undefined || Itee.Validators.isNotNumber( g ) ) {
-                            return false
-                        }
-
-                        const b = color.b
-                        if ( color.b === undefined || Itee.Validators.isNotNumber( b ) ) {
-                            return false
-                        }
-
-                        return true
+                        'suite.run()': '//suite.run()'
                     }
-                }
-            } )
-
- // The data to validate
- const colorStruct = {
-                color_from_type: {
-                    r: 0,
-                    g: 1,
-                    b: 2
+                } ),
+                cleanup( {
+                    comments: 'none'
+                } )
+            ],
+            treeshake: {
+                moduleSideEffects:                false,
+                annotations:                      true,
+                correctVarValueBeforeDeclaration: true,
+                propertyReadSideEffects:          false,
+                tryCatchDeoptimization:           true,
+                unknownGlobalSideEffects:         false
+            },
+            output: {
+                indent:  '\t',
+                format:  'iife',
+                name:    'Itee.Benchmarks',
+                globals: {
+                    'benchmark': 'Benchmark'
                 },
-                col_from_schema: {
-                    r: 10,
-                    g: 20,
-                    b: 30
-                },
-                col_from_fn:     {
-                    r: 0,
-                    g: 127,
-                    b: 255
-                }
+                file: `tests/builds/${ packageInfos.name }.benchs.iife.js`
             }
+        },
+        // For Node
+        {
+            input:    `tests/benchmarks/${ packageInfos.name }.benchs.js`,
+            external: [
+                'benchmark',
+                'fs'
+            ],
+            plugins: [
+                replace( {
+                    // Even this variable are not used in this package, we need it because
+                    // they are used in dependency package itee-utils that use them to focus some build stuff
+                    // May be there is a better way to perform this specification than using global comment variable
+                    // that need to be inherited in all children package
+                    defines: {
+                        IS_KEEP_ON_BUILD:     false,
+                        IS_BACKEND_SPECIFIC:  true,
+                        IS_FRONTEND_SPECIFIC: false,
+                    }
+                } ),
+                nodeResolve(),
+                cleanup( {
+                    comments: 'none'
+                } )
+            ],
+            treeshake: true,
+            output:    {
+                indent: '\t',
+                format: 'cjs',
+                file:   `tests/builds/${ packageInfos.name }.benchs.cjs.js`
+            }
+        }
+    ]
 
- // Execute
+}
 
- try {
-
-    if ( validator.check( colorStruct, &#x27;ColorStructure&#x27; ) ) {
-        alert( &#x27;ColorStructure is valid !&#x27; )
-    } else {
-        alert( validator.errors )
-    }
-
-} catch ( err ) {
-    alert( err )
-}</pre>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        <dl>
-            
-<hr>
-<dt class="name" id="~validatorInstance">
-    <h4 id="~validatorInstance"><span class="type-signature">&lt;inner> </span>validatorInstance<span class="type-signature"> :Validator</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        The singleton instance
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Validator</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="sources_cores_cores.js.html">sources/cores/cores.js</a>,
-				 <a href="sources_cores_cores.js.html#sunlight-1-line-311">line 311</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        </dl>
-    
-
-    
-
-    
-
-    
-</article>
-
+module.exports = CreateBenchmarksRollupConfigs
+</pre>
+    </article>
 </section>
+
 
 
 
@@ -389,10 +229,6 @@
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>
