@@ -256,7 +256,6 @@ gulp.task( 'check-bundling-side-effect', async ( done ) => {
 
         const config = {
             input: temporaryFile,
-            //                                external:  [ 'itee-validators' ],
             plugins:   [
                 nodeResolve()
                 //                commonJs()
