@@ -2289,7 +2289,7 @@ this.Itee.Validators = (function (exports) {
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @module sources/physics/temperatues
+	 * @module sources/physics/temperatures
 	 * @desc Export function to validate if a value is a Celsius temperature
 	 * @example
 	 *
@@ -2305,7 +2305,7 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 *
-	 * @param data
+	 * @param data {*}
 	 * @return {boolean}
 	 */
 	function isCelsius ( data ) {
@@ -2314,7 +2314,7 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 *
-	 * @param data
+	 * @param data {*}
 	 * @return {boolean}
 	 */
 	function isNotCelsius ( data ) {
@@ -2325,7 +2325,7 @@ this.Itee.Validators = (function (exports) {
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @module sources/physics/temperatues
+	 * @module sources/physics/temperatures
 	 * @desc Export function to validate if a value is a Fahrenheit temperature
 	 * @example
 	 *
@@ -2341,7 +2341,7 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 *
-	 * @param data
+	 * @param data {*}
 	 * @return {boolean}
 	 */
 	function isFahrenheit ( data ) {
@@ -2350,7 +2350,7 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 *
-	 * @param data
+	 * @param data {*}
 	 * @return {boolean}
 	 */
 	function isNotFahrenheit ( data ) {
@@ -2361,7 +2361,7 @@ this.Itee.Validators = (function (exports) {
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @module sources/physics/temperatues
+	 * @module sources/physics/temperatures
 	 * @desc Export function to validate if a value is a kelvin temperature
 	 * @example
 	 *
@@ -2377,7 +2377,7 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 *
-	 * @param data
+	 * @param data {*}
 	 * @return {boolean}
 	 */
 	function isKelvin ( data ) {
@@ -2386,7 +2386,7 @@ this.Itee.Validators = (function (exports) {
 
 	/**
 	 *
-	 * @param data
+	 * @param data {*}
 	 * @return {boolean}
 	 */
 	function isNotKelvin ( data ) {
@@ -2397,7 +2397,7 @@ this.Itee.Validators = (function (exports) {
 	 * @author [Tristan Valcke]{@link https://github.com/Itee}
 	 * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
 	 *
-	 * @module sources/physics/temperatues
+	 * @module sources/physics/temperatures
 	 * @desc Export function to validate if a value is a temperature
 	 * @example
 	 *

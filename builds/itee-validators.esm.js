@@ -2285,7 +2285,7 @@ const ABSOLUTE_ZERO_FAHRENHEIT = -459.67;
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module sources/physics/temperatues
+ * @module sources/physics/temperatures
  * @desc Export function to validate if a value is a Celsius temperature
  * @example
  *
@@ -2301,7 +2301,7 @@ const ABSOLUTE_ZERO_FAHRENHEIT = -459.67;
 
 /**
  *
- * @param data
+ * @param data {*}
  * @return {boolean}
  */
 function isCelsius ( data ) {
@@ -2310,7 +2310,7 @@ function isCelsius ( data ) {
 
 /**
  *
- * @param data
+ * @param data {*}
  * @return {boolean}
  */
 function isNotCelsius ( data ) {
@@ -2321,7 +2321,7 @@ function isNotCelsius ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module sources/physics/temperatues
+ * @module sources/physics/temperatures
  * @desc Export function to validate if a value is a Fahrenheit temperature
  * @example
  *
@@ -2337,7 +2337,7 @@ function isNotCelsius ( data ) {
 
 /**
  *
- * @param data
+ * @param data {*}
  * @return {boolean}
  */
 function isFahrenheit ( data ) {
@@ -2346,7 +2346,7 @@ function isFahrenheit ( data ) {
 
 /**
  *
- * @param data
+ * @param data {*}
  * @return {boolean}
  */
 function isNotFahrenheit ( data ) {
@@ -2357,7 +2357,7 @@ function isNotFahrenheit ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module sources/physics/temperatues
+ * @module sources/physics/temperatures
  * @desc Export function to validate if a value is a kelvin temperature
  * @example
  *
@@ -2373,7 +2373,7 @@ function isNotFahrenheit ( data ) {
 
 /**
  *
- * @param data
+ * @param data {*}
  * @return {boolean}
  */
 function isKelvin ( data ) {
@@ -2382,7 +2382,7 @@ function isKelvin ( data ) {
 
 /**
  *
- * @param data
+ * @param data {*}
  * @return {boolean}
  */
 function isNotKelvin ( data ) {
@@ -2393,7 +2393,7 @@ function isNotKelvin ( data ) {
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  *
- * @module sources/physics/temperatues
+ * @module sources/physics/temperatures
  * @desc Export function to validate if a value is a temperature
  * @example
  *
