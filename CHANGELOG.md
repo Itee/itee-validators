@@ -1,3 +1,30 @@
+## [5.3.6](https://github.com/Itee/itee-validators/compare/v5.3.5...v5.3.6) (2025-09-04)
+
+
+### Bug Fixes
+
+* **configs:** add missing rollup tests configs updates ([30aff13](https://github.com/Itee/itee-validators/commit/30aff13c7713a24dc342ac08d2ea8bac25b6b0fb))
+* **file-system:** add parameter check ([54211a7](https://github.com/Itee/itee-validators/commit/54211a7bf3ccfe4ea5a283502d46c69e547049d4))
+* **gulpfile:** fix compute-test-bench task ([bffeaba](https://github.com/Itee/itee-validators/commit/bffeabaa9fbd2322d0df1c8c0be8d319b0697bcf))
+* **gulpfile:** fix compute-test-unit task ([a2f36ae](https://github.com/Itee/itee-validators/commit/a2f36ae73f96e2da056b02fed63eebd5d275dc87))
+* **gulpfile:** fix test building system ([f9aeb4f](https://github.com/Itee/itee-validators/commit/f9aeb4fd667c8058cda1629e5ad1c2a31bd91a95))
+* **gulpfile:** fix wrong rollup call in compute-test-bundle-by-source-file-export task ([27afd98](https://github.com/Itee/itee-validators/commit/27afd98dc244bd1eeb3c3cc565fd2a9d178d4cf6))
+* **gulpfile:** remove help task from release pipeline ([b4bfb71](https://github.com/Itee/itee-validators/commit/b4bfb717d9a42eaed877b733d05c94770b5b24c1))
+* **gulpfile:** remove karma broken tasks due to deprecation ([c2146e9](https://github.com/Itee/itee-validators/commit/c2146e94d03754a2f4394851616c3418cd037fa1))
+* **isblockdevicepath:** avoid throw on stat sync fail ([9d4a94d](https://github.com/Itee/itee-validators/commit/9d4a94d7338fab9620f351d26269a15600fc2aa5))
+* **ischaracterdevicepath:** avoid throw on stat sync fail ([61c831f](https://github.com/Itee/itee-validators/commit/61c831f4b398fca78afaffdb4b35e76fbcc0a175))
+* **isdirectorypath:** avoid throw on stat sync fail ([0d6576c](https://github.com/Itee/itee-validators/commit/0d6576c7e0f22603ceaf227589e5760a3587464b))
+* **isemptydirectory:** avoid throw on stat sync fail ([c32ae20](https://github.com/Itee/itee-validators/commit/c32ae2068861647ab0b6192b817c92449f5477a5))
+* **isemptyfile:** avoid throw null or wrong file path ([abe5b70](https://github.com/Itee/itee-validators/commit/abe5b70269eff627164abe1a6f2d4e548f979f6e))
+* **isfifopath:** avoid throw on stat sync fail ([ddc8d2f](https://github.com/Itee/itee-validators/commit/ddc8d2fe1aca46c6373f2f5c4c3998f8fa25463c))
+* **isfilepath:** avoid throw on stat sync fail ([24d2e4f](https://github.com/Itee/itee-validators/commit/24d2e4f231c2c863976b3961ebc331d4ea951c37))
+* **issocketpath:** avoid throw on stat sync fail ([211aa80](https://github.com/Itee/itee-validators/commit/211aa80afb813d9ab93ab6fdf06271202a2d7ae2))
+* **issymboliclinkpath:** add parameter check ([66c7ec0](https://github.com/Itee/itee-validators/commit/66c7ec0b1dbd443bd29ad54acad9a9bc5e543d0d))
+* **issymboliclinkpath:** avoid throw on stat sync fail ([a0e1e17](https://github.com/Itee/itee-validators/commit/a0e1e17e4384648422c75fd193240665e3fd4df9))
+* **istestunitgenerator:** fix eslint error for test purpose ([0e99747](https://github.com/Itee/itee-validators/commit/0e9974778b071a3b2af2d7e8a97d68a4b16eb094))
+* **npmignore:** fix file name ([86579d1](https://github.com/Itee/itee-validators/commit/86579d183b182d4a840c3a71ddd5b4945058afcc))
+* **units:** fix some source file methode parameters types to fix unit test generation ([0fa0951](https://github.com/Itee/itee-validators/commit/0fa09510c990e266d30af807a2fff5218147ce48))
+
 ## [5.3.5](https://github.com/Itee/itee-validators/compare/v5.3.4...v5.3.5) (2022-02-14)
 
 
