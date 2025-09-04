@@ -30,6 +30,15 @@ function CreateBenchmarksRollupConfigs ( /*options*/ ) {
             plugins: [
                 nodeResolve(),
                 replace( {
+                    // Even this variable are not used in this package, we need it because
+                    // they are used in dependency package itee-utils that use them to focus some build stuff
+                    // May be there is a better way to perform this specification than using global comment variable
+                    // that need to be inherited in all children package
+                    defines: {
+                        IS_KEEP_ON_BUILD:     false,
+                        IS_BACKEND_SPECIFIC:  false,
+                        IS_FRONTEND_SPECIFIC: true,
+                    },
                     replaces: {
                         '\tisBlockDevicePathSuite,':            '\t//isBlockDevicePathSuite,',
                         '\tisCharacterDevicePathSuite,':        '\t//isCharacterDevicePathSuite,',
@@ -100,12 +109,23 @@ function CreateBenchmarksRollupConfigs ( /*options*/ ) {
                 'fs'
             ],
             plugins: [
+                replace( {
+                    // Even this variable are not used in this package, we need it because
+                    // they are used in dependency package itee-utils that use them to focus some build stuff
+                    // May be there is a better way to perform this specification than using global comment variable
+                    // that need to be inherited in all children package
+                    defines: {
+                        IS_KEEP_ON_BUILD:     false,
+                        IS_BACKEND_SPECIFIC:  true,
+                        IS_FRONTEND_SPECIFIC: false,
+                    }
+                } ),
                 nodeResolve(),
                 cleanup( {
                     comments: 'none'
                 } )
             ],
-            treeshake: false,
+            treeshake: true,
             output:    {
                 indent: '\t',
                 format: 'cjs',

@@ -432,7 +432,8 @@ gulp.task( 'compute-unit-tests', async ( done ) => {
 
     const filePathsToIgnore = [
         `${ packageInfos.name }.js`,
-        'isTestUnitGenerator.js'
+        'isTestUnitGenerator.js',
+        'cores.js'
     ]
 
     const sourcesFiles = glob.sync( path.join( sourcesDir, '**' ) )
@@ -855,7 +856,8 @@ gulp.task( 'compute-unit-tests', async ( done ) => {
             const template = '' +
                 `import { expect }       from 'chai'` + '\n' +
                 `import { describe, it } from 'mocha'` + '\n' +
-                `import { Testing }      from 'itee-utils'` + '\n' +
+                `import { Testing }      from 'itee-utils/sources/testings/benchmarks'` + '\n' +
+                `//import { Testing }      from 'itee-utils'` + '\n' +
                 `import * as ${ nsName } from '${ importFilePath }'` + '\n' +
                 '\n' +
                 `function ${ unitName } () {` + '\n' +
@@ -1018,7 +1020,8 @@ gulp.task( 'compute-benchmarks', async ( done ) => {
 
     const filePathsToIgnore = [
         `${ packageInfos.name }.js`,
-        'isTestUnitGenerator.js'
+        'isTestUnitGenerator.js',
+        'cores.js'
     ]
 
     const sourcesFiles = glob.sync( path.join( sourcesDir, '**' ) )
@@ -1110,7 +1113,8 @@ gulp.task( 'compute-benchmarks', async ( done ) => {
 
             const template = '' + '\n' +
                 `import Benchmark   from 'benchmark'` + '\n' +
-                `import { Testing } from 'itee-utils'` + '\n' +
+                `import { Testing } from 'itee-utils/sources/testings/benchmarks'` + '\n' +
+                // `import { Testing } from 'itee-utils'` + '\n' +
                 `import * as ${ nsName } from '${ importFilePath }'` + '\n' +
                 '\n' +
                 `${ benchSuites }` +
