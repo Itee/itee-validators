@@ -1,4 +1,4 @@
-console.log('Itee.Validators v5.3.5 - Standalone')
+console.log('Itee.Validators v5.3.6 - Standalone')
 this.Itee = this.Itee || {};
 this.Itee.Validators = (function (exports) {
 	'use strict';
