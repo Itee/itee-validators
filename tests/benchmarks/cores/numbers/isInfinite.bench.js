@@ -1,6 +1,6 @@
 
 import Benchmark   from 'benchmark'
-import { Testing } from 'itee-utils'
+import { Testing } from 'itee-utils/sources/testings/benchmarks'
 import * as isInfiniteNamespace from '../../../../sources/cores/numbers/isInfinite.js'
 
 const isInfiniteSuite = Benchmark.Suite( 'isInfiniteNamespace.isInfinite', Testing.createSuiteOptions() )

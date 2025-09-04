@@ -1,6 +1,6 @@
 
 import Benchmark   from 'benchmark'
-import { Testing } from 'itee-utils'
+import { Testing } from 'itee-utils/sources/testings/benchmarks'
 import * as isNumberNamespace from '../../../../sources/cores/numbers/isNumber.js'
 
 const isNumberSuite = Benchmark.Suite( 'isNumberNamespace.isNumber', Testing.createSuiteOptions() )

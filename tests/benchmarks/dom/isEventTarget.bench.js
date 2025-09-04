@@ -1,6 +1,6 @@
 
 import Benchmark   from 'benchmark'
-import { Testing } from 'itee-utils'
+import { Testing } from 'itee-utils/sources/testings/benchmarks'
 import * as isEventTargetNamespace from '../../../sources/dom/isEventTarget.js'
 
 const isEventTargetSuite = Benchmark.Suite( 'isEventTargetNamespace.isEventTarget', Testing.createSuiteOptions() )

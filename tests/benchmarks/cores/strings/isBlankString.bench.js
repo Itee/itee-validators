@@ -1,6 +1,6 @@
 
 import Benchmark   from 'benchmark'
-import { Testing } from 'itee-utils'
+import { Testing } from 'itee-utils/sources/testings/benchmarks'
 import * as isBlankStringNamespace from '../../../../sources/cores/strings/isBlankString.js'
 
 const isBlankStringSuite = Benchmark.Suite( 'isBlankStringNamespace.isBlankString', Testing.createSuiteOptions() )

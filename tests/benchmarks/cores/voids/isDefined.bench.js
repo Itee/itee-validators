@@ -1,6 +1,6 @@
 
 import Benchmark   from 'benchmark'
-import { Testing } from 'itee-utils'
+import { Testing } from 'itee-utils/sources/testings/benchmarks'
 import * as isDefinedNamespace from '../../../../sources/cores/voids/isDefined.js'
 
 const isDefinedSuite = Benchmark.Suite( 'isDefinedNamespace.isDefined', Testing.createSuiteOptions() )

@@ -1,6 +1,6 @@
 
 import Benchmark   from 'benchmark'
-import { Testing } from 'itee-utils'
+import { Testing } from 'itee-utils/sources/testings/benchmarks'
 import * as isSymbolicLinkPathNamespace from '../../../../sources/file-system/symbolic-links/isSymbolicLinkPath.js'
 
 const isSymbolicLinkPathSuite = Benchmark.Suite( 'isSymbolicLinkPathNamespace.isSymbolicLinkPath', Testing.createSuiteOptions() )

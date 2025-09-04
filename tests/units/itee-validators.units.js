@@ -13,7 +13,6 @@ import { isArrayOfUndefinedUnits }   from './cores/arrays/isArrayOfUndefined.uni
 import { isEmptyArrayUnits }   from './cores/arrays/isEmptyArray.unit.js'
 import { isBooleanUnits }   from './cores/booleans/isBoolean.unit.js'
 import { isTrueUnits }   from './cores/booleans/isTrue.unit.js'
-import { coresUnits }   from './cores/cores.unit.js'
 import { isFunctionUnits }   from './cores/functions/isFunction.unit.js'
 import { isInfiniteUnits }   from './cores/numbers/isInfinite.unit.js'
 import { isMaxUnits }   from './cores/numbers/isMax.unit.js'
@@ -88,7 +87,6 @@ describe( 'Itee#Validators', () => {
     isEmptyArrayUnits.call( root )
     isBooleanUnits.call( root )
     isTrueUnits.call( root )
-    coresUnits.call( root )
     isFunctionUnits.call( root )
     isInfiniteUnits.call( root )
     isMaxUnits.call( root )

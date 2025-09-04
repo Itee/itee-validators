@@ -1,6 +1,6 @@
 
 import Benchmark   from 'benchmark'
-import { Testing } from 'itee-utils'
+import { Testing } from 'itee-utils/sources/testings/benchmarks'
 import * as isArrayOfArrayNamespace from '../../../../sources/cores/arrays/isArrayOfArray.js'
 
 const isArrayOfArraySuite = Benchmark.Suite( 'isArrayOfArrayNamespace.isArrayOfArray', Testing.createSuiteOptions() )

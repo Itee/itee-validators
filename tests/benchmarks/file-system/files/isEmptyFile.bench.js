@@ -1,6 +1,6 @@
 
 import Benchmark   from 'benchmark'
-import { Testing } from 'itee-utils'
+import { Testing } from 'itee-utils/sources/testings/benchmarks'
 import * as isEmptyFileNamespace from '../../../../sources/file-system/files/isEmptyFile.js'
 
 const isEmptyFileSuite = Benchmark.Suite( 'isEmptyFileNamespace.isEmptyFile', Testing.createSuiteOptions() )

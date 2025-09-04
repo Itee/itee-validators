@@ -1,6 +1,6 @@
 
 import Benchmark   from 'benchmark'
-import { Testing } from 'itee-utils'
+import { Testing } from 'itee-utils/sources/testings/benchmarks'
 import * as isFilePathNamespace from '../../../../sources/file-system/files/isFilePath.js'
 
 const isFilePathSuite = Benchmark.Suite( 'isFilePathNamespace.isFilePath', Testing.createSuiteOptions() )

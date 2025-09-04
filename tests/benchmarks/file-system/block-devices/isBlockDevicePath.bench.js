@@ -1,6 +1,6 @@
 
 import Benchmark   from 'benchmark'
-import { Testing } from 'itee-utils'
+import { Testing } from 'itee-utils/sources/testings/benchmarks'
 import * as isBlockDevicePathNamespace from '../../../../sources/file-system/block-devices/isBlockDevicePath.js'
 
 const isBlockDevicePathSuite = Benchmark.Suite( 'isBlockDevicePathNamespace.isBlockDevicePath', Testing.createSuiteOptions() )

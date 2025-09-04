@@ -1,6 +1,6 @@
 
 import Benchmark   from 'benchmark'
-import { Testing } from 'itee-utils'
+import { Testing } from 'itee-utils/sources/testings/benchmarks'
 import * as isZeroNamespace from '../../../../sources/cores/numbers/isZero.js'
 
 const isZeroSuite = Benchmark.Suite( 'isZeroNamespace.isZero', Testing.createSuiteOptions() )

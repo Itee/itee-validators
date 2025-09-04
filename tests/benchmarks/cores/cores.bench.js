@@ -1,6 +1,6 @@
 
 import Benchmark   from 'benchmark'
-import { Testing } from 'itee-utils'
+import { Testing } from 'itee-utils/sources/testings/benchmarks'
 import * as coresNamespace from '../../../sources/cores/cores.js'
 
 const addSuite = Benchmark.Suite( 'coresNamespace.add', Testing.createSuiteOptions() )
