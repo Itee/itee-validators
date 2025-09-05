@@ -1,8 +1,8 @@
 import { expect }       from 'chai'
-import { describe, it } from 'mocha'
-//import { Testing }      from 'itee-utils/sources/testings/benchmarks'
+import { beforeEach, afterEach, describe, it } from 'mocha'
 import { Testing }      from 'itee-utils'
 import * as isInt16ArrayNamespace from '../../../../sources/cores/typed-arrays/isInt16Array.js'
+
 
 function isInt16ArrayUnits () {
 

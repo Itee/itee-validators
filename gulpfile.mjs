@@ -140,7 +140,8 @@ gulp.task( 'clean', () => {
 
     const filesToClean = [
         './builds',
-        './tests/builds',
+        './tests/units',
+        './tests/benchmarks',
         './docs'
     ]
 
@@ -160,8 +161,8 @@ gulp.task( 'lint', () => {
     const filesToLint = [
         'configs/**/*.js',
         'sources/**/*.js',
-        '!tests/**/*.js',
-        '!tests/builds/*.js'
+        'tests/**/*.js',
+        '!tests/**/builds/*.js'
     ]
 
     return gulp.src( filesToLint, { base: './' } )
@@ -864,8 +865,7 @@ gulp.task( 'compute-unit-tests', async ( done ) => {
 
             const template = '' +
                 `import { expect }       from 'chai'` + '\n' +
-                `import { describe, it } from 'mocha'` + '\n' +
-                `//import { Testing }      from 'itee-utils/sources/testings/benchmarks'` + '\n' +
+                `import { beforeEach, afterEach, describe, it } from 'mocha'` + '\n' +
                 `import { Testing }      from 'itee-utils'` + '\n' +
                 `import * as ${ nsName } from '${ importFilePath }'` + '\n' +
                 '\n' +
