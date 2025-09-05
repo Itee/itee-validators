@@ -3,7 +3,6 @@ import { beforeEach, afterEach, describe, it } from 'mocha'
 import { Testing }      from 'itee-utils'
 import * as isArrayOfMultiElementNamespace from '../../../../sources/cores/arrays/isArrayOfMultiElement.js'
 
-
 function isArrayOfMultiElementUnits () {
 
 	beforeEach( () => {

@@ -3,7 +3,6 @@ import { beforeEach, afterEach, describe, it } from 'mocha'
 import { Testing }      from 'itee-utils'
 import * as isEmptyDirectoryNamespace from '../../../../sources/file-system/directories/isEmptyDirectory.js'
 
-
 function isEmptyDirectoryUnits () {
 
 	beforeEach( () => {

@@ -3,7 +3,6 @@ import { beforeEach, afterEach, describe, it } from 'mocha'
 import { Testing }      from 'itee-utils'
 import * as isValidSymbolicLinkPathNamespace from '../../../../sources/file-system/symbolic-links/isValidSymbolicLinkPath.js'
 
-
 function isValidSymbolicLinkPathUnits () {
 
 	beforeEach( () => {

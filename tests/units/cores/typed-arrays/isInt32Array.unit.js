@@ -3,7 +3,6 @@ import { beforeEach, afterEach, describe, it } from 'mocha'
 import { Testing }      from 'itee-utils'
 import * as isInt32ArrayNamespace from '../../../../sources/cores/typed-arrays/isInt32Array.js'
 
-
 function isInt32ArrayUnits () {
 
 	beforeEach( () => {

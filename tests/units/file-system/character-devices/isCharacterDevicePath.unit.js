@@ -3,7 +3,6 @@ import { beforeEach, afterEach, describe, it } from 'mocha'
 import { Testing }      from 'itee-utils'
 import * as isCharacterDevicePathNamespace from '../../../../sources/file-system/character-devices/isCharacterDevicePath.js'
 
-
 function isCharacterDevicePathUnits () {
 
 	beforeEach( () => {

@@ -3,7 +3,6 @@ import { beforeEach, afterEach, describe, it } from 'mocha'
 import { Testing }      from 'itee-utils'
 import * as isMaxNamespace from '../../../../sources/cores/numbers/isMax.js'
 
-
 function isMaxUnits () {
 
 	beforeEach( () => {

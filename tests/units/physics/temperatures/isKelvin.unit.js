@@ -3,7 +3,6 @@ import { beforeEach, afterEach, describe, it } from 'mocha'
 import { Testing }      from 'itee-utils'
 import * as isKelvinNamespace from '../../../../sources/physics/temperatures/isKelvin.js'
 
-
 function isKelvinUnits () {
 
 	beforeEach( () => {

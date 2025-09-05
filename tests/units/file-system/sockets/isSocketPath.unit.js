@@ -3,7 +3,6 @@ import { beforeEach, afterEach, describe, it } from 'mocha'
 import { Testing }      from 'itee-utils'
 import * as isSocketPathNamespace from '../../../../sources/file-system/sockets/isSocketPath.js'
 
-
 function isSocketPathUnits () {
 
 	beforeEach( () => {

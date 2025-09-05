@@ -3,7 +3,6 @@ import { beforeEach, afterEach, describe, it } from 'mocha'
 import { Testing }      from 'itee-utils'
 import * as isSymbolNamespace from '../../../../sources/cores/symbols/isSymbol.js'
 
-
 function isSymbolUnits () {
 
 	beforeEach( () => {

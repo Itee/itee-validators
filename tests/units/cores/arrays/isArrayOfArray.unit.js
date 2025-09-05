@@ -3,7 +3,6 @@ import { beforeEach, afterEach, describe, it } from 'mocha'
 import { Testing }      from 'itee-utils'
 import * as isArrayOfArrayNamespace from '../../../../sources/cores/arrays/isArrayOfArray.js'
 
-
 function isArrayOfArrayUnits () {
 
 	beforeEach( () => {

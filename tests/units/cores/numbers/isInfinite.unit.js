@@ -3,7 +3,6 @@ import { beforeEach, afterEach, describe, it } from 'mocha'
 import { Testing }      from 'itee-utils'
 import * as isInfiniteNamespace from '../../../../sources/cores/numbers/isInfinite.js'
 
-
 function isInfiniteUnits () {
 
 	beforeEach( () => {

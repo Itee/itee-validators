@@ -3,7 +3,6 @@ import { beforeEach, afterEach, describe, it } from 'mocha'
 import { Testing }      from 'itee-utils'
 import * as isNullNamespace from '../../../../sources/cores/voids/isNull.js'
 
-
 function isNullUnits () {
 
 	beforeEach( () => {

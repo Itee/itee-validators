@@ -3,7 +3,6 @@ import { beforeEach, afterEach, describe, it } from 'mocha'
 import { Testing }      from 'itee-utils'
 import * as isBlankStringNamespace from '../../../../sources/cores/strings/isBlankString.js'
 
-
 function isBlankStringUnits () {
 
 	beforeEach( () => {

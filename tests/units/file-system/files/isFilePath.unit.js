@@ -3,7 +3,6 @@ import { beforeEach, afterEach, describe, it } from 'mocha'
 import { Testing }      from 'itee-utils'
 import * as isFilePathNamespace from '../../../../sources/file-system/files/isFilePath.js'
 
-
 function isFilePathUnits () {
 
 	beforeEach( () => {

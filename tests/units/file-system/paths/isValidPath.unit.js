@@ -3,7 +3,6 @@ import { beforeEach, afterEach, describe, it } from 'mocha'
 import { Testing }      from 'itee-utils'
 import * as isValidPathNamespace from '../../../../sources/file-system/paths/isValidPath.js'
 
-
 function isValidPathUnits () {
 
 	beforeEach( () => {

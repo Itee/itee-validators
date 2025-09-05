@@ -3,7 +3,6 @@ import { beforeEach, afterEach, describe, it } from 'mocha'
 import { Testing }      from 'itee-utils'
 import * as isUint16ArrayNamespace from '../../../../sources/cores/typed-arrays/isUint16Array.js'
 
-
 function isUint16ArrayUnits () {
 
 	beforeEach( () => {

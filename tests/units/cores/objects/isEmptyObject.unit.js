@@ -3,7 +3,6 @@ import { beforeEach, afterEach, describe, it } from 'mocha'
 import { Testing }      from 'itee-utils'
 import * as isEmptyObjectNamespace from '../../../../sources/cores/objects/isEmptyObject.js'
 
-
 function isEmptyObjectUnits () {
 
 	beforeEach( () => {

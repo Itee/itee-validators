@@ -3,7 +3,6 @@ import { beforeEach, afterEach, describe, it } from 'mocha'
 import { Testing }      from 'itee-utils'
 import * as isZeroNamespace from '../../../../sources/cores/numbers/isZero.js'
 
-
 function isZeroUnits () {
 
 	beforeEach( () => {

@@ -3,7 +3,6 @@ import { beforeEach, afterEach, describe, it } from 'mocha'
 import { Testing }      from 'itee-utils'
 import * as isMinNamespace from '../../../../sources/cores/numbers/isMin.js'
 
-
 function isMinUnits () {
 
 	beforeEach( () => {
