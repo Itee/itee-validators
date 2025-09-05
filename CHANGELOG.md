@@ -1,3 +1,10 @@
+## [5.3.8](https://github.com/Itee/itee-validators/compare/v5.3.7...v5.3.8) (2025-09-05)
+
+
+### Bug Fixes
+
+* **gulpfile:** fix some tests generation and regenerate them ([f55d066](https://github.com/Itee/itee-validators/commit/f55d066b6616449929d5f75ea1b493334dd05047))
+
 ## [5.3.7](https://github.com/Itee/itee-validators/compare/v5.3.6...v5.3.7) (2025-09-04)
 
 
