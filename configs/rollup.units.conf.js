@@ -21,6 +21,29 @@ function CreateUnitsRollupConfigs ( /*options*/ ) {
     'use strict'
 
     return [
+        // For Node
+        {
+            input:    `tests/units/${ packageInfos.name }.units.js`,
+            external: [ 'itee-utils', 'mocha', 'chai', 'fs' ],
+            plugins:  [
+                replace( {
+                    replaces: {
+                        'coresUnits.call': '//coresUnits.call',
+
+                        'isEventTargetUnits.call': '//isEventTargetUnits.call',
+                    }
+                } ),
+                cleanup( {
+                    comments: 'none'
+                } )
+            ],
+            treeshake: true,
+            output:    {
+                indent: '\t',
+                format: 'cjs',
+                file:   `tests/units/builds/${ packageInfos.name }.units.cjs.js`
+            }
+        },
         // For Karma
         {
             input:    `tests/units/${ packageInfos.name }.units.js`,
@@ -66,32 +89,9 @@ function CreateUnitsRollupConfigs ( /*options*/ ) {
                     'mocha': 'Mocha',
                     'chai':  'chai'
                 },
-                file: `tests/builds/${ packageInfos.name }.units.iife.js`
+                file: `tests/units/builds/${ packageInfos.name }.units.iife.js`
             }
         },
-        // For node
-        {
-            input:    `tests/units/${ packageInfos.name }.units.js`,
-            external: [ 'itee-utils', 'mocha', 'chai', 'fs' ],
-            plugins:  [
-                replace( {
-                    replaces: {
-                        'coresUnits.call': '//coresUnits.call',
-
-                        'isEventTargetUnits.call': '//isEventTargetUnits.call',
-                    }
-                } ),
-                cleanup( {
-                    comments: 'none'
-                } )
-            ],
-            treeshake: true,
-            output:    {
-                indent: '\t',
-                format: 'cjs',
-                file:   `tests/builds/${ packageInfos.name }.units.cjs.js`
-            }
-        }
     ]
 
 }

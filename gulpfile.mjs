@@ -72,6 +72,8 @@ const packageInfos = JSON.parse( fs.readFileSync(
     new URL( './package.json', import.meta.url )
 ) )
 
+//---------
+
 /**
  * @method npm run help ( default )
  * @global
@@ -114,6 +116,8 @@ gulp.task( 'help', ( done ) => {
     done()
 } )
 
+//---------
+
 /**
  * @method npm run patch
  * @global
@@ -125,6 +129,8 @@ gulp.task( 'patch', ( done ) => {
 
 } )
 
+//---------
+
 /**
  * @method npm run clean
  * @global
@@ -134,13 +140,16 @@ gulp.task( 'clean', () => {
 
     const filesToClean = [
         './builds',
-        './tests/builds',
+        './tests/units',
+        './tests/benchmarks',
         './docs'
     ]
 
     return deleteAsync( filesToClean )
 
 } )
+
+//---------
 
 /**
  * @method npm run lint
@@ -152,8 +161,8 @@ gulp.task( 'lint', () => {
     const filesToLint = [
         'configs/**/*.js',
         'sources/**/*.js',
-        '!tests/**/*.js',
-        '!tests/builds/*.js'
+        'tests/**/*.js',
+        '!tests/**/builds/*.js'
     ]
 
     return gulp.src( filesToLint, { base: './' } )
@@ -174,6 +183,8 @@ gulp.task( 'lint', () => {
                .pipe( eslint.failAfterError() )
 
 } )
+
+//---------
 
 /**
  * @method npm run doc
@@ -196,7 +207,7 @@ gulp.task( 'doc', ( done ) => {
 
 } )
 
-// TESTING
+//---------
 
 /**
  * @description In view to detect bundling side effects this task will
@@ -854,8 +865,7 @@ gulp.task( 'compute-unit-tests', async ( done ) => {
 
             const template = '' +
                 `import { expect }       from 'chai'` + '\n' +
-                `import { describe, it } from 'mocha'` + '\n' +
-                `//import { Testing }      from 'itee-utils/sources/testings/benchmarks'` + '\n' +
+                `import { beforeEach, afterEach, describe, it } from 'mocha'` + '\n' +
                 `import { Testing }      from 'itee-utils'` + '\n' +
                 `import * as ${ nsName } from '${ importFilePath }'` + '\n' +
                 '\n' +
@@ -1164,13 +1174,15 @@ gulp.task( 'build-benchmarks', gulp.series( 'compute-benchmarks', 'bundle-benchm
  */
 gulp.task( 'build-tests', gulp.series( 'check-bundling', 'build-unit-tests', 'build-benchmarks' ) )
 
+//---------
+
 /**
  * @description Will run unit tests with node
  */
 gulp.task( 'run-unit-tests-for-node', ( done ) => {
 
     const mochaPath = path.join( __dirname, 'node_modules/mocha/bin/mocha' )
-    const testsPath = path.join( __dirname, `tests/builds/${ packageInfos.name }.units.cjs.js` )
+    const testsPath = path.join( __dirname, `tests/units/builds/${ packageInfos.name }.units.cjs.js` )
     const mocha     = childProcess.spawn( 'node', [ mochaPath, testsPath ], { stdio: 'inherit' } )
     mocha.on( 'close', ( code ) => {
 
@@ -1213,7 +1225,7 @@ gulp.task( 'run-unit-tests', gulp.series( 'run-unit-tests-for-node'/*, 'run-unit
  */
 gulp.task( 'run-benchmarks-for-node', ( done ) => {
 
-    const benchsPath = path.join( __dirname, `tests/builds/${ packageInfos.name }.benchs.cjs.js` )
+    const benchsPath = path.join( __dirname, `tests/benchmarks/builds/${ packageInfos.name }.benchs.cjs.js` )
     const benchmark  = childProcess.spawn( 'node', [ benchsPath ], { stdio: 'inherit' } )
     benchmark.on( 'close', ( code ) => {
 
@@ -1257,6 +1269,8 @@ gulp.task( 'run-benchmarks', gulp.series( 'run-benchmarks-for-node'/*, 'run-benc
  * @description Will run unit tests and benchmarks for node (backend) and karma (frontend) environments
  */
 gulp.task( 'test', gulp.series( 'run-unit-tests', 'run-benchmarks' ) )
+
+//---------
 
 /**
  * @method npm run build
@@ -1318,6 +1332,8 @@ gulp.task( 'build', ( done ) => {
     }
 
 } )
+
+//---------
 
 /**
  * @method npm run release

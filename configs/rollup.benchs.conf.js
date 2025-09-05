@@ -21,6 +21,37 @@ function CreateBenchmarksRollupConfigs ( /*options*/ ) {
     'use strict'
 
     return [
+        // For Node
+        {
+            input:    `tests/benchmarks/${ packageInfos.name }.benchs.js`,
+            external: [
+                'benchmark',
+                'fs'
+            ],
+            plugins: [
+                replace( {
+                    // Even this variable are not used in this package, we need it because
+                    // they are used in dependency package itee-utils that use them to focus some build stuff
+                    // May be there is a better way to perform this specification than using global comment variable
+                    // that need to be inherited in all children package
+                    defines: {
+                        IS_KEEP_ON_BUILD:     false,
+                        IS_BACKEND_SPECIFIC:  true,
+                        IS_FRONTEND_SPECIFIC: false,
+                    }
+                } ),
+                nodeResolve(),
+                cleanup( {
+                    comments: 'none'
+                } )
+            ],
+            treeshake: true,
+            output:    {
+                indent: '\t',
+                format: 'cjs',
+                file:   `tests/benchmarks/builds/${ packageInfos.name }.benchs.cjs.js`
+            }
+        },
         // For Karma
         {
             input:    `tests/benchmarks/${ packageInfos.name }.benchs.js`,
@@ -98,40 +129,9 @@ function CreateBenchmarksRollupConfigs ( /*options*/ ) {
                 globals: {
                     'benchmark': 'Benchmark'
                 },
-                file: `tests/builds/${ packageInfos.name }.benchs.iife.js`
+                file: `tests/benchmarks/builds/${ packageInfos.name }.benchs.iife.js`
             }
         },
-        // For Node
-        {
-            input:    `tests/benchmarks/${ packageInfos.name }.benchs.js`,
-            external: [
-                'benchmark',
-                'fs'
-            ],
-            plugins: [
-                replace( {
-                    // Even this variable are not used in this package, we need it because
-                    // they are used in dependency package itee-utils that use them to focus some build stuff
-                    // May be there is a better way to perform this specification than using global comment variable
-                    // that need to be inherited in all children package
-                    defines: {
-                        IS_KEEP_ON_BUILD:     false,
-                        IS_BACKEND_SPECIFIC:  true,
-                        IS_FRONTEND_SPECIFIC: false,
-                    }
-                } ),
-                nodeResolve(),
-                cleanup( {
-                    comments: 'none'
-                } )
-            ],
-            treeshake: true,
-            output:    {
-                indent: '\t',
-                format: 'cjs',
-                file:   `tests/builds/${ packageInfos.name }.benchs.cjs.js`
-            }
-        }
     ]
 
 }
