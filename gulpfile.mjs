@@ -72,6 +72,8 @@ const packageInfos = JSON.parse( fs.readFileSync(
     new URL( './package.json', import.meta.url )
 ) )
 
+//---------
+
 /**
  * @method npm run help ( default )
  * @global
@@ -114,6 +116,8 @@ gulp.task( 'help', ( done ) => {
     done()
 } )
 
+//---------
+
 /**
  * @method npm run patch
  * @global
@@ -124,6 +128,8 @@ gulp.task( 'patch', ( done ) => {
     done()
 
 } )
+
+//---------
 
 /**
  * @method npm run clean
@@ -141,6 +147,8 @@ gulp.task( 'clean', () => {
     return deleteAsync( filesToClean )
 
 } )
+
+//---------
 
 /**
  * @method npm run lint
@@ -175,6 +183,8 @@ gulp.task( 'lint', () => {
 
 } )
 
+//---------
+
 /**
  * @method npm run doc
  * @global
@@ -196,7 +206,7 @@ gulp.task( 'doc', ( done ) => {
 
 } )
 
-// TESTING
+//---------
 
 /**
  * @description In view to detect bundling side effects this task will
@@ -1164,6 +1174,8 @@ gulp.task( 'build-benchmarks', gulp.series( 'compute-benchmarks', 'bundle-benchm
  */
 gulp.task( 'build-tests', gulp.series( 'check-bundling', 'build-unit-tests', 'build-benchmarks' ) )
 
+//---------
+
 /**
  * @description Will run unit tests with node
  */
@@ -1258,6 +1270,8 @@ gulp.task( 'run-benchmarks', gulp.series( 'run-benchmarks-for-node'/*, 'run-benc
  */
 gulp.task( 'test', gulp.series( 'run-unit-tests', 'run-benchmarks' ) )
 
+//---------
+
 /**
  * @method npm run build
  * @global
@@ -1318,6 +1332,8 @@ gulp.task( 'build', ( done ) => {
     }
 
 } )
+
+//---------
 
 /**
  * @method npm run release
