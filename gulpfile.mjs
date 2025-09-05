@@ -1170,7 +1170,7 @@ gulp.task( 'build-tests', gulp.series( 'check-bundling', 'build-unit-tests', 'bu
 gulp.task( 'run-unit-tests-for-node', ( done ) => {
 
     const mochaPath = path.join( __dirname, 'node_modules/mocha/bin/mocha' )
-    const testsPath = path.join( __dirname, `tests/builds/${ packageInfos.name }.units.cjs.js` )
+    const testsPath = path.join( __dirname, `tests/units/builds/${ packageInfos.name }.units.cjs.js` )
     const mocha     = childProcess.spawn( 'node', [ mochaPath, testsPath ], { stdio: 'inherit' } )
     mocha.on( 'close', ( code ) => {
 
@@ -1213,7 +1213,7 @@ gulp.task( 'run-unit-tests', gulp.series( 'run-unit-tests-for-node'/*, 'run-unit
  */
 gulp.task( 'run-benchmarks-for-node', ( done ) => {
 
-    const benchsPath = path.join( __dirname, `tests/builds/${ packageInfos.name }.benchs.cjs.js` )
+    const benchsPath = path.join( __dirname, `tests/benchmarks/builds/${ packageInfos.name }.benchs.cjs.js` )
     const benchmark  = childProcess.spawn( 'node', [ benchsPath ], { stdio: 'inherit' } )
     benchmark.on( 'close', ( code ) => {
 

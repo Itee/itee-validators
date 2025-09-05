@@ -27,7 +27,7 @@ function CreateKarmaBenchmarkConfiguration ( config ) {
 
         // list of files / patterns to load in the browser
         files: [
-            `builds/${ packageInfos.name }.benchs.iife.js`
+            `benchmarks/builds/${ packageInfos.name }.benchs.iife.js`
         ],
 
         // list of files to exclude
