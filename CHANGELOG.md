@@ -1,3 +1,10 @@
+## [5.3.9](https://github.com/Itee/itee-validators/compare/v5.3.8...v5.3.9) (2025-09-07)
+
+
+### Bug Fixes
+
+* **npm:** apply npm audit fix ([2356b3e](https://github.com/Itee/itee-validators/commit/2356b3e20708033fdee1b43a1cb56db543f32165))
+
 ## [5.3.8](https://github.com/Itee/itee-validators/compare/v5.3.7...v5.3.8) (2025-09-05)
 
 
