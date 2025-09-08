@@ -114,6 +114,7 @@ gulp.task( 'help', ( done ) => {
     log( '' )
 
     done()
+
 } )
 
 //---------
@@ -378,10 +379,10 @@ gulp.task( 'check-bundling-by-source-file-export', async ( done ) => {
                 } )
             ],
             onwarn:    ( {
-                             loc,
-                             frame,
-                             message
-                         } ) => {
+                loc,
+                frame,
+                message
+            } ) => {
 
                 // Ignore some errors
                 if ( message.includes( 'Circular dependency' ) ) { return }
@@ -440,6 +441,8 @@ gulp.task( 'compute-unit-tests', async ( done ) => {
     const testsDir   = path.join( basePath, 'tests' )
     const unitsDir   = path.join( testsDir, 'units' )
 
+    fs.mkdirSync( unitsDir, { recursive: true } )
+
     const filePathsToIgnore = [
         `${ packageInfos.name }.js`,
         'isTestUnitGenerator.js',
@@ -476,9 +479,46 @@ gulp.task( 'compute-unit-tests', async ( done ) => {
 
             const jsdocPath   = path.join(basePath, '/node_modules/jsdoc/jsdoc.js')
             const jsdocOutput = childProcess.execFileSync( 'node', [ jsdocPath, '-X', sourceFile ] ).toString()
-            const jsonData    = JSON.parse( jsdocOutput ).filter( data => {
-                return ( data.kind === 'function' && !data.undocumented )
-            } )
+
+            const classNames    = []
+            const usedLongnames = []
+            const jsonData      = JSON.parse(jsdocOutput).filter(data => {
+
+                const longName = data.longname
+
+                const kind = data.kind
+                if (kind !== 'function') {
+                    if (kind === 'class' && !classNames.includes(longName)) {
+                        classNames.push(longName)
+                    }
+                    return false
+                }
+
+                const undocumented = data.undocumented
+                if (undocumented) {
+                    return false
+                }
+
+                const scope = data.scope
+                if (!['global', 'static'].includes(scope)) {
+                    return false
+                }
+
+                if (longName.includes(' ') || longName.includes('~') || usedLongnames.includes(longName)) {
+                    return false
+                }
+
+                for(let className of classNames) {
+                    if(longName.includes(className)) {
+                        return false
+                    }
+                }
+
+                usedLongnames.push(longName)
+
+                return true
+
+            })
 
             if ( jsonData.length === 0 ) {
                 log( yellow( `No usable exports found in [${ sourceFile }]. Ignore it !` ) )
@@ -937,6 +977,8 @@ gulp.task( 'compute-unit-tests', async ( done ) => {
         '} )' + '\n'
 
     const unitsFilePath = path.join( unitsDir, `${ packageInfos.name }.units.js` )
+
+    log( green( `Create ${ unitsFilePath }` ) )
     fs.writeFileSync( unitsFilePath, unitsTemplate )
 
     done()
@@ -984,6 +1026,8 @@ gulp.task( 'compute-benchmarks', async ( done ) => {
     const testsDir   = path.join( basePath, 'tests' )
     const benchsDir  = path.join( testsDir, 'benchmarks' )
 
+    fs.mkdirSync( benchsDir, { recursive: true } )
+
     const filePathsToIgnore = [
         `${ packageInfos.name }.js`,
         'isTestUnitGenerator.js',
@@ -1020,19 +1064,45 @@ gulp.task( 'compute-benchmarks', async ( done ) => {
             const jsdocPath   = path.join(basePath, '/node_modules/jsdoc/jsdoc.js')
             const jsdocOutput = childProcess.execFileSync( 'node', [ jsdocPath, '-X', sourceFile ] ).toString()
 
+            const classNames    = []
             const usedLongnames = []
-            const jsonData    = JSON.parse( jsdocOutput ).filter( data => {
+            const jsonData      = JSON.parse(jsdocOutput).filter(data => {
 
-                if( data.kind !== 'function' ) {
+                const longName = data.longname
+
+                const kind = data.kind
+                if (kind !== 'function') {
+                    if (kind === 'class' && !classNames.includes(longName)) {
+                        classNames.push(longName)
+                    }
                     return false
-                } else if(usedLongnames.includes(data.longname)) {
-                    return false
-                } else {
-                    usedLongnames.push(data.longname)
-                    return true
                 }
 
-            } )
+                const undocumented = data.undocumented
+                if (undocumented) {
+                    return false
+                }
+
+                const scope = data.scope
+                if (!['global', 'static'].includes(scope)) {
+                    return false
+                }
+
+                if (longName.includes(' ') || longName.includes('~') || usedLongnames.includes(longName)) {
+                    return false
+                }
+
+                for(let className of classNames) {
+                    if(longName.includes(className)) {
+                        return false
+                    }
+                }
+
+                usedLongnames.push(longName)
+
+                return true
+
+            })
 
             if ( jsonData.length === 0 ) {
                 log( yellow( `No usable exports found in [${ sourceFile }]. Ignore it !` ) )
@@ -1079,8 +1149,7 @@ gulp.task( 'compute-benchmarks', async ( done ) => {
 
             const template = '' + '\n' +
                 `import Benchmark   from 'benchmark'` + '\n' +
-                `import { Testing } from 'itee-utils/sources/testings/benchmarks'` + '\n' +
-                // `import { Testing } from 'itee-utils'` + '\n' +
+                `import { Testing }      from 'itee-utils'` + '\n' +
                 `import * as ${ nsName } from '${ importFilePath }'` + '\n' +
                 '\n' +
                 `${ benchSuites }` +
@@ -1130,6 +1199,8 @@ gulp.task( 'compute-benchmarks', async ( done ) => {
         `}` + '\n'
 
     const benchsFilePath = path.join( benchsDir, `${ packageInfos.name }.benchs.js` )
+
+    log( green( `Create ${ benchsFilePath }` ) )
     fs.writeFileSync( benchsFilePath, benchsTemplate )
 
     done()
