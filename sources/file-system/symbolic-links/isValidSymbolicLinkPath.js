@@ -25,7 +25,7 @@ import { isSymbolicLinkPath } from './isSymbolicLinkPath'
  * @param data {*} The data to check against the symbolic link path type
  * @returns {boolean} true if data is a valid symbolic link path, false otherwise
  */
-export function isValidSymbolicLinkPath ( data ) {
+export function isValidSymbolicLinkPath( data ) {
     return ( isValidPath( data ) && isSymbolicLinkPath( data ) )
 }
 
@@ -35,6 +35,6 @@ export function isValidSymbolicLinkPath ( data ) {
  * @param data {*} The data to check against the symbolic link path type
  * @returns {boolean} true if data is an invalid symbolic link path, false otherwise
  */
-export function isInvalidSymbolicLinkPath ( data ) {
+export function isInvalidSymbolicLinkPath( data ) {
     return !isValidSymbolicLinkPath( data )
 }

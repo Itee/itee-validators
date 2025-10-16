@@ -22,7 +22,7 @@
  * @param data {*} The data to check against the unsigned int 8 array  type
  * @returns {boolean} true if data is a unsigned int 8 array , false otherwise.
  */
-export function isUint8Array ( data ) {
+export function isUint8Array( data ) {
     return ( data instanceof Uint8Array )
 }
 
@@ -32,6 +32,6 @@ export function isUint8Array ( data ) {
  * @param data {*} The data to check against the unsigned int 8 array  type
  * @returns {boolean} true if data is not a unsigned int 8 array , false otherwise.
  */
-export function isNotUint8Array ( data ) {
+export function isNotUint8Array( data ) {
     return !isUint8Array( data )
 }

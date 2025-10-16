@@ -24,7 +24,7 @@ import { isNotArray } from './isArray'
  * @param data {*} The data to check against the single valued array
  * @returns {boolean} true if data is an array with a single value, false otherwise
  */
-export function isArrayOfSingleElement ( data ) {
+export function isArrayOfSingleElement( data ) {
 
     if ( isNotArray( data ) ) { return false }
 

@@ -25,7 +25,7 @@ import { isBlockDevicePath } from './isBlockDevicePath'
  * @param data {*} The data to check against the block device path type
  * @returns {boolean} true if data is a valid block device path, false otherwise
  */
-export function isValidBlockDevicePath ( data ) {
+export function isValidBlockDevicePath( data ) {
     return ( isValidPath( data ) && isBlockDevicePath( data ) )
 }
 
@@ -35,6 +35,6 @@ export function isValidBlockDevicePath ( data ) {
  * @param data {*} The data to check against the block device path type
  * @returns {boolean} true if data is an invalid block device path, false otherwise
  */
-export function isInvalidBlockDevicePath ( data ) {
+export function isInvalidBlockDevicePath( data ) {
     return !isValidBlockDevicePath( data )
 }

@@ -20,8 +20,8 @@
  */
 
 import { statSync }    from 'fs'
-import { isDefined } from '../../cores/voids/isDefined'
-import {isNotString} from '../../cores/strings/isString';
+import { isDefined }   from '../../cores/voids/isDefined'
+import { isNotString } from '../../cores/strings/isString'
 
 /**
  * Check if given path is a character device path
@@ -29,13 +29,13 @@ import {isNotString} from '../../cores/strings/isString';
  * @param path {string|Buffer|URL} The data to check against the character device path type
  * @returns {boolean} true if path is a character device path, false otherwise
  */
-export function isCharacterDevicePath ( path ) {
-    if( isNotString(path) && !(path instanceof Buffer) && !(path instanceof URL) ) {
-        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+export function isCharacterDevicePath( path ) {
+    if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
+        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
     const stat = statSync( path, { throwIfNoEntry: false } )
-    return isDefined(stat) && stat.isCharacterDevice()
+    return isDefined( stat ) && stat.isCharacterDevice()
 }
 
 /**
@@ -44,6 +44,6 @@ export function isCharacterDevicePath ( path ) {
  * @param path {string|Buffer|URL} The data to check against the character device path type
  * @returns {boolean} true if path is not a character device path, false otherwise
  */
-export function isNotCharacterDevicePath ( path ) {
+export function isNotCharacterDevicePath( path ) {
     return !isCharacterDevicePath( path )
 }

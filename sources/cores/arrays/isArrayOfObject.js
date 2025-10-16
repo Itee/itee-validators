@@ -26,7 +26,7 @@ import { isEmptyArray } from './isEmptyArray'
  * @param data {*} The data to check against the array of object type
  * @returns {boolean} true if data is an array where all values are of object type, false otherwise
  */
-export function isArrayOfObject ( data ) {
+export function isArrayOfObject( data ) {
 
     if ( isNotArray( data ) ) { return false }
     if ( isEmptyArray( data ) ) { return false }
@@ -47,7 +47,7 @@ export function isArrayOfObject ( data ) {
  * @param data {*} The data to check against the array of object type
  * @returns {boolean} true if data is not an array where all values are of object type, false otherwise
  */
-export function isNotArrayOfObject ( data ) {
+export function isNotArrayOfObject( data ) {
 
     if ( isNotArray( data ) ) { return true }
     if ( isEmptyArray( data ) ) { return true }

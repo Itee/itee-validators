@@ -22,7 +22,7 @@
  * @param data {*} The data to check against the int 8 array  type
  * @returns {boolean} true if data is a int 8 array , false otherwise.
  */
-export function isInt8Array ( data ) {
+export function isInt8Array( data ) {
     return ( data instanceof Int8Array )
 }
 
@@ -32,6 +32,6 @@ export function isInt8Array ( data ) {
  * @param data {*} The data to check against the int 8 array  type
  * @returns {boolean} true if data is not a int 8 array , false otherwise.
  */
-export function isNotInt8Array ( data ) {
+export function isNotInt8Array( data ) {
     return !isInt8Array( data )
 }

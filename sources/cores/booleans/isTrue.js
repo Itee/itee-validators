@@ -24,7 +24,7 @@ import { isBoolean } from './isBoolean'
  * @param data {*} The data to check against true value
  * @returns {boolean} true if data is a boolean set to true, false otherwise.
  */
-export function isTrue ( data ) {
+export function isTrue( data ) {
     return ( isBoolean( data ) && ( data === true ) )
 }
 
@@ -34,6 +34,6 @@ export function isTrue ( data ) {
  * @param data {*} The data to check against false value
  * @returns {boolean} true if data is a boolean set to false, false otherwise.
  */
-export function isFalse ( data ) {
+export function isFalse( data ) {
     return ( isBoolean( data ) && ( data === false ) )
 }

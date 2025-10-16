@@ -22,13 +22,13 @@
  * @param data {*} The data to check against the nullity
  * @returns {boolean} true if data is null, false otherwise.
  */
-export function isNull ( data ) {
+export function isNull( data ) {
     return ( data === null )
 }
 
 // #if IS_REMOVE_ON_BUILD
 
-export function isNull_0 ( value ) {
+export function isNull_0( value ) {
     return Object.is( value, null )
 }
 
@@ -40,6 +40,6 @@ export function isNull_0 ( value ) {
  * @param data {*} The data to check against the nullity
  * @returns {boolean} true if data is not null, false otherwise.
  */
-export function isNotNull ( data ) {
+export function isNotNull( data ) {
     return ( data !== null )
 }

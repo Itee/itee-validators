@@ -6,7 +6,7 @@
 /**
  * This is noParamNoReturn
  */
-function noParamNoReturn () {
+function noParamNoReturn() {
     // eslint-disable-next-line no-console
     console.log( 'Hello' )
 }
@@ -15,7 +15,7 @@ function noParamNoReturn () {
  *
  * @returns {number} The response to life
  */
-function noParamOneReturn () {
+function noParamOneReturn() {
     return 42
 }
 
@@ -23,7 +23,7 @@ function noParamOneReturn () {
  *
  * @returns {string|number}
  */
-function noParamTwoReturn () {
+function noParamTwoReturn() {
     return ( Math.random() >= 0.5 ) ? 'The response to life is' : 42
 }
 
@@ -31,7 +31,7 @@ function noParamTwoReturn () {
  *
  * @param {string} paramA
  */
-function oneParamNoReturn ( paramA = '' ) {
+function oneParamNoReturn( paramA = '' ) {
     // eslint-disable-next-line no-console
     console.log( paramA )
 }
@@ -41,7 +41,7 @@ function oneParamNoReturn ( paramA = '' ) {
  * @param {number} theParam What add to the response of life
  * @returns {boolean} Your response to life is correct
  */
-function oneParamOneReturn ( theParam = 0 ) {
+function oneParamOneReturn( theParam = 0 ) {
     return ( 42 === theParam )
 }
 
@@ -50,7 +50,7 @@ function oneParamOneReturn ( theParam = 0 ) {
  * @param {number} paramA
  * @returns {null|number}
  */
-function oneParamTwoReturn ( paramA = 0 ) {
+function oneParamTwoReturn( paramA = 0 ) {
     if ( paramA === 0 ) {
         return null
     } else {
@@ -63,7 +63,7 @@ function oneParamTwoReturn ( paramA = 0 ) {
  * @param {string} paramA
  * @param {number} paramB
  */
-function twoParamNoReturn ( paramA = '', paramB = 123 ) {
+function twoParamNoReturn( paramA = '', paramB = 123 ) {
     // eslint-disable-next-line no-console
     console.log( `${ paramA }:${ paramB }` )
 }
@@ -74,7 +74,7 @@ function twoParamNoReturn ( paramA = '', paramB = 123 ) {
  * @param {number} paramB
  * @returns {string}
  */
-function twoParamOneReturn ( paramA = '', paramB = 123 ) {
+function twoParamOneReturn( paramA = '', paramB = 123 ) {
     return `${ paramA }:${ paramB }`
 }
 
@@ -84,7 +84,7 @@ function twoParamOneReturn ( paramA = '', paramB = 123 ) {
  * @param {string} paramB
  * @returns {string|number}
  */
-function twoParamTwoReturn ( paramA = 0, paramB = '' ) {
+function twoParamTwoReturn( paramA = 0, paramB = '' ) {
     if ( paramA === 0 ) {
         return paramB
     } else {
@@ -97,7 +97,7 @@ function twoParamTwoReturn ( paramA = 0, paramB = '' ) {
  * @param {*} any
  * @returns {boolean}
  */
-function anyParamOneReturn ( any ) {
+function anyParamOneReturn( any ) {
     return any != null
 }
 

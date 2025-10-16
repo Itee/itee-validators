@@ -22,7 +22,7 @@
  * @param data {*} The data to check against the positive maximum state
  * @returns {boolean} true if data is positive maximum, false otherwise
  */
-export function isMaxPositive ( data ) {
+export function isMaxPositive( data ) {
     return ( data === Number.MAX_VALUE )
 }
 
@@ -32,6 +32,6 @@ export function isMaxPositive ( data ) {
  * @param data {*} The data to check against the maximum infinite state
  * @returns {boolean} true if data is negative maximum, false otherwise
  */
-export function isMaxNegative ( data ) {
+export function isMaxNegative( data ) {
     return ( data === -Number.MAX_VALUE )
 }

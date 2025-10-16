@@ -24,7 +24,7 @@ import { isNotString } from './isString'
  * @param data {*} The data to check against the emptiness of the string
  * @returns {boolean} true if data is an empty string, false otherwise.
  */
-export function isEmptyString ( data ) {
+export function isEmptyString( data ) {
 
     if ( isNotString( data ) ) {
         return false
@@ -40,7 +40,7 @@ export function isEmptyString ( data ) {
  * @param data {*} The data to check against the emptiness of the string
  * @returns {boolean} true if data is not an empty string, false otherwise.
  */
-export function isNotEmptyString ( data ) {
+export function isNotEmptyString( data ) {
 
     return !( isEmptyString( data ) )
 

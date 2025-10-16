@@ -26,7 +26,7 @@ import { isEmptyArray } from './isEmptyArray'
  * @param data {*} The data to check against the array of numbers
  * @returns {boolean} true if data is not an empty array where all values are numbers, false otherwise
  */
-export function isArrayOfNumber ( data ) {
+export function isArrayOfNumber( data ) {
 
     if ( isNotArray( data ) ) { return false }
     if ( isEmptyArray( data ) ) { return false }
@@ -47,7 +47,7 @@ export function isArrayOfNumber ( data ) {
  * @param data {*} The data to check against the array of numbers
  * @returns {boolean} true if data is not an empty array where all values are not numbers, false otherwise
  */
-export function isNotArrayOfNumber ( data ) {
+export function isNotArrayOfNumber( data ) {
 
     if ( isNotArray( data ) ) { return true }
     if ( isEmptyArray( data ) ) { return true }

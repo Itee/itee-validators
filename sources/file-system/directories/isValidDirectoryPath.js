@@ -25,7 +25,7 @@ import { isDirectoryPath } from './isDirectoryPath'
  * @param data {*} The data to check against the directory path type
  * @returns {boolean} true if data is a valid directory path, false otherwise
  */
-export function isValidDirectoryPath ( data ) {
+export function isValidDirectoryPath( data ) {
     return ( isValidPath( data ) && isDirectoryPath( data ) )
 }
 
@@ -35,6 +35,6 @@ export function isValidDirectoryPath ( data ) {
  * @param data {*} The data to check against the directory path type
  * @returns {boolean} true if data is an invalid directory path, false otherwise
  */
-export function isInvalidDirectoryPath ( data ) {
+export function isInvalidDirectoryPath( data ) {
     return !isValidDirectoryPath( data )
 }

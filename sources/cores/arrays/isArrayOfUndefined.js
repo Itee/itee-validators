@@ -26,7 +26,7 @@ import { isEmptyArray }   from './isEmptyArray'
  * @param data {*} The data to check against the array of undefined
  * @returns {boolean} true if data is not an empty array where all values are undefined, false otherwise
  */
-export function isArrayOfUndefined ( data ) {
+export function isArrayOfUndefined( data ) {
 
     if ( isNotArray( data ) ) { return false }
     if ( isEmptyArray( data ) ) { return false }
@@ -47,7 +47,7 @@ export function isArrayOfUndefined ( data ) {
  * @param data {*} The data to check against the array of undefined
  * @returns {boolean} true if data is not an empty array where all values are defined, false otherwise
  */
-export function isNotArrayOfUndefined ( data ) {
+export function isNotArrayOfUndefined( data ) {
 
     if ( isNotArray( data ) ) { return true }
     if ( isEmptyArray( data ) ) { return true }

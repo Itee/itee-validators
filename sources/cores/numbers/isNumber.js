@@ -33,7 +33,7 @@ import { isZeroPositive } from './isZero'
  * @param data {*} The data to check against the maximum safe integer state
  * @returns {boolean} true if data is a number, false otherwise.
  */
-export function isNumber ( data ) {
+export function isNumber( data ) {
 
     if ( isNotDefined( data ) ) { return false }
 
@@ -47,7 +47,7 @@ export function isNumber ( data ) {
  * @param data {*} The data to check against the positivity
  * @returns {boolean} true if data is a positive number, false otherwise.
  */
-export function isNumberPositive ( data ) {
+export function isNumberPositive( data ) {
 
     if ( isNotNumber( data ) ) { return false }
 
@@ -62,7 +62,7 @@ export function isNumberPositive ( data ) {
  * @param data {*} The data to check against the negativity
  * @returns {boolean} true if data is a negative number, false otherwise.
  */
-export function isNumberNegative ( data ) {
+export function isNumberNegative( data ) {
     return ( isNumber( data ) && data < 0 )
 }
 
@@ -72,7 +72,7 @@ export function isNumberNegative ( data ) {
  * @param data {*} The data to check against the number type
  * @returns {boolean} true if data is not of type number or not a number, false otherwise.
  */
-export function isNotNumber ( data ) {
+export function isNotNumber( data ) {
     return !( isNumber( data ) )
 }
 
@@ -82,7 +82,7 @@ export function isNotNumber ( data ) {
  * @param data {*} The data to check against the integer state
  * @returns {boolean} true if data is an integer, false otherwise
  */
-export function isInteger ( data ) {
+export function isInteger( data ) {
     return Number.isInteger( data )
 }
 
@@ -92,7 +92,7 @@ export function isInteger ( data ) {
  * @param data {*} The data to check against the floating point
  * @returns {boolean} true if data is a float, false otherwise
  */
-export function isFloat ( data ) {
+export function isFloat( data ) {
 
     if ( isNotNumber( data ) ) { return false }
     if ( Number.isNaN( data ) ) { return false }
@@ -108,46 +108,46 @@ export function isFloat ( data ) {
  * @param data {*} The data to check against the NaN state
  * @returns {boolean} true if data is not a number, false otherwise.
  */
-export function isNaN ( data ) {
+export function isNaN( data ) {
     return Number.isNaN( data )
 }
 
 
 // #if IS_REMOVE_ON_BUILD
 
-export function isNumber_0 ( data ) {
+export function isNumber_0( data ) {
     return ( typeof data === 'number' && !Number.isNaN( data ) )
 }
 
-export function isNumber_1 ( data ) {
+export function isNumber_1( data ) {
     return ( Number( data ) === data )
 }
 
 ///
 
-export function isInteger_0 ( data ) {
+export function isInteger_0( data ) {
     return ( data === 0 && ( 1 / data ) === Number.POSITIVE_INFINITY )
 }
 
-export function isInteger_1 ( data ) {
+export function isInteger_1( data ) {
     return data % 1 === 0
 }
 
-export function isInteger_2 ( n ) {
+export function isInteger_2( n ) {
     return n === +n && n === ( n | 0 )
 }
 
-export function isInteger_3 ( nVal ) {
+export function isInteger_3( nVal ) {
     return typeof nVal === 'number' && isFinite( nVal ) && nVal > -9007199254740992 && nVal < 9007199254740992 && Math.floor( nVal ) === nVal
 }
 
 ///
 
-export function isFloat_1 ( n ) {
+export function isFloat_1( n ) {
     return n === +n && n !== ( n | 0 )
 }
 
-export function isFloat_2 ( x ) {
+export function isFloat_2( x ) {
     return !!( x % 1 )
 }
 

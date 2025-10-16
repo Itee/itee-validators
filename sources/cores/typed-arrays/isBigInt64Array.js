@@ -22,7 +22,7 @@
  * @param data {*} The data to check against the big int 64 array type
  * @returns {boolean} true if data is a big int 64 array, false otherwise.
  */
-export function isBigInt64Array ( data ) {
+export function isBigInt64Array( data ) {
     return ( data instanceof BigInt64Array )
 }
 
@@ -32,6 +32,6 @@ export function isBigInt64Array ( data ) {
  * @param data {*} The data to check against the big int 64 array type
  * @returns {boolean} true if data is not a big int 64 array, false otherwise.
  */
-export function isNotBigInt64Array ( data ) {
+export function isNotBigInt64Array( data ) {
     return !isBigInt64Array( data )
 }

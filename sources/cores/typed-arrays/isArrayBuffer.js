@@ -22,7 +22,7 @@
  * @param data {*} The data to check against the array buffer type
  * @returns {boolean} true if data is a array buffer, false otherwise.
  */
-export function isArrayBuffer ( data ) {
+export function isArrayBuffer( data ) {
     return ( data instanceof ArrayBuffer )
 }
 
@@ -32,6 +32,6 @@ export function isArrayBuffer ( data ) {
  * @param data {*} The data to check against the array buffer type
  * @returns {boolean} true if data is not a array buffer, false otherwise.
  */
-export function isNotArrayBuffer ( data ) {
+export function isNotArrayBuffer( data ) {
     return !isArrayBuffer( data )
 }
