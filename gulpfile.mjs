@@ -450,14 +450,14 @@ gulp.task( 'compute-unit-tests', async ( done ) => {
     ]
 
     const sourcesFiles = glob.sync( path.join( sourcesDir, '**' ) )
-        .map( filePath => path.normalize( filePath ) )
-        .filter( filePath => {
-            const fileName         = path.basename( filePath )
-            const isJsFile         = fileName.endsWith( '.js' )
-            const isNotPrivateFile = !fileName.startsWith( '_' )
-            const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
-            return isJsFile && isNotPrivateFile && isNotIgnoredFile
-        } )
+                             .map( filePath => path.normalize( filePath ) )
+                             .filter( filePath => {
+                                 const fileName         = path.basename( filePath )
+                                 const isJsFile         = fileName.endsWith( '.js' )
+                                 const isNotPrivateFile = !fileName.startsWith( '_' )
+                                 const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
+                                 return isJsFile && isNotPrivateFile && isNotIgnoredFile
+                             } )
 
     const unitsImportMap = []
     for ( let sourceFile of sourcesFiles ) {
@@ -477,48 +477,48 @@ gulp.task( 'compute-unit-tests', async ( done ) => {
 
         try {
 
-            const jsdocPath   = path.join(basePath, '/node_modules/jsdoc/jsdoc.js')
+            const jsdocPath   = path.join( basePath, '/node_modules/jsdoc/jsdoc.js' )
             const jsdocOutput = childProcess.execFileSync( 'node', [ jsdocPath, '-X', sourceFile ] ).toString()
 
             const classNames    = []
             const usedLongnames = []
-            const jsonData      = JSON.parse(jsdocOutput).filter(data => {
+            const jsonData      = JSON.parse( jsdocOutput ).filter( data => {
 
                 const longName = data.longname
 
                 const kind = data.kind
-                if (kind !== 'function') {
-                    if (kind === 'class' && !classNames.includes(longName)) {
-                        classNames.push(longName)
+                if ( kind !== 'function' ) {
+                    if ( kind === 'class' && !classNames.includes( longName ) ) {
+                        classNames.push( longName )
                     }
                     return false
                 }
 
                 const undocumented = data.undocumented
-                if (undocumented) {
+                if ( undocumented ) {
                     return false
                 }
 
                 const scope = data.scope
-                if (!['global', 'static'].includes(scope)) {
+                if ( ![ 'global', 'static' ].includes( scope ) ) {
                     return false
                 }
 
-                if (longName.includes(' ') || longName.includes('~') || usedLongnames.includes(longName)) {
+                if ( longName.includes( ' ' ) || longName.includes( '~' ) || usedLongnames.includes( longName ) ) {
                     return false
                 }
 
-                for(let className of classNames) {
-                    if(longName.includes(className)) {
+                for ( let className of classNames ) {
+                    if ( longName.includes( className ) ) {
                         return false
                     }
                 }
 
-                usedLongnames.push(longName)
+                usedLongnames.push( longName )
 
                 return true
 
-            })
+            } )
 
             if ( jsonData.length === 0 ) {
                 log( yellow( `No usable exports found in [${ sourceFile }]. Ignore it !` ) )
@@ -738,8 +738,8 @@ gulp.task( 'compute-unit-tests', async ( done ) => {
                                 const parameterType = parameter.types[ 0 ]
                                 const isAnyType     = ( parameterType === '*' || parameterType.toLowerCase() === 'any' )
                                 const declaration   = ( isAnyType )
-                                    ? `${ parameter.name } is of any type`
-                                    : `${ parameter.name } is of type ${ parameterType }`
+                                                      ? `${ parameter.name } is of any type`
+                                                      : `${ parameter.name } is of type ${ parameterType }`
                                 itDeclaration.push( declaration )
 
                                 if ( isAnyType ) {
@@ -1048,7 +1048,7 @@ gulp.task( 'compute-benchmarks', async ( done ) => {
     for ( let sourceFile of sourcesFiles ) {
 
         const specificFilePath = sourceFile.replace( sourcesDir, '' )
-        const specificDir  = path.dirname( specificFilePath )
+        const specificDir      = path.dirname( specificFilePath )
 
         const fileName      = path.basename( sourceFile, path.extname( sourceFile ) )
         const benchFileName = `${ fileName }.bench.js`
@@ -1061,48 +1061,48 @@ gulp.task( 'compute-benchmarks', async ( done ) => {
 
         try {
 
-            const jsdocPath   = path.join(basePath, '/node_modules/jsdoc/jsdoc.js')
+            const jsdocPath   = path.join( basePath, '/node_modules/jsdoc/jsdoc.js' )
             const jsdocOutput = childProcess.execFileSync( 'node', [ jsdocPath, '-X', sourceFile ] ).toString()
 
             const classNames    = []
             const usedLongnames = []
-            const jsonData      = JSON.parse(jsdocOutput).filter(data => {
+            const jsonData      = JSON.parse( jsdocOutput ).filter( data => {
 
                 const longName = data.longname
 
                 const kind = data.kind
-                if (kind !== 'function') {
-                    if (kind === 'class' && !classNames.includes(longName)) {
-                        classNames.push(longName)
+                if ( kind !== 'function' ) {
+                    if ( kind === 'class' && !classNames.includes( longName ) ) {
+                        classNames.push( longName )
                     }
                     return false
                 }
 
                 const undocumented = data.undocumented
-                if (undocumented) {
+                if ( undocumented ) {
                     return false
                 }
 
                 const scope = data.scope
-                if (!['global', 'static'].includes(scope)) {
+                if ( ![ 'global', 'static' ].includes( scope ) ) {
                     return false
                 }
 
-                if (longName.includes(' ') || longName.includes('~') || usedLongnames.includes(longName)) {
+                if ( longName.includes( ' ' ) || longName.includes( '~' ) || usedLongnames.includes( longName ) ) {
                     return false
                 }
 
-                for(let className of classNames) {
-                    if(longName.includes(className)) {
+                for ( let className of classNames ) {
+                    if ( longName.includes( className ) ) {
                         return false
                     }
                 }
 
-                usedLongnames.push(longName)
+                usedLongnames.push( longName )
 
                 return true
 
-            })
+            } )
 
             if ( jsonData.length === 0 ) {
                 log( yellow( `No usable exports found in [${ sourceFile }]. Ignore it !` ) )
@@ -1110,20 +1110,20 @@ gulp.task( 'compute-benchmarks', async ( done ) => {
             }
 
             // Compute benchmark suites by grouping logically function by name[_x]
-            const suiteGroups     = {}
+            const suiteGroups = {}
             for ( let docData of jsonData ) {
 
                 try {
 
                     const functionName = docData.name
-                    const nameSplits = functionName.split('_')
-                    const rootName = nameSplits[0]
+                    const nameSplits   = functionName.split( '_' )
+                    const rootName     = nameSplits[ 0 ]
 
-                    if(!(rootName in suiteGroups)) {
-                        suiteGroups[rootName] = []
+                    if ( !( rootName in suiteGroups ) ) {
+                        suiteGroups[ rootName ] = []
                     }
 
-                    suiteGroups[rootName].push(functionName)
+                    suiteGroups[ rootName ].push( functionName )
 
                 } catch ( error ) {
 
@@ -1136,11 +1136,11 @@ gulp.task( 'compute-benchmarks', async ( done ) => {
             // Generate suites
             let benchSuites       = ''
             const suitesToExports = []
-            for( let suiteGroupName in suiteGroups) {
+            for ( let suiteGroupName in suiteGroups ) {
                 suitesToExports.push( `${ suiteGroupName }Suite` )
                 benchSuites += `const ${ suiteGroupName }Suite = Benchmark.Suite( '${ nsName }.${ suiteGroupName }', Testing.createSuiteOptions() )` + '\n'
 
-                for( let suiteGroupValue of suiteGroups[suiteGroupName]) {
+                for ( let suiteGroupValue of suiteGroups[ suiteGroupName ] ) {
                     benchSuites += `                                     .add( '${ suiteGroupValue }()', Testing.iterateOverDataMap( ${ nsName }.${ suiteGroupValue } ), Testing.createBenchmarkOptions() )` + '\n'
                 }
 
@@ -1258,8 +1258,8 @@ gulp.task( 'run-unit-tests-for-node', ( done ) => {
     mocha.on( 'close', ( code ) => {
 
         ( code === 0 )
-            ? done()
-            : done( `mocha exited with code ${ code }` )
+        ? done()
+        : done( `mocha exited with code ${ code }` )
 
     } )
 
@@ -1301,8 +1301,8 @@ gulp.task( 'run-benchmarks-for-node', ( done ) => {
     benchmark.on( 'close', ( code ) => {
 
         ( code === 0 )
-            ? done()
-            : done( `benchmark exited with code ${ code }` )
+        ? done()
+        : done( `benchmark exited with code ${ code }` )
 
     } )
 
@@ -1377,7 +1377,7 @@ gulp.task( 'build', ( done ) => {
 
     nextBuild()
 
-    function nextBuild ( error ) {
+    function nextBuild( error ) {
         'use strict'
 
         if ( error ) {
@@ -1410,7 +1410,7 @@ gulp.task( 'build', ( done ) => {
  * @method npm run release
  * @global
  * @description Will perform a complet release of the library including 'clean', 'lint', 'doc', 'build-test', 'test' and finally 'build'.
-*/
+ */
 gulp.task( 'release', gulp.series( 'clean', 'lint', 'doc', 'build-tests', 'test', 'build' ) )
 
 //---------
