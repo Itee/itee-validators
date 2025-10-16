@@ -19,9 +19,9 @@
  *
  */
 
-import fs from 'fs'
-import { isDefined } from '../../cores/voids/isDefined'
-import {isNotString} from '../../cores/strings/isString';
+import { statSync }    from 'fs'
+import { isDefined }   from '../../cores/voids/isDefined'
+import { isNotString } from '../../cores/strings/isString'
 
 /**
  * Check if given path is a symbolic link path
@@ -29,13 +29,13 @@ import {isNotString} from '../../cores/strings/isString';
  * @param path {string|Buffer|URL} The data to check against the symbolic link path type
  * @returns {boolean} true if path is a symbolic link path, false otherwise
  */
-export function isSymbolicLinkPath ( path ) {
-    if( isNotString(path) && !(path instanceof Buffer) && !(path instanceof URL) ) {
-        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+export function isSymbolicLinkPath( path ) {
+    if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
+        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
-    const stat = fs.statSync( path, { throwIfNoEntry: false } )
-    return isDefined(stat) && stat.isSymbolicLink()
+    const stat = statSync( path, { throwIfNoEntry: false } )
+    return isDefined( stat ) && stat.isSymbolicLink()
 }
 
 /**
@@ -44,6 +44,6 @@ export function isSymbolicLinkPath ( path ) {
  * @param path {string|Buffer|URL} The data to check against the symbolic link path type
  * @returns {boolean} true if path is not a symbolic link path, false otherwise
  */
-export function isNotSymbolicLinkPath ( path ) {
+export function isNotSymbolicLinkPath( path ) {
     return !isSymbolicLinkPath( path )
 }

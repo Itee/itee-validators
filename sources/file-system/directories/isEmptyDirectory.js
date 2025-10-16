@@ -19,7 +19,7 @@
  *
  */
 
-import fs from 'fs'
+import { readdirSync }     from 'fs'
 import { isDirectoryPath } from './isDirectoryPath'
 
 /**
@@ -28,8 +28,8 @@ import { isDirectoryPath } from './isDirectoryPath'
  * @param directoryPath {string|Buffer|URL} The directory path to check the emptiness
  * @returns {boolean} true if directory is empty, false otherwise
  */
-export function isEmptyDirectory ( directoryPath ) {
-    return isDirectoryPath(directoryPath) && ( fs.readdirSync( directoryPath ).length === 0 )
+export function isEmptyDirectory( directoryPath ) {
+    return isDirectoryPath( directoryPath ) && ( readdirSync( directoryPath ).length === 0 )
 }
 
 /**
@@ -38,6 +38,6 @@ export function isEmptyDirectory ( directoryPath ) {
  * @param directoryPath {string|Buffer|URL} The directory path to check the emptiness
  * @returns {boolean} true if directory is not empty, false otherwise
  */
-export function isNotEmptyDirectory ( directoryPath ) {
+export function isNotEmptyDirectory( directoryPath ) {
     return !isEmptyDirectory( directoryPath )
 }

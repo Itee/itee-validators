@@ -19,7 +19,7 @@
  *
  */
 
-import fs from 'fs'
+import { statSync } from 'fs'
 import { isDefined } from '../../cores/voids/isDefined'
 import {isNotString} from '../../cores/strings/isString';
 
@@ -34,7 +34,7 @@ export function isFIFOPath ( path ) {
         throw new TypeError('Invalid path type! Expect string, buffer or url.')
     }
 
-    const stat = fs.statSync( path, { throwIfNoEntry: false } )
+    const stat = statSync( path, { throwIfNoEntry: false } )
     return isDefined(stat) && stat.isFIFO()
 }
 
