@@ -160,115 +160,115 @@
  // Usefull when a simple data structure is used multiple times
  validator.add( &#x27;ColorType&#x27;, color =&gt; {
 
-                const r = color.r
-                if ( color.r === undefined || Itee.Validators.isNotNumber( r ) ) {
-                    return false
-                }
+ const r = color.r
+ if ( color.r === undefined || Itee.Validators.isNotNumber( r ) ) {
+ return false
+ }
 
-                const g = color.g
-                if ( color.g === undefined || Itee.Validators.isNotNumber( g ) ) {
-                    return false
-                }
+ const g = color.g
+ if ( color.g === undefined || Itee.Validators.isNotNumber( g ) ) {
+ return false
+ }
 
-                const b = color.b
-                if ( color.b === undefined || Itee.Validators.isNotNumber( b ) ) {
-                    return false
-                }
+ const b = color.b
+ if ( color.b === undefined || Itee.Validators.isNotNumber( b ) ) {
+ return false
+ }
 
-                return true
-            } )
+ return true
+ } )
 
  // Using schema composition
  // Usefull for design validation schema faster and based on previous declared validation types
  validator.add( &#x27;Range_0_255&#x27;, ( value ) =&gt; {
 
-                if ( Itee.Validators.isNotNumber( value ) ) {
-                    return false
-                }
+ if ( Itee.Validators.isNotNumber( value ) ) {
+ return false
+ }
 
-                return !(value &lt;= 0 || value &gt; 255)
+ return !(value &lt;= 0 || value &gt; 255)
 
-            } )
+ } )
 
  validator.add( &#x27;ColorSchema&#x27;, {
-                r: {
-                    required: true,
-                    type:     &#x27;Range_0_255&#x27;
-                },
-                g: {
-                    required: true,
-                    type:     &#x27;Range_0_255&#x27;
-                },
-                b: {
-                    required: true,
-                    type:     &#x27;Range_0_255&#x27;
-                }
-            } )
+ r: {
+ required: true,
+ type:     &#x27;Range_0_255&#x27;
+ },
+ g: {
+ required: true,
+ type:     &#x27;Range_0_255&#x27;
+ },
+ b: {
+ required: true,
+ type:     &#x27;Range_0_255&#x27;
+ }
+ } )
 
  validator.add( &#x27;ColorStructure&#x27;, {
-                color_from_type: {
-                    type: &#x27;ColorType&#x27;
-                },
-                col_from_schema: {
-                    type: &#x27;ColorSchema&#x27;
-                },
-                col_from_fn:     {
-                    // Inner function
-	                // Usefull for specific validation requirement that cannot match other previous validation schema or type
-                    fn: function ColorValidator ( color ) {
+ color_from_type: {
+ type: &#x27;ColorType&#x27;
+ },
+ col_from_schema: {
+ type: &#x27;ColorSchema&#x27;
+ },
+ col_from_fn:     {
+ // Inner function
+ // Usefull for specific validation requirement that cannot match other previous validation schema or type
+ fn: function ColorValidator ( color ) {
 
-                        const r = color.r
-                        if ( color.r === undefined || Itee.Validators.isNotNumber( r ) ) {
-                            return false
-                        }
+ const r = color.r
+ if ( color.r === undefined || Itee.Validators.isNotNumber( r ) ) {
+ return false
+ }
 
-                        const g = color.g
-                        if ( color.g === undefined || Itee.Validators.isNotNumber( g ) ) {
-                            return false
-                        }
+ const g = color.g
+ if ( color.g === undefined || Itee.Validators.isNotNumber( g ) ) {
+ return false
+ }
 
-                        const b = color.b
-                        if ( color.b === undefined || Itee.Validators.isNotNumber( b ) ) {
-                            return false
-                        }
+ const b = color.b
+ if ( color.b === undefined || Itee.Validators.isNotNumber( b ) ) {
+ return false
+ }
 
-                        return true
-                    }
-                }
-            } )
+ return true
+ }
+ }
+ } )
 
  // The data to validate
  const colorStruct = {
-                color_from_type: {
-                    r: 0,
-                    g: 1,
-                    b: 2
-                },
-                col_from_schema: {
-                    r: 10,
-                    g: 20,
-                    b: 30
-                },
-                col_from_fn:     {
-                    r: 0,
-                    g: 127,
-                    b: 255
-                }
-            }
+ color_from_type: {
+ r: 0,
+ g: 1,
+ b: 2
+ },
+ col_from_schema: {
+ r: 10,
+ g: 20,
+ b: 30
+ },
+ col_from_fn:     {
+ r: 0,
+ g: 127,
+ b: 255
+ }
+ }
 
  // Execute
 
  try {
 
-    if ( validator.check( colorStruct, &#x27;ColorStructure&#x27; ) ) {
-        alert( &#x27;ColorStructure is valid !&#x27; )
-    } else {
-        alert( validator.errors )
-    }
+ if ( validator.check( colorStruct, &#x27;ColorStructure&#x27; ) ) {
+ alert( &#x27;ColorStructure is valid !&#x27; )
+ } else {
+ alert( validator.errors )
+ }
 
-} catch ( err ) {
-    alert( err )
-}</pre>
+ } catch ( err ) {
+ alert( err )
+ }</pre>
 
 
         

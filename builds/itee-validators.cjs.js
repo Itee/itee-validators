@@ -1,13 +1,18 @@
-console.log('Itee.Validators v5.3.9 - CommonJs')
+/**
+ * ┳      ┓┏  ┓• ┓            ┏━ ┏┓ ┏┓      ┏┓            ┏┳ 
+ * ┃╋┏┓┏┓ ┃┃┏┓┃┓┏┫┏┓╋┏┓┏┓┏  ┓┏┗┓ ┃┃ ┃┫  ━━  ┃ ┏┓┏┳┓┏┳┓┏┓┏┓ ┃┏
+ * ┻┗┗ ┗ •┗┛┗┻┗┗┗┻┗┻┗┗┛┛ ┛  ┗┛┗┛•┗╋•┗┛      ┗┛┗┛┛┗┗┛┗┗┗┛┛┗┗┛┛
+ *                                                           
+ * @desc    A library of validation functions use in various Itee projects
+ * @author  [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ * 
+ */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var fs = require('fs');
-
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var fs__default = /*#__PURE__*/_interopDefaultLegacy(fs);
 
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
@@ -33,7 +38,7 @@ var fs__default = /*#__PURE__*/_interopDefaultLegacy(fs);
  * @param data {*} The data to check against the array type
  * @returns {boolean} true if data is array, false otherwise
  */
-function isArray ( data ) {
+function isArray( data ) {
     return Array.isArray( data )
 }
 
@@ -43,7 +48,7 @@ function isArray ( data ) {
  * @param data {*} The data to check against the array type
  * @returns {boolean} true if data is not array, false otherwise
  */
-function isNotArray ( data ) {
+function isNotArray( data ) {
     return !Array.isArray( data )
 }
 
@@ -71,7 +76,7 @@ function isNotArray ( data ) {
  * @param data {*} The data to check against the empty array
  * @returns {boolean} true if data is an empty array, false otherwise
  */
-function isEmptyArray ( data ) {
+function isEmptyArray( data ) {
 
     if ( isNotArray( data ) ) { return false }
 
@@ -85,7 +90,7 @@ function isEmptyArray ( data ) {
  * @param data {*} The data to check against the empty array
  * @returns {boolean} true if data is not an empty array, false otherwise
  */
-function isNotEmptyArray ( data ) {
+function isNotEmptyArray( data ) {
 
     if ( isNotArray( data ) ) { return true }
 
@@ -117,7 +122,7 @@ function isNotEmptyArray ( data ) {
  * @param data {*} The data to check against the array of array type
  * @returns {boolean} true if data is an array of array, false otherwise
  */
-function isArrayOfArray ( data ) {
+function isArrayOfArray( data ) {
 
     if ( isNotArray( data ) ) { return false }
     if ( isEmptyArray( data ) ) { return false }
@@ -138,7 +143,7 @@ function isArrayOfArray ( data ) {
  * @param data {*} The data to check against the array of array type
  * @returns {boolean} true if data is not an array of array, false otherwise
  */
-function isNotArrayOfArray ( data ) {
+function isNotArrayOfArray( data ) {
 
     if ( isNotArray( data ) ) { return true }
     if ( isEmptyArray( data ) ) { return true }
@@ -177,7 +182,7 @@ function isNotArrayOfArray ( data ) {
  * @param data {*} The data to check against the booleaness
  * @returns {boolean} true if data is a boolean, false otherwise.
  */
-function isBoolean ( data ) {
+function isBoolean( data ) {
     return ( typeof data === 'boolean' )
 }
 
@@ -187,7 +192,7 @@ function isBoolean ( data ) {
  * @param data {*} The data to check against the booleaness
  * @returns {boolean} true if data is not a boolean, false otherwise.
  */
-function isNotBoolean ( data ) {
+function isNotBoolean( data ) {
     return ( typeof data !== 'boolean' )
 }
 
@@ -215,7 +220,7 @@ function isNotBoolean ( data ) {
  * @param data {*} The data to check against the array of booleans
  * @returns {boolean} true if data is not an empty array where all values are boolean, false otherwise
  */
-function isArrayOfBoolean ( data ) {
+function isArrayOfBoolean( data ) {
 
     if ( isNotArray( data ) ) { return false }
     if ( isEmptyArray( data ) ) { return false }
@@ -236,7 +241,7 @@ function isArrayOfBoolean ( data ) {
  * @param data {*} The data to check against the array of booleans
  * @returns {boolean} true if data is not an empty array where all values are not boolean, false otherwise
  */
-function isNotArrayOfBoolean ( data ) {
+function isNotArrayOfBoolean( data ) {
 
     if ( isNotArray( data ) ) { return true }
     if ( isEmptyArray( data ) ) { return true }
@@ -275,7 +280,7 @@ function isNotArrayOfBoolean ( data ) {
  * @param data {*} The data to check against the functionality
  * @returns {boolean} true if data is a function, false otherwise.
  */
-function isFunction ( data ) {
+function isFunction( data ) {
     return ( typeof data === 'function' )
 }
 
@@ -285,7 +290,7 @@ function isFunction ( data ) {
  * @param data {*} The data to check against the functionality
  * @returns {boolean} true if data is not a function, false otherwise.
  */
-function isNotFunction ( data ) {
+function isNotFunction( data ) {
     return ( typeof data !== 'function' )
 }
 
@@ -313,7 +318,7 @@ function isNotFunction ( data ) {
  * @param data {*} The data to check against the array of functions
  * @returns {boolean} true if data is not an empty array where all values are functions, false otherwise
  */
-function isArrayOfFunction ( data ) {
+function isArrayOfFunction( data ) {
 
     if ( isNotArray( data ) ) { return false }
     if ( isEmptyArray( data ) ) { return false }
@@ -334,7 +339,7 @@ function isArrayOfFunction ( data ) {
  * @param data {*} The data to check against the array of functions
  * @returns {boolean} true if data is not an empty array where all values are not functions, false otherwise
  */
-function isNotArrayOfFunction ( data ) {
+function isNotArrayOfFunction( data ) {
 
     if ( isNotArray( data ) ) { return true }
     if ( isEmptyArray( data ) ) { return true }
@@ -373,7 +378,7 @@ function isNotArrayOfFunction ( data ) {
  * @param data {*} The data to check against the single valued array
  * @returns {boolean} true if data is an array with multiples values, false otherwise
  */
-function isArrayOfMultiElement ( data ) {
+function isArrayOfMultiElement( data ) {
 
     if ( isNotArray( data ) ) { return false }
 
@@ -405,7 +410,7 @@ function isArrayOfMultiElement ( data ) {
  * @param data {*} The data to check against the nullity
  * @returns {boolean} true if data is null, false otherwise.
  */
-function isNull ( data ) {
+function isNull( data ) {
     return ( data === null )
 }
 
@@ -417,7 +422,7 @@ function isNull ( data ) {
  * @param data {*} The data to check against the nullity
  * @returns {boolean} true if data is not null, false otherwise.
  */
-function isNotNull ( data ) {
+function isNotNull( data ) {
     return ( data !== null )
 }
 
@@ -444,7 +449,7 @@ function isNotNull ( data ) {
  * @param data {*} The data to check against the array of null type
  * @returns {boolean} true if data is not an empty array where all values are null, false otherwise
  */
-function isArrayOfNull ( data ) {
+function isArrayOfNull( data ) {
 
     if ( isNotArray( data ) ) { return false }
     if ( isEmptyArray( data ) ) { return false }
@@ -465,7 +470,7 @@ function isArrayOfNull ( data ) {
  * @param data {*} The data to check against the array of null type
  * @returns {boolean} true if data is not an empty array where all values are not null, false otherwise
  */
-function isNotArrayOfNull ( data ) {
+function isNotArrayOfNull( data ) {
 
     if ( isNotArray( data ) ) { return true }
     if ( isEmptyArray( data ) ) { return true }
@@ -504,7 +509,7 @@ function isNotArrayOfNull ( data ) {
  * @param data {*} The data to check against the existence
  * @returns {boolean} true if data is not null and not undefined, false otherwise.
  */
-function isDefined ( data ) {
+function isDefined( data ) {
     return ( ( data !== null ) && ( typeof data !== 'undefined' ) )
 }
 
@@ -514,7 +519,7 @@ function isDefined ( data ) {
  * @param data {*} The data to check against the existence
  * @returns {boolean} true if data is null or undefined, false otherwise.
  */
-function isNotDefined ( data ) {
+function isNotDefined( data ) {
     return ( ( data === null ) || ( typeof data === 'undefined' ) )
 }
 
@@ -536,20 +541,6 @@ function isNotDefined ( data ) {
  *
  */
 
-/**
- * Check if the given data is an infinite number
- *
- * @param data {*} The data to check against the infinite state
- * @returns {boolean} true if data is infinite, false otherwise
- */
-function isInfinite ( data ) {
-
-    // Todo: is required to check notnumber ?
-    if ( isNotNumber( data ) ) { return false }
-    if ( Number.isNaN( data ) ) { return false }
-
-    return !Number.isFinite( data )
-}
 
 /**
  * Check if the given data is an infinite negative number
@@ -557,7 +548,7 @@ function isInfinite ( data ) {
  * @param data {*} The data to check against the negative infinite state
  * @returns {boolean} true if data is negative infinite, false otherwise
  */
-function isInfiniteNegative ( data ) {
+function isInfiniteNegative( data ) {
     return ( data === Number.NEGATIVE_INFINITY )
 }
 
@@ -567,8 +558,18 @@ function isInfiniteNegative ( data ) {
  * @param data {*} The data to check against the positive infinite state
  * @returns {boolean} true if data is positive infinite, false otherwise
  */
-function isInfinitePositive ( data ) {
+function isInfinitePositive( data ) {
     return ( data === Number.POSITIVE_INFINITY )
+}
+
+/**
+ * Check if the given data is an infinite number
+ *
+ * @param data {*} The data to check against the infinite state
+ * @returns {boolean} true if data is infinite, false otherwise
+ */
+function isInfinite( data ) {
+    return isInfiniteNegative( data ) || isInfinitePositive( data )
 }
 
 /**
@@ -577,7 +578,7 @@ function isInfinitePositive ( data ) {
  * @param data {*} The data to check against the finite state
  * @returns {boolean} true if data is finite, false otherwise
  */
-function isFinite ( data ) {
+function isFinite( data ) {
     return Number.isFinite( data )
 }
 
@@ -607,7 +608,7 @@ function isFinite ( data ) {
  * @param data {*} The data to check against the zero value
  * @returns {boolean} true if data is zero, false otherwise
  */
-function isZero ( data ) {
+function isZero( data ) {
     //Todo protect truthy values
     return ( data === 0 )
 }
@@ -618,7 +619,7 @@ function isZero ( data ) {
  * @param data {*} The data to check against the positive zero value
  * @returns {boolean} true if data is a positive zero, false otherwise
  */
-function isZeroPositive ( data ) {
+function isZeroPositive( data ) {
     return ( data === 0 && ( 1 / data ) === Number.POSITIVE_INFINITY )
 }
 
@@ -628,7 +629,7 @@ function isZeroPositive ( data ) {
  * @param data {*} The data to check against the negative zero value
  * @returns {boolean} true if data is a negative zero, false otherwise
  */
-function isZeroNegative ( data ) {
+function isZeroNegative( data ) {
     return ( data === 0 && ( 1 / data ) === Number.NEGATIVE_INFINITY )
 }
 
@@ -656,7 +657,7 @@ function isZeroNegative ( data ) {
  * @param data {*} The data to check against the maximum safe integer state
  * @returns {boolean} true if data is a number, false otherwise.
  */
-function isNumber ( data ) {
+function isNumber( data ) {
 
     if ( isNotDefined( data ) ) { return false }
 
@@ -670,7 +671,7 @@ function isNumber ( data ) {
  * @param data {*} The data to check against the positivity
  * @returns {boolean} true if data is a positive number, false otherwise.
  */
-function isNumberPositive ( data ) {
+function isNumberPositive( data ) {
 
     if ( isNotNumber( data ) ) { return false }
 
@@ -685,7 +686,7 @@ function isNumberPositive ( data ) {
  * @param data {*} The data to check against the negativity
  * @returns {boolean} true if data is a negative number, false otherwise.
  */
-function isNumberNegative ( data ) {
+function isNumberNegative( data ) {
     return ( isNumber( data ) && data < 0 )
 }
 
@@ -695,7 +696,7 @@ function isNumberNegative ( data ) {
  * @param data {*} The data to check against the number type
  * @returns {boolean} true if data is not of type number or not a number, false otherwise.
  */
-function isNotNumber ( data ) {
+function isNotNumber( data ) {
     return !( isNumber( data ) )
 }
 
@@ -705,7 +706,7 @@ function isNotNumber ( data ) {
  * @param data {*} The data to check against the integer state
  * @returns {boolean} true if data is an integer, false otherwise
  */
-function isInteger ( data ) {
+function isInteger( data ) {
     return Number.isInteger( data )
 }
 
@@ -715,7 +716,7 @@ function isInteger ( data ) {
  * @param data {*} The data to check against the floating point
  * @returns {boolean} true if data is a float, false otherwise
  */
-function isFloat ( data ) {
+function isFloat( data ) {
 
     if ( isNotNumber( data ) ) { return false }
     if ( Number.isNaN( data ) ) { return false }
@@ -731,7 +732,7 @@ function isFloat ( data ) {
  * @param data {*} The data to check against the NaN state
  * @returns {boolean} true if data is not a number, false otherwise.
  */
-function isNaN ( data ) {
+function isNaN( data ) {
     return Number.isNaN( data )
 }
 
@@ -759,7 +760,7 @@ function isNaN ( data ) {
  * @param data {*} The data to check against the array of numbers
  * @returns {boolean} true if data is not an empty array where all values are numbers, false otherwise
  */
-function isArrayOfNumber ( data ) {
+function isArrayOfNumber( data ) {
 
     if ( isNotArray( data ) ) { return false }
     if ( isEmptyArray( data ) ) { return false }
@@ -780,7 +781,7 @@ function isArrayOfNumber ( data ) {
  * @param data {*} The data to check against the array of numbers
  * @returns {boolean} true if data is not an empty array where all values are not numbers, false otherwise
  */
-function isNotArrayOfNumber ( data ) {
+function isNotArrayOfNumber( data ) {
 
     if ( isNotArray( data ) ) { return true }
     if ( isEmptyArray( data ) ) { return true }
@@ -819,7 +820,7 @@ function isNotArrayOfNumber ( data ) {
  * @param data {*} The data to check against the object type
  * @returns {boolean} true if data is object, false otherwise
  */
-function isObject ( data ) {
+function isObject( data ) {
 
     if ( isNotDefined( data ) ) { return false }
 
@@ -832,7 +833,7 @@ function isObject ( data ) {
  * @param data {*} The data to check against the object type
  * @returns {boolean} true if data is not an object, false otherwise
  */
-function isNotObject ( data ) {
+function isNotObject( data ) {
     return !isObject( data )
 }
 
@@ -860,7 +861,7 @@ function isNotObject ( data ) {
  * @param data {*} The data to check against the array of object type
  * @returns {boolean} true if data is an array where all values are of object type, false otherwise
  */
-function isArrayOfObject ( data ) {
+function isArrayOfObject( data ) {
 
     if ( isNotArray( data ) ) { return false }
     if ( isEmptyArray( data ) ) { return false }
@@ -881,7 +882,7 @@ function isArrayOfObject ( data ) {
  * @param data {*} The data to check against the array of object type
  * @returns {boolean} true if data is not an array where all values are of object type, false otherwise
  */
-function isNotArrayOfObject ( data ) {
+function isNotArrayOfObject( data ) {
 
     if ( isNotArray( data ) ) { return true }
     if ( isEmptyArray( data ) ) { return true }
@@ -920,7 +921,7 @@ function isNotArrayOfObject ( data ) {
  * @param data {*} The data to check against the single valued array
  * @returns {boolean} true if data is an array with a single value, false otherwise
  */
-function isArrayOfSingleElement ( data ) {
+function isArrayOfSingleElement( data ) {
 
     if ( isNotArray( data ) ) { return false }
 
@@ -956,7 +957,7 @@ function isArrayOfSingleElement ( data ) {
  * @param data {*} The data to check against the string type
  * @returns {boolean} true if data is a string, false otherwise.
  */
-function isString ( data ) {
+function isString( data ) {
     return ( typeof data === 'string' || data instanceof String )
 }
 
@@ -966,7 +967,7 @@ function isString ( data ) {
  * @param data {*} The data to check against the string type
  * @returns {boolean} true if data is not a string, false otherwise.
  */
-function isNotString ( data ) {
+function isNotString( data ) {
     return !isString( data )
 }
 
@@ -994,7 +995,7 @@ function isNotString ( data ) {
  * @param data {*} The data to check against the array of strings
  * @returns {boolean} true if data is not an empty array where all values are string, false otherwise
  */
-function isArrayOfString ( data ) {
+function isArrayOfString( data ) {
 
     if ( isNotArray( data ) ) { return false }
     if ( isEmptyArray( data ) ) { return false }
@@ -1015,7 +1016,7 @@ function isArrayOfString ( data ) {
  * @param data {*} The data to check against the array of strings
  * @returns {boolean} true if data is not an empty array where all values are not string, false otherwise
  */
-function isNotArrayOfString ( data ) {
+function isNotArrayOfString( data ) {
 
     if ( isNotArray( data ) ) { return true }
     if ( isEmptyArray( data ) ) { return true }
@@ -1054,7 +1055,7 @@ function isNotArrayOfString ( data ) {
  * @param data {*} The data to check against the undefiness
  * @returns {boolean} true if data is undefined, false otherwise.
  */
-function isUndefined ( data ) {
+function isUndefined( data ) {
     return ( typeof data === 'undefined' )
 }
 
@@ -1064,7 +1065,7 @@ function isUndefined ( data ) {
  * @param data {*} The data to check against the undefiness
  * @returns {boolean} true if data is defined, false otherwise.
  */
-function isNotUndefined ( data ) {
+function isNotUndefined( data ) {
     return ( typeof data !== 'undefined' )
 }
 
@@ -1092,7 +1093,7 @@ function isNotUndefined ( data ) {
  * @param data {*} The data to check against the array of undefined
  * @returns {boolean} true if data is not an empty array where all values are undefined, false otherwise
  */
-function isArrayOfUndefined ( data ) {
+function isArrayOfUndefined( data ) {
 
     if ( isNotArray( data ) ) { return false }
     if ( isEmptyArray( data ) ) { return false }
@@ -1113,7 +1114,7 @@ function isArrayOfUndefined ( data ) {
  * @param data {*} The data to check against the array of undefined
  * @returns {boolean} true if data is not an empty array where all values are defined, false otherwise
  */
-function isNotArrayOfUndefined ( data ) {
+function isNotArrayOfUndefined( data ) {
 
     if ( isNotArray( data ) ) { return true }
     if ( isEmptyArray( data ) ) { return true }
@@ -1152,7 +1153,7 @@ function isNotArrayOfUndefined ( data ) {
  * @param data {*} The data to check against true value
  * @returns {boolean} true if data is a boolean set to true, false otherwise.
  */
-function isTrue ( data ) {
+function isTrue( data ) {
     return ( isBoolean( data ) && ( data === true ) )
 }
 
@@ -1162,7 +1163,7 @@ function isTrue ( data ) {
  * @param data {*} The data to check against false value
  * @returns {boolean} true if data is a boolean set to false, false otherwise.
  */
-function isFalse ( data ) {
+function isFalse( data ) {
     return ( isBoolean( data ) && ( data === false ) )
 }
 
@@ -1190,7 +1191,7 @@ function isFalse ( data ) {
  * @param data {*} The data to check against the positive maximum state
  * @returns {boolean} true if data is positive maximum, false otherwise
  */
-function isMaxPositive ( data ) {
+function isMaxPositive( data ) {
     return ( data === Number.MAX_VALUE )
 }
 
@@ -1200,7 +1201,7 @@ function isMaxPositive ( data ) {
  * @param data {*} The data to check against the maximum infinite state
  * @returns {boolean} true if data is negative maximum, false otherwise
  */
-function isMaxNegative ( data ) {
+function isMaxNegative( data ) {
     return ( data === -Number.MAX_VALUE )
 }
 
@@ -1228,7 +1229,7 @@ function isMaxNegative ( data ) {
  * @param data {*} The data to check against the positive minimum state
  * @returns {boolean} true if data is positive minimum, false otherwise
  */
-function isMinPositive ( data ) {
+function isMinPositive( data ) {
     return ( data === Number.MIN_VALUE )
 }
 
@@ -1238,7 +1239,7 @@ function isMinPositive ( data ) {
  * @param data {*} The data to check against the minimum infinite state
  * @returns {boolean} true if data is negative minimum, false otherwise
  */
-function isMinNegative ( data ) {
+function isMinNegative( data ) {
     return ( data === -Number.MIN_VALUE )
 }
 
@@ -1266,7 +1267,7 @@ function isMinNegative ( data ) {
  * @param data {*} The data to check against the maximum safe integer state
  * @returns {boolean} true if data is a maximum safe integer, false otherwise
  */
-function isMaxSafeInteger ( data ) {
+function isMaxSafeInteger( data ) {
     return ( data === Number.MAX_SAFE_INTEGER )
 }
 
@@ -1278,7 +1279,7 @@ function isMaxSafeInteger ( data ) {
  * @param data {*} The data to check against the minimum safe integer state
  * @returns {boolean} true if data is a minimum safe integer, false otherwise
  */
-function isMinSafeInteger ( data ) {
+function isMinSafeInteger( data ) {
     return ( data === Number.MIN_SAFE_INTEGER )
 }
 
@@ -1308,7 +1309,7 @@ function isMinSafeInteger ( data ) {
  * @param data {*} The data to check against the emptiness of the object
  * @returns {boolean} true if data is an empty object, false otherwise
  */
-function isEmptyObject ( data ) {
+function isEmptyObject( data ) {
 
     if ( isNotObject( data ) ) { return false }
 
@@ -1333,7 +1334,7 @@ function isEmptyObject ( data ) {
  * @param data {*} The data to check against the emptiness of the object
  * @returns {boolean} true if data is not an empty object, false otherwise
  */
-function isNotEmptyObject ( data ) {
+function isNotEmptyObject( data ) {
     return !( isEmptyObject( data ) )
 }
 
@@ -1361,7 +1362,7 @@ function isNotEmptyObject ( data ) {
  * @param data {*} The data to check against the emptiness of the string
  * @returns {boolean} true if data is an empty string, false otherwise.
  */
-function isEmptyString ( data ) {
+function isEmptyString( data ) {
 
     if ( isNotString( data ) ) {
         return false
@@ -1377,7 +1378,7 @@ function isEmptyString ( data ) {
  * @param data {*} The data to check against the emptiness of the string
  * @returns {boolean} true if data is not an empty string, false otherwise.
  */
-function isNotEmptyString ( data ) {
+function isNotEmptyString( data ) {
 
     return !( isEmptyString( data ) )
 
@@ -1407,7 +1408,7 @@ function isNotEmptyString ( data ) {
  * @param data {*} The data to check against the blankness of the string
  * @returns {boolean} true if data is a blank string, false otherwise.
  */
-function isBlankString ( data ) {
+function isBlankString( data ) {
 
     if ( isNotString( data ) ) { return false }
     if ( isEmptyString( data ) ) { return false }
@@ -1421,7 +1422,7 @@ function isBlankString ( data ) {
  * @param data {*} The data to check against the blankness of the string
  * @returns {boolean} true if data is not a blank string, false otherwise.
  */
-function isNotBlankString ( data ) {
+function isNotBlankString( data ) {
 
     return !( isBlankString( data ) )
 
@@ -1451,7 +1452,7 @@ function isNotBlankString ( data ) {
  * @param data {*} The data to check against the symbol type
  * @returns {boolean} true if data is a symbol, false otherwise.
  */
-function isSymbol ( data ) {
+function isSymbol( data ) {
     return ( typeof data === 'symbol' )
 }
 
@@ -1461,7 +1462,7 @@ function isSymbol ( data ) {
  * @param data {*} The data to check against the symbol type
  * @returns {boolean} true if data is not a symbol, false otherwise.
  */
-function isNotSymbol ( data ) {
+function isNotSymbol( data ) {
     return ( typeof data !== 'symbol' )
 }
 
@@ -1491,7 +1492,7 @@ function isNotSymbol ( data ) {
  * @param data {*} The data to check against the emptiness
  * @returns {boolean} true if data is considered as empty, false otherwise.
  */
-function isEmpty ( data ) {
+function isEmpty( data ) {
 
     if ( isNotDefined( data ) ) { return false }
     if ( isEmptyString( data ) ) { return true}
@@ -1508,7 +1509,7 @@ function isEmpty ( data ) {
  * @param data {*} The data to check against the emptiness
  * @returns {boolean} true if data is considered as not empty, false otherwise.
  */
-function isNotEmpty ( data ) {
+function isNotEmpty( data ) {
     return !isEmpty( data )
 }
 
@@ -1526,121 +1527,121 @@ function isNotEmpty ( data ) {
  // Usefull when a simple data structure is used multiple times
  validator.add( 'ColorType', color => {
 
-                const r = color.r
-                if ( color.r === undefined || Itee.Validators.isNotNumber( r ) ) {
-                    return false
-                }
+ const r = color.r
+ if ( color.r === undefined || Itee.Validators.isNotNumber( r ) ) {
+ return false
+ }
 
-                const g = color.g
-                if ( color.g === undefined || Itee.Validators.isNotNumber( g ) ) {
-                    return false
-                }
+ const g = color.g
+ if ( color.g === undefined || Itee.Validators.isNotNumber( g ) ) {
+ return false
+ }
 
-                const b = color.b
-                if ( color.b === undefined || Itee.Validators.isNotNumber( b ) ) {
-                    return false
-                }
+ const b = color.b
+ if ( color.b === undefined || Itee.Validators.isNotNumber( b ) ) {
+ return false
+ }
 
-                return true
-            } )
+ return true
+ } )
 
  // Using schema composition
  // Usefull for design validation schema faster and based on previous declared validation types
  validator.add( 'Range_0_255', ( value ) => {
 
-                if ( Itee.Validators.isNotNumber( value ) ) {
-                    return false
-                }
+ if ( Itee.Validators.isNotNumber( value ) ) {
+ return false
+ }
 
-                return !(value <= 0 || value > 255)
+ return !(value <= 0 || value > 255)
 
-            } )
+ } )
 
  validator.add( 'ColorSchema', {
-                r: {
-                    required: true,
-                    type:     'Range_0_255'
-                },
-                g: {
-                    required: true,
-                    type:     'Range_0_255'
-                },
-                b: {
-                    required: true,
-                    type:     'Range_0_255'
-                }
-            } )
+ r: {
+ required: true,
+ type:     'Range_0_255'
+ },
+ g: {
+ required: true,
+ type:     'Range_0_255'
+ },
+ b: {
+ required: true,
+ type:     'Range_0_255'
+ }
+ } )
 
  validator.add( 'ColorStructure', {
-                color_from_type: {
-                    type: 'ColorType'
-                },
-                col_from_schema: {
-                    type: 'ColorSchema'
-                },
-                col_from_fn:     {
-                    // Inner function
-	                // Usefull for specific validation requirement that cannot match other previous validation schema or type
-                    fn: function ColorValidator ( color ) {
+ color_from_type: {
+ type: 'ColorType'
+ },
+ col_from_schema: {
+ type: 'ColorSchema'
+ },
+ col_from_fn:     {
+ // Inner function
+ // Usefull for specific validation requirement that cannot match other previous validation schema or type
+ fn: function ColorValidator ( color ) {
 
-                        const r = color.r
-                        if ( color.r === undefined || Itee.Validators.isNotNumber( r ) ) {
-                            return false
-                        }
+ const r = color.r
+ if ( color.r === undefined || Itee.Validators.isNotNumber( r ) ) {
+ return false
+ }
 
-                        const g = color.g
-                        if ( color.g === undefined || Itee.Validators.isNotNumber( g ) ) {
-                            return false
-                        }
+ const g = color.g
+ if ( color.g === undefined || Itee.Validators.isNotNumber( g ) ) {
+ return false
+ }
 
-                        const b = color.b
-                        if ( color.b === undefined || Itee.Validators.isNotNumber( b ) ) {
-                            return false
-                        }
+ const b = color.b
+ if ( color.b === undefined || Itee.Validators.isNotNumber( b ) ) {
+ return false
+ }
 
-                        return true
-                    }
-                }
-            } )
+ return true
+ }
+ }
+ } )
 
  // The data to validate
  const colorStruct = {
-                color_from_type: {
-                    r: 0,
-                    g: 1,
-                    b: 2
-                },
-                col_from_schema: {
-                    r: 10,
-                    g: 20,
-                    b: 30
-                },
-                col_from_fn:     {
-                    r: 0,
-                    g: 127,
-                    b: 255
-                }
-            }
+ color_from_type: {
+ r: 0,
+ g: 1,
+ b: 2
+ },
+ col_from_schema: {
+ r: 10,
+ g: 20,
+ b: 30
+ },
+ col_from_fn:     {
+ r: 0,
+ g: 127,
+ b: 255
+ }
+ }
 
  // Execute
 
  try {
 
-    if ( validator.check( colorStruct, 'ColorStructure' ) ) {
-        alert( 'ColorStructure is valid !' )
-    } else {
-        alert( validator.errors )
-    }
+ if ( validator.check( colorStruct, 'ColorStructure' ) ) {
+ alert( 'ColorStructure is valid !' )
+ } else {
+ alert( validator.errors )
+ }
 
-} catch ( err ) {
-    alert( err )
-}
+ } catch ( err ) {
+ alert( err )
+ }
  *
  */
 
 class Validator {
 
-    constructor () {
+    constructor() {
 
         /**
          * The validators store, by default it contains validators for Boolean, Number, Integer, Float, Array, String, Object, Symbol and Function
@@ -1674,7 +1675,7 @@ class Validator {
      * @param type {string} - A string that represent the type of data to validate
      * @param validator {(function|object)} - A function or validation schema that represent the type of data to validate
      */
-    add ( type, validator ) {
+    add( type, validator ) {
 
         if ( isNotString( type ) ) { throw new TypeError( `Validator: Expect type to be a string` ) }
         if ( isNotFunction( validator ) && isNotObject( validator ) ) { throw new TypeError( `Validator: Expect validator to be an object or a function` ) }
@@ -1689,7 +1690,7 @@ class Validator {
      *
      * @param type {string} - The type to remove
      */
-    remove ( type ) {
+    remove( type ) {
 
         delete this.validators[ type ];
 
@@ -1700,7 +1701,7 @@ class Validator {
      *
      * @return {Array.<string>} - The list of registered type
      */
-    getAvalaibleTypes () {
+    getAvalaibleTypes() {
 
         const availablesTypes = [];
 
@@ -1720,7 +1721,7 @@ class Validator {
      * @param breakOnError {boolean} - Return on first validation error ( true by default )
      * @return {boolean} - Return true is the data is validated, false otherwise
      */
-    check ( data, type, breakOnError = true ) {
+    check( data, type, breakOnError = true ) {
 
         const validator = this.validators[ type ];
         if ( isNotDefined( validator ) ) {
@@ -1826,7 +1827,7 @@ if ( isNotDefined( exports.Validator ) ) {
  * @param data {*} The data to check against the array buffer type
  * @returns {boolean} true if data is a array buffer, false otherwise.
  */
-function isArrayBuffer ( data ) {
+function isArrayBuffer( data ) {
     return ( data instanceof ArrayBuffer )
 }
 
@@ -1836,7 +1837,7 @@ function isArrayBuffer ( data ) {
  * @param data {*} The data to check against the array buffer type
  * @returns {boolean} true if data is not a array buffer, false otherwise.
  */
-function isNotArrayBuffer ( data ) {
+function isNotArrayBuffer( data ) {
     return !isArrayBuffer( data )
 }
 
@@ -1864,7 +1865,7 @@ function isNotArrayBuffer ( data ) {
  * @param data {*} The data to check against the big int 64 array type
  * @returns {boolean} true if data is a big int 64 array, false otherwise.
  */
-function isBigInt64Array ( data ) {
+function isBigInt64Array( data ) {
     return ( data instanceof BigInt64Array )
 }
 
@@ -1874,7 +1875,7 @@ function isBigInt64Array ( data ) {
  * @param data {*} The data to check against the big int 64 array type
  * @returns {boolean} true if data is not a big int 64 array, false otherwise.
  */
-function isNotBigInt64Array ( data ) {
+function isNotBigInt64Array( data ) {
     return !isBigInt64Array( data )
 }
 
@@ -1902,7 +1903,7 @@ function isNotBigInt64Array ( data ) {
  * @param data {*} The data to check against the big unsigned int 64 array type
  * @returns {boolean} true if data is a big unsigned int 64 array, false otherwise.
  */
-function isBigUint64Array ( data ) {
+function isBigUint64Array( data ) {
     return ( data instanceof BigUint64Array )
 }
 
@@ -1912,7 +1913,7 @@ function isBigUint64Array ( data ) {
  * @param data {*} The data to check against the big unsigned int 64 array type
  * @returns {boolean} true if data is not a big unsigned int 64 array, false otherwise.
  */
-function isNotBigUint64Array ( data ) {
+function isNotBigUint64Array( data ) {
     return !isBigUint64Array( data )
 }
 
@@ -1940,7 +1941,7 @@ function isNotBigUint64Array ( data ) {
  * @param data {*} The data to check against the float 32 array  type
  * @returns {boolean} true if data is a float 32 array , false otherwise.
  */
-function isFloat32Array ( data ) {
+function isFloat32Array( data ) {
     return ( data instanceof Float32Array )
 }
 
@@ -1950,7 +1951,7 @@ function isFloat32Array ( data ) {
  * @param data {*} The data to check against the float 32 array  type
  * @returns {boolean} true if data is not a float 32 array , false otherwise.
  */
-function isNotFloat32Array ( data ) {
+function isNotFloat32Array( data ) {
     return !isFloat32Array( data )
 }
 
@@ -1978,7 +1979,7 @@ function isNotFloat32Array ( data ) {
  * @param data {*} The data to check against the float 64 array  type
  * @returns {boolean} true if data is a float 64 array , false otherwise.
  */
-function isFloat64Array ( data ) {
+function isFloat64Array( data ) {
     return ( data instanceof Float64Array )
 }
 
@@ -1988,7 +1989,7 @@ function isFloat64Array ( data ) {
  * @param data {*} The data to check against the float 64 array  type
  * @returns {boolean} true if data is not a float 64 array , false otherwise.
  */
-function isNotFloat64Array ( data ) {
+function isNotFloat64Array( data ) {
     return !isFloat64Array( data )
 }
 
@@ -2016,7 +2017,7 @@ function isNotFloat64Array ( data ) {
  * @param data {*} The data to check against the int 16 array  type
  * @returns {boolean} true if data is a int 16 array , false otherwise.
  */
-function isInt16Array ( data ) {
+function isInt16Array( data ) {
     return ( data instanceof Int16Array )
 }
 
@@ -2026,7 +2027,7 @@ function isInt16Array ( data ) {
  * @param data {*} The data to check against the int 16 array  type
  * @returns {boolean} true if data is not a int 16 array , false otherwise.
  */
-function isNotInt16Array ( data ) {
+function isNotInt16Array( data ) {
     return !isInt16Array( data )
 }
 
@@ -2054,7 +2055,7 @@ function isNotInt16Array ( data ) {
  * @param data {*} The data to check against the int 32 array  type
  * @returns {boolean} true if data is a int 32 array , false otherwise.
  */
-function isInt32Array ( data ) {
+function isInt32Array( data ) {
     return ( data instanceof Int32Array )
 }
 
@@ -2064,7 +2065,7 @@ function isInt32Array ( data ) {
  * @param data {*} The data to check against the int 32 array  type
  * @returns {boolean} true if data is not a int 32 array , false otherwise.
  */
-function isNotInt32Array ( data ) {
+function isNotInt32Array( data ) {
     return !isInt32Array( data )
 }
 
@@ -2092,7 +2093,7 @@ function isNotInt32Array ( data ) {
  * @param data {*} The data to check against the int 8 array  type
  * @returns {boolean} true if data is a int 8 array , false otherwise.
  */
-function isInt8Array ( data ) {
+function isInt8Array( data ) {
     return ( data instanceof Int8Array )
 }
 
@@ -2102,7 +2103,7 @@ function isInt8Array ( data ) {
  * @param data {*} The data to check against the int 8 array  type
  * @returns {boolean} true if data is not a int 8 array , false otherwise.
  */
-function isNotInt8Array ( data ) {
+function isNotInt8Array( data ) {
     return !isInt8Array( data )
 }
 
@@ -2130,7 +2131,7 @@ function isNotInt8Array ( data ) {
  * @param data {*} The data to check against the unsigned int 16 array  type
  * @returns {boolean} true if data is a unsigned int 16 array , false otherwise.
  */
-function isUint16Array ( data ) {
+function isUint16Array( data ) {
     return ( data instanceof Uint16Array )
 }
 
@@ -2140,7 +2141,7 @@ function isUint16Array ( data ) {
  * @param data {*} The data to check against the unsigned int 16 array  type
  * @returns {boolean} true if data is not a unsigned int 16 array , false otherwise.
  */
-function isNotUint16Array ( data ) {
+function isNotUint16Array( data ) {
     return !isUint16Array( data )
 }
 
@@ -2168,7 +2169,7 @@ function isNotUint16Array ( data ) {
  * @param data {*} The data to check against the unsigned int 32 array  type
  * @returns {boolean} true if data is a unsigned int 32 array , false otherwise.
  */
-function isUint32Array ( data ) {
+function isUint32Array( data ) {
     return ( data instanceof Uint32Array )
 }
 
@@ -2178,7 +2179,7 @@ function isUint32Array ( data ) {
  * @param data {*} The data to check against the unsigned int 32 array  type
  * @returns {boolean} true if data is not a unsigned int 32 array , false otherwise.
  */
-function isNotUint32Array ( data ) {
+function isNotUint32Array( data ) {
     return !isUint32Array( data )
 }
 
@@ -2206,7 +2207,7 @@ function isNotUint32Array ( data ) {
  * @param data {*} The data to check against the unsigned int 8 array  type
  * @returns {boolean} true if data is a unsigned int 8 array , false otherwise.
  */
-function isUint8Array ( data ) {
+function isUint8Array( data ) {
     return ( data instanceof Uint8Array )
 }
 
@@ -2216,7 +2217,7 @@ function isUint8Array ( data ) {
  * @param data {*} The data to check against the unsigned int 8 array  type
  * @returns {boolean} true if data is not a unsigned int 8 array , false otherwise.
  */
-function isNotUint8Array ( data ) {
+function isNotUint8Array( data ) {
     return !isUint8Array( data )
 }
 
@@ -2244,7 +2245,7 @@ function isNotUint8Array ( data ) {
  * @param data {*} The data to check against the unsigned clamped int 8 array  type
  * @returns {boolean} true if data is a unsigned clamped int 8 array , false otherwise.
  */
-function isUint8ClampedArray ( data ) {
+function isUint8ClampedArray( data ) {
     return ( data instanceof Uint8ClampedArray )
 }
 
@@ -2254,7 +2255,7 @@ function isUint8ClampedArray ( data ) {
  * @param data {*} The data to check against the unsigned clamped int 8 array  type
  * @returns {boolean} true if data is not a unsigned clamped int 8 array , false otherwise.
  */
-function isNotUint8ClampedArray ( data ) {
+function isNotUint8ClampedArray( data ) {
     return !isUint8ClampedArray( data )
 }
 
@@ -2314,7 +2315,7 @@ const ABSOLUTE_ZERO_FAHRENHEIT = -459.67;
  * @param data {*}
  * @return {boolean}
  */
-function isCelsius ( data ) {
+function isCelsius( data ) {
     return ( isNumber( data ) && data >= ABSOLUTE_ZERO_CELSIUS )
 }
 
@@ -2323,7 +2324,7 @@ function isCelsius ( data ) {
  * @param data {*}
  * @return {boolean}
  */
-function isNotCelsius ( data ) {
+function isNotCelsius( data ) {
     return !isCelsius( data )
 }
 
@@ -2350,7 +2351,7 @@ function isNotCelsius ( data ) {
  * @param data {*}
  * @return {boolean}
  */
-function isFahrenheit ( data ) {
+function isFahrenheit( data ) {
     return ( isNumber( data ) && data >= ABSOLUTE_ZERO_FAHRENHEIT )
 }
 
@@ -2359,7 +2360,7 @@ function isFahrenheit ( data ) {
  * @param data {*}
  * @return {boolean}
  */
-function isNotFahrenheit ( data ) {
+function isNotFahrenheit( data ) {
     return !isFahrenheit( data )
 }
 
@@ -2386,7 +2387,7 @@ function isNotFahrenheit ( data ) {
  * @param data {*}
  * @return {boolean}
  */
-function isKelvin ( data ) {
+function isKelvin( data ) {
     return ( isNumber( data ) && data >= ABSOLUTE_ZERO_KELVIN )
 }
 
@@ -2395,7 +2396,7 @@ function isKelvin ( data ) {
  * @param data {*}
  * @return {boolean}
  */
-function isNotKelvin ( data ) {
+function isNotKelvin( data ) {
     return !isKelvin( data )
 }
 
@@ -2422,7 +2423,7 @@ function isNotKelvin ( data ) {
  * @param data {*}
  * @return {boolean}
  */
-function isTemperature ( data ) {
+function isTemperature( data ) {
     return ( isKelvin( data ) || isCelsius( data ) || isFahrenheit( data ) )
 }
 
@@ -2431,7 +2432,7 @@ function isTemperature ( data ) {
  * @param data {*}
  * @return {boolean}
  */
-function isNotTemperature ( data ) {
+function isNotTemperature( data ) {
     return ( isNotKelvin( data ) && isNotCelsius( data ) && isNotFahrenheit( data ) )
 }
 
@@ -2462,13 +2463,13 @@ function isNotTemperature ( data ) {
  * @param path {string|Buffer|URL} The data to check against the block device path type
  * @returns {boolean} true if path is a block device path, false otherwise
  */
-function isBlockDevicePath ( path ) {
-    if( isNotString(path) && !(path instanceof Buffer) && !(path instanceof URL) ) {
-        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+function isBlockDevicePath( path ) {
+    if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
+        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
-    const stat = fs__default["default"].statSync( path, { throwIfNoEntry: false } );
-    return isDefined(stat) && stat.isBlockDevice()
+    const stat = fs.statSync( path, { throwIfNoEntry: false } );
+    return isDefined( stat ) && stat.isBlockDevice()
 }
 
 /**
@@ -2477,7 +2478,7 @@ function isBlockDevicePath ( path ) {
  * @param path {string|Buffer|URL} The data to check against the block device path type
  * @returns {boolean} true if path is not a block device path, false otherwise
  */
-function isNotBlockDevicePath ( path ) {
+function isNotBlockDevicePath( path ) {
     return !isBlockDevicePath( path )
 }
 
@@ -2508,8 +2509,8 @@ function isNotBlockDevicePath ( path ) {
  * @param data {*} The data to check against the path type
  * @returns {boolean} true if data is a valid path, false otherwise
  */
-function isValidPath ( data ) {
-    return fs__default["default"].existsSync( data )
+function isValidPath( data ) {
+    return fs.existsSync( data )
 }
 
 /**
@@ -2518,7 +2519,7 @@ function isValidPath ( data ) {
  * @param data {*} The data to check against the path type
  * @returns {boolean} true if data is a valid path, false otherwise
  */
-function isInvalidPath ( data ) {
+function isInvalidPath( data ) {
     return !isValidPath( data )
 }
 
@@ -2546,7 +2547,7 @@ function isInvalidPath ( data ) {
  * @param data {*} The data to check against the block device path type
  * @returns {boolean} true if data is a valid block device path, false otherwise
  */
-function isValidBlockDevicePath ( data ) {
+function isValidBlockDevicePath( data ) {
     return ( isValidPath( data ) && isBlockDevicePath( data ) )
 }
 
@@ -2556,7 +2557,7 @@ function isValidBlockDevicePath ( data ) {
  * @param data {*} The data to check against the block device path type
  * @returns {boolean} true if data is an invalid block device path, false otherwise
  */
-function isInvalidBlockDevicePath ( data ) {
+function isInvalidBlockDevicePath( data ) {
     return !isValidBlockDevicePath( data )
 }
 
@@ -2587,13 +2588,13 @@ function isInvalidBlockDevicePath ( data ) {
  * @param path {string|Buffer|URL} The data to check against the character device path type
  * @returns {boolean} true if path is a character device path, false otherwise
  */
-function isCharacterDevicePath ( path ) {
-    if( isNotString(path) && !(path instanceof Buffer) && !(path instanceof URL) ) {
-        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+function isCharacterDevicePath( path ) {
+    if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
+        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
-    const stat = fs__default["default"].statSync( path, { throwIfNoEntry: false } );
-    return isDefined(stat) && stat.isCharacterDevice()
+    const stat = fs.statSync( path, { throwIfNoEntry: false } );
+    return isDefined( stat ) && stat.isCharacterDevice()
 }
 
 /**
@@ -2602,7 +2603,7 @@ function isCharacterDevicePath ( path ) {
  * @param path {string|Buffer|URL} The data to check against the character device path type
  * @returns {boolean} true if path is not a character device path, false otherwise
  */
-function isNotCharacterDevicePath ( path ) {
+function isNotCharacterDevicePath( path ) {
     return !isCharacterDevicePath( path )
 }
 
@@ -2630,7 +2631,7 @@ function isNotCharacterDevicePath ( path ) {
  * @param data {*} The data to check against the character device path type
  * @returns {boolean} true if data is a valid character device path, false otherwise
  */
-function isValidCharacterDevicePath ( data ) {
+function isValidCharacterDevicePath( data ) {
     return ( isValidPath( data ) && isCharacterDevicePath( data ) )
 }
 
@@ -2640,7 +2641,7 @@ function isValidCharacterDevicePath ( data ) {
  * @param data {*} The data to check against the character device path type
  * @returns {boolean} true if data is an invalid character device path, false otherwise
  */
-function isInvalidCharacterDevicePath ( data ) {
+function isInvalidCharacterDevicePath( data ) {
     return !isValidCharacterDevicePath( data )
 }
 
@@ -2671,13 +2672,13 @@ function isInvalidCharacterDevicePath ( data ) {
  * @param path {string|Buffer|URL} The data to check against the directory path type
  * @returns {boolean} true if path is a directory path, false otherwise
  */
-function isDirectoryPath ( path ) {
-    if( isNotString(path) && !(path instanceof Buffer) && !(path instanceof URL) ) {
-        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+function isDirectoryPath( path ) {
+    if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
+        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
-    const stat = fs__default["default"].statSync( path, { throwIfNoEntry: false } );
-    return isDefined(stat) && stat.isDirectory()
+    const stat = fs.statSync( path, { throwIfNoEntry: false } );
+    return isDefined( stat ) && stat.isDirectory()
 }
 
 /**
@@ -2686,7 +2687,7 @@ function isDirectoryPath ( path ) {
  * @param path {string|Buffer|URL} The data to check against the directory path type
  * @returns {boolean} true if path is a not directory path, false otherwise
  */
-function isNotDirectoryPath ( path ) {
+function isNotDirectoryPath( path ) {
     return !isDirectoryPath( path )
 }
 
@@ -2717,8 +2718,8 @@ function isNotDirectoryPath ( path ) {
  * @param directoryPath {string|Buffer|URL} The directory path to check the emptiness
  * @returns {boolean} true if directory is empty, false otherwise
  */
-function isEmptyDirectory ( directoryPath ) {
-    return isDirectoryPath(directoryPath) && ( fs__default["default"].readdirSync( directoryPath ).length === 0 )
+function isEmptyDirectory( directoryPath ) {
+    return isDirectoryPath( directoryPath ) && ( fs.readdirSync( directoryPath ).length === 0 )
 }
 
 /**
@@ -2727,7 +2728,7 @@ function isEmptyDirectory ( directoryPath ) {
  * @param directoryPath {string|Buffer|URL} The directory path to check the emptiness
  * @returns {boolean} true if directory is not empty, false otherwise
  */
-function isNotEmptyDirectory ( directoryPath ) {
+function isNotEmptyDirectory( directoryPath ) {
     return !isEmptyDirectory( directoryPath )
 }
 
@@ -2755,7 +2756,7 @@ function isNotEmptyDirectory ( directoryPath ) {
  * @param data {*} The data to check against the directory path type
  * @returns {boolean} true if data is a valid directory path, false otherwise
  */
-function isValidDirectoryPath ( data ) {
+function isValidDirectoryPath( data ) {
     return ( isValidPath( data ) && isDirectoryPath( data ) )
 }
 
@@ -2765,7 +2766,7 @@ function isValidDirectoryPath ( data ) {
  * @param data {*} The data to check against the directory path type
  * @returns {boolean} true if data is an invalid directory path, false otherwise
  */
-function isInvalidDirectoryPath ( data ) {
+function isInvalidDirectoryPath( data ) {
     return !isValidDirectoryPath( data )
 }
 
@@ -2796,13 +2797,13 @@ function isInvalidDirectoryPath ( data ) {
  * @param path {string|Buffer|URL} The data to check against the fifo path type
  * @returns {boolean} true if path is a fifo path, false otherwise
  */
-function isFIFOPath ( path ) {
-    if( isNotString(path) && !(path instanceof Buffer) && !(path instanceof URL) ) {
-        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+function isFIFOPath( path ) {
+    if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
+        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
-    const stat = fs__default["default"].statSync( path, { throwIfNoEntry: false } );
-    return isDefined(stat) && stat.isFIFO()
+    const stat = fs.statSync( path, { throwIfNoEntry: false } );
+    return isDefined( stat ) && stat.isFIFO()
 }
 
 /**
@@ -2811,7 +2812,7 @@ function isFIFOPath ( path ) {
  * @param path {string|Buffer|URL} The data to check against the fifo path type
  * @returns {boolean} true if path is not a fifo path, false otherwise
  */
-function isNotFIFOPath ( path ) {
+function isNotFIFOPath( path ) {
     return !isFIFOPath( path )
 }
 
@@ -2842,7 +2843,7 @@ function isNotFIFOPath ( path ) {
  * @param data {*} The data to check against the fifo path type
  * @returns {boolean} true if data is a valid fifo path, false otherwise
  */
-function isValidFIFOPath ( data ) {
+function isValidFIFOPath( data ) {
     return ( isValidPath( data ) && isFIFOPath( data ) )
 }
 
@@ -2852,7 +2853,7 @@ function isValidFIFOPath ( data ) {
  * @param data {*} The data to check against the fifo path type
  * @returns {boolean} true if data is an invalid fifo path, false otherwise
  */
-function isInvalidFIFOPath ( data ) {
+function isInvalidFIFOPath( data ) {
     return !isValidFIFOPath( data )
 }
 
@@ -2883,13 +2884,13 @@ function isInvalidFIFOPath ( data ) {
  * @param path {string|Buffer|URL} The data to check against the file path type
  * @returns {boolean} true if path is a file path, false otherwise
  */
-function isFilePath ( path ) {
-    if( isNotString(path) && !(path instanceof Buffer) && !(path instanceof URL) ) {
-        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+function isFilePath( path ) {
+    if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
+        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
-    const stat = fs__default["default"].statSync( path, { throwIfNoEntry: false } );
-    return isDefined(stat) && stat.isFile()
+    const stat = fs.statSync( path, { throwIfNoEntry: false } );
+    return isDefined( stat ) && stat.isFile()
 }
 
 /**
@@ -2898,7 +2899,7 @@ function isFilePath ( path ) {
  * @param path {string|Buffer|URL} The data to check against the file path type
  * @returns {boolean} true if path is not a file path, false otherwise
  */
-function isNotFilePath ( path ) {
+function isNotFilePath( path ) {
     return !isFilePath( path )
 }
 
@@ -2930,12 +2931,12 @@ function isNotFilePath ( path ) {
  * @param threshold {number} An amount of byte below which it consider the file as empty ( 0 as default ).
  * @returns {boolean} true if file is empty, false otherwise
  */
-function isEmptyFile ( filePath, threshold = 0 ) {
-    if( isNotString(filePath) && !(filePath instanceof Buffer) && !(filePath instanceof URL) ) {
-        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+function isEmptyFile( filePath, threshold = 0 ) {
+    if ( isNotString( filePath ) && !( filePath instanceof Buffer ) && !( filePath instanceof URL ) ) {
+        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
-    return isFilePath(filePath) && ( fs__default["default"].statSync( filePath ).size <= threshold )
+    return isFilePath( filePath ) && ( fs.statSync( filePath ).size <= threshold )
 }
 
 /**
@@ -2945,8 +2946,8 @@ function isEmptyFile ( filePath, threshold = 0 ) {
  * @param threshold {number} An amount of byte above which it consider the file as not empty ( 0 as default ).
  * @returns {boolean} true if file is not empty, false otherwise
  */
-function isNotEmptyFile ( filePath, threshold = 0 ) {
-    return !isEmptyFile(filePath, threshold)
+function isNotEmptyFile( filePath, threshold = 0 ) {
+    return !isEmptyFile( filePath, threshold )
 }
 
 /**
@@ -2973,7 +2974,7 @@ function isNotEmptyFile ( filePath, threshold = 0 ) {
  * @param data {*} The data to check against the file path type
  * @returns {boolean} true if data is a valid file path, false otherwise
  */
-function isValidFilePath ( data ) {
+function isValidFilePath( data ) {
     return ( isValidPath( data ) && isFilePath( data ) )
 }
 
@@ -2983,7 +2984,7 @@ function isValidFilePath ( data ) {
  * @param data {*} The data to check against the file path type
  * @returns {boolean} true if data is an invalid file path, false otherwise
  */
-function isInvalidFilePath ( data ) {
+function isInvalidFilePath( data ) {
     return !isValidFilePath( data )
 }
 
@@ -3014,13 +3015,13 @@ function isInvalidFilePath ( data ) {
  * @param path {string|Buffer|URL} The data to check against the socket path type
  * @returns {boolean} true if path is a socket path, false otherwise
  */
-function isSocketPath ( path ) {
-    if( isNotString(path) && !(path instanceof Buffer) && !(path instanceof URL) ) {
-        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+function isSocketPath( path ) {
+    if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
+        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
-    const stat = fs__default["default"].statSync( path, { throwIfNoEntry: false } );
-    return isDefined(stat) && stat.isSocket()
+    const stat = fs.statSync( path, { throwIfNoEntry: false } );
+    return isDefined( stat ) && stat.isSocket()
 }
 
 /**
@@ -3029,7 +3030,7 @@ function isSocketPath ( path ) {
  * @param path {string|Buffer|URL} The data to check against the socket path type
  * @returns {boolean} true if path is not a socket path, false otherwise
  */
-function isNotSocketPath ( path ) {
+function isNotSocketPath( path ) {
     return !isSocketPath( path )
 }
 
@@ -3057,7 +3058,7 @@ function isNotSocketPath ( path ) {
  * @param data {*} The data to check against the socket path type
  * @returns {boolean} true if data is a valid socket path, false otherwise
  */
-function isValidSocketPath ( data ) {
+function isValidSocketPath( data ) {
     return ( isValidPath( data ) && isSocketPath( data ) )
 }
 
@@ -3067,7 +3068,7 @@ function isValidSocketPath ( data ) {
  * @param data {*} The data to check against the socket path type
  * @returns {boolean} true if data is an invalid socket path, false otherwise
  */
-function isInvalidSocketPath ( data ) {
+function isInvalidSocketPath( data ) {
     return !isValidSocketPath( data )
 }
 
@@ -3098,13 +3099,13 @@ function isInvalidSocketPath ( data ) {
  * @param path {string|Buffer|URL} The data to check against the symbolic link path type
  * @returns {boolean} true if path is a symbolic link path, false otherwise
  */
-function isSymbolicLinkPath ( path ) {
-    if( isNotString(path) && !(path instanceof Buffer) && !(path instanceof URL) ) {
-        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+function isSymbolicLinkPath( path ) {
+    if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
+        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
-    const stat = fs__default["default"].statSync( path, { throwIfNoEntry: false } );
-    return isDefined(stat) && stat.isSymbolicLink()
+    const stat = fs.statSync( path, { throwIfNoEntry: false } );
+    return isDefined( stat ) && stat.isSymbolicLink()
 }
 
 /**
@@ -3113,7 +3114,7 @@ function isSymbolicLinkPath ( path ) {
  * @param path {string|Buffer|URL} The data to check against the symbolic link path type
  * @returns {boolean} true if path is not a symbolic link path, false otherwise
  */
-function isNotSymbolicLinkPath ( path ) {
+function isNotSymbolicLinkPath( path ) {
     return !isSymbolicLinkPath( path )
 }
 
@@ -3141,7 +3142,7 @@ function isNotSymbolicLinkPath ( path ) {
  * @param data {*} The data to check against the symbolic link path type
  * @returns {boolean} true if data is a valid symbolic link path, false otherwise
  */
-function isValidSymbolicLinkPath ( data ) {
+function isValidSymbolicLinkPath( data ) {
     return ( isValidPath( data ) && isSymbolicLinkPath( data ) )
 }
 
@@ -3151,7 +3152,7 @@ function isValidSymbolicLinkPath ( data ) {
  * @param data {*} The data to check against the symbolic link path type
  * @returns {boolean} true if data is an invalid symbolic link path, false otherwise
  */
-function isInvalidSymbolicLinkPath ( data ) {
+function isInvalidSymbolicLinkPath( data ) {
     return !isValidSymbolicLinkPath( data )
 }
 

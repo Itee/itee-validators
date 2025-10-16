@@ -104,7 +104,7 @@ import { isEmptyArray } from './isEmptyArray'
  * @param data {*} The data to check against the array of null type
  * @returns {boolean} true if data is not an empty array where all values are null, false otherwise
  */
-export function isArrayOfNull ( data ) {
+export function isArrayOfNull( data ) {
 
     if ( isNotArray( data ) ) { return false }
     if ( isEmptyArray( data ) ) { return false }
@@ -125,7 +125,7 @@ export function isArrayOfNull ( data ) {
  * @param data {*} The data to check against the array of null type
  * @returns {boolean} true if data is not an empty array where all values are not null, false otherwise
  */
-export function isNotArrayOfNull ( data ) {
+export function isNotArrayOfNull( data ) {
 
     if ( isNotArray( data ) ) { return true }
     if ( isEmptyArray( data ) ) { return true }

@@ -1,3 +1,18 @@
+# [5.4.0](https://github.com/Itee/itee-validators/compare/v5.3.9...v5.4.0) (2025-10-16)
+
+
+### Bug Fixes
+
+* **builds:** remove console log side effect in favor of pretty banner from figlet package ([e6304f0](https://github.com/Itee/itee-validators/commit/e6304f0032eac639151a322690da7c8e4a05c7ba))
+* **gulpfile:** apply some fixes to standardize gulpfile ([ea8840a](https://github.com/Itee/itee-validators/commit/ea8840ad9b86cf135afd6e03efd828432a963341))
+* **isinfinite:** fix circular dependency ([8e048e3](https://github.com/Itee/itee-validators/commit/8e048e3e2036a026d84e8e3456f783b944acfb2d))
+* **rollup.conf:** fix variable collision ([ffc877d](https://github.com/Itee/itee-validators/commit/ffc877d2c277f7d6a24c82416ca60a89f15aac68))
+
+
+### Features
+
+* **check-bundling:** improve existing bundling check to detect side-effects ([a285bf6](https://github.com/Itee/itee-validators/commit/a285bf65c9737d44e23073b6084a7404ee26189d))
+
 ## [5.3.9](https://github.com/Itee/itee-validators/compare/v5.3.8...v5.3.9) (2025-09-07)
 
 
