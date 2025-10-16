@@ -81,11 +81,30 @@ const packageInfos = JSON.parse( fs.readFileSync(
  */
 gulp.task( 'help', ( done ) => {
 
+    const iteeVersion       = packageInfos.version
+    const iteeVersionLength = iteeVersion.length
+    const iteeSpaceFilling  = ' '.repeat( 28 - iteeVersionLength )
+
+    const nodeVersion       = childProcess.execFileSync( 'node', [ '--version' ] )
+                                          .toString()
+                                          .replace( /(\r\n|\n|\r)/gm, '' )
+    const nodeVersionLength = nodeVersion.length
+    const nodeSpaceFilling  = ' '.repeat( 43 - nodeVersionLength )
+
+    const npmVersion       = childProcess.execFileSync( 'npm', [ '--version' ] )
+                                         .toString()
+                                         .replace( /(\r\n|\n|\r)/gm, '' )
+    const npmVersionLength = npmVersion.length
+    const npmSpaceFilling  = ' '.repeat( 42 - npmVersionLength )
+
     log( '' )
     log( '====================================================' )
     log( '|                      HELP                        |' )
     log( '|                 Itee Validators                  |' )
-    log( `|                     v${ packageInfos.version }                       |` )
+    log( `|                     v${ iteeVersion }${ iteeSpaceFilling }|` )
+    log( '|--------------------------------------------------|' )
+    log( `| node: ${ nodeVersion }${ nodeSpaceFilling }|` )
+    log( `| npm:  v${ npmVersion }${ npmSpaceFilling }|` )
     log( '====================================================' )
     log( '' )
     log( 'Available commands are:' )
@@ -141,8 +160,8 @@ gulp.task( 'clean', () => {
 
     const filesToClean = [
         './builds',
-        './tests/units',
-        './tests/benchmarks',
+        './tests/units/builds',
+        './tests/benchmarks/builds',
         './docs'
     ]
 
@@ -605,12 +624,14 @@ gulp.task( 'compute-unit-tests', async ( done ) => {
         const nsName         = `${ fileName }Namespace`
         const unitName       = `${ fileName }Units`
         const importDirPath  = path.relative( unitDirPath, sourcesDir )
-        const importFilePath = path.join( importDirPath, specificFilePath ).replace( /\\/g, '/' )
+        const importFilePath = path.join( importDirPath, specificFilePath )
+                                   .replace( /\\/g, '/' )
 
         try {
 
             const jsdocPath   = path.join( basePath, '/node_modules/jsdoc/jsdoc.js' )
-            const jsdocOutput = childProcess.execFileSync( 'node', [ jsdocPath, '-X', sourceFile ] ).toString()
+            const jsdocOutput = childProcess.execFileSync( 'node', [ jsdocPath, '-X', sourceFile ] )
+                                            .toString()
 
             const classNames    = []
             const usedLongnames = []
@@ -1486,7 +1507,6 @@ gulp.task( 'build', ( done ) => {
         string:  [ 'n', 'i', 'f', 'e' ],
         boolean: [ 's', 't' ],
         default: {
-            n: 'Itee.Validators',
             i: path.join( __dirname, 'sources', `${ packageInfos.name }.js` ),
             o: path.join( __dirname, 'builds' ),
             f: [ 'esm', 'cjs', 'iife' ],
@@ -1495,7 +1515,6 @@ gulp.task( 'build', ( done ) => {
             t: true
         },
         alias:   {
-            n: 'name',
             i: 'input',
             o: 'output',
             f: 'formats',
@@ -1541,7 +1560,7 @@ gulp.task( 'build', ( done ) => {
 /**
  * @method npm run release
  * @global
- * @description Will perform a complet release of the library including 'clean', 'lint', 'doc', 'build-test', 'test' and finally 'build'.
+ * @description Will perform a complet release of the library including 'clean', 'lint', 'doc', 'build-tests', 'test' and finally 'build'.
  */
 gulp.task( 'release', gulp.series( 'clean', 'lint', 'doc', 'build-tests', 'test', 'build' ) )
 
