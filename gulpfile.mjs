@@ -216,46 +216,50 @@ gulp.task( 'doc', ( done ) => {
  * and then create rollup config for each of them and bundle
  * Todo: Check for differents target env like next task below this one
  */
-gulp.task( 'check-bundling-side-effect', async ( done ) => {
+const filePathsToIgnore = [
+    `${ packageInfos.name }.js`,
+    'LineFileSplitter.js'
+]
+gulp.task( 'check-bundling-from-esm-files-import', async ( done ) => {
 
     const baseDir        = __dirname
     const sourcesDir     = path.join( baseDir, 'sources' )
     const testsDir       = path.join( baseDir, 'tests' )
     const bundleDir      = path.join( testsDir, 'bundles' )
-    const sideEffectsDir = path.join( bundleDir, 'side-effects' )
-    const temporariesDir = path.join( sideEffectsDir, '_tmp' )
+    const outputDir      = path.join( bundleDir, 'from_files_import' )
+    const temporariesDir = path.join( outputDir, '.tmp' )
 
-    const filePathsToIgnore = [
-        `${ packageInfos.name }.js`,
-        'LineFileSplitter.js'
-    ]
+    if ( fs.existsSync( outputDir ) ) {
+        log( 'Clean up', magenta( outputDir ) )
+        fs.rmSync( outputDir, { recursive: true } )
+    }
 
     let sourcesGlob    = path.join( sourcesDir, '/**' )
     // sourcesGlob        = sourcesGlob.replaceAll( '\\', '/' )
     const sourcesFiles = glob.sync( sourcesGlob )
-        .map( filePath => {
-            return path.normalize( filePath )
-        } )
-        .filter( filePath => {
-            const fileName         = path.basename( filePath )
-            const isJsFile         = fileName.endsWith( '.js' )
-            const isNotPrivateFile = !fileName.startsWith( '_' )
-            const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
-            return isJsFile && isNotPrivateFile && isNotIgnoredFile
-        } )
+                             .map( filePath => {
+                                 return path.normalize( filePath )
+                             } )
+                             .filter( filePath => {
+                                 const fileName         = path.basename( filePath )
+                                 const isJsFile         = fileName.endsWith( '.js' )
+                                 const isNotPrivateFile = !fileName.startsWith( '_' )
+                                 const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
+                                 return isJsFile && isNotPrivateFile && isNotIgnoredFile
+                             } )
 
     for ( let sourceFile of sourcesFiles ) {
 
         const {
-            dir:  sourceDir,
-            base: sourceBase,
-            name: sourceName
-        }                = path.parse( sourceFile )
+                  dir:  sourceDir,
+                  base: sourceBase,
+                  name: sourceName
+              }                = path.parse( sourceFile )
         const specificFilePath = sourceFile.replace( sourcesDir, '' )
         const specificDir      = path.dirname( specificFilePath )
 
         // Create temp import file per file in package
-        const temporaryFileName = `${ sourceName }.tmp.js`
+        const temporaryFileName = `${ sourceName }.import.js`
         const temporaryDir      = path.join( temporariesDir, specificDir )
         const temporaryFile     = path.join( temporaryDir, temporaryFileName )
         const importDir         = path.relative( temporaryDir, sourceDir )
@@ -264,19 +268,21 @@ gulp.task( 'check-bundling-side-effect', async ( done ) => {
 
         // Bundle tmp file and check content for side effects
         const bundleFileName = `${ sourceName }.bundle.js`
-        const bundleFilePath = path.join( sideEffectsDir, specificDir, bundleFileName )
+        const bundleFilePath = path.join( outputDir, specificDir, bundleFileName )
 
         const config = {
-            input: temporaryFile,
+            input:     temporaryFile,
             plugins:   [
-                nodeResolve()
-                //                commonJs()
+                nodeResolve(),
+                cleanup( {
+                    comments: 'all' // else remove __PURE__ declaration... -_-'
+                } )
             ],
             onwarn:    ( {
-                             loc,
-                             frame,
-                             message
-                         } ) => {
+                loc,
+                frame,
+                message
+            } ) => {
 
                 // Ignore some errors
                 if ( message.includes( 'Circular dependency' ) ) { return }
@@ -313,11 +319,10 @@ gulp.task( 'check-bundling-side-effect', async ( done ) => {
             const bundle     = await rollup( config )
             const { output } = await bundle.generate( config.output )
 
-            if ( output[ 0 ].code.length > 1 ) {
+            let code = output[ 0 ].code
+            if ( code.length > 1 ) {
                 log( red( `[${ specificFilePath }] contain side-effects !` ) )
-                // Todo: make option to log, to write or nothing
-                // log( output[ 0 ].code )
-                // await bundle.write( config.output )
+                await bundle.write( config.output )
             } else {
                 log( green( `[${ specificFilePath }] is side-effect free.` ) )
             }
@@ -328,35 +333,162 @@ gulp.task( 'check-bundling-side-effect', async ( done ) => {
 
     }
 
-    // Todo: depends on option to log or to write
-    fs.rmSync( bundleDir, { recursive: true } )
-    // fs.rmSync( temporariesDir, { recursive: true } )
-
     done()
 
 } )
-gulp.task( 'check-bundling-by-source-file-export', async ( done ) => {
+gulp.task( 'check-bundling-from-esm-build-import', async ( done ) => {
+
+    const baseDir        = __dirname
+    const buildsDir      = path.join( baseDir, 'builds' )
+    const buildFilePath  = path.join( buildsDir, `${ packageInfos.name }.esm.js` )
+    const testsDir       = path.join( baseDir, 'tests' )
+    const bundlesDir     = path.join( testsDir, 'bundles' )
+    const outputDir      = path.join( bundlesDir, 'from_build_import' )
+    const temporaryDir   = path.join( bundlesDir, 'from_build_import', '.tmp' )
+    const importDir      = path.relative( temporaryDir, buildsDir )
+    const importFilePath = path.join( importDir, `${ packageInfos.name }.esm.js` )
+
+    if ( fs.existsSync( outputDir ) ) {
+        log( 'Clean up', magenta( outputDir ) )
+        fs.rmSync( outputDir, { recursive: true } )
+    }
+
+    try {
+
+        // Get build exports list
+        const data  = fs.readFileSync( buildFilePath, 'utf8' )
+        const regex = /export\s{\s(.*)\s}/
+        const found = data.match( regex )
+        if ( found === null ) {
+            log( red( `Unable to find exports in ${ buildFilePath }` ) )
+            return
+        }
+
+        const exports = found[ 1 ].split( ',' )
+                                  .map( item => item.trim() )
+
+        // Create temporary imports files for each build export
+        // And then bundle it
+        let temporaryFilePaths = []
+        for ( let namedExport of exports ) {
+            if ( namedExport.includes( ' as ' ) ) {
+                namedExport = namedExport.split( ' as ' )[ 1 ]
+            }
+
+            const temporaryFileName = `${ namedExport }.import.js`
+            const temporaryFilePath = path.join( temporaryDir, temporaryFileName )
+            const temporaryFileData = `import { ${ namedExport } } from '${ importFilePath.replace( /\\/g, '/' ) }'`
+
+            fs.mkdirSync( temporaryDir, { recursive: true } )
+            fs.writeFileSync( temporaryFilePath, temporaryFileData )
+
+            temporaryFilePaths.push( temporaryFilePath )
+        }
+
+        // Bundle each temporary files and check side-effects
+        const config = {
+            input:     null,
+            external:  [ '' ],
+            plugins:   [
+                nodeResolve( {
+                    preferBuiltins: true
+                } ),
+                cleanup( {
+                    comments: 'all' // else remove __PURE__ declaration... -_-'
+                } )
+            ],
+            onwarn:    ( {
+                loc,
+                frame,
+                message
+            } ) => {
+
+                // Ignore some errors
+                if ( message.includes( 'Circular dependency' ) ) { return }
+                if ( message.includes( 'Generated an empty chunk' ) ) { return }
+
+                if ( loc ) {
+                    process.stderr.write( `/!\\ ${ loc.file } (${ loc.line }:${ loc.column }) ${ frame } ${ message }\n` )
+                } else {
+                    process.stderr.write( `/!\\ ${ message }\n` )
+                }
+
+            },
+            treeshake: {
+                moduleSideEffects:                true,
+                annotations:                      true,
+                correctVarValueBeforeDeclaration: true,
+                propertyReadSideEffects:          true,
+                tryCatchDeoptimization:           true,
+                unknownGlobalSideEffects:         true
+            },
+            output:    {
+                indent: '\t',
+                format: 'esm',
+                file:   null
+            }
+        }
+        let fileName, bundleFileName, bundleFilePath
+        for ( const temporaryFilePath of temporaryFilePaths ) {
+
+            fileName       = path.basename( temporaryFilePath )
+            bundleFileName = fileName.replace( '.tmp.', '.bundle.' )
+            bundleFilePath = path.join( outputDir, bundleFileName )
+
+            try {
+
+                config.input       = temporaryFilePath
+                config.output.file = bundleFilePath
+
+                const bundle     = await rollup( config )
+                const { output } = await bundle.generate( config.output )
+
+                let code = output[ 0 ].code
+                if ( code.length > 1 ) {
+                    log( red( `[${ bundleFileName }] contain side-effects !` ) )
+                    await bundle.write( config.output )
+                } else {
+                    log( green( `[${ bundleFileName }] is side-effect free.` ) )
+                }
+
+            } catch ( error ) {
+
+                log( red( error.message ) )
+
+            }
+        }
+
+    } catch ( err ) {
+        log( red( error.message ) )
+    } finally {
+
+        done()
+
+    }
+
+} )
+gulp.task( 'check-bundling-from-esm-files-direct', async ( done ) => {
 
     const baseDir    = __dirname
     const sourcesDir = path.join( baseDir, 'sources' )
     const testsDir   = path.join( baseDir, 'tests' )
     const bundlesDir = path.join( testsDir, 'bundles' )
-    const outputDir  = path.join( bundlesDir, 'files' )
+    const outputDir  = path.join( bundlesDir, 'from_files_direct' )
 
-    const filePathsToIgnore = [
-        `${ packageInfos.name }.js`,
-        'LineFileSplitter.js'
-    ]
+    if ( fs.existsSync( outputDir ) ) {
+        log( 'Clean up', magenta( outputDir ) )
+        fs.rmSync( outputDir, { recursive: true } )
+    }
 
     const sourcesFiles = glob.sync( path.join( sourcesDir, '**' ) )
-        .map( filePath => path.normalize( filePath ) )
-        .filter( filePath => {
-            const fileName         = path.basename( filePath )
-            const isJsFile         = fileName.endsWith( '.js' )
-            const isNotPrivateFile = !fileName.startsWith( '_' )
-            const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
-            return isJsFile && isNotPrivateFile && isNotIgnoredFile
-        } )
+                             .map( filePath => path.normalize( filePath ) )
+                             .filter( filePath => {
+                                 const fileName         = path.basename( filePath )
+                                 const isJsFile         = fileName.endsWith( '.js' )
+                                 const isNotPrivateFile = !fileName.startsWith( '_' )
+                                 const isNotIgnoredFile = !filePathsToIgnore.includes( fileName )
+                                 return isJsFile && isNotPrivateFile && isNotIgnoredFile
+                             } )
 
     for ( let sourceFile of sourcesFiles ) {
 
@@ -405,7 +537,7 @@ gulp.task( 'check-bundling-by-source-file-export', async ( done ) => {
             },
             output:    {
                 indent: '\t',
-                format: 'cjs',
+                format: 'esm',
                 file:   bundleFilePath
             }
         }
@@ -415,8 +547,8 @@ gulp.task( 'check-bundling-by-source-file-export', async ( done ) => {
             log( `Building bundle ${ config.output.file }` )
 
             const bundle = await rollup( config )
-            const { output } = await bundle.generate( config.output )
-            // await bundle.write( config.output )
+            await bundle.generate( config.output )
+            await bundle.write( config.output )
 
         } catch ( error ) {
 
@@ -429,7 +561,7 @@ gulp.task( 'check-bundling-by-source-file-export', async ( done ) => {
     done()
 
 } )
-gulp.task( 'check-bundling', gulp.series( 'check-bundling-side-effect', 'check-bundling-by-source-file-export' ) )
+gulp.task( 'check-bundling', gulp.series( 'check-bundling-from-esm-files-import', 'check-bundling-from-esm-build-import', 'check-bundling-from-esm-files-direct' ) )
 
 /**
  * @description Will generate unit test files from source code using type inference from comments
