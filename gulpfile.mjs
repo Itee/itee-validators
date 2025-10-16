@@ -57,6 +57,7 @@ import jsdocConfiguration          from './configs/jsdoc.conf.js'
 import rollupConfigurator          from './configs/rollup.conf.js'
 import rollupUnitTestsConfigurator from './configs/rollup.units.conf.js'
 import rollupBenchesConfigurator   from './configs/rollup.benchs.conf.js'
+import { getGulpConfigForTask }    from './configs/gulp.conf.js'
 
 const red     = colors.red
 const green   = colors.green
@@ -81,33 +82,112 @@ const packageInfos = JSON.parse( fs.readFileSync(
  */
 gulp.task( 'help', ( done ) => {
 
+    function getPrettyPackageName() {
+
+        let packageName = ''
+
+        const nameSplits = packageInfos.name.split( '-' )
+        for ( const nameSplit of nameSplits ) {
+            packageName += nameSplit.charAt( 0 ).toUpperCase() + nameSplit.slice( 1 ) + ' '
+        }
+        packageName = packageName.slice( 0, -1 )
+
+        return packageName
+
+    }
+
+    function getPrettyPackageVersion() {
+
+        return 'v' + packageInfos.version
+
+    }
+
+    function getPrettyNodeVersion() {
+
+        const nodeVersion = childProcess.execFileSync( 'node', [ '--version' ] )
+                                        .toString()
+                                        .replace( /(\r\n|\n|\r)/gm, '' )
+        return ' node: ' + nodeVersion
+
+    }
+
+    function getPrettyNpmVersion() {
+
+        const npmVersion = childProcess.execFileSync( 'npm', [ '--version' ] )
+                                       .toString()
+                                       .replace( /(\r\n|\n|\r)/gm, '' )
+
+        return ' npm:  v' + npmVersion
+
+    }
+
+    function centerText( text, width ) {
+
+        const textLength   = text.length
+        const marginLength = ( width - textLength ) / 2
+
+        let leftMargin, rightMargin
+        if ( Number.isInteger( marginLength ) ) {
+            leftMargin  = marginLength
+            rightMargin = marginLength
+        } else {
+            const flooredMargin = Math.floor( marginLength )
+            leftMargin          = flooredMargin
+            rightMargin         = flooredMargin + 1
+        }
+
+        return ' '.repeat( leftMargin ) + text + ' '.repeat( rightMargin )
+
+    }
+
+    const bannerWidth          = 50
+    const prettyPackageName    = getPrettyPackageName()
+    const prettyPackageVersion = getPrettyPackageVersion()
+    const prettyNodeVersion    = getPrettyNodeVersion()
+    const nodeSpaceFilling     = ' '.repeat( bannerWidth - prettyNodeVersion.length )
+    const prettyNpmVersion     = getPrettyNpmVersion()
+    const npmSpaceFilling      = ' '.repeat( bannerWidth - prettyNpmVersion.length )
+
+    const npmRun = blue( '\tnpm run' )
+
     log( '' )
-    log( '====================================================' )
-    log( '|                      HELP                        |' )
-    log( '|                 Itee Validators                  |' )
-    log( `|                     v${ packageInfos.version }                       |` )
-    log( '====================================================' )
+    log( '┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓' )
+    log( `┃${ centerText( 'HELP', bannerWidth ) }┃` )
+    log( `┃${ centerText( prettyPackageName, bannerWidth ) }┃` )
+    log( `┃${ centerText( prettyPackageVersion, bannerWidth ) }┃` )
+    log( '┠──────────────────────────────────────────────────┨' )
+    log( `┃${ prettyNodeVersion }${ nodeSpaceFilling }┃` )
+    log( `┃${ prettyNpmVersion }${ npmSpaceFilling }┃` )
+    log( '┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛' )
     log( '' )
     log( 'Available commands are:' )
-    log( '\t', blue( 'npm run' ), cyan( 'help' ), ' - Display this help.' )
-    log( '\t', blue( 'npm run' ), cyan( 'patch' ), ' - Will apply some patch/replacements in dependencies.', red( '(Apply only once after run "npm install")' ) )
-    log( '\t', blue( 'npm run' ), cyan( 'clean' ), ' - Will delete builds and temporary folders.' )
-    log( '\t', blue( 'npm run' ), cyan( 'lint' ), ' - Will run the eslint in pedantic mode with auto fix when possible.' )
-    log( '\t', blue( 'npm run' ), cyan( 'doc' ), ' - Will run jsdoc, and create documentation under `documentation` folder, using the docdash theme' )
-    log( '\t', blue( 'npm run' ), cyan( 'test' ), ' - Will run the test framworks (unit and bench), and create reports under `documentation/report` folder, using the mochawesome theme' )
-    log( '\t', blue( 'npm run' ), cyan( 'unit' ), ' - Will run the karma server for unit tests.' )
-    log( '\t', blue( 'npm run' ), cyan( 'bench' ), ' - Will run the karma server for benchmarks.' )
-    log( '\t', blue( 'npm run' ), cyan( 'build' ), yellow( '--' ), green( '<options>' ), ' - Will build the application for development and/or production environments.', yellow( 'Note: The two dash are only required if you provide options !' ) )
+    log( npmRun, cyan( 'help' ), ' - Display this help.' )
+    log( npmRun, cyan( 'patch' ), ' - Will apply some patch/replacements in dependencies.', red( '(Apply only once after run "npm install")' ) )
+    log( npmRun, cyan( 'clean' ), ' - Will delete builds and temporary folders.' )
+    log( npmRun, cyan( 'lint' ), ' - Will run the eslint in pedantic mode with auto fix when possible.' )
+    log( npmRun, cyan( 'doc' ), ' - Will run jsdoc, and create documentation under `documentation` folder, using the docdash theme' )
+    log( npmRun, cyan( 'test' ), ' - Will run the test framworks (unit and bench), and create reports under `documentation/report` folder, using the mochawesome theme' )
+    log( npmRun, cyan( 'unit' ), ' - Will run the karma server for unit tests.' )
+    log( npmRun, cyan( 'bench' ), ' - Will run the karma server for benchmarks.' )
+    log( npmRun, cyan( 'build' ), yellow( '--' ), green( '<options>' ), ' - Will build the application for development and/or production environments.' )
+    log( yellow( '\tNote: The two dash are only required if you provide options !' ) )
     log( '\t\t The available', green( '<options>' ), 'are:' )
-    log( '\t\t\t', green( '-n' ), 'or', green( '--name' ), ' - The export name of the builded application', red( '(required for UMD module)' ), cyan( '[Default: ""]' ), '.' )
     log( '\t\t\t', green( '-i' ), 'or', green( '--input' ), ' - The main file path to build', cyan( '[Default: "sources/main.js"]' ), '.' )
     log( '\t\t\t', green( '-o' ), 'or', green( '--output' ), ' - The folder where output the build', cyan( '[Default: "builds"]' ), '.' )
-    log( '\t\t\t', green( '-f:' ), magenta( '<format>' ), 'or', green( '--format:' ), magenta( '<format>' ), ' - to specify the output build type. Where format could be any of:', magenta( 'amd' ), magenta( 'cjs' ), magenta( 'es' ), magenta( 'iife' ), magenta( 'umd' ), cyan( '[Default: "amd,cjs,es,iife,umd"]' ), '.' )
+    log(
+        '\t\t\t',
+        green( '-f:' ),
+        magenta( '<format>' ),
+        'or',
+        green( '--format:' ),
+        magenta( '<format>' ),
+        ' - to specify the output build type. Where format could be any of:', magenta( 'cjs, esm, iife, umd' ), '.'
+    )
     log( '\t\t\t', green( '-e:' ), magenta( '<env>' ), 'or', green( '--env:' ), magenta( '<env>' ), ' - to specify the build environment. Where env could be any of:', magenta(
         'dev' ), magenta( 'prod' ), cyan( '[Default: "dev"]' ), '.' )
     log( '\t\t\t', green( '-s' ), 'or', green( '--sourcemap' ), ' - to build with related source map', cyan( '[Default: true]' ), '.' )
     log( '\t\t\t', green( '-t' ), 'or', green( '--treeshake' ), ' - allow to perform treeshaking when building', cyan( '[Default: true]' ), '.' )
-    log( '\t', blue( 'npm run' ), cyan( 'release' ), ' - Will run all the lint, test stuff, and if succeed will build the application.' )
+    log( npmRun, cyan( 'release' ), ' - Will run all the lint, test stuff, and if succeed will build the application.' )
     log( '' )
     log( 'In case you have', blue( 'gulp' ), 'installed globally, you could use also:' )
     log( '\t', blue( 'gulp' ), cyan( 'command' ), ' - It will perform the command like using "npm run" but with less characters to type... Because you\'re a developer, right ?' )
@@ -139,13 +219,7 @@ gulp.task( 'patch', ( done ) => {
  */
 gulp.task( 'clean', () => {
 
-    const filesToClean = [
-        './builds',
-        './tests/units',
-        './tests/benchmarks',
-        './docs'
-    ]
-
+    const filesToClean = getGulpConfigForTask( 'clean' )
     return deleteAsync( filesToClean )
 
 } )
@@ -159,12 +233,7 @@ gulp.task( 'clean', () => {
  */
 gulp.task( 'lint', () => {
 
-    const filesToLint = [
-        'configs/**/*.js',
-        'sources/**/*.js',
-        'tests/**/*.js',
-        '!tests/**/builds/*.js'
-    ]
+    const filesToLint = getGulpConfigForTask( 'lint' )
 
     return gulp.src( filesToLint, { base: './' } )
                .pipe( eslint( {
@@ -195,13 +264,7 @@ gulp.task( 'lint', () => {
 gulp.task( 'doc', ( done ) => {
 
     const config     = jsdocConfiguration
-    const filesToDoc = [
-        'README.md',
-        'gulpfile.mjs',
-        './configs/*.js',
-        './sources/**/*.js',
-        './tests/**/*.js'
-    ]
+    const filesToDoc = getGulpConfigForTask( 'doc' )
 
     gulp.src( filesToDoc, { read: false } )
         .pipe( jsdoc( config, done ) )
@@ -216,18 +279,15 @@ gulp.task( 'doc', ( done ) => {
  * and then create rollup config for each of them and bundle
  * Todo: Check for differents target env like next task below this one
  */
-const filePathsToIgnore = [
-    `${ packageInfos.name }.js`,
-    'LineFileSplitter.js'
-]
 gulp.task( 'check-bundling-from-esm-files-import', async ( done ) => {
 
-    const baseDir        = __dirname
-    const sourcesDir     = path.join( baseDir, 'sources' )
-    const testsDir       = path.join( baseDir, 'tests' )
-    const bundleDir      = path.join( testsDir, 'bundles' )
-    const outputDir      = path.join( bundleDir, 'from_files_import' )
-    const temporariesDir = path.join( outputDir, '.tmp' )
+    const baseDir           = __dirname
+    const sourcesDir        = path.join( baseDir, 'sources' )
+    const testsDir          = path.join( baseDir, 'tests' )
+    const bundleDir         = path.join( testsDir, 'bundles' )
+    const outputDir         = path.join( bundleDir, 'from_files_import' )
+    const temporariesDir    = path.join( outputDir, '.tmp' )
+    const filePathsToIgnore = getGulpConfigForTask( 'check-bundling' )
 
     if ( fs.existsSync( outputDir ) ) {
         log( 'Clean up', magenta( outputDir ) )
@@ -469,11 +529,12 @@ gulp.task( 'check-bundling-from-esm-build-import', async ( done ) => {
 } )
 gulp.task( 'check-bundling-from-esm-files-direct', async ( done ) => {
 
-    const baseDir    = __dirname
-    const sourcesDir = path.join( baseDir, 'sources' )
-    const testsDir   = path.join( baseDir, 'tests' )
-    const bundlesDir = path.join( testsDir, 'bundles' )
-    const outputDir  = path.join( bundlesDir, 'from_files_direct' )
+    const baseDir           = __dirname
+    const sourcesDir        = path.join( baseDir, 'sources' )
+    const testsDir          = path.join( baseDir, 'tests' )
+    const bundlesDir        = path.join( testsDir, 'bundles' )
+    const outputDir         = path.join( bundlesDir, 'from_files_direct' )
+    const filePathsToIgnore = getGulpConfigForTask( 'check-bundling' )
 
     if ( fs.existsSync( outputDir ) ) {
         log( 'Clean up', magenta( outputDir ) )
@@ -575,11 +636,7 @@ gulp.task( 'compute-unit-tests', async ( done ) => {
 
     fs.mkdirSync( unitsDir, { recursive: true } )
 
-    const filePathsToIgnore = [
-        `${ packageInfos.name }.js`,
-        'isTestUnitGenerator.js',
-        'cores.js'
-    ]
+    const filePathsToIgnore = getGulpConfigForTask( 'compute-unit-tests' )
 
     const sourcesFiles = glob.sync( path.join( sourcesDir, '**' ) )
                              .map( filePath => path.normalize( filePath ) )
@@ -605,12 +662,14 @@ gulp.task( 'compute-unit-tests', async ( done ) => {
         const nsName         = `${ fileName }Namespace`
         const unitName       = `${ fileName }Units`
         const importDirPath  = path.relative( unitDirPath, sourcesDir )
-        const importFilePath = path.join( importDirPath, specificFilePath ).replace( /\\/g, '/' )
+        const importFilePath = path.join( importDirPath, specificFilePath )
+                                   .replace( /\\/g, '/' )
 
         try {
 
             const jsdocPath   = path.join( basePath, '/node_modules/jsdoc/jsdoc.js' )
-            const jsdocOutput = childProcess.execFileSync( 'node', [ jsdocPath, '-X', sourceFile ] ).toString()
+            const jsdocOutput = childProcess.execFileSync( 'node', [ jsdocPath, '-X', sourceFile ] )
+                                            .toString()
 
             const classNames    = []
             const usedLongnames = []
@@ -1160,11 +1219,7 @@ gulp.task( 'compute-benchmarks', async ( done ) => {
 
     fs.mkdirSync( benchsDir, { recursive: true } )
 
-    const filePathsToIgnore = [
-        `${ packageInfos.name }.js`,
-        'isTestUnitGenerator.js',
-        'cores.js'
-    ]
+    const filePathsToIgnore = getGulpConfigForTask( 'compute-benchmarks' )
 
     const sourcesFiles = glob.sync( path.join( sourcesDir, '**' ) )
                              .map( filePath => path.normalize( filePath ) )
@@ -1486,7 +1541,6 @@ gulp.task( 'build', ( done ) => {
         string:  [ 'n', 'i', 'f', 'e' ],
         boolean: [ 's', 't' ],
         default: {
-            n: 'Itee.Validators',
             i: path.join( __dirname, 'sources', `${ packageInfos.name }.js` ),
             o: path.join( __dirname, 'builds' ),
             f: [ 'esm', 'cjs', 'iife' ],
@@ -1495,7 +1549,6 @@ gulp.task( 'build', ( done ) => {
             t: true
         },
         alias:   {
-            n: 'name',
             i: 'input',
             o: 'output',
             f: 'formats',
@@ -1541,7 +1594,7 @@ gulp.task( 'build', ( done ) => {
 /**
  * @method npm run release
  * @global
- * @description Will perform a complet release of the library including 'clean', 'lint', 'doc', 'build-test', 'test' and finally 'build'.
+ * @description Will perform a complet release of the library including 'clean', 'lint', 'doc', 'build-tests', 'test' and finally 'build'.
  */
 gulp.task( 'release', gulp.series( 'clean', 'lint', 'doc', 'build-tests', 'test', 'build' ) )
 
