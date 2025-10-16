@@ -94,7 +94,7 @@ function _computeBanner( format ) {
     const packageVersion = getPrettyPackageVersion()
     const prettyFormat   = getPrettyFormatForBanner( format )
 
-    const figlet = figlet.textSync(
+    const figText = figlet.textSync(
         `${ packageName } ${ packageVersion } - ${ prettyFormat }`,
         {
             font:             'Tmplr',
@@ -104,7 +104,7 @@ function _computeBanner( format ) {
         }
     )
 
-    return _commentarize( figlet )
+    return _commentarize( figText )
 
 }
 
