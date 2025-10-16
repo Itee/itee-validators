@@ -34,7 +34,7 @@ import {
  * @param data {*}
  * @return {boolean}
  */
-export function isTemperature ( data ) {
+export function isTemperature( data ) {
     return ( isKelvin( data ) || isCelsius( data ) || isFahrenheit( data ) )
 }
 
@@ -43,6 +43,6 @@ export function isTemperature ( data ) {
  * @param data {*}
  * @return {boolean}
  */
-export function isNotTemperature ( data ) {
+export function isNotTemperature( data ) {
     return ( isNotKelvin( data ) && isNotCelsius( data ) && isNotFahrenheit( data ) )
 }

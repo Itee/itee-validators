@@ -26,7 +26,7 @@ import { isEmptyArray } from './isEmptyArray'
  * @param data {*} The data to check against the array of booleans
  * @returns {boolean} true if data is not an empty array where all values are boolean, false otherwise
  */
-export function isArrayOfBoolean ( data ) {
+export function isArrayOfBoolean( data ) {
 
     if ( isNotArray( data ) ) { return false }
     if ( isEmptyArray( data ) ) { return false }
@@ -47,7 +47,7 @@ export function isArrayOfBoolean ( data ) {
  * @param data {*} The data to check against the array of booleans
  * @returns {boolean} true if data is not an empty array where all values are not boolean, false otherwise
  */
-export function isNotArrayOfBoolean ( data ) {
+export function isNotArrayOfBoolean( data ) {
 
     if ( isNotArray( data ) ) { return true }
     if ( isEmptyArray( data ) ) { return true }

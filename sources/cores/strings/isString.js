@@ -22,7 +22,7 @@
  * @param data {*} The data to check against the string type
  * @returns {boolean} true if data is a string, false otherwise.
  */
-export function isString ( data ) {
+export function isString( data ) {
     return ( typeof data === 'string' || data instanceof String )
 }
 
@@ -32,29 +32,29 @@ export function isString ( data ) {
  * @param data {*} The data to check against the string type
  * @returns {boolean} true if data is not a string, false otherwise.
  */
-export function isNotString ( data ) {
+export function isNotString( data ) {
     return !isString( data )
 }
 
 // #if IS_REMOVE_ON_BUILD
 
-export function isString_0 ( val ) {
+export function isString_0( val ) {
     return ( typeof val === 'string' )
 }
 
-export function isString_1 ( val ) {
+export function isString_1( val ) {
     return ( typeof val === 'string' || ( ( !!val && typeof val === 'object' ) && Object.prototype.toString.call( val ) === '[object String]' ) )
 }
 
-export function isString_2 ( val ) {
+export function isString_2( val ) {
     return ( Object.prototype.toString.call( val ) === '[object String]' )
 }
 
-export function isString_3 ( val ) {
+export function isString_3( val ) {
     return ( val !== null && val !== undefined && val.constructor === String )
 }
 
-export function isString_4 ( val ) {
+export function isString_4( val ) {
     return ( val === val + '' )
 }
 

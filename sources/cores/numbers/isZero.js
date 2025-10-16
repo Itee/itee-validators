@@ -24,7 +24,7 @@
  * @param data {*} The data to check against the zero value
  * @returns {boolean} true if data is zero, false otherwise
  */
-export function isZero ( data ) {
+export function isZero( data ) {
     //Todo protect truthy values
     return ( data === 0 )
 }
@@ -35,7 +35,7 @@ export function isZero ( data ) {
  * @param data {*} The data to check against the positive zero value
  * @returns {boolean} true if data is a positive zero, false otherwise
  */
-export function isZeroPositive ( data ) {
+export function isZeroPositive( data ) {
     return ( data === 0 && ( 1 / data ) === Number.POSITIVE_INFINITY )
 }
 
@@ -45,6 +45,6 @@ export function isZeroPositive ( data ) {
  * @param data {*} The data to check against the negative zero value
  * @returns {boolean} true if data is a negative zero, false otherwise
  */
-export function isZeroNegative ( data ) {
+export function isZeroNegative( data ) {
     return ( data === 0 && ( 1 / data ) === Number.NEGATIVE_INFINITY )
 }

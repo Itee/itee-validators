@@ -22,7 +22,7 @@
  * @param data {*} The data to check against the unsigned int 32 array  type
  * @returns {boolean} true if data is a unsigned int 32 array , false otherwise.
  */
-export function isUint32Array ( data ) {
+export function isUint32Array( data ) {
     return ( data instanceof Uint32Array )
 }
 
@@ -32,6 +32,6 @@ export function isUint32Array ( data ) {
  * @param data {*} The data to check against the unsigned int 32 array  type
  * @returns {boolean} true if data is not a unsigned int 32 array , false otherwise.
  */
-export function isNotUint32Array ( data ) {
+export function isNotUint32Array( data ) {
     return !isUint32Array( data )
 }

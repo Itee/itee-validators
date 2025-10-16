@@ -22,7 +22,7 @@
  * @param data {*} The data to check against the undefiness
  * @returns {boolean} true if data is undefined, false otherwise.
  */
-export function isUndefined ( data ) {
+export function isUndefined( data ) {
     return ( typeof data === 'undefined' )
 }
 
@@ -32,6 +32,6 @@ export function isUndefined ( data ) {
  * @param data {*} The data to check against the undefiness
  * @returns {boolean} true if data is defined, false otherwise.
  */
-export function isNotUndefined ( data ) {
+export function isNotUndefined( data ) {
     return ( typeof data !== 'undefined' )
 }

@@ -22,7 +22,7 @@
  * @param data {*} The data to check against the float 32 array  type
  * @returns {boolean} true if data is a float 32 array , false otherwise.
  */
-export function isFloat32Array ( data ) {
+export function isFloat32Array( data ) {
     return ( data instanceof Float32Array )
 }
 
@@ -32,6 +32,6 @@ export function isFloat32Array ( data ) {
  * @param data {*} The data to check against the float 32 array  type
  * @returns {boolean} true if data is not a float 32 array , false otherwise.
  */
-export function isNotFloat32Array ( data ) {
+export function isNotFloat32Array( data ) {
     return !isFloat32Array( data )
 }

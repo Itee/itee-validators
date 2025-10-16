@@ -22,7 +22,7 @@
  * @param data {*} The data to check against the unsigned clamped int 8 array  type
  * @returns {boolean} true if data is a unsigned clamped int 8 array , false otherwise.
  */
-export function isUint8ClampedArray ( data ) {
+export function isUint8ClampedArray( data ) {
     return ( data instanceof Uint8ClampedArray )
 }
 
@@ -32,6 +32,6 @@ export function isUint8ClampedArray ( data ) {
  * @param data {*} The data to check against the unsigned clamped int 8 array  type
  * @returns {boolean} true if data is not a unsigned clamped int 8 array , false otherwise.
  */
-export function isNotUint8ClampedArray ( data ) {
+export function isNotUint8ClampedArray( data ) {
     return !isUint8ClampedArray( data )
 }

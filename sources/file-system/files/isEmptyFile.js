@@ -19,9 +19,9 @@
  *
  */
 
-import fs             from 'fs'
-import { isFilePath } from './isFilePath'
-import {isNotString} from '../../cores/strings/isString';
+import { statSync }    from 'fs'
+import { isFilePath }  from './isFilePath'
+import { isNotString } from '../../cores/strings/isString'
 
 /**
  * Check if given file path is an empty file more or less a threshold in bytes.
@@ -30,12 +30,12 @@ import {isNotString} from '../../cores/strings/isString';
  * @param threshold {number} An amount of byte below which it consider the file as empty ( 0 as default ).
  * @returns {boolean} true if file is empty, false otherwise
  */
-export function isEmptyFile ( filePath, threshold = 0 ) {
-    if( isNotString(filePath) && !(filePath instanceof Buffer) && !(filePath instanceof URL) ) {
-        throw new TypeError('Invalid path type! Expect string, buffer or url.')
+export function isEmptyFile( filePath, threshold = 0 ) {
+    if ( isNotString( filePath ) && !( filePath instanceof Buffer ) && !( filePath instanceof URL ) ) {
+        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
-    return isFilePath(filePath) && ( fs.statSync( filePath ).size <= threshold )
+    return isFilePath( filePath ) && ( statSync( filePath ).size <= threshold )
 }
 
 /**
@@ -45,6 +45,6 @@ export function isEmptyFile ( filePath, threshold = 0 ) {
  * @param threshold {number} An amount of byte above which it consider the file as not empty ( 0 as default ).
  * @returns {boolean} true if file is not empty, false otherwise
  */
-export function isNotEmptyFile ( filePath, threshold = 0 ) {
-    return !isEmptyFile(filePath, threshold)
+export function isNotEmptyFile( filePath, threshold = 0 ) {
+    return !isEmptyFile( filePath, threshold )
 }

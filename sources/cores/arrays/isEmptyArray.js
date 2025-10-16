@@ -24,7 +24,7 @@ import { isNotArray } from './isArray'
  * @param data {*} The data to check against the empty array
  * @returns {boolean} true if data is an empty array, false otherwise
  */
-export function isEmptyArray ( data ) {
+export function isEmptyArray( data ) {
 
     if ( isNotArray( data ) ) { return false }
 
@@ -38,7 +38,7 @@ export function isEmptyArray ( data ) {
  * @param data {*} The data to check against the empty array
  * @returns {boolean} true if data is not an empty array, false otherwise
  */
-export function isNotEmptyArray ( data ) {
+export function isNotEmptyArray( data ) {
 
     if ( isNotArray( data ) ) { return true }
 

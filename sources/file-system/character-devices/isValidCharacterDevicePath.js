@@ -25,7 +25,7 @@ import { isCharacterDevicePath } from './isCharacterDevicePath'
  * @param data {*} The data to check against the character device path type
  * @returns {boolean} true if data is a valid character device path, false otherwise
  */
-export function isValidCharacterDevicePath ( data ) {
+export function isValidCharacterDevicePath( data ) {
     return ( isValidPath( data ) && isCharacterDevicePath( data ) )
 }
 
@@ -35,6 +35,6 @@ export function isValidCharacterDevicePath ( data ) {
  * @param data {*} The data to check against the character device path type
  * @returns {boolean} true if data is an invalid character device path, false otherwise
  */
-export function isInvalidCharacterDevicePath ( data ) {
+export function isInvalidCharacterDevicePath( data ) {
     return !isValidCharacterDevicePath( data )
 }

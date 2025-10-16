@@ -12,115 +12,115 @@
  // Usefull when a simple data structure is used multiple times
  validator.add( 'ColorType', color => {
 
-                const r = color.r
-                if ( color.r === undefined || Itee.Validators.isNotNumber( r ) ) {
-                    return false
-                }
+ const r = color.r
+ if ( color.r === undefined || Itee.Validators.isNotNumber( r ) ) {
+ return false
+ }
 
-                const g = color.g
-                if ( color.g === undefined || Itee.Validators.isNotNumber( g ) ) {
-                    return false
-                }
+ const g = color.g
+ if ( color.g === undefined || Itee.Validators.isNotNumber( g ) ) {
+ return false
+ }
 
-                const b = color.b
-                if ( color.b === undefined || Itee.Validators.isNotNumber( b ) ) {
-                    return false
-                }
+ const b = color.b
+ if ( color.b === undefined || Itee.Validators.isNotNumber( b ) ) {
+ return false
+ }
 
-                return true
-            } )
+ return true
+ } )
 
  // Using schema composition
  // Usefull for design validation schema faster and based on previous declared validation types
  validator.add( 'Range_0_255', ( value ) => {
 
-                if ( Itee.Validators.isNotNumber( value ) ) {
-                    return false
-                }
+ if ( Itee.Validators.isNotNumber( value ) ) {
+ return false
+ }
 
-                return !(value <= 0 || value > 255)
+ return !(value <= 0 || value > 255)
 
-            } )
+ } )
 
  validator.add( 'ColorSchema', {
-                r: {
-                    required: true,
-                    type:     'Range_0_255'
-                },
-                g: {
-                    required: true,
-                    type:     'Range_0_255'
-                },
-                b: {
-                    required: true,
-                    type:     'Range_0_255'
-                }
-            } )
+ r: {
+ required: true,
+ type:     'Range_0_255'
+ },
+ g: {
+ required: true,
+ type:     'Range_0_255'
+ },
+ b: {
+ required: true,
+ type:     'Range_0_255'
+ }
+ } )
 
  validator.add( 'ColorStructure', {
-                color_from_type: {
-                    type: 'ColorType'
-                },
-                col_from_schema: {
-                    type: 'ColorSchema'
-                },
-                col_from_fn:     {
-                    // Inner function
-	                // Usefull for specific validation requirement that cannot match other previous validation schema or type
-                    fn: function ColorValidator ( color ) {
+ color_from_type: {
+ type: 'ColorType'
+ },
+ col_from_schema: {
+ type: 'ColorSchema'
+ },
+ col_from_fn:     {
+ // Inner function
+ // Usefull for specific validation requirement that cannot match other previous validation schema or type
+ fn: function ColorValidator ( color ) {
 
-                        const r = color.r
-                        if ( color.r === undefined || Itee.Validators.isNotNumber( r ) ) {
-                            return false
-                        }
+ const r = color.r
+ if ( color.r === undefined || Itee.Validators.isNotNumber( r ) ) {
+ return false
+ }
 
-                        const g = color.g
-                        if ( color.g === undefined || Itee.Validators.isNotNumber( g ) ) {
-                            return false
-                        }
+ const g = color.g
+ if ( color.g === undefined || Itee.Validators.isNotNumber( g ) ) {
+ return false
+ }
 
-                        const b = color.b
-                        if ( color.b === undefined || Itee.Validators.isNotNumber( b ) ) {
-                            return false
-                        }
+ const b = color.b
+ if ( color.b === undefined || Itee.Validators.isNotNumber( b ) ) {
+ return false
+ }
 
-                        return true
-                    }
-                }
-            } )
+ return true
+ }
+ }
+ } )
 
  // The data to validate
  const colorStruct = {
-                color_from_type: {
-                    r: 0,
-                    g: 1,
-                    b: 2
-                },
-                col_from_schema: {
-                    r: 10,
-                    g: 20,
-                    b: 30
-                },
-                col_from_fn:     {
-                    r: 0,
-                    g: 127,
-                    b: 255
-                }
-            }
+ color_from_type: {
+ r: 0,
+ g: 1,
+ b: 2
+ },
+ col_from_schema: {
+ r: 10,
+ g: 20,
+ b: 30
+ },
+ col_from_fn:     {
+ r: 0,
+ g: 127,
+ b: 255
+ }
+ }
 
  // Execute
 
  try {
 
-    if ( validator.check( colorStruct, 'ColorStructure' ) ) {
-        alert( 'ColorStructure is valid !' )
-    } else {
-        alert( validator.errors )
-    }
+ if ( validator.check( colorStruct, 'ColorStructure' ) ) {
+ alert( 'ColorStructure is valid !' )
+ } else {
+ alert( validator.errors )
+ }
 
-} catch ( err ) {
-    alert( err )
-}
+ } catch ( err ) {
+ alert( err )
+ }
  *
  */
 
@@ -151,7 +151,7 @@ import {
 
 class Validator {
 
-    constructor () {
+    constructor() {
 
         /**
          * The validators store, by default it contains validators for Boolean, Number, Integer, Float, Array, String, Object, Symbol and Function
@@ -185,7 +185,7 @@ class Validator {
      * @param type {string} - A string that represent the type of data to validate
      * @param validator {(function|object)} - A function or validation schema that represent the type of data to validate
      */
-    add ( type, validator ) {
+    add( type, validator ) {
 
         if ( isNotString( type ) ) { throw new TypeError( `Validator: Expect type to be a string` ) }
         if ( isNotFunction( validator ) && isNotObject( validator ) ) { throw new TypeError( `Validator: Expect validator to be an object or a function` ) }
@@ -200,7 +200,7 @@ class Validator {
      *
      * @param type {string} - The type to remove
      */
-    remove ( type ) {
+    remove( type ) {
 
         delete this.validators[ type ]
 
@@ -211,7 +211,7 @@ class Validator {
      *
      * @return {Array.<string>} - The list of registered type
      */
-    getAvalaibleTypes () {
+    getAvalaibleTypes() {
 
         const availablesTypes = []
 
@@ -231,7 +231,7 @@ class Validator {
      * @param breakOnError {boolean} - Return on first validation error ( true by default )
      * @return {boolean} - Return true is the data is validated, false otherwise
      */
-    check ( data, type, breakOnError = true ) {
+    check( data, type, breakOnError = true ) {
 
         const validator = this.validators[ type ]
         if ( isNotDefined( validator ) ) {

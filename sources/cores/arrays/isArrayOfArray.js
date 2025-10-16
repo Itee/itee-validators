@@ -28,7 +28,7 @@ import { isEmptyArray } from './isEmptyArray'
  * @param data {*} The data to check against the array of array type
  * @returns {boolean} true if data is an array of array, false otherwise
  */
-export function isArrayOfArray ( data ) {
+export function isArrayOfArray( data ) {
 
     if ( isNotArray( data ) ) { return false }
     if ( isEmptyArray( data ) ) { return false }
@@ -49,7 +49,7 @@ export function isArrayOfArray ( data ) {
  * @param data {*} The data to check against the array of array type
  * @returns {boolean} true if data is not an array of array, false otherwise
  */
-export function isNotArrayOfArray ( data ) {
+export function isNotArrayOfArray( data ) {
 
     if ( isNotArray( data ) ) { return true }
     if ( isEmptyArray( data ) ) { return true }

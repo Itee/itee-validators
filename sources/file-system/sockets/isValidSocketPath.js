@@ -25,7 +25,7 @@ import { isSocketPath } from './isSocketPath'
  * @param data {*} The data to check against the socket path type
  * @returns {boolean} true if data is a valid socket path, false otherwise
  */
-export function isValidSocketPath ( data ) {
+export function isValidSocketPath( data ) {
     return ( isValidPath( data ) && isSocketPath( data ) )
 }
 
@@ -35,6 +35,6 @@ export function isValidSocketPath ( data ) {
  * @param data {*} The data to check against the socket path type
  * @returns {boolean} true if data is an invalid socket path, false otherwise
  */
-export function isInvalidSocketPath ( data ) {
+export function isInvalidSocketPath( data ) {
     return !isValidSocketPath( data )
 }

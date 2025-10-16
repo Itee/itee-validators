@@ -22,7 +22,7 @@
  * @param data {*} The data to check against the existence
  * @returns {boolean} true if data is not null and not undefined, false otherwise.
  */
-export function isDefined ( data ) {
+export function isDefined( data ) {
     return ( ( data !== null ) && ( typeof data !== 'undefined' ) )
 }
 
@@ -32,6 +32,6 @@ export function isDefined ( data ) {
  * @param data {*} The data to check against the existence
  * @returns {boolean} true if data is null or undefined, false otherwise.
  */
-export function isNotDefined ( data ) {
+export function isNotDefined( data ) {
     return ( ( data === null ) || ( typeof data === 'undefined' ) )
 }

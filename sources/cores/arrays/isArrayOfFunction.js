@@ -26,7 +26,7 @@ import { isEmptyArray }  from './isEmptyArray'
  * @param data {*} The data to check against the array of functions
  * @returns {boolean} true if data is not an empty array where all values are functions, false otherwise
  */
-export function isArrayOfFunction ( data ) {
+export function isArrayOfFunction( data ) {
 
     if ( isNotArray( data ) ) { return false }
     if ( isEmptyArray( data ) ) { return false }
@@ -47,7 +47,7 @@ export function isArrayOfFunction ( data ) {
  * @param data {*} The data to check against the array of functions
  * @returns {boolean} true if data is not an empty array where all values are not functions, false otherwise
  */
-export function isNotArrayOfFunction ( data ) {
+export function isNotArrayOfFunction( data ) {
 
     if ( isNotArray( data ) ) { return true }
     if ( isEmptyArray( data ) ) { return true }

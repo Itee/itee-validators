@@ -26,7 +26,7 @@ import { isEmptyArray } from './isEmptyArray'
  * @param data {*} The data to check against the array of strings
  * @returns {boolean} true if data is not an empty array where all values are string, false otherwise
  */
-export function isArrayOfString ( data ) {
+export function isArrayOfString( data ) {
 
     if ( isNotArray( data ) ) { return false }
     if ( isEmptyArray( data ) ) { return false }
@@ -47,7 +47,7 @@ export function isArrayOfString ( data ) {
  * @param data {*} The data to check against the array of strings
  * @returns {boolean} true if data is not an empty array where all values are not string, false otherwise
  */
-export function isNotArrayOfString ( data ) {
+export function isNotArrayOfString( data ) {
 
     if ( isNotArray( data ) ) { return true }
     if ( isEmptyArray( data ) ) { return true }
@@ -64,7 +64,7 @@ export function isNotArrayOfString ( data ) {
 
 // #if IS_REMOVE_ON_BUILD
 
-export function isArrayOfString_1 ( data ) {
+export function isArrayOfString_1( data ) {
 
     if ( !Array.isArray( data ) ) {
         return false

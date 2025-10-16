@@ -22,7 +22,7 @@
  * @param data {*} The data to check against the big unsigned int 64 array type
  * @returns {boolean} true if data is a big unsigned int 64 array, false otherwise.
  */
-export function isBigUint64Array ( data ) {
+export function isBigUint64Array( data ) {
     return ( data instanceof BigUint64Array )
 }
 
@@ -32,6 +32,6 @@ export function isBigUint64Array ( data ) {
  * @param data {*} The data to check against the big unsigned int 64 array type
  * @returns {boolean} true if data is not a big unsigned int 64 array, false otherwise.
  */
-export function isNotBigUint64Array ( data ) {
+export function isNotBigUint64Array( data ) {
     return !isBigUint64Array( data )
 }

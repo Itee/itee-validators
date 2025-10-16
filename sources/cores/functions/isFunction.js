@@ -22,7 +22,7 @@
  * @param data {*} The data to check against the functionality
  * @returns {boolean} true if data is a function, false otherwise.
  */
-export function isFunction ( data ) {
+export function isFunction( data ) {
     return ( typeof data === 'function' )
 }
 
@@ -32,6 +32,6 @@ export function isFunction ( data ) {
  * @param data {*} The data to check against the functionality
  * @returns {boolean} true if data is not a function, false otherwise.
  */
-export function isNotFunction ( data ) {
+export function isNotFunction( data ) {
     return ( typeof data !== 'function' )
 }

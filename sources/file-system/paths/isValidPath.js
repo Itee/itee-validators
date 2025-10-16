@@ -19,7 +19,7 @@
  *
  */
 
-import fs from 'fs'
+import { existsSync } from 'fs'
 
 /**
  * Check if given data is a valid file path
@@ -27,8 +27,8 @@ import fs from 'fs'
  * @param data {*} The data to check against the path type
  * @returns {boolean} true if data is a valid path, false otherwise
  */
-export function isValidPath ( data ) {
-    return fs.existsSync( data )
+export function isValidPath( data ) {
+    return existsSync( data )
 }
 
 /**
@@ -37,6 +37,6 @@ export function isValidPath ( data ) {
  * @param data {*} The data to check against the path type
  * @returns {boolean} true if data is a valid path, false otherwise
  */
-export function isInvalidPath ( data ) {
+export function isInvalidPath( data ) {
     return !isValidPath( data )
 }

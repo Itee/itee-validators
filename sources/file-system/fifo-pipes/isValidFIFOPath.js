@@ -28,7 +28,7 @@ import { isFIFOPath }  from './isFIFOPath'
  * @param data {*} The data to check against the fifo path type
  * @returns {boolean} true if data is a valid fifo path, false otherwise
  */
-export function isValidFIFOPath ( data ) {
+export function isValidFIFOPath( data ) {
     return ( isValidPath( data ) && isFIFOPath( data ) )
 }
 
@@ -38,6 +38,6 @@ export function isValidFIFOPath ( data ) {
  * @param data {*} The data to check against the fifo path type
  * @returns {boolean} true if data is an invalid fifo path, false otherwise
  */
-export function isInvalidFIFOPath ( data ) {
+export function isInvalidFIFOPath( data ) {
     return !isValidFIFOPath( data )
 }

@@ -29,7 +29,7 @@ import { isNotDefined }  from './isDefined'
  * @param data {*} The data to check against the emptiness
  * @returns {boolean} true if data is considered as empty, false otherwise.
  */
-export function isEmpty ( data ) {
+export function isEmpty( data ) {
 
     if ( isNotDefined( data ) ) { return false }
     if ( isEmptyString( data ) ) { return true}
@@ -46,6 +46,6 @@ export function isEmpty ( data ) {
  * @param data {*} The data to check against the emptiness
  * @returns {boolean} true if data is considered as not empty, false otherwise.
  */
-export function isNotEmpty ( data ) {
+export function isNotEmpty( data ) {
     return !isEmpty( data )
 }

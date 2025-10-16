@@ -22,7 +22,7 @@
  * @param data {*} The data to check against the booleaness
  * @returns {boolean} true if data is a boolean, false otherwise.
  */
-export function isBoolean ( data ) {
+export function isBoolean( data ) {
     return ( typeof data === 'boolean' )
 }
 
@@ -32,17 +32,17 @@ export function isBoolean ( data ) {
  * @param data {*} The data to check against the booleaness
  * @returns {boolean} true if data is not a boolean, false otherwise.
  */
-export function isNotBoolean ( data ) {
+export function isNotBoolean( data ) {
     return ( typeof data !== 'boolean' )
 }
 
 // #if IS_REMOVE_ON_BUILD
 
-export function isBoolean_alt ( data ) {
+export function isBoolean_alt( data ) {
     return typeof data === 'boolean' || ( typeof data === 'object' && data !== null && typeof data.valueOf() === 'boolean' )
 }
 
-export function isNotBoolean_negbase ( data ) {
+export function isNotBoolean_negbase( data ) {
     return !isBoolean( data )
 }
 

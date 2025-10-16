@@ -9,7 +9,7 @@
  * @param data {*}
  * @returns {boolean}
  */
-export function isEventTarget ( data ) {
+export function isEventTarget( data ) {
     return ( data instanceof EventTarget )
 }
 
@@ -18,6 +18,6 @@ export function isEventTarget ( data ) {
  * @param data {*}
  * @returns {boolean}
  */
-export function isNotEventTarget ( data ) {
+export function isNotEventTarget( data ) {
     return !isEventTarget( data )
 }
