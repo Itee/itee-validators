@@ -1,3 +1,5 @@
+# [v5.5.1](https://github.com/Itee/itee-validators/compare/v5.5.0...v5.5.1) (2025-10-16)
+
 # [v5.5.0](https://github.com/Itee/itee-validators/compare/v5.4.0...v5.5.0) (2025-10-16)
 
 ## ✨ New Features
