@@ -93,27 +93,18 @@ function _computeBanner( format ) {
     const packageName    = getPrettyPackageName()
     const packageVersion = getPrettyPackageVersion()
     const prettyFormat   = getPrettyFormatForBanner( format )
-    const bannerMessage  = `${ packageName } ${ packageVersion } - ${ prettyFormat }`
 
-    let banner
+    const figlet = figlet.textSync(
+        `${ packageName } ${ packageVersion } - ${ prettyFormat }`,
+        {
+            font:             'Tmplr',
+            horizontalLayout: 'default',
+            verticalLayout:   'default',
+            whitespaceBreak:  true,
+        }
+    )
 
-    try {
-        banner = figlet.textSync(
-            bannerMessage,
-            {
-                font:             'Tmplr',
-                horizontalLayout: 'default',
-                verticalLayout:   'default',
-                whitespaceBreak:  true,
-            }
-        )
-        banner = _commentarize( banner )
-    } catch ( err ) {
-        console.dir( err )
-        banner = `// ${ bannerMessage }`
-    }
-
-    return banner
+    return _commentarize( figlet )
 
 }
 
