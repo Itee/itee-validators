@@ -57,6 +57,7 @@ import jsdocConfiguration          from './configs/jsdoc.conf.js'
 import rollupConfigurator          from './configs/rollup.conf.js'
 import rollupUnitTestsConfigurator from './configs/rollup.units.conf.js'
 import rollupBenchesConfigurator   from './configs/rollup.benchs.conf.js'
+import { getGulpConfigForTask }    from './configs/gulp.conf.js'
 
 const red     = colors.red
 const green   = colors.green
@@ -125,7 +126,7 @@ gulp.task( 'help', ( done ) => {
         const textLength   = text.length
         const marginLength = ( width - textLength ) / 2
 
-        let leftMargin, rightMargin = marginLength
+        let leftMargin, rightMargin
         if ( Number.isInteger( marginLength ) ) {
             leftMargin  = marginLength
             rightMargin = marginLength
@@ -180,7 +181,7 @@ gulp.task( 'help', ( done ) => {
         'or',
         green( '--format:' ),
         magenta( '<format>' ),
-        ' - to specify the output build type. Where format could be any of:', magenta( 'cjs, esm, iife, umd' ),'.'
+        ' - to specify the output build type. Where format could be any of:', magenta( 'cjs, esm, iife, umd' ), '.'
     )
     log( '\t\t\t', green( '-e:' ), magenta( '<env>' ), 'or', green( '--env:' ), magenta( '<env>' ), ' - to specify the build environment. Where env could be any of:', magenta(
         'dev' ), magenta( 'prod' ), cyan( '[Default: "dev"]' ), '.' )
@@ -218,13 +219,7 @@ gulp.task( 'patch', ( done ) => {
  */
 gulp.task( 'clean', () => {
 
-    const filesToClean = [
-        './builds',
-        './tests/units/builds',
-        './tests/benchmarks/builds',
-        './docs'
-    ]
-
+    const filesToClean = getGulpConfigForTask( 'clean' )
     return deleteAsync( filesToClean )
 
 } )
@@ -238,12 +233,7 @@ gulp.task( 'clean', () => {
  */
 gulp.task( 'lint', () => {
 
-    const filesToLint = [
-        'configs/**/*.js',
-        'sources/**/*.js',
-        'tests/**/*.js',
-        '!tests/**/builds/*.js'
-    ]
+    const filesToLint = getGulpConfigForTask( 'lint' )
 
     return gulp.src( filesToLint, { base: './' } )
                .pipe( eslint( {
@@ -274,13 +264,7 @@ gulp.task( 'lint', () => {
 gulp.task( 'doc', ( done ) => {
 
     const config     = jsdocConfiguration
-    const filesToDoc = [
-        'README.md',
-        'gulpfile.mjs',
-        './configs/*.js',
-        './sources/**/*.js',
-        './tests/**/*.js'
-    ]
+    const filesToDoc = getGulpConfigForTask( 'doc' )
 
     gulp.src( filesToDoc, { read: false } )
         .pipe( jsdoc( config, done ) )
@@ -295,18 +279,15 @@ gulp.task( 'doc', ( done ) => {
  * and then create rollup config for each of them and bundle
  * Todo: Check for differents target env like next task below this one
  */
-const filePathsToIgnore = [
-    `${ packageInfos.name }.js`,
-    'LineFileSplitter.js'
-]
 gulp.task( 'check-bundling-from-esm-files-import', async ( done ) => {
 
-    const baseDir        = __dirname
-    const sourcesDir     = path.join( baseDir, 'sources' )
-    const testsDir       = path.join( baseDir, 'tests' )
-    const bundleDir      = path.join( testsDir, 'bundles' )
-    const outputDir      = path.join( bundleDir, 'from_files_import' )
-    const temporariesDir = path.join( outputDir, '.tmp' )
+    const baseDir           = __dirname
+    const sourcesDir        = path.join( baseDir, 'sources' )
+    const testsDir          = path.join( baseDir, 'tests' )
+    const bundleDir         = path.join( testsDir, 'bundles' )
+    const outputDir         = path.join( bundleDir, 'from_files_import' )
+    const temporariesDir    = path.join( outputDir, '.tmp' )
+    const filePathsToIgnore = getGulpConfigForTask( 'check-bundling' )
 
     if ( fs.existsSync( outputDir ) ) {
         log( 'Clean up', magenta( outputDir ) )
@@ -548,11 +529,12 @@ gulp.task( 'check-bundling-from-esm-build-import', async ( done ) => {
 } )
 gulp.task( 'check-bundling-from-esm-files-direct', async ( done ) => {
 
-    const baseDir    = __dirname
-    const sourcesDir = path.join( baseDir, 'sources' )
-    const testsDir   = path.join( baseDir, 'tests' )
-    const bundlesDir = path.join( testsDir, 'bundles' )
-    const outputDir  = path.join( bundlesDir, 'from_files_direct' )
+    const baseDir           = __dirname
+    const sourcesDir        = path.join( baseDir, 'sources' )
+    const testsDir          = path.join( baseDir, 'tests' )
+    const bundlesDir        = path.join( testsDir, 'bundles' )
+    const outputDir         = path.join( bundlesDir, 'from_files_direct' )
+    const filePathsToIgnore = getGulpConfigForTask( 'check-bundling' )
 
     if ( fs.existsSync( outputDir ) ) {
         log( 'Clean up', magenta( outputDir ) )
@@ -654,11 +636,7 @@ gulp.task( 'compute-unit-tests', async ( done ) => {
 
     fs.mkdirSync( unitsDir, { recursive: true } )
 
-    const filePathsToIgnore = [
-        `${ packageInfos.name }.js`,
-        'isTestUnitGenerator.js',
-        'cores.js'
-    ]
+    const filePathsToIgnore = getGulpConfigForTask( 'compute-unit-tests' )
 
     const sourcesFiles = glob.sync( path.join( sourcesDir, '**' ) )
                              .map( filePath => path.normalize( filePath ) )
@@ -1241,11 +1219,7 @@ gulp.task( 'compute-benchmarks', async ( done ) => {
 
     fs.mkdirSync( benchsDir, { recursive: true } )
 
-    const filePathsToIgnore = [
-        `${ packageInfos.name }.js`,
-        'isTestUnitGenerator.js',
-        'cores.js'
-    ]
+    const filePathsToIgnore = getGulpConfigForTask( 'compute-benchmarks' )
 
     const sourcesFiles = glob.sync( path.join( sourcesDir, '**' ) )
                              .map( filePath => path.normalize( filePath ) )
