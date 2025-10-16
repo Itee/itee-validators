@@ -103,7 +103,7 @@ import { isNotDefined } from '../voids/isDefined'
  * @param data {*} The data to check against the object type
  * @returns {boolean} true if data is object, false otherwise
  */
-export function isObject ( data ) {
+export function isObject( data ) {
 
     if ( isNotDefined( data ) ) { return false }
 
@@ -116,7 +116,7 @@ export function isObject ( data ) {
  * @param data {*} The data to check against the object type
  * @returns {boolean} true if data is not an object, false otherwise
  */
-export function isNotObject ( data ) {
+export function isNotObject( data ) {
     return !isObject( data )
 }
 </pre>
