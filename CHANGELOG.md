@@ -1,3 +1,8 @@
+# [v5.5.0](https://github.com/Itee/itee-validators/compare/v5.4.0...v5.5.0) (2025-10-16)
+
+## ✨ New Features
+- [`e3f7745`](https://github.com/Itee/itee-validators/commit/e3f7745)  (package) use cz-emoji in favor of cz-conventional-changlog
+
 # [5.4.0](https://github.com/Itee/itee-validators/compare/v5.3.9...v5.4.0) (2025-10-16)
 
 
