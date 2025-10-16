@@ -81,52 +81,112 @@ const packageInfos = JSON.parse( fs.readFileSync(
  */
 gulp.task( 'help', ( done ) => {
 
-    const iteeVersion       = packageInfos.version
-    const iteeVersionLength = iteeVersion.length
-    const iteeSpaceFilling  = ' '.repeat( 28 - iteeVersionLength )
+    function getPrettyPackageName() {
 
-    const nodeVersion       = childProcess.execFileSync( 'node', [ '--version' ] )
-                                          .toString()
-                                          .replace( /(\r\n|\n|\r)/gm, '' )
-    const nodeVersionLength = nodeVersion.length
-    const nodeSpaceFilling  = ' '.repeat( 43 - nodeVersionLength )
+        let packageName = ''
 
-    const npmVersion       = childProcess.execFileSync( 'npm', [ '--version' ] )
-                                         .toString()
-                                         .replace( /(\r\n|\n|\r)/gm, '' )
-    const npmVersionLength = npmVersion.length
-    const npmSpaceFilling  = ' '.repeat( 42 - npmVersionLength )
+        const nameSplits = packageInfos.name.split( '-' )
+        for ( const nameSplit of nameSplits ) {
+            packageName += nameSplit.charAt( 0 ).toUpperCase() + nameSplit.slice( 1 ) + ' '
+        }
+        packageName = packageName.slice( 0, -1 )
+
+        return packageName
+
+    }
+
+    function getPrettyPackageVersion() {
+
+        return 'v' + packageInfos.version
+
+    }
+
+    function getPrettyNodeVersion() {
+
+        const nodeVersion = childProcess.execFileSync( 'node', [ '--version' ] )
+                                        .toString()
+                                        .replace( /(\r\n|\n|\r)/gm, '' )
+        return ' node: ' + nodeVersion
+
+    }
+
+    function getPrettyNpmVersion() {
+
+        const npmVersion = childProcess.execFileSync( 'npm', [ '--version' ] )
+                                       .toString()
+                                       .replace( /(\r\n|\n|\r)/gm, '' )
+
+        return ' npm:  v' + npmVersion
+
+    }
+
+    function centerText( text, width ) {
+
+        const textLength   = text.length
+        const marginLength = ( width - textLength ) / 2
+
+        let leftMargin, rightMargin = marginLength
+        if ( Number.isInteger( marginLength ) ) {
+            leftMargin  = marginLength
+            rightMargin = marginLength
+        } else {
+            const flooredMargin = Math.floor( marginLength )
+            leftMargin          = flooredMargin
+            rightMargin         = flooredMargin + 1
+        }
+
+        return ' '.repeat( leftMargin ) + text + ' '.repeat( rightMargin )
+
+    }
+
+    const bannerWidth          = 50
+    const prettyPackageName    = getPrettyPackageName()
+    const prettyPackageVersion = getPrettyPackageVersion()
+    const prettyNodeVersion    = getPrettyNodeVersion()
+    const nodeSpaceFilling     = ' '.repeat( bannerWidth - prettyNodeVersion.length )
+    const prettyNpmVersion     = getPrettyNpmVersion()
+    const npmSpaceFilling      = ' '.repeat( bannerWidth - prettyNpmVersion.length )
+
+    const npmRun = blue( '\tnpm run' )
 
     log( '' )
-    log( '====================================================' )
-    log( '|                      HELP                        |' )
-    log( '|                 Itee Validators                  |' )
-    log( `|                     v${ iteeVersion }${ iteeSpaceFilling }|` )
-    log( '|--------------------------------------------------|' )
-    log( `| node: ${ nodeVersion }${ nodeSpaceFilling }|` )
-    log( `| npm:  v${ npmVersion }${ npmSpaceFilling }|` )
-    log( '====================================================' )
+    log( '┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓' )
+    log( `┃${ centerText( 'HELP', bannerWidth ) }┃` )
+    log( `┃${ centerText( prettyPackageName, bannerWidth ) }┃` )
+    log( `┃${ centerText( prettyPackageVersion, bannerWidth ) }┃` )
+    log( '┠──────────────────────────────────────────────────┨' )
+    log( `┃${ prettyNodeVersion }${ nodeSpaceFilling }┃` )
+    log( `┃${ prettyNpmVersion }${ npmSpaceFilling }┃` )
+    log( '┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛' )
     log( '' )
     log( 'Available commands are:' )
-    log( '\t', blue( 'npm run' ), cyan( 'help' ), ' - Display this help.' )
-    log( '\t', blue( 'npm run' ), cyan( 'patch' ), ' - Will apply some patch/replacements in dependencies.', red( '(Apply only once after run "npm install")' ) )
-    log( '\t', blue( 'npm run' ), cyan( 'clean' ), ' - Will delete builds and temporary folders.' )
-    log( '\t', blue( 'npm run' ), cyan( 'lint' ), ' - Will run the eslint in pedantic mode with auto fix when possible.' )
-    log( '\t', blue( 'npm run' ), cyan( 'doc' ), ' - Will run jsdoc, and create documentation under `documentation` folder, using the docdash theme' )
-    log( '\t', blue( 'npm run' ), cyan( 'test' ), ' - Will run the test framworks (unit and bench), and create reports under `documentation/report` folder, using the mochawesome theme' )
-    log( '\t', blue( 'npm run' ), cyan( 'unit' ), ' - Will run the karma server for unit tests.' )
-    log( '\t', blue( 'npm run' ), cyan( 'bench' ), ' - Will run the karma server for benchmarks.' )
-    log( '\t', blue( 'npm run' ), cyan( 'build' ), yellow( '--' ), green( '<options>' ), ' - Will build the application for development and/or production environments.', yellow( 'Note: The two dash are only required if you provide options !' ) )
+    log( npmRun, cyan( 'help' ), ' - Display this help.' )
+    log( npmRun, cyan( 'patch' ), ' - Will apply some patch/replacements in dependencies.', red( '(Apply only once after run "npm install")' ) )
+    log( npmRun, cyan( 'clean' ), ' - Will delete builds and temporary folders.' )
+    log( npmRun, cyan( 'lint' ), ' - Will run the eslint in pedantic mode with auto fix when possible.' )
+    log( npmRun, cyan( 'doc' ), ' - Will run jsdoc, and create documentation under `documentation` folder, using the docdash theme' )
+    log( npmRun, cyan( 'test' ), ' - Will run the test framworks (unit and bench), and create reports under `documentation/report` folder, using the mochawesome theme' )
+    log( npmRun, cyan( 'unit' ), ' - Will run the karma server for unit tests.' )
+    log( npmRun, cyan( 'bench' ), ' - Will run the karma server for benchmarks.' )
+    log( npmRun, cyan( 'build' ), yellow( '--' ), green( '<options>' ), ' - Will build the application for development and/or production environments.' )
+    log( yellow( '\tNote: The two dash are only required if you provide options !' ) )
     log( '\t\t The available', green( '<options>' ), 'are:' )
-    log( '\t\t\t', green( '-n' ), 'or', green( '--name' ), ' - The export name of the builded application', red( '(required for UMD module)' ), cyan( '[Default: ""]' ), '.' )
     log( '\t\t\t', green( '-i' ), 'or', green( '--input' ), ' - The main file path to build', cyan( '[Default: "sources/main.js"]' ), '.' )
     log( '\t\t\t', green( '-o' ), 'or', green( '--output' ), ' - The folder where output the build', cyan( '[Default: "builds"]' ), '.' )
-    log( '\t\t\t', green( '-f:' ), magenta( '<format>' ), 'or', green( '--format:' ), magenta( '<format>' ), ' - to specify the output build type. Where format could be any of:', magenta( 'amd' ), magenta( 'cjs' ), magenta( 'es' ), magenta( 'iife' ), magenta( 'umd' ), cyan( '[Default: "amd,cjs,es,iife,umd"]' ), '.' )
+    log(
+        '\t\t\t',
+        green( '-f:' ),
+        magenta( '<format>' ),
+        'or',
+        green( '--format:' ),
+        magenta( '<format>' ),
+        ' - to specify the output build type. Where format could be any of:', magenta( 'cjs, esm, iife, umd' ),'.'
+    )
     log( '\t\t\t', green( '-e:' ), magenta( '<env>' ), 'or', green( '--env:' ), magenta( '<env>' ), ' - to specify the build environment. Where env could be any of:', magenta(
         'dev' ), magenta( 'prod' ), cyan( '[Default: "dev"]' ), '.' )
     log( '\t\t\t', green( '-s' ), 'or', green( '--sourcemap' ), ' - to build with related source map', cyan( '[Default: true]' ), '.' )
     log( '\t\t\t', green( '-t' ), 'or', green( '--treeshake' ), ' - allow to perform treeshaking when building', cyan( '[Default: true]' ), '.' )
-    log( '\t', blue( 'npm run' ), cyan( 'release' ), ' - Will run all the lint, test stuff, and if succeed will build the application.' )
+    log( npmRun, cyan( 'release' ), ' - Will run all the lint, test stuff, and if succeed will build the application.' )
     log( '' )
     log( 'In case you have', blue( 'gulp' ), 'installed globally, you could use also:' )
     log( '\t', blue( 'gulp' ), cyan( 'command' ), ' - It will perform the command like using "npm run" but with less characters to type... Because you\'re a developer, right ?' )
