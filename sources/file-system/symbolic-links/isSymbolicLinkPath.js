@@ -31,7 +31,8 @@ import { isNotString } from '../../cores/strings/isString'
  */
 export function isSymbolicLinkPath( path ) {
     if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
-        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
+        return false
+        // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
     const stat = statSync( path, { throwIfNoEntry: false } )

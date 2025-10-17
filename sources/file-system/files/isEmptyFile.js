@@ -32,7 +32,8 @@ import { isNotString } from '../../cores/strings/isString'
  */
 export function isEmptyFile( filePath, threshold = 0 ) {
     if ( isNotString( filePath ) && !( filePath instanceof Buffer ) && !( filePath instanceof URL ) ) {
-        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
+        return false
+        // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
     return isFilePath( filePath ) && ( statSync( filePath ).size <= threshold )
