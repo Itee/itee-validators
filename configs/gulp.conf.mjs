@@ -10,6 +10,7 @@ const config = {
         './builds',
         './tests/units/builds',
         './tests/benchmarks/builds',
+        './tests/bundles',
         './docs'
     ],
     'lint':               [
