@@ -1,6 +1,6 @@
 
 import Benchmark   from 'benchmark'
-import { Testing } from 'itee-utils/sources/testings/benchmarks'
+import { Testing }      from 'itee-utils'
 import * as isFunctionNamespace from '../../../../sources/cores/functions/isFunction.js'
 
 const isFunctionSuite = Benchmark.Suite( 'isFunctionNamespace.isFunction', Testing.createSuiteOptions() )

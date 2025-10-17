@@ -13,7 +13,7 @@ import {isEmptyArraySuite, isNotEmptyArraySuite} from './cores/arrays/isEmptyArr
 import {isBooleanSuite, isNotBooleanSuite} from './cores/booleans/isBoolean.bench.js'
 import {isTrueSuite, isFalseSuite} from './cores/booleans/isTrue.bench.js'
 import {isFunctionSuite, isNotFunctionSuite} from './cores/functions/isFunction.bench.js'
-import {isInfiniteSuite, isInfiniteNegativeSuite, isInfinitePositiveSuite, isFiniteSuite} from './cores/numbers/isInfinite.bench.js'
+import {isInfiniteNegativeSuite, isInfinitePositiveSuite, isInfiniteSuite, isFiniteSuite} from './cores/numbers/isInfinite.bench.js'
 import {isMaxPositiveSuite, isMaxNegativeSuite} from './cores/numbers/isMax.bench.js'
 import {isMinPositiveSuite, isMinNegativeSuite} from './cores/numbers/isMin.bench.js'
 import {isNumberSuite, isNumberPositiveSuite, isNumberNegativeSuite, isNotNumberSuite, isIntegerSuite, isFloatSuite, isNaNSuite} from './cores/numbers/isNumber.bench.js'
@@ -93,9 +93,9 @@ const suites = [
 	isFalseSuite,
 	isFunctionSuite,
 	isNotFunctionSuite,
-	isInfiniteSuite,
 	isInfiniteNegativeSuite,
 	isInfinitePositiveSuite,
+	isInfiniteSuite,
 	isFiniteSuite,
 	isMaxPositiveSuite,
 	isMaxNegativeSuite,

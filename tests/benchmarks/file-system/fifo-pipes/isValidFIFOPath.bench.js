@@ -1,6 +1,6 @@
 
 import Benchmark   from 'benchmark'
-import { Testing } from 'itee-utils/sources/testings/benchmarks'
+import { Testing }      from 'itee-utils'
 import * as isValidFIFOPathNamespace from '../../../../sources/file-system/fifo-pipes/isValidFIFOPath.js'
 
 const isValidFIFOPathSuite = Benchmark.Suite( 'isValidFIFOPathNamespace.isValidFIFOPath', Testing.createSuiteOptions() )

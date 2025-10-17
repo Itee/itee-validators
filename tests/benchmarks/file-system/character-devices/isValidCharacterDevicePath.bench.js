@@ -1,6 +1,6 @@
 
 import Benchmark   from 'benchmark'
-import { Testing } from 'itee-utils/sources/testings/benchmarks'
+import { Testing }      from 'itee-utils'
 import * as isValidCharacterDevicePathNamespace from '../../../../sources/file-system/character-devices/isValidCharacterDevicePath.js'
 
 const isValidCharacterDevicePathSuite = Benchmark.Suite( 'isValidCharacterDevicePathNamespace.isValidCharacterDevicePath', Testing.createSuiteOptions() )

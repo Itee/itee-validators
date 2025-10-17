@@ -1,6 +1,6 @@
 
 import Benchmark   from 'benchmark'
-import { Testing } from 'itee-utils/sources/testings/benchmarks'
+import { Testing }      from 'itee-utils'
 import * as isArrayOfMultiElementNamespace from '../../../../sources/cores/arrays/isArrayOfMultiElement.js'
 
 const isArrayOfMultiElementSuite = Benchmark.Suite( 'isArrayOfMultiElementNamespace.isArrayOfMultiElement', Testing.createSuiteOptions() )

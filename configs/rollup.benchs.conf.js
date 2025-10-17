@@ -35,7 +35,7 @@ function CreateBenchmarksRollupConfigs ( /*options*/ ) {
                     // May be there is a better way to perform this specification than using global comment variable
                     // that need to be inherited in all children package
                     defines: {
-                        IS_KEEP_ON_BUILD:     false,
+                        IS_KEEP_ON_BUILD:     true,
                         IS_BACKEND_SPECIFIC:  true,
                         IS_FRONTEND_SPECIFIC: false,
                     }
@@ -66,7 +66,7 @@ function CreateBenchmarksRollupConfigs ( /*options*/ ) {
                     // May be there is a better way to perform this specification than using global comment variable
                     // that need to be inherited in all children package
                     defines: {
-                        IS_KEEP_ON_BUILD:     false,
+                        IS_KEEP_ON_BUILD:     true,
                         IS_BACKEND_SPECIFIC:  false,
                         IS_FRONTEND_SPECIFIC: true,
                     },

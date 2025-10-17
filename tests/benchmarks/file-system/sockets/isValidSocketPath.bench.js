@@ -1,6 +1,6 @@
 
 import Benchmark   from 'benchmark'
-import { Testing } from 'itee-utils/sources/testings/benchmarks'
+import { Testing }      from 'itee-utils'
 import * as isValidSocketPathNamespace from '../../../../sources/file-system/sockets/isValidSocketPath.js'
 
 const isValidSocketPathSuite = Benchmark.Suite( 'isValidSocketPathNamespace.isValidSocketPath', Testing.createSuiteOptions() )
