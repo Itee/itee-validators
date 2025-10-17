@@ -19,31 +19,6 @@ function isInfiniteUnits () {
 
 	describe( 'isInfiniteUnits', () => {
 
-		describe( 'isInfinite()', () => {
-
-			it( 'is bundlable', () => {
-
-				expect(isInfiniteNamespace.isInfinite).to.exist
-
-			} )
-
-			it( 'return type is boolean when data is of any type', () => {
-
-				const dataMap0 = this._dataMap
-				for ( let dataSetKey0 in dataMap0 ) {
-					const dataSet0 = dataMap0[ dataSetKey0 ]
-
-					for ( let key0 in dataSet0 ) {
-						const dataSetValue0 = dataSet0[ key0 ]
-						const result = isInfiniteNamespace.isInfinite( dataSetValue0 )
-						expect(result).to.be.a('boolean')
-					}
-				}
-
-			} )
-
-		} )
-
 		describe( 'isInfiniteNegative()', () => {
 
 			it( 'is bundlable', () => {
@@ -86,6 +61,31 @@ function isInfiniteUnits () {
 					for ( let key0 in dataSet0 ) {
 						const dataSetValue0 = dataSet0[ key0 ]
 						const result = isInfiniteNamespace.isInfinitePositive( dataSetValue0 )
+						expect(result).to.be.a('boolean')
+					}
+				}
+
+			} )
+
+		} )
+
+		describe( 'isInfinite()', () => {
+
+			it( 'is bundlable', () => {
+
+				expect(isInfiniteNamespace.isInfinite).to.exist
+
+			} )
+
+			it( 'return type is boolean when data is of any type', () => {
+
+				const dataMap0 = this._dataMap
+				for ( let dataSetKey0 in dataMap0 ) {
+					const dataSet0 = dataMap0[ dataSetKey0 ]
+
+					for ( let key0 in dataSet0 ) {
+						const dataSetValue0 = dataSet0[ key0 ]
+						const result = isInfiniteNamespace.isInfinite( dataSetValue0 )
 						expect(result).to.be.a('boolean')
 					}
 				}

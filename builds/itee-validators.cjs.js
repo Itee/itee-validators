@@ -2465,7 +2465,8 @@ function isNotTemperature( data ) {
  */
 function isBlockDevicePath( path ) {
     if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
-        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
+        return false
+        // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
     const stat = fs.statSync( path, { throwIfNoEntry: false } );
@@ -2590,7 +2591,8 @@ function isInvalidBlockDevicePath( data ) {
  */
 function isCharacterDevicePath( path ) {
     if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
-        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
+        return false
+        // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
     const stat = fs.statSync( path, { throwIfNoEntry: false } );
@@ -2674,7 +2676,8 @@ function isInvalidCharacterDevicePath( data ) {
  */
 function isDirectoryPath( path ) {
     if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
-        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
+        return false
+        // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
     const stat = fs.statSync( path, { throwIfNoEntry: false } );
@@ -2799,7 +2802,8 @@ function isInvalidDirectoryPath( data ) {
  */
 function isFIFOPath( path ) {
     if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
-        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
+        return false
+        // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
     const stat = fs.statSync( path, { throwIfNoEntry: false } );
@@ -2886,7 +2890,8 @@ function isInvalidFIFOPath( data ) {
  */
 function isFilePath( path ) {
     if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
-        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
+        return false
+        // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
     const stat = fs.statSync( path, { throwIfNoEntry: false } );
@@ -2933,7 +2938,8 @@ function isNotFilePath( path ) {
  */
 function isEmptyFile( filePath, threshold = 0 ) {
     if ( isNotString( filePath ) && !( filePath instanceof Buffer ) && !( filePath instanceof URL ) ) {
-        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
+        return false
+        // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
     return isFilePath( filePath ) && ( fs.statSync( filePath ).size <= threshold )
@@ -3017,7 +3023,8 @@ function isInvalidFilePath( data ) {
  */
 function isSocketPath( path ) {
     if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
-        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
+        return false
+        // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
     const stat = fs.statSync( path, { throwIfNoEntry: false } );
@@ -3101,7 +3108,8 @@ function isInvalidSocketPath( data ) {
  */
 function isSymbolicLinkPath( path ) {
     if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
-        throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
+        return false
+        // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
     const stat = fs.statSync( path, { throwIfNoEntry: false } );

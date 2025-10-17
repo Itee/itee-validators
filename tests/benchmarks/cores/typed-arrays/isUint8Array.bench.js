@@ -1,6 +1,6 @@
 
 import Benchmark   from 'benchmark'
-import { Testing } from 'itee-utils/sources/testings/benchmarks'
+import { Testing }      from 'itee-utils'
 import * as isUint8ArrayNamespace from '../../../../sources/cores/typed-arrays/isUint8Array.js'
 
 const isUint8ArraySuite = Benchmark.Suite( 'isUint8ArrayNamespace.isUint8Array', Testing.createSuiteOptions() )

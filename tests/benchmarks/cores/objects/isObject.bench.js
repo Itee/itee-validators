@@ -1,6 +1,6 @@
 
 import Benchmark   from 'benchmark'
-import { Testing } from 'itee-utils/sources/testings/benchmarks'
+import { Testing }      from 'itee-utils'
 import * as isObjectNamespace from '../../../../sources/cores/objects/isObject.js'
 
 const isObjectSuite = Benchmark.Suite( 'isObjectNamespace.isObject', Testing.createSuiteOptions() )
