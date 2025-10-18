@@ -1,3 +1,11 @@
+# [v5.6.0](https://github.com/Itee/itee-validators/compare/v5.5.1...v5.6.0) (2025-10-18)
+
+## ✨ New Features
+- [`187970c`](https://github.com/Itee/itee-validators/commit/187970c)  (gulpfile) split gulpfile tasks into sub-tasks files 
+
+## 🐛 Bug Fixes
+- [`1ae6d25`](https://github.com/Itee/itee-validators/commit/1ae6d25)  (sources) avoid validator with thrown during migration
+
 # [v5.5.1](https://github.com/Itee/itee-validators/compare/v5.5.0...v5.5.1) (2025-10-16)
 
 # [v5.5.0](https://github.com/Itee/itee-validators/compare/v5.4.0...v5.5.0) (2025-10-16)
