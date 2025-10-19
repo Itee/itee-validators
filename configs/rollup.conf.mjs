@@ -122,6 +122,12 @@ function _computeBanner( format ) {
 
 }
 
+function _computeIntro () {
+
+    return ''
+
+}
+
 // Configs
 
 const configs = {
@@ -390,7 +396,7 @@ function CreateRollupConfigs( options ) {
                     paths:     {},
                     banner:    ( isProd ) ? '' : _computeBanner( format ),
                     footer:    '',
-                    intro:     '',
+                    intro:     ( !isProd && format === 'iife' ) ? _computeIntro() : '',
                     outro:     '',
                     sourcemap: !isProd,
                     interop:   true,
