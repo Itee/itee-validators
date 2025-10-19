@@ -20,11 +20,11 @@ const config = {
         '!tests/**/builds/*.js'
     ],
     'doc':                [
-        'README.md',
+        // 'README.md',
         'gulpfile.mjs',
         './configs/*.js',
         './sources/**/*.js',
-        './tests/**/*.js'
+        // './tests/**/*.js'
     ],
     'check-bundling':     [
         `${ packageInfos.name }.js`,

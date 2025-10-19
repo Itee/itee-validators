@@ -12,23 +12,24 @@
  * @generator
  * @returns {object} The jsdoc configuration
  */
-function CreateJsdocConfiguration () {
+function CreateJsdocConfiguration() {
 
     return {
-        tags: {
+        tags:         {
             allowUnknownTags: false,
             dictionaries:     [ 'jsdoc', 'closure' ]
         },
-        source: {
+        source:       {
             include:        [ 'README.md' ],
-            includePattern: '.+\\.js(doc|x)?$',
-            excludePattern: '(node_modules|docs|builds|tests)',
+            includePattern: '.+\\.(js|mjs|jsx)?$',
+            excludePattern: '(node_modules|docs|builds)',
             exclude:        []
         },
         sourceType:   'module',
         plugins:      [],
         recurseDepth: 5,
         opts:         {
+            template:    './node_modules/ink-docstrap/template',
             access:      'all',
             debug:       false,
             encoding:    'utf8',
@@ -37,11 +38,11 @@ function CreateJsdocConfiguration () {
             verbose:     true,
             private:     true
         },
-        templates: {
-            cleverLinks:    false,
-            monospaceLinks: false,
-            navType:        'inline',
-            theme:          [
+        templates:    {
+            cleverLinks:       false,
+            monospaceLinks:    false,
+            navType:           'inline',
+            theme:             [
                                    'cerulean',
                                    'cosmo',
                                    'darkly',
