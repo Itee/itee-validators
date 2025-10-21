@@ -12,48 +12,27 @@
  * @requires {@link module: [rollup-plugin-node-resolve]{@link https://github.com/rollup/rollup-plugin-node-resolve}}
  * @requires {@link module: [rollup-plugin-terser]{@link https://github.com/TrySound/rollup-plugin-terser}}
  */
-
-import { readFileSync }  from 'fs'
 import {
-    dirname,
+    packageSourcesDirectory,
+    packageBuildsDirectory,
+    packageName,
+    packageJson,
+    packageDescription,
+    getPrettyPackageName,
+    getPrettyPackageVersion
+}                  from '../_utils.mjs'
+import {
     join,
     basename
-}                        from 'path'
-import commonjs          from '@rollup/plugin-commonjs'
-import nodeResolve       from '@rollup/plugin-node-resolve'
-import { terser }        from 'rollup-plugin-terser'
-import cleanup           from 'rollup-plugin-cleanup'
-import replace           from 'rollup-plugin-re'
-import figlet            from 'figlet'
-import { fileURLToPath } from 'url'
-
-const __filename   = fileURLToPath( import.meta.url )
-const __dirname    = dirname( __filename )
-const packagePath  = join( __dirname, '..', 'package.json' )
-const packageData  = readFileSync( packagePath )
-const packageInfos = JSON.parse( packageData )
+}                  from 'path'
+import commonjs    from '@rollup/plugin-commonjs'
+import nodeResolve from '@rollup/plugin-node-resolve'
+import { terser }  from 'rollup-plugin-terser'
+import cleanup     from 'rollup-plugin-cleanup'
+import replace     from 'rollup-plugin-re'
+import figlet      from 'figlet'
 
 // Utils
-
-function getPrettyPackageName() {
-
-    let packageName = ''
-
-    const nameSplits = packageInfos.name.split( '-' )
-    for ( const nameSplit of nameSplits ) {
-        packageName += nameSplit.charAt( 0 ).toUpperCase() + nameSplit.slice( 1 ) + '.'
-    }
-    packageName = packageName.slice( 0, -1 )
-
-    return packageName
-
-}
-
-function getPrettyPackageVersion() {
-
-    return 'v' + packageInfos.version
-
-}
 
 function getPrettyFormatForBanner( format ) {
 
@@ -92,7 +71,7 @@ function _commentarize( banner ) {
     bannerCommented += ' * '
     bannerCommented += banner.replaceAll( '\n', '\n * ' )
     bannerCommented += '\n'
-    bannerCommented += ` * @desc    ${ packageInfos.description }\n`
+    bannerCommented += ` * @desc    ${ packageDescription }\n`
     bannerCommented += ' * @author  [Tristan Valcke]{@link https://github.com/Itee}\n'
     bannerCommented += ' * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}\n'
     bannerCommented += ' * \n'
@@ -104,7 +83,7 @@ function _commentarize( banner ) {
 
 function _computeBanner( format ) {
 
-    const packageName    = getPrettyPackageName()
+    const packageName    = getPrettyPackageName( '.' )
     const packageVersion = getPrettyPackageVersion()
     const prettyFormat   = getPrettyFormatForBanner( format )
 
@@ -122,197 +101,9 @@ function _computeBanner( format ) {
 
 }
 
-function _computeIntro () {
+function _computeIntro() {
 
     return ''
-
-}
-
-// Configs
-
-const configs = {
-    'benchmarks-backend':  {
-        input:     `tests/benchmarks/${ packageInfos.name }.benchs.js`,
-        external:  [
-            'benchmark',
-            'fs'
-        ],
-        plugins:   [
-            replace( {
-                // Even this variable are not used in this package, we need it because
-                // they are used in dependency package itee-utils that use them to focus some build stuff
-                // May be there is a better way to perform this specification than using global comment variable
-                // that need to be inherited in all children package
-                defines: {
-                    IS_KEEP_ON_BUILD:     true,
-                    IS_BACKEND_SPECIFIC:  true,
-                    IS_FRONTEND_SPECIFIC: false,
-                }
-            } ),
-            nodeResolve(),
-            cleanup( {
-                comments: 'none'
-            } )
-        ],
-        treeshake: true,
-        output:    {
-            indent: '\t',
-            format: 'cjs',
-            file:   `tests/benchmarks/builds/${ packageInfos.name }.benchs.cjs.js`
-        }
-    },
-    'benchmarks-frontend': {
-        input:     `tests/benchmarks/${ packageInfos.name }.benchs.js`,
-        external:  [
-            'benchmark'
-        ],
-        plugins:   [
-            nodeResolve(),
-            replace( {
-                // Even this variable are not used in this package, we need it because
-                // they are used in dependency package itee-utils that use them to focus some build stuff
-                // May be there is a better way to perform this specification than using global comment variable
-                // that need to be inherited in all children package
-                defines:  {
-                    IS_KEEP_ON_BUILD:     true,
-                    IS_BACKEND_SPECIFIC:  false,
-                    IS_FRONTEND_SPECIFIC: true,
-                },
-                replaces: {
-                    '\tisBlockDevicePathSuite,':            '\t//isBlockDevicePathSuite,',
-                    '\tisCharacterDevicePathSuite,':        '\t//isCharacterDevicePathSuite,',
-                    '\tisDirectoryPathSuite,':              '\t//isDirectoryPathSuite,',
-                    '\tisEmptyDirectorySuite,':             '\t//isEmptyDirectorySuite,',
-                    '\tisEmptyFileSuite,':                  '\t//isEmptyFileSuite,',
-                    '\tisFIFOPathSuite,':                   '\t//isFIFOPathSuite,',
-                    '\tisFilePathSuite,':                   '\t//isFilePathSuite,',
-                    '\tisInvalidBlockDevicePathSuite,':     '\t//isInvalidBlockDevicePathSuite,',
-                    '\tisInvalidCharacterDevicePath,':      '\t//isInvalidCharacterDevicePath,',
-                    '\tisInvalidCharacterDevicePathSuite,': '\t//isInvalidCharacterDevicePathSuite,',
-                    '\tisInvalidDirectoryPathSuite,':       '\t//isInvalidDirectoryPathSuite,',
-                    '\tisInvalidFIFOPathSuite,':            '\t//isInvalidFIFOPathSuite,',
-                    '\tisInvalidFilePathSuite,':            '\t//isInvalidFilePathSuite,',
-                    '\tisInvalidPathSuite,':                '\t//isInvalidPathSuite,',
-                    '\tisInvalidSocketPathSuite,':          '\t//isInvalidSocketPathSuite,',
-                    '\tisInvalidSymbolicLinkPathSuite,':    '\t//isInvalidSymbolicLinkPathSuite,',
-                    '\tisNotBlockDevicePathSuite,':         '\t//isNotBlockDevicePathSuite,',
-                    '\tisNotCharacterDevicePathSuite,':     '\t//isNotCharacterDevicePathSuite,',
-                    '\tisNotDirectoryPathSuite,':           '\t//isNotDirectoryPathSuite,',
-                    '\tisNotEmptyDirectorySuite,':          '\t//isNotEmptyDirectorySuite,',
-                    '\tisNotEmptyFileSuite,':               '\t//isNotEmptyFileSuite,',
-                    '\tisNotFIFOPathSuite,':                '\t//isNotFIFOPathSuite,',
-                    '\tisNotFilePathSuite,':                '\t//isNotFilePathSuite,',
-                    '\tisNotSocketPathSuite,':              '\t//isNotSocketPathSuite,',
-                    '\tisNotSymbolicLinkPathSuite,':        '\t//isNotSymbolicLinkPathSuite,',
-                    '\tisSocketPathSuite,':                 '\t//isSocketPathSuite,',
-                    '\tisSymbolicLinkPathSuite,':           '\t//isSymbolicLinkPathSuite,',
-                    '\tisValidBlockDevicePathSuite,':       '\t//isValidBlockDevicePathSuite,',
-                    '\tisValidCharacterDevicePathSuite,':   '\t//isValidCharacterDevicePathSuite,',
-                    '\tisValidDirectoryPathSuite,':         '\t//isValidDirectoryPathSuite,',
-                    '\tisValidFIFOPathSuite,':              '\t//isValidFIFOPathSuite,',
-                    '\tisValidFilePathSuite,':              '\t//isValidFilePathSuite,',
-                    '\tisValidPathSuite,':                  '\t//isValidPathSuite,',
-                    '\tisValidSocketPathSuite,':            '\t//isValidSocketPathSuite,',
-                    '\tisValidSymbolicLinkPathSuite,':      '\t//isValidSymbolicLinkPathSuite,',
-
-                    'suite.run()': '//suite.run()'
-                }
-            } ),
-            cleanup( {
-                comments: 'none'
-            } )
-        ],
-        treeshake: {
-            moduleSideEffects:                false,
-            annotations:                      true,
-            correctVarValueBeforeDeclaration: true,
-            propertyReadSideEffects:          false,
-            tryCatchDeoptimization:           true,
-            unknownGlobalSideEffects:         false
-        },
-        output:    {
-            indent:  '\t',
-            format:  'iife',
-            name:    'Itee.Benchmarks',
-            globals: {
-                'benchmark': 'Benchmark'
-            },
-            file:    `tests/benchmarks/builds/${ packageInfos.name }.benchs.iife.js`
-        }
-    },
-    'units-backend':       {
-        input:     `tests/units/${ packageInfos.name }.units.js`,
-        external:  [ 'itee-utils', 'mocha', 'chai', 'fs' ],
-        plugins:   [
-            replace( {
-                replaces: {
-                    'coresUnits.call':         '//coresUnits.call',
-                    'isEventTargetUnits.call': '//isEventTargetUnits.call',
-                }
-            } ),
-            cleanup( {
-                comments: 'none'
-            } )
-        ],
-        treeshake: true,
-        output:    {
-            indent: '\t',
-            format: 'cjs',
-            file:   `tests/units/builds/${ packageInfos.name }.units.cjs.js`
-        }
-    },
-    'units-frontend':      {
-        input:     `tests/units/${ packageInfos.name }.units.js`,
-        external:  [
-            'mocha',
-            'chai'
-        ],
-        plugins:   [
-            nodeResolve(), // required to bundle itee-utils that cannot be integrated as standalone file (why???)=> because circular ref with itee validator package -_-'
-            replace( {
-                replaces: {
-                    // 'coresUnits.call':          '//coresUnits.call',
-
-                    'isBlockDevicePathUnits.call':          '//isBlockDevicePathUnits.call',
-                    'isValidBlockDevicePathUnits.call':     '//isValidBlockDevicePathUnits.call',
-                    'isCharacterDevicePathUnits.call':      '//isCharacterDevicePathUnits.call',
-                    'isValidCharacterDevicePathUnits.call': '//isValidCharacterDevicePathUnits.call',
-                    'isDirectoryPathUnits.call':            '//isDirectoryPathUnits.call',
-                    'isValidDirectoryPathUnits.call':       '//isValidDirectoryPathUnits.call',
-                    'isEmptyDirectoryUnits.call':           '//isEmptyDirectoryUnits.call',
-                    'isFIFOPathUnits.call':                 '//isFIFOPathUnits.call',
-                    'isValidFIFOPathUnits.call':            '//isValidFIFOPathUnits.call',
-                    'isFilePathUnits.call':                 '//isFilePathUnits.call',
-                    'isValidFilePathUnits.call':            '//isValidFilePathUnits.call',
-                    'isEmptyFileUnits.call':                '//isEmptyFileUnits.call',
-                    'isValidPathUnits.call':                '//isValidPathUnits.call',
-                    'isSocketPathUnits.call':               '//isSocketPathUnits.call',
-                    'isValidSocketPathUnits.call':          '//isValidSocketPathUnits.call',
-                    'isSymbolicLinkPathUnits.call':         '//isSymbolicLinkPathUnits.call',
-                    'isValidSymbolicLinkPathUnits.call':    '//isValidSymbolicLinkPathUnits.call'
-                }
-            } ),
-            cleanup( {
-                comments: 'none'
-            } )
-        ],
-        treeshake: true,
-        output:    {
-            indent:  '\t',
-            format:  'iife',
-            name:    'Itee.Units',
-            globals: {
-                'mocha': 'Mocha',
-                'chai':  'chai'
-            },
-            file:    `tests/units/builds/${ packageInfos.name }.units.iife.js`
-        }
-    },
-}
-
-function getRollupConfigurationFor( bundleName ) {
-
-    return configs[ bundleName ]
 
 }
 
@@ -323,7 +114,7 @@ function getRollupConfigurationFor( bundleName ) {
  * @param options
  * @return {Array.<json>} An array of rollup configuration
  */
-function CreateRollupConfigs( options ) {
+function _createRollupConfigs( options ) {
     'use strict'
 
     const {
@@ -333,7 +124,7 @@ function CreateRollupConfigs( options ) {
               envs,
               treeshake
           }        = options
-    const name     = getPrettyPackageName()
+    const name     = getPrettyPackageName( '.' )
     const fileName = basename( input, '.js' )
 
     const configs = []
@@ -417,8 +208,325 @@ function CreateRollupConfigs( options ) {
 
 }
 
-export {
-    getRollupConfigurationFor,
-    CreateRollupConfigs
+// Configs
+
+const configs = {
+    'build':                                _createRollupConfigs( {
+        input:     join( packageSourcesDirectory, `${ packageName }.js` ),
+        output:    packageBuildsDirectory,
+        formats:   [ 'esm', 'cjs', 'iife' ],
+        envs:      [ 'dev', 'prod' ],
+        sourcemap: true,
+        treeshake: true
+    } ),
+    'check-bundling-from-esm-build-import': {
+        input:     null,
+        external:  [ '' ],
+        plugins:   [
+            nodeResolve( {
+                preferBuiltins: true
+            } ),
+            cleanup( {
+                comments: 'all' // else remove __PURE__ declaration... -_-'
+            } )
+        ],
+        onwarn:    ( {
+            loc,
+            frame,
+            message
+        } ) => {
+
+            // Ignore some errors
+            if ( message.includes( 'Circular dependency' ) ) { return }
+            if ( message.includes( 'Generated an empty chunk' ) ) { return }
+
+            if ( loc ) {
+                process.stderr.write( `/!\\ ${ loc.file } (${ loc.line }:${ loc.column }) ${ frame } ${ message }\n` )
+            } else {
+                process.stderr.write( `/!\\ ${ message }\n` )
+            }
+
+        },
+        treeshake: {
+            moduleSideEffects:                true,
+            annotations:                      true,
+            correctVarValueBeforeDeclaration: true,
+            propertyReadSideEffects:          true,
+            tryCatchDeoptimization:           true,
+            unknownGlobalSideEffects:         true
+        },
+        output:    {
+            indent: '\t',
+            format: 'esm',
+            file:   null
+        }
+    },
+    'check-bundling-from-esm-files-import': {
+        input:     null,
+        plugins:   [
+            nodeResolve(),
+            cleanup( {
+                comments: 'all' // else remove __PURE__ declaration... -_-'
+            } )
+        ],
+        onwarn:    ( {
+            loc,
+            frame,
+            message
+        } ) => {
+
+            // Ignore some errors
+            if ( message.includes( 'Circular dependency' ) ) { return }
+            if ( message.includes( 'Generated an empty chunk' ) ) { return }
+
+            if ( loc ) {
+                process.stderr.write( `/!\\ ${ loc.file } (${ loc.line }:${ loc.column }) ${ frame } ${ message }\n` )
+            } else {
+                process.stderr.write( `/!\\ ${ message }\n` )
+            }
+
+        },
+        treeshake: {
+            moduleSideEffects:                true,
+            annotations:                      true,
+            correctVarValueBeforeDeclaration: true,
+            propertyReadSideEffects:          true,
+            tryCatchDeoptimization:           true,
+            unknownGlobalSideEffects:         true
+        },
+        output:    {
+            indent: '\t',
+            format: 'esm',
+            file:   null
+        }
+    },
+    'check-bundling-from-esm-files-direct': {
+        input:     null,
+        external:  [ '' ],
+        plugins:   [
+            nodeResolve( {
+                preferBuiltins: true
+            } ),
+            cleanup( {
+                comments: 'none'
+            } )
+        ],
+        onwarn:    ( {
+            loc,
+            frame,
+            message
+        } ) => {
+
+            // Ignore some errors
+            if ( message.includes( 'Circular dependency' ) ) { return }
+            if ( message.includes( 'Generated an empty chunk' ) ) { return }
+
+            if ( loc ) {
+                process.stderr.write( `/!\\ ${ loc.file } (${ loc.line }:${ loc.column }) ${ frame } ${ message }\n` )
+            } else {
+                process.stderr.write( `/!\\ ${ message }\n` )
+            }
+
+        },
+        treeshake: {
+            moduleSideEffects:                true,
+            annotations:                      true,
+            correctVarValueBeforeDeclaration: true,
+            propertyReadSideEffects:          true,
+            tryCatchDeoptimization:           true,
+            unknownGlobalSideEffects:         true
+        },
+        output:    {
+            indent: '\t',
+            format: 'esm',
+            file:   null
+        }
+    },
+    'benchmarks-backend':                   {
+        input:     `tests/benchmarks/${ packageName }.benchs.js`,
+        external:  [
+            'benchmark',
+            'fs'
+        ],
+        plugins:   [
+            replace( {
+                // Even this variable are not used in this package, we need it because
+                // they are used in dependency package itee-utils that use them to focus some build stuff
+                // May be there is a better way to perform this specification than using global comment variable
+                // that need to be inherited in all children package
+                defines: {
+                    IS_KEEP_ON_BUILD:     true,
+                    IS_BACKEND_SPECIFIC:  true,
+                    IS_FRONTEND_SPECIFIC: false,
+                }
+            } ),
+            nodeResolve(),
+            cleanup( {
+                comments: 'none'
+            } )
+        ],
+        treeshake: true,
+        output:    {
+            indent: '\t',
+            format: 'cjs',
+            file:   `tests/benchmarks/builds/${ packageName }.benchs.cjs.js`
+        }
+    },
+    'benchmarks-frontend':                  {
+        input:     `tests/benchmarks/${ packageName }.benchs.js`,
+        external:  [
+            'benchmark'
+        ],
+        plugins:   [
+            nodeResolve(),
+            replace( {
+                // Even this variable are not used in this package, we need it because
+                // they are used in dependency package itee-utils that use them to focus some build stuff
+                // May be there is a better way to perform this specification than using global comment variable
+                // that need to be inherited in all children package
+                defines:  {
+                    IS_KEEP_ON_BUILD:     true,
+                    IS_BACKEND_SPECIFIC:  false,
+                    IS_FRONTEND_SPECIFIC: true,
+                },
+                replaces: {
+                    '\tisBlockDevicePathSuite,':            '\t//isBlockDevicePathSuite,',
+                    '\tisCharacterDevicePathSuite,':        '\t//isCharacterDevicePathSuite,',
+                    '\tisDirectoryPathSuite,':              '\t//isDirectoryPathSuite,',
+                    '\tisEmptyDirectorySuite,':             '\t//isEmptyDirectorySuite,',
+                    '\tisEmptyFileSuite,':                  '\t//isEmptyFileSuite,',
+                    '\tisFIFOPathSuite,':                   '\t//isFIFOPathSuite,',
+                    '\tisFilePathSuite,':                   '\t//isFilePathSuite,',
+                    '\tisInvalidBlockDevicePathSuite,':     '\t//isInvalidBlockDevicePathSuite,',
+                    '\tisInvalidCharacterDevicePath,':      '\t//isInvalidCharacterDevicePath,',
+                    '\tisInvalidCharacterDevicePathSuite,': '\t//isInvalidCharacterDevicePathSuite,',
+                    '\tisInvalidDirectoryPathSuite,':       '\t//isInvalidDirectoryPathSuite,',
+                    '\tisInvalidFIFOPathSuite,':            '\t//isInvalidFIFOPathSuite,',
+                    '\tisInvalidFilePathSuite,':            '\t//isInvalidFilePathSuite,',
+                    '\tisInvalidPathSuite,':                '\t//isInvalidPathSuite,',
+                    '\tisInvalidSocketPathSuite,':          '\t//isInvalidSocketPathSuite,',
+                    '\tisInvalidSymbolicLinkPathSuite,':    '\t//isInvalidSymbolicLinkPathSuite,',
+                    '\tisNotBlockDevicePathSuite,':         '\t//isNotBlockDevicePathSuite,',
+                    '\tisNotCharacterDevicePathSuite,':     '\t//isNotCharacterDevicePathSuite,',
+                    '\tisNotDirectoryPathSuite,':           '\t//isNotDirectoryPathSuite,',
+                    '\tisNotEmptyDirectorySuite,':          '\t//isNotEmptyDirectorySuite,',
+                    '\tisNotEmptyFileSuite,':               '\t//isNotEmptyFileSuite,',
+                    '\tisNotFIFOPathSuite,':                '\t//isNotFIFOPathSuite,',
+                    '\tisNotFilePathSuite,':                '\t//isNotFilePathSuite,',
+                    '\tisNotSocketPathSuite,':              '\t//isNotSocketPathSuite,',
+                    '\tisNotSymbolicLinkPathSuite,':        '\t//isNotSymbolicLinkPathSuite,',
+                    '\tisSocketPathSuite,':                 '\t//isSocketPathSuite,',
+                    '\tisSymbolicLinkPathSuite,':           '\t//isSymbolicLinkPathSuite,',
+                    '\tisValidBlockDevicePathSuite,':       '\t//isValidBlockDevicePathSuite,',
+                    '\tisValidCharacterDevicePathSuite,':   '\t//isValidCharacterDevicePathSuite,',
+                    '\tisValidDirectoryPathSuite,':         '\t//isValidDirectoryPathSuite,',
+                    '\tisValidFIFOPathSuite,':              '\t//isValidFIFOPathSuite,',
+                    '\tisValidFilePathSuite,':              '\t//isValidFilePathSuite,',
+                    '\tisValidPathSuite,':                  '\t//isValidPathSuite,',
+                    '\tisValidSocketPathSuite,':            '\t//isValidSocketPathSuite,',
+                    '\tisValidSymbolicLinkPathSuite,':      '\t//isValidSymbolicLinkPathSuite,',
+
+                    'suite.run()': '//suite.run()'
+                }
+            } ),
+            cleanup( {
+                comments: 'none'
+            } )
+        ],
+        treeshake: {
+            moduleSideEffects:                false,
+            annotations:                      true,
+            correctVarValueBeforeDeclaration: true,
+            propertyReadSideEffects:          false,
+            tryCatchDeoptimization:           true,
+            unknownGlobalSideEffects:         false
+        },
+        output:    {
+            indent:  '\t',
+            format:  'iife',
+            name:    'Itee.Benchmarks',
+            globals: {
+                'benchmark': 'Benchmark'
+            },
+            file:    `tests/benchmarks/builds/${ packageName }.benchs.iife.js`
+        }
+    },
+    'units-backend':                        {
+        input:     `tests/units/${ packageName }.units.js`,
+        external:  [ 'itee-utils', 'mocha', 'chai', 'fs' ],
+        plugins:   [
+            replace( {
+                replaces: {
+                    'coresUnits.call':         '//coresUnits.call',
+                    'isEventTargetUnits.call': '//isEventTargetUnits.call',
+                }
+            } ),
+            cleanup( {
+                comments: 'none'
+            } )
+        ],
+        treeshake: true,
+        output:    {
+            indent: '\t',
+            format: 'cjs',
+            file:   `tests/units/builds/${ packageName }.units.cjs.js`
+        }
+    },
+    'units-frontend':                       {
+        input:     `tests/units/${ packageName }.units.js`,
+        external:  [
+            'mocha',
+            'chai'
+        ],
+        plugins:   [
+            nodeResolve(), // required to bundle itee-utils that cannot be integrated as standalone file (why???)=> because circular ref with itee validator package -_-'
+            replace( {
+                replaces: {
+                    // 'coresUnits.call':          '//coresUnits.call',
+
+                    'isBlockDevicePathUnits.call':          '//isBlockDevicePathUnits.call',
+                    'isValidBlockDevicePathUnits.call':     '//isValidBlockDevicePathUnits.call',
+                    'isCharacterDevicePathUnits.call':      '//isCharacterDevicePathUnits.call',
+                    'isValidCharacterDevicePathUnits.call': '//isValidCharacterDevicePathUnits.call',
+                    'isDirectoryPathUnits.call':            '//isDirectoryPathUnits.call',
+                    'isValidDirectoryPathUnits.call':       '//isValidDirectoryPathUnits.call',
+                    'isEmptyDirectoryUnits.call':           '//isEmptyDirectoryUnits.call',
+                    'isFIFOPathUnits.call':                 '//isFIFOPathUnits.call',
+                    'isValidFIFOPathUnits.call':            '//isValidFIFOPathUnits.call',
+                    'isFilePathUnits.call':                 '//isFilePathUnits.call',
+                    'isValidFilePathUnits.call':            '//isValidFilePathUnits.call',
+                    'isEmptyFileUnits.call':                '//isEmptyFileUnits.call',
+                    'isValidPathUnits.call':                '//isValidPathUnits.call',
+                    'isSocketPathUnits.call':               '//isSocketPathUnits.call',
+                    'isValidSocketPathUnits.call':          '//isValidSocketPathUnits.call',
+                    'isSymbolicLinkPathUnits.call':         '//isSymbolicLinkPathUnits.call',
+                    'isValidSymbolicLinkPathUnits.call':    '//isValidSymbolicLinkPathUnits.call'
+                }
+            } ),
+            cleanup( {
+                comments: 'none'
+            } )
+        ],
+        treeshake: true,
+        output:    {
+            indent:  '\t',
+            format:  'iife',
+            name:    'Itee.Units',
+            globals: {
+                'mocha': 'Mocha',
+                'chai':  'chai'
+            },
+            file:    `tests/units/builds/${ packageName }.units.iife.js`
+        }
+    },
 }
 
+function getRollupConfigurationFor( bundleName ) {
+
+    return configs[ bundleName ]
+
+}
+
+export {
+    getRollupConfigurationFor
+}
