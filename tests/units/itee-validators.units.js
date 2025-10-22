@@ -26,6 +26,7 @@ import { isBlankStringUnits }   from './cores/strings/isBlankString.unit.js'
 import { isEmptyStringUnits }   from './cores/strings/isEmptyString.unit.js'
 import { isStringUnits }   from './cores/strings/isString.unit.js'
 import { isSymbolUnits }   from './cores/symbols/isSymbol.unit.js'
+import { isTestUnitGeneratorUnits }   from './cores/tests/isTestUnitGenerator.unit.js'
 import { isArrayBufferUnits }   from './cores/typed-arrays/isArrayBuffer.unit.js'
 import { isBigInt64ArrayUnits }   from './cores/typed-arrays/isBigInt64Array.unit.js'
 import { isBigUint64ArrayUnits }   from './cores/typed-arrays/isBigUint64Array.unit.js'
@@ -100,6 +101,7 @@ describe( 'Itee#Validators', () => {
     isEmptyStringUnits.call( root )
     isStringUnits.call( root )
     isSymbolUnits.call( root )
+    isTestUnitGeneratorUnits.call( root )
     isArrayBufferUnits.call( root )
     isBigInt64ArrayUnits.call( root )
     isBigUint64ArrayUnits.call( root )
