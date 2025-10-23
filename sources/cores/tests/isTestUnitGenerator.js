@@ -3,12 +3,13 @@
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
  */
 
+let _localTestState = null
+
 /**
  * This is noParamNoReturn
  */
 function noParamNoReturn() {
-    // eslint-disable-next-line no-console
-    console.log( 'Hello' )
+    _localTestState = ( Math.random() >= 0.5 ) ? 'The response to life is' : 42
 }
 
 /**
@@ -32,8 +33,7 @@ function noParamTwoReturn() {
  * @param {string} paramA
  */
 function oneParamNoReturn( paramA = '' ) {
-    // eslint-disable-next-line no-console
-    console.log( paramA )
+    _localTestState = 'The response to life is' + paramA
 }
 
 /**
@@ -64,8 +64,7 @@ function oneParamTwoReturn( paramA = 0 ) {
  * @param {number} paramB
  */
 function twoParamNoReturn( paramA = '', paramB = 123 ) {
-    // eslint-disable-next-line no-console
-    console.log( `${ paramA }:${ paramB }` )
+    _localTestState = 'The response to life is' + paramA + ' or maybe ' + paramB
 }
 
 /**
