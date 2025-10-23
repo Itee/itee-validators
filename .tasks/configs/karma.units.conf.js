@@ -14,7 +14,7 @@ const packageInfos = require( '../../package.json' )
  * @generator
  * @param {object} config - The karma configuration object to extend
  */
-function CreateKarmaUnitsConfiguration ( config ) {
+function CreateKarmaUnitsConfiguration( config ) {
 
     config.set( {
 

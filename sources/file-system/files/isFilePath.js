@@ -20,8 +20,8 @@
  */
 
 import { statSync }    from 'fs'
-import { isDefined }   from '../../cores/voids/isDefined'
 import { isNotString } from '../../cores/strings/isString'
+import { isDefined }   from '../../cores/voids/isDefined'
 
 /**
  * Check if given path is a file path

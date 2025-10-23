@@ -20,8 +20,8 @@
  */
 
 import { statSync }    from 'fs'
-import { isFilePath }  from './isFilePath'
 import { isNotString } from '../../cores/strings/isString'
+import { isFilePath }  from './isFilePath'
 
 /**
  * Check if given file path is an empty file more or less a threshold in bytes.
