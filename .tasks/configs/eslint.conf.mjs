@@ -13,7 +13,7 @@ export default defineConfig( [
         '.idea',
         'builds',
         'docs',
-        'sources/scripts/*.js'
+        'sources/cores/tests/*.js'
     ] ),
     {
         linterOptions: {
@@ -25,6 +25,10 @@ export default defineConfig( [
     {
         name:    'sources/common',
         files:   [ 'sources/**/*.js' ],
+        ignores: [
+            'sources/dom/',
+            'sources/file-system/**'
+        ],
         plugins: { js },
         extends: [ 'js/recommended' ],
         rules:   {
@@ -61,32 +65,17 @@ export default defineConfig( [
         }
     },
     {
-        name:  'sources/expected_rules',
-        files: [ 'sources/cores/strings.js' ],
-        rules: {
-            'no-control-regex': 'off'
-        }
-    },
-    {
         name:            'sources/frontend',
-        files:           [
-            'sources/times/*.js',
-            'sources/cores/objects.js',
-            'sources/testings/benchmarks.js',
-        ],
-        ignores:         [ 'sources/file-system/*' ],
+        files:           [ 'sources/dom/*' ],
+        ignores:         [ 'sources/file-system/**' ],
         plugins:         { js },
         extends:         [ 'js/recommended' ],
         languageOptions: { globals: globals.browser }
     },
     {
         name:            'sources/backend',
-        files:           [ 'sources/file-system/*.js' ],
-        ignores:         [
-            'sources/times/*.js',
-            'sources/cores/objects.js',
-            'sources/testings/benchmarks.js',
-        ],
+        files:           [ 'sources/file-system/**' ],
+        ignores:         [ 'sources/dom/*' ],
         plugins:         { js },
         extends:         [ 'js/recommended' ],
         languageOptions: { globals: globals.node }
@@ -119,7 +108,7 @@ export default defineConfig( [
     // Todo: fix
     {
         name:  'to/fix',
-        files: [ 'tests/units/cores/strings.unit.js' ],
+        files: [ 'tests/units/cores/tests/isTestUnitGenerator.unit.js' ],
         rules: {
             'no-unused-vars': 'warn',
         }
