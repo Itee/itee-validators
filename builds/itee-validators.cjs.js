@@ -10,8 +10,6 @@
  */
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 var fs = require('fs');
 
 /**
@@ -70,6 +68,7 @@ function isNotArray( data ) {
  *
  */
 
+
 /**
  * Check if given data is an empty array
  *
@@ -115,6 +114,7 @@ function isNotEmptyArray( data ) {
  * }
  *
  */
+
 
 /**
  * Check if given data is an array of array
@@ -214,6 +214,7 @@ function isNotBoolean( data ) {
  *
  */
 
+
 /**
  * Check if given data is not an empty array where all values are boolean
  *
@@ -312,6 +313,7 @@ function isNotFunction( data ) {
  *
  */
 
+
 /**
  * Check if given data is not an empty array where all values are functions
  *
@@ -371,6 +373,7 @@ function isNotArrayOfFunction( data ) {
  * }
  *
  */
+
 
 /**
  * Check if given data is an array with multiples values
@@ -442,6 +445,7 @@ function isNotNull( data ) {
  *     //...
  * } *
  */
+
 
 /**
  * Check if given data is not an empty array where all values are null
@@ -651,6 +655,7 @@ function isZeroNegative( data ) {
  *
  */
 
+
 /**
  * Check if given data is a number
  *
@@ -754,6 +759,7 @@ function isNaN( data ) {
  *
  */
 
+
 /**
  * Check if given data is not an empty array where all values are numbers
  *
@@ -814,6 +820,7 @@ function isNotArrayOfNumber( data ) {
  *
  */
 
+
 /**
  * Check if given data is an object
  *
@@ -854,6 +861,7 @@ function isNotObject( data ) {
  * }
  *
  */
+
 
 /**
  * Check if given data is an array where all values are of object type
@@ -914,6 +922,7 @@ function isNotArrayOfObject( data ) {
  * }
  *
  */
+
 
 /**
  * Check if given data is an array with a single value
@@ -988,6 +997,7 @@ function isNotString( data ) {
  * }
  *
  */
+
 
 /**
  * Check if given data is not an empty array where all values are string
@@ -1087,6 +1097,7 @@ function isNotUndefined( data ) {
  *
  */
 
+
 /**
  * Check if given data is not an empty array where all values are undefined
  *
@@ -1146,6 +1157,7 @@ function isNotArrayOfUndefined( data ) {
  * }
  *
  */
+
 
 /**
  * Check if given data is a boolean with value to true
@@ -1303,6 +1315,7 @@ function isMinSafeInteger( data ) {
  *
  */
 
+
 /**
  * Check if given data is an empty object
  *
@@ -1356,6 +1369,7 @@ function isNotEmptyObject( data ) {
  *
  */
 
+
 /**
  * Check if given data is an empty string
  *
@@ -1401,6 +1415,7 @@ function isNotEmptyString( data ) {
  * }
  *
  */
+
 
 /**
  * Check if the given data is a blank string
@@ -1483,6 +1498,7 @@ function isNotSymbol( data ) {
  * }
  *
  */
+
 
 /**
  * Check emptiness of given data
@@ -1638,6 +1654,7 @@ function isNotEmpty( data ) {
  }
  *
  */
+
 
 class Validator {
 
@@ -2310,6 +2327,7 @@ const ABSOLUTE_ZERO_FAHRENHEIT = -459.67;
  *
  */
 
+
 /**
  *
  * @param data {*}
@@ -2345,6 +2363,7 @@ function isNotCelsius( data ) {
  * }
  *
  */
+
 
 /**
  *
@@ -2382,6 +2401,7 @@ function isNotFahrenheit( data ) {
  *
  */
 
+
 /**
  *
  * @param data {*}
@@ -2417,6 +2437,7 @@ function isNotKelvin( data ) {
  * }
  *
  */
+
 
 /**
  *
@@ -2456,6 +2477,7 @@ function isNotTemperature( data ) {
  * }
  *
  */
+
 
 /**
  * Check if given path is a block device path
@@ -2504,6 +2526,7 @@ function isNotBlockDevicePath( path ) {
  *
  */
 
+
 /**
  * Check if given data is a valid file path
  *
@@ -2541,6 +2564,7 @@ function isInvalidPath( data ) {
  * }
  *
  */
+
 
 /**
  * Check if given data is a valid block device path
@@ -2582,6 +2606,7 @@ function isInvalidBlockDevicePath( data ) {
  * }
  *
  */
+
 
 /**
  * Check if given path is a character device path
@@ -2627,6 +2652,7 @@ function isNotCharacterDevicePath( path ) {
  *
  */
 
+
 /**
  * Check if given data is a valid character device path
  *
@@ -2667,6 +2693,7 @@ function isInvalidCharacterDevicePath( data ) {
  * }
  *
  */
+
 
 /**
  * Check if given path is a directory path
@@ -2715,6 +2742,7 @@ function isNotDirectoryPath( path ) {
  *
  */
 
+
 /**
  * Check if given directory path is an empty directory
  *
@@ -2752,6 +2780,7 @@ function isNotEmptyDirectory( directoryPath ) {
  * }
  *
  */
+
 
 /**
  * Check if given data is a valid directory path
@@ -2793,6 +2822,7 @@ function isInvalidDirectoryPath( data ) {
  * }
  *
  */
+
 
 /**
  * Check if given path is a fifo path
@@ -2841,6 +2871,7 @@ function isNotFIFOPath( path ) {
  *
  */
 
+
 /**
  * Check if given data is a valid fifo path
  *
@@ -2881,6 +2912,7 @@ function isInvalidFIFOPath( data ) {
  * }
  *
  */
+
 
 /**
  * Check if given path is a file path
@@ -2929,6 +2961,7 @@ function isNotFilePath( path ) {
  *
  */
 
+
 /**
  * Check if given file path is an empty file more or less a threshold in bytes.
  *
@@ -2974,6 +3007,7 @@ function isNotEmptyFile( filePath, threshold = 0 ) {
  *
  */
 
+
 /**
  * Check if given data is a valid file path
  *
@@ -3014,6 +3048,7 @@ function isInvalidFilePath( data ) {
  * }
  *
  */
+
 
 /**
  * Check if given path is a socket path
@@ -3059,6 +3094,7 @@ function isNotSocketPath( path ) {
  *
  */
 
+
 /**
  * Check if given data is a valid socket path
  *
@@ -3099,6 +3135,7 @@ function isInvalidSocketPath( data ) {
  * }
  *
  */
+
 
 /**
  * Check if given path is a symbolic link path
@@ -3143,6 +3180,7 @@ function isNotSymbolicLinkPath( path ) {
  * }
  *
  */
+
 
 /**
  * Check if given data is a valid symbolic link path
