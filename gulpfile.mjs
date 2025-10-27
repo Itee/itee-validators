@@ -150,7 +150,7 @@ gulp.task( 'run-unit-tests-for-frontend', runUnitTestsForFrontendTask )
 /**
  * @description Will run unit tests in back and front environments
  */
-gulp.task( 'run-unit-tests', gulp.series( 'run-unit-tests-for-backend'/*, 'run-unit-tests-for-frontend'*/ ) )
+gulp.task( 'run-unit-tests', gulp.series( 'run-unit-tests-for-backend', 'run-unit-tests-for-frontend' ) )
 
 /**
  * @description Will run benchmarks with node

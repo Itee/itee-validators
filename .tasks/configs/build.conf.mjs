@@ -454,9 +454,9 @@ const configs = {
         input:     `tests/units/${ packageName }.units.js`,
         external:  [ 'itee-utils', 'mocha', 'chai', 'fs' ],
         plugins:   [
+            nodeResolve(),
             replace( {
                 replaces: {
-                    'coresUnits.call':         '//coresUnits.call',
                     'isEventTargetUnits.call': '//isEventTargetUnits.call',
                 }
             } ),
@@ -474,14 +474,30 @@ const configs = {
     'units-frontend':                       {
         input:     `tests/units/${ packageName }.units.js`,
         external:  [
-            'mocha',
+            // 'mocha',
             'chai'
         ],
         plugins:   [
             nodeResolve(), // required to bundle itee-utils that cannot be integrated as standalone file (why???)=> because circular ref with itee validator package -_-'
             replace( {
                 replaces: {
-                    // 'coresUnits.call':          '//coresUnits.call',
+                    'import { isValidSymbolicLinkPathUnits }': '//',
+                    'import { isSymbolicLinkPathUnits }': '//',
+                    'import { isValidSocketPathUnits }': '//',
+                    'import { isSocketPathUnits }': '//',
+                    'import { isValidPathUnits }': '//',
+                    'import { isValidFilePathUnits }': '//',
+                    'import { isFilePathUnits }': '//',
+                    'import { isEmptyFileUnits }': '//',
+                    'import { isValidFIFOPathUnits }': '//',
+                    'import { isFIFOPathUnits }': '//',
+                    'import { isValidDirectoryPathUnits }': '//',
+                    'import { isEmptyDirectoryUnits }': '//',
+                    'import { isDirectoryPathUnits }': '//',
+                    'import { isValidCharacterDevicePathUnits }': '//',
+                    'import { isCharacterDevicePathUnits }': '//',
+                    'import { isValidBlockDevicePathUnits }': '//',
+                    'import { isBlockDevicePathUnits }': '//',
 
                     'isBlockDevicePathUnits.call':          '//isBlockDevicePathUnits.call',
                     'isValidBlockDevicePathUnits.call':     '//isValidBlockDevicePathUnits.call',
@@ -509,13 +525,13 @@ const configs = {
         treeshake: true,
         output:    {
             indent:  '\t',
-            format:  'iife',
+            format:  'esm',
             name:    'Itee.Units',
             globals: {
-                'mocha': 'Mocha',
+                // 'mocha': 'Mocha',
                 'chai':  'chai'
             },
-            file:    `tests/units/builds/${ packageName }.units.iife.js`
+            file:    `tests/units/builds/${ packageName }.units.esm.js`
         }
     },
 }

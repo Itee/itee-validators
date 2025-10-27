@@ -481,8 +481,8 @@ function computeUnitTestsTask( done ) {
 
             const template = '' +
                 `import { expect }       from 'chai'` + '\n' +
-                `import { beforeEach, afterEach, describe, it } from 'mocha'` + '\n' +
-                `import { Testing }      from 'itee-utils'` + '\n' +
+                `//import { beforeEach, afterEach, describe, it } from 'mocha'` + '\n' +
+                `import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'` + '\n' +
                 `import * as ${ nsName } from '${ importFilePath }'` + '\n' +
                 '\n' +
                 `function ${ unitName } () {` + '\n' +
@@ -540,7 +540,7 @@ function computeUnitTestsTask( done ) {
         }
 
         unitsTemplate = '' +
-            'import { describe }      from \'mocha\'' + '\n' +
+            '//import { describe }      from \'mocha\'' + '\n' +
             `${ computedImports }` +
             '\n' +
             'const root = typeof window === \'undefined\'' + '\n' +
