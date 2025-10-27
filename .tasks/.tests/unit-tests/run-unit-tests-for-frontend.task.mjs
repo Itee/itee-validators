@@ -1,39 +1,27 @@
-import colors                   from 'ansi-colors'
-import log                      from 'fancy-log'
-import { existsSync }           from 'fs'
-import karma                    from 'karma'
-import { normalize }            from 'path'
-import { packageRootDirectory } from '../../_utils.mjs'
+import { startTestRunner }   from '@web/test-runner'
+import colors                from 'ansi-colors'
+import { default as config } from '../../configs/units.conf.mjs'
 
-const {
-          red,
-          yellow
-      } = colors
+const { red } = colors
 
+function runUnitTestsForFrontendTask() {
 
-async function runUnitTestsForFrontendTask( done ) {
+    return new Promise( async ( resolve, reject ) => {
 
-    const configFile = normalize( `${ packageRootDirectory }/configs/karma.units.conf.js` )
-    if ( !existsSync( configFile ) ) {
-        log( yellow( `${ configFile } does not exist, skip frontend unit tests...` ) )
-        done()
-        return
-    }
+        const testRunner = await startTestRunner( {
+            config:         config,
+            readCliArgs:    false,
+            readFileConfig: false,
+        } )
 
-    const karmaConfig = karma.config.parseConfig( configFile )
-    const karmaServer = new karma.Server( karmaConfig, ( exitCode ) => {
-        if ( exitCode === 0 ) {
-            log( `Karma server exit with code ${ exitCode }` )
-            done()
-        } else {
-            done( `Karma server exit with code ${ exitCode }` )
+        if ( !testRunner ) {
+            reject( red( 'Internal test runner error.' ) )
+            return
         }
-    } )
-    karmaServer.on( 'browser_error', ( browser, error ) => {
-        log( red( error.message ) )
-    } )
 
-    await karmaServer.start()
+        testRunner.on( 'finished', resolve )
+
+    } )
 
 }
 
