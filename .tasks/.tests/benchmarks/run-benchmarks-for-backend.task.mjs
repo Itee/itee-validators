@@ -12,7 +12,7 @@ const yellow = colors.yellow
 
 function runBenchmarksForBackendTask( done ) {
 
-    const benchesPath = path.join( packageTestsBenchmarksDirectory, `/builds/${ packageName }.benchs.cjs.js` )
+    const benchesPath = path.join( packageTestsBenchmarksDirectory, `/builds/${ packageName }.benchmarks.cjs.js` )
     if ( !existsSync( benchesPath ) ) {
         log( yellow( `${ benchesPath } does not exist, skip backend benchmarks...` ) )
         done()

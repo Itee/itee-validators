@@ -13,7 +13,7 @@ async function bundleBenchmarksTask( done ) {
 
     const configs = [
         getRollupConfigurationFor( 'benchmarks-backend' ),
-        getRollupConfigurationFor( 'benchmarks-frontend' )
+        // getRollupConfigurationFor( 'benchmarks-frontend' )
     ]
 
     for ( let config of configs ) {

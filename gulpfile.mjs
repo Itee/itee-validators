@@ -163,7 +163,7 @@ gulp.task( 'run-benchmarks-for-frontend', runBenchmarksForFrontendTask )
 /**
  * @description Will run benchmarks in back and front environments
  */
-gulp.task( 'run-benchmarks', gulp.series( 'run-benchmarks-for-backend'/*, 'run-benchmarks-for-frontend'*/ ) )
+gulp.task( 'run-benchmarks', gulp.series( 'run-benchmarks-for-backend', 'run-benchmarks-for-frontend' ) )
 
 /**
  * @method npm run test

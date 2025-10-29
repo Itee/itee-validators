@@ -139,8 +139,9 @@ function computeBenchmarksTask( done ) {
             }
 
             const template = '' + '\n' +
-                `import Benchmark   from 'benchmark'` + '\n' +
-                `import { Testing }      from 'itee-utils'` + '\n' +
+                `/* global Benchmark */` + '\n' +
+                '\n' +
+                `import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'` + '\n' +
                 `import * as ${ nsName } from '${ importFilePath }'` + '\n' +
                 '\n' +
                 `${ benchSuites }` +
@@ -189,7 +190,7 @@ function computeBenchmarksTask( done ) {
         `\tsuite.run()` + '\n' +
         `}` + '\n'
 
-    const benchesFilePath = join( benchesDir, `${ packageName }.benchs.js` )
+    const benchesFilePath = join( benchesDir, `${ packageName }.benchmarks.js` )
 
     log( green( `Create ${ benchesFilePath }` ) )
     writeFileSync( benchesFilePath, benchesTemplate )

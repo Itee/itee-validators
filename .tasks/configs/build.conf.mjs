@@ -342,9 +342,8 @@ const configs = {
         }
     },
     'benchmarks-backend':                   {
-        input:     `tests/benchmarks/${ packageName }.benchs.js`,
+        input:     `tests/benchmarks/${ packageName }.benchmarks.js`,
         external:  [
-            'benchmark',
             'fs'
         ],
         plugins:   [
@@ -368,16 +367,23 @@ const configs = {
         output:    {
             indent: '\t',
             format: 'cjs',
-            file:   `tests/benchmarks/builds/${ packageName }.benchs.cjs.js`
+            intro: () => "var Benchmark = require('benchmark')",
+            file:   `tests/benchmarks/builds/${ packageName }.benchmarks.cjs.js`
         }
     },
     'benchmarks-frontend':                  {
-        input:     `tests/benchmarks/${ packageName }.benchs.js`,
+        input:     `tests/benchmarks/${ packageName }.benchmarks.js`,
         external:  [
-            'benchmark'
+            'benchmark',
+            // 'lodash'
         ],
         plugins:   [
-            nodeResolve(),
+            nodeResolve( {
+                preferBuiltins: true
+            } ),
+            commonjs( {
+                include: 'node_modules/**'
+            } ),
             replace( {
                 // Even this variable are not used in this package, we need it because
                 // they are used in dependency package itee-utils that use them to focus some build stuff
@@ -424,30 +430,22 @@ const configs = {
                     '\tisValidPathSuite,':                  '\t//isValidPathSuite,',
                     '\tisValidSocketPathSuite,':            '\t//isValidSocketPathSuite,',
                     '\tisValidSymbolicLinkPathSuite,':      '\t//isValidSymbolicLinkPathSuite,',
-
-                    'suite.run()': '//suite.run()'
                 }
             } ),
             cleanup( {
                 comments: 'none'
             } )
         ],
-        treeshake: {
-            moduleSideEffects:                false,
-            annotations:                      true,
-            correctVarValueBeforeDeclaration: true,
-            propertyReadSideEffects:          false,
-            tryCatchDeoptimization:           true,
-            unknownGlobalSideEffects:         false
-        },
+        treeshake: false,
         output:    {
             indent:  '\t',
             format:  'iife',
             name:    'Itee.Benchmarks',
             globals: {
-                'benchmark': 'Benchmark'
+                'benchmark': 'Benchmark',
+                // 'lodash': '_'
             },
-            file:    `tests/benchmarks/builds/${ packageName }.benchs.iife.js`
+            file:    `tests/benchmarks/builds/${ packageName }.benchmarks.iife.js`
         }
     },
     'units-backend':                        {
@@ -481,23 +479,23 @@ const configs = {
             nodeResolve(), // required to bundle itee-utils that cannot be integrated as standalone file (why???)=> because circular ref with itee validator package -_-'
             replace( {
                 replaces: {
-                    'import { isValidSymbolicLinkPathUnits }': '//',
-                    'import { isSymbolicLinkPathUnits }': '//',
-                    'import { isValidSocketPathUnits }': '//',
-                    'import { isSocketPathUnits }': '//',
-                    'import { isValidPathUnits }': '//',
-                    'import { isValidFilePathUnits }': '//',
-                    'import { isFilePathUnits }': '//',
-                    'import { isEmptyFileUnits }': '//',
-                    'import { isValidFIFOPathUnits }': '//',
-                    'import { isFIFOPathUnits }': '//',
-                    'import { isValidDirectoryPathUnits }': '//',
-                    'import { isEmptyDirectoryUnits }': '//',
-                    'import { isDirectoryPathUnits }': '//',
+                    'import { isValidSymbolicLinkPathUnits }':    '//',
+                    'import { isSymbolicLinkPathUnits }':         '//',
+                    'import { isValidSocketPathUnits }':          '//',
+                    'import { isSocketPathUnits }':               '//',
+                    'import { isValidPathUnits }':                '//',
+                    'import { isValidFilePathUnits }':            '//',
+                    'import { isFilePathUnits }':                 '//',
+                    'import { isEmptyFileUnits }':                '//',
+                    'import { isValidFIFOPathUnits }':            '//',
+                    'import { isFIFOPathUnits }':                 '//',
+                    'import { isValidDirectoryPathUnits }':       '//',
+                    'import { isEmptyDirectoryUnits }':           '//',
+                    'import { isDirectoryPathUnits }':            '//',
                     'import { isValidCharacterDevicePathUnits }': '//',
-                    'import { isCharacterDevicePathUnits }': '//',
-                    'import { isValidBlockDevicePathUnits }': '//',
-                    'import { isBlockDevicePathUnits }': '//',
+                    'import { isCharacterDevicePathUnits }':      '//',
+                    'import { isValidBlockDevicePathUnits }':     '//',
+                    'import { isBlockDevicePathUnits }':          '//',
 
                     'isBlockDevicePathUnits.call':          '//isBlockDevicePathUnits.call',
                     'isValidBlockDevicePathUnits.call':     '//isValidBlockDevicePathUnits.call',
@@ -529,7 +527,7 @@ const configs = {
             name:    'Itee.Units',
             globals: {
                 // 'mocha': 'Mocha',
-                'chai':  'chai'
+                'chai': 'chai'
             },
             file:    `tests/units/builds/${ packageName }.units.esm.js`
         }
