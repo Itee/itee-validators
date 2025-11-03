@@ -43,7 +43,7 @@ function computeUnitTestsTask( done ) {
         const specificDir      = dirname( specificFilePath )
 
         const fileName     = basename( sourceFile, extname( sourceFile ) )
-        const unitFileName = `${ fileName }.unit.js`
+        const unitFileName = `${ fileName }.unit.mjs`
         const unitDirPath  = join( unitsDir, specificDir )
         const unitFilePath = join( unitDirPath, unitFileName )
 
@@ -207,44 +207,30 @@ function computeUnitTestsTask( done ) {
                             const result = `${ I._( baseIndent + 1 ) }const result = ${ nsName }.${ docData.name }()` + '\n'
 
                             let returnTypesLabel = []
-                            let expects          = []
+                            let oneOf            = []
                             for ( let returnType of returns ) {
 
                                 const lowerName = returnType.toLowerCase()
                                 returnTypesLabel.push( lowerName )
 
                                 if ( lowerName.startsWith( 'array' ) ) {
-                                    expects.push( `expect(result).to.be.a('array')` )
                                     //todo array of...
+                                    oneOf.push( 'array' )
                                 } else {
-                                    expects.push( `expect(result).to.be.a('${ lowerName }')` )
+                                    oneOf.push( `'${ lowerName }'` )
                                 }
 
                             }
 
-                            let indent   = 1 + 1 + 1 + 1
-                            let openTry  = ''
-                            let closeTry = ''
-                            for ( let expect of expects ) {
-                                openTry += '' +
-                                    `${ I( indent ) }try {` + '\n' +
-                                    `${ I( indent + 1 ) }${ expect }` + '\n' +
-                                    `${ I( indent ) }} catch(e) {` + '\n'
-
-                                closeTry = `${ I( indent ) }}` + '\n' + `${ closeTry }`
-
-                                indent++
-                            }
-                            const _expect = '' +
-                                `${ openTry }` +
-                                `${ I( indent ) }expect.fail("expect result to be of type ${ returnTypesLabel.join( ' or ' ) }")` + '\n' +
-                                `${ closeTry }`
+                            const underlyingType = `${ I._( baseIndent + 1 ) }const resultType = (result === null) ? 'null' : typeof result` + '\n'
+                            const expect         = `${ I._( baseIndent + 1 ) }expect(resultType).to.be.oneOf([${ oneOf.join( ',' ) }])` + '\n'
 
                             its += '' +
                                 `${ I._( baseIndent ) }it( 'should return value where type is ${ returnTypesLabel.join( ' or ' ) }', async function() {` + '\n' +
                                 '\n' +
                                 `${ result }` +
-                                `${ _expect }` +
+                                `${ underlyingType }` +
+                                `${ expect }` +
                                 '\n' +
                                 `${ I._( baseIndent ) }} )` + '\n'
 
@@ -413,42 +399,30 @@ function computeUnitTestsTask( done ) {
                             const result = `${ I._( localIndent + 1 ) }const result = ${ nsName }.${ docData.name }( ${ args.join( ', ' ) } )` + '\n'
 
                             let returnTypesLabel = []
-                            let expects          = []
+                            let oneOf            = []
                             for ( let returnType of returns ) {
 
                                 const lowerName = returnType.toLowerCase()
-                                returnTypesLabel.push( lowerName )
+                                returnTypesLabel.push(lowerName)
 
                                 if ( lowerName.startsWith( 'array' ) ) {
-                                    expects.push( `expect(result).to.be.a('array')` )
                                     //todo array of...
+                                    oneOf.push( 'array' )
                                 } else {
-                                    expects.push( `expect(result).to.be.a('${ lowerName }')` )
+                                    oneOf.push( `'${ lowerName }'` )
                                 }
 
                             }
-                            let openTry  = ''
-                            let closeTry = ''
-                            for ( let expect of expects ) {
-                                openTry += '' +
-                                    `${ I( localIndent ) }try {` + '\n' +
-                                    `${ I( localIndent + 1 ) }${ expect }` + '\n' +
-                                    `${ I( localIndent ) }} catch(e) {` + '\n'
 
-                                closeTry = `${ I( localIndent ) }}` + '\n' + `${ closeTry }`
-
-                                localIndent++
-                            }
-                            const _expect = '' +
-                                `${ openTry }` +
-                                `${ I( localIndent ) }expect.fail("expect result to be of type ${ returnTypesLabel.join( ' or ' ) }")` + '\n' +
-                                `${ closeTry }`
+                            const underlyingType = `${ I._( localIndent + 1 ) }const resultType = (result === null) ? 'null' : typeof result` + '\n'
+                            const expect         = `${ I._( localIndent + 1 ) }expect(resultType).to.be.oneOf([${ oneOf.join( ',' ) }])` + '\n'
 
                             const param = '' +
                                 `${ dataSets }` +
                                 `${ forLoopOpens }` +
                                 `${ result }` +
-                                `${ _expect }` +
+                                `${ underlyingType }` +
+                                `${ expect }` +
                                 `${ forLoopCloses }`
 
                             its += '' +
@@ -486,34 +460,19 @@ function computeUnitTestsTask( done ) {
 
             const template = '' +
                 `import { expect }       from 'chai'` + '\n' +
-                `//import { beforeEach, afterEach, describe, it } from 'mocha'` + '\n' +
                 `import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'` + '\n' +
                 `import * as ${ nsName } from '${ importFilePath }'` + '\n' +
                 '\n' +
-                `function ${ unitName } () {` + '\n' +
+                `describe( '${ unitName }', function () {` + '\n' +
                 '\n' +
-                `${ I( 1 ) }beforeEach( () => {` + '\n' +
-                '\n' +
-                `${ I( 1 + 1 ) }this._dataMap = Testing.createDataMap()` + '\n' +
-                '\n' +
-                `${ I( 1 ) }} )` + '\n' +
-                '\n' +
-                `${ I( 1 ) }afterEach( () => {` + '\n' +
-                '\n' +
-                `${ I( 1 + 1 ) }delete this._dataMap` + '\n' +
-                '\n' +
-                `${ I( 1 ) }} )` + '\n' +
-                '\n' +
-                `${ I( 1 ) }describe( '${ unitName }', () => {` + '\n' +
+                `${ I_ }let _dataMap` + '\n' +
+                `${ I_ }before( function() {` + '\n' +
+                `${ I__ }_dataMap = Testing.createDataMap()` + '\n' +
+                `${ I_ }} )` + '\n' +
                 '\n' +
                 `${ describes }` +
                 '' +
-                `${ I( 1 ) }} )` + '\n' +
-                '\n' +
-                '}' + '\n' +
-                '\n' +
-                `export { ${ unitName } }` + '\n' +
-                '\n'
+                `} )` + '\n'
 
             const importUnitFilePath = relative( unitsDir, unitFilePath )
             unitsImportMap.push( {
@@ -541,28 +500,13 @@ function computeUnitTestsTask( done ) {
     let unitsTemplate
     if ( isNotEmptyArray( unitsImportMap ) ) {
 
-        let computedImports   = ''
-        let computedUnitCalls = ''
+        let computedImports = []
         for ( let entry of unitsImportMap ) {
-            computedImports += `import { ${ entry.exportName } }   from './${ entry.path }'` + '\n'
-            computedUnitCalls += `    ${ entry.exportName }.call( root )` + '\n'
+            // computedImports.push(`import { ${ entry.exportName } }   from './${ entry.path }'`)
+            computedImports.push( `export * from './${ entry.path }'` )
         }
 
-        unitsTemplate = '' +
-            '//import { describe }      from \'mocha\'' + '\n' +
-            `${ computedImports }` +
-            '\n' +
-            'const root = typeof window === \'undefined\'' + '\n' +
-            '    ? typeof global === \'undefined\'' + '\n' +
-            '        ? Function( \'return this\' )() ' + '\n' +
-            '        : global ' + '\n' +
-            '    : window' + '\n' +
-            '\n' +
-            'describe( \'Itee#Validators\', () => {' + '\n' +
-            '\n' +
-            `${ computedUnitCalls }` +
-            '\n' +
-            '} )' + '\n'
+        unitsTemplate = computedImports.join( '\n' )
 
     } else {
 
@@ -575,7 +519,7 @@ function computeUnitTestsTask( done ) {
 
     }
 
-    const unitsFilePath = join( unitsDir, `${ packageName }.units.js` )
+    const unitsFilePath = join( unitsDir, `${ packageName }.units.mjs` )
 
     log( 'Creating', green( unitsFilePath ) )
     writeFileSync( unitsFilePath, unitsTemplate )

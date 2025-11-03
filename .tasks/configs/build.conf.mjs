@@ -449,7 +449,7 @@ const configs = {
         }
     },
     'units-backend':                        {
-        input:     `tests/units/${ packageName }.units.js`,
+        input:     `tests/units/${ packageName }.units.mjs`,
         external:  [ 'itee-utils', 'mocha', 'chai', 'fs' ],
         plugins:   [
             nodeResolve(),
@@ -466,11 +466,12 @@ const configs = {
         output:    {
             indent: '\t',
             format: 'cjs',
-            file:   `tests/units/builds/${ packageName }.units.cjs.js`
+            // inlineDynamicImports: true,
+            file: `tests/units/builds/${ packageName }.units.cjs.js`
         }
     },
     'units-frontend':                       {
-        input:     `tests/units/${ packageName }.units.js`,
+        input:     `tests/units/${ packageName }.units.mjs`,
         external:  [
             // 'mocha',
             'chai'
@@ -479,6 +480,8 @@ const configs = {
             nodeResolve(), // required to bundle itee-utils that cannot be integrated as standalone file (why???)=> because circular ref with itee validator package -_-'
             replace( {
                 replaces: {
+                    'export * from \'./file-system': '// export * from \'./file-system',
+
                     'import { isValidSymbolicLinkPathUnits }':    '//',
                     'import { isSymbolicLinkPathUnits }':         '//',
                     'import { isValidSocketPathUnits }':          '//',
@@ -497,23 +500,23 @@ const configs = {
                     'import { isValidBlockDevicePathUnits }':     '//',
                     'import { isBlockDevicePathUnits }':          '//',
 
-                    'isBlockDevicePathUnits.call':          '//isBlockDevicePathUnits.call',
-                    'isValidBlockDevicePathUnits.call':     '//isValidBlockDevicePathUnits.call',
-                    'isCharacterDevicePathUnits.call':      '//isCharacterDevicePathUnits.call',
-                    'isValidCharacterDevicePathUnits.call': '//isValidCharacterDevicePathUnits.call',
-                    'isDirectoryPathUnits.call':            '//isDirectoryPathUnits.call',
-                    'isValidDirectoryPathUnits.call':       '//isValidDirectoryPathUnits.call',
-                    'isEmptyDirectoryUnits.call':           '//isEmptyDirectoryUnits.call',
-                    'isFIFOPathUnits.call':                 '//isFIFOPathUnits.call',
-                    'isValidFIFOPathUnits.call':            '//isValidFIFOPathUnits.call',
-                    'isFilePathUnits.call':                 '//isFilePathUnits.call',
-                    'isValidFilePathUnits.call':            '//isValidFilePathUnits.call',
-                    'isEmptyFileUnits.call':                '//isEmptyFileUnits.call',
-                    'isValidPathUnits.call':                '//isValidPathUnits.call',
-                    'isSocketPathUnits.call':               '//isSocketPathUnits.call',
-                    'isValidSocketPathUnits.call':          '//isValidSocketPathUnits.call',
-                    'isSymbolicLinkPathUnits.call':         '//isSymbolicLinkPathUnits.call',
-                    'isValidSymbolicLinkPathUnits.call':    '//isValidSymbolicLinkPathUnits.call'
+                    'isBlockDevicePathUnits()':          '//isBlockDevicePathUnits()',
+                    'isValidBlockDevicePathUnits()':     '//isValidBlockDevicePathUnits()',
+                    'isCharacterDevicePathUnits()':      '//isCharacterDevicePathUnits()',
+                    'isValidCharacterDevicePathUnits()': '//isValidCharacterDevicePathUnits()',
+                    'isDirectoryPathUnits()':            '//isDirectoryPathUnits()',
+                    'isValidDirectoryPathUnits()':       '//isValidDirectoryPathUnits()',
+                    'isEmptyDirectoryUnits()':           '//isEmptyDirectoryUnits()',
+                    'isFIFOPathUnits()':                 '//isFIFOPathUnits()',
+                    'isValidFIFOPathUnits()':            '//isValidFIFOPathUnits()',
+                    'isFilePathUnits()':                 '//isFilePathUnits()',
+                    'isValidFilePathUnits()':            '//isValidFilePathUnits()',
+                    'isEmptyFileUnits()':                '//isEmptyFileUnits()',
+                    'isValidPathUnits()':                '//isValidPathUnits()',
+                    'isSocketPathUnits()':               '//isSocketPathUnits()',
+                    'isValidSocketPathUnits()':          '//isValidSocketPathUnits()',
+                    'isSymbolicLinkPathUnits()':         '//isSymbolicLinkPathUnits()',
+                    'isValidSymbolicLinkPathUnits()':    '//isValidSymbolicLinkPathUnits()'
                 }
             } ),
             cleanup( {
@@ -522,9 +525,10 @@ const configs = {
         ],
         treeshake: true,
         output:    {
-            indent:  '\t',
-            format:  'esm',
-            name:    'Itee.Units',
+            indent: '\t',
+            format: 'esm',
+            name:   'Itee.Units',
+            // inlineDynamicImports: true,
             globals: {
                 // 'mocha': 'Mocha',
                 'chai': 'chai'

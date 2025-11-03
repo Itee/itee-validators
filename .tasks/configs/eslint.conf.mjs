@@ -89,21 +89,26 @@ export default defineConfig( [
     },
     {
         name:            'tests/units',
-        files:           [ 'tests/units/**/*.js' ],
+        files:           [ 'tests/units/**/*.mjs' ],
         ignores:         [ 'tests/units/builds/*' ],
         plugins:         { js },
         extends:         [ 'js/recommended' ],
         languageOptions: {
             globals: {
-                global: 'readonly',
-                window: 'readonly',
+                describe: 'readonly',
+                it: 'readonly',
             },
         }
     },
     {
-        files:   [ 'tests/units/**/*.js' ],
+        files:   [ 'tests/units/**/*.mjs' ],
         ignores: [ 'tests/units/builds/*' ],
-        ...mocha.configs.all
+        ...mocha.configs.recommended,
+
+        // rules: {
+        //     // @see https://github.com/lo1tuma/eslint-plugin-mocha/blob/b2d8c9e0933f4200c6030bbacb5896951a0cd85d/docs/rules/no-setup-in-describe.md
+        //     'no-setup-in-describe': 'off'
+        // }
     },
     // Todo: fix
     {
