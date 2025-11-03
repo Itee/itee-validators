@@ -11,7 +11,6 @@ import {
     resolve
 }                         from 'node:path'
 
-const red    = colors.red
 const yellow = colors.yellow
 const green  = colors.green
 
@@ -21,8 +20,10 @@ export function iteeReporter( {
     outputFilePath = '.reports/web_test_runner_report.json'
 } = {} ) {
 
-    const reportFilePath = resolve( outputFilePath )
-    const report         = {
+    const _reportResults  = reportResults
+    const _reportProgress = reportProgress
+    const _reportFilePath = resolve( outputFilePath )
+    const _report         = {
         config:          {},
         sessions:        {},
         testCoverage:    {},
@@ -32,8 +33,8 @@ export function iteeReporter( {
         startTime:       null,
         endTime:         null,
     }
-    let logger           = null
-    let debug            = null
+    let _logger           = null
+    let _debug            = null
 
     return {
         /**
@@ -45,10 +46,10 @@ export function iteeReporter( {
             testFiles,
             startTime
         } ) {
-            logger = config.logger
-            debug  = config.debug
+            _logger = config.logger
+            _debug  = config.debug
 
-            report.config       = {
+            _report.config       = {
                 browsers:            config.browsers.map( browser => ( {
                     name:        browser.name,
                     type:        browser.type,
@@ -86,9 +87,9 @@ export function iteeReporter( {
                 open:                config.open ?? false,
                 mimeTypes:           config.mimeTypes ?? null,
             }
-            report.testFiles    = testFiles.map( testFile => relative( config.rootDir, testFile ) )
-            report.browserNames = browserNames
-            report.startTime    = startTime
+            _report.testFiles    = testFiles.map( testFile => relative( config.rootDir, testFile ) )
+            _report.browserNames = browserNames
+            _report.startTime    = startTime
         },
 
         /**
@@ -98,20 +99,20 @@ export function iteeReporter( {
         stop( {
             sessions,
             testCoverage,
-            focusedTestFile
+            /*focusedTestFile*/
         } ) {
-            if ( !reportResults && debug ) {
-                logger.warn( yellow( 'Do not report global results.' ) )
+            if ( !_reportResults && _debug ) {
+                _logger.warn( yellow( 'Do not report global results.' ) )
                 return
             }
 
 
             // Update globals
-            report.endTime = ( new Date() ).getTime()
+            _report.endTime = ( new Date() ).getTime()
 
             // apply session map results
             for ( const session of sessions ) {
-                report.sessions[ session.id ] = {
+                _report.sessions[ session.id ] = {
                     id:    session.id,
                     group: {
                         name:           session.group.name,
@@ -142,20 +143,35 @@ export function iteeReporter( {
                 }
             }
 
-            report.testCoverage = ( testCoverage ) ? {
+            _report.testCoverage = ( testCoverage ) ? {
                 passed:      testCoverage.passed,
                 coverageMap: testCoverage.coverageMap.toJSON(),
                 summary:     testCoverage.summary.toJSON(),
             } : null
 
-            const outputDirectory = dirname( reportFilePath )
+            const outputDirectory = dirname( _reportFilePath )
             if ( !existsSync( outputDirectory ) ) {
-                if ( debug ) logger.log( 'Creating', green( outputDirectory ) )
+                if ( _debug ) _logger.log( 'Creating', green( outputDirectory ) )
                 mkdirSync( outputDirectory, { recursive: true } )
             }
 
-            logger.log( 'Generate', green( reportFilePath ) )
-            writeFileSync( reportFilePath, JSON.stringify( report, null, 2 ) )
+            _logger.log( 'Generate', green( _reportFilePath ) )
+            writeFileSync( _reportFilePath, JSON.stringify( _report, null, 2 ) )
+        },
+
+        onTestRunStarted( testRun ) {
+            if ( _debug ) _logger.log( `onTestRunStarted: ${ testRun }` )
+        },
+        onTestRunFinished( testRun, sessions, testCoverage, focusedTestFile ) {
+            if ( _debug ) _logger.log( `onTestRunFinished: ${ focusedTestFile }` )
+        },
+        reportTestFileResults( {
+            logger,
+            sessionsForTestFile,
+            testFile,
+            testRun
+        } ) {
+            if ( _debug ) _logger.log( `reportTestFileResults: ${ testFile }` )
         },
 
         /**
@@ -175,7 +191,7 @@ export function iteeReporter( {
             focusedTestFile,
             testCoverage,
         } ) {
-            if ( !reportProgress ) {
+            if ( !_reportProgress ) {
                 return
             }
 
@@ -194,7 +210,8 @@ export function iteeReporter( {
 
             return progress
 
-        },
+        }
+
     }
 
 }
