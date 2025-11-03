@@ -4,8 +4,28 @@ import { iteeReporter }         from '../itee-reporter.mjs'
 
 export default {
     files:          [
+        // 'tests/benchmarks/cores/arrays/isArray.bench.js',
+
+        // 'tests/benchmarks/cores/arrays/*.bench.js',
+        // 'tests/benchmarks/cores/booleans/*.bench.js',
+        // 'tests/benchmarks/cores/functions/*.bench.js',
+        // 'tests/benchmarks/cores/numbers/*.bench.js',
+        // 'tests/benchmarks/cores/objects/*.bench.js',
+        // 'tests/benchmarks/cores/strings/*.bench.js',
+        // 'tests/benchmarks/cores/symbols/*.bench.js',
+        // 'tests/benchmarks/cores/typed-arrays/*.bench.js',
+        // 'tests/benchmarks/cores/voids/*.bench.js',
+        // 'tests/benchmarks/cores/**',
+        // 'tests/benchmarks/dom/**',
+        // 'tests/benchmarks/physics/**',
+        // OR
+        // 'tests/benchmarks/builds/itee-validators.benchmarks.iife.js',
+        // OR
         'tests/benchmarks/**/*.bench.js',
+        '!tests/benchmarks/builds/**',
+        '!tests/benchmarks/file-system/**',
     ],
+    debug:          false,
     nodeResolve:    true,
     browsers:       [
         playwrightLauncher( { product: 'chromium' } ),
@@ -30,6 +50,8 @@ export default {
         </html>
     `,
     reporters:      [
-        iteeReporter()
+        iteeReporter( {
+            reportProgress: true
+        } )
     ]
 }
