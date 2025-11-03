@@ -18,7 +18,8 @@ import {
     nodeModulesDirectory,
     packageName,
     packageSourcesDirectory as sourcesDir,
-    packageTestsUnitsDirectory as unitsDir
+    packageTestsUnitsDirectory as unitsDir,
+    Indenter
 }                          from '../../_utils.mjs'
 import { sourcesFiles }    from '../../configs/compute-unit-tests.conf.mjs'
 
@@ -97,17 +98,17 @@ function computeUnitTestsTask( done ) {
             } )
 
             if ( jsonData.length === 0 ) {
-                log( yellow( `No usable exports found in [${ sourceFile }]. Ignore it !` ) )
+                log( 'Ignoring', yellow( `${ sourceFile }, no usable exports found` ) )
                 continue
             }
 
             let describes = ''
-            const I       = n => '\t'.repeat( n )
-            I._           = I( 1 )
-            I.__          = I( 2 )
-            I.___         = I( 3 )
-            I.____        = I( 4 )
-            I._____       = I( 5 )
+            const {
+                I,
+                I_,
+                I__,
+                I___,
+              } = new Indenter('\t', 3)
 
             for ( let docData of jsonData ) {
 
@@ -121,8 +122,7 @@ function computeUnitTestsTask( done ) {
                         let paramName = param.name
                         if ( !paramName ) {
                             paramName = `param${ pIndex }`
-                             
-                            console.warn( `Missing parameter name for [${ docData.longname }]. Defaulting to [${ paramName }]` )
+                            log( yellow( `Missing parameter name for [${ docData.longname }]. Defaulting to [${ paramName }]` ) )
                         }
 
                         const paramType = param.type
@@ -161,49 +161,50 @@ function computeUnitTestsTask( done ) {
 
 
                     // Infer basic rules
-                    let its = ''
+                    const baseIndent = 2
+                    let its          = ''
 
                     if ( parameters.length === 0 ) {
 
                         if ( returns.length === 0 ) {
 
-                            const result = `${ I( 1 + 1 + 1 + 1 ) }const result = ${ nsName }.${ docData.name }()` + '\n'
-                            const expect = `${ I( 1 + 1 + 1 + 1 ) }expect(result).to.be.a('undefined')` + '\n'
+                            const result = `${ I._( baseIndent + 1 ) }const result = ${ nsName }.${ docData.name }()` + '\n'
+                            const expect = `${ I._( baseIndent + 1 ) }expect(result).to.be.a('undefined')` + '\n'
 
                             its += '' +
-                                `${ I( 1 + 1 + 1 ) }it( 'return type is undefined', () => {` + '\n' +
+                                `${ I._( baseIndent ) }it( 'should return undefined value on call', async function () {` + '\n' +
                                 '\n' +
                                 `${ result }` +
                                 `${ expect }` +
                                 '\n' +
-                                `${ I( 1 + 1 + 1 ) }} )` + '\n'
+                                `${ I._( baseIndent ) }} )` + '\n'
 
                         } else if ( returns.length === 1 ) {
 
                             const firstReturnType = returns[ 0 ]
                             const lowerName       = firstReturnType.toLowerCase()
 
-                            const result = `${ I( 1 + 1 + 1 + 1 ) }const result = ${ nsName }.${ docData.name }()` + '\n'
+                            const result = `${ I._( baseIndent + 1 ) }const result = ${ nsName }.${ docData.name }()` + '\n'
 
                             let expect = ''
                             if ( lowerName.startsWith( 'array' ) ) {
                                 //todo array of...
-                                expect += `${ I( 1 + 1 + 1 + 1 ) }expect(result).to.be.a('array')` + '\n'
+                                expect += `${ I._( baseIndent + 1 ) }expect(result).to.be.a('array')` + '\n'
                             } else {
-                                expect += `${ I( 1 + 1 + 1 + 1 ) }expect(result).to.be.a('${ lowerName }')` + '\n'
+                                expect += `${ I._( baseIndent + 1 ) }expect(result).to.be.a('${ lowerName }')` + '\n'
                             }
 
                             its += '' +
-                                `${ I( 1 + 1 + 1 ) }it( 'return type is ${ lowerName }', () => {` + '\n' +
+                                `${ I._( baseIndent ) }it( 'should return value of type ${ lowerName }', async function() {` + '\n' +
                                 '\n' +
                                 `${ result }` +
                                 `${ expect }` +
                                 '\n' +
-                                `${ I( 1 + 1 + 1 ) }} )` + '\n'
+                                `${ I._( baseIndent ) }} )` + '\n'
 
                         } else {
 
-                            const result = `${ I( 1 + 1 + 1 + 1 ) }const result = ${ nsName }.${ docData.name }()` + '\n'
+                            const result = `${ I._( baseIndent + 1 ) }const result = ${ nsName }.${ docData.name }()` + '\n'
 
                             let returnTypesLabel = []
                             let expects          = []
@@ -240,12 +241,12 @@ function computeUnitTestsTask( done ) {
                                 `${ closeTry }`
 
                             its += '' +
-                                `${ I( 1 + 1 + 1 ) }it( 'return type is ${ returnTypesLabel.join( ' or ' ) }', () => {` + '\n' +
+                                `${ I._( baseIndent ) }it( 'should return value where type is ${ returnTypesLabel.join( ' or ' ) }', async function() {` + '\n' +
                                 '\n' +
                                 `${ result }` +
                                 `${ _expect }` +
                                 '\n' +
-                                `${ I( 1 + 1 + 1 ) }} )` + '\n'
+                                `${ I._( baseIndent ) }} )` + '\n'
 
                         }
 
@@ -255,7 +256,7 @@ function computeUnitTestsTask( done ) {
 
                             let itDeclaration = []
                             let index         = 0
-                            let indent        = 1 + 1 + 1 + 1
+                            let indent        = baseIndent + 1
                             let localIndent   = indent
                             let dataSets      = ''
                             let forLoopOpens  = ''
@@ -266,21 +267,22 @@ function computeUnitTestsTask( done ) {
                                 const parameterType = parameter.types[ 0 ]
                                 itDeclaration.push( `${ parameter.name } is of type ${ parameterType }` )
 
-                                dataSets += `${ I( indent ) }const dataSet${ index } = this._dataMap[ '${ parameterType }s' ]` + '\n'
+                                dataSets += `${ I._( indent ) }const dataSet${ index } = _dataMap[ '${ parameterType }s' ]` + '\n'
+                                // dataSets += `${ I._( indent ) }const dataSet${ index } = this._dataMap[ '${ parameterType }s' ]` + '\n'
                                 forLoopOpens += '' + '\n' +
-                                    `${ I( localIndent ) }for ( let key${ index } in dataSet${ index } ) {` + '\n' +
-                                    `${ I( localIndent + 1 ) }const dataSetValue${ index } = dataSet${ index }[ key${ index } ]` + '\n'
+                                    `${ I._( localIndent ) }for ( let key${ index } in dataSet${ index } ) {` + '\n' +
+                                    `${ I._( localIndent + 1 ) }const dataSetValue${ index } = dataSet${ index }[ key${ index } ]` + '\n'
 
                                 args.push( `dataSetValue${ index }` )
 
-                                forLoopCloses = `${ I( localIndent ) }}` + '\n' + `${ forLoopCloses }`
+                                forLoopCloses = `${ I._( localIndent ) }}` + '\n' + `${ forLoopCloses }`
 
                                 index++
                                 localIndent++
                             }
 
-                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ docData.name }( ${ args.join( ', ' ) } )` + '\n'
-                            const expect = `${ I( localIndent ) }expect(result).to.be.a('undefined')` + '\n'
+                            const result = `${ I._( localIndent ) }const result = ${ nsName }.${ docData.name }( ${ args.join( ', ' ) } )` + '\n'
+                            const expect = `${ I._( localIndent ) }expect(result).to.be.a('undefined')` + '\n'
 
                             const param = '' +
                                 `${ dataSets }` +
@@ -290,11 +292,11 @@ function computeUnitTestsTask( done ) {
                                 `${ forLoopCloses }`
 
                             its += '' +
-                                `${ I( 1 + 1 + 1 ) }it( 'return type is undefined when ${ itDeclaration.join( ' and ' ) }', () => {` + '\n' +
+                                `${ I._( baseIndent ) }it( 'should return undefined value when ${ itDeclaration.join( ' and ' ) }', async function() {` + '\n' +
                                 '\n' +
                                 `${ param }` +
                                 '\n' +
-                                `${ I( 1 + 1 + 1 ) }} )` + '\n'
+                                `${ I._( baseIndent ) }} )` + '\n'
 
                         } else if ( returns.length === 1 ) {
 
@@ -303,7 +305,7 @@ function computeUnitTestsTask( done ) {
 
                             let itDeclaration = []
                             let index         = 0
-                            let indent        = 1 + 1 + 1 + 1
+                            let indent        = baseIndent + 1
                             let localIndent   = indent
                             let dataSets      = ''
                             let forLoopOpens  = ''
@@ -320,31 +322,33 @@ function computeUnitTestsTask( done ) {
 
                                 if ( isAnyType ) {
 
-                                    dataSets += `${ I( indent ) }const dataMap${ index } = this._dataMap` + '\n' +
-                                        `${ I( localIndent ) }for ( let dataSetKey${ index } in dataMap${ index } ) {` + '\n'
+                                    dataSets += `${ I._( indent ) }const dataMap${ index } = _dataMap` + '\n' +
+                                        // dataSets += `${ I._( indent ) }const dataMap${ index } = this._dataMap` + '\n' +
+                                        `${ I._( localIndent ) }for ( let dataSetKey${ index } in dataMap${ index } ) {` + '\n'
 
                                     localIndent++
-                                    dataSets += `${ I( indent + 1 ) }const dataSet${ index } = dataMap${ index }[ dataSetKey${ index } ]` + '\n'
+                                    dataSets += `${ I._( indent + 1 ) }const dataSet${ index } = dataMap${ index }[ dataSetKey${ index } ]` + '\n'
                                     forLoopOpens += '' + '\n' +
-                                        `${ I( localIndent ) }for ( let key${ index } in dataSet${ index } ) {` + '\n' +
-                                        `${ I( localIndent + 1 ) }const dataSetValue${ index } = dataSet${ index }[ key${ index } ]` + '\n'
+                                        `${ I._( localIndent ) }for ( let key${ index } in dataSet${ index } ) {` + '\n' +
+                                        `${ I._( localIndent + 1 ) }const dataSetValue${ index } = dataSet${ index }[ key${ index } ]` + '\n'
 
                                     args.push( `dataSetValue${ index }` )
 
-                                    forLoopCloses = `${ I( localIndent ) }}` + '\n' +
-                                        `${ I( localIndent - 1 ) }}` + '\n' +
+                                    forLoopCloses = `${ I._( localIndent ) }}` + '\n' +
+                                        `${ I._( localIndent - 1 ) }}` + '\n' +
                                         `${ forLoopCloses }`
 
                                 } else {
 
-                                    dataSets += `${ I( indent ) }const dataSet${ index } = this._dataMap[ '${ parameterType }s' ]` + '\n'
+                                    dataSets += `${ I._( indent ) }const dataSet${ index } = _dataMap[ '${ parameterType }s' ]` + '\n'
+                                    // dataSets += `${ I._( indent ) }const dataSet${ index } = this._dataMap[ '${ parameterType }s' ]` + '\n'
                                     forLoopOpens += '' + '\n' +
-                                        `${ I( localIndent ) }for ( let key${ index } in dataSet${ index } ) {` + '\n' +
-                                        `${ I( localIndent + 1 ) }const dataSetValue${ index } = dataSet${ index }[ key${ index } ]` + '\n'
+                                        `${ I._( localIndent ) }for ( let key${ index } in dataSet${ index } ) {` + '\n' +
+                                        `${ I._( localIndent + 1 ) }const dataSetValue${ index } = dataSet${ index }[ key${ index } ]` + '\n'
 
                                     args.push( `dataSetValue${ index }` )
 
-                                    forLoopCloses = `${ I( localIndent ) }}` + '\n' + `${ forLoopCloses }`
+                                    forLoopCloses = `${ I._( localIndent ) }}` + '\n' + `${ forLoopCloses }`
 
                                 }
 
@@ -353,14 +357,14 @@ function computeUnitTestsTask( done ) {
                                 localIndent++
                             }
 
-                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ docData.name }( ${ args.join( ', ' ) } )` + '\n'
+                            const result = `${ I._( localIndent ) }const result = ${ nsName }.${ docData.name }( ${ args.join( ', ' ) } )` + '\n'
 
                             let expect = ''
                             if ( lowerName.startsWith( 'array' ) ) {
-                                expect = `${ I( localIndent ) }expect(result).to.be.a('array')` + '\n'
+                                expect = `${ I._( localIndent ) }expect(result).to.be.a('array')` + '\n'
                                 //todo array of...
                             } else {
-                                expect = `${ I( localIndent ) }expect(result).to.be.a('${ lowerName }')` + '\n'
+                                expect = `${ I._( localIndent ) }expect(result).to.be.a('${ lowerName }')` + '\n'
                             }
 
                             const param = '' +
@@ -371,17 +375,17 @@ function computeUnitTestsTask( done ) {
                                 `${ forLoopCloses }`
 
                             its += '' +
-                                `${ I( 1 + 1 + 1 ) }it( 'return type is ${ lowerName } when ${ itDeclaration.join( ' and ' ) }', () => {` + '\n' +
+                                `${ I._( baseIndent ) }it( 'should return value of type ${ lowerName } when ${ itDeclaration.join( ' and ' ) }', async function() {` + '\n' +
                                 '\n' +
                                 `${ param }` +
                                 '\n' +
-                                `${ I( 1 + 1 + 1 ) }} )` + '\n'
+                                `${ I._( baseIndent ) }} )` + '\n'
 
                         } else {
 
                             let itDeclaration = []
                             let index         = 0
-                            let indent        = 1 + 1 + 1 + 1
+                            let indent        = baseIndent + 1
                             let localIndent   = indent
                             let dataSets      = ''
                             let forLoopOpens  = ''
@@ -392,20 +396,21 @@ function computeUnitTestsTask( done ) {
                                 const parameterType = parameter.types[ 0 ]
                                 itDeclaration.push( `${ parameter.name } is of type ${ parameterType }` )
 
-                                dataSets += `${ I( indent ) }const dataSet${ index } = this._dataMap[ '${ parameterType }s' ]` + '\n'
+                                dataSets += `${ I._( localIndent ) }const dataSet${ index } = _dataMap[ '${ parameterType }s' ]` + '\n'
+                                // dataSets += `${ I._( indent ) }const dataSet${ index } = this._dataMap[ '${ parameterType }s' ]` + '\n'
                                 forLoopOpens += '' + '\n' +
-                                    `${ I( localIndent ) }for ( let key${ index } in dataSet${ index } ) {` + '\n' +
-                                    `${ I( localIndent + 1 ) }const dataSetValue${ index } = dataSet${ index }[ key${ index } ]` + '\n'
+                                    `${ I._( localIndent ) }for ( let key${ index } in dataSet${ index } ) {` + '\n' +
+                                    `${ I._( localIndent + 1 ) }const dataSetValue${ index } = dataSet${ index }[ key${ index } ]` + '\n'
 
                                 args.push( `dataSetValue${ index }` )
 
-                                forLoopCloses = `${ I( localIndent ) }}` + '\n' + `${ forLoopCloses }`
+                                forLoopCloses = `${ I._( localIndent ) }}` + '\n' + `${ forLoopCloses }`
 
                                 index++
                                 localIndent++
                             }
 
-                            const result = `${ I( localIndent ) }const result = ${ nsName }.${ docData.name }( ${ args.join( ', ' ) } )` + '\n'
+                            const result = `${ I._( localIndent + 1 ) }const result = ${ nsName }.${ docData.name }( ${ args.join( ', ' ) } )` + '\n'
 
                             let returnTypesLabel = []
                             let expects          = []
@@ -447,28 +452,28 @@ function computeUnitTestsTask( done ) {
                                 `${ forLoopCloses }`
 
                             its += '' +
-                                `${ I( 1 + 1 + 1 ) }it( 'return type is ${ returnTypesLabel.join( ' or ' ) } when ${ itDeclaration.join( ' and ' ) }', () => {` + '\n' +
+                                `${ I._( baseIndent ) }it( 'should return value of type ${ returnTypesLabel.join( ' or ' ) } when ${ itDeclaration.join( ' and ' ) }', async function() {` + '\n' +
                                 '\n' +
                                 `${ param }` +
                                 '\n' +
-                                `${ I( 1 + 1 + 1 ) }} )` + '\n'
+                                `${ I._( baseIndent ) }} )` + '\n'
 
                         }
 
                     }
 
                     describes += '' +
-                        `${ I.__ }describe( '${ docData.name }()', () => {` + '\n' +
+                        `${ I_ }describe( '${ docData.name }()', function () {` + '\n' +
                         '\n' +
-                        `${ I.___ }it( 'is bundlable', () => {` + '\n' +
+                        `${ I__ }it( 'should be bundlable', async function () {` + '\n' +
                         '\n' +
-                        `${ I.____ }expect(${ nsName }.${ docData.name }).to.exist` + '\n' +
+                        `${ I___ }expect(${ nsName }.${ docData.name }).to.exist` + '\n' +
                         '\n' +
-                        `${ I.___ }} )` + '\n' +
+                        `${ I__ }} )` + '\n' +
                         '\n' +
                         `${ its }` +
                         '\n' +
-                        `${ I.__ }} )` + '\n' +
+                        `${ I_ }} )` + '\n' +
                         '\n'
 
                 } catch ( error ) {
@@ -516,8 +521,12 @@ function computeUnitTestsTask( done ) {
                 path:       importUnitFilePath.replace( /\\/g, '/' )
             } )
 
-            log( green( `Create ${ unitFilePath }` ) )
-            mkdirSync( unitDirPath, { recursive: true } )
+            if ( !existsSync( unitDirPath ) ) {
+                log( 'Creating', green( unitDirPath ) )
+                mkdirSync( unitDirPath, { recursive: true } )
+            }
+
+            log( 'Creating', green( unitFilePath ) )
             writeFileSync( unitFilePath, template )
 
         } catch ( error ) {

@@ -96,7 +96,7 @@ function computeBenchmarksTask( done ) {
             } )
 
             if ( jsonData.length === 0 ) {
-                log( yellow( `No usable exports found in [${ sourceFile }]. Ignore it !` ) )
+                log( 'Ignoring', yellow( `${ sourceFile }, no usable exports found` ) )
                 continue
             }
 
@@ -155,8 +155,12 @@ function computeBenchmarksTask( done ) {
                 exports: suitesToExports
             } )
 
-            log( green( `Create ${ benchFilePath }` ) )
-            mkdirSync( benchDirPath, { recursive: true } )
+            if ( !existsSync( benchDirPath ) ) {
+                log( 'Creating', green( benchDirPath ) )
+                mkdirSync( benchDirPath, { recursive: true } )
+            }
+
+            log( 'Creating', green( benchFilePath ) )
             writeFileSync( benchFilePath, template )
 
         } catch ( error ) {
@@ -192,7 +196,7 @@ function computeBenchmarksTask( done ) {
 
     const benchesFilePath = join( benchesDir, `${ packageName }.benchmarks.js` )
 
-    log( green( `Create ${ benchesFilePath }` ) )
+    log( 'Creating', green( benchesFilePath ) )
     writeFileSync( benchesFilePath, benchesTemplate )
 
     done()
