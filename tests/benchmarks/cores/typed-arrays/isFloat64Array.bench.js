@@ -1,6 +1,4 @@
-
-import Benchmark   from 'benchmark'
-import { Testing }      from 'itee-utils'
+import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isFloat64ArrayNamespace from '../../../../sources/cores/typed-arrays/isFloat64Array.js'
 
 const isFloat64ArraySuite = Benchmark.Suite( 'isFloat64ArrayNamespace.isFloat64Array', Testing.createSuiteOptions() )

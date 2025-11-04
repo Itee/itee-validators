@@ -1,6 +1,4 @@
-
-import Benchmark   from 'benchmark'
-import { Testing }      from 'itee-utils'
+import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isFahrenheitNamespace from '../../../../sources/physics/temperatures/isFahrenheit.js'
 
 const isFahrenheitSuite = Benchmark.Suite( 'isFahrenheitNamespace.isFahrenheit', Testing.createSuiteOptions() )

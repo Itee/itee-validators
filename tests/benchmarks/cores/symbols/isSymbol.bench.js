@@ -1,6 +1,4 @@
-
-import Benchmark   from 'benchmark'
-import { Testing }      from 'itee-utils'
+import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isSymbolNamespace from '../../../../sources/cores/symbols/isSymbol.js'
 
 const isSymbolSuite = Benchmark.Suite( 'isSymbolNamespace.isSymbol', Testing.createSuiteOptions() )

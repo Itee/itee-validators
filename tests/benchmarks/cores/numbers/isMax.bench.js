@@ -1,6 +1,4 @@
-
-import Benchmark   from 'benchmark'
-import { Testing }      from 'itee-utils'
+import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isMaxNamespace from '../../../../sources/cores/numbers/isMax.js'
 
 const isMaxPositiveSuite = Benchmark.Suite( 'isMaxNamespace.isMaxPositive', Testing.createSuiteOptions() )

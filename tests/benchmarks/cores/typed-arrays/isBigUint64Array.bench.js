@@ -1,6 +1,4 @@
-
-import Benchmark   from 'benchmark'
-import { Testing }      from 'itee-utils'
+import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isBigUint64ArrayNamespace from '../../../../sources/cores/typed-arrays/isBigUint64Array.js'
 
 const isBigUint64ArraySuite = Benchmark.Suite( 'isBigUint64ArrayNamespace.isBigUint64Array', Testing.createSuiteOptions() )
