@@ -8,5 +8,5 @@
  *
  */
 
-export * from './isSocketPath'
-export * from './isValidSocketPath'
+export * from './isSocketPath.js'
+export * from './isValidSocketPath.js'

@@ -16,9 +16,9 @@
  *
  */
 
-import { isNotObject }  from '../objects/isObject'
-import { isNotArray }   from './isArray'
-import { isEmptyArray } from './isEmptyArray'
+import { isNotObject }  from '../objects/isObject.js'
+import { isNotArray }   from './isArray.js'
+import { isEmptyArray } from './isEmptyArray.js'
 
 /**
  * Check if given data is an array where all values are of object type

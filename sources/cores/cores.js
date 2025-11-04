@@ -124,30 +124,30 @@
  *
  */
 
-import { isArray }   from './arrays/_arrays'
-import { isBoolean } from './booleans/_booleans'
+import { isArray }   from './arrays/_arrays.js'
+import { isBoolean } from './booleans/_booleans.js'
 import {
     isFunction,
     isNotFunction
-}                    from './functions/_functions'
+}                    from './functions/_functions.js'
 import {
     isFloat,
     isInteger,
     isNumber
-}                    from './numbers/_numbers'
+}                    from './numbers/_numbers.js'
 import {
     isNotObject,
     isObject
-}                    from './objects/_objects'
+}                    from './objects/_objects.js'
 import {
     isNotString,
     isString
-}                    from './strings/_strings'
-import { isSymbol }  from './symbols/_symbols'
+}                    from './strings/_strings.js'
+import { isSymbol }  from './symbols/_symbols.js'
 import {
     isDefined,
     isNotDefined
-}                    from './voids/_voids'
+}                    from './voids/_voids.js'
 
 class Validator {
 

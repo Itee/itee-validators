@@ -8,5 +8,5 @@
  *
  */
 
-export * from './isFIFOPath'
-export * from './isValidFIFOPath'
+export * from './isFIFOPath.js'
+export * from './isValidFIFOPath.js'

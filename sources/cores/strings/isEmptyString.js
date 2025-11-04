@@ -16,7 +16,7 @@
  *
  */
 
-import { isNotString } from './isString'
+import { isNotString } from './isString.js'
 
 /**
  * Check if given data is an empty string

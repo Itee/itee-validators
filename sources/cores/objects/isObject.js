@@ -16,7 +16,7 @@
  *
  */
 
-import { isNotDefined } from '../voids/isDefined'
+import { isNotDefined } from '../voids/isDefined.js'
 
 /**
  * Check if given data is an object

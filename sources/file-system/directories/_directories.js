@@ -8,6 +8,6 @@
  *
  */
 
-export * from './isDirectoryPath'
-export * from './isEmptyDirectory'
-export * from './isValidDirectoryPath'
+export * from './isDirectoryPath.js'
+export * from './isEmptyDirectory.js'
+export * from './isValidDirectoryPath.js'

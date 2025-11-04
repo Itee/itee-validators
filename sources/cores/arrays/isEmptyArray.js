@@ -16,7 +16,7 @@
  *
  */
 
-import { isNotArray } from './isArray'
+import { isNotArray } from './isArray.js'
 
 /**
  * Check if given data is an empty array

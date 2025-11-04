@@ -16,8 +16,8 @@
  *
  */
 
-import { isValidPath } from '../paths/isValidPath'
-import { isFilePath }  from './isFilePath'
+import { isValidPath } from '../paths/isValidPath.js'
+import { isFilePath }  from './isFilePath.js'
 
 /**
  * Check if given data is a valid file path

@@ -16,8 +16,8 @@
  *
  */
 
-import { isNumber }              from '../../cores/numbers/isNumber'
-import { ABSOLUTE_ZERO_CELSIUS } from './constants'
+import { isNumber }              from '../../cores/numbers/isNumber.js'
+import { ABSOLUTE_ZERO_CELSIUS } from './constants.js'
 
 /**
  *

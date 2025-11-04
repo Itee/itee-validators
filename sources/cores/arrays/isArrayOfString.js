@@ -16,9 +16,9 @@
  *
  */
 
-import { isNotString }  from '../strings/isString'
-import { isNotArray }   from './isArray'
-import { isEmptyArray } from './isEmptyArray'
+import { isNotString }  from '../strings/isString.js'
+import { isNotArray }   from './isArray.js'
+import { isEmptyArray } from './isEmptyArray.js'
 
 /**
  * Check if given data is not an empty array where all values are string

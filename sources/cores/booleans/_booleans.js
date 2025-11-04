@@ -7,5 +7,5 @@
  *
  */
 
-export * from './isBoolean'
-export * from './isTrue'
+export * from './isBoolean.js'
+export * from './isTrue.js'

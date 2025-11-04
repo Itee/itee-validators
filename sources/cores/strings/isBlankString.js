@@ -16,8 +16,8 @@
  *
  */
 
-import { isEmptyString } from './isEmptyString'
-import { isNotString }   from './isString'
+import { isEmptyString } from './isEmptyString.js'
+import { isNotString }   from './isString.js'
 
 /**
  * Check if the given data is a blank string

@@ -8,5 +8,5 @@
  *
  */
 
-export * from './isSymbolicLinkPath'
-export * from './isValidSymbolicLinkPath'
+export * from './isSymbolicLinkPath.js'
+export * from './isValidSymbolicLinkPath.js'

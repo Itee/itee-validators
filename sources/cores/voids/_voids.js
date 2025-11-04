@@ -6,7 +6,7 @@
  * @description Export the validation methods about voids notions like null or undefined
  */
 
-export * from './isDefined'
-export * from './isEmpty'
-export * from './isNull'
-export * from './isUndefined'
+export * from './isDefined.js'
+export * from './isEmpty.js'
+export * from './isNull.js'
+export * from './isUndefined.js'

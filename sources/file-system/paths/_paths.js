@@ -8,4 +8,4 @@
  *
  */
 
-export * from './isValidPath'
+export * from './isValidPath.js'

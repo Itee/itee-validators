@@ -8,5 +8,5 @@
  *
  */
 
-export * from './isCharacterDevicePath'
-export * from './isValidCharacterDevicePath'
+export * from './isCharacterDevicePath.js'
+export * from './isValidCharacterDevicePath.js'

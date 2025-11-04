@@ -16,9 +16,9 @@
  *
  */
 
-import { isNotBoolean } from '../booleans/isBoolean'
-import { isNotArray }   from './isArray'
-import { isEmptyArray } from './isEmptyArray'
+import { isNotBoolean } from '../booleans/isBoolean.js'
+import { isNotArray }   from './isArray.js'
+import { isEmptyArray } from './isEmptyArray.js'
 
 /**
  * Check if given data is not an empty array where all values are boolean

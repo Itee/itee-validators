@@ -20,12 +20,12 @@
 //Todo: isInRange(x, y, value, xInclusive, yInclusive)
 //Todo: isInRangeZeroOne(value, zeroInclusive, oneInclusive) //inclusive
 
-import { isNotDefined }   from '../voids/isDefined'
+import { isNotDefined }   from '../voids/isDefined.js'
 import {
     isInfinite,
     isInfinitePositive
-}                         from './isInfinite'
-import { isZeroPositive } from './isZero'
+}                         from './isInfinite.js'
+import { isZeroPositive } from './isZero.js'
 
 /**
  * Check if given data is a number

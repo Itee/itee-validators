@@ -8,5 +8,5 @@
  *
  */
 
-export * from './isBlockDevicePath'
-export * from './isValidBlockDevicePath'
+export * from './isBlockDevicePath.js'
+export * from './isValidBlockDevicePath.js'

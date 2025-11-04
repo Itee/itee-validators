@@ -16,7 +16,7 @@
  *
  */
 
-import { isBoolean } from './isBoolean'
+import { isBoolean } from './isBoolean.js'
 
 /**
  * Check if given data is a boolean with value to true
