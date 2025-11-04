@@ -141,9 +141,7 @@ const computeBenchmarksTask       = ( done ) => {
                 benchSuites += '\n'
             }
 
-            const template = '' + '\n' +
-                `/* global Benchmark */` + '\n' +
-                '\n' +
+            const template = '' +
                 `import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'` + '\n' +
                 `import * as ${ nsName } from '${ importFilePath }'` + '\n' +
                 '\n' +
@@ -179,9 +177,9 @@ const computeBenchmarksTask       = ( done ) => {
     for ( let i = 0 ; i < benchRootImports.length ; i++ ) {
 
         const currentBench = benchRootImports[ i ]
-        const exports      = currentBench.exports
-        const imports      = exports.join( ', ' )
-        suites.push( ...exports )
+        const namedExports = currentBench.exports
+        const imports      = namedExports.join( ', ' )
+        suites.push( ...namedExports )
 
         templateImports += `import {${ imports }} from './${ currentBench.path }'` + '\n'
 
