@@ -16,9 +16,9 @@
  *
  */
 
-import { isNotUndefined } from '../voids/isUndefined'
-import { isNotArray }     from './isArray'
-import { isEmptyArray }   from './isEmptyArray'
+import { isNotUndefined } from '../voids/isUndefined.js'
+import { isNotArray }     from './isArray.js'
+import { isEmptyArray }   from './isEmptyArray.js'
 
 /**
  * Check if given data is not an empty array where all values are undefined

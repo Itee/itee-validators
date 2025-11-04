@@ -4,7 +4,7 @@
  *
  * @module sources/maths
  * @description This is the maths export entry point.
- * It expose all exports of the ... sub-folder.
+ * It exposes all exports of the ... sub-folder.
  *
  */
 

@@ -8,10 +8,10 @@
  * In case you're using the commons js build, you will get the file-system validators too.
  */
 
-export * from './cores/_cores'
-export * from './maths/_maths'
-export * from './physics/_physics'
+export * from './cores/_cores.js'
+export * from './maths/_maths.js'
+export * from './physics/_physics.js'
 
 // #if IS_BACKEND_SPECIFIC
-export * from './file-system/_file-system'
+export * from './file-system/_file-system.js'
 // #endif

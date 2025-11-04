@@ -1,6 +1,4 @@
-
-import Benchmark   from 'benchmark'
-import { Testing }      from 'itee-utils'
+import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isInt32ArrayNamespace from '../../../../sources/cores/typed-arrays/isInt32Array.js'
 
 const isInt32ArraySuite = Benchmark.Suite( 'isInt32ArrayNamespace.isInt32Array', Testing.createSuiteOptions() )

@@ -1,6 +1,4 @@
-
-import Benchmark   from 'benchmark'
-import { Testing }      from 'itee-utils'
+import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isEmptyObjectNamespace from '../../../../sources/cores/objects/isEmptyObject.js'
 
 const isEmptyObjectSuite = Benchmark.Suite( 'isEmptyObjectNamespace.isEmptyObject', Testing.createSuiteOptions() )

@@ -7,11 +7,11 @@
  *
  */
 
-export * from './isInfinite'
-export * from './isMax'
-export * from './isMin'
-export * from './isNumber'
-export * from './isSafeInteger'
-export * from './isZero'
+export * from './isInfinite.js'
+export * from './isMax.js'
+export * from './isMin.js'
+export * from './isNumber.js'
+export * from './isSafeInteger.js'
+export * from './isZero.js'
 
 // Todo isMultipleOf( multiple, value )

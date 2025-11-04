@@ -6,8 +6,8 @@
  * @description Export the validation methods about temperatures
  */
 
-export * from './constants'
-export * from './isCelsius'
-export * from './isFahrenheit'
-export * from './isKelvin'
-export * from './isTemperature'
+export * from './constants.js'
+export * from './isCelsius.js'
+export * from './isFahrenheit.js'
+export * from './isKelvin.js'
+export * from './isTemperature.js'

@@ -16,8 +16,8 @@
  *
  */
 
-import { isValidPath }        from '../paths/isValidPath'
-import { isSymbolicLinkPath } from './isSymbolicLinkPath'
+import { isValidPath }        from '../paths/isValidPath.js'
+import { isSymbolicLinkPath } from './isSymbolicLinkPath.js'
 
 /**
  * Check if given data is a valid symbolic link path

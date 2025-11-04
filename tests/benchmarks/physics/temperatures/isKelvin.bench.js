@@ -1,6 +1,4 @@
-
-import Benchmark   from 'benchmark'
-import { Testing }      from 'itee-utils'
+import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isKelvinNamespace from '../../../../sources/physics/temperatures/isKelvin.js'
 
 const isKelvinSuite = Benchmark.Suite( 'isKelvinNamespace.isKelvin', Testing.createSuiteOptions() )

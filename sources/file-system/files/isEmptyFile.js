@@ -19,9 +19,9 @@
  *
  */
 
-import { statSync }    from 'fs'
-import { isFilePath }  from './isFilePath'
-import { isNotString } from '../../cores/strings/isString'
+import { statSync }    from 'node:fs'
+import { isNotString } from '../../cores/strings/isString.js'
+import { isFilePath }  from './isFilePath.js'
 
 /**
  * Check if given file path is an empty file more or less a threshold in bytes.

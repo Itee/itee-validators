@@ -19,9 +19,9 @@
  *
  */
 
-import { statSync }    from 'fs'
-import { isDefined }   from '../../cores/voids/isDefined'
-import { isNotString } from '../../cores/strings/isString'
+import { statSync }    from 'node:fs'
+import { isNotString } from '../../cores/strings/isString.js'
+import { isDefined }   from '../../cores/voids/isDefined.js'
 
 /**
  * Check if given path is a fifo path

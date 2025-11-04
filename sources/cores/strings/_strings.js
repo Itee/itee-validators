@@ -6,7 +6,7 @@
  * @description Export the validation methods about strings
  */
 
-export * from './isBlankString'
-export * from './isEmptyString'
-export * from './isString'
+export * from './isBlankString.js'
+export * from './isEmptyString.js'
+export * from './isString.js'
 

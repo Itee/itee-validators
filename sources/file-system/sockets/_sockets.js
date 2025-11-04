@@ -4,9 +4,9 @@
  *
  * @module sources/file-system/sockets
  * @description This is the sockets main export entry point.
- * It expose all exports of the sockets validators.
+ * It exposes all exports of the sockets validators.
  *
  */
 
-export * from './isSocketPath'
-export * from './isValidSocketPath'
+export * from './isSocketPath.js'
+export * from './isValidSocketPath.js'

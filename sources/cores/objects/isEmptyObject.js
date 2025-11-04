@@ -16,7 +16,7 @@
  *
  */
 
-import { isNotObject } from './isObject'
+import { isNotObject } from './isObject.js'
 
 /**
  * Check if given data is an empty object

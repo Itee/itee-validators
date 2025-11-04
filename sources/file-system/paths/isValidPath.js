@@ -19,7 +19,7 @@
  *
  */
 
-import { existsSync } from 'fs'
+import { existsSync } from 'node:fs'
 
 /**
  * Check if given data is a valid file path

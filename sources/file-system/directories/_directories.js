@@ -4,10 +4,10 @@
  *
  * @module sources/file-system/directories
  * @description This is the directories main export entry point.
- * It expose all exports of the directories validators.
+ * It exposes all exports of the directories validators.
  *
  */
 
-export * from './isDirectoryPath'
-export * from './isEmptyDirectory'
-export * from './isValidDirectoryPath'
+export * from './isDirectoryPath.js'
+export * from './isEmptyDirectory.js'
+export * from './isValidDirectoryPath.js'

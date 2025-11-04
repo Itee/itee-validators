@@ -6,5 +6,5 @@
  * @description Export the validation methods about objects
  */
 
-export * from './isEmptyObject'
-export * from './isObject'
+export * from './isEmptyObject.js'
+export * from './isObject.js'

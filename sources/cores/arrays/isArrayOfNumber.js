@@ -16,9 +16,9 @@
  *
  */
 
-import { isNotNumber }  from '../numbers/isNumber'
-import { isNotArray }   from './isArray'
-import { isEmptyArray } from './isEmptyArray'
+import { isNotNumber }  from '../numbers/isNumber.js'
+import { isNotArray }   from './isArray.js'
+import { isEmptyArray } from './isEmptyArray.js'
 
 /**
  * Check if given data is not an empty array where all values are numbers

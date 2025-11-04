@@ -19,8 +19,8 @@
 import {
     isArray,
     isNotArray
-}                       from './isArray'
-import { isEmptyArray } from './isEmptyArray'
+}                       from './isArray.js'
+import { isEmptyArray } from './isEmptyArray.js'
 
 /**
  * Check if given data is an array of array

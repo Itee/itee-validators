@@ -1,6 +1,4 @@
-
-import Benchmark   from 'benchmark'
-import { Testing }      from 'itee-utils'
+import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isStringNamespace from '../../../../sources/cores/strings/isString.js'
 
 const isStringSuite = Benchmark.Suite( 'isStringNamespace.isString', Testing.createSuiteOptions() )

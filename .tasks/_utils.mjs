@@ -1,12 +1,16 @@
-import {
-    join,
-    dirname
-}                        from 'path'
+import colors            from 'ansi-colors'
+import childProcess      from 'child_process'
+import log               from 'fancy-log'
 import { readFileSync }  from 'fs'
+import {
+    dirname,
+    join
+}                        from 'path'
 import { fileURLToPath } from 'url'
 
-// We cannot use directly the import.meta.dirname or filename because all IDE usage do not produce them
-// We use
+const red    = colors.red
+const yellow = colors.yellow
+
 function getDirname() {
 
     let __dirname
@@ -22,45 +26,167 @@ function getDirname() {
         throw new Error( 'Unable to retrieve module dirname.' )
     }
 
-    // Todo: distinguish between dirname and packageRootFolder to avoid misusing
-    __dirname = join( __dirname, '..' )
-
     return __dirname
 
 }
 
-const __dirname    = getDirname()
-const packagePath  = join( __dirname, 'package.json' )
-const packageData  = readFileSync( packagePath )
-const packageInfos = JSON.parse( packageData )
+function getPackageRootDirectory() {
+
+    const __dirname = getDirname()
+    return join( __dirname, '..' )
+
+}
+
+const packageRootDirectory            = getPackageRootDirectory()
+const packageJsonPath                 = join( packageRootDirectory, 'package.json' )
+const nodeModulesDirectory            = join( packageRootDirectory, 'node_modules' )
+const packageBuildsDirectory          = join( packageRootDirectory, 'builds' )
+const packageSourcesDirectory         = join( packageRootDirectory, 'sources' )
+const packageSourcesBackendDirectory  = join( packageSourcesDirectory, 'backend' )
+const packageSourcesCommonDirectory   = join( packageSourcesDirectory, 'common' )
+const packageSourcesFrontendDirectory = join( packageSourcesDirectory, 'frontend' )
+const packageTestsDirectory           = join( packageRootDirectory, 'tests' )
+const packageTestsBenchmarksDirectory = join( packageTestsDirectory, 'benchmarks' )
+const packageTestsBundlesDirectory    = join( packageTestsDirectory, 'bundles' )
+const packageTestsUnitsDirectory      = join( packageTestsDirectory, 'units' )
+const packageDocsDirectory            = join( packageRootDirectory, 'docs' )
+const packageTutorialsDirectory       = join( packageRootDirectory, 'tutorials' )
+
+function getPackageJson() {
+
+    const packageData = readFileSync( packageJsonPath )
+    return JSON.parse( packageData )
+
+}
+
+const packageJson        = getPackageJson()
+const packageName        = packageJson.name
+const packageVersion     = packageJson.version
+const packageDescription = packageJson.description
+
+function getPrettyPackageName( separator = ' ' ) {
+
+    let prettyPackageName = ''
+
+    const nameSplits = packageName.split( '-' )
+    for ( const nameSplit of nameSplits ) {
+        prettyPackageName += nameSplit.charAt( 0 ).toUpperCase() + nameSplit.slice( 1 ) + separator
+    }
+    prettyPackageName = prettyPackageName.slice( 0, -1 )
+
+    return prettyPackageName
+
+}
+
+function getPrettyPackageVersion() {
+
+    return 'v' + packageVersion
+
+}
+
+function getPrettyNodeVersion() {
+
+    let nodeVersion = 'vX.x.ₓ'
+
+    try {
+        nodeVersion = childProcess.execFileSync( 'node', [ '--version' ] )
+                                  .toString()
+                                  .replace( /(\r\n|\n|\r)/gm, '' )
+    } catch ( e ) {
+        log( red( e ) )
+
+        if ( e.message.includes( 'ENOENT' ) ) {
+            nodeVersion += yellow( ' Not seems to be accessible from the path environment.' )
+        }
+    }
+
+    return ' node: ' + nodeVersion
+
+}
+
+function getPrettyNpmVersion() {
+
+    let npmVersion = 'X.x.ₓ'
+
+    try {
+        npmVersion = childProcess.execFileSync( 'npm', [ '--version' ] )
+                                 .toString()
+                                 .replace( /(\r\n|\n|\r)/gm, '' )
+    } catch ( e ) {
+        log( red( e ) )
+
+        if ( e.message.includes( 'ENOENT' ) ) {
+            npmVersion += yellow( ' Not seems to be accessible from the path environment.' )
+        }
+    }
+
+    return ' npm:  v' + npmVersion
+
+}
+
+function IndenterFactory( indentationChar = '\t', indentationLevel = 5 ) {
+
+    const indentationLevels = {}
+    let currentProperty     = 'I_'
+    for ( let currentIndentationLevel = 1 ; currentIndentationLevel <= indentationLevel ; currentIndentationLevel++ ) {
+        indentationLevels[ currentProperty ] = indentationChar.repeat( currentIndentationLevel )
+        currentProperty += '_'
+    }
+
+    return {
+        I: new Indenter( indentationChar ),
+        ...indentationLevels
+    }
+
+}
 
 class Indenter {
 
-    _          = ''
-    __         = ''
-    ___        = ''
-    ____       = ''
-    _____      = ''
-    ______     = ''
-    _______    = ''
-    ________   = ''
-    _________  = ''
-    __________ = ''
+    constructor( indentationChar = '\t' ) {
 
-    constructor( indentationChar = '\t', maxIndentationLevel = 10 ) {
+        this.indentationChar         = indentationChar
+        this.currentIndentationLevel = 0
 
-        let currentProperty = '_'
-        for ( let currentIndentationLevel = 1 ; currentIndentationLevel <= maxIndentationLevel ; currentIndentationLevel++ ) {
-            this[ currentProperty ] = indentationChar.repeat( currentIndentationLevel )
-            currentProperty += '_'
-        }
+    }
 
+    _( indentationLevel = null ) {
+        return this.indentationChar.repeat( indentationLevel ?? this.currentIndentationLevel )
+    }
+
+    deeper( level = 1 ) {
+        this.currentIndentationLevel += level
+    }
+
+    shallower( level = 1 ) {
+        this.currentIndentationLevel -= level
     }
 
 }
 
 export {
-    packageInfos,
-    Indenter,
-    getDirname
+    packageRootDirectory,
+    packageJsonPath,
+    packageBuildsDirectory,
+    packageSourcesDirectory,
+    packageSourcesBackendDirectory,
+    packageSourcesCommonDirectory,
+    packageSourcesFrontendDirectory,
+    packageTestsDirectory,
+    packageTestsBenchmarksDirectory,
+    packageTestsBundlesDirectory,
+    packageTestsUnitsDirectory,
+    packageDocsDirectory,
+    packageTutorialsDirectory,
+    nodeModulesDirectory,
+
+    packageJson,
+    packageName,
+    packageVersion,
+    packageDescription,
+    getPrettyPackageName,
+    getPrettyPackageVersion,
+    getPrettyNodeVersion,
+    getPrettyNpmVersion,
+
+    IndenterFactory as Indenter
 }

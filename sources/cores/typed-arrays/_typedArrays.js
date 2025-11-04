@@ -7,16 +7,16 @@
  *
  */
 
-export * from './isArrayBuffer'
-export * from './isBigInt64Array'
-export * from './isBigUint64Array'
-export * from './isFloat32Array'
-export * from './isFloat64Array'
-export * from './isInt16Array'
-export * from './isInt32Array'
-export * from './isInt8Array'
-export * from './isUint16Array'
-export * from './isUint32Array'
-export * from './isUint8Array'
-export * from './isUint8ClampedArray'
+export * from './isArrayBuffer.js'
+export * from './isBigInt64Array.js'
+export * from './isBigUint64Array.js'
+export * from './isFloat32Array.js'
+export * from './isFloat64Array.js'
+export * from './isInt16Array.js'
+export * from './isInt32Array.js'
+export * from './isInt8Array.js'
+export * from './isUint16Array.js'
+export * from './isUint32Array.js'
+export * from './isUint8Array.js'
+export * from './isUint8ClampedArray.js'
 

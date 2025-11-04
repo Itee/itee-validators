@@ -6,4 +6,4 @@
  * @description Export the validation methods about symbols
  */
 
-export * from './isSymbol'
+export * from './isSymbol.js'
