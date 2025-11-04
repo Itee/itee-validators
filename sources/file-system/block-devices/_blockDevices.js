@@ -4,7 +4,7 @@
  *
  * @module sources/file-system/block-devices
  * @description This is the block devices main export entry point.
- * It expose all exports of the block devices validators.
+ * It exposes all exports of the block devices validators.
  *
  */
 

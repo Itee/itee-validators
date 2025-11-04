@@ -4,7 +4,7 @@
  *
  * @module sources/file-system/symbolic-links
  * @description This is the symbolic-links main export entry point.
- * It expose all exports of the symbolic-links validators.
+ * It exposes all exports of the symbolic-links validators.
  *
  */
 

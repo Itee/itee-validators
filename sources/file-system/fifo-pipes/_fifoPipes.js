@@ -4,7 +4,7 @@
  *
  * @module sources/file-system/fifo-pipes
  * @description This is the fifo-pipes main export entry point.
- * It expose all exports of the fifo-pipes validators.
+ * It exposes all exports of the fifo-pipes validators.
  *
  */
 

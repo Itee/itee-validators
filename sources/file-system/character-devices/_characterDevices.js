@@ -4,7 +4,7 @@
  *
  * @module sources/file-system/character-devices
  * @description This is the character devices main export entry point.
- * It expose all exports of the character devices validators.
+ * It exposes all exports of the character devices validators.
  *
  */
 

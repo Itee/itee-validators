@@ -4,7 +4,7 @@
  *
  * @module sources/file-system/paths
  * @description This is the files paths main export entry point.
- * It expose all exports of the files paths validators.
+ * It exposes all exports of the files paths validators.
  *
  */
 

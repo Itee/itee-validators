@@ -4,7 +4,7 @@
  *
  * @module sources/physics
  * @description This is the physics export entry point.
- * It expose all exports of the temperatures sub-folder.
+ * It exposes all exports of the temperatures sub-folder.
  *
  */
 

@@ -4,7 +4,7 @@
  *
  * @module sources/file-system
  * @description This is the files system main export entry point.
- * It expose all exports of the files system validators.
+ * It exposes all exports of the files system validators.
  *
  */
 
