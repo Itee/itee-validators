@@ -9,7 +9,10 @@ const {
           yellow
       } = colors
 
-async function bundleBenchmarksTask( done ) {
+/**
+ * @description Will generate benchmarks bundles based on provided configs
+ */
+const bundleBenchmarksTask       = async ( done ) => {
 
     const configs = [
         getRollupConfigurationFor( 'benchmarks-backend' ),
@@ -42,5 +45,8 @@ async function bundleBenchmarksTask( done ) {
     done()
 
 }
+bundleBenchmarksTask.displayName = 'bundle-benchmarks'
+bundleBenchmarksTask.description = 'Will apply some patch/replacements in dependencies'
+bundleBenchmarksTask.flags       = null
 
 export { bundleBenchmarksTask }

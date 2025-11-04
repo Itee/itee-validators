@@ -9,7 +9,10 @@ const {
           yellow
       } = colors
 
-async function bundleUnitTestsTask( done ) {
+/**
+ * @description Will generate unit test bundles based on provided configs
+ */
+const bundleUnitTestsTask       = async ( done ) => {
 
     const configs = [
         getRollupConfigurationFor( 'units-backend' ),
@@ -42,5 +45,8 @@ async function bundleUnitTestsTask( done ) {
     done()
 
 }
+bundleUnitTestsTask.displayName = 'bundle-unit-tests'
+bundleUnitTestsTask.description = 'Will generate unit test bundles based on provided configs'
+bundleUnitTestsTask.flags       = null
 
 export { bundleUnitTestsTask }

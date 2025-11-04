@@ -15,11 +15,11 @@ import {
     relative
 }                          from 'path'
 import {
+    Indenter,
     nodeModulesDirectory,
     packageName,
     packageSourcesDirectory as sourcesDir,
-    packageTestsUnitsDirectory as unitsDir,
-    Indenter
+    packageTestsUnitsDirectory as unitsDir
 }                          from '../../_utils.mjs'
 import { sourcesFiles }    from '../../configs/compute-unit-tests.conf.mjs'
 
@@ -29,7 +29,10 @@ const {
           yellow
       } = colors
 
-function computeUnitTestsTask( done ) {
+/**
+ * @description Will generate unit test files from source code using type inference from comments
+ */
+const computeUnitTestsTask       = ( done ) => {
 
     if ( !existsSync( unitsDir ) ) {
         log( 'Creating', green( unitsDir ) )
@@ -104,11 +107,11 @@ function computeUnitTestsTask( done ) {
 
             let describes = ''
             const {
-                I,
-                I_,
-                I__,
-                I___,
-              } = new Indenter('\t', 3)
+                      I,
+                      I_,
+                      I__,
+                      I___,
+                  }       = new Indenter( '\t', 3 )
 
             for ( let docData of jsonData ) {
 
@@ -403,7 +406,7 @@ function computeUnitTestsTask( done ) {
                             for ( let returnType of returns ) {
 
                                 const lowerName = returnType.toLowerCase()
-                                returnTypesLabel.push(lowerName)
+                                returnTypesLabel.push( lowerName )
 
                                 if ( lowerName.startsWith( 'array' ) ) {
                                     //todo array of...
@@ -527,5 +530,8 @@ function computeUnitTestsTask( done ) {
     done()
 
 }
+computeUnitTestsTask.displayName = 'compute-unit-tests'
+computeUnitTestsTask.description = 'Will generate unit test files from source code using type inference from comments'
+computeUnitTestsTask.flags       = null
 
 export { computeUnitTestsTask }

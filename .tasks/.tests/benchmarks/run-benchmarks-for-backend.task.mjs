@@ -12,7 +12,10 @@ const {
           yellow
       } = colors
 
-async function runBenchmarksForBackendTask( done ) {
+/**
+ * @description Will run benchmarks with node
+ */
+const runBenchmarksForBackendTask       = async ( done ) => {
 
     const benchesPath = join( packageTestsBenchmarksDirectory, `/builds/${ packageName }.benchmarks.cjs.js` )
     if ( !existsSync( benchesPath ) ) {
@@ -29,5 +32,8 @@ async function runBenchmarksForBackendTask( done ) {
     }
 
 }
+runBenchmarksForBackendTask.displayName = 'run-benchmarks-for-backend'
+runBenchmarksForBackendTask.description = 'Will run benchmarks with node'
+runBenchmarksForBackendTask.flags       = null
 
 export { runBenchmarksForBackendTask }

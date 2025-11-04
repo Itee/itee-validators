@@ -1,67 +1,13 @@
 import { startTestRunner }   from '@web/test-runner'
 import colors                from 'ansi-colors'
-import log                   from 'fancy-log'
-import {
-    spawn,
-    spawnSync
-}                            from 'node:child_process'
 import { default as config } from '../../configs/units.conf.mjs'
 
 const { red } = colors
 
-function spawnUnitTestsForFrontendTask( done ) {
-
-    const runner = spawn( 'web-test-runner', [ '--config', './.tasks/configs/units.conf.mjs' ] )
-
-    runner.stdout.on( 'data', data => {
-        log( data.toString() )
-    } )
-
-    runner.stderr.on( 'data', data => {
-        log( red( data.toString() ) )
-    } )
-
-    runner.on( 'error', err => {
-        const errorMessage = red( err.toString().replace( 'Error: ', '' ) )
-        done( errorMessage )
-    } )
-
-    runner.on( 'close', done )
-
-}
-
-function spawnSyncUnitTestsForFrontendTask( done ) {
-
-    const command = spawnSync( 'web-test-runner', [ '--config', './.tasks/configs/units.conf.mjs' ] )
-
-    if ( command.stdout ) {
-        log( command.stdout.toString() )
-    }
-
-    if ( command.output ) {
-        log( command.output.join( '\n' ) )
-    }
-
-    if ( command.stderr ) {
-        const errorString = command.stderr.toString()
-        log( red( errorString ) )
-        done( errorString )
-        return
-    }
-
-    if ( command.error ) {
-        const errorString = command.error.message
-        log( red( errorString ) )
-        done( errorString )
-        return
-    }
-
-    done()
-
-}
-
-function runUnitTestsForFrontendTask() {
-
+/**
+ * @description Will run unit tests with web-test-runner
+ */
+const runUnitTestsForFrontendTask       = () => {
     return new Promise( async ( resolve, reject ) => {
 
         const testRunner = await startTestRunner( {
@@ -87,7 +33,9 @@ function runUnitTestsForFrontendTask() {
         } )
 
     } )
-
 }
+runUnitTestsForFrontendTask.displayName = 'run-unit-tests-for-frontend'
+runUnitTestsForFrontendTask.description = 'Will run unit tests with web-test-runner'
+runUnitTestsForFrontendTask.flags       = null
 
 export { runUnitTestsForFrontendTask }

@@ -57,7 +57,12 @@ function alignTextRight( text, width ) {
 
 }
 
-function helpTask( done ) {
+/**
+ * @method npm run help ( default )
+ * @global
+ * @description Will display the help in console
+ */
+const helpTask       = ( done ) => {
 
     const bannerWidth          = 70
     const prettyPackageName    = getPrettyPackageName()
@@ -90,7 +95,7 @@ function helpTask( done ) {
               I__,
               I___,
               I____,
-          } = new Indenter('\t', 4)
+          } = new Indenter( '\t', 4 )
 
     const npmRun = blue( 'npm run' )
 
@@ -139,5 +144,8 @@ function helpTask( done ) {
     done()
 
 }
+helpTask.displayName = 'help'
+helpTask.description = 'Display the package help'
+helpTask.flags       = null
 
 export { helpTask }

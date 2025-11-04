@@ -27,7 +27,10 @@ const {
           yellow
       } = colors
 
-function computeBenchmarksTask( done ) {
+/**
+ * @description Will generate benchmarks files from source code against provided alternatives
+ */
+const computeBenchmarksTask       = ( done ) => {
 
     if ( !existsSync( benchesDir ) ) {
         log( 'Creating', green( benchesDir ) )
@@ -202,5 +205,8 @@ function computeBenchmarksTask( done ) {
     done()
 
 }
+computeBenchmarksTask.displayName = 'compute-benchmarks'
+computeBenchmarksTask.description = 'Will generate benchmarks files from source code against provided alternatives.'
+computeBenchmarksTask.flags       = null
 
 export { computeBenchmarksTask }
