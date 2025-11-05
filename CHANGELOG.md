@@ -1,3 +1,15 @@
+# [v6.0.0](https://github.com/Itee/itee-validators/compare/v5.6.0...v6.0.0) (2025-11-05)
+
+## ✨ New Features
+- [`6e706ed`](https://github.com/Itee/itee-validators/commit/6e706ed)  (benchmarks) re-introduce benchmarks frontend with web test runner, configs and new code 
+
+## 🐛 Bug Fixes
+- [`31c3572`](https://github.com/Itee/itee-validators/commit/31c3572)  (gulpfile) fix broken import links 
+- [`876ba94`](https://github.com/Itee/itee-validators/commit/876ba94)  (run-tests) fix task displayName 
+
+## 💥 Breaking Changes
+- [`a6f1255`](https://github.com/Itee/itee-validators/commit/a6f1255)  (node) drop nodejs v18 support and add nodejs v24
+
 # [v5.6.0](https://github.com/Itee/itee-validators/compare/v5.5.1...v5.6.0) (2025-10-18)
 
 ## ✨ New Features
