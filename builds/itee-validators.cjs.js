@@ -1,6 +1,6 @@
 /**
- * ┳      ┓┏  ┓• ┓            ┏━ ┏┓ ┏┓      ┏┓            ┏┳ 
- * ┃╋┏┓┏┓ ┃┃┏┓┃┓┏┫┏┓╋┏┓┏┓┏  ┓┏┗┓ ┣┓ ┃┫  ━━  ┃ ┏┓┏┳┓┏┳┓┏┓┏┓ ┃┏
+ * ┳      ┓┏  ┓• ┓            ┏┓ ┏┓ ┏┓      ┏┓            ┏┳ 
+ * ┃╋┏┓┏┓ ┃┃┏┓┃┓┏┫┏┓╋┏┓┏┓┏  ┓┏┣┓ ┃┫ ┃┫  ━━  ┃ ┏┓┏┳┓┏┳┓┏┓┏┓ ┃┏
  * ┻┗┗ ┗ •┗┛┗┻┗┗┗┻┗┻┗┗┛┛ ┛  ┗┛┗┛•┗┛•┗┛      ┗┛┗┛┛┗┗┛┗┗┗┛┛┗┗┛┛
  *                                                           
  * @desc    A library of validation functions use in various Itee projects
@@ -10,7 +10,7 @@
  */
 'use strict';
 
-var fs = require('fs');
+var node_fs = require('node:fs');
 
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
@@ -2491,7 +2491,7 @@ function isBlockDevicePath( path ) {
         // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
-    const stat = fs.statSync( path, { throwIfNoEntry: false } );
+    const stat = node_fs.statSync( path, { throwIfNoEntry: false } );
     return isDefined( stat ) && stat.isBlockDevice()
 }
 
@@ -2534,7 +2534,7 @@ function isNotBlockDevicePath( path ) {
  * @returns {boolean} true if data is a valid path, false otherwise
  */
 function isValidPath( data ) {
-    return fs.existsSync( data )
+    return node_fs.existsSync( data )
 }
 
 /**
@@ -2620,7 +2620,7 @@ function isCharacterDevicePath( path ) {
         // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
-    const stat = fs.statSync( path, { throwIfNoEntry: false } );
+    const stat = node_fs.statSync( path, { throwIfNoEntry: false } );
     return isDefined( stat ) && stat.isCharacterDevice()
 }
 
@@ -2707,7 +2707,7 @@ function isDirectoryPath( path ) {
         // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
-    const stat = fs.statSync( path, { throwIfNoEntry: false } );
+    const stat = node_fs.statSync( path, { throwIfNoEntry: false } );
     return isDefined( stat ) && stat.isDirectory()
 }
 
@@ -2750,7 +2750,7 @@ function isNotDirectoryPath( path ) {
  * @returns {boolean} true if directory is empty, false otherwise
  */
 function isEmptyDirectory( directoryPath ) {
-    return isDirectoryPath( directoryPath ) && ( fs.readdirSync( directoryPath ).length === 0 )
+    return isDirectoryPath( directoryPath ) && ( node_fs.readdirSync( directoryPath ).length === 0 )
 }
 
 /**
@@ -2836,7 +2836,7 @@ function isFIFOPath( path ) {
         // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
-    const stat = fs.statSync( path, { throwIfNoEntry: false } );
+    const stat = node_fs.statSync( path, { throwIfNoEntry: false } );
     return isDefined( stat ) && stat.isFIFO()
 }
 
@@ -2926,7 +2926,7 @@ function isFilePath( path ) {
         // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
-    const stat = fs.statSync( path, { throwIfNoEntry: false } );
+    const stat = node_fs.statSync( path, { throwIfNoEntry: false } );
     return isDefined( stat ) && stat.isFile()
 }
 
@@ -2975,7 +2975,7 @@ function isEmptyFile( filePath, threshold = 0 ) {
         // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
-    return isFilePath( filePath ) && ( fs.statSync( filePath ).size <= threshold )
+    return isFilePath( filePath ) && ( node_fs.statSync( filePath ).size <= threshold )
 }
 
 /**
@@ -3062,7 +3062,7 @@ function isSocketPath( path ) {
         // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
-    const stat = fs.statSync( path, { throwIfNoEntry: false } );
+    const stat = node_fs.statSync( path, { throwIfNoEntry: false } );
     return isDefined( stat ) && stat.isSocket()
 }
 
@@ -3149,7 +3149,7 @@ function isSymbolicLinkPath( path ) {
         // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
     }
 
-    const stat = fs.statSync( path, { throwIfNoEntry: false } );
+    const stat = node_fs.statSync( path, { throwIfNoEntry: false } );
     return isDefined( stat ) && stat.isSymbolicLink()
 }
 
