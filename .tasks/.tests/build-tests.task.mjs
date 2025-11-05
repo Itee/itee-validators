@@ -1,6 +1,6 @@
 import { series }              from 'gulp'
-import { buildBenchmarksTask } from './build-benchmarks.task.mjs'
-import { buildUnitTestsTask }  from './build-unit-tests.task.mjs'
+import { buildBenchmarksTask } from './benchmarks/build-benchmarks.task.mjs'
+import { buildUnitTestsTask }  from './unit-tests/build-unit-tests.task.mjs'
 
 /**
  * @method npm run build-test

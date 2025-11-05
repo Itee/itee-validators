@@ -1,9 +1,9 @@
 import { series }         from 'gulp'
-import { buildTestsTask } from '../.builds/build-tests.task.mjs'
 import { buildTask }      from '../.builds/build.task.mjs'
 import { cleanTask }      from '../.cleans/clean.task.mjs'
 import { docTask }        from '../.docs/doc.task.mjs'
 import { lintTask }       from '../.lints/lint.task.mjs'
+import { buildTestsTask } from '../.tests/build-tests.task.mjs'
 import { runTestsTask }   from '../.tests/run-tests.task.mjs'
 
 const releaseTask       = series(

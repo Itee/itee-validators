@@ -1,6 +1,6 @@
 import { series }                    from 'gulp'
-import { buildUnitTestsBackendTask } from '../.tests/unit-tests/build-unit-tests-backend.task.mjs'
-import { computeUnitTestsTask }      from '../.tests/unit-tests/compute-unit-tests.task.mjs'
+import { buildUnitTestsBackendTask } from './build-unit-tests-backend.task.mjs'
+import { computeUnitTestsTask }      from './compute-unit-tests.task.mjs'
 
 /**
  * @description Will compute and generate bundle for unit tests
