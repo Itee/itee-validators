@@ -4,7 +4,6 @@
  * and run "gulp refresh"
  */
 
-export * from './.tasks/_refresh-gulpfile.task.mjs'
 export * from './.tasks/.tests/run-tests.task.mjs'
 export * from './.tasks/.tests/build-tests.task.mjs'
 export * from './.tasks/.tests/unit-tests/run-unit-tests.task.mjs'
