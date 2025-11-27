@@ -5,6 +5,7 @@ import * as isUint8ClampedArrayNamespace from '../../../../sources/cores/typed-a
 describe( 'isUint8ClampedArrayUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

@@ -5,6 +5,7 @@ import * as isEmptyArrayNamespace from '../../../../sources/cores/arrays/isEmpty
 describe( 'isEmptyArrayUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

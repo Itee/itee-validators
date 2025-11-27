@@ -5,6 +5,7 @@ import * as isArrayOfNullNamespace from '../../../../sources/cores/arrays/isArra
 describe( 'isArrayOfNullUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

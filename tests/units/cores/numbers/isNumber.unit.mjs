@@ -5,6 +5,7 @@ import * as isNumberNamespace from '../../../../sources/cores/numbers/isNumber.j
 describe( 'isNumberUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

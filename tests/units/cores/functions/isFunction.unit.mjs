@@ -5,6 +5,7 @@ import * as isFunctionNamespace from '../../../../sources/cores/functions/isFunc
 describe( 'isFunctionUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

@@ -5,6 +5,7 @@ import * as isFloat64ArrayNamespace from '../../../../sources/cores/typed-arrays
 describe( 'isFloat64ArrayUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

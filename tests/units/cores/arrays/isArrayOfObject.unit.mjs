@@ -5,6 +5,7 @@ import * as isArrayOfObjectNamespace from '../../../../sources/cores/arrays/isAr
 describe( 'isArrayOfObjectUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

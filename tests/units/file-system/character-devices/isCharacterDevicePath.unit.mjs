@@ -5,6 +5,7 @@ import * as isCharacterDevicePathNamespace from '../../../../sources/file-system
 describe( 'isCharacterDevicePathUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

@@ -5,6 +5,7 @@ import * as isMaxNamespace from '../../../../sources/cores/numbers/isMax.js'
 describe( 'isMaxUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

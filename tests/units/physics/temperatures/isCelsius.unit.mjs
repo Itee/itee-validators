@@ -5,6 +5,7 @@ import * as isCelsiusNamespace from '../../../../sources/physics/temperatures/is
 describe( 'isCelsiusUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

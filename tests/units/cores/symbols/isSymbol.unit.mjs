@@ -5,6 +5,7 @@ import * as isSymbolNamespace from '../../../../sources/cores/symbols/isSymbol.j
 describe( 'isSymbolUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

@@ -5,6 +5,7 @@ import * as isInt16ArrayNamespace from '../../../../sources/cores/typed-arrays/i
 describe( 'isInt16ArrayUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

@@ -5,6 +5,7 @@ import * as isArrayOfUndefinedNamespace from '../../../../sources/cores/arrays/i
 describe( 'isArrayOfUndefinedUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

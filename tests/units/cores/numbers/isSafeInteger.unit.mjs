@@ -5,6 +5,7 @@ import * as isSafeIntegerNamespace from '../../../../sources/cores/numbers/isSaf
 describe( 'isSafeIntegerUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

@@ -5,6 +5,7 @@ import * as isBooleanNamespace from '../../../../sources/cores/booleans/isBoolea
 describe( 'isBooleanUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

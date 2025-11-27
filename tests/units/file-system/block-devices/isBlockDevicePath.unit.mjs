@@ -5,6 +5,7 @@ import * as isBlockDevicePathNamespace from '../../../../sources/file-system/blo
 describe( 'isBlockDevicePathUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

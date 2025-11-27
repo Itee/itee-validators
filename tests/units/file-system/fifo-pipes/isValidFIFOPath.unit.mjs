@@ -5,6 +5,7 @@ import * as isValidFIFOPathNamespace from '../../../../sources/file-system/fifo-
 describe( 'isValidFIFOPathUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

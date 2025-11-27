@@ -5,6 +5,7 @@ import * as isUint32ArrayNamespace from '../../../../sources/cores/typed-arrays/
 describe( 'isUint32ArrayUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

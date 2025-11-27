@@ -5,6 +5,7 @@ import * as isValidDirectoryPathNamespace from '../../../../sources/file-system/
 describe( 'isValidDirectoryPathUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

@@ -5,6 +5,7 @@ import * as isTestUnitGeneratorNamespace from '../../../../sources/cores/tests/i
 describe( 'isTestUnitGeneratorUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

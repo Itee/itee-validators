@@ -5,6 +5,7 @@ import * as isArrayOfMultiElementNamespace from '../../../../sources/cores/array
 describe( 'isArrayOfMultiElementUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

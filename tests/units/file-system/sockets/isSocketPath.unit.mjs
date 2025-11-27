@@ -5,6 +5,7 @@ import * as isSocketPathNamespace from '../../../../sources/file-system/sockets/
 describe( 'isSocketPathUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

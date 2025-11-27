@@ -5,6 +5,7 @@ import * as isValidBlockDevicePathNamespace from '../../../../sources/file-syste
 describe( 'isValidBlockDevicePathUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

@@ -5,6 +5,7 @@ import * as isKelvinNamespace from '../../../../sources/physics/temperatures/isK
 describe( 'isKelvinUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

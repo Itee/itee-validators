@@ -5,6 +5,7 @@ import * as isBigUint64ArrayNamespace from '../../../../sources/cores/typed-arra
 describe( 'isBigUint64ArrayUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

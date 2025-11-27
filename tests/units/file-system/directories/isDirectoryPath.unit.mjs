@@ -5,6 +5,7 @@ import * as isDirectoryPathNamespace from '../../../../sources/file-system/direc
 describe( 'isDirectoryPathUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

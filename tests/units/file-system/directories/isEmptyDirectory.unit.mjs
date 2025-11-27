@@ -5,6 +5,7 @@ import * as isEmptyDirectoryNamespace from '../../../../sources/file-system/dire
 describe( 'isEmptyDirectoryUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )
