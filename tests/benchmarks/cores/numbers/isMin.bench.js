@@ -1,5 +1,9 @@
-import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isMinNamespace from '../../../../sources/cores/numbers/isMin.js'
+import { getBenchmarkPackage } from '../../../import.benchmarks.js'
+import { getTestingPackage } from '../../../import.testing.js'
+
+const Benchmark = await getBenchmarkPackage()
+const Testing   = await getTestingPackage()
 
 const isMinPositiveSuite = Benchmark.Suite( 'isMinNamespace.isMinPositive', Testing.createSuiteOptions() )
                                      .add( 'isMinPositive()', Testing.iterateOverDataMap( isMinNamespace.isMinPositive ), Testing.createBenchmarkOptions() )

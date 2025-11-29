@@ -1,5 +1,9 @@
-import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isUint8ArrayNamespace from '../../../../sources/cores/typed-arrays/isUint8Array.js'
+import { getBenchmarkPackage } from '../../../import.benchmarks.js'
+import { getTestingPackage } from '../../../import.testing.js'
+
+const Benchmark = await getBenchmarkPackage()
+const Testing   = await getTestingPackage()
 
 const isUint8ArraySuite = Benchmark.Suite( 'isUint8ArrayNamespace.isUint8Array', Testing.createSuiteOptions() )
                                      .add( 'isUint8Array()', Testing.iterateOverDataMap( isUint8ArrayNamespace.isUint8Array ), Testing.createBenchmarkOptions() )

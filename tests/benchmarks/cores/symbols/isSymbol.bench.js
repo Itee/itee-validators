@@ -1,5 +1,9 @@
-import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isSymbolNamespace from '../../../../sources/cores/symbols/isSymbol.js'
+import { getBenchmarkPackage } from '../../../import.benchmarks.js'
+import { getTestingPackage } from '../../../import.testing.js'
+
+const Benchmark = await getBenchmarkPackage()
+const Testing   = await getTestingPackage()
 
 const isSymbolSuite = Benchmark.Suite( 'isSymbolNamespace.isSymbol', Testing.createSuiteOptions() )
                                      .add( 'isSymbol()', Testing.iterateOverDataMap( isSymbolNamespace.isSymbol ), Testing.createBenchmarkOptions() )

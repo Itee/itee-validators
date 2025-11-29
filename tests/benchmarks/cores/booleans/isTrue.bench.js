@@ -1,5 +1,9 @@
-import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isTrueNamespace from '../../../../sources/cores/booleans/isTrue.js'
+import { getBenchmarkPackage } from '../../../import.benchmarks.js'
+import { getTestingPackage } from '../../../import.testing.js'
+
+const Benchmark = await getBenchmarkPackage()
+const Testing   = await getTestingPackage()
 
 const isTrueSuite = Benchmark.Suite( 'isTrueNamespace.isTrue', Testing.createSuiteOptions() )
                                      .add( 'isTrue()', Testing.iterateOverDataMap( isTrueNamespace.isTrue ), Testing.createBenchmarkOptions() )

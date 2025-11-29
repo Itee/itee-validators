@@ -1,5 +1,9 @@
-import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isUint16ArrayNamespace from '../../../../sources/cores/typed-arrays/isUint16Array.js'
+import { getBenchmarkPackage } from '../../../import.benchmarks.js'
+import { getTestingPackage } from '../../../import.testing.js'
+
+const Benchmark = await getBenchmarkPackage()
+const Testing   = await getTestingPackage()
 
 const isUint16ArraySuite = Benchmark.Suite( 'isUint16ArrayNamespace.isUint16Array', Testing.createSuiteOptions() )
                                      .add( 'isUint16Array()', Testing.iterateOverDataMap( isUint16ArrayNamespace.isUint16Array ), Testing.createBenchmarkOptions() )

@@ -19,7 +19,7 @@
     "type": "git",
     "url":  "https://github.com/Itee/itee-validators.git"
   },
-  "type": "module",
+  "type":            "module",
   "main":            "builds/itee-validators.cjs.js",
   "module":          "builds/itee-validators.esm.js",
   "browser":         "builds/itee-validators.iife.js",

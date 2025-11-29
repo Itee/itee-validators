@@ -1,5 +1,9 @@
-import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isFunctionNamespace from '../../../../sources/cores/functions/isFunction.js'
+import { getBenchmarkPackage } from '../../../import.benchmarks.js'
+import { getTestingPackage } from '../../../import.testing.js'
+
+const Benchmark = await getBenchmarkPackage()
+const Testing   = await getTestingPackage()
 
 const isFunctionSuite = Benchmark.Suite( 'isFunctionNamespace.isFunction', Testing.createSuiteOptions() )
                                      .add( 'isFunction()', Testing.iterateOverDataMap( isFunctionNamespace.isFunction ), Testing.createBenchmarkOptions() )

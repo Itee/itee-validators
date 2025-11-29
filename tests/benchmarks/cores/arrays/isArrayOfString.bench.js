@@ -1,5 +1,9 @@
-import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isArrayOfStringNamespace from '../../../../sources/cores/arrays/isArrayOfString.js'
+import { getBenchmarkPackage } from '../../../import.benchmarks.js'
+import { getTestingPackage } from '../../../import.testing.js'
+
+const Benchmark = await getBenchmarkPackage()
+const Testing   = await getTestingPackage()
 
 const isArrayOfStringSuite = Benchmark.Suite( 'isArrayOfStringNamespace.isArrayOfString', Testing.createSuiteOptions() )
                                      .add( 'isArrayOfString()', Testing.iterateOverDataMap( isArrayOfStringNamespace.isArrayOfString ), Testing.createBenchmarkOptions() )

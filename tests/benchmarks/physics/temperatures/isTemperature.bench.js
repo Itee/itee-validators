@@ -1,5 +1,9 @@
-import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isTemperatureNamespace from '../../../../sources/physics/temperatures/isTemperature.js'
+import { getBenchmarkPackage } from '../../../import.benchmarks.js'
+import { getTestingPackage } from '../../../import.testing.js'
+
+const Benchmark = await getBenchmarkPackage()
+const Testing   = await getTestingPackage()
 
 const isTemperatureSuite = Benchmark.Suite( 'isTemperatureNamespace.isTemperature', Testing.createSuiteOptions() )
                                      .add( 'isTemperature()', Testing.iterateOverDataMap( isTemperatureNamespace.isTemperature ), Testing.createBenchmarkOptions() )
