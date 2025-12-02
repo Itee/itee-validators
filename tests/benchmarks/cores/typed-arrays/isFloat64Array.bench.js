@@ -1,5 +1,9 @@
-import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isFloat64ArrayNamespace from '../../../../sources/cores/typed-arrays/isFloat64Array.js'
+import { getBenchmarkPackage } from '../../../import.benchmarks.js'
+import { getTestingPackage } from '../../../import.testing.js'
+
+const Benchmark = await getBenchmarkPackage()
+const Testing   = await getTestingPackage()
 
 const isFloat64ArraySuite = Benchmark.Suite( 'isFloat64ArrayNamespace.isFloat64Array', Testing.createSuiteOptions() )
                                      .add( 'isFloat64Array()', Testing.iterateOverDataMap( isFloat64ArrayNamespace.isFloat64Array ), Testing.createBenchmarkOptions() )

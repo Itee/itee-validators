@@ -1,5 +1,9 @@
-import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isValidPathNamespace from '../../../../sources/file-system/paths/isValidPath.js'
+import { getBenchmarkPackage } from '../../../import.benchmarks.js'
+import { getTestingPackage } from '../../../import.testing.js'
+
+const Benchmark = await getBenchmarkPackage()
+const Testing   = await getTestingPackage()
 
 const isValidPathSuite = Benchmark.Suite( 'isValidPathNamespace.isValidPath', Testing.createSuiteOptions() )
                                      .add( 'isValidPath()', Testing.iterateOverDataMap( isValidPathNamespace.isValidPath ), Testing.createBenchmarkOptions() )

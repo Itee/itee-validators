@@ -1,5 +1,9 @@
-import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isDirectoryPathNamespace from '../../../../sources/file-system/directories/isDirectoryPath.js'
+import { getBenchmarkPackage } from '../../../import.benchmarks.js'
+import { getTestingPackage } from '../../../import.testing.js'
+
+const Benchmark = await getBenchmarkPackage()
+const Testing   = await getTestingPackage()
 
 const isDirectoryPathSuite = Benchmark.Suite( 'isDirectoryPathNamespace.isDirectoryPath', Testing.createSuiteOptions() )
                                      .add( 'isDirectoryPath()', Testing.iterateOverDataMap( isDirectoryPathNamespace.isDirectoryPath ), Testing.createBenchmarkOptions() )

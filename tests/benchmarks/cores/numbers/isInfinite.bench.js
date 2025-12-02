@@ -1,5 +1,9 @@
-import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isInfiniteNamespace from '../../../../sources/cores/numbers/isInfinite.js'
+import { getBenchmarkPackage } from '../../../import.benchmarks.js'
+import { getTestingPackage } from '../../../import.testing.js'
+
+const Benchmark = await getBenchmarkPackage()
+const Testing   = await getTestingPackage()
 
 const isInfiniteNegativeSuite = Benchmark.Suite( 'isInfiniteNamespace.isInfiniteNegative', Testing.createSuiteOptions() )
                                      .add( 'isInfiniteNegative()', Testing.iterateOverDataMap( isInfiniteNamespace.isInfiniteNegative ), Testing.createBenchmarkOptions() )
