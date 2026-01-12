@@ -1,6 +1,8 @@
+import { jsonReporter }         from '@itee/json-reporter'
 import { playwrightLauncher }   from '@web/test-runner-playwright'
-import { packageRootDirectory } from '../_utils.mjs'
-import { iteeReporter }         from '../itee-reporter.mjs'
+import { join }                 from 'node:path'
+import { nodeModulesDirectory } from '../../../_utils.mjs'
+
 
 export default {
     files:          [
@@ -16,7 +18,7 @@ export default {
         playwrightLauncher( { product: 'firefox' } ),
     ],
     testFramework:  {
-        path:   packageRootDirectory + '/.tasks/itee-benchmarks-framework.js',
+        path:   join( nodeModulesDirectory, '@itee/benchmarks-framework/benchmarks-framework.js' ),
         config: {
             foo: 'bar'
         }
@@ -33,7 +35,7 @@ export default {
         </html>
     `,
     reporters:      [
-        iteeReporter( {
+        jsonReporter( {
             reportProgress: true
         } )
     ]

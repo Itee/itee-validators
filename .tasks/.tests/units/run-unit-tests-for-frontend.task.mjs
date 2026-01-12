@@ -3,7 +3,7 @@ import colors                   from 'ansi-colors'
 import log                      from 'fancy-log'
 import { relative }             from 'path'
 import { packageRootDirectory } from '../../_utils.mjs'
-import { default as config }    from '../../configs/units.conf.mjs'
+import { default as config }    from '../../configs/tests/units/units.conf.mjs'
 
 const {
           red,

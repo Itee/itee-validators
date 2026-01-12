@@ -21,7 +21,7 @@ import {
     join
 }                  from 'path'
 import cleanup     from 'rollup-plugin-cleanup'
-import replace     from 'rollup-plugin-re'
+import replace from 'rollup-plugin-re'
 import {
     getPrettyPackageName,
     getPrettyPackageVersion,
@@ -29,7 +29,7 @@ import {
     packageDescription,
     packageName,
     packageSourcesDirectory
-}                  from '../_utils.mjs'
+}              from '../../_utils.mjs'
 
 // Utils
 
@@ -209,146 +209,15 @@ function _createRollupConfigs( options ) {
 
 // Configs
 
-const configs = {
-    'build':                                _createRollupConfigs( {
-        input:     join( packageSourcesDirectory, `${ packageName }.js` ),
-        output:    packageBuildsDirectory,
-        formats:   [ 'esm', 'cjs', 'iife' ],
-        envs:      [ 'dev', 'prod' ],
-        sourcemap: true,
-        treeshake: true
-    } ),
-    'check-bundling-from-esm-build-import': {
-        input:     null,
-        external:  [ '' ],
-        plugins:   [
-            nodeResolve( {
-                preferBuiltins: true
-            } ),
-            cleanup( {
-                comments: 'all' // else remove __PURE__ declaration... -_-'
-            } )
-        ],
-        onwarn:    ( {
-            loc,
-            frame,
-            message
-        } ) => {
-
-            // Ignore some errors
-            if ( message.includes( 'Circular dependency' ) ) { return }
-            if ( message.includes( 'Generated an empty chunk' ) ) { return }
-
-            if ( loc ) {
-                process.stderr.write( `/!\\ ${ loc.file } (${ loc.line }:${ loc.column }) ${ frame } ${ message }\n` )
-            } else {
-                process.stderr.write( `/!\\ ${ message }\n` )
-            }
-
-        },
-        treeshake: {
-            moduleSideEffects:                true,
-            annotations:                      true,
-            correctVarValueBeforeDeclaration: true,
-            propertyReadSideEffects:          true,
-            tryCatchDeoptimization:           true,
-            unknownGlobalSideEffects:         true
-        },
-        output:    {
-            indent: '\t',
-            format: 'esm',
-            file:   null
-        }
-    },
-    'check-bundling-from-esm-files-import': {
-        input:     null,
-        plugins:   [
-            nodeResolve(),
-            cleanup( {
-                comments: 'all' // else remove __PURE__ declaration... -_-'
-            } )
-        ],
-        onwarn:    ( {
-            loc,
-            frame,
-            message
-        } ) => {
-
-            // Ignore some errors
-            if ( message.includes( 'Circular dependency' ) ) { return }
-            if ( message.includes( 'Generated an empty chunk' ) ) { return }
-
-            if ( loc ) {
-                process.stderr.write( `/!\\ ${ loc.file } (${ loc.line }:${ loc.column }) ${ frame } ${ message }\n` )
-            } else {
-                process.stderr.write( `/!\\ ${ message }\n` )
-            }
-
-        },
-        treeshake: {
-            moduleSideEffects:                true,
-            annotations:                      true,
-            correctVarValueBeforeDeclaration: true,
-            propertyReadSideEffects:          true,
-            tryCatchDeoptimization:           true,
-            unknownGlobalSideEffects:         true
-        },
-        output:    {
-            indent: '\t',
-            format: 'esm',
-            file:   null
-        }
-    },
-    'check-bundling-from-esm-files-direct': {
-        input:     null,
-        external:  [ '' ],
-        plugins:   [
-            nodeResolve( {
-                preferBuiltins: true
-            } ),
-            cleanup( {
-                comments: 'none'
-            } )
-        ],
-        onwarn:    ( {
-            loc,
-            frame,
-            message
-        } ) => {
-
-            // Ignore some errors
-            if ( message.includes( 'Circular dependency' ) ) { return }
-            if ( message.includes( 'Generated an empty chunk' ) ) { return }
-
-            if ( loc ) {
-                process.stderr.write( `/!\\ ${ loc.file } (${ loc.line }:${ loc.column }) ${ frame } ${ message }\n` )
-            } else {
-                process.stderr.write( `/!\\ ${ message }\n` )
-            }
-
-        },
-        treeshake: {
-            moduleSideEffects:                true,
-            annotations:                      true,
-            correctVarValueBeforeDeclaration: true,
-            propertyReadSideEffects:          true,
-            tryCatchDeoptimization:           true,
-            unknownGlobalSideEffects:         true
-        },
-        output:    {
-            indent: '\t',
-            format: 'esm',
-            file:   null
-        }
-    },
-}
-
-function getRollupConfigurationFor( bundleName ) {
-
-    return configs[ bundleName ]
-
-}
+const buildConfs = _createRollupConfigs( {
+    input:     join( packageSourcesDirectory, `${ packageName }.js` ),
+    output:    packageBuildsDirectory,
+    formats:   [ 'esm', 'cjs', 'iife' ],
+    envs:      [ 'dev', 'prod' ],
+    sourcemap: true,
+    treeshake: true
+} )
 
 export {
-    getRollupConfigurationFor
+    buildConfs
 }

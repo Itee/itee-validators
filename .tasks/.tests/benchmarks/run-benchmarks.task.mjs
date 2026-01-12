@@ -5,7 +5,7 @@ import {
     packageRootDirectory,
     serializeTasksFrom
 }                                              from '../../_utils.mjs'
-import { runBenchmarksTaskFiles as taskFiles } from '../../configs/run-benchmarks.conf.mjs'
+import { runBenchmarksTaskFiles as taskFiles } from '../../configs/tests/benchmarks/run-benchmarks.conf.mjs'
 
 const {
           green,

@@ -1,25 +1,25 @@
-import colors                        from 'ansi-colors'
-import log                           from 'fancy-log'
+import colors                                  from 'ansi-colors'
+import log                                     from 'fancy-log'
 import {
     existsSync,
     mkdirSync,
     rmSync,
     writeFileSync
-}                                    from 'fs'
+}                                              from 'fs'
 import {
     dirname,
     join,
     parse,
     relative
-}                                    from 'path'
-import { rollup }                    from 'rollup'
+}                                              from 'path'
+import { rollup }                              from 'rollup'
 import {
     packageRootDirectory,
     packageSourcesDirectory as sourcesDir,
     packageTestsBundlesDirectory as bundleDir
-}                                    from '../../_utils.mjs'
-import { getRollupConfigurationFor } from '../../configs/build.conf.mjs'
-import { sourcesFiles }              from '../../configs/check-bundling.conf.mjs'
+}                                              from '../../_utils.mjs'
+import { checkBundlingFromEsmFilesImportConf } from '../../configs/tests/bundlings/check-bundling-from-esm-files-import.conf.mjs'
+import { sourcesFiles }                        from '../../configs/tests/bundlings/check-bundling.conf.mjs'
 
 const {
           red,
@@ -38,7 +38,7 @@ const checkBundlingFromEsmFilesImportTask       = async ( done ) => {
         rmSync( outputDir, { recursive: true } )
     }
 
-    const config = getRollupConfigurationFor( 'check-bundling-from-esm-files-import' )
+    const config = checkBundlingFromEsmFilesImportConf
     for ( let sourceFile of sourcesFiles ) {
 
         const {

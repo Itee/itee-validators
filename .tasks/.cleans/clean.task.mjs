@@ -3,7 +3,7 @@ import { deleteAsync }          from 'del'
 import log                      from 'fancy-log'
 import { relative }             from 'path'
 import { packageRootDirectory } from '../_utils.mjs'
-import { cleanConf }            from '../configs/clean.conf.mjs'
+import { cleanConf }            from '../configs/cleans/clean.conf.mjs'
 
 const {
           red,

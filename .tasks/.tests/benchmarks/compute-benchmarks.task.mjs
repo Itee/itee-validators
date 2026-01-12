@@ -18,7 +18,7 @@ import {
     packageTestsBenchmarksDirectory as benchesDir,
     packageTestsDirectory
 }                       from '../../_utils.mjs'
-import { sourcesFiles } from '../../configs/compute-benchmarks.conf.mjs'
+import { sourcesFiles } from '../../configs/tests/benchmarks/compute-benchmarks.conf.mjs'
 
 const {
           red,

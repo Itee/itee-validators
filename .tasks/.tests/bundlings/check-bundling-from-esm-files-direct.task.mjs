@@ -17,8 +17,8 @@ import {
     packageSourcesDirectory as sourcesDir,
     packageTestsBundlesDirectory as bundlesDir
 }                                    from '../../_utils.mjs'
-import { getRollupConfigurationFor } from '../../configs/build.conf.mjs'
-import { sourcesFiles }              from '../../configs/check-bundling.conf.mjs'
+import { checkBundlingFromEsmFilesDirectConf } from '../../configs/tests/bundlings/check-bundling-from-esm-files-direct.conf.mjs'
+import { sourcesFiles }              from '../../configs/tests/bundlings/check-bundling.conf.mjs'
 
 const {
           red,
@@ -41,7 +41,7 @@ const checkBundlingFromEsmFilesDirectTask       = async ( done ) => {
         rmSync( outputDir, { recursive: true } )
     }
 
-    const config = getRollupConfigurationFor( 'check-bundling-from-esm-files-direct' )
+    const config = checkBundlingFromEsmFilesDirectConf
     for ( let sourceFile of sourcesFiles ) {
 
         const specificFilePath = sourceFile.replace( sourcesDir, '' )

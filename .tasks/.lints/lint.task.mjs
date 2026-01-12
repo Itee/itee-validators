@@ -21,7 +21,7 @@ const lintTask       = async ( done ) => {
 
     try {
 
-        const { stdout } = await execFile( 'npx', [ 'eslint', '--config', './.tasks/configs/eslint.conf.mjs', '--fix' ] )
+        const { stdout } = await execFile( 'npx', [ 'eslint', '--config', './.tasks/configs/lints/eslint.conf.mjs', '--fix' ] )
         if ( stdout !== '' ) {
             log( stdout )
         }

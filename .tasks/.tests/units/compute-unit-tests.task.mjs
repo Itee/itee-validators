@@ -19,8 +19,8 @@ import {
     packageRootDirectory,
     packageSourcesDirectory as sourcesDir,
     packageTestsUnitsDirectory as unitsDir
-}                          from '../../_utils.mjs'
-import { sourcesFiles }    from '../../configs/compute-unit-tests.conf.mjs'
+}                       from '../../_utils.mjs'
+import { sourcesFiles } from '../../configs/tests/units/compute-unit-tests.conf.mjs'
 
 const {
           red,

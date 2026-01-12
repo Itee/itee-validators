@@ -23,7 +23,7 @@ const docTask       = async ( done ) => {
         const { stdout } = await execFile(
             './node_modules/.bin/jsdoc',
             [
-                '--configure', './.tasks/configs/doc.conf.json',
+                '--configure', './.tasks/configs/docs/doc.conf.json',
                 '--destination', './docs'
             ]
         )

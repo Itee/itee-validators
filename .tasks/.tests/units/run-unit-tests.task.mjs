@@ -5,7 +5,7 @@ import {
     packageRootDirectory,
     serializeTasksFrom
 }                                             from '../../_utils.mjs'
-import { runUnitTestsTaskFiles as taskFiles } from '../../configs/run-unit-tests.conf.mjs'
+import { runUnitTestsTaskFiles as taskFiles } from '../../configs/tests/units/run-unit-tests.conf.mjs'
 
 const {
           green,

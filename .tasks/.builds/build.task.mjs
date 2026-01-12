@@ -1,9 +1,9 @@
-import colors                        from 'ansi-colors'
-import log                           from 'fancy-log'
-import { relative }                  from 'path'
-import { rollup }                    from 'rollup'
-import { packageRootDirectory }      from '../_utils.mjs'
-import { getRollupConfigurationFor } from '../configs/build.conf.mjs'
+import colors                   from 'ansi-colors'
+import log                      from 'fancy-log'
+import { relative }             from 'path'
+import { rollup }               from 'rollup'
+import { packageRootDirectory } from '../_utils.mjs'
+import { buildConfs }           from '../configs/builds/build.conf.mjs'
 
 const {
           red,
@@ -14,9 +14,7 @@ const {
 
 const buildTask       = async ( done ) => {
 
-    const configs = getRollupConfigurationFor( 'build' )
-
-    for ( let config of configs ) {
+    for ( let config of buildConfs ) {
 
         if ( config === undefined || config === null || config.length === 0 ) {
             log( yellow( 'Empty configuration object... Skip it!' ) )
