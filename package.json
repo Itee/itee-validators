@@ -67,6 +67,8 @@
   },
   "devDependencies": {
     "@eslint/js":                  "^9.38.0",
+    "@itee/benchmarks-framework":  "^1.0.0",
+    "@itee/json-reporter":         "^1.0.2",
     "@rollup/plugin-commonjs":     "^28.0.9",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-terser":       "^0.4.4",
