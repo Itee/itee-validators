@@ -41,7 +41,7 @@
   ],
   "scripts":         {
     "default":                     "gulp --tasks",
-    "refresh":                     "node ./.tasks/_refresh.mjs",
+    "refresh":                     "node ./node_modules/@itee/tasks/sources/refresh.mjs",
     "help":                        "gulp help",
     "patch":                       "gulp patch",
     "clean":                       "gulp clean",
@@ -67,8 +67,7 @@
   },
   "devDependencies": {
     "@eslint/js":                  "^9.38.0",
-    "@itee/benchmarks-framework":  "^1.0.0",
-    "@itee/json-reporter":         "^1.0.2",
+    "@itee/tasks":                 "^1.1.1",
     "@rollup/plugin-commonjs":     "^28.0.9",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-terser":       "^0.4.4",
@@ -92,7 +91,7 @@
     "gulp":                        "^5.0.1",
     "gulp-replace":                "^1.1.3",
     "ink-docstrap":                "^1.3.2",
-    "itee-utils":                  "^6.0.0",
+    "itee-utils":                  "^6.0.2",
     "jsdoc":                       "^4.0.5",
     "lodash":                      "^4.17.21",
     "mocha":                       "^11.7.4",
