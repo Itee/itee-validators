@@ -62,8 +62,7 @@
     "tests:units:run:back":        "gulp run-unit-tests-for-backend",
     "tests:units:run:front":       "gulp run-unit-tests-for-frontend",
     "release":                     "gulp release",
-    "semantic-release":            "semantic-release --dry-run --no-ci",
-    "postversion":                 "gulp build"
+    "semantic-release":            "semantic-release --dry-run --no-ci"
   },
   "devDependencies": {
     "@eslint/js":                  "^9.38.0",
