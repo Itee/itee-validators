@@ -5,6 +5,7 @@ import * as isValidSymbolicLinkPathNamespace from '../../../../sources/file-syst
 describe( 'isValidSymbolicLinkPathUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

@@ -5,6 +5,7 @@ import * as isFahrenheitNamespace from '../../../../sources/physics/temperatures
 describe( 'isFahrenheitUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

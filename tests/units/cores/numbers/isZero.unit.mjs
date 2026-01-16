@@ -5,6 +5,7 @@ import * as isZeroNamespace from '../../../../sources/cores/numbers/isZero.js'
 describe( 'isZeroUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

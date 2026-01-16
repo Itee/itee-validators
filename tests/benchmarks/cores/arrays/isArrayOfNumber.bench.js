@@ -1,5 +1,9 @@
-import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isArrayOfNumberNamespace from '../../../../sources/cores/arrays/isArrayOfNumber.js'
+import { getBenchmarkPackage } from '../../../import.benchmarks.js'
+import { getTestingPackage } from '../../../import.testing.js'
+
+const Benchmark = await getBenchmarkPackage()
+const Testing   = await getTestingPackage()
 
 const isArrayOfNumberSuite = Benchmark.Suite( 'isArrayOfNumberNamespace.isArrayOfNumber', Testing.createSuiteOptions() )
                                      .add( 'isArrayOfNumber()', Testing.iterateOverDataMap( isArrayOfNumberNamespace.isArrayOfNumber ), Testing.createBenchmarkOptions() )

@@ -1,5 +1,9 @@
-import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isZeroNamespace from '../../../../sources/cores/numbers/isZero.js'
+import { getBenchmarkPackage } from '../../../import.benchmarks.js'
+import { getTestingPackage } from '../../../import.testing.js'
+
+const Benchmark = await getBenchmarkPackage()
+const Testing   = await getTestingPackage()
 
 const isZeroSuite = Benchmark.Suite( 'isZeroNamespace.isZero', Testing.createSuiteOptions() )
                                      .add( 'isZero()', Testing.iterateOverDataMap( isZeroNamespace.isZero ), Testing.createBenchmarkOptions() )

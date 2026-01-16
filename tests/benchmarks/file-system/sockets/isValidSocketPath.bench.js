@@ -1,5 +1,9 @@
-import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isValidSocketPathNamespace from '../../../../sources/file-system/sockets/isValidSocketPath.js'
+import { getBenchmarkPackage } from '../../../import.benchmarks.js'
+import { getTestingPackage } from '../../../import.testing.js'
+
+const Benchmark = await getBenchmarkPackage()
+const Testing   = await getTestingPackage()
 
 const isValidSocketPathSuite = Benchmark.Suite( 'isValidSocketPathNamespace.isValidSocketPath', Testing.createSuiteOptions() )
                                      .add( 'isValidSocketPath()', Testing.iterateOverDataMap( isValidSocketPathNamespace.isValidSocketPath ), Testing.createBenchmarkOptions() )

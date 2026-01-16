@@ -1,5 +1,9 @@
-import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isValidCharacterDevicePathNamespace from '../../../../sources/file-system/character-devices/isValidCharacterDevicePath.js'
+import { getBenchmarkPackage } from '../../../import.benchmarks.js'
+import { getTestingPackage } from '../../../import.testing.js'
+
+const Benchmark = await getBenchmarkPackage()
+const Testing   = await getTestingPackage()
 
 const isValidCharacterDevicePathSuite = Benchmark.Suite( 'isValidCharacterDevicePathNamespace.isValidCharacterDevicePath', Testing.createSuiteOptions() )
                                      .add( 'isValidCharacterDevicePath()', Testing.iterateOverDataMap( isValidCharacterDevicePathNamespace.isValidCharacterDevicePath ), Testing.createBenchmarkOptions() )

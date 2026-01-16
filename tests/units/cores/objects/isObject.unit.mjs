@@ -5,6 +5,7 @@ import * as isObjectNamespace from '../../../../sources/cores/objects/isObject.j
 describe( 'isObjectUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

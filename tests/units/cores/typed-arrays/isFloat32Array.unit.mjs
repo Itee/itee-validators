@@ -5,6 +5,7 @@ import * as isFloat32ArrayNamespace from '../../../../sources/cores/typed-arrays
 describe( 'isFloat32ArrayUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

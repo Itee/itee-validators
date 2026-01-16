@@ -5,6 +5,7 @@ import * as isFilePathNamespace from '../../../../sources/file-system/files/isFi
 describe( 'isFilePathUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

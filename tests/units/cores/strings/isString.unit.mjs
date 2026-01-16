@@ -5,6 +5,7 @@ import * as isStringNamespace from '../../../../sources/cores/strings/isString.j
 describe( 'isStringUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

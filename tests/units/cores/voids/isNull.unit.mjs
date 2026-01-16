@@ -5,6 +5,7 @@ import * as isNullNamespace from '../../../../sources/cores/voids/isNull.js'
 describe( 'isNullUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

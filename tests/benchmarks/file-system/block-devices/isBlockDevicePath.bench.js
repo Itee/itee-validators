@@ -1,5 +1,9 @@
-import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
 import * as isBlockDevicePathNamespace from '../../../../sources/file-system/block-devices/isBlockDevicePath.js'
+import { getBenchmarkPackage } from '../../../import.benchmarks.js'
+import { getTestingPackage } from '../../../import.testing.js'
+
+const Benchmark = await getBenchmarkPackage()
+const Testing   = await getTestingPackage()
 
 const isBlockDevicePathSuite = Benchmark.Suite( 'isBlockDevicePathNamespace.isBlockDevicePath', Testing.createSuiteOptions() )
                                      .add( 'isBlockDevicePath()', Testing.iterateOverDataMap( isBlockDevicePathNamespace.isBlockDevicePath ), Testing.createBenchmarkOptions() )

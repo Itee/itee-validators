@@ -5,6 +5,7 @@ import * as isMinNamespace from '../../../../sources/cores/numbers/isMin.js'
 describe( 'isMinUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

@@ -5,6 +5,7 @@ import * as isEventTargetNamespace from '../../../sources/dom/isEventTarget.js'
 describe( 'isEventTargetUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

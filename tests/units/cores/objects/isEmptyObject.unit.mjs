@@ -5,6 +5,7 @@ import * as isEmptyObjectNamespace from '../../../../sources/cores/objects/isEmp
 describe( 'isEmptyObjectUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

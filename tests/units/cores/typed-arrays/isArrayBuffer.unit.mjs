@@ -5,6 +5,7 @@ import * as isArrayBufferNamespace from '../../../../sources/cores/typed-arrays/
 describe( 'isArrayBufferUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

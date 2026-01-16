@@ -5,6 +5,7 @@ import * as isArrayOfSingleElementNamespace from '../../../../sources/cores/arra
 describe( 'isArrayOfSingleElementUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

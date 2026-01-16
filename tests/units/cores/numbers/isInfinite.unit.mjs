@@ -5,6 +5,7 @@ import * as isInfiniteNamespace from '../../../../sources/cores/numbers/isInfini
 describe( 'isInfiniteUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

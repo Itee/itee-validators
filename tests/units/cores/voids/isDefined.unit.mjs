@@ -5,6 +5,7 @@ import * as isDefinedNamespace from '../../../../sources/cores/voids/isDefined.j
 describe( 'isDefinedUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

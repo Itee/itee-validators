@@ -5,6 +5,7 @@ import * as isUint8ArrayNamespace from '../../../../sources/cores/typed-arrays/i
 describe( 'isUint8ArrayUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

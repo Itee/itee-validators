@@ -5,6 +5,7 @@ import * as isTrueNamespace from '../../../../sources/cores/booleans/isTrue.js'
 describe( 'isTrueUnits', function () {
 
 	let _dataMap
+
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )
