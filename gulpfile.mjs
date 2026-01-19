@@ -19,6 +19,7 @@ export * from '@itee/tasks/sources/tests/benchmarks/run-benchmarks-for-frontend.
 export * from '@itee/tasks/sources/tests/benchmarks/run-benchmarks-for-backend.task.mjs'
 export * from '@itee/tasks/sources/tests/benchmarks/compute-benchmarks.task.mjs'
 export * from '@itee/tasks/sources/releases/release.task.mjs'
+export * from '@itee/tasks/sources/patches/patch.task.mjs'
 export * from '@itee/tasks/sources/lints/lint.task.mjs'
 export * from '@itee/tasks/sources/helps/help.task.mjs'
 export * from '@itee/tasks/sources/docs/doc.task.mjs'
