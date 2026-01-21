@@ -20,9 +20,9 @@
     "url": "https://github.com/Itee/itee-validators.git"
   },
   "type": "module",
-  "main": "builds/itee-validators.cjs.js",
-  "module": "builds/itee-validators.esm.js",
-  "browser": "builds/itee-validators.iife.js",
+  "main": "builds/validators.cjs",
+  "module": "builds/validators.mjs",
+  "browser": "builds/validators.js",
   "homepage": "https://github.com/Itee/itee-validators#readme",
   "man": "./docs/index.html",
   "bugs": {
