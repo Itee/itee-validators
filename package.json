@@ -1,86 +1,86 @@
 {
-  "name":            "itee-validators",
-  "version":         "6.0.0",
-  "description":     "A library of validation functions use in various Itee projects",
-  "keywords":        [
+  "name": "itee-validators",
+  "version": "6.0.0",
+  "description": "A library of validation functions use in various Itee projects",
+  "keywords": [
     "itee",
     "validation",
     "validator",
     "library"
   ],
-  "author":          {
+  "author": {
     "name": "Itee (Tristan Valcke)",
-    "url":  "https://github.com/Itee"
+    "url": "https://github.com/Itee"
   },
-  "contributors":    [],
-  "license":         "BSD-3-Clause",
-  "private":         false,
-  "repository":      {
+  "contributors": [],
+  "license": "BSD-3-Clause",
+  "private": false,
+  "repository": {
     "type": "git",
-    "url":  "https://github.com/Itee/itee-validators.git"
+    "url": "https://github.com/Itee/itee-validators.git"
   },
-  "type":            "module",
-  "main":            "builds/itee-validators.cjs.js",
-  "module":          "builds/itee-validators.esm.js",
-  "browser":         "builds/itee-validators.iife.js",
-  "homepage":        "https://github.com/Itee/itee-validators#readme",
-  "man":             "./docs/index.html",
-  "bugs":            {
+  "type": "module",
+  "main": "builds/itee-validators.cjs.js",
+  "module": "builds/itee-validators.esm.js",
+  "browser": "builds/itee-validators.iife.js",
+  "homepage": "https://github.com/Itee/itee-validators#readme",
+  "man": "./docs/index.html",
+  "bugs": {
     "url": "https://github.com/Itee/itee-validators/issues"
   },
-  "engines":         {
+  "engines": {
     "node": ">=20"
   },
-  "os":              [
+  "os": [
     "win32",
     "linux"
   ],
-  "cpu":             [
+  "cpu": [
     "x64",
     "ia32"
   ],
-  "scripts":         {
-    "default":                     "gulp --tasks",
-    "refresh":                     "node ./node_modules/@itee/tasks/sources/refresh.mjs",
-    "help":                        "gulp help",
-    "patch":                       "gulp patch",
-    "clean":                       "gulp clean",
-    "lint":                        "gulp lint",
-    "doc":                         "gulp doc",
-    "build":                       "gulp build",
-    "tests:run":                   "gulp run-tests",
-    "tests:bundling":              "gulp check-bundling",
+  "scripts": {
+    "default": "gulp --tasks",
+    "refresh": "node ./node_modules/@itee/tasks/scripts/refresh.mjs",
+    "help": "gulp help",
+    "patch": "gulp patch",
+    "clean": "gulp clean",
+    "lint": "gulp lint",
+    "doc": "gulp doc",
+    "build": "gulp build",
+    "tests:run": "gulp run-tests",
+    "tests:bundling": "gulp check-bundling",
     "tests:bundling:build-import": "gulp check-bundling-from-esm-build-import",
     "tests:bundling:files-import": "gulp check-bundling-from-esm-files-import",
     "tests:bundling:files-direct": "gulp check-bundling-from-esm-files-direct",
-    "tests:benches:compute":       "gulp compute-benchmarks",
-    "tests:benches:run":           "gulp run-benchmarks",
-    "tests:benches:run:back":      "gulp run-benchmarks-for-backend",
-    "tests:benches:run:front":     "gulp run-benchmarks-for-frontend",
-    "tests:units:compute":         "gulp compute-unit-tests",
-    "tests:units:run":             "gulp run-unit-tests",
-    "tests:units:run:back":        "gulp run-unit-tests-for-backend",
-    "tests:units:run:front":       "gulp run-unit-tests-for-frontend",
-    "release":                     "gulp release",
-    "semantic-release":            "semantic-release --dry-run --no-ci"
+    "tests:benches:compute": "gulp compute-benchmarks",
+    "tests:benches:run": "gulp run-benchmarks",
+    "tests:benches:run:back": "gulp run-benchmarks-for-backend",
+    "tests:benches:run:front": "gulp run-benchmarks-for-frontend",
+    "tests:units:compute": "gulp compute-unit-tests",
+    "tests:units:run": "gulp run-unit-tests",
+    "tests:units:run:back": "gulp run-unit-tests-for-backend",
+    "tests:units:run:front": "gulp run-unit-tests-for-frontend",
+    "release": "gulp release",
+    "semantic-release": "semantic-release --dry-run --no-ci"
   },
   "devDependencies": {
-    "@eslint/js":                  "^9.38.0",
-    "@itee/tasks":                 "^1.2.1",
+    "@eslint/js": "^9.38.0",
+    "@itee/tasks": "^1.3.3",
     "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git":       "^10.0.1",
-    "@semantic-release/github":    "^11.0.6",
-    "@semantic-release/npm":       "^12.0.2",
-    "benchmark":                   "^2.1.4",
-    "chai":                        "^6.2.0",
-    "cz-emoji":                    "^1.3.2-canary.2",
-    "eslint":                      "^9.38.0",
-    "eslint-plugin-mocha":         "^11.2.0",
-    "globals":                     "^16.4.0",
-    "gulp":                        "^5.0.1",
-    "itee-utils":                  "^6.0.2",
-    "mocha":                       "^11.7.4",
-    "semantic-release":            "^24.2.9",
-    "semantic-release-gitmoji":    "^1.6.8"
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.6",
+    "@semantic-release/npm": "^12.0.2",
+    "benchmark": "^2.1.4",
+    "chai": "^6.2.0",
+    "cz-emoji": "^1.3.2-canary.2",
+    "eslint": "^9.38.0",
+    "eslint-plugin-mocha": "^11.2.0",
+    "globals": "^16.4.0",
+    "gulp": "^5.0.1",
+    "itee-utils": "^6.0.2",
+    "mocha": "^11.7.4",
+    "semantic-release": "^24.2.9",
+    "semantic-release-gitmoji": "^1.6.8"
   }
 }
