@@ -1,4 +1,4 @@
-import { default as localConfig } from '@itee/tasks/configs/tests/units/run-unit-tests-for-frontend.conf.mjs'
+import { default as localConfig } from '@itee/tasks/sources/tests/units/run-unit-tests-for-frontend.conf.mjs'
 
 localConfig.files.push( '!tests/units/file-system/**' )
 
