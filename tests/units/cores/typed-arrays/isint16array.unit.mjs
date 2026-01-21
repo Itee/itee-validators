@@ -1,11 +1,12 @@
 import { expect }       from 'chai'
-import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
+import { getTestingPackage } from '../../../../node_modules/@itee/tasks/sources/utils/testing.js'
 import * as isint16arrayNamespace from '../../../../sources/cores/typed-arrays/isInt16Array.js'
+
+const Testing   = await getTestingPackage()
 
 describe( 'isint16arrayUnits', function () {
 
 	let _dataMap
-
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

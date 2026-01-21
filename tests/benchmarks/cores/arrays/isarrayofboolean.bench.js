@@ -1,6 +1,6 @@
 import * as isarrayofbooleanNamespace from '../../../../sources/cores/arrays/isArrayOfBoolean.js'
-import { getBenchmarkPackage } from '../../../import.benchmarks.js'
-import { getTestingPackage } from '../../../import.testing.js'
+import { getBenchmarkPackage } from '../../../../node_modules/@itee/tasks/sources/utils/benchmarks.js'
+import { getTestingPackage } from '../../../../node_modules/@itee/tasks/sources/utils/testing.js'
 
 const Benchmark = await getBenchmarkPackage()
 const Testing   = await getTestingPackage()

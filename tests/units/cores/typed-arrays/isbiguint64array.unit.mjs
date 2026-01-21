@@ -1,11 +1,12 @@
 import { expect }       from 'chai'
-import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
+import { getTestingPackage } from '../../../../node_modules/@itee/tasks/sources/utils/testing.js'
 import * as isbiguint64arrayNamespace from '../../../../sources/cores/typed-arrays/isBigUint64Array.js'
+
+const Testing   = await getTestingPackage()
 
 describe( 'isbiguint64arrayUnits', function () {
 
 	let _dataMap
-
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )

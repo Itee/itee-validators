@@ -1,11 +1,12 @@
 import { expect }       from 'chai'
-import { Testing }      from 'itee-utils/sources/testings/benchmarks.js'
+import { getTestingPackage } from '../../../../node_modules/@itee/tasks/sources/utils/testing.js'
 import * as isuint8clampedarrayNamespace from '../../../../sources/cores/typed-arrays/isUint8ClampedArray.js'
+
+const Testing   = await getTestingPackage()
 
 describe( 'isuint8clampedarrayUnits', function () {
 
 	let _dataMap
-
 	before( function() {
 		_dataMap = Testing.createDataMap()
 	} )
