@@ -1,3 +1,18 @@
+# [v6.1.1](https://github.com/Itee/itee-validators/compare/v6.1.0...v6.1.1) (2026-01-22)
+
+# [v6.1.0](https://github.com/Itee/itee-validators/compare/v6.0.0...v6.1.0) (2026-01-22)
+
+## ✨ New Features
+- [`cec2ca8`](https://github.com/Itee/itee-validators/commit/cec2ca8)  (tasks) update default tasks to latest itee standards 
+- [`9a018d8`](https://github.com/Itee/itee-validators/commit/9a018d8)  (tests) remove the need to build backend file to run unit and benches tests 
+
+## 🐛 Bug Fixes
+- [`a638198`](https://github.com/Itee/itee-validators/commit/a638198)  (gulpfile-refresh) use external script that do not require gulp to be loaded for refreshing it 
+- [`d20c0b2`](https://github.com/Itee/itee-validators/commit/d20c0b2)  (compute-unit-tests-task) fix default template for empty units 
+- [`fea81a8`](https://github.com/Itee/itee-validators/commit/fea81a8)  (tasks) fix frontend task run on empty test generation 
+- [`e40b077`](https://github.com/Itee/itee-validators/commit/e40b077)  (release) fix release task and update others to latest standards 
+- [`d35c610`](https://github.com/Itee/itee-validators/commit/d35c610)  (import-testing) fix broken cjs path
+
 # [v6.0.0](https://github.com/Itee/itee-validators/compare/v5.6.0...v6.0.0) (2025-11-05)
 
 ## ✨ New Features
