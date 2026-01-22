@@ -17,16 +17,16 @@
   "private":         false,
   "repository":      {
     "type": "git",
-    "url":  "https://github.com/Itee/itee-validators.git"
+    "url":  "https://github.com/Itee/validators.git"
   },
   "type":            "module",
   "main":            "builds/validators.cjs",
   "module":          "builds/validators.mjs",
   "browser":         "builds/validators.js",
-  "homepage":        "https://github.com/Itee/itee-validators#readme",
+  "homepage":        "https://github.com/Itee/validators#readme",
   "man":             "./docs/index.html",
   "bugs":            {
-    "url": "https://github.com/Itee/itee-validators/issues"
+    "url": "https://github.com/Itee/validators/issues"
   },
   "engines":         {
     "node": ">=20"
