@@ -36,7 +36,7 @@ export function isNotString( data ) {
     return !isString( data )
 }
 
-// #if IS_REMOVE_ON_BUILD
+// #if IS_KEEP_ON_BUILD
 
 export function isString_0( val ) {
     return ( typeof val === 'string' )

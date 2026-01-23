@@ -26,7 +26,7 @@ export function isNull( data ) {
     return ( data === null )
 }
 
-// #if IS_REMOVE_ON_BUILD
+// #if IS_KEEP_ON_BUILD
 
 export function isNull_0( value ) {
     return Object.is( value, null )

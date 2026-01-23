@@ -37,7 +37,7 @@ export function isNotArray( data ) {
 }
 
 
-// #if IS_REMOVE_ON_BUILD
+// #if IS_KEEP_ON_BUILD
 
 export function isArray_0( data ) {
     return data instanceof Array
