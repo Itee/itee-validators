@@ -65,6 +65,6 @@
     "semantic-release": "semantic-release --dry-run --no-ci"
   },
   "devDependencies": {
-    "@itee/tasks": "^1.4.4"
+    "@itee/tasks": "^1.4.5"
   }
 }
