@@ -1,3 +1,5 @@
+# [v6.1.3](https://github.com/Itee/validators/compare/v6.1.2...v6.1.3) (2026-01-23)
+
 # [v6.1.2](https://github.com/Itee/validators/compare/v6.1.1...v6.1.2) (2026-01-22)
 
 # [v6.1.1](https://github.com/Itee/itee-validators/compare/v6.1.0...v6.1.1) (2026-01-22)

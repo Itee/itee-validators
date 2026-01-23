@@ -1,13 +1,15 @@
 /**
- * ┳      ┓┏  ┓• ┓            ┏┓ ┓ ┓      ┏┓ ┳┳┓   ┓  ┓  
- * ┃╋┏┓┏┓ ┃┃┏┓┃┓┏┫┏┓╋┏┓┏┓┏  ┓┏┣┓ ┃ ┃  ━━  ┣ ┏┃┃┃┏┓┏┫┓┏┃┏┓
- * ┻┗┗ ┗ •┗┛┗┻┗┗┗┻┗┻┗┗┛┛ ┛  ┗┛┗┛•┻•┻      ┗┛┛┛ ┗┗┛┗┻┗┻┗┗ 
- *                                                       
+ * ┳      ┓┏  ┓• ┓            ┏┓ ┓ ┏┓      ┏┓ ┳┳┓   ┓  ┓  
+ * ┃╋┏┓┏┓ ┃┃┏┓┃┓┏┫┏┓╋┏┓┏┓┏  ┓┏┣┓ ┃ ┏┛  ━━  ┣ ┏┃┃┃┏┓┏┫┓┏┃┏┓
+ * ┻┗┗ ┗ •┗┛┗┻┗┗┗┻┗┻┗┗┛┛ ┛  ┗┛┗┛•┻•┗━      ┗┛┛┛ ┗┗┛┗┻┗┻┗┗ 
+ *                                                        
  * @desc    A library of validation functions use in various Itee projects
  * @author  [Itee (Tristan Valcke)]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses}
  * 
  */
+import { statSync, existsSync, readdirSync } from 'node:fs';
+
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -2453,5 +2455,750 @@ function isNotTemperature( data ) {
     return ( isNotKelvin( data ) && isNotCelsius( data ) && isNotFahrenheit( data ) )
 }
 
-export { ABSOLUTE_ZERO_CELSIUS, ABSOLUTE_ZERO_FAHRENHEIT, ABSOLUTE_ZERO_KELVIN, validatorInstance as Validator, isArray, isArrayBuffer, isArrayOfArray, isArrayOfBoolean, isArrayOfFunction, isArrayOfMultiElement, isArrayOfNull, isArrayOfNumber, isArrayOfObject, isArrayOfSingleElement, isArrayOfString, isArrayOfUndefined, isBigInt64Array, isBigUint64Array, isBlankString, isBoolean, isCelsius, isDefined, isEmpty, isEmptyArray, isEmptyObject, isEmptyString, isFahrenheit, isFalse, isFinite, isFloat, isFloat32Array, isFloat64Array, isFunction, isInfinite, isInfiniteNegative, isInfinitePositive, isInt16Array, isInt32Array, isInt8Array, isInteger, isKelvin, isMaxNegative, isMaxPositive, isMaxSafeInteger, isMinNegative, isMinPositive, isMinSafeInteger, isNaN, isNotArray, isNotArrayBuffer, isNotArrayOfArray, isNotArrayOfBoolean, isNotArrayOfFunction, isNotArrayOfNull, isNotArrayOfNumber, isNotArrayOfObject, isNotArrayOfString, isNotArrayOfUndefined, isNotBigInt64Array, isNotBigUint64Array, isNotBlankString, isNotBoolean, isNotCelsius, isNotDefined, isNotEmpty, isNotEmptyArray, isNotEmptyObject, isNotEmptyString, isNotFahrenheit, isNotFloat32Array, isNotFloat64Array, isNotFunction, isNotInt16Array, isNotInt32Array, isNotInt8Array, isNotKelvin, isNotNull, isNotNumber, isNotObject, isNotString, isNotSymbol, isNotTemperature, isNotUint16Array, isNotUint32Array, isNotUint8Array, isNotUint8ClampedArray, isNotUndefined, isNull, isNumber, isNumberNegative, isNumberPositive, isObject, isString, isSymbol, isTemperature, isTrue, isUint16Array, isUint32Array, isUint8Array, isUint8ClampedArray, isUndefined, isZero, isZeroNegative, isZeroPositive };
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/block-devices/isBlockDevicePath
+ * @description Export function to validate if a value is a block device path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isBlockDevicePath } from 'itee-validators'
+ *
+ * if( isBlockDevicePath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */
+
+
+/**
+ * Check if given path is a block device path
+ *
+ * @param path {string|Buffer|URL} The data to check against the block device path type
+ * @returns {boolean} true if path is a block device path, false otherwise
+ */
+function isBlockDevicePath( path ) {
+    if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
+        return false
+        // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
+    }
+
+    const stat = statSync( path, { throwIfNoEntry: false } );
+    return isDefined( stat ) && stat.isBlockDevice()
+}
+
+/**
+ * Check if given path is not a block device path
+ *
+ * @param path {string|Buffer|URL} The data to check against the block device path type
+ * @returns {boolean} true if path is not a block device path, false otherwise
+ */
+function isNotBlockDevicePath( path ) {
+    return !isBlockDevicePath( path )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/paths/isValidPath
+ * @description Export function to validate if a value is a valid path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isValidPath } from 'itee-validators'
+ *
+ * if( isValidPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */
+
+
+/**
+ * Check if given data is a valid file path
+ *
+ * @param data {*} The data to check against the path type
+ * @returns {boolean} true if data is a valid path, false otherwise
+ */
+function isValidPath( data ) {
+    return existsSync( data )
+}
+
+/**
+ * Check if given data is not a valid file path
+ *
+ * @param data {*} The data to check against the path type
+ * @returns {boolean} true if data is a valid path, false otherwise
+ */
+function isInvalidPath( data ) {
+    return !isValidPath( data )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/block-devices/isValidBlockDevicePath
+ * @description Export function to validate if a value is a valid block device path.
+ * @example
+ *
+ * import { isValidBlockDevicePath } from 'itee-validators'
+ *
+ * if( isValidBlockDevicePath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */
+
+
+/**
+ * Check if given data is a valid block device path
+ *
+ * @param data {*} The data to check against the block device path type
+ * @returns {boolean} true if data is a valid block device path, false otherwise
+ */
+function isValidBlockDevicePath( data ) {
+    return ( isValidPath( data ) && isBlockDevicePath( data ) )
+}
+
+/**
+ * Check if given data is an invalid block device path
+ *
+ * @param data {*} The data to check against the block device path type
+ * @returns {boolean} true if data is an invalid block device path, false otherwise
+ */
+function isInvalidBlockDevicePath( data ) {
+    return !isValidBlockDevicePath( data )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/character-devices/isCharacterDevicePath
+ * @description Export function to validate if a value is a character device path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isCharacterDevicePath } from 'itee-validators'
+ *
+ * if( isCharacterDevicePath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */
+
+
+/**
+ * Check if given path is a character device path
+ *
+ * @param path {string|Buffer|URL} The data to check against the character device path type
+ * @returns {boolean} true if path is a character device path, false otherwise
+ */
+function isCharacterDevicePath( path ) {
+    if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
+        return false
+        // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
+    }
+
+    const stat = statSync( path, { throwIfNoEntry: false } );
+    return isDefined( stat ) && stat.isCharacterDevice()
+}
+
+/**
+ * Check if given path is not a character device path
+ *
+ * @param path {string|Buffer|URL} The data to check against the character device path type
+ * @returns {boolean} true if path is not a character device path, false otherwise
+ */
+function isNotCharacterDevicePath( path ) {
+    return !isCharacterDevicePath( path )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/character-devices/isValidCharacterDevicePath
+ * @description Export function to validate if a value is a valid character device path
+ * @example
+ *
+ * import { isValidCharacterDevicePath } from 'itee-validators'
+ *
+ * if( isValidCharacterDevicePath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */
+
+
+/**
+ * Check if given data is a valid character device path
+ *
+ * @param data {*} The data to check against the character device path type
+ * @returns {boolean} true if data is a valid character device path, false otherwise
+ */
+function isValidCharacterDevicePath( data ) {
+    return ( isValidPath( data ) && isCharacterDevicePath( data ) )
+}
+
+/**
+ * Check if given data is an invalid character device path
+ *
+ * @param data {*} The data to check against the character device path type
+ * @returns {boolean} true if data is an invalid character device path, false otherwise
+ */
+function isInvalidCharacterDevicePath( data ) {
+    return !isValidCharacterDevicePath( data )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/directories/isDirectoryPath
+ * @description Export function to validate if a value is a directories path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isDirectoryPath } from 'itee-validators'
+ *
+ * if( isDirectoryPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */
+
+
+/**
+ * Check if given path is a directory path
+ *
+ * @param path {string|Buffer|URL} The data to check against the directory path type
+ * @returns {boolean} true if path is a directory path, false otherwise
+ */
+function isDirectoryPath( path ) {
+    if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
+        return false
+        // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
+    }
+
+    const stat = statSync( path, { throwIfNoEntry: false } );
+    return isDefined( stat ) && stat.isDirectory()
+}
+
+/**
+ * Check if given path is a not directory path
+ *
+ * @param path {string|Buffer|URL} The data to check against the directory path type
+ * @returns {boolean} true if path is a not directory path, false otherwise
+ */
+function isNotDirectoryPath( path ) {
+    return !isDirectoryPath( path )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/directories/isEmptyDirectory
+ * @description Export function to validate if a value is a empty directories
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isEmptyDirectory } from 'itee-validators'
+ *
+ * if( isEmptyDirectory( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */
+
+
+/**
+ * Check if given directory path is an empty directory
+ *
+ * @param directoryPath {string|Buffer|URL} The directory path to check the emptiness
+ * @returns {boolean} true if directory is empty, false otherwise
+ */
+function isEmptyDirectory( directoryPath ) {
+    return isDirectoryPath( directoryPath ) && ( readdirSync( directoryPath ).length === 0 )
+}
+
+/**
+ * Check if given directory path is not an empty directory
+ *
+ * @param directoryPath {string|Buffer|URL} The directory path to check the emptiness
+ * @returns {boolean} true if directory is not empty, false otherwise
+ */
+function isNotEmptyDirectory( directoryPath ) {
+    return !isEmptyDirectory( directoryPath )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/directories/isValidDirectoryPath
+ * @description Export function to validate if a value is a valid directory path
+ * @example
+ *
+ * import { isValidDirectoryPath } from 'itee-validators'
+ *
+ * if( isValidDirectoryPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */
+
+
+/**
+ * Check if given data is a valid directory path
+ *
+ * @param data {*} The data to check against the directory path type
+ * @returns {boolean} true if data is a valid directory path, false otherwise
+ */
+function isValidDirectoryPath( data ) {
+    return ( isValidPath( data ) && isDirectoryPath( data ) )
+}
+
+/**
+ * Check if given data is an invalid directory path
+ *
+ * @param data {*} The data to check against the directory path type
+ * @returns {boolean} true if data is an invalid directory path, false otherwise
+ */
+function isInvalidDirectoryPath( data ) {
+    return !isValidDirectoryPath( data )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/fifo-pipes/isFIFOPath
+ * @description Export function to validate if a value is a fifo pipes path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isFIFOPath } from 'itee-validators'
+ *
+ * if( isFIFOPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */
+
+
+/**
+ * Check if given path is a fifo path
+ *
+ * @param path {string|Buffer|URL} The data to check against the fifo path type
+ * @returns {boolean} true if path is a fifo path, false otherwise
+ */
+function isFIFOPath( path ) {
+    if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
+        return false
+        // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
+    }
+
+    const stat = statSync( path, { throwIfNoEntry: false } );
+    return isDefined( stat ) && stat.isFIFO()
+}
+
+/**
+ * Check if given path is not a fifo path
+ *
+ * @param path {string|Buffer|URL} The data to check against the fifo path type
+ * @returns {boolean} true if path is not a fifo path, false otherwise
+ */
+function isNotFIFOPath( path ) {
+    return !isFIFOPath( path )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/fifo-pipes/isValidFIFOPath
+ * @description Export function to validate if a value is a valid fifo pipes path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isValidFIFOPath } from 'itee-validators'
+ *
+ * if( isValidFIFOPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */
+
+
+/**
+ * Check if given data is a valid fifo path
+ *
+ * @param data {*} The data to check against the fifo path type
+ * @returns {boolean} true if data is a valid fifo path, false otherwise
+ */
+function isValidFIFOPath( data ) {
+    return ( isValidPath( data ) && isFIFOPath( data ) )
+}
+
+/**
+ * Check if given data is an invalid fifo path
+ *
+ * @param data {*} The data to check against the fifo path type
+ * @returns {boolean} true if data is an invalid fifo path, false otherwise
+ */
+function isInvalidFIFOPath( data ) {
+    return !isValidFIFOPath( data )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/files/isFilePath
+ * @description Export function to validate if a value is a file path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isFilePath } from 'itee-validators'
+ *
+ * if( isFilePath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */
+
+
+/**
+ * Check if given path is a file path
+ *
+ * @param path {string|Buffer|URL} The data to check against the file path type
+ * @returns {boolean} true if path is a file path, false otherwise
+ */
+function isFilePath( path ) {
+    if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
+        return false
+        // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
+    }
+
+    const stat = statSync( path, { throwIfNoEntry: false } );
+    return isDefined( stat ) && stat.isFile()
+}
+
+/**
+ * Check if given path is not a file path
+ *
+ * @param path {string|Buffer|URL} The data to check against the file path type
+ * @returns {boolean} true if path is not a file path, false otherwise
+ */
+function isNotFilePath( path ) {
+    return !isFilePath( path )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/files/isEmptyFile
+ * @description Export function to validate if a value is an empty file
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isEmptyFile } from 'itee-validators'
+ *
+ * if( isEmptyFile( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */
+
+
+/**
+ * Check if given file path is an empty file more or less a threshold in bytes.
+ *
+ * @param filePath {string|Buffer|URL} The directory path to check the emptiness
+ * @param threshold {number} An amount of byte below which it consider the file as empty ( 0 as default ).
+ * @returns {boolean} true if file is empty, false otherwise
+ */
+function isEmptyFile( filePath, threshold = 0 ) {
+    if ( isNotString( filePath ) && !( filePath instanceof Buffer ) && !( filePath instanceof URL ) ) {
+        return false
+        // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
+    }
+
+    return isFilePath( filePath ) && ( statSync( filePath ).size <= threshold )
+}
+
+/**
+ * Check if given file path is not an empty file more or less a threshold in bytes.
+ *
+ * @param filePath {string|Buffer|URL} The directory path to check the emptiness
+ * @param threshold {number} An amount of byte above which it consider the file as not empty ( 0 as default ).
+ * @returns {boolean} true if file is not empty, false otherwise
+ */
+function isNotEmptyFile( filePath, threshold = 0 ) {
+    return !isEmptyFile( filePath, threshold )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/files/isValidFilePath
+ * @description Export function to validate if a value is a valid file path
+ * @example
+ *
+ * import { isValidFilePath } from 'itee-validators'
+ *
+ * if( isValidFilePath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */
+
+
+/**
+ * Check if given data is a valid file path
+ *
+ * @param data {*} The data to check against the file path type
+ * @returns {boolean} true if data is a valid file path, false otherwise
+ */
+function isValidFilePath( data ) {
+    return ( isValidPath( data ) && isFilePath( data ) )
+}
+
+/**
+ * Check if given data is an invalid file path
+ *
+ * @param data {*} The data to check against the file path type
+ * @returns {boolean} true if data is an invalid file path, false otherwise
+ */
+function isInvalidFilePath( data ) {
+    return !isValidFilePath( data )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/sockets/isSocketPath
+ * @description Export function to validate if a value is a socket path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isSocketPath } from 'itee-validators'
+ *
+ * if( isSocketPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */
+
+
+/**
+ * Check if given path is a socket path
+ *
+ * @param path {string|Buffer|URL} The data to check against the socket path type
+ * @returns {boolean} true if path is a socket path, false otherwise
+ */
+function isSocketPath( path ) {
+    if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
+        return false
+        // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
+    }
+
+    const stat = statSync( path, { throwIfNoEntry: false } );
+    return isDefined( stat ) && stat.isSocket()
+}
+
+/**
+ * Check if given path is not a socket path
+ *
+ * @param path {string|Buffer|URL} The data to check against the socket path type
+ * @returns {boolean} true if path is not a socket path, false otherwise
+ */
+function isNotSocketPath( path ) {
+    return !isSocketPath( path )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/sockets/isValidSocketPath
+ * @description Export function to validate if a value is a valid socket path
+ * @example
+ *
+ * import { isValidSocketPath } from 'itee-validators'
+ *
+ * if( isValidSocketPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */
+
+
+/**
+ * Check if given data is a valid socket path
+ *
+ * @param data {*} The data to check against the socket path type
+ * @returns {boolean} true if data is a valid socket path, false otherwise
+ */
+function isValidSocketPath( data ) {
+    return ( isValidPath( data ) && isSocketPath( data ) )
+}
+
+/**
+ * Check if given data is an invalid socket path
+ *
+ * @param data {*} The data to check against the socket path type
+ * @returns {boolean} true if data is an invalid socket path, false otherwise
+ */
+function isInvalidSocketPath( data ) {
+    return !isValidSocketPath( data )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/symbolic-links/isSocketPath
+ * @description Export function to validate if a value is a symbolic links path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isSymbolicLinkPath } from 'itee-validators'
+ *
+ * if( isSymbolicLinkPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */
+
+
+/**
+ * Check if given path is a symbolic link path
+ *
+ * @param path {string|Buffer|URL} The data to check against the symbolic link path type
+ * @returns {boolean} true if path is a symbolic link path, false otherwise
+ */
+function isSymbolicLinkPath( path ) {
+    if ( isNotString( path ) && !( path instanceof Buffer ) && !( path instanceof URL ) ) {
+        return false
+        // throw new TypeError( 'Invalid path type! Expect string, buffer or url.' )
+    }
+
+    const stat = statSync( path, { throwIfNoEntry: false } );
+    return isDefined( stat ) && stat.isSymbolicLink()
+}
+
+/**
+ * Check if given path is not a symbolic link path
+ *
+ * @param path {string|Buffer|URL} The data to check against the symbolic link path type
+ * @returns {boolean} true if path is not a symbolic link path, false otherwise
+ */
+function isNotSymbolicLinkPath( path ) {
+    return !isSymbolicLinkPath( path )
+}
+
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/symbolic-links/isSocketPath
+ * @description Export function to validate if a value is a valid symbolic links path
+ * @example
+ *
+ * import { isValidSymbolicLinkPath } from 'itee-validators'
+ *
+ * if( isValidSymbolicLinkPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */
+
+
+/**
+ * Check if given data is a valid symbolic link path
+ *
+ * @param data {*} The data to check against the symbolic link path type
+ * @returns {boolean} true if data is a valid symbolic link path, false otherwise
+ */
+function isValidSymbolicLinkPath( data ) {
+    return ( isValidPath( data ) && isSymbolicLinkPath( data ) )
+}
+
+/**
+ * Check if given data is an invalid symbolic link path
+ *
+ * @param data {*} The data to check against the symbolic link path type
+ * @returns {boolean} true if data is an invalid symbolic link path, false otherwise
+ */
+function isInvalidSymbolicLinkPath( data ) {
+    return !isValidSymbolicLinkPath( data )
+}
+
+export { ABSOLUTE_ZERO_CELSIUS, ABSOLUTE_ZERO_FAHRENHEIT, ABSOLUTE_ZERO_KELVIN, validatorInstance as Validator, isArray, isArrayBuffer, isArrayOfArray, isArrayOfBoolean, isArrayOfFunction, isArrayOfMultiElement, isArrayOfNull, isArrayOfNumber, isArrayOfObject, isArrayOfSingleElement, isArrayOfString, isArrayOfUndefined, isBigInt64Array, isBigUint64Array, isBlankString, isBlockDevicePath, isBoolean, isCelsius, isCharacterDevicePath, isDefined, isDirectoryPath, isEmpty, isEmptyArray, isEmptyDirectory, isEmptyFile, isEmptyObject, isEmptyString, isFIFOPath, isFahrenheit, isFalse, isFilePath, isFinite, isFloat, isFloat32Array, isFloat64Array, isFunction, isInfinite, isInfiniteNegative, isInfinitePositive, isInt16Array, isInt32Array, isInt8Array, isInteger, isInvalidBlockDevicePath, isInvalidCharacterDevicePath, isInvalidDirectoryPath, isInvalidFIFOPath, isInvalidFilePath, isInvalidPath, isInvalidSocketPath, isInvalidSymbolicLinkPath, isKelvin, isMaxNegative, isMaxPositive, isMaxSafeInteger, isMinNegative, isMinPositive, isMinSafeInteger, isNaN, isNotArray, isNotArrayBuffer, isNotArrayOfArray, isNotArrayOfBoolean, isNotArrayOfFunction, isNotArrayOfNull, isNotArrayOfNumber, isNotArrayOfObject, isNotArrayOfString, isNotArrayOfUndefined, isNotBigInt64Array, isNotBigUint64Array, isNotBlankString, isNotBlockDevicePath, isNotBoolean, isNotCelsius, isNotCharacterDevicePath, isNotDefined, isNotDirectoryPath, isNotEmpty, isNotEmptyArray, isNotEmptyDirectory, isNotEmptyFile, isNotEmptyObject, isNotEmptyString, isNotFIFOPath, isNotFahrenheit, isNotFilePath, isNotFloat32Array, isNotFloat64Array, isNotFunction, isNotInt16Array, isNotInt32Array, isNotInt8Array, isNotKelvin, isNotNull, isNotNumber, isNotObject, isNotSocketPath, isNotString, isNotSymbol, isNotSymbolicLinkPath, isNotTemperature, isNotUint16Array, isNotUint32Array, isNotUint8Array, isNotUint8ClampedArray, isNotUndefined, isNull, isNumber, isNumberNegative, isNumberPositive, isObject, isSocketPath, isString, isSymbol, isSymbolicLinkPath, isTemperature, isTrue, isUint16Array, isUint32Array, isUint8Array, isUint8ClampedArray, isUndefined, isValidBlockDevicePath, isValidCharacterDevicePath, isValidDirectoryPath, isValidFIFOPath, isValidFilePath, isValidPath, isValidSocketPath, isValidSymbolicLinkPath, isZero, isZeroNegative, isZeroPositive };
 //# sourceMappingURL=validators.mjs.map

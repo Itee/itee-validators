@@ -1,3 +1,4 @@
+import{statSync as n,existsSync as r,readdirSync as t}from"node:fs";
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -14,8 +15,7 @@
  *     //...
  * }
  *
- */
-function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
+ */function e(n){return Array.isArray(n)}function u(n){return!Array.isArray(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -32,7 +32,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function t(n){return!r(n)&&0===n.length}function e(n){return!!r(n)||n.length>0}
+ */function i(n){return!u(n)&&0===n.length}function o(n){return!!u(n)||n.length>0}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -49,7 +49,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function u(n){if(r(n))return!1;if(t(n))return!1;for(let t=0,e=n.length;t<e;t++)if(r(n[t]))return!1;return!0}function i(e){if(r(e))return!0;if(t(e))return!0;for(let r=0,t=e.length;r<t;r++)if(n(e[r]))return!1;return!0}
+ */function f(n){if(u(n))return!1;if(i(n))return!1;for(let r=0,t=n.length;r<t;r++)if(u(n[r]))return!1;return!0}function c(n){if(u(n))return!0;if(i(n))return!0;for(let r=0,t=n.length;r<t;r++)if(e(n[r]))return!1;return!0}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -66,7 +66,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function o(n){return"boolean"==typeof n}function f(n){return"boolean"!=typeof n}
+ */function a(n){return"boolean"==typeof n}function l(n){return"boolean"!=typeof n}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -83,7 +83,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function c(n){if(r(n))return!1;if(t(n))return!1;for(let r=0,t=n.length;r<t;r++)if(f(n[r]))return!1;return!0}function a(n){if(r(n))return!0;if(t(n))return!0;for(let r=0,t=n.length;r<t;r++)if(f(n[r]))return!0;return!1}
+ */function s(n){if(u(n))return!1;if(i(n))return!1;for(let r=0,t=n.length;r<t;r++)if(l(n[r]))return!1;return!0}function y(n){if(u(n))return!0;if(i(n))return!0;for(let r=0,t=n.length;r<t;r++)if(l(n[r]))return!0;return!1}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -100,7 +100,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function l(n){return"function"==typeof n}function s(n){return"function"!=typeof n}
+ */function h(n){return"function"==typeof n}function N(n){return"function"!=typeof n}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -117,7 +117,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function y(n){if(r(n))return!1;if(t(n))return!1;for(let r=0,t=n.length;r<t;r++)if(s(n[r]))return!1;return!0}function h(n){if(r(n))return!0;if(t(n))return!0;for(let r=0,t=n.length;r<t;r++)if(s(n[r]))return!0;return!1}
+ */function I(n){if(u(n))return!1;if(i(n))return!1;for(let r=0,t=n.length;r<t;r++)if(N(n[r]))return!1;return!0}function p(n){if(u(n))return!0;if(i(n))return!0;for(let r=0,t=n.length;r<t;r++)if(N(n[r]))return!0;return!1}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -134,7 +134,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function p(n){return!r(n)&&n.length>1}
+ */function d(n){return!u(n)&&n.length>1}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -151,7 +151,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function N(n){return null===n}function d(n){return null!==n}
+ */function g(n){return null===n}function b(n){return null!==n}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -167,7 +167,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  * } else {
  *     //...
  * } *
- */function g(n){if(r(n))return!1;if(t(n))return!1;for(let r=0,t=n.length;r<t;r++)if(d(n[r]))return!1;return!0}function b(n){if(r(n))return!0;if(t(n))return!0;for(let r=0,t=n.length;r<t;r++)if(d(n[r]))return!0;return!1}
+ */function E(n){if(u(n))return!1;if(i(n))return!1;for(let r=0,t=n.length;r<t;r++)if(b(n[r]))return!1;return!0}function A(n){if(u(n))return!0;if(i(n))return!0;for(let r=0,t=n.length;r<t;r++)if(b(n[r]))return!0;return!1}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -184,7 +184,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function I(n){return null!=n}function A(n){return null==n}
+ */function w(n){return null!=n}function m(n){return null==n}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -201,7 +201,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function E(n){return n===Number.NEGATIVE_INFINITY}function m(n){return n===Number.POSITIVE_INFINITY}function v(n){return E(n)||m(n)}function w(n){return Number.isFinite(n)}
+ */function v(n){return n===Number.NEGATIVE_INFINITY}function U(n){return n===Number.POSITIVE_INFINITY}function T(n){return v(n)||U(n)}function V(n){return Number.isFinite(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -218,7 +218,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function T(n){return 0===n}function V(n){return 0===n&&1/n===Number.POSITIVE_INFINITY}function _(n){return 0===n&&1/n===Number.NEGATIVE_INFINITY}
+ */function F(n){return 0===n}function B(n){return 0===n&&1/n===Number.POSITIVE_INFINITY}function L(n){return 0===n&&1/n===Number.NEGATIVE_INFINITY}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -235,7 +235,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function F(n){return!A(n)&&n.constructor===Number}function U(n){return!S(n)&&(n>0||V(n)||m(n))}function $(n){return F(n)&&n<0}function S(n){return!F(n)}function M(n){return Number.isInteger(n)}function O(n){return!S(n)&&(!Number.isNaN(n)&&(!v(n)&&n%1!=0))}function j(n){return Number.isNaN(n)}
+ */function _(n){return!m(n)&&n.constructor===Number}function $(n){return!S(n)&&(n>0||B(n)||U(n))}function R(n){return _(n)&&n<0}function S(n){return!_(n)}function k(n){return Number.isInteger(n)}function M(n){return!S(n)&&(!Number.isNaN(n)&&(!T(n)&&n%1!=0))}function O(n){return Number.isNaN(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -252,7 +252,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function k(n){if(r(n))return!1;if(t(n))return!1;for(let r=0,t=n.length;r<t;r++)if(S(n[r]))return!1;return!0}function B(n){if(r(n))return!0;if(t(n))return!0;for(let r=0,t=n.length;r<t;r++)if(S(n[r]))return!0;return!1}
+ */function j(n){if(u(n))return!1;if(i(n))return!1;for(let r=0,t=n.length;r<t;r++)if(S(n[r]))return!1;return!0}function G(n){if(u(n))return!0;if(i(n))return!0;for(let r=0,t=n.length;r<t;r++)if(S(n[r]))return!0;return!1}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -269,7 +269,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function G(n){return!A(n)&&n.constructor===Object}function L(n){return!G(n)}
+ */function Y(n){return!m(n)&&n.constructor===Object}function x(n){return!Y(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -286,7 +286,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function Y(n){if(r(n))return!1;if(t(n))return!1;for(let r=0,t=n.length;r<t;r++)if(L(n[r]))return!1;return!0}function x(n){if(r(n))return!0;if(t(n))return!0;for(let r=0,t=n.length;r<t;r++)if(L(n[r]))return!0;return!1}
+ */function D(n){if(u(n))return!1;if(i(n))return!1;for(let r=0,t=n.length;r<t;r++)if(x(n[r]))return!1;return!0}function P(n){if(u(n))return!0;if(i(n))return!0;for(let r=0,t=n.length;r<t;r++)if(x(n[r]))return!0;return!1}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -303,7 +303,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function P(n){return!r(n)&&1===n.length}
+ */function X(n){return!u(n)&&1===n.length}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -320,7 +320,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function X(n){return"string"==typeof n||n instanceof String}function R(n){return!X(n)}
+ */function C(n){return"string"==typeof n||n instanceof String}function q(n){return!C(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -337,7 +337,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function q(n){if(r(n))return!1;if(t(n))return!1;for(let r=0,t=n.length;r<t;r++)if(R(n[r]))return!1;return!0}function C(n){if(r(n))return!0;if(t(n))return!0;for(let r=0,t=n.length;r<t;r++)if(R(n[r]))return!0;return!1}
+ */function z(n){if(u(n))return!1;if(i(n))return!1;for(let r=0,t=n.length;r<t;r++)if(q(n[r]))return!1;return!0}function H(n){if(u(n))return!0;if(i(n))return!0;for(let r=0,t=n.length;r<t;r++)if(q(n[r]))return!0;return!1}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -354,7 +354,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function z(n){return void 0===n}function D(n){return void 0!==n}
+ */function J(n){return void 0===n}function K(n){return void 0!==n}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -371,7 +371,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function H(n){if(r(n))return!1;if(t(n))return!1;for(let r=0,t=n.length;r<t;r++)if(D(n[r]))return!1;return!0}function J(n){if(r(n))return!0;if(t(n))return!0;for(let r=0,t=n.length;r<t;r++)if(D(n[r]))return!0;return!1}
+ */function Q(n){if(u(n))return!1;if(i(n))return!1;for(let r=0,t=n.length;r<t;r++)if(K(n[r]))return!1;return!0}function W(n){if(u(n))return!0;if(i(n))return!0;for(let r=0,t=n.length;r<t;r++)if(K(n[r]))return!0;return!1}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -388,7 +388,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function K(n){return o(n)&&!0===n}function Q(n){return o(n)&&!1===n}
+ */function Z(n){return a(n)&&!0===n}function nn(n){return a(n)&&!1===n}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -405,7 +405,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function W(n){return n===Number.MAX_VALUE}function Z(n){return n===-Number.MAX_VALUE}
+ */function rn(n){return n===Number.MAX_VALUE}function tn(n){return n===-Number.MAX_VALUE}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -422,7 +422,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function nn(n){return n===Number.MIN_VALUE}function rn(n){return n===-Number.MIN_VALUE}
+ */function en(n){return n===Number.MIN_VALUE}function un(n){return n===-Number.MIN_VALUE}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -439,7 +439,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function tn(n){return n===Number.MAX_SAFE_INTEGER}function en(n){return n===Number.MIN_SAFE_INTEGER}
+ */function on(n){return n===Number.MAX_SAFE_INTEGER}function fn(n){return n===Number.MIN_SAFE_INTEGER}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -456,7 +456,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function un(n){if(L(n))return!1;if(0===n.length)return!0;for(let r in n)if(Object.prototype.hasOwnProperty.call(n,r))return!1;return!0}function on(n){return!un(n)}
+ */function cn(n){if(x(n))return!1;if(0===n.length)return!0;for(let r in n)if(Object.prototype.hasOwnProperty.call(n,r))return!1;return!0}function an(n){return!cn(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -473,7 +473,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function fn(n){return!R(n)&&0===n.length}function cn(n){return!fn(n)}
+ */function ln(n){return!q(n)&&0===n.length}function sn(n){return!ln(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -490,7 +490,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function an(n){return!R(n)&&(!fn(n)&&!/\S/.test(n))}function ln(n){return!an(n)}
+ */function yn(n){return!q(n)&&(!ln(n)&&!/\S/.test(n))}function hn(n){return!yn(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -507,7 +507,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function sn(n){return"symbol"==typeof n}function yn(n){return"symbol"!=typeof n}
+ */function Nn(n){return"symbol"==typeof n}function In(n){return"symbol"!=typeof n}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -524,7 +524,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  *     //...
  * }
  *
- */function hn(n){return!A(n)&&(!!fn(n)||(!!t(n)||!!un(n)))}function pn(n){return!hn(n)}
+ */function pn(n){return!m(n)&&(!!ln(n)||(!!i(n)||!!cn(n)))}function dn(n){return!pn(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -649,7 +649,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  alert( err )
  }
  *
- */class Nn{constructor(){this.validators={Boolean:o,Number:F,Integer:M,Float:O,Array:n,String:X,Object:G,Symbol:sn,Function:l},this.errors=[]}add(n,r){if(R(n))throw new TypeError("Validator: Expect type to be a string");if(s(r)&&L(r))throw new TypeError("Validator: Expect validator to be an object or a function");if(I(this.validators[n]))throw new TypeError(`Validator: a validator is already defined for type '${n}'`);this.validators[n]=r}remove(n){delete this.validators[n]}getAvalaibleTypes(){const n=[];for(let r in this.validators)n.push(r);return n}check(n,r,t=!0){const e=this.validators[r];if(A(e))throw new TypeError(`Validator: Unable to find schema validation of type '${r}'`);let u=!0;if(l(e))u=e(n);else{if(!G(e))throw new TypeError(`Validator: Unknown validator of type '${r}'`);{let i=!0;for(let o in e){const f=e[o];if(A(f))throw new TypeError(`Validator: Missing validator for key '${o}' of type '${r}'`);const c=n[o],a=f.required;if(A(c)){if(!a)continue;i=!1}let l=f.fn;if(I(l)){if(s(l))throw new TypeError(`Validator: Invalid validation function for '${o}' with type '${r}'`);i=l(c)}else i=this.check(c,f.type,t);if(!1===i&&(this.errors.push(`Validator: Invalid property '${o}' of type '${f.type}' with value '${c}' in object of type '${r}'`),u=!1,t))break}}}return u}}let dn;
+ */class gn{constructor(){this.validators={Boolean:a,Number:_,Integer:k,Float:M,Array:e,String:C,Object:Y,Symbol:Nn,Function:h},this.errors=[]}add(n,r){if(q(n))throw new TypeError("Validator: Expect type to be a string");if(N(r)&&x(r))throw new TypeError("Validator: Expect validator to be an object or a function");if(w(this.validators[n]))throw new TypeError(`Validator: a validator is already defined for type '${n}'`);this.validators[n]=r}remove(n){delete this.validators[n]}getAvalaibleTypes(){const n=[];for(let r in this.validators)n.push(r);return n}check(n,r,t=!0){const e=this.validators[r];if(m(e))throw new TypeError(`Validator: Unable to find schema validation of type '${r}'`);let u=!0;if(h(e))u=e(n);else{if(!Y(e))throw new TypeError(`Validator: Unknown validator of type '${r}'`);{let i=!0;for(let o in e){const f=e[o];if(m(f))throw new TypeError(`Validator: Missing validator for key '${o}' of type '${r}'`);const c=n[o],a=f.required;if(m(c)){if(!a)continue;i=!1}let l=f.fn;if(w(l)){if(N(l))throw new TypeError(`Validator: Invalid validation function for '${o}' with type '${r}'`);i=l(c)}else i=this.check(c,f.type,t);if(!1===i&&(this.errors.push(`Validator: Invalid property '${o}' of type '${f.type}' with value '${c}' in object of type '${r}'`),u=!1,t))break}}}return u}}let bn;
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -667,7 +667,7 @@ function n(n){return Array.isArray(n)}function r(n){return!Array.isArray(n)}
  * }
  *
  */
-function gn(n){return n instanceof ArrayBuffer}function bn(n){return!gn(n)}
+function En(n){return n instanceof ArrayBuffer}function An(n){return!En(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -684,7 +684,7 @@ function gn(n){return n instanceof ArrayBuffer}function bn(n){return!gn(n)}
  *     //...
  * }
  *
- */function In(n){return n instanceof BigInt64Array}function An(n){return!In(n)}
+ */function wn(n){return n instanceof BigInt64Array}function mn(n){return!wn(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -701,7 +701,7 @@ function gn(n){return n instanceof ArrayBuffer}function bn(n){return!gn(n)}
  *     //...
  * }
  *
- */function En(n){return n instanceof BigUint64Array}function mn(n){return!En(n)}
+ */function vn(n){return n instanceof BigUint64Array}function Un(n){return!vn(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -718,7 +718,7 @@ function gn(n){return n instanceof ArrayBuffer}function bn(n){return!gn(n)}
  *     //...
  * }
  *
- */function vn(n){return n instanceof Float32Array}function wn(n){return!vn(n)}
+ */function Tn(n){return n instanceof Float32Array}function Vn(n){return!Tn(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -735,7 +735,7 @@ function gn(n){return n instanceof ArrayBuffer}function bn(n){return!gn(n)}
  *     //...
  * }
  *
- */function Tn(n){return n instanceof Float64Array}function Vn(n){return!Tn(n)}
+ */function Fn(n){return n instanceof Float64Array}function Bn(n){return!Fn(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -752,7 +752,7 @@ function gn(n){return n instanceof ArrayBuffer}function bn(n){return!gn(n)}
  *     //...
  * }
  *
- */function _n(n){return n instanceof Int16Array}function Fn(n){return!_n(n)}
+ */function Ln(n){return n instanceof Int16Array}function _n(n){return!Ln(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -769,7 +769,7 @@ function gn(n){return n instanceof ArrayBuffer}function bn(n){return!gn(n)}
  *     //...
  * }
  *
- */function Un(n){return n instanceof Int32Array}function $n(n){return!Un(n)}
+ */function $n(n){return n instanceof Int32Array}function Rn(n){return!$n(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -786,7 +786,7 @@ function gn(n){return n instanceof ArrayBuffer}function bn(n){return!gn(n)}
  *     //...
  * }
  *
- */function Sn(n){return n instanceof Int8Array}function Mn(n){return!Sn(n)}
+ */function Sn(n){return n instanceof Int8Array}function kn(n){return!Sn(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -803,7 +803,7 @@ function gn(n){return n instanceof ArrayBuffer}function bn(n){return!gn(n)}
  *     //...
  * }
  *
- */function On(n){return n instanceof Uint16Array}function jn(n){return!On(n)}
+ */function Mn(n){return n instanceof Uint16Array}function On(n){return!Mn(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -820,7 +820,7 @@ function gn(n){return n instanceof ArrayBuffer}function bn(n){return!gn(n)}
  *     //...
  * }
  *
- */function kn(n){return n instanceof Uint32Array}function Bn(n){return!kn(n)}
+ */function jn(n){return n instanceof Uint32Array}function Gn(n){return!jn(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -837,7 +837,7 @@ function gn(n){return n instanceof ArrayBuffer}function bn(n){return!gn(n)}
  *     //...
  * }
  *
- */function Gn(n){return n instanceof Uint8Array}function Ln(n){return!Gn(n)}
+ */function Yn(n){return n instanceof Uint8Array}function xn(n){return!Yn(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -854,7 +854,7 @@ function gn(n){return n instanceof ArrayBuffer}function bn(n){return!gn(n)}
  *     //...
  * }
  *
- */function Yn(n){return n instanceof Uint8ClampedArray}function xn(n){return!Yn(n)}
+ */function Dn(n){return n instanceof Uint8ClampedArray}function Pn(n){return!Dn(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -862,7 +862,7 @@ function gn(n){return n instanceof ArrayBuffer}function bn(n){return!gn(n)}
  * @module sources/physics/constants
  * @desc Export constants about temperatures
  *
- */A(dn)&&(dn=new Nn);const Pn=4.5e-10,Xn=-273.14999999955,Rn=-459.67;
+ */m(bn)&&(bn=new gn);const Xn=4.5e-10,Cn=-273.14999999955,qn=-459.67;
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -880,7 +880,7 @@ function gn(n){return n instanceof ArrayBuffer}function bn(n){return!gn(n)}
  * }
  *
  */
-function qn(n){return F(n)&&n>=Xn}function Cn(n){return!qn(n)}
+function zn(n){return _(n)&&n>=Cn}function Hn(n){return!zn(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -897,7 +897,7 @@ function qn(n){return F(n)&&n>=Xn}function Cn(n){return!qn(n)}
  *     //...
  * }
  *
- */function zn(n){return F(n)&&n>=Rn}function Dn(n){return!zn(n)}
+ */function Jn(n){return _(n)&&n>=qn}function Kn(n){return!Jn(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -914,7 +914,7 @@ function qn(n){return F(n)&&n>=Xn}function Cn(n){return!qn(n)}
  *     //...
  * }
  *
- */function Hn(n){return F(n)&&n>=Pn}function Jn(n){return!Hn(n)}
+ */function Qn(n){return _(n)&&n>=Xn}function Wn(n){return!Qn(n)}
 /**
  * @author [Tristan Valcke]{@link https://github.com/Itee}
  * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
@@ -931,4 +931,326 @@ function qn(n){return F(n)&&n>=Xn}function Cn(n){return!qn(n)}
  *     //...
  * }
  *
- */function Kn(n){return Hn(n)||qn(n)||zn(n)}function Qn(n){return Jn(n)&&Cn(n)&&Dn(n)}export{Xn as ABSOLUTE_ZERO_CELSIUS,Rn as ABSOLUTE_ZERO_FAHRENHEIT,Pn as ABSOLUTE_ZERO_KELVIN,dn as Validator,n as isArray,gn as isArrayBuffer,u as isArrayOfArray,c as isArrayOfBoolean,y as isArrayOfFunction,p as isArrayOfMultiElement,g as isArrayOfNull,k as isArrayOfNumber,Y as isArrayOfObject,P as isArrayOfSingleElement,q as isArrayOfString,H as isArrayOfUndefined,In as isBigInt64Array,En as isBigUint64Array,an as isBlankString,o as isBoolean,qn as isCelsius,I as isDefined,hn as isEmpty,t as isEmptyArray,un as isEmptyObject,fn as isEmptyString,zn as isFahrenheit,Q as isFalse,w as isFinite,O as isFloat,vn as isFloat32Array,Tn as isFloat64Array,l as isFunction,v as isInfinite,E as isInfiniteNegative,m as isInfinitePositive,_n as isInt16Array,Un as isInt32Array,Sn as isInt8Array,M as isInteger,Hn as isKelvin,Z as isMaxNegative,W as isMaxPositive,tn as isMaxSafeInteger,rn as isMinNegative,nn as isMinPositive,en as isMinSafeInteger,j as isNaN,r as isNotArray,bn as isNotArrayBuffer,i as isNotArrayOfArray,a as isNotArrayOfBoolean,h as isNotArrayOfFunction,b as isNotArrayOfNull,B as isNotArrayOfNumber,x as isNotArrayOfObject,C as isNotArrayOfString,J as isNotArrayOfUndefined,An as isNotBigInt64Array,mn as isNotBigUint64Array,ln as isNotBlankString,f as isNotBoolean,Cn as isNotCelsius,A as isNotDefined,pn as isNotEmpty,e as isNotEmptyArray,on as isNotEmptyObject,cn as isNotEmptyString,Dn as isNotFahrenheit,wn as isNotFloat32Array,Vn as isNotFloat64Array,s as isNotFunction,Fn as isNotInt16Array,$n as isNotInt32Array,Mn as isNotInt8Array,Jn as isNotKelvin,d as isNotNull,S as isNotNumber,L as isNotObject,R as isNotString,yn as isNotSymbol,Qn as isNotTemperature,jn as isNotUint16Array,Bn as isNotUint32Array,Ln as isNotUint8Array,xn as isNotUint8ClampedArray,D as isNotUndefined,N as isNull,F as isNumber,$ as isNumberNegative,U as isNumberPositive,G as isObject,X as isString,sn as isSymbol,Kn as isTemperature,K as isTrue,On as isUint16Array,kn as isUint32Array,Gn as isUint8Array,Yn as isUint8ClampedArray,z as isUndefined,T as isZero,_ as isZeroNegative,V as isZeroPositive};
+ */function Zn(n){return Qn(n)||zn(n)||Jn(n)}function nr(n){return Wn(n)&&Hn(n)&&Kn(n)}
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/block-devices/isBlockDevicePath
+ * @description Export function to validate if a value is a block device path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isBlockDevicePath } from 'itee-validators'
+ *
+ * if( isBlockDevicePath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */function rr(r){if(q(r)&&!(r instanceof Buffer)&&!(r instanceof URL))return!1;const t=n(r,{throwIfNoEntry:!1});return w(t)&&t.isBlockDevice()}function tr(n){return!rr(n)}
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/paths/isValidPath
+ * @description Export function to validate if a value is a valid path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isValidPath } from 'itee-validators'
+ *
+ * if( isValidPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */function er(n){return r(n)}function ur(n){return!er(n)}
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/block-devices/isValidBlockDevicePath
+ * @description Export function to validate if a value is a valid block device path.
+ * @example
+ *
+ * import { isValidBlockDevicePath } from 'itee-validators'
+ *
+ * if( isValidBlockDevicePath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */function ir(n){return er(n)&&rr(n)}function or(n){return!ir(n)}
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/character-devices/isCharacterDevicePath
+ * @description Export function to validate if a value is a character device path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isCharacterDevicePath } from 'itee-validators'
+ *
+ * if( isCharacterDevicePath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */function fr(r){if(q(r)&&!(r instanceof Buffer)&&!(r instanceof URL))return!1;const t=n(r,{throwIfNoEntry:!1});return w(t)&&t.isCharacterDevice()}function cr(n){return!fr(n)}
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/character-devices/isValidCharacterDevicePath
+ * @description Export function to validate if a value is a valid character device path
+ * @example
+ *
+ * import { isValidCharacterDevicePath } from 'itee-validators'
+ *
+ * if( isValidCharacterDevicePath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */function ar(n){return er(n)&&fr(n)}function lr(n){return!ar(n)}
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/directories/isDirectoryPath
+ * @description Export function to validate if a value is a directories path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isDirectoryPath } from 'itee-validators'
+ *
+ * if( isDirectoryPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */function sr(r){if(q(r)&&!(r instanceof Buffer)&&!(r instanceof URL))return!1;const t=n(r,{throwIfNoEntry:!1});return w(t)&&t.isDirectory()}function yr(n){return!sr(n)}
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/directories/isEmptyDirectory
+ * @description Export function to validate if a value is a empty directories
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isEmptyDirectory } from 'itee-validators'
+ *
+ * if( isEmptyDirectory( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */function hr(n){return sr(n)&&0===t(n).length}function Nr(n){return!hr(n)}
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/directories/isValidDirectoryPath
+ * @description Export function to validate if a value is a valid directory path
+ * @example
+ *
+ * import { isValidDirectoryPath } from 'itee-validators'
+ *
+ * if( isValidDirectoryPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */function Ir(n){return er(n)&&sr(n)}function pr(n){return!Ir(n)}
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/fifo-pipes/isFIFOPath
+ * @description Export function to validate if a value is a fifo pipes path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isFIFOPath } from 'itee-validators'
+ *
+ * if( isFIFOPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */function dr(r){if(q(r)&&!(r instanceof Buffer)&&!(r instanceof URL))return!1;const t=n(r,{throwIfNoEntry:!1});return w(t)&&t.isFIFO()}function gr(n){return!dr(n)}
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/fifo-pipes/isValidFIFOPath
+ * @description Export function to validate if a value is a valid fifo pipes path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isValidFIFOPath } from 'itee-validators'
+ *
+ * if( isValidFIFOPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */function br(n){return er(n)&&dr(n)}function Er(n){return!br(n)}
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/files/isFilePath
+ * @description Export function to validate if a value is a file path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isFilePath } from 'itee-validators'
+ *
+ * if( isFilePath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */function Ar(r){if(q(r)&&!(r instanceof Buffer)&&!(r instanceof URL))return!1;const t=n(r,{throwIfNoEntry:!1});return w(t)&&t.isFile()}function wr(n){return!Ar(n)}
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/files/isEmptyFile
+ * @description Export function to validate if a value is an empty file
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isEmptyFile } from 'itee-validators'
+ *
+ * if( isEmptyFile( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */function mr(r,t=0){return(!q(r)||r instanceof Buffer||r instanceof URL)&&(Ar(r)&&n(r).size<=t)}function vr(n,r=0){return!mr(n,r)}
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/files/isValidFilePath
+ * @description Export function to validate if a value is a valid file path
+ * @example
+ *
+ * import { isValidFilePath } from 'itee-validators'
+ *
+ * if( isValidFilePath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */function Ur(n){return er(n)&&Ar(n)}function Tr(n){return!Ur(n)}
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/sockets/isSocketPath
+ * @description Export function to validate if a value is a socket path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isSocketPath } from 'itee-validators'
+ *
+ * if( isSocketPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */function Vr(r){if(q(r)&&!(r instanceof Buffer)&&!(r instanceof URL))return!1;const t=n(r,{throwIfNoEntry:!1});return w(t)&&t.isSocket()}function Fr(n){return!Vr(n)}
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/sockets/isValidSocketPath
+ * @description Export function to validate if a value is a valid socket path
+ * @example
+ *
+ * import { isValidSocketPath } from 'itee-validators'
+ *
+ * if( isValidSocketPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */function Br(n){return er(n)&&Vr(n)}function Lr(n){return!Br(n)}
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/symbolic-links/isSocketPath
+ * @description Export function to validate if a value is a symbolic links path
+ *
+ * @requires {@link module: [fs]{@link https://nodejs.org/api/fs.html}}
+ *
+ * @example
+ *
+ * import { isSymbolicLinkPath } from 'itee-validators'
+ *
+ * if( isSymbolicLinkPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */function _r(r){if(q(r)&&!(r instanceof Buffer)&&!(r instanceof URL))return!1;const t=n(r,{throwIfNoEntry:!1});return w(t)&&t.isSymbolicLink()}function $r(n){return!_r(n)}
+/**
+ * @author [Tristan Valcke]{@link https://github.com/Itee}
+ * @license [BSD-3-Clause]{@link https://opensource.org/licenses/BSD-3-Clause}
+ *
+ * @module sources/file-system/symbolic-links/isSocketPath
+ * @description Export function to validate if a value is a valid symbolic links path
+ * @example
+ *
+ * import { isValidSymbolicLinkPath } from 'itee-validators'
+ *
+ * if( isValidSymbolicLinkPath( value ) ) {
+ *     //...
+ * } else {
+ *     //...
+ * }
+ *
+ */function Rr(n){return er(n)&&_r(n)}function Sr(n){return!Rr(n)}export{Cn as ABSOLUTE_ZERO_CELSIUS,qn as ABSOLUTE_ZERO_FAHRENHEIT,Xn as ABSOLUTE_ZERO_KELVIN,bn as Validator,e as isArray,En as isArrayBuffer,f as isArrayOfArray,s as isArrayOfBoolean,I as isArrayOfFunction,d as isArrayOfMultiElement,E as isArrayOfNull,j as isArrayOfNumber,D as isArrayOfObject,X as isArrayOfSingleElement,z as isArrayOfString,Q as isArrayOfUndefined,wn as isBigInt64Array,vn as isBigUint64Array,yn as isBlankString,rr as isBlockDevicePath,a as isBoolean,zn as isCelsius,fr as isCharacterDevicePath,w as isDefined,sr as isDirectoryPath,pn as isEmpty,i as isEmptyArray,hr as isEmptyDirectory,mr as isEmptyFile,cn as isEmptyObject,ln as isEmptyString,dr as isFIFOPath,Jn as isFahrenheit,nn as isFalse,Ar as isFilePath,V as isFinite,M as isFloat,Tn as isFloat32Array,Fn as isFloat64Array,h as isFunction,T as isInfinite,v as isInfiniteNegative,U as isInfinitePositive,Ln as isInt16Array,$n as isInt32Array,Sn as isInt8Array,k as isInteger,or as isInvalidBlockDevicePath,lr as isInvalidCharacterDevicePath,pr as isInvalidDirectoryPath,Er as isInvalidFIFOPath,Tr as isInvalidFilePath,ur as isInvalidPath,Lr as isInvalidSocketPath,Sr as isInvalidSymbolicLinkPath,Qn as isKelvin,tn as isMaxNegative,rn as isMaxPositive,on as isMaxSafeInteger,un as isMinNegative,en as isMinPositive,fn as isMinSafeInteger,O as isNaN,u as isNotArray,An as isNotArrayBuffer,c as isNotArrayOfArray,y as isNotArrayOfBoolean,p as isNotArrayOfFunction,A as isNotArrayOfNull,G as isNotArrayOfNumber,P as isNotArrayOfObject,H as isNotArrayOfString,W as isNotArrayOfUndefined,mn as isNotBigInt64Array,Un as isNotBigUint64Array,hn as isNotBlankString,tr as isNotBlockDevicePath,l as isNotBoolean,Hn as isNotCelsius,cr as isNotCharacterDevicePath,m as isNotDefined,yr as isNotDirectoryPath,dn as isNotEmpty,o as isNotEmptyArray,Nr as isNotEmptyDirectory,vr as isNotEmptyFile,an as isNotEmptyObject,sn as isNotEmptyString,gr as isNotFIFOPath,Kn as isNotFahrenheit,wr as isNotFilePath,Vn as isNotFloat32Array,Bn as isNotFloat64Array,N as isNotFunction,_n as isNotInt16Array,Rn as isNotInt32Array,kn as isNotInt8Array,Wn as isNotKelvin,b as isNotNull,S as isNotNumber,x as isNotObject,Fr as isNotSocketPath,q as isNotString,In as isNotSymbol,$r as isNotSymbolicLinkPath,nr as isNotTemperature,On as isNotUint16Array,Gn as isNotUint32Array,xn as isNotUint8Array,Pn as isNotUint8ClampedArray,K as isNotUndefined,g as isNull,_ as isNumber,R as isNumberNegative,$ as isNumberPositive,Y as isObject,Vr as isSocketPath,C as isString,Nn as isSymbol,_r as isSymbolicLinkPath,Zn as isTemperature,Z as isTrue,Mn as isUint16Array,jn as isUint32Array,Yn as isUint8Array,Dn as isUint8ClampedArray,J as isUndefined,ir as isValidBlockDevicePath,ar as isValidCharacterDevicePath,Ir as isValidDirectoryPath,br as isValidFIFOPath,Ur as isValidFilePath,er as isValidPath,Br as isValidSocketPath,Rr as isValidSymbolicLinkPath,F as isZero,L as isZeroNegative,B as isZeroPositive};
