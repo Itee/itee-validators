@@ -1,3 +1,8 @@
+# [v7.0.0](https://github.com/Itee/validators/compare/v6.1.3...v7.0.0) (2026-01-23)
+
+## 💥 Breaking Changes
+- [`d59c1d5`](https://github.com/Itee/validators/commit/d59c1d5)  (package) change package name itee-validators to scoped version @itee/validators
+
 # [v6.1.3](https://github.com/Itee/validators/compare/v6.1.2...v6.1.3) (2026-01-23)
 
 # [v6.1.2](https://github.com/Itee/validators/compare/v6.1.1...v6.1.2) (2026-01-22)
