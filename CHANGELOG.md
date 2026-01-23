@@ -1,3 +1,8 @@
+# [v7.0.1](https://github.com/Itee/validators/compare/v7.0.0...v7.0.1) (2026-01-23)
+
+## 🐛 Bug Fixes
+- [`064c269`](https://github.com/Itee/validators/commit/064c269)  (package) apply package override to fix trust publishing
+
 # [v7.0.0](https://github.com/Itee/validators/compare/v6.1.3...v7.0.0) (2026-01-23)
 
 ## 💥 Breaking Changes
