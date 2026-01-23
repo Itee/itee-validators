@@ -113,7 +113,7 @@ export function isNaN( data ) {
 }
 
 
-// #if IS_REMOVE_ON_BUILD
+// #if IS_KEEP_ON_BUILD
 
 export function isNumber_0( data ) {
     return ( typeof data === 'number' && !Number.isNaN( data ) )

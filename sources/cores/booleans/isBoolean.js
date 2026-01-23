@@ -36,7 +36,7 @@ export function isNotBoolean( data ) {
     return ( typeof data !== 'boolean' )
 }
 
-// #if IS_REMOVE_ON_BUILD
+// #if IS_KEEP_ON_BUILD
 
 export function isBoolean_alt( data ) {
     return typeof data === 'boolean' || ( typeof data === 'object' && data !== null && typeof data.valueOf() === 'boolean' )
